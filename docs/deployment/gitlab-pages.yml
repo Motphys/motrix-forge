@@ -1,0 +1,20 @@
+# Copied to the static page branch as .gitlab-ci.yml by prepare_pages.py.
+image: alpine:3
+
+pages:
+  stage: deploy
+  # GitLab Pages can serve byte ranges from uncompressed artifact entries.
+  variables:
+    FF_USE_FASTZIP: "true"
+    ARTIFACT_COMPRESSION_LEVEL: "fastest"
+  script:
+    - test -s index.html
+    - mkdir .public
+    - cp -r * .public/
+    - mv .public public
+  pages: true
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "page"'

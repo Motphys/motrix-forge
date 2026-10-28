@@ -1,0 +1,335 @@
+{
+    "Asphalt (Fresh)": {
+        "name": "Asphalt (Fresh)",
+        "color": [
+            0.0429,
+            0.0414,
+            0.0401
+        ],
+        "metalness": 0,
+        "roughness": 0.5,
+        "ior": 1.6,
+        "category": [
+            "Manmade"
+        ],
+        "tags": [
+            "tarmac",
+            "bitumen"
+        ]
+    },
+    "Blackboard": {
+        "name": "Blackboard",
+        "color": [
+            0.039,
+            0.039,
+            0.039
+        ],
+        "metalness": 0,
+        "roughness": 0.9,
+        "ior": 1.5,
+        "category": [
+            "Manmade"
+        ]
+    },
+    "Brick": {
+        "name": "Brick",
+        "color": [
+            0.262,
+            0.095,
+            0.061
+        ],
+        "metalness": 0,
+        "roughness": 0.9,
+        "ior": 1.5,
+        "density": 2000,
+        "acousticAbsorption": [
+            0.03,
+            0.03,
+            0.03,
+            0.04,
+            0.05,
+            0.07
+        ],
+        "category": [
+            "Manmade"
+        ],
+        "tags": [
+            "acoustics",
+            "audio"
+        ]
+    },
+    "Car Paint": {
+        "name": "Car Paint",
+        "color": [
+            0.1,
+            0.1,
+            0.1
+        ],
+        "metalness": 0,
+        "roughness": 0,
+        "ior": 1.5,
+        "category": [
+            "Manmade"
+        ],
+        "tags": [
+            "acrylic",
+            "coat",
+            "car paint",
+            "lacquer"
+        ]
+    },
+    "Cardboard": {
+        "name": "Cardboard",
+        "color": [
+            0.351,
+            0.208,
+            0.11
+        ],
+        "metalness": 0,
+        "roughness": 0.5,
+        "ior": 1.5,
+        "density": 700,
+        "category": [
+            "Manmade"
+        ],
+        "tags": [
+            "corrugated fiberboard"
+        ]
+    },
+    "Concrete": {
+        "name": "Concrete",
+        "color": [
+            0.51,
+            0.51,
+            0.51
+        ],
+        "metalness": 0,
+        "roughness": 0.5,
+        "ior": 1.5,
+        "density": 2400,
+        "acousticAbsorption": [
+            0.01,
+            0.01,
+            0.02,
+            0.02,
+            0.02,
+            0.02
+        ],
+        "category": [
+            "Manmade"
+        ],
+        "tags": [
+            "acoustics",
+            "audio"
+        ]
+    },
+    "Gray Card": {
+        "name": "Gray Card",
+        "color": [
+            0.18,
+            0.18,
+            0.18
+        ],
+        "metalness": 0,
+        "roughness": 0.9,
+        "ior": 1.5,
+        "category": [
+            "Manmade"
+        ],
+        "tags": [
+            "grey",
+            "middle gray"
+        ]
+    },
+    "MIT Black": {
+        "name": "MIT Black",
+        "color": [
+            5e-05,
+            5e-05,
+            5e-05
+        ],
+        "metalness": 0,
+        "roughness": 0.99,
+        "ior": 1.5,
+        "category": [
+            "Manmade"
+        ]
+    },
+    "Musou Black": {
+        "name": "Musou Black",
+        "color": [
+            0.006,
+            0.006,
+            0.006
+        ],
+        "metalness": 0,
+        "roughness": 0.9,
+        "ior": 1.5,
+        "category": [
+            "Manmade"
+        ]
+    },
+    "Office Paper": {
+        "name": "Office Paper",
+        "color": [
+            0.794,
+            0.834,
+            0.884
+        ],
+        "metalness": 0,
+        "roughness": 0.8,
+        "ior": 1.5,
+        "density": 800,
+        "category": [
+            "Manmade"
+        ]
+    },
+    "Polystyrene (Foam)": {
+        "name": "Polystyrene (Foam)",
+        "color": [
+            0.8393,
+            0.8384,
+            0.841
+        ],
+        "metalness": 0,
+        "roughness": 0.5,
+        "ior": 1.6,
+        "density": 75,
+        "category": [
+            "Manmade"
+        ],
+        "tags": [
+            "styrofoam"
+        ]
+    },
+    "Porcelain": {
+        "name": "Porcelain",
+        "color": [
+            0.745,
+            0.745,
+            0.723
+        ],
+        "metalness": 0,
+        "roughness": 0,
+        "ior": 1.5,
+        "density": 2400,
+        "category": [
+            "Manmade"
+        ],
+        "tags": [
+            "vitreous china",
+            "ceramic"
+        ]
+    },
+    "Spectralon": {
+        "name": "Spectralon",
+        "color": [
+            0.99,
+            0.99,
+            0.99
+        ],
+        "metalness": 0,
+        "roughness": 0.99,
+        "ior": 1.35,
+        "category": [
+            "Manmade"
+        ]
+    },
+    "Terracotta": {
+        "name": "Terracotta",
+        "color": [
+            0.555,
+            0.212,
+            0.11
+        ],
+        "metalness": 0,
+        "roughness": 0.8,
+        "ior": 1.5,
+        "density": 2000,
+        "category": [
+            "Manmade"
+        ],
+        "tags": [
+            "clay"
+        ]
+    },
+    "Rubber": {
+        "name": "Rubber",
+        "color": [
+            0.023,
+            0.023,
+            0.023
+        ],
+        "metalness": 0,
+        "roughness": 0.7,
+        "ior": 1.5,
+        "category": [
+            "Manmade"
+        ],
+        "tags": [
+            "tyre",
+            "tire"
+        ]
+    },
+    "Toilet Paper": {
+        "name": "Toilet Paper",
+        "color": [
+            0.83,
+            0.835,
+            0.784
+        ],
+        "metalness": 0,
+        "roughness": 0.9,
+        "ior": 1.5,
+        "density": 50,
+        "category": [
+            "Manmade"
+        ]
+    },
+    "Toner (Black)": {
+        "name": "Toner (Black)",
+        "color": [
+            0.05,
+            0.05,
+            0.05
+        ],
+        "metalness": 0,
+        "roughness": 0.5,
+        "ior": 1.5,
+        "category": [
+            "Manmade"
+        ]
+    },
+    "Toothpaste": {
+        "name": "Toothpaste",
+        "color": [
+            0.9325,
+            0.9369,
+            0.9286
+        ],
+        "metalness": 0,
+        "roughness": 0,
+        "ior": 1.5,
+        "density": 1400,
+        "viscosity": [
+            50000
+        ],
+        "category": [
+            "Manmade"
+        ]
+    },
+    "Whiteboard": {
+        "name": "Whiteboard",
+        "color": [
+            0.869,
+            0.867,
+            0.771
+        ],
+        "metalness": 0,
+        "roughness": 0,
+        "ior": 1.5,
+        "category": [
+            "Manmade"
+        ]
+    }
+}

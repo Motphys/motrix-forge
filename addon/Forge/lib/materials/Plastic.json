@@ -1,0 +1,124 @@
+{
+    "Plastic (Acrylic)": {
+        "name": "Plastic (Acrylic)",
+        "color": [
+            1,
+            1,
+            1
+        ],
+        "metalness": 0,
+        "roughness": 0,
+        "ior": 1.4905,
+        "transmission": 1,
+        "transmissionDispersion": 53.18,
+        "density": 1180,
+        "category": [
+            "Plastic"
+        ],
+        "tags": [
+            "PMMA",
+            "plexi",
+            "polymethyl methacrylate"
+        ]
+    },
+    "Plastic (PC)": {
+        "name": "Plastic (PC)",
+        "color": [
+            1,
+            1,
+            1
+        ],
+        "metalness": 0,
+        "roughness": 0,
+        "ior": 1.5848,
+        "transmission": 1,
+        "transmissionDispersion": 27.86,
+        "density": 1200,
+        "category": [
+            "Plastic"
+        ],
+        "tags": [
+            "polycarbonate"
+        ]
+    },
+    "Plastic (PET)": {
+        "name": "Plastic (PET)",
+        "color": [
+            1,
+            1,
+            1
+        ],
+        "metalness": 0,
+        "roughness": 0,
+        "ior": 1.575,
+        "transmission": 1,
+        "density": 1380,
+        "category": [
+            "Plastic"
+        ],
+        "tags": [
+            "polyethylene terephthalate"
+        ]
+    },
+    "Plastic (PP)": {
+        "name": "Plastic (PP)",
+        "color": [
+            1,
+            1,
+            1
+        ],
+        "metalness": 0,
+        "roughness": 0,
+        "ior": 1.492,
+        "transmission": 1,
+        "density": 900,
+        "category": [
+            "Plastic"
+        ],
+        "tags": [
+            "polypropylene"
+        ]
+    },
+    "Plastic (PUR)": {
+        "name": "Plastic (PUR)",
+        "color": [
+            1,
+            1,
+            1
+        ],
+        "metalness": 0,
+        "roughness": 0,
+        "ior": 1.6,
+        "transmission": 1,
+        "density": 1150.0,
+        "category": [
+            "Plastic"
+        ],
+        "tags": [
+            "acrylic",
+            "coat",
+            "car paint",
+            "lacquer",
+            "polyurethane"
+        ]
+    },
+    "Plastic (PVC)": {
+        "name": "Plastic (PVC)",
+        "color": [
+            1,
+            1,
+            1
+        ],
+        "metalness": 0,
+        "roughness": 0,
+        "ior": 1.542,
+        "transmission": 1,
+        "density": 1300,
+        "category": [
+            "Plastic"
+        ],
+        "tags": [
+            "polyvinyl chloride"
+        ]
+    }
+}

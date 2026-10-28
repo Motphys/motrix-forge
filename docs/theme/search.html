@@ -1,0 +1,10 @@
+{% extends "main.html" %}
+{% block content %}
+  <h1>{{ '搜索手册' if chinese else 'Search manual' }}</h1>
+  <form class="content-search" role="search">
+    <input type="hidden" name="lang" value="{{ manual_language }}">
+    <input type="search" id="mkdocs-search-query" name="q" placeholder="{{ '输入关键词' if chinese else 'Enter a search term' }}" aria-label="{{ '输入关键词' if chinese else 'Enter a search term' }}" autofocus>
+    <button type="submit">{{ '搜索' if chinese else 'Search' }}</button>
+  </form>
+  <div id="mkdocs-search-results" role="status" aria-live="polite" data-no-results-text="{{ '未找到结果' if chinese else 'No results found' }}">{{ '输入关键词开始搜索。' if chinese else 'Enter a term to search the manual.' }}</div>
+{% endblock %}

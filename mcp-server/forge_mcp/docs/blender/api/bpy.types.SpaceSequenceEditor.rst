@@ -1,0 +1,288 @@
+SpaceSequenceEditor(Space)
+==========================
+
+.. currentmodule:: bpy.types
+
+base classes --- :class:`bpy_struct`, :class:`Space`
+
+.. class:: SpaceSequenceEditor(Space)
+
+   Sequence editor space data
+
+   .. data:: cache_overlay
+
+      Settings for display of overlays
+
+      :type: :class:`SequencerCacheOverlay`, (readonly, never None)
+
+   .. attribute:: cursor_location
+
+      2D cursor location for this view
+
+      :type: :class:`mathutils.Vector` of 2 items in [-inf, inf], default (0.0, 0.0)
+
+   .. attribute:: display_channel
+
+      Preview all channels less than or equal to this value. 0 shows every channel, and negative values climb that many metastrip levels if applicable, showing every channel there.
+
+      :type: int in [-5, 128], default 0
+
+   .. attribute:: display_mode
+
+      View mode to use for displaying sequencer output
+
+      :type: enum in [``'IMAGE'``, ``'WAVEFORM'``, ``'RGB_PARADE'``, ``'VECTOR_SCOPE'``, ``'HISTOGRAM'``], default ``'IMAGE'``
+
+   .. attribute:: grease_pencil
+
+      Grease Pencil data for this Preview region
+
+      :type: :class:`GreasePencil`
+
+   .. attribute:: overlay_frame_type
+
+      Overlay display method
+
+      * ``RECTANGLE``
+        Rectangle -- Show rectangle area overlay.
+      * ``REFERENCE``
+        Reference -- Show reference frame only.
+      * ``CURRENT``
+        Current -- Show current frame only.
+
+      :type: enum in [``'RECTANGLE'``, ``'REFERENCE'``, ``'CURRENT'``], default ``'RECTANGLE'``
+
+   .. attribute:: preview_channels
+
+      Channels of the preview to display
+
+      * ``COLOR_ALPHA``
+        Color & Alpha -- Display image with RGB colors and alpha transparency.
+      * ``COLOR``
+        Color -- Display image with RGB colors.
+
+      :type: enum in [``'COLOR_ALPHA'``, ``'COLOR'``], default ``'COLOR'``
+
+   .. data:: preview_overlay
+
+      Settings for display of overlays
+
+      :type: :class:`SequencerPreviewOverlay`, (readonly, never None)
+
+   .. attribute:: proxy_render_size
+
+      Display preview using full resolution or different proxy resolutions
+
+      :type: enum in [``'NONE'``, ``'SCENE'``, ``'PROXY_25'``, ``'PROXY_50'``, ``'PROXY_75'``, ``'PROXY_100'``], default ``'SCENE'``
+
+   .. attribute:: show_frames
+
+      Display frames rather than seconds
+
+      :type: boolean, default False
+
+   .. attribute:: show_gizmo
+
+      Show gizmos of all types
+
+      :type: boolean, default False
+
+   .. attribute:: show_gizmo_context
+
+      Context sensitive gizmos for the active item
+
+      :type: boolean, default False
+
+   .. attribute:: show_gizmo_navigate
+
+      Viewport navigation gizmo
+
+      :type: boolean, default False
+
+   .. attribute:: show_gizmo_tool
+
+      Active tool gizmo
+
+      :type: boolean, default False
+
+   .. attribute:: show_markers
+
+      If any exists, show markers in a separate row at the bottom of the editor
+
+      :type: boolean, default False
+
+   .. attribute:: show_overexposed
+
+      Show overexposed areas with zebra stripes
+
+      :type: int in [0, 110], default 0
+
+   .. attribute:: show_overlays
+
+      :type: boolean, default False
+
+   .. attribute:: show_region_channels
+
+      :type: boolean, default False
+
+   .. attribute:: show_region_hud
+
+      :type: boolean, default False
+
+   .. attribute:: show_region_tool_header
+
+      :type: boolean, default False
+
+   .. attribute:: show_region_toolbar
+
+      :type: boolean, default False
+
+   .. attribute:: show_region_ui
+
+      :type: boolean, default False
+
+   .. attribute:: show_seconds
+
+      Show timing as a timecode instead of frames
+
+      :type: boolean, default False
+
+   .. attribute:: show_transform_preview
+
+      Show a preview of the start or end frame of a strip while transforming its respective handle
+
+      :type: boolean, default False
+
+   .. data:: timeline_overlay
+
+      Settings for display of overlays
+
+      :type: :class:`SequencerTimelineOverlay`, (readonly, never None)
+
+   .. attribute:: use_clamp_view
+
+      Limit timeline height to maximum used channel slot
+
+      :type: boolean, default False
+
+   .. attribute:: use_marker_sync
+
+      Transform markers as well as strips
+
+      :type: boolean, default False
+
+   .. attribute:: use_proxies
+
+      Use optimized files for faster scrubbing when available
+
+      :type: boolean, default False
+
+   .. attribute:: use_zoom_to_fit
+
+      Automatically zoom preview image to make it fully fit the region
+
+      :type: boolean, default False
+
+   .. attribute:: view_type
+
+      Type of the Sequencer view (sequencer, preview or both)
+
+      :type: enum in :ref:`rna_enum_space_sequencer_view_type_items`, default ``'SEQUENCER'``
+
+   .. attribute:: zoom_percentage
+
+      Zoom percentage
+
+      :type: float in [0.4, 80000], default 100.0
+
+   .. classmethod:: bl_rna_get_subclass(id, default=None, /)
+   
+      :arg id: The RNA type identifier.
+      :type id: str
+      :return: The RNA type or default when not found.
+      :rtype: :class:`bpy.types.Struct` subclass
+
+
+   .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
+   
+      :arg id: The RNA type identifier.
+      :type id: str
+      :return: The class or default when not found.
+      :rtype: type
+
+
+   .. classmethod:: draw_handler_add(callback, args, region_type, draw_type)
+   
+      Add a new draw handler to this space type.
+      It will be called every time the specified region in the space type will be drawn.
+      Note: All arguments are positional only for now.
+   
+      :arg callback:
+         A function that will be called when the region is drawn.
+         It gets the specified arguments as input, it's return value is ignored.
+      :type callback: Callable[..., Any]
+      :arg args: Arguments that will be passed to the callback.
+      :type args: tuple[Any, ...]
+      :arg region_type: The region type the callback draws in; usually ``WINDOW``. (:class:`bpy.types.Region.type`)
+      :type region_type: str
+      :arg draw_type: Usually ``POST_PIXEL`` for 2D drawing and ``POST_VIEW`` for 3D drawing. In some cases ``PRE_VIEW`` can be used. ``BACKDROP`` can be used for backdrops in the node editor.
+      :type draw_type: str
+      :return: Handler that can be removed later on.
+      :rtype: object
+
+
+   .. classmethod:: draw_handler_remove(handler, region_type)
+   
+      Remove a draw handler that was added previously.
+   
+      :arg handler: The draw handler that should be removed.
+      :type handler: object
+      :arg region_type: Region type the callback was added to.
+      :type region_type: str
+
+
+Inherited Properties
+--------------------
+
+.. hlist::
+   :columns: 2
+
+   * :class:`bpy_struct.id_data`
+   * :class:`Space.type`
+   * :class:`Space.show_locked_time`
+   * :class:`Space.show_region_header`
+
+Inherited Functions
+-------------------
+
+.. hlist::
+   :columns: 2
+
+   * :class:`bpy_struct.as_pointer`
+   * :class:`bpy_struct.driver_add`
+   * :class:`bpy_struct.driver_remove`
+   * :class:`bpy_struct.get`
+   * :class:`bpy_struct.id_properties_clear`
+   * :class:`bpy_struct.id_properties_ensure`
+   * :class:`bpy_struct.id_properties_ui`
+   * :class:`bpy_struct.is_property_hidden`
+   * :class:`bpy_struct.is_property_overridable_library`
+   * :class:`bpy_struct.is_property_readonly`
+   * :class:`bpy_struct.is_property_set`
+   * :class:`bpy_struct.items`
+   * :class:`bpy_struct.keyframe_delete`
+   * :class:`bpy_struct.keyframe_insert`
+   * :class:`bpy_struct.keys`
+   * :class:`bpy_struct.path_from_id`
+   * :class:`bpy_struct.path_resolve`
+   * :class:`bpy_struct.pop`
+   * :class:`bpy_struct.property_overridable_library_set`
+   * :class:`bpy_struct.property_unset`
+   * :class:`bpy_struct.rna_ancestors`
+   * :class:`bpy_struct.type_recast`
+   * :class:`bpy_struct.values`
+   * :class:`Space.bl_rna_get_subclass`
+   * :class:`Space.bl_rna_get_subclass_py`
+   * :class:`Space.draw_handler_add`
+   * :class:`Space.draw_handler_remove`
+

@@ -1,0 +1,102 @@
+SpreadsheetTableIDGeometry(SpreadsheetTableID)
+==============================================
+
+.. currentmodule:: bpy.types
+
+base classes --- :class:`bpy_struct`, :class:`SpreadsheetTableID`
+
+.. class:: SpreadsheetTableIDGeometry(SpreadsheetTableID)
+
+
+   .. data:: attribute_domain
+
+      Attribute domain to display
+
+      :type: enum in :ref:`rna_enum_attribute_domain_items`, default ``'POINT'``, (readonly)
+
+   .. data:: geometry_component_type
+
+      Part of the geometry to display data from
+
+      :type: enum in :ref:`rna_enum_geometry_component_type_items`, default ``'MESH'``, (readonly)
+
+   .. data:: layer_index
+
+      Index of the Grease Pencil layer
+
+      :type: int in [-inf, inf], default 0, (readonly)
+
+   .. data:: object_eval_state
+
+      * ``EVALUATED``
+        Evaluated -- Use data from fully or partially evaluated object.
+      * ``ORIGINAL``
+        Original -- Use data from original object without any modifiers applied.
+      * ``VIEWER_NODE``
+        Viewer Node -- Use intermediate data from viewer node.
+
+      :type: enum in [``'EVALUATED'``, ``'ORIGINAL'``, ``'VIEWER_NODE'``], default ``'EVALUATED'``, (readonly)
+
+   .. data:: viewer_path
+
+      Path to the data that is displayed
+
+      :type: :class:`ViewerPath`, (readonly)
+
+   .. classmethod:: bl_rna_get_subclass(id, default=None, /)
+   
+      :arg id: The RNA type identifier.
+      :type id: str
+      :return: The RNA type or default when not found.
+      :rtype: :class:`bpy.types.Struct` subclass
+
+
+   .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
+   
+      :arg id: The RNA type identifier.
+      :type id: str
+      :return: The class or default when not found.
+      :rtype: type
+
+
+Inherited Properties
+--------------------
+
+.. hlist::
+   :columns: 2
+
+   * :class:`bpy_struct.id_data`
+   * :class:`SpreadsheetTableID.type`
+
+Inherited Functions
+-------------------
+
+.. hlist::
+   :columns: 2
+
+   * :class:`bpy_struct.as_pointer`
+   * :class:`bpy_struct.driver_add`
+   * :class:`bpy_struct.driver_remove`
+   * :class:`bpy_struct.get`
+   * :class:`bpy_struct.id_properties_clear`
+   * :class:`bpy_struct.id_properties_ensure`
+   * :class:`bpy_struct.id_properties_ui`
+   * :class:`bpy_struct.is_property_hidden`
+   * :class:`bpy_struct.is_property_overridable_library`
+   * :class:`bpy_struct.is_property_readonly`
+   * :class:`bpy_struct.is_property_set`
+   * :class:`bpy_struct.items`
+   * :class:`bpy_struct.keyframe_delete`
+   * :class:`bpy_struct.keyframe_insert`
+   * :class:`bpy_struct.keys`
+   * :class:`bpy_struct.path_from_id`
+   * :class:`bpy_struct.path_resolve`
+   * :class:`bpy_struct.pop`
+   * :class:`bpy_struct.property_overridable_library_set`
+   * :class:`bpy_struct.property_unset`
+   * :class:`bpy_struct.rna_ancestors`
+   * :class:`bpy_struct.type_recast`
+   * :class:`bpy_struct.values`
+   * :class:`SpreadsheetTableID.bl_rna_get_subclass`
+   * :class:`SpreadsheetTableID.bl_rna_get_subclass_py`
+

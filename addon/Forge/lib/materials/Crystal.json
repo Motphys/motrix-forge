@@ -1,0 +1,399 @@
+{
+    "Diamond": {
+        "name": "Diamond",
+        "color": [
+            1,
+            1,
+            1
+        ],
+        "metalness": 0,
+        "roughness": 0,
+        "ior": 2.4168,
+        "transmission": 1,
+        "transmissionDispersion": 55.3,
+        "density": 3500,
+        "category": [
+            "Crystal"
+        ],
+        "tags": [
+            "gem",
+            "gemstone"
+        ]
+    },
+    "Glass (Borosilicate)": {
+        "name": "Glass (Borosilicate)",
+        "color": [
+            0.988,
+            0.992,
+            0.985
+        ],
+        "metalness": 0,
+        "roughness": 0,
+        "ior": 1.52,
+        "transmission": 1,
+        "transmissionDepth": 50,
+        "transmissionDispersion": 64,
+        "volumeCoefficients": {
+            "absorption": [
+                {
+                    "colorSpace": "srgb-linear",
+                    "color": [
+                        0.00237,
+                        0.0018,
+                        0.00301
+                    ]
+                },
+                {
+                    "colorSpace": "acescg",
+                    "color": [
+                        0.00221,
+                        0.00186,
+                        0.00286
+                    ]
+                }
+            ],
+            "scattering": [
+                {
+                    "colorSpace": "srgb-linear",
+                    "color": [
+                        0,
+                        0,
+                        0
+                    ]
+                },
+                {
+                    "colorSpace": "acescg",
+                    "color": [
+                        0,
+                        0,
+                        0
+                    ]
+                }
+            ]
+        },
+        "density": 2230,
+        "acousticAbsorption": [
+            0.04,
+            0.04,
+            0.03,
+            0.03,
+            0.02,
+            0.02
+        ],
+        "category": [
+            "Crystal"
+        ],
+        "tags": [
+            "acoustics",
+            "audio",
+            "crown",
+            "bk7"
+        ]
+    },
+    "Glass (Soda-lime)": {
+        "name": "Glass (Soda-lime)",
+        "color": [
+            0.984,
+            0.995,
+            0.995
+        ],
+        "metalness": 0,
+        "roughness": 0,
+        "ior": 1.52,
+        "transmission": 1,
+        "transmissionDepth": 1,
+        "transmissionDispersion": 64,
+        "volumeCoefficients": {
+            "absorption": [
+                {
+                    "colorSpace": "srgb-linear",
+                    "color": [
+                        0.13941,
+                        0.04527,
+                        0.05334
+                    ]
+                },
+                {
+                    "colorSpace": "acescg",
+                    "color": [
+                        0.10337,
+                        0.05197,
+                        0.05422
+                    ]
+                }
+            ],
+            "scattering": [
+                {
+                    "colorSpace": "srgb-linear",
+                    "color": [
+                        0,
+                        0,
+                        0
+                    ]
+                },
+                {
+                    "colorSpace": "acescg",
+                    "color": [
+                        0,
+                        0,
+                        0
+                    ]
+                }
+            ]
+        },
+        "density": 2520,
+        "acousticAbsorption": [
+            0.04,
+            0.04,
+            0.03,
+            0.03,
+            0.02,
+            0.02
+        ],
+        "category": [
+            "Crystal"
+        ],
+        "tags": [
+            "acoustics",
+            "audio"
+        ]
+    },
+    "Ice": {
+        "name": "Ice",
+        "color": [
+            0.973,
+            0.995,
+            1
+        ],
+        "metalness": 0,
+        "roughness": 0,
+        "ior": 1.3098,
+        "transmission": 1,
+        "transmissionDepth": 100,
+        "transmissionDispersion": 64.87,
+        "volumeCoefficients": {
+            "absorption": [
+                {
+                    "colorSpace": "srgb-linear",
+                    "color": [
+                        0.002075,
+                        0.000416,
+                        0
+                    ]
+                },
+                {
+                    "colorSpace": "acescg",
+                    "color": [
+                        0.001411,
+                        0.000526,
+                        5e-05
+                    ]
+                }
+            ],
+            "scattering": [
+                {
+                    "colorSpace": "srgb-linear",
+                    "color": [
+                        0,
+                        0,
+                        0
+                    ]
+                },
+                {
+                    "colorSpace": "acescg",
+                    "color": [
+                        0,
+                        0,
+                        0
+                    ]
+                }
+            ]
+        },
+        "density": 917,
+        "acousticAbsorption": [
+            0.008,
+            0.008,
+            0.013,
+            0.015,
+            0.02,
+            0.025
+        ],
+        "category": [
+            "Crystal"
+        ],
+        "tags": [
+            "acoustics",
+            "audio"
+        ]
+    },
+    "Marble": {
+        "name": "Marble",
+        "color": [
+            0.83,
+            0.791,
+            0.753
+        ],
+        "metalness": 0,
+        "roughness": 0,
+        "ior": 1.5,
+        "subsurfaceRadius": [
+            0.851,
+            0.557,
+            0.395
+        ],
+        "volumeCoefficients": {
+            "absorption": [
+                {
+                    "colorSpace": "srgb-linear",
+                    "color": [
+                        0.021,
+                        0.041,
+                        0.071
+                    ]
+                }
+            ],
+            "scattering": [
+                {
+                    "colorSpace": "srgb-linear",
+                    "color": [
+                        21.9,
+                        26.2,
+                        30
+                    ]
+                }
+            ],
+            "anisotropy": [
+                {
+                    "colorSpace": "srgb-linear",
+                    "color": [
+                        0,
+                        0,
+                        0
+                    ]
+                }
+            ]
+        },
+        "density": 2700,
+        "acousticAbsorption": [
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.02,
+            0.02
+        ],
+        "category": [
+            "Crystal"
+        ],
+        "tags": [
+            "sss",
+            "acoustics",
+            "audio"
+        ]
+    },
+    "Quartz": {
+        "name": "Quartz",
+        "color": [
+            1,
+            1,
+            1
+        ],
+        "metalness": 0,
+        "roughness": 0,
+        "ior": 1.54,
+        "transmission": 1,
+        "transmissionDispersion": 67.82,
+        "density": 2600,
+        "category": [
+            "Crystal"
+        ]
+    },
+    "Salt": {
+        "name": "Salt",
+        "color": [
+            1,
+            1,
+            1
+        ],
+        "metalness": 0,
+        "roughness": 0.2,
+        "ior": 1.5441,
+        "transmission": 1,
+        "transmissionDispersion": 42.89,
+        "density": 2170,
+        "category": [
+            "Crystal"
+        ],
+        "tags": []
+    },
+    "Sand": {
+        "name": "Sand",
+        "color": [
+            0.44,
+            0.386,
+            0.23074
+        ],
+        "metalness": 0,
+        "roughness": 0.9,
+        "ior": 1.5,
+        "density": 1500,
+        "category": [
+            "Crystal"
+        ],
+        "tags": []
+    },
+    "Sapphire": {
+        "name": "Sapphire",
+        "color": [
+            0.67,
+            0.764,
+            0.855
+        ],
+        "metalness": 0,
+        "roughness": 0,
+        "ior": 1.7682,
+        "transmission": 1,
+        "transmissionDispersion": 72.2,
+        "density": 3980,
+        "category": [
+            "Crystal"
+        ],
+        "tags": [
+            "gem",
+            "gemstone"
+        ]
+    },
+    "Snow": {
+        "name": "Snow",
+        "color": [
+            0.85,
+            0.85,
+            0.85
+        ],
+        "metalness": 0,
+        "roughness": 0.5,
+        "ior": 1.3098,
+        "subsurfaceRadius": [
+            0.2,
+            0.2,
+            1
+        ],
+        "density": 300,
+        "acousticAbsorption": [
+            0.45,
+            0.75,
+            0.9,
+            0.95,
+            0.95,
+            0.95
+        ],
+        "category": [
+            "Crystal"
+        ],
+        "tags": [
+            "ice",
+            "acoustics",
+            "audio"
+        ]
+    }
+}

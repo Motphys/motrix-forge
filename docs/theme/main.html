@@ -1,0 +1,127 @@
+{% set chinese = manual_language == 'cn' %}
+{% set outline_items = (page.toc.items[0].children if page.toc.items|length == 1 else page.toc.items) if page and page.toc else [] %}
+{% macro theme_toggle(compact=false) %}
+<button type="button" class="theme-toggle{% if compact %} theme-toggle-compact{% endif %}" data-theme-toggle aria-pressed="false" aria-label="{{ '切换至黑色主题' if chinese else 'Switch to dark theme' }}">
+  <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg>
+  <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+  <span class="theme-label">{{ '浅色主题' if chinese else 'Light theme' }}</span>
+</button>
+{% endmacro %}
+{% macro toc_items(items) %}
+<ul>
+  {% for item in items %}
+  <li><a href="{{ item.url }}">{{ item.title }}</a>
+    {% if item.children %}{{ toc_items(item.children) }}{% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endmacro %}
+<!DOCTYPE html>
+<html lang="{{ 'zh-CN' if chinese else 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ config.site_description }}">
+  <link rel="icon" href="{{ 'assets/favicon.ico'|url }}" type="image/x-icon">
+  <script>
+    document.documentElement.classList.add("navigation-pending");
+    document.addEventListener("DOMContentLoaded", () => document.documentElement.classList.remove("navigation-pending"), { once: true });
+  </script>
+  <title>{% if page %}{{ page.title }} — {% endif %}Forge {{ '使用手册' if chinese else 'Manual' }}</title>
+  <script src="{{ 'assets/javascripts/theme.js'|url }}"></script>
+  {% for path in config.extra_css %}<link rel="stylesheet" href="{{ path|url }}">{% endfor %}
+  {% if not manual_english_only %}<link rel="alternate" hreflang="{{ 'en' if chinese else 'zh-CN' }}" href="{{ manual_other_url }}">{% endif %}
+</head>
+<body data-base-url="{{ base_url|e }}">
+  <a class="skip-link" href="#main-content">{{ '跳至正文' if chinese else 'Skip to content' }}</a>
+  <header class="mobile-header">
+    <button type="button" class="menu-toggle" aria-controls="manual-sidebar" aria-expanded="false" aria-label="{{ '打开导航' if chinese else 'Open navigation' }}">☰</button>
+    <a href="{{ manual_home }}">Forge <span>{{ '使用手册' if chinese else 'Manual' }}</span></a>
+    {{ theme_toggle(true) }}
+    <a href="{{ manual_other_url }}" lang="{{ 'en' if chinese else 'zh-CN' }}">{{ 'EN' if chinese else '中文' }}</a>
+    {% if outline_items %}
+    <button type="button" class="outline-toggle" aria-controls="manual-outline" aria-expanded="false" aria-label="{{ '打开本页目录' if chinese else 'Open page contents' }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M9 5h12M9 12h12M9 19h12M3 5h1M3 12h1M3 19h1"/></svg></button>
+    {% endif %}
+  </header>
+  <button class="sidebar-backdrop" type="button" aria-label="{{ '关闭导航' if chinese else 'Close navigation' }}" tabindex="-1"></button>
+  <aside class="manual-sidebar" id="manual-sidebar">
+    <a class="manual-brand" href="{{ manual_home }}"><img class="brand-logo" src="{{ 'assets/Logo.png'|url }}" alt="Forge"><span>Forge<span class="brand-subtitle">{{ '使用手册' if chinese else 'Manual' }}</span></span></a>
+    <form class="sidebar-search" action="{{ manual_search }}" role="search">
+      <input type="hidden" name="lang" value="{{ manual_language }}">
+      <span aria-hidden="true">⌕</span><input type="search" name="q" placeholder="{{ '搜索手册' if chinese else 'Search manual' }}" aria-label="{{ '搜索手册' if chinese else 'Search manual' }}">
+    </form>
+    <nav class="chapter-nav" aria-label="{{ '章节导航' if chinese else 'Chapter navigation' }}">
+      {% for group in manual_groups %}
+      {% set active_group = group['items']|selectattr('active')|list|length > 0 %}
+      <details class="nav-group" data-nav-group="{{ group.id }}" data-active="{{ 'true' if active_group else 'false' }}"{% if active_group %} open{% endif %}>
+        <summary class="nav-caption">{{ group.title }}</summary>
+        {% if group.id == 'manual' %}
+        <details class="nav-group nav-subgroup" data-nav-group="manual-contents" data-active="{{ 'true' if active_group else 'false' }}"{% if active_group %} open{% endif %}>
+          <summary class="nav-caption nav-subcaption">{{ '章节目录' if chinese else 'Contents' }}</summary>
+          <ul>{% for item in group['items'] %}<li><a href="{{ item.url }}"{% if item.active %} class="active" aria-current="page"{% endif %}>{{ ('概览' if chinese else 'Overview') if loop.first else item.title }}</a></li>{% endfor %}</ul>
+        </details>
+        {% else %}
+        <ul>{% for item in group['items'] %}<li><a href="{{ item.url }}"{% if item.active %} class="active" aria-current="page"{% endif %}>{{ item.title }}</a></li>{% endfor %}</ul>
+        {% endif %}
+      </details>
+      {% endfor %}
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-controls">
+        {{ theme_toggle() }}
+        <details class="language-switch">
+          <summary><span aria-hidden="true">◎</span> {{ '简体中文' if chinese else 'English' }} <span aria-hidden="true">⌃</span></summary>
+          <div class="language-options">
+            <a href="{{ manual_current_url if chinese else manual_other_url }}" lang="zh-CN"{% if chinese %} aria-current="true"{% endif %}>简体中文{% if chinese %} ✓{% endif %}</a>
+            <a href="{{ manual_other_url if chinese else manual_current_url }}" lang="en"{% if not chinese %} aria-current="true"{% endif %}>English{% if not chinese %} ✓{% endif %}</a>
+          </div>
+        </details>
+      </div>
+      <nav class="project-links" aria-label="{{ '项目链接' if chinese else 'Project links' }}">
+        <a class="project-link" href="{{ config.extra.github_url|e }}" target="_blank" rel="noopener noreferrer" title="{{ '在新标签页打开 GitHub' if chinese else 'Open GitHub in a new tab' }}">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.68.08-.68 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.56 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.43.11-2.98 0 0 .95-.3 3.1 1.15a10.8 10.8 0 0 1 5.63 0c2.15-1.45 3.09-1.15 3.09-1.15.62 1.55.23 2.7.12 2.98.72.79 1.16 1.79 1.16 3.02 0 4.32-2.64 5.27-5.15 5.55.4.35.76 1.03.76 2.08v3.1c0 .3.2.65.78.54A11.25 11.25 0 0 0 12 .75Z"/></svg>
+          <span>GitHub</span>
+        </a>
+        <a class="project-link" href="{{ config.extra.website_url|e }}" target="_blank" rel="noopener noreferrer" title="{{ '在新标签页打开 Motphys 官网' if chinese else 'Open the Motphys website in a new tab' }}">
+          <svg class="website-logo" width="24" height="24" viewBox="0 0 128 128" fill="currentColor" aria-hidden="true">
+            <polygon points="58.23 49.97 37.73 49.97 33.23 55.57 62.63 55.57 58.23 49.97"/>
+            <path d="M50.13,39.67c-1.1-1.4-3.2-1.4-4.3,0l-3.6,4.6h11.6l-3.6-4.6h-.1Z"/>
+            <path d="M118.13,85.27l-35.8-45.6c-1.1-1.4-3.2-1.4-4.3,0l-14.1,17.8-3.1,3.9H28.83l-4.5,5.7h32.2l-4.5,5.7H19.93l-4.5,5.7h32.2l-4.5,5.7H10.93l-1,1.3c-1.4,1.8-.1,4.4,2.1,4.4h103.9c2.3,0,3.6-2.6,2.1-4.4h0l.1-.2Z"/>
+          </svg>
+          <span>{{ '官网' if chinese else 'Website' }}</span>
+        </a>
+      </nav>
+    </div>
+  </aside>
+  {% include "navigation-state.html" %}
+  <div class="manual-layout">
+    <main id="main-content" class="manual-main" tabindex="-1">
+      <div class="page-header">
+        <nav class="breadcrumbs" aria-label="{{ '当前位置' if chinese else 'Breadcrumbs' }}"><a href="{{ manual_home }}">Forge {{ '使用手册' if chinese else 'Manual' }}</a>{% if page %}<span aria-hidden="true"> / </span><span>{{ page.title }}</span>{% endif %}</nav>
+      </div>
+      <article class="manual-article"{% if manual_english_only %} lang="en"{% endif %}>
+        {% block content %}{{ page.content }}{% endblock %}
+      </article>
+      {% if manual_previous or manual_next %}
+      <nav class="page-navigation" aria-label="{{ '章节跳转' if chinese else 'Page navigation' }}">
+        {% if manual_previous %}<a class="previous-page" href="{{ manual_previous.url }}"><span>← {{ '上一章' if chinese else 'Previous' }}</span><strong>{{ manual_previous.title }}</strong></a>{% endif %}
+        {% if manual_next %}<a class="next-page" href="{{ manual_next.url }}"><span>{{ '下一章' if chinese else 'Next' }} →</span><strong>{{ manual_next.title }}</strong></a>{% endif %}
+      </nav>
+      {% endif %}
+      <footer class="manual-footer">Forge · {{ 'Blender 插件使用文档' if chinese else 'Blender add-on documentation' }}</footer>
+    </main>
+    {% if outline_items %}
+    <aside class="page-outline" id="manual-outline" aria-label="{{ '本页目录' if chinese else 'On this page' }}" tabindex="-1">
+      <div class="outline-heading"><p>{{ '本页目录' if chinese else 'On this page' }}</p><button class="outline-close" type="button" aria-label="{{ '关闭本页目录' if chinese else 'Close page contents' }}">×</button></div>
+      {{ toc_items(outline_items) }}
+    </aside>
+    {% endif %}
+  </div>
+  <dialog class="image-preview" id="image-preview" aria-label="{{ '图片预览' if chinese else 'Image preview' }}">
+    <form method="dialog" class="image-preview-close"><button type="submit" aria-label="{{ '关闭图片预览' if chinese else 'Close image preview' }}" autofocus>×</button></form>
+    <img class="image-preview-image" alt="">
+  </dialog>
+  <script>var base_url = document.body.dataset.baseUrl;</script>
+  {% for script in config.extra_javascript %}{{ script|script_tag }}{% endfor %}
+</body>
+</html>

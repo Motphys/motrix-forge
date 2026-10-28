@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "forge-mcp"
+version = "0.1.0"
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE"]
+description = "Client-side MCP server exposing Forge (Blender MJCF addon) tools to AI agents"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "mcp>=2.3.0",
+]
+
+[project.scripts]
+forge-mcp = "forge_mcp.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["forge_mcp*"]
+
+[tool.pytest.ini_options]
+testpaths = ["../tests/mcp"]
+addopts = "-q"

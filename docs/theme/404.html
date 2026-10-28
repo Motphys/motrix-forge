@@ -1,0 +1,6 @@
+{% extends "main.html" %}
+{% block content %}
+<h1>404</h1>
+<p>{{ '页面不存在。' if chinese else 'Page not found.' }}</p>
+<p><a href="{{ manual_home }}">{{ '返回首页' if chinese else 'Return to the manual' }}</a></p>
+{% endblock %}

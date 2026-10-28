@@ -1,0 +1,37 @@
+# https://docs.astral.sh/ruff/settings/
+#
+# This file is the authoritative ruff config for the repository. When both
+# ``ruff.toml`` and ``pyproject.toml`` sit in a directory, ruff reads this one
+# and ignores ``[tool.ruff]`` in the other, so settings live here — a
+# ``[tool.ruff]`` block in ``pyproject.toml`` would silently do nothing.
+target-version = "py311"
+line-length = 120
+output-format = "concise"
+include = ["*.py"]
+
+# The Blender API/manual files are shipped documentation and examples. Their
+# Python blocks run inside Blender (and intentionally contain unresolved
+# ``bpy`` names), so they are not application modules to lint.
+extend-exclude = ["mcp-server/forge_mcp/docs/**"]
+
+[lint]
+# Enable isort (I), Pyflakes (`F`) and pycodestyle (E, W)
+select = ["I", "E", "F", "W"]
+# E741: Ambiguous variable name
+# https://docs.astral.sh/ruff/formatter/#conflicting-lint-rules
+ignore = [
+    "E111", "E114", "E117",
+    "E741", "F403", "F405",
+]
+
+[lint.per-file-ignores]
+# Ignore `F401` (imported but unused) in all `__init__.py` files`.
+"__init__.py" = ["F401"]
+# These e2e helpers intentionally modify sys.path before importing Blender and
+# the addon bridge, so their imports cannot be placed at module top level.
+"tests/mcp/e2e/_bridge_setup.py" = ["E402"]
+"tests/mcp/e2e/_bridge_full_setup.py" = ["E402"]
+
+[format]
+# Enable reformatting of code snippets in docstrings.
+docstring-code-format = true

@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "forge": {
+      "command": "uv",
+      "args": [
+        "--no-cache",
+        "run",
+        "--no-sync",
+        "--directory",
+        "mcp-server",
+        "forge-mcp"
+      ],
+      "env": {
+        "FORGE_MCP_PORT": "9876"
+      }
+    }
+  }
+}

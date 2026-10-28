@@ -1,0 +1,44 @@
+site_name: Forge Docs
+site_description: Forge Blender add-on documentation · Forge 插件使用文档
+extra:
+  github_url: https://github.com/Motphys/motrix-forge
+  website_url: https://www.motphys.com/
+docs_dir: content
+site_dir: site
+# Keep raw HTML image paths in the existing Markdown valid at any hosting prefix.
+use_directory_urls: false
+theme:
+  name: readthedocs
+  custom_dir: theme
+  locale: en
+  highlightjs: false
+  navigation_depth: 3
+plugins:
+  - search:
+      lang: [en, zh]
+      min_search_length: 2
+markdown_extensions:
+  - admonition
+  - tables
+  - fenced_code
+  - codehilite:
+      guess_lang: false
+      use_pygments: true
+      css_class: codehilite
+      linenums: false
+  - toc:
+      permalink: true
+      slugify: !!python/name:markdown.extensions.toc.slugify_unicode
+extra_css:
+  - assets/stylesheets/extra.css
+extra_javascript:
+  - assets/javascripts/manual.js
+  - assets/javascripts/image-preview.js
+  - assets/javascripts/case-videos.js
+hooks:
+  - scripts/docs_hooks.py
+watch:
+  - theme
+validation:
+  links:
+    unrecognized_links: warn

@@ -1,0 +1,7 @@
+**/__pycache__/
+.venv
+*.egg-info/
+/.claude/settings.json
+/.codex/logs/
+/dist/
+/site/

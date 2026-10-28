@@ -1,0 +1,478 @@
+{
+    "Aluminum": {
+        "name": "Aluminum",
+        "color": [
+            0.916,
+            0.923,
+            0.924
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 2700,
+        "category": [
+            "Metal"
+        ],
+        "tags": [
+            "aluminium",
+            "mirror"
+        ]
+    },
+    "Aluminum (Anodized Red)": {
+        "name": "Aluminum (Anodized Red)",
+        "color": [
+            0.6,
+            0,
+            0
+        ],
+        "metalness": 1,
+        "roughness": 0.3,
+        "density": 2700,
+        "category": [
+            "Metal"
+        ],
+        "tags": [
+            "aluminium"
+        ]
+    },
+    "Beryllium": {
+        "name": "Beryllium",
+        "color": [
+            0.539,
+            0.533,
+            0.534
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 1850,
+        "category": [
+            "Metal"
+        ]
+    },
+    "Brass": {
+        "name": "Brass",
+        "color": [
+            0.91,
+            0.778,
+            0.423
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 8600,
+        "category": [
+            "Metal"
+        ]
+    },
+    "Cesium": {
+        "name": "Cesium",
+        "color": [
+            0.718,
+            0.554,
+            0.237
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 1886,
+        "category": [
+            "Metal"
+        ],
+        "tags": [
+            "caesium"
+        ]
+    },
+    "Chromium": {
+        "name": "Chromium",
+        "color": [
+            0.654,
+            0.685,
+            0.701
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 7200,
+        "category": [
+            "Metal"
+        ],
+        "tags": [
+            "chrome"
+        ]
+    },
+    "Cobalt": {
+        "name": "Cobalt",
+        "color": [
+            0.699,
+            0.704,
+            0.671
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 8900,
+        "category": [
+            "Metal"
+        ]
+    },
+    "Copper": {
+        "name": "Copper",
+        "color": [
+            0.932,
+            0.623,
+            0.522
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 8940,
+        "category": [
+            "Metal"
+        ]
+    },
+    "Germanium": {
+        "name": "Germanium",
+        "color": [
+            0.5,
+            0.517,
+            0.465
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 5327,
+        "category": [
+            "Metal"
+        ]
+    },
+    "Gold": {
+        "name": "Gold",
+        "color": [
+            1.059,
+            0.773,
+            0.307
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 19320,
+        "category": [
+            "Metal"
+        ]
+    },
+    "Iridium": {
+        "name": "Iridium",
+        "color": [
+            0.745,
+            0.734,
+            0.704
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 22562,
+        "category": [
+            "Metal"
+        ]
+    },
+    "Iron": {
+        "name": "Iron",
+        "color": [
+            0.53,
+            0.513,
+            0.494
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 7870,
+        "category": [
+            "Metal"
+        ]
+    },
+    "Lead": {
+        "name": "Lead",
+        "color": [
+            0.626,
+            0.64,
+            0.693
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 11340,
+        "category": [
+            "Metal"
+        ]
+    },
+    "Lithium": {
+        "name": "Lithium",
+        "color": [
+            0.916,
+            0.89,
+            0.807
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 535,
+        "category": [
+            "Metal"
+        ]
+    },
+    "Magnesium": {
+        "name": "Magnesium",
+        "color": [
+            0.956,
+            0.953,
+            0.95
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 1737,
+        "category": [
+            "Metal"
+        ]
+    },
+    "Manganese": {
+        "name": "Manganese",
+        "color": [
+            0.606,
+            0.592,
+            0.573
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 7476,
+        "category": [
+            "Metal"
+        ]
+    },
+    "Mercury": {
+        "name": "Mercury",
+        "color": [
+            0.781,
+            0.78,
+            0.778
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 13546,
+        "viscosity": [
+            1.552
+        ],
+        "surfaceTension": 487,
+        "category": [
+            "Metal"
+        ],
+        "tags": [
+            "liquid"
+        ]
+    },
+    "Molybdenum": {
+        "name": "Molybdenum",
+        "color": [
+            0.589,
+            0.612,
+            0.594
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 10223,
+        "category": [
+            "Metal"
+        ]
+    },
+    "Nickel": {
+        "name": "Nickel",
+        "color": [
+            0.697,
+            0.641,
+            0.563
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 8900,
+        "category": [
+            "Metal"
+        ]
+    },
+    "Palladium": {
+        "name": "Palladium",
+        "color": [
+            0.734,
+            0.7036,
+            0.662
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 12007,
+        "category": [
+            "Metal"
+        ]
+    },
+    "Platinum": {
+        "name": "Platinum",
+        "color": [
+            0.765,
+            0.73,
+            0.676
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 21450,
+        "category": [
+            "Metal"
+        ]
+    },
+    "Potassium": {
+        "name": "Potassium",
+        "color": [
+            0.983,
+            0.956,
+            0.906
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 859,
+        "category": [
+            "Metal"
+        ]
+    },
+    "Rubidium": {
+        "name": "Rubidium",
+        "color": [
+            0.919,
+            0.859,
+            0.747
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 1534,
+        "category": [
+            "Metal"
+        ]
+    },
+    "Silicon": {
+        "name": "Silicon",
+        "color": [
+            0.345,
+            0.369,
+            0.426
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 2330,
+        "category": [
+            "Metal"
+        ]
+    },
+    "Silver": {
+        "name": "Silver",
+        "color": [
+            0.991,
+            0.985,
+            0.974
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 10500,
+        "category": [
+            "Metal"
+        ],
+        "tags": [
+            "mirror"
+        ]
+    },
+    "Sodium": {
+        "name": "Sodium",
+        "color": [
+            0.977,
+            0.962,
+            0.936
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 969,
+        "category": [
+            "Metal"
+        ]
+    },
+    "Stainless Steel": {
+        "name": "Stainless Steel",
+        "color": [
+            0.669,
+            0.639,
+            0.598
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 8000,
+        "category": [
+            "Metal"
+        ]
+    },
+    "Titanium": {
+        "name": "Titanium",
+        "color": [
+            0.441,
+            0.4,
+            0.361
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 4540,
+        "category": [
+            "Metal"
+        ]
+    },
+    "Titanium (Anodized)": {
+        "name": "Titanium (Anodized)",
+        "color": [
+            0.441,
+            0.4,
+            0.361
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 4540,
+        "thinFilmIor": 2.488,
+        "thinFilmThickness": [
+            20,
+            300
+        ],
+        "category": [
+            "Metal"
+        ]
+    },
+    "Tungsten": {
+        "name": "Tungsten",
+        "color": [
+            0.537,
+            0.536,
+            0.519
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 19300,
+        "category": [
+            "Metal"
+        ]
+    },
+    "Vanadium": {
+        "name": "Vanadium",
+        "color": [
+            0.534,
+            0.526,
+            0.546
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 6100,
+        "category": [
+            "Metal"
+        ]
+    },
+    "Zinc": {
+        "name": "Zinc",
+        "color": [
+            0.808,
+            0.844,
+            0.865
+        ],
+        "metalness": 1,
+        "roughness": 0,
+        "density": 7000,
+        "category": [
+            "Metal"
+        ]
+    }
+}

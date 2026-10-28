@@ -1,0 +1,319 @@
+{
+    "Blood (Deoxygenated)": {
+        "name": "Blood (Deoxygenated)",
+        "color": [
+            0.415,
+            0,
+            0
+        ],
+        "metalness": 0,
+        "roughness": 0,
+        "ior": 1.35,
+        "transmission": 1,
+        "transmissionDepth": 0.08,
+        "transmissionDispersion": 54,
+        "volumeCoefficients": {
+            "absorption": [
+                {
+                    "colorSpace": "srgb-linear",
+                    "color": [
+                        40.7,
+                        259.9,
+                        91.2
+                    ]
+                }
+            ],
+            "scattering": [
+                {
+                    "colorSpace": "srgb-linear",
+                    "color": [
+                        901.2,
+                        864.5,
+                        1220.8
+                    ]
+                }
+            ],
+            "anisotropy": [
+                {
+                    "colorSpace": "srgb-linear",
+                    "color": [
+                        0.9869,
+                        0.9886,
+                        0.9896
+                    ]
+                }
+            ]
+        },
+        "density": 1060,
+        "viscosity": [
+            2.35,
+            4,
+            2.78
+        ],
+        "surfaceTension": 56,
+        "category": [
+            "Human"
+        ],
+        "tags": [
+            "liquid"
+        ]
+    },
+    "Blood (Oxygenated)": {
+        "name": "Blood (Oxygenated)",
+        "color": [
+            0.644,
+            0.003,
+            0.005
+        ],
+        "metalness": 0,
+        "roughness": 0,
+        "ior": 1.35,
+        "transmission": 1,
+        "transmissionDepth": 0.08,
+        "transmissionDispersion": 54,
+        "volumeCoefficients": {
+            "absorption": [
+                {
+                    "colorSpace": "srgb-linear",
+                    "color": [
+                        8.8,
+                        238.6,
+                        189.7
+                    ]
+                }
+            ],
+            "scattering": [
+                {
+                    "colorSpace": "srgb-linear",
+                    "color": [
+                        880.9,
+                        714.9,
+                        817.4
+                    ]
+                }
+            ],
+            "anisotropy": [
+                {
+                    "colorSpace": "srgb-linear",
+                    "color": [
+                        0.986,
+                        0.9874,
+                        0.989
+                    ]
+                }
+            ]
+        },
+        "density": 1060,
+        "viscosity": [
+            2.35,
+            4,
+            2.78
+        ],
+        "surfaceTension": 56,
+        "category": [
+            "Human"
+        ],
+        "tags": [
+            "liquid"
+        ]
+    },
+    "Eye (Cornea)": {
+        "name": "Eye (Cornea)",
+        "color": [
+            1,
+            1,
+            1
+        ],
+        "metalness": 0,
+        "roughness": 0,
+        "ior": 1.376,
+        "transmission": 1,
+        "category": [
+            "Human"
+        ]
+    },
+    "Eye (Lens)": {
+        "name": "Eye (Lens)",
+        "color": [
+            1,
+            1,
+            1
+        ],
+        "metalness": 0,
+        "roughness": 0,
+        "ior": 1.386,
+        "transmission": 1,
+        "category": [
+            "Human"
+        ]
+    },
+    "Eye (Sclera)": {
+        "name": "Eye (Sclera)",
+        "color": [
+            0.652,
+            0.5,
+            0.394
+        ],
+        "metalness": 0,
+        "roughness": 0,
+        "ior": 1.4,
+        "subsurfaceRadius": [
+            0.482,
+            0.169,
+            0.109
+        ],
+        "category": [
+            "Human"
+        ]
+    },
+    "Skin I": {
+        "name": "Skin I",
+        "color": [
+            0.847,
+            0.638,
+            0.552
+        ],
+        "metalness": 0,
+        "roughness": 0.5,
+        "ior": 1.4,
+        "subsurfaceRadius": [
+            0.482,
+            0.169,
+            0.109
+        ],
+        "density": 1020,
+        "category": [
+            "Human"
+        ],
+        "group": "Skin",
+        "tags": [
+            "epidermis",
+            "sss"
+        ]
+    },
+    "Skin II": {
+        "name": "Skin II",
+        "color": [
+            0.799,
+            0.485,
+            0.347
+        ],
+        "metalness": 0,
+        "roughness": 0.5,
+        "ior": 1.4,
+        "subsurfaceRadius": [
+            0.482,
+            0.169,
+            0.109
+        ],
+        "density": 1020,
+        "category": [
+            "Human"
+        ],
+        "group": "Skin",
+        "tags": [
+            "epidermis",
+            "sss"
+        ]
+    },
+    "Skin III": {
+        "name": "Skin III",
+        "color": [
+            0.623,
+            0.433,
+            0.343
+        ],
+        "metalness": 0,
+        "roughness": 0.5,
+        "ior": 1.4,
+        "subsurfaceRadius": [
+            0.482,
+            0.169,
+            0.109
+        ],
+        "density": 1020,
+        "category": [
+            "Human"
+        ],
+        "group": "Skin",
+        "tags": [
+            "epidermis",
+            "sss"
+        ]
+    },
+    "Skin IV": {
+        "name": "Skin IV",
+        "color": [
+            0.436,
+            0.227,
+            0.131
+        ],
+        "metalness": 0,
+        "roughness": 0.5,
+        "ior": 1.4,
+        "subsurfaceRadius": [
+            0.367,
+            0.137,
+            0.068
+        ],
+        "density": 1020,
+        "category": [
+            "Human"
+        ],
+        "group": "Skin",
+        "tags": [
+            "epidermis",
+            "sss"
+        ]
+    },
+    "Skin V": {
+        "name": "Skin V",
+        "color": [
+            0.283,
+            0.148,
+            0.079
+        ],
+        "metalness": 0,
+        "roughness": 0.5,
+        "ior": 1.4,
+        "subsurfaceRadius": [
+            0.367,
+            0.137,
+            0.068
+        ],
+        "density": 1020,
+        "category": [
+            "Human"
+        ],
+        "group": "Skin",
+        "tags": [
+            "epidermis",
+            "sss"
+        ]
+    },
+    "Skin VI": {
+        "name": "Skin VI",
+        "color": [
+            0.09,
+            0.05,
+            0.02
+        ],
+        "metalness": 0,
+        "roughness": 0.5,
+        "ior": 1.4,
+        "subsurfaceRadius": [
+            0.367,
+            0.137,
+            0.068
+        ],
+        "density": 1020,
+        "category": [
+            "Human"
+        ],
+        "group": "Skin",
+        "tags": [
+            "epidermis",
+            "sss"
+        ]
+    }
+}

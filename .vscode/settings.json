@@ -1,0 +1,29 @@
+{
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.rulers": [
+            {"column": 120, "color": "#660000"}
+        ],
+        "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit",
+        "source.organizeImports": "explicit"
+        },
+        "editor.defaultFormatter": "charliermarsh.ruff"
+    },
+    "ruff.configuration": "ruff.toml",
+    "python-envs.defaultEnvManager": "ms-python.python:venv",
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv",
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingModuleSource": "none"
+    },
+    "blender.addonFolders": [
+        "addon/Forge"
+    ],
+    "blender.executables": [
+        {
+            "name": "",
+            "path": "C:\\Program Files\\Blender Foundation\\Blender 5.2\\blender.exe",
+            "isDefault": true
+        },
+    ],
+}

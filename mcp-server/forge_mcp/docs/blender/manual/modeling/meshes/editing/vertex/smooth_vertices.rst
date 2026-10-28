@@ -1,0 +1,48 @@
+.. _bpy.ops.mesh.vertices_smooth:
+.. _tool-mesh-smooth:
+
+***************
+Smooth Vertices
+***************
+
+.. reference::
+
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Vertex --> Smooth Vertices`,
+               :menuselection:`Context Menu --> Smooth Vertices`
+
+This operator smooths the selected vertices by averaging the angles between the faces.
+
+Smoothing
+   Smoothing factor.
+Repeat
+   The number of smoothing iterations.
+Axes
+   Limit the effect to certain axes.
+
+.. list-table::
+
+   * - .. figure:: /images/modeling_modifiers_deform_smooth_mesh-before.png
+          :width: 200px
+
+          Mesh before smoothing.
+
+     - .. figure:: /images/modeling_modifiers_deform_smooth_mesh-one-iteration.png
+          :width: 200px
+
+          Mesh after one smoothing iteration.
+
+     - .. figure:: /images/modeling_modifiers_deform_smooth_mesh-ten-iterations.png
+          :width: 200px
+
+          Mesh after ten smoothing iterations.
+
+.. tip::
+
+   Using the Smooth tool after :doc:`subdividing </modeling/meshes/editing/edge/subdivide>`
+   can help create a more organic shape.
+
+.. seealso:: Smooth Modifier
+
+   The :doc:`Smooth Modifier </modeling/modifiers/deform/smooth>`, which can be limited to a *Vertex Group*,
+   is a non-destructive alternative to the Smooth operator.

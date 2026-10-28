@@ -1,0 +1,40 @@
+[project]
+name = "motrix-forge"
+version = "0.1.0"
+license = "GPL-3.0-or-later"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+    "bpy>=4.5,<5.3",
+    "coacd>=1.0.14",
+    "fake-bpy-module-5.2",
+    "pytest>=9.2.0",
+    "tetgen>=0.8.4",
+    "mcp>=2.3.0",
+    "forge-mcp",
+    "ruff",
+    "mkdocs==1.6.1",
+    "Pygments==2.21.0",
+]
+
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+forge-mcp = { workspace = true }
+
+# ``mcp-server`` is a workspace member so the root lockfile resolves its
+# dependencies too.  It is also a root dependency so both ``uv sync`` and
+# ``uv sync --all-packages`` install the editable server into the shared
+# root environment.  The standalone installer still targets
+# ``mcp-server/.venv`` for copied server-only workspaces.
+[tool.uv.workspace]
+members = ["mcp-server"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --tb=short"
+
+# Ruff settings live in ``ruff.toml``; when both files are present ruff reads
+# that one and ignores this table, so a ``[tool.ruff]`` block here would be dead
+# config (the previous ``line-length = 160`` never applied — 120 did).

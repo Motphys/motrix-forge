@@ -1,0 +1,220 @@
+
+*****
+Apply
+*****
+
+These operations lets you apply several transformations to the selected objects.
+The object transformation coordinates are transferred to the object data.
+If the objects have hierarchical descendants, it also applies those transformations to their children.
+
+
+.. _bpy.ops.object.transform_apply:
+
+Transforms
+==========
+
+.. reference::
+
+   :Mode:      Object Mode
+   :Menu:      :menuselection:`Object --> Apply --> Location / Rotation / Scale / Rotation & Scale`
+   :Shortcut:  :kbd:`Ctrl-A`
+
+Applying transform values essentially resets the values of object's location, rotation or scale,
+while visually keeping the object data in-place.
+The object origin point is moved to the global origin, the rotation is cleared and scale values are set to 1.
+
+For simple cases you won't notice any difference the 3D Viewport or rendered output,
+yet modifiers and constraints may depend on object transformation.
+
+.. warning:: Armature Objects
+
+   While applying transformations to armatures is supported,
+   this does **not** apply to their pose location, animation curves or constraints.
+   This tool should be used before rigging and animation.
+
+When applying transforms to an object that shares Object Data between multiple objects,
+the object must first be made a :ref:`Single User <data-system-datablock-make-single-user>`
+which can be performed by confirming the pop-up message.
+
+When running *Apply Transform*, the :ref:`bpy.ops.screen.redo_last` panel lets you choose
+the combination of transformations to apply.
+
+
+Options
+-------
+
+Location
+   Apply (set) the location of the selection.
+   This will make Blender consider the current location to be equivalent to 0 in each plane
+   i.e. the selection will not move, the current location will be considered to be the "default location".
+   The object origin will be set to actual (0, 0, 0) (where the colored axis lines intersect in each view).
+Rotation
+   Apply (set) the rotation of the selection.
+   This will make Blender consider the current rotation to be equivalent to 0 degrees in each plane
+   i.e. the selection will not rotated, the current rotation will be considered to be the "default rotation".
+Scale
+   Apply (set) the scale of the selection.
+   This will make Blender consider the current scale to be equivalent to 0 in each plane
+   i.e. the selection will not scaled, the current scale will be considered to be the "default scale".
+Rotation and Scale
+   Apply (set) the rotation and scale of the selection. Do the above two applications simultaneously.
+Apply Properties
+   Modify properties such as curve vertex radius, font size and bone envelope
+   according to the applied transformation. (Found in the :ref:`bpy.ops.screen.redo_last` panel)
+
+
+.. _bpy.ops.object.transforms_to_deltas:
+.. _bpy.ops.object.anim_transforms_to_deltas:
+
+Transforms to Deltas
+====================
+
+.. reference::
+
+   :Mode:      Object Mode
+   :Menu:      :menuselection:`Object --> Apply --> Location / Rotation / Scale to Deltas`
+   :Shortcut:  :kbd:`Ctrl-A`
+
+Converts primary object transformations to :ref:`delta transforms <bpy.types.Object.delta>`,
+any existing delta transforms will be included as well.
+
+- Location to Deltas
+- Rotation to Deltas
+- Scale to Deltas
+
+All Transforms to Deltas
+   Converts all primary transformations to delta transforms.
+Animated Transform to Deltas
+   Converts the primary transformation animations
+   (of the translation, scale, and, rotation values) to delta transforms.
+
+
+Options
+-------
+
+Reset Values
+   Clear primary transform values after transferring to deltas.
+
+
+.. _bpy.ops.object.visual_transform_apply:
+
+Visual Transform
+================
+
+.. reference::
+
+   :Mode:      Object Mode
+   :Menu:      :menuselection:`Object --> Apply --> Visual Transform`
+   :Shortcut:  :kbd:`Ctrl-A`
+
+Apply (set) the result of a constraint and apply this back to the object's location, rotation and scale.
+
+
+Visual Geometry as Mesh
+=======================
+
+.. reference::
+
+   :Mode:      Object Mode
+   :Menu:      :menuselection:`Object --> Apply --> Visual Geometry to Mesh`
+   :Shortcut:  :kbd:`Ctrl-A`
+
+Apply the visual state of all selected objects (modifiers, shape keys, hooks, etc.) to object data.
+This is a way to freeze all object data into static meshes, as well as converts non-mesh types to mesh.
+
+For details, see the :ref:`object-convert-to` mesh.
+
+
+.. _bpy.ops.object.visual_geometry_to_objects:
+
+Visual Geometry to Objects
+==========================
+
+.. reference::
+
+   :Mode:      Object Mode
+   :Menu:      :menuselection:`Object --> Apply --> Visual Geometry to Objects`
+
+Creates new objects from the evaluated geometry of the active object,
+including the effects of all modifiers, constraints, and instancing.
+
+This operator is similar to :ref:`Make Instances Real <bpy.ops.object.duplicates_make_real>`,
+but with several key differences:
+
+- Instanced geometry is **not** realized. Instead, shared data is preserved between objects that use it.
+- The original object is **not removed or modified**,
+  avoiding unintended disruptions to relationships with other objects.
+- Instancing hierarchies are preserved by creating new objects
+  and collections that reflect the evaluated structure.
+
+This operator is useful for extracting visible results of geometry nodes, modifiers, or instancing setups
+without permanently modifying the original scene structure.
+
+.. note::
+
+   Instance attributes (e.g. custom per-instance data) are currently **not** preserved.
+
+
+.. _bpy.ops.object.duplicates_make_real:
+
+Make Instances Real
+===================
+
+.. reference::
+
+   :Mode:      Object Mode
+   :Menu:      :menuselection:`Object --> Apply --> Make Instances Real`
+
+*Make Instances Real* creates a new object for each
+:doc:`instance </scene_layout/object/properties/instancing/index>` generated by the selected ones,
+and removes any direct instancing from those.
+
+In the end, each instance becomes a real object.
+
+.. warning::
+
+   This applies to both direct (from verts or faces...) and indirect (from particle system...) instancing.
+   In case you have tens of thousands of instances (from particles for example),
+   this can significantly slow down Blender, which does not always deal well with that many objects in a scene.
+
+
+Options
+-------
+
+By default, new objects will be added to the same collection as the one containing their instancer,
+without keeping any hierarchy relationships. This behavior can be altered with the following options.
+
+Parent
+   If *Keep Hierarchy* is not set, parents all the generated objects to the former instancer.
+
+   Otherwise, parents all the generated objects *which are not already parented* to their respective instancer,
+   or its matching new copy (this is important in case of recursive instancing, see the note below).
+
+Keep Hierarchy
+   Preserves internal hierarchies (i.e. parent relationships) in the newly generated objects.
+
+.. tip::
+
+   Usually, to get a new hierarchy as close as possible from the instancing one,
+   you'll want to enable both of these options.
+
+.. note::
+
+   Preserving relationships in recursive instancing cases (instancers instancing other instancer objects, etc.)
+   is only supported to some extent currently.
+
+   Simple cases (like an empty instancing a collection containing instances of some other collections)
+   will usually work, but more complex cases will fail to fully reproduce the whole instancing hierarchy.
+
+
+.. _bpy.ops.object.parent_inverse_apply:
+
+Parent Inverse
+==============
+
+.. reference::
+
+   :Mode:      Object Mode
+   :Menu:      :menuselection:`Object --> Apply --> Parent Inverse`
+
+Applies the object's :ref:`parent-inverse-matrix` transform to the object data.

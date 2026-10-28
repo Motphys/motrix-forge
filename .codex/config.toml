@@ -1,0 +1,9 @@
+# Codex CLI workspace config — launch with CODEX_HOME pointing here:
+#   CODEX_HOME="$PWD/.codex" codex
+[mcp_servers.forge]
+command = "uv"
+args = ["--no-cache", "run", "--no-sync", "--directory", "mcp-server", "forge-mcp"]
+startup_timeout_sec = 30
+
+[mcp_servers.forge.env]
+FORGE_MCP_PORT = "9876"
