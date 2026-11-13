@@ -41,13 +41,17 @@
 
 ### 应用案例
 
-![forge_pipeline](/media/videos/HD/forge_pipeline.mp4)
+
+https://github.com/user-attachments/assets/137e81d3-cddc-43dd-93dc-688faafccb00
+
 *使用 Forge 编辑配置装载机 → 编辑配置装载机作业环境 → 导出并在 MotrixSim 中进行仿真模拟和训练*
 
-![arbitrary_robotic_arm](/media/videos/HD/arbitrary_robotic_arm.mp4)
+https://github.com/user-attachments/assets/1356a4c7-2246-4b2b-b00a-3b698e9219b5
+
 *使用 Forge 编辑配置任意机械臂 → 导出并在 MotrixSim 中进行仿真模拟和训练*
 
-![forge_with_agent](/media/videos/HD/forge_with_agent.mp4)
+https://github.com/user-attachments/assets/9c5093ca-8a07-46af-a308-6daf60d05ba6
+
 *使用 Agent 通过 Forge 创建编辑配置图片中的场景 → 导出并在 MotrixSim 中进行仿真模拟*
 
 > MJCF 是一种用于精确描述铰接多体系统运动学结构、惯性属性、几何碰撞与执行传感配置的标准化 XML 场景格式，是 MotrixSim 物理引擎进行接触密集型仿真与具身智能策略训练的数据基础。
