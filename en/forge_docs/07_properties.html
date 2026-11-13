@@ -1,0 +1,653 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Forge Blender add-on documentation · Forge 插件使用文档">
+  <link rel="icon" href="../../assets/favicon.ico" type="image/x-icon">
+  <script>
+    document.documentElement.classList.add("navigation-pending");
+    document.addEventListener("DOMContentLoaded", () => document.documentElement.classList.remove("navigation-pending"), { once: true });
+  </script>
+  <title>Chapter 7: Properties editing — Forge Manual</title>
+  <script src="../../assets/javascripts/theme.js"></script>
+  <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+  <link rel="alternate" hreflang="zh-CN" href="../../cn/forge_docs/07_properties.html">
+</head>
+<body data-base-url="../..">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="mobile-header">
+    <button type="button" class="menu-toggle" aria-controls="manual-sidebar" aria-expanded="false" aria-label="Open navigation">☰</button>
+    <a href="../../index.html">Forge <span>Manual</span></a>
+    
+<button type="button" class="theme-toggle theme-toggle-compact" data-theme-toggle aria-pressed="false" aria-label="Switch to dark theme">
+  <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg>
+  <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+  <span class="theme-label">Light theme</span>
+</button>
+
+    <a href="../../cn/forge_docs/07_properties.html" lang="zh-CN">中文</a>
+    
+    <button type="button" class="outline-toggle" aria-controls="manual-outline" aria-expanded="false" aria-label="Open page contents"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M9 5h12M9 12h12M9 19h12M3 5h1M3 12h1M3 19h1"/></svg></button>
+    
+  </header>
+  <button class="sidebar-backdrop" type="button" aria-label="Close navigation" tabindex="-1"></button>
+  <aside class="manual-sidebar" id="manual-sidebar">
+    <a class="manual-brand" href="../../index.html"><img class="brand-logo" src="../../assets/Logo.png" alt="Forge"><span>Forge<span class="brand-subtitle">Manual</span></span></a>
+    <form class="sidebar-search" action="../../search.html" role="search">
+      <input type="hidden" name="lang" value="en">
+      <span aria-hidden="true">⌕</span><input type="search" name="q" placeholder="Search manual" aria-label="Search manual">
+    </form>
+    <nav class="chapter-nav" aria-label="Chapter navigation">
+      
+      
+      <details class="nav-group" data-nav-group="getting-started" data-active="false">
+        <summary class="nav-caption">Getting started</summary>
+        
+        <ul><li><a href="../../index.html">About Forge</a></li><li><a href="../installation.html">Installation Forge</a></li><li><a href="../preferences.html">Config Forge</a></li><li><a href="../development.html">Development Forge</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="examples" data-active="false">
+        <summary class="nav-caption">Examples</summary>
+        
+        <ul><li><a href="../examples.html">Case studies</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="manual" data-active="true" open>
+        <summary class="nav-caption">User manual</summary>
+        
+        <details class="nav-group nav-subgroup" data-nav-group="manual-contents" data-active="true" open>
+          <summary class="nav-caption nav-subcaption">Contents</summary>
+          <ul><li><a href="../forge_docs.html">Overview</a></li><li><a href="00_ui_overview.html">0. UI overview and common operations</a></li><li><a href="01_mcp_server.html">1. MCP service</a></li><li><a href="02_global_and_general.html">2. Global and General</a></li><li><a href="03_geometry_and_material.html">3. Geometry and Material</a></li><li><a href="04_kinematics.html">4. Kinematics and Instance</a></li><li><a href="05_hardware.html">5. Hardware</a></li><li><a href="06_meta_elements.html">6. Meta Elements</a></li><li><a href="07_properties.html" class="active" aria-current="page">7. Properties editing</a></li><li><a href="08_import_export.html">8. Import and Export</a></li><li><a href="09_coacd.html">9. CoACD convex decomposition</a></li><li><a href="10_troubleshooting_and_scripting.html">10. Troubleshooting and scripting</a></li></ul>
+        </details>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="mcp-reference" data-active="false">
+        <summary class="nav-caption">MCP reference</summary>
+        
+        <ul><li><a href="../../reference/MCP_INSTALL.html">Forge MCP Setup and Connection</a></li><li><a href="../../reference/mcp-server/index.html">Forge MCP Server Reference</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="mcp-skills" data-active="false">
+        <summary class="nav-caption">MCP Skills</summary>
+        
+        <ul><li><a href="../mcp_skills.html">Overview</a></li><li><a href="../mcp_skills/forge_create.html">Forge create</a></li><li><a href="../mcp_skills/forge_modify.html">Forge modify</a></li><li><a href="../mcp_skills/forge_custom_material.html">Forge custom material</a></li><li><a href="../mcp_skills/forge_operators.html">Forge operators</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="documentation" data-active="false">
+        <summary class="nav-caption">Documentation</summary>
+        
+        <ul><li><a href="../preview.html">Local preview</a></li></ul>
+        
+      </details>
+      
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-controls">
+        
+<button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Switch to dark theme">
+  <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg>
+  <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+  <span class="theme-label">Light theme</span>
+</button>
+
+        <details class="language-switch">
+          <summary><span aria-hidden="true">◎</span> English <span aria-hidden="true">⌃</span></summary>
+          <div class="language-options">
+            <a href="../../cn/forge_docs/07_properties.html" lang="zh-CN">简体中文</a>
+            <a href="07_properties.html" lang="en" aria-current="true">English ✓</a>
+          </div>
+        </details>
+      </div>
+      <nav class="project-links" aria-label="Project links">
+        <a class="project-link" href="https://github.com/Motphys/motrix-forge" target="_blank" rel="noopener noreferrer" title="Open GitHub in a new tab">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.68.08-.68 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.56 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.43.11-2.98 0 0 .95-.3 3.1 1.15a10.8 10.8 0 0 1 5.63 0c2.15-1.45 3.09-1.15 3.09-1.15.62 1.55.23 2.7.12 2.98.72.79 1.16 1.79 1.16 3.02 0 4.32-2.64 5.27-5.15 5.55.4.35.76 1.03.76 2.08v3.1c0 .3.2.65.78.54A11.25 11.25 0 0 0 12 .75Z"/></svg>
+          <span>GitHub</span>
+        </a>
+        <a class="project-link" href="https://www.motphys.com/" target="_blank" rel="noopener noreferrer" title="Open the Motphys website in a new tab">
+          <svg class="website-logo" width="24" height="24" viewBox="0 0 128 128" fill="currentColor" aria-hidden="true">
+            <polygon points="58.23 49.97 37.73 49.97 33.23 55.57 62.63 55.57 58.23 49.97"/>
+            <path d="M50.13,39.67c-1.1-1.4-3.2-1.4-4.3,0l-3.6,4.6h11.6l-3.6-4.6h-.1Z"/>
+            <path d="M118.13,85.27l-35.8-45.6c-1.1-1.4-3.2-1.4-4.3,0l-14.1,17.8-3.1,3.9H28.83l-4.5,5.7h32.2l-4.5,5.7H19.93l-4.5,5.7h32.2l-4.5,5.7H10.93l-1,1.3c-1.4,1.8-.1,4.4,2.1,4.4h103.9c2.3,0,3.6-2.6,2.1-4.4h0l.1-.2Z"/>
+          </svg>
+          <span>Website</span>
+        </a>
+      </nav>
+    </div>
+  </aside>
+  <script>
+/* Restore the sidebar synchronously, before revealing its first frame. */
+(() => {
+  "use strict";
+  const root = document.documentElement;
+  try {
+    const navigationKey = "forge-docs-navigation-groups";
+    let state = {};
+    try {
+      const saved = JSON.parse(localStorage.getItem(navigationKey));
+      if (saved && typeof saved === "object" && !Array.isArray(saved)) state = saved;
+    } catch { /* Keep native details usable without storage. */ }
+    const restoreGroups = scope => {
+      scope.querySelectorAll("[data-nav-group]").forEach(group => {
+        if (group.dataset.navRestored) return;
+        group.dataset.navRestored = "true";
+        const id = group.dataset.navGroup;
+        if (group.dataset.active === "true") group.open = true;
+        else if (typeof state[id] === "boolean") group.open = state[id];
+        group.addEventListener("toggle", () => {
+          state[id] = group.open;
+          try { localStorage.setItem(navigationKey, JSON.stringify(state)); } catch { /* Ignore unavailable storage. */ }
+        });
+      });
+    };
+    window.forgeRestoreNavigationGroups = restoreGroups;
+    const nav = document.querySelector(".chapter-nav");
+    if (!nav) return;
+    restoreGroups(nav);
+    const siteRoot = new URL(`${document.body.dataset.baseUrl || "."}/`, location.href).pathname;
+    const scrollKey = `forge-docs-navigation-scroll:${siteRoot}`;
+    try {
+      const saved = sessionStorage.getItem(scrollKey);
+      if (saved !== null && Number.isFinite(Number(saved)) && Number(saved) >= 0) nav.scrollTop = Number(saved);
+    } catch { /* Ignore unavailable storage. */ }
+    const save = () => {
+      try { sessionStorage.setItem(scrollKey, String(nav.scrollTop)); } catch { /* Ignore unavailable storage. */ }
+    };
+    nav.addEventListener("scroll", save, { passive: true });
+    nav.addEventListener("click", save);
+    window.addEventListener("pagehide", save);
+  } finally {
+    root.classList.remove("navigation-pending");
+  }
+})();
+</script>
+  <div class="manual-layout">
+    <main id="main-content" class="manual-main" tabindex="-1">
+      <div class="page-header">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../../index.html">Forge Manual</a><span aria-hidden="true"> / </span><span>Chapter 7: Properties editing</span></nav>
+      </div>
+      <article class="manual-article">
+        <h1 id="chapter-7-properties-editing">Chapter 7: Properties editing<a class="headerlink" href="#chapter-7-properties-editing" title="Permanent link">&para;</a></h1>
+<h2 id="71-three-property-entry-points">7.1 Three property entry points<a class="headerlink" href="#71-three-property-entry-points" title="Permanent link">&para;</a></h2>
+<h3 id="model-define-global">Model Define → Global<a class="headerlink" href="#model-define-global" title="Permanent link">&para;</a></h3>
+<p>This entry edits scene-level Global Properties and Visual Properties; see Chapter 2. All objects must be deselected first.</p>
+<h3 id="3d-view-property-gizmo">3D View property gizmo<a class="headerlink" href="#3d-view-property-gizmo" title="Permanent link">&para;</a></h3>
+<p>In <strong>Object Mode</strong>, select a <strong>Forge</strong> object and click the colored <strong>Gizmo</strong> shown next to the object to open its <strong>Properties</strong> dialog.</p>
+<div style="display: flex; gap: 24px; align-items: flex-start;">
+  <div style="flex: 1; text-align: center; "><strong>Blue Gizmo</strong></div>
+  <div style="flex: 1.8; text-align: center; "><strong>After clicking the Gizmo</strong></div>
+</div>
+<div style="display: flex; gap: 24px; align-items: flex-start;">
+  <div style="flex: 1; text-align: center; "><img src="../../assets/images/manual/07-gizmo-properties-0.png" width="300" alt="Object property Gizmo"></div>
+  <div style="flex: 1.8; text-align: center; "><img src="../../assets/images/manual/07-gizmo-properties-1.png" width="580" alt="Property dialog opened from the Gizmo"></div>
+</div>
+
+<h3 id="object-properties-forge-properties">Object Properties → Forge Properties<a class="headerlink" href="#object-properties-forge-properties" title="Permanent link">&para;</a></h3>
+<p>This panel displays the active object's:</p>
+<ul>
+<li><strong>Local/World Location</strong> and <strong>Rotation</strong>;</li>
+<li><strong>Dimensions</strong>;</li>
+<li><strong>Parent</strong>;</li>
+<li><strong>Forge Model Type</strong>; and</li>
+<li>model-property data for the current type.</li>
+</ul>
+<p>To open the panel:</p>
+<ol>
+<li>Open the <code>Properties</code> editor <img alt="Properties editor location" src="../../assets/images/manual/07-forge-properties-area.png" />.</li>
+<li>Switch to the <code>Object Properties</code> tab <img alt="Object Properties tab" src="../../assets/images/manual/07-forge-properties-tab.png" />.</li>
+<li>Expand <code>Forge Properties</code> to show properties for the current Model Type.</li>
+</ol>
+<div align="center"><img src="../../assets/images/manual/07-forge-properties.png" alt="Forge properties"></div>
+
+<h2 id="72-the-property-gizmo-is-not-visible">7.2 The property gizmo is not visible<a class="headerlink" href="#72-the-property-gizmo-is-not-visible" title="Permanent link">&para;</a></h2>
+<p>Check the following in order:</p>
+<ol>
+<li>The current area is a <strong>3D</strong> View and Blender is in <strong>Object Mode</strong> <img alt="" src="../../assets/images/manual/07-object-model.png" />.</li>
+<li><strong>Gizmos</strong> are enabled in the <strong>3D</strong> View <img alt="" src="../../assets/images/manual/07-3d-gizmo.png" />.</li>
+<li>The active object's <strong>Blender</strong> type and <strong>Forge</strong> type are correct.</li>
+<li>A shape object still has the <strong>Geometry Nodes Modifier</strong> that Forge added during creation.</li>
+</ol>
+<h2 id="73-object-property-dialogs">7.3 Object property dialogs<a class="headerlink" href="#73-object-property-dialogs" title="Permanent link">&para;</a></h2>
+<p>All dialogs below are UI-only Operators intended for interaction through the Blender interface.</p>
+<h3 id="height-field">Height Field<a class="headerlink" href="#height-field" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID:</strong> <code>forge.properties_hfield</code></p>
+<table>
+<thead>
+<tr>
+<th>Main editable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nrow/Ncol, Elevation, X/Y Radius, Elevation Z, Base Z, Offset, Use Height Map, Height Map, contact/solver properties</td>
+</tr>
+</tbody>
+</table>
+<p>Dialog:</p>
+<div style="display: flex; gap: 24px; align-items: flex-start;">
+  <div style="flex: 1; text-align: center; "><strong>Hfield Properties</strong></div>
+  <div style="flex: 1; text-align: center; "><strong>Model Properties</strong></div>
+</div>
+<div style="display: flex; gap: 24px; align-items: flex-start;">
+  <div style="flex: 1; text-align: center; "><img src="../../assets/images/manual/07-hfield-properties.png" width="412" alt="Hfield Properties dialog"></div>
+  <div style="flex: 1; text-align: center; "><img src="../../assets/images/manual/07-hfield-model-properties.png" width="412" alt="Hfield Model Properties dialog"></div>
+</div>
+
+<h3 id="plane">Plane<a class="headerlink" href="#plane" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID:</strong> <code>forge.properties_plane</code></p>
+<table>
+<thead>
+<tr>
+<th>Main editable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>X/Y Half Size, Infinite, contact/solver properties</td>
+</tr>
+</tbody>
+</table>
+<div style="display: flex; gap: 24px; align-items: flex-start;">
+  <div style="flex: 1; text-align: center; "><strong>Plane Properties</strong></div>
+  <div style="flex: 1; text-align: center; "><strong>Model Properties</strong></div>
+</div>
+<div style="display: flex; gap: 24px; align-items: flex-start;">
+  <div style="flex: 1; text-align: center; "><img src="../../assets/images/manual/07-plane-properties.png" width="412" alt="Plane Properties dialog"></div>
+  <div style="flex: 1; text-align: center; "><img src="../../assets/images/manual/07-hfield-model-properties.png" width="412" alt="Hfield Model Properties dialog"></div>
+</div>
+
+<h3 id="visual-collider">Visual / Collider<a class="headerlink" href="#visual-collider" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID:</strong> <code>forge.properties_shape</code></p>
+<table>
+<thead>
+<tr>
+<th>Main editable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Basic shape dimensions; Group, Condim, Contype, Conaffinity, Priority, Friction, Mass, Density, Margin, Gap, Solver</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Box:</strong> edit <strong>X/Y/Z Size</strong>.</li>
+<li><strong>Sphere:</strong> edit <strong>Radius</strong>.</li>
+<li><strong>Capsule/Cylinder:</strong> edit <strong>Radius</strong> and <strong>Height</strong>.</li>
+<li><strong>Mesh:</strong> there is no <strong>Primitive Size</strong> input; edit the <strong>Mesh</strong> itself or the object dimensions.</li>
+</ul>
+<p>Materials are not edited in this dialog. Use <strong>Create Material</strong>, or assign a material directly in the Blender object material slots.</p>
+<p>The <strong>Model Properties</strong> area stores collision, mass, and <strong>Solver</strong> parameters for the <strong>MJCF Geometry</strong>.</p>
+<div style="display: flex; gap: 24px; align-items: flex-start;">
+  <div style="flex: 1; text-align: center; "><strong>Visual Properties</strong></div>
+  <div style="flex: 1; text-align: center; "><strong>Collider Properties</strong></div>
+</div>
+<div style="display: flex; gap: 24px; align-items: flex-start;">
+  <div style="flex: 1; text-align: center; "><img src="../../assets/images/manual/07-shape-properties-0.png" width="412" alt="Visual Properties dialog"></div>
+  <div style="flex: 1; text-align: center; "><img src="../../assets/images/manual/07-shape-properties-1.png" width="412" alt="Collider Properties dialog"></div>
+</div>
+
+<h3 id="link">Link<a class="headerlink" href="#link" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID:</strong> <code>forge.properties_link</code></p>
+<table>
+<thead>
+<tr>
+<th>Main editable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Empty Display Type, Display Size, Mocap, Gravcomp</td>
+</tr>
+</tbody>
+</table>
+<div align="center"><img src="../../assets/images/manual/07-link-properties.png" alt="Link properties"></div>
+
+<h3 id="site">Site<a class="headerlink" href="#site" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID:</strong> <code>forge.properties_shape_site</code></p>
+<table>
+<thead>
+<tr>
+<th>Main editable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Box/Sphere/Capsule/Cylinder dimensions and Group</td>
+</tr>
+</tbody>
+</table>
+<div align="center"><img src="../../assets/images/manual/07-site-properties.png" alt="Site properties"></div>
+
+<h3 id="inertial">Inertial<a class="headerlink" href="#inertial" title="Permanent link">&para;</a></h3>
+<p>Select an <strong>Inertial</strong> to view <code>mass</code>, <code>diaginertia</code>, and <code>fullinertia</code> under <strong>Object Properties → Forge Properties → Inertial Info</strong>. This panel is read-only and there is no separate inertia properties dialog. To change values, use the object's <code>Forge_Inertial</code> through Python:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">bpy</span>
+
+<span class="n">inertial</span> <span class="o">=</span> <span class="n">bpy</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">active_object</span><span class="o">.</span><span class="n">Forge_Inertial</span>
+<span class="n">inertial</span><span class="o">.</span><span class="n">mass</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">inertial</span><span class="o">.</span><span class="n">fullinertia</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+</code></pre></div>
+
+<ul>
+<li><code>diaginertia</code> contains the three diagonal components in the principal inertia frame. The object's rotation relative to its parent Link defines the principal axes; its position is the center of mass.</li>
+<li><code>fullinertia</code> is the symmetric tensor about the center of mass, expressed in <strong>Link axes</strong>, ordered <code>Ixx, Iyy, Izz, Ixy, Ixz, Iyz</code>. It is derived from the current rotation and diagonal inertia.</li>
+<li>A nonzero <code>fullinertia</code> assignment must be positive definite. Forge decomposes it and updates the principal rotation and <code>diaginertia</code>. Scripts should assign all six components together to avoid incomplete intermediate tensors.</li>
+<li>Changing mass or inertia updates the equivalent box. Preview requires finite positive mass, finite positive diagonal moments, and the inertia triangle inequalities; otherwise it is not drawn.</li>
+</ul>
+<h3 id="joint">Joint<a class="headerlink" href="#joint" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID:</strong> <code>forge.properties_joint</code></p>
+<table>
+<thead>
+<tr>
+<th>Main editable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Type, Display Size, Springdamper, Solver, Range, Force Range, Stiffness, Ref, Armature, Damping, Frictionloss</td>
+</tr>
+</tbody>
+</table>
+<div align="center"><img src="../../assets/images/manual/07-joint-properties.png" width="412" alt="Joint Properties dialog"></div>
+
+<h3 id="actuator">Actuator<a class="headerlink" href="#actuator" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID:</strong> <code>forge.properties_actuator</code></p>
+<table>
+<thead>
+<tr>
+<th>Main editable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Type, Target, control/force ranges, Gain/Bias types, type-specific parameters, Gear/Dynamics/Gain/Bias arrays</td>
+</tr>
+</tbody>
+</table>
+<div align="center"><img src="../../assets/images/manual/07-actuator-properties.png" width="492" alt="Actuator Properties dialog"></div>
+
+<h3 id="tendon">Tendon<a class="headerlink" href="#tendon" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID:</strong> <code>forge.properties_tendon</code></p>
+<p><strong>Tendon</strong> uses <code>+</code> and <code>-</code> to add or remove Target list entries. The Operators are <code>forge.add_tendon_target_item</code> and <code>forge.remove_tendon_target_item</code>. They are UI helper entry points; scripts and MCP should maintain the Tendon Target collection directly.</p>
+<table>
+<thead>
+<tr>
+<th>Main editable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Type, add/remove Target entries, Range, Solver, Spring Length, Stiffness, Damping</td>
+</tr>
+</tbody>
+</table>
+<div align="center"><img src="../../assets/images/manual/07-tendon-properties.png" width="412" alt="Tendon Properties dialog"></div>
+
+<h3 id="equality">Equality<a class="headerlink" href="#equality" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID:</strong> <code>forge.properties_equality</code></p>
+<p>When <strong>Active</strong> is disabled, the main <strong>Equality</strong> parameters cannot be edited.</p>
+<table>
+<thead>
+<tr>
+<th>Main editable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Active, Type, Target 1/2, type-specific parameters</td>
+</tr>
+</tbody>
+</table>
+<div align="center"><img src="../../assets/images/manual/07-equality-properties.png" width="412" alt="Equality Properties dialog"></div>
+
+<h3 id="contact">Contact<a class="headerlink" href="#contact" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID:</strong> <code>forge.properties_contact</code></p>
+<p>Only <strong>Pair</strong> contacts display collision and <strong>Solver</strong> parameters.</p>
+<table>
+<thead>
+<tr>
+<th>Main editable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Type, Target 1/2; for Pair: Condim, Friction, Solver, Margin, Gap</td>
+</tr>
+</tbody>
+</table>
+<div style="display: flex; gap: 24px; align-items: flex-start;">
+  <div style="flex: 1; text-align: center; "><strong>Exclude Properties</strong></div>
+  <div style="flex: 1; text-align: center; "><strong>Pair Properties</strong></div>
+</div>
+<div style="display: flex; gap: 24px; align-items: flex-start;">
+  <div style="flex: 1; text-align: center; "><img src="../../assets/images/manual/07-contact-properties-0.png" width="412" alt="Exclude Properties dialog"></div>
+  <div style="flex: 1; text-align: center; "><img src="../../assets/images/manual/07-contact-properties-1.png" width="412" alt="Pair Properties dialog"></div>
+</div>
+
+<h3 id="sensor">Sensor<a class="headerlink" href="#sensor" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID:</strong> <code>forge.properties_sensor</code></p>
+<p><strong>Frame Sensor</strong> can set <strong>Reference</strong>. <strong>Contact Sensor</strong> shows a <strong>Link</strong>, <strong>Geom</strong>, <strong>Subtree</strong>, or <strong>Site</strong> name according to <strong>Target Type</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Main editable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sensor/Target Type, Target, Reference, Xbody/Subtree, Noise, Cutoff; Contact Sensor Data/Reduce</td>
+</tr>
+</tbody>
+</table>
+<div align="center"><img src="../../assets/images/manual/07-sensor-properties.png" width="412" alt="Sensor Properties dialog"></div>
+
+<h3 id="light">Light<a class="headerlink" href="#light" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID:</strong> <code>forge.properties_light</code></p>
+<p><strong>Target</strong> is shown only for <strong>Targetbody/Targetbodycom</strong> modes.</p>
+<table>
+<thead>
+<tr>
+<th>Main editable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Type, Mode, Target, Shadow, Color, Energy, Size/Distance/Angle/Spot parameters</td>
+</tr>
+</tbody>
+</table>
+<div align="center"><img src="../../assets/images/manual/07-light-properties.png" width="412" alt="Light Properties dialog"></div>
+
+<h3 id="camera">Camera<a class="headerlink" href="#camera" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID:</strong> <code>forge.properties_camera</code></p>
+<p><strong>Target</strong> is shown only for <strong>Targetbody/Targetbodycom</strong> modes.</p>
+<table>
+<thead>
+<tr>
+<th>Main editable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Type, Mode, Target, FOV or Ortho Scale, Clip Start/End</td>
+</tr>
+</tbody>
+</table>
+<div align="center"><img src="../../assets/images/manual/07-camera-properties.png" width="412" alt="Camera Properties dialog"></div>
+
+<h3 id="replicate">Replicate<a class="headerlink" href="#replicate" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID:</strong> <code>forge.properties_replicate</code></p>
+<table>
+<thead>
+<tr>
+<th>Main editable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Count, Offset, Euler, Separator</td>
+</tr>
+</tbody>
+</table>
+<div align="center"><img src="../../assets/images/manual/07-replicate-properties.png" width="412" alt="Replicate Properties dialog"></div>
+
+<p>Dynamic fields:</p>
+<ul>
+<li><strong>Global / Visual:</strong> detailed <strong>Headlight</strong> and <strong>SSGI</strong> parameters are controlled by their <strong>Active</strong> switches; disabling them disables the corresponding fields.</li>
+<li><strong>Height Field:</strong> <strong>Height Map</strong> appears only after <strong>Use Height Map</strong> is enabled.</li>
+<li><strong>Plane:</strong> <strong>Infinite</strong> is independent and does not hide <strong>Half Size</strong>.</li>
+<li><strong>Visual / Collider:</strong> the geometry type determines dimension fields; <strong>Box</strong> shows three-axis <strong>Size</strong>, <strong>Sphere</strong> shows <strong>Radius</strong>, <strong>Capsule/Cylinder</strong> show <strong>Radius + Height</strong>, and <strong>Mesh</strong> shows no primitive size. Materials are managed through the object's first <strong>Material Slot</strong>.</li>
+<li><strong>Site:</strong> the geometry type determines whether <strong>Size</strong>, <strong>Radius</strong>, or <strong>Radius + Height</strong> is shown.</li>
+<li><strong>Link:</strong> <strong>Display Type / Display Size / Mocap / Gravcomp</strong> are always shown; no fields are hidden by type.</li>
+<li><strong>Joint:</strong> <strong>Free</strong> shows only basic <strong>Stiffness / Armature / Damping / Frictionloss</strong>. Other types also show <strong>Springdamper</strong>, Solver, Range, Limited, and related fields. <strong>Ball</strong> does not show <strong>Actuator Force Range/Limited</strong>.</li>
+<li><strong>Actuator:</strong> <strong>Position</strong> shows <strong>Kp / Kv / Inheritrange</strong>, <strong>Velocity</strong> shows <strong>Kv</strong>, and <strong>Adhesion</strong> shows <strong>Gain</strong>; other types show <strong>Gear / Dynamics / Gain / Bias</strong> arrays.</li>
+<li><strong>Tendon:</strong> the <strong>Target</strong> field comes from a variable-length Target list controlled by <code>+ / -</code>.</li>
+<li><strong>Equality:</strong> disabling <strong>Active</strong> disables all remaining fields. <strong>Target 2</strong> appears only after <strong>Target 1</strong> is set; the remaining parameters depend on Equality type.</li>
+<li><strong>Contact:</strong> only <strong>Pair</strong> shows <strong>Condim, Friction, Solver, Margin, Gap</strong>; <strong>Exclude</strong> does not show them.</li>
+<li><strong>Sensor:</strong> a <strong>Contact</strong> Sensor labels target fields as <strong>Link1/2, Geom1/2, Subtree1/2</strong>, or <strong>Site</strong> according to <strong>Target Type</strong>. Frame sensors show <strong>Reference</strong> and <strong>Use Xbody</strong> after Target is set; Contact sensors show <strong>Reference</strong> and <strong>Use Subtree</strong> when a second target is required.</li>
+<li><strong>Light:</strong> only <strong>Targetbody/Targetbodycom</strong> shows <strong>Target</strong>; <strong>Spot/Point</strong> show <strong>Shadow Soft Size / Cutoff Distance</strong>, other types show <strong>Angle</strong>, and <strong>Spot</strong> additionally shows <strong>Spot Size / Spot Blend</strong>.</li>
+<li><strong>Camera:</strong> only <strong>Targetbody/Targetbodycom</strong> shows <strong>Target</strong>; <strong>Perspective</strong> shows <strong>FOV/Angle</strong>, while <strong>Orthographic</strong> shows <strong>Ortho Scale</strong>.</li>
+<li><strong>Replicate:</strong> <strong>Count / Offset / Euler</strong> appear only while the object still has a Replicate Modifier; <strong>Separator</strong> always belongs to Replicate properties.</li>
+</ul>
+<h2 id="74-how-changes-take-effect">7.4 How changes take effect<a class="headerlink" href="#74-how-changes-take-effect" title="Permanent link">&para;</a></h2>
+<p>Property dialogs modify <strong>Object</strong>, <strong>Modifier</strong>, or <strong>Scene</strong> data directly and do not have an <strong>Apply/Save</strong> button. Changes remain after closing the dialog and can be undone with <strong>Blender Undo</strong>.</p>
+<p>Prefer changing <strong>Size</strong>, <strong>Radius</strong>, and <strong>Height</strong> in <strong>Properties</strong>. Several <strong>Forge</strong> objects lock <strong>Object Scale</strong>; shape dimensions are driven by the <strong>Geometry Nodes Modifier</strong> parameters.</p>
+<hr />
+      </article>
+      
+      <nav class="page-navigation" aria-label="Page navigation">
+        <a class="previous-page" href="06_meta_elements.html"><span>← Previous</span><strong>6. Meta Elements</strong></a>
+        <a class="next-page" href="08_import_export.html"><span>Next →</span><strong>8. Import and Export</strong></a>
+      </nav>
+      
+      <footer class="manual-footer">Forge · Blender add-on documentation</footer>
+    </main>
+    
+    <aside class="page-outline" id="manual-outline" aria-label="On this page" tabindex="-1">
+      <div class="outline-heading"><p>On this page</p><button class="outline-close" type="button" aria-label="Close page contents">×</button></div>
+      
+<ul>
+  
+  <li><a href="#71-three-property-entry-points">7.1 Three property entry points</a>
+    
+<ul>
+  
+  <li><a href="#model-define-global">Model Define → Global</a>
+    
+  </li>
+  
+  <li><a href="#3d-view-property-gizmo">3D View property gizmo</a>
+    
+  </li>
+  
+  <li><a href="#object-properties-forge-properties">Object Properties → Forge Properties</a>
+    
+  </li>
+  
+</ul>
+
+  </li>
+  
+  <li><a href="#72-the-property-gizmo-is-not-visible">7.2 The property gizmo is not visible</a>
+    
+  </li>
+  
+  <li><a href="#73-object-property-dialogs">7.3 Object property dialogs</a>
+    
+<ul>
+  
+  <li><a href="#height-field">Height Field</a>
+    
+  </li>
+  
+  <li><a href="#plane">Plane</a>
+    
+  </li>
+  
+  <li><a href="#visual-collider">Visual / Collider</a>
+    
+  </li>
+  
+  <li><a href="#link">Link</a>
+    
+  </li>
+  
+  <li><a href="#site">Site</a>
+    
+  </li>
+  
+  <li><a href="#inertial">Inertial</a>
+    
+  </li>
+  
+  <li><a href="#joint">Joint</a>
+    
+  </li>
+  
+  <li><a href="#actuator">Actuator</a>
+    
+  </li>
+  
+  <li><a href="#tendon">Tendon</a>
+    
+  </li>
+  
+  <li><a href="#equality">Equality</a>
+    
+  </li>
+  
+  <li><a href="#contact">Contact</a>
+    
+  </li>
+  
+  <li><a href="#sensor">Sensor</a>
+    
+  </li>
+  
+  <li><a href="#light">Light</a>
+    
+  </li>
+  
+  <li><a href="#camera">Camera</a>
+    
+  </li>
+  
+  <li><a href="#replicate">Replicate</a>
+    
+  </li>
+  
+</ul>
+
+  </li>
+  
+  <li><a href="#74-how-changes-take-effect">7.4 How changes take effect</a>
+    
+  </li>
+  
+</ul>
+
+    </aside>
+    
+  </div>
+  <dialog class="image-preview" id="image-preview" aria-label="Image preview">
+    <form method="dialog" class="image-preview-close"><button type="submit" aria-label="Close image preview" autofocus>×</button></form>
+    <img class="image-preview-image" alt="">
+  </dialog>
+  <script>var base_url = document.body.dataset.baseUrl;</script>
+  <script src="../../assets/javascripts/image-preview.js"></script><script src="../../assets/javascripts/case-videos.js"></script><script src="../../search/main.js"></script><script src="../../assets/javascripts/manual.js"></script>
+</body>
+</html>

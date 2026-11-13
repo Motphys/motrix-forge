@@ -1,0 +1,495 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Forge Blender add-on documentation · Forge 插件使用文档">
+  <link rel="icon" href="../../assets/favicon.ico" type="image/x-icon">
+  <script>
+    document.documentElement.classList.add("navigation-pending");
+    document.addEventListener("DOMContentLoaded", () => document.documentElement.classList.remove("navigation-pending"), { once: true });
+  </script>
+  <title>第 4 章：Model Define — 运动学与实例 — Forge 使用手册</title>
+  <script src="../../assets/javascripts/theme.js"></script>
+  <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+  <link rel="alternate" hreflang="en" href="../../en/forge_docs/04_kinematics.html">
+</head>
+<body data-base-url="../..">
+  <a class="skip-link" href="#main-content">跳至正文</a>
+  <header class="mobile-header">
+    <button type="button" class="menu-toggle" aria-controls="manual-sidebar" aria-expanded="false" aria-label="打开导航">☰</button>
+    <a href="../../introduction.zh-CN.html">Forge <span>使用手册</span></a>
+    
+<button type="button" class="theme-toggle theme-toggle-compact" data-theme-toggle aria-pressed="false" aria-label="切换至黑色主题">
+  <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg>
+  <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+  <span class="theme-label">浅色主题</span>
+</button>
+
+    <a href="../../en/forge_docs/04_kinematics.html" lang="en">EN</a>
+    
+    <button type="button" class="outline-toggle" aria-controls="manual-outline" aria-expanded="false" aria-label="打开本页目录"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M9 5h12M9 12h12M9 19h12M3 5h1M3 12h1M3 19h1"/></svg></button>
+    
+  </header>
+  <button class="sidebar-backdrop" type="button" aria-label="关闭导航" tabindex="-1"></button>
+  <aside class="manual-sidebar" id="manual-sidebar">
+    <a class="manual-brand" href="../../introduction.zh-CN.html"><img class="brand-logo" src="../../assets/Logo.png" alt="Forge"><span>Forge<span class="brand-subtitle">使用手册</span></span></a>
+    <form class="sidebar-search" action="../search.html" role="search">
+      <input type="hidden" name="lang" value="cn">
+      <span aria-hidden="true">⌕</span><input type="search" name="q" placeholder="搜索手册" aria-label="搜索手册">
+    </form>
+    <nav class="chapter-nav" aria-label="章节导航">
+      
+      
+      <details class="nav-group" data-nav-group="getting-started" data-active="false">
+        <summary class="nav-caption">开始使用</summary>
+        
+        <ul><li><a href="../../introduction.zh-CN.html">关于 Forge</a></li><li><a href="../installation.html">安装 Forge</a></li><li><a href="../preferences.html">配置 Forge</a></li><li><a href="../development.html">开发 Forge</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="examples" data-active="false">
+        <summary class="nav-caption">案例</summary>
+        
+        <ul><li><a href="../examples.html">应用案例</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="manual" data-active="true" open>
+        <summary class="nav-caption">使用手册</summary>
+        
+        <details class="nav-group nav-subgroup" data-nav-group="manual-contents" data-active="true" open>
+          <summary class="nav-caption nav-subcaption">章节目录</summary>
+          <ul><li><a href="../forge_docs.html">概览</a></li><li><a href="00_ui_overview.html">0. 界面总览与通用操作</a></li><li><a href="01_mcp_server.html">1. MCP 服务</a></li><li><a href="02_global_and_general.html">2. 全局与通用设置</a></li><li><a href="03_geometry_and_material.html">3. 几何与材质</a></li><li><a href="04_kinematics.html" class="active" aria-current="page">4. 运动学与实例</a></li><li><a href="05_hardware.html">5. 硬件</a></li><li><a href="06_meta_elements.html">6. 元元素</a></li><li><a href="07_properties.html">7. 属性编辑</a></li><li><a href="08_import_export.html">8. 导入与导出</a></li><li><a href="09_coacd.html">9. CoACD 凸分解</a></li><li><a href="10_troubleshooting_and_scripting.html">10. 常见问题与脚本调用</a></li></ul>
+        </details>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="mcp-reference" data-active="false">
+        <summary class="nav-caption">MCP 参考</summary>
+        
+        <ul><li><a href="../../reference/MCP_INSTALL.zh-CN.html">Forge MCP 安装与连接</a></li><li><a href="../../reference/mcp-server/README.zh-CN.html">Forge MCP 服务端参考</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="mcp-skills" data-active="false">
+        <summary class="nav-caption">MCP Skills (English only)</summary>
+        
+        <ul><li><a href="../mcp_skills.html">Overview</a></li><li><a href="../mcp_skills/forge_create.html">Forge create</a></li><li><a href="../mcp_skills/forge_modify.html">Forge modify</a></li><li><a href="../mcp_skills/forge_custom_material.html">Forge custom material</a></li><li><a href="../mcp_skills/forge_operators.html">Forge operators</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="documentation" data-active="false">
+        <summary class="nav-caption">文档</summary>
+        
+        <ul><li><a href="../preview.html">本地预览</a></li></ul>
+        
+      </details>
+      
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-controls">
+        
+<button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="切换至黑色主题">
+  <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg>
+  <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+  <span class="theme-label">浅色主题</span>
+</button>
+
+        <details class="language-switch">
+          <summary><span aria-hidden="true">◎</span> 简体中文 <span aria-hidden="true">⌃</span></summary>
+          <div class="language-options">
+            <a href="04_kinematics.html" lang="zh-CN" aria-current="true">简体中文 ✓</a>
+            <a href="../../en/forge_docs/04_kinematics.html" lang="en">English</a>
+          </div>
+        </details>
+      </div>
+      <nav class="project-links" aria-label="项目链接">
+        <a class="project-link" href="https://github.com/Motphys/motrix-forge" target="_blank" rel="noopener noreferrer" title="在新标签页打开 GitHub">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.68.08-.68 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.56 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.43.11-2.98 0 0 .95-.3 3.1 1.15a10.8 10.8 0 0 1 5.63 0c2.15-1.45 3.09-1.15 3.09-1.15.62 1.55.23 2.7.12 2.98.72.79 1.16 1.79 1.16 3.02 0 4.32-2.64 5.27-5.15 5.55.4.35.76 1.03.76 2.08v3.1c0 .3.2.65.78.54A11.25 11.25 0 0 0 12 .75Z"/></svg>
+          <span>GitHub</span>
+        </a>
+        <a class="project-link" href="https://www.motphys.com/" target="_blank" rel="noopener noreferrer" title="在新标签页打开 Motphys 官网">
+          <svg class="website-logo" width="24" height="24" viewBox="0 0 128 128" fill="currentColor" aria-hidden="true">
+            <polygon points="58.23 49.97 37.73 49.97 33.23 55.57 62.63 55.57 58.23 49.97"/>
+            <path d="M50.13,39.67c-1.1-1.4-3.2-1.4-4.3,0l-3.6,4.6h11.6l-3.6-4.6h-.1Z"/>
+            <path d="M118.13,85.27l-35.8-45.6c-1.1-1.4-3.2-1.4-4.3,0l-14.1,17.8-3.1,3.9H28.83l-4.5,5.7h32.2l-4.5,5.7H19.93l-4.5,5.7h32.2l-4.5,5.7H10.93l-1,1.3c-1.4,1.8-.1,4.4,2.1,4.4h103.9c2.3,0,3.6-2.6,2.1-4.4h0l.1-.2Z"/>
+          </svg>
+          <span>官网</span>
+        </a>
+      </nav>
+    </div>
+  </aside>
+  <script>
+/* Restore the sidebar synchronously, before revealing its first frame. */
+(() => {
+  "use strict";
+  const root = document.documentElement;
+  try {
+    const navigationKey = "forge-docs-navigation-groups";
+    let state = {};
+    try {
+      const saved = JSON.parse(localStorage.getItem(navigationKey));
+      if (saved && typeof saved === "object" && !Array.isArray(saved)) state = saved;
+    } catch { /* Keep native details usable without storage. */ }
+    const restoreGroups = scope => {
+      scope.querySelectorAll("[data-nav-group]").forEach(group => {
+        if (group.dataset.navRestored) return;
+        group.dataset.navRestored = "true";
+        const id = group.dataset.navGroup;
+        if (group.dataset.active === "true") group.open = true;
+        else if (typeof state[id] === "boolean") group.open = state[id];
+        group.addEventListener("toggle", () => {
+          state[id] = group.open;
+          try { localStorage.setItem(navigationKey, JSON.stringify(state)); } catch { /* Ignore unavailable storage. */ }
+        });
+      });
+    };
+    window.forgeRestoreNavigationGroups = restoreGroups;
+    const nav = document.querySelector(".chapter-nav");
+    if (!nav) return;
+    restoreGroups(nav);
+    const siteRoot = new URL(`${document.body.dataset.baseUrl || "."}/`, location.href).pathname;
+    const scrollKey = `forge-docs-navigation-scroll:${siteRoot}`;
+    try {
+      const saved = sessionStorage.getItem(scrollKey);
+      if (saved !== null && Number.isFinite(Number(saved)) && Number(saved) >= 0) nav.scrollTop = Number(saved);
+    } catch { /* Ignore unavailable storage. */ }
+    const save = () => {
+      try { sessionStorage.setItem(scrollKey, String(nav.scrollTop)); } catch { /* Ignore unavailable storage. */ }
+    };
+    nav.addEventListener("scroll", save, { passive: true });
+    nav.addEventListener("click", save);
+    window.addEventListener("pagehide", save);
+  } finally {
+    root.classList.remove("navigation-pending");
+  }
+})();
+</script>
+  <div class="manual-layout">
+    <main id="main-content" class="manual-main" tabindex="-1">
+      <div class="page-header">
+        <nav class="breadcrumbs" aria-label="当前位置"><a href="../../introduction.zh-CN.html">Forge 使用手册</a><span aria-hidden="true"> / </span><span>第 4 章：Model Define — 运动学与实例</span></nav>
+      </div>
+      <article class="manual-article">
+        <h1 id="第-4-章model-define-运动学与实例">第 4 章：Model Define — 运动学与实例<a class="headerlink" href="#第-4-章model-define-运动学与实例" title="Permanent link">&para;</a></h1>
+<h2 id="41-kinematics-分组布局">4.1 Kinematics 分组布局<a class="headerlink" href="#41-kinematics-分组布局" title="Permanent link">&para;</a></h2>
+<div align="center">
+  <img src="../../assets/images/manual/04-kinematics-region.png" alt="Kinematics 分组">
+</div>
+
+<table>
+<thead>
+<tr>
+<th>按钮</th>
+<th>Operator ID</th>
+<th>可用条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Create link(s)</td>
+<td><code>forge.create_link</code></td>
+<td>未选择；所选对象均属于 Link/Frame/Replicate；或均属于 Visual/Collider</td>
+</tr>
+<tr>
+<td>Create joint(s)</td>
+<td><code>forge.create_joint</code></td>
+<td>所选对象均为 Link</td>
+</tr>
+<tr>
+<td>Mark root</td>
+<td><code>forge.mark_root_link</code></td>
+<td>所选对象均为 Link、Frame 或 Replicate</td>
+</tr>
+<tr>
+<td>Define joint(s)</td>
+<td><code>forge.define_joint_type</code></td>
+<td>所选对象均为 Joint</td>
+</tr>
+<tr>
+<td>Link Parent</td>
+<td><code>forge.define_parent</code></td>
+<td>活动对象和其他所选对象满足合法父子类型</td>
+</tr>
+<tr>
+<td>Compute Inertial</td>
+<td><code>forge.create_inertial</code></td>
+<td>所选对象均为 Link</td>
+</tr>
+<tr>
+<td>Mark Instance Link</td>
+<td><code>forge.mark_instance_link</code></td>
+<td>所选对象均为 Link（使用规则见 <a href="#47-instance-使用规则">4.7</a>）</td>
+</tr>
+<tr>
+<td>Set instance idname</td>
+<td><code>forge.set_instance_idname</code></td>
+<td>所选对象均为 Link、Frame 或 Visual（只修改其中未标记 <code>INSTANCE_LINK</code> 的 Link）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="42-创建-link">4.2 创建 Link<a class="headerlink" href="#42-创建-link" title="Permanent link">&para;</a></h2>
+<h3 id="create-links">Create link(s)<a class="headerlink" href="#create-links" title="Permanent link">&para;</a></h3>
+<ul>
+<li>未选择对象：创建顶层 Link。</li>
+<li>选择 Link/Frame/Replicate：为每个对象创建子 Link。</li>
+<li>选择 Visual/Collider：根据所选几何对象创建 Link。</li>
+<li><code>Shift + 点击</code>：反向父子关系——在所选 <strong>Link/Frame/Replicate</strong> 的位置和朝向创建新的父 <strong>Link</strong>，并把所选对象改为该 <strong>Link</strong> 的子对象。与 <strong>Create frame(s)</strong> 的 <code>Shift + 点击</code> 行为一致。</li>
+</ul>
+<p>创建完成后，新 Link 会成为当前选择。无弹窗。</p>
+<h2 id="43-创建与定义-joint">4.3 创建与定义 Joint<a class="headerlink" href="#43-创建与定义-joint" title="Permanent link">&para;</a></h2>
+<h3 id="create-joints">Create joint(s)<a class="headerlink" href="#create-joints" title="Permanent link">&para;</a></h3>
+<p>为每个所选 <strong>Link</strong> 创建 <strong>Joint</strong>。类型为 <strong>Free</strong>、<strong>Ball</strong>、<strong>Slide</strong>、<strong>Hinge</strong>，默认为 <strong>Hinge</strong>。</p>
+<p>弹窗：</p>
+<div align="center">
+  <img src="../../assets/images/manual/04-joint-creation.png" alt="Create joint(s)">
+</div>
+
+<h3 id="define-joints">Define joint(s)<a class="headerlink" href="#define-joints" title="Permanent link">&para;</a></h3>
+<ul>
+<li>弹窗以活动 <strong>Joint</strong> 的类型为初始值，默认只修改活动对象；</li>
+<li>勾选 <strong>Apply to all selected</strong> 后修改全部所选 Joint。</li>
+<li>类型变更时会同步更新 <strong>Joint</strong> 的显示形状。</li>
+</ul>
+<p>弹窗：</p>
+<div align="center">
+  <img src="../../assets/images/manual/04-joint-define.png" alt="Define joint(s)">
+</div>
+
+<h2 id="44-link-parent">4.4 Link Parent<a class="headerlink" href="#44-link-parent" title="Permanent link">&para;</a></h2>
+<p><strong>Link Parent</strong> 始终把活动对象作为父对象，无弹窗：</p>
+<ul>
+<li>活动对象为 <strong>Link</strong>、<strong>Frame</strong> 或 <strong>Replicate</strong>，其他所选对象必须都是允许的 <strong>Link</strong> 子元素：</li>
+<li><strong>Link</strong>、<strong>Frame</strong>、<strong>Replicate</strong>、<strong>Visual</strong>、<strong>Collider</strong>、<strong>Joint</strong>、<strong>Site</strong>、<strong>Light</strong>、<strong>Camera</strong>、<strong>Attach</strong></li>
+<li>活动对象为 <strong>Visual</strong> 时该操作不可用：<strong>Collider</strong> 应与 <strong>Visual</strong> 同级挂在 <strong>Link</strong> 之下，<strong>Collider</strong> 套在 <strong>Visual</strong> 里不会导出。</li>
+<li>被移动的 <strong>Visual</strong> 原有子对象（例如仍绑定到它的 <strong>Collider</strong>）会先重新挂到新的活动父对象下，从而修复旧的 <strong>Collider</strong> 套 <strong>Visual</strong> 层级。</li>
+<li>被重新挂接的对象会同时移入其模型类型对应的集合 —— <strong>Visual</strong> 进 <code>Visual</code>，<strong>Collider</strong> 进 <code>Collider</code>，以此类推。在世界根下创建的对象位于 <code>World</code>，挂接后才移出。</li>
+</ul>
+<p>操作步骤：</p>
+<ol>
+<li>先选择需要移动的子对象。</li>
+<li>最后选择目标父对象，使其成为活动对象。</li>
+<li>点击 <strong>Link Parent</strong>。</li>
+</ol>
+<h2 id="45-compute-inertial">4.5 Compute Inertial<a class="headerlink" href="#45-compute-inertial" title="Permanent link">&para;</a></h2>
+<p>选中一个或多个 <strong>Link</strong>，点击 <strong>Compute Inertial</strong>。弹窗包含：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inertial Model Type</td>
+<td>Visual</td>
+<td>选择以 <strong>Visual</strong> 或 <strong>Collider</strong> 作为计算来源</td>
+</tr>
+<tr>
+<td>Check Geometry</td>
+<td>关闭</td>
+<td>计算前检查所收集几何的有效性；检查失败则跳过该 Link</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>收集所选类型的直接子对象，并递归进入 <strong>Frame</strong> 子层级；不会进入子 <strong>Link</strong> 的层级，也不会混用 Visual 和 Collider。</li>
+<li><strong>Box / Sphere / Cylinder / Capsule</strong> 根据形状参数直接计算实体质量和惯量，无需 TetGen；会计入世界变换中的缩放（包括非均匀缩放）、镜像及父级引入的剪切。</li>
+<li><strong>Mesh</strong> 使用应用修改器后的网格，经 <strong>TetGen</strong> 四面体化计算；需要安装 TetGen，并提供可用于体积计算的有效网格。</li>
+<li>密度默认取每个对象的 <code>Forge_Geometry.density</code>；若第一个材质槽的材质含 <code>density</code> 自定义属性，则优先使用材质密度。</li>
+<li>多个几何对象的质量、质心和惯量会合并。计算成功后，在 Link 下新建 <strong>Inertial</strong> 并选中；不会替换已有 Inertial，重复计算前应先清理旧对象。</li>
+<li>找不到匹配几何、启用检查后检查失败或惯量计算失败时，该 Link 不会生成新的 Inertial；错误详情见报告区域。</li>
+</ul>
+<p>推荐流程：确认几何类型、尺寸和密度，选择 <strong>Link</strong>，在弹窗选择 <strong>Visual / Collider</strong>；需要计算前检查时启用 <strong>Check Geometry</strong>。独立的 <strong>Check Mesh(s)</strong> 按钮仍只接受 Visual。</p>
+<h3 id="惯量预览">惯量预览<a class="headerlink" href="#惯量预览" title="Permanent link">&para;</a></h3>
+<p><strong>Inertial</strong> 使用与质量和对角惯量等效的长方体显示，位置为质心、方向为惯性主轴。修改质量或惯量会更新显示；其显示尺寸不受 <strong>Gizmo display size</strong> 控制。物理位置和旋转相对于父 Link 保存，显示用缩放不写入 MJCF 惯量位姿。</p>
+<p>惯量属性编辑见<a href="07_properties.html">第 7 章</a>，预览开关见<a href="00_ui_overview.html">第 0 章</a>。</p>
+<h2 id="46-mark-root">4.6 Mark root<a class="headerlink" href="#46-mark-root" title="Permanent link">&para;</a></h2>
+<p>给没有父对象的所选 <strong>Link/Frame/Replicate</strong> 写入 <code>Root Link</code> 标记。有父对象的将断开父子链接并标记，并会显示警告。无弹窗。</p>
+<h2 id="47-instance-使用规则">4.7 Instance 使用规则<a class="headerlink" href="#47-instance-使用规则" title="Permanent link">&para;</a></h2>
+<p><strong>Instance</strong> 用于把同一个 <strong>Link</strong> 子树（如夹爪、车轮）复用到多个位置：被标记的 <strong>Instance Link</strong> 只作为"模板"提供内容，导出时它的子物体会自动写入各个引用它的 <strong>Link</strong> 之下。</p>
+<p>对应 <strong>Kinematics</strong> 下方独立的 <strong>Instance</strong> 分组，包含三行：<strong>Mark Instance Link</strong> 按钮、<strong>Instance</strong> 字段、<strong>Set instance idname</strong> 按钮。</p>
+<div align="center">
+  <img src="../../assets/images/manual/04-instance-region.png" alt="Instance 分组">
+</div>
+<h3 id="概念">概念<a class="headerlink" href="#概念" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>标记</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Instance Link（实例源）</td>
+<td><code>INSTANCE_LINK</code> 自定义属性</td>
+<td>由 <strong>Mark Instance Link</strong> 写入 / 再次点击取消；导出时不作为 <code>&lt;body&gt;</code> 出现；未被引用时<strong>完全不导出</strong>（含资产）</td>
+</tr>
+<tr>
+<td>占位 Link</td>
+<td><code>INSTANCE_IDNAME</code> 自定义属性</td>
+<td>由 <strong>Instance 字段 + Set instance idname</strong> 写入；保留自己的 Link（名字、位姿、属性），子物体被替换为 Instance Link 的子树副本</td>
+</tr>
+<tr>
+<td>Instance 字段</td>
+<td><code>Forge_Props.instance_body</code></td>
+<td>选择列表<strong>只列出已标记的 Instance Link</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="使用步骤">使用步骤<a class="headerlink" href="#使用步骤" title="Permanent link">&para;</a></h3>
+<ol>
+<li>在场景中搭建一个模板 <strong>Link</strong>（含 Joint、Visual、子 Link 等），放在世界根层级并保持可见。</li>
+<li>选中模板 <strong>Link</strong>，点击 <strong>Mark Instance Link</strong>（打上 <code>INSTANCE_LINK</code> 标记；再点一次则取消）。</li>
+<li><strong>Instance</strong> 字段中选择该模板。</li>
+<li>选中一个或多个占位 <strong>Link</strong> 并且未被标记为 <code>INSTANCE_LINK</code>（通常是在目标父级下新建的空 <strong>Link</strong>），点击 <strong>Set instance idname</strong> 写入 <code>INSTANCE_IDNAME</code>；<strong>Instance</strong> 字段为空时点击会清除所选 Link 的引用。</li>
+<li>正常导出（见<a href="08_import_export.html">第 8 章</a>）。</li>
+</ol>
+<h3 id="导出规则">导出规则<a class="headerlink" href="#导出规则" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Instance Link 本体不导出</strong>为 <code>&lt;body&gt;</code>；被占位 <strong>Link</strong> 引用时，其子树的 mesh、材质资产会随副本导出；</li>
+<li><strong>未被任何占位 Link 引用的 Instance Link 完全不导出</strong>——不写 <code>&lt;body&gt;</code>，也不导出其子树的任何资产（显示警告）。</li>
+<li>每个占位 <strong>Link</strong> 导出自己的 <code>&lt;body&gt;</code>（名字、pos、quat、属性），子物体替换为模板子树的完整副本：</li>
+<li>副本内所有元素名自动加前缀 <code>&lt;占位 Link 名&gt;_</code>（如 <code>grip_l_finger</code>），多份副本之间不会重名；名称仍冲突时自动追加 <code>_inst</code> 后缀；</li>
+<li>副本内 <strong>Camera / Light</strong> 的 <code>target</code> 引用会同步改名；</li>
+<li>模板子树的 <strong>mesh</strong>、材质资产只导出一份，被所有副本共享。</li>
+<li>占位 <strong>Link</strong> 自己的子物体<strong>不会导出</strong>，也不参与资产收集。</li>
+<li>全局段（<code>actuator</code>、<code>sensor</code>、<code>tendon</code>、<code>equality</code>、<code>contact</code>）不会按副本复制，也不要引用 <strong>Instance Link</strong> 内部的元素名。</li>
+</ul>
+<h3 id="注意事项">注意事项<a class="headerlink" href="#注意事项" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>INSTANCE_IDNAME</code> 保存的是对 Instance Link 对象的引用而非名称，因此重命名模板后引用依然有效；旧文件中保存为名称的标记在导出时也能被识别。</li>
+<li><code>INSTANCE_IDNAME</code> 指向的对象被删除或不再是 <strong>Link</strong> 时，该占位 <strong>Link</strong> 回退为普通导出并显示警告。</li>
+<li>已标记为 <strong>Instance Link</strong> 的 <strong>Link</strong> 不能再被设置 <code>INSTANCE_IDNAME</code>（会跳过并显示警告）；模板子树内部的 <code>INSTANCE_IDNAME</code> 标记在复制时会被忽略（副本是纯内容拷贝）。</li>
+<li>嵌套在模板子树内部的 <strong>Instance Link</strong> 不会作为 <code>&lt;body&gt;</code> 复制进副本，其内容仍只经由引用它的占位 <strong>Link</strong> 导出（未被引用则不导出）。</li>
+<li><strong>Instance</strong> 标记是 <strong>Blender</strong> 侧的创作概念，重新 <strong>Import MJCF</strong> 不会还原。</li>
+</ul>
+<h3 id="mcp-调用">MCP 调用<a class="headerlink" href="#mcp-调用" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="n">forge_mark_instance_link</span><span class="p">(</span><span class="n">select</span><span class="o">=</span><span class="p">[</span><span class="s2">"gripper"</span><span class="p">])</span>                  <span class="c1"># 标记 / 取消标记模板</span>
+<span class="n">forge_set_scene_property</span><span class="p">(</span><span class="n">group</span><span class="o">=</span><span class="s2">"forge_props"</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="p">{</span><span class="s2">"instance_body"</span><span class="p">:</span> <span class="s2">"gripper"</span><span class="p">})</span>
+<span class="n">forge_set_instance_idname</span><span class="p">(</span><span class="n">select</span><span class="o">=</span><span class="p">[</span><span class="s2">"arm_l"</span><span class="p">,</span> <span class="s2">"arm_r"</span><span class="p">])</span>          <span class="c1"># 占位 Link 写入引用</span>
+</code></pre></div>
+
+<hr />
+      </article>
+      
+      <nav class="page-navigation" aria-label="章节跳转">
+        <a class="previous-page" href="03_geometry_and_material.html"><span>← 上一章</span><strong>3. 几何与材质</strong></a>
+        <a class="next-page" href="05_hardware.html"><span>下一章 →</span><strong>5. 硬件</strong></a>
+      </nav>
+      
+      <footer class="manual-footer">Forge · Blender 插件使用文档</footer>
+    </main>
+    
+    <aside class="page-outline" id="manual-outline" aria-label="本页目录" tabindex="-1">
+      <div class="outline-heading"><p>本页目录</p><button class="outline-close" type="button" aria-label="关闭本页目录">×</button></div>
+      
+<ul>
+  
+  <li><a href="#41-kinematics-分组布局">4.1 Kinematics 分组布局</a>
+    
+  </li>
+  
+  <li><a href="#42-创建-link">4.2 创建 Link</a>
+    
+<ul>
+  
+  <li><a href="#create-links">Create link(s)</a>
+    
+  </li>
+  
+</ul>
+
+  </li>
+  
+  <li><a href="#43-创建与定义-joint">4.3 创建与定义 Joint</a>
+    
+<ul>
+  
+  <li><a href="#create-joints">Create joint(s)</a>
+    
+  </li>
+  
+  <li><a href="#define-joints">Define joint(s)</a>
+    
+  </li>
+  
+</ul>
+
+  </li>
+  
+  <li><a href="#44-link-parent">4.4 Link Parent</a>
+    
+  </li>
+  
+  <li><a href="#45-compute-inertial">4.5 Compute Inertial</a>
+    
+<ul>
+  
+  <li><a href="#惯量预览">惯量预览</a>
+    
+  </li>
+  
+</ul>
+
+  </li>
+  
+  <li><a href="#46-mark-root">4.6 Mark root</a>
+    
+  </li>
+  
+  <li><a href="#47-instance-使用规则">4.7 Instance 使用规则</a>
+    
+<ul>
+  
+  <li><a href="#概念">概念</a>
+    
+  </li>
+  
+  <li><a href="#使用步骤">使用步骤</a>
+    
+  </li>
+  
+  <li><a href="#导出规则">导出规则</a>
+    
+  </li>
+  
+  <li><a href="#注意事项">注意事项</a>
+    
+  </li>
+  
+  <li><a href="#mcp-调用">MCP 调用</a>
+    
+  </li>
+  
+</ul>
+
+  </li>
+  
+</ul>
+
+    </aside>
+    
+  </div>
+  <dialog class="image-preview" id="image-preview" aria-label="图片预览">
+    <form method="dialog" class="image-preview-close"><button type="submit" aria-label="关闭图片预览" autofocus>×</button></form>
+    <img class="image-preview-image" alt="">
+  </dialog>
+  <script>var base_url = document.body.dataset.baseUrl;</script>
+  <script src="../../assets/javascripts/image-preview.js"></script><script src="../../assets/javascripts/case-videos.js"></script><script src="../../search/main.js"></script><script src="../../assets/javascripts/manual.js"></script>
+</body>
+</html>

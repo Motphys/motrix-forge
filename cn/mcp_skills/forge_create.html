@@ -1,0 +1,676 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Forge Blender add-on documentation · Forge 插件使用文档">
+  <link rel="icon" href="../../assets/favicon.ico" type="image/x-icon">
+  <script>
+    document.documentElement.classList.add("navigation-pending");
+    document.addEventListener("DOMContentLoaded", () => document.documentElement.classList.remove("navigation-pending"), { once: true });
+  </script>
+  <title>Forge create — Forge 使用手册</title>
+  <script src="../../assets/javascripts/theme.js"></script>
+  <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+  
+</head>
+<body data-base-url="../..">
+  <a class="skip-link" href="#main-content">跳至正文</a>
+  <header class="mobile-header">
+    <button type="button" class="menu-toggle" aria-controls="manual-sidebar" aria-expanded="false" aria-label="打开导航">☰</button>
+    <a href="../../introduction.zh-CN.html">Forge <span>使用手册</span></a>
+    
+<button type="button" class="theme-toggle theme-toggle-compact" data-theme-toggle aria-pressed="false" aria-label="切换至黑色主题">
+  <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg>
+  <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+  <span class="theme-label">浅色主题</span>
+</button>
+
+    <a href="../../en/mcp_skills/forge_create.html" lang="en">EN</a>
+    
+    <button type="button" class="outline-toggle" aria-controls="manual-outline" aria-expanded="false" aria-label="打开本页目录"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M9 5h12M9 12h12M9 19h12M3 5h1M3 12h1M3 19h1"/></svg></button>
+    
+  </header>
+  <button class="sidebar-backdrop" type="button" aria-label="关闭导航" tabindex="-1"></button>
+  <aside class="manual-sidebar" id="manual-sidebar">
+    <a class="manual-brand" href="../../introduction.zh-CN.html"><img class="brand-logo" src="../../assets/Logo.png" alt="Forge"><span>Forge<span class="brand-subtitle">使用手册</span></span></a>
+    <form class="sidebar-search" action="../search.html" role="search">
+      <input type="hidden" name="lang" value="cn">
+      <span aria-hidden="true">⌕</span><input type="search" name="q" placeholder="搜索手册" aria-label="搜索手册">
+    </form>
+    <nav class="chapter-nav" aria-label="章节导航">
+      
+      
+      <details class="nav-group" data-nav-group="getting-started" data-active="false">
+        <summary class="nav-caption">开始使用</summary>
+        
+        <ul><li><a href="../../introduction.zh-CN.html">关于 Forge</a></li><li><a href="../installation.html">安装 Forge</a></li><li><a href="../preferences.html">配置 Forge</a></li><li><a href="../development.html">开发 Forge</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="examples" data-active="false">
+        <summary class="nav-caption">案例</summary>
+        
+        <ul><li><a href="../examples.html">应用案例</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="manual" data-active="false">
+        <summary class="nav-caption">使用手册</summary>
+        
+        <details class="nav-group nav-subgroup" data-nav-group="manual-contents" data-active="false">
+          <summary class="nav-caption nav-subcaption">章节目录</summary>
+          <ul><li><a href="../forge_docs.html">概览</a></li><li><a href="../forge_docs/00_ui_overview.html">0. 界面总览与通用操作</a></li><li><a href="../forge_docs/01_mcp_server.html">1. MCP 服务</a></li><li><a href="../forge_docs/02_global_and_general.html">2. 全局与通用设置</a></li><li><a href="../forge_docs/03_geometry_and_material.html">3. 几何与材质</a></li><li><a href="../forge_docs/04_kinematics.html">4. 运动学与实例</a></li><li><a href="../forge_docs/05_hardware.html">5. 硬件</a></li><li><a href="../forge_docs/06_meta_elements.html">6. 元元素</a></li><li><a href="../forge_docs/07_properties.html">7. 属性编辑</a></li><li><a href="../forge_docs/08_import_export.html">8. 导入与导出</a></li><li><a href="../forge_docs/09_coacd.html">9. CoACD 凸分解</a></li><li><a href="../forge_docs/10_troubleshooting_and_scripting.html">10. 常见问题与脚本调用</a></li></ul>
+        </details>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="mcp-reference" data-active="false">
+        <summary class="nav-caption">MCP 参考</summary>
+        
+        <ul><li><a href="../../reference/MCP_INSTALL.zh-CN.html">Forge MCP 安装与连接</a></li><li><a href="../../reference/mcp-server/README.zh-CN.html">Forge MCP 服务端参考</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="mcp-skills" data-active="true" open>
+        <summary class="nav-caption">MCP Skills (English only)</summary>
+        
+        <ul><li><a href="../mcp_skills.html">Overview</a></li><li><a href="forge_create.html" class="active" aria-current="page">Forge create</a></li><li><a href="forge_modify.html">Forge modify</a></li><li><a href="forge_custom_material.html">Forge custom material</a></li><li><a href="forge_operators.html">Forge operators</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="documentation" data-active="false">
+        <summary class="nav-caption">文档</summary>
+        
+        <ul><li><a href="../preview.html">本地预览</a></li></ul>
+        
+      </details>
+      
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-controls">
+        
+<button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="切换至黑色主题">
+  <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg>
+  <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+  <span class="theme-label">浅色主题</span>
+</button>
+
+        <details class="language-switch">
+          <summary><span aria-hidden="true">◎</span> 简体中文 <span aria-hidden="true">⌃</span></summary>
+          <div class="language-options">
+            <a href="forge_create.html" lang="zh-CN" aria-current="true">简体中文 ✓</a>
+            <a href="../../en/mcp_skills/forge_create.html" lang="en">English</a>
+          </div>
+        </details>
+      </div>
+      <nav class="project-links" aria-label="项目链接">
+        <a class="project-link" href="https://github.com/Motphys/motrix-forge" target="_blank" rel="noopener noreferrer" title="在新标签页打开 GitHub">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.68.08-.68 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.56 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.43.11-2.98 0 0 .95-.3 3.1 1.15a10.8 10.8 0 0 1 5.63 0c2.15-1.45 3.09-1.15 3.09-1.15.62 1.55.23 2.7.12 2.98.72.79 1.16 1.79 1.16 3.02 0 4.32-2.64 5.27-5.15 5.55.4.35.76 1.03.76 2.08v3.1c0 .3.2.65.78.54A11.25 11.25 0 0 0 12 .75Z"/></svg>
+          <span>GitHub</span>
+        </a>
+        <a class="project-link" href="https://www.motphys.com/" target="_blank" rel="noopener noreferrer" title="在新标签页打开 Motphys 官网">
+          <svg class="website-logo" width="24" height="24" viewBox="0 0 128 128" fill="currentColor" aria-hidden="true">
+            <polygon points="58.23 49.97 37.73 49.97 33.23 55.57 62.63 55.57 58.23 49.97"/>
+            <path d="M50.13,39.67c-1.1-1.4-3.2-1.4-4.3,0l-3.6,4.6h11.6l-3.6-4.6h-.1Z"/>
+            <path d="M118.13,85.27l-35.8-45.6c-1.1-1.4-3.2-1.4-4.3,0l-14.1,17.8-3.1,3.9H28.83l-4.5,5.7h32.2l-4.5,5.7H19.93l-4.5,5.7h32.2l-4.5,5.7H10.93l-1,1.3c-1.4,1.8-.1,4.4,2.1,4.4h103.9c2.3,0,3.6-2.6,2.1-4.4h0l.1-.2Z"/>
+          </svg>
+          <span>官网</span>
+        </a>
+      </nav>
+    </div>
+  </aside>
+  <script>
+/* Restore the sidebar synchronously, before revealing its first frame. */
+(() => {
+  "use strict";
+  const root = document.documentElement;
+  try {
+    const navigationKey = "forge-docs-navigation-groups";
+    let state = {};
+    try {
+      const saved = JSON.parse(localStorage.getItem(navigationKey));
+      if (saved && typeof saved === "object" && !Array.isArray(saved)) state = saved;
+    } catch { /* Keep native details usable without storage. */ }
+    const restoreGroups = scope => {
+      scope.querySelectorAll("[data-nav-group]").forEach(group => {
+        if (group.dataset.navRestored) return;
+        group.dataset.navRestored = "true";
+        const id = group.dataset.navGroup;
+        if (group.dataset.active === "true") group.open = true;
+        else if (typeof state[id] === "boolean") group.open = state[id];
+        group.addEventListener("toggle", () => {
+          state[id] = group.open;
+          try { localStorage.setItem(navigationKey, JSON.stringify(state)); } catch { /* Ignore unavailable storage. */ }
+        });
+      });
+    };
+    window.forgeRestoreNavigationGroups = restoreGroups;
+    const nav = document.querySelector(".chapter-nav");
+    if (!nav) return;
+    restoreGroups(nav);
+    const siteRoot = new URL(`${document.body.dataset.baseUrl || "."}/`, location.href).pathname;
+    const scrollKey = `forge-docs-navigation-scroll:${siteRoot}`;
+    try {
+      const saved = sessionStorage.getItem(scrollKey);
+      if (saved !== null && Number.isFinite(Number(saved)) && Number(saved) >= 0) nav.scrollTop = Number(saved);
+    } catch { /* Ignore unavailable storage. */ }
+    const save = () => {
+      try { sessionStorage.setItem(scrollKey, String(nav.scrollTop)); } catch { /* Ignore unavailable storage. */ }
+    };
+    nav.addEventListener("scroll", save, { passive: true });
+    nav.addEventListener("click", save);
+    window.addEventListener("pagehide", save);
+  } finally {
+    root.classList.remove("navigation-pending");
+  }
+})();
+</script>
+  <div class="manual-layout">
+    <main id="main-content" class="manual-main" tabindex="-1">
+      <div class="page-header">
+        <nav class="breadcrumbs" aria-label="当前位置"><a href="../../introduction.zh-CN.html">Forge 使用手册</a><span aria-hidden="true"> / </span><span>Forge create</span></nav>
+      </div>
+      <article class="manual-article" lang="en">
+        <h1 id="forge-create">Forge create<a class="headerlink" href="#forge-create" title="Permanent link">&para;</a></h1>
+<p>Create mjcf hierarchy relationship use forge tool.</p>
+<h2 id="general-rules">General rules<a class="headerlink" href="#general-rules" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Specification compliance</strong>: these guides are the authoritative specification of the Forge tool surface — strictly follow the rules, signatures, parameter ranges and workflows documented here. Never read, search or infer behavior from the addon source code (<code>addon/Forge/**</code>); source internals are not part of the interface. Runtime inspection through the MCP tools (<code>forge_object_info</code>, <code>forge_scene_config</code>, ...) is allowed.</li>
+<li><strong>No undocumented operations</strong>: work only through what these guides document. When a needed operation, parameter or enum value has no documented implementation, do not improvise with raw <code>bpy</code> or undocumented APIs — stop and report the gap (what was attempted, what is missing) as feedback.</li>
+<li><strong>Main scene</strong>: the main scene must be named <code>Scene</code>. Forge resolves the active scene through <code>scene.Main_Scene</code> (defaults to <code>"Scene"</code>), e.g. <code>bpy.data.scenes[scene.Main_Scene].Forge_Props</code>. Create the model in the scene named <code>Scene</code> only — do not rename or delete it, and do not create objects in another scene.</li>
+<li><strong>Collider selection</strong>: prefer shape colliders (<code>BOX</code>, <code>CAPSULE</code>, <code>CYLINDER</code>, <code>SPHERE</code>). Consider a <code>MESH</code> collider only when shape colliders cannot meet the required collision geometry or accuracy. A mesh visual alone is not a reason to choose a mesh collider.</li>
+</ul>
+<h3 id="mcp-tool-workflow">MCP tool workflow<a class="headerlink" href="#mcp-tool-workflow" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Prefer the dedicated MCP tools over raw <code>bpy</code>: inspect with <code>forge_blendfile_summary</code>, <code>forge_scene_info</code>, <code>forge_object_info</code> and <code>forge_measure</code>; create with <code>forge_create_*</code>; change types/parenting with <code>forge_define_*</code>; edit with <code>forge_set_transform</code>, <code>forge_set_shape_size</code>, <code>forge_set_property</code> and <code>forge_rename</code>; validate with <code>forge_mesh_check</code>. Use <code>forge_execute</code> only when no dedicated tool represents the operation.</li>
+<li><strong>Skill gate scope</strong>: generic Blender deletion/removal operations remain available without a Forge guide. Use Forge operations for Forge hierarchy changes, especially <code>forge_define_parent</code>; do not assign <code>obj.parent</code> directly when establishing a Forge parent relationship.</li>
+<li>Every <code>bpy.ops.forge.*</code> operator (signature, defaults, <code>poll</code>, MCP wrapper) is inventoried in the <code>operators</code> skill — <code>forge_skill(name="operators", section="&lt;operator name&gt;")</code> for a single entry.</li>
+<li>Follow <strong>inspect → create/edit → verify → validate → save/export</strong>. Check the main scene and existing names first; after every creation capture the returned <code>created</code> names, inspect those exact objects, measure relevant world bounds, run <code>forge_mesh_check</code> on related visuals, and use <code>forge_screenshot</code> when visual confirmation adds value.</li>
+<li>Every MCP <code>select=[...]</code> argument is ordered. The first name becomes Blender's active object and every name receives a <code>selected_order</code> matching its list index. This order determines target/reference roles for tendon, equality, sensor, light/camera targeting and parent operations; never rely on <code>bpy.context.selected_objects</code> iteration order.</li>
+<li>Before a destructive or file-writing operation, inspect its explicit targets and destination. <code>forge_delete</code> recursively removes every descendant of each named root, so inspect <code>children</code> first and pass only intended roots.</li>
+</ul>
+<h2 id="forge-mjcf-model-types">Forge mjcf model types<a class="headerlink" href="#forge-mjcf-model-types" title="Permanent link">&para;</a></h2>
+<p>In Forge treat all MJCF tags—including <code>body</code>, <code>inertial</code>, <code>geom</code>, <code>joint</code>, <code>site</code>, <code>actuator</code>, <code>tendon</code>, <code>equality</code>, <code>contact</code>, <code>sensor</code>, <code>light</code>, <code>camera</code>, <code>frame</code>, <code>replicate</code>, <code>attach</code> and <code>include</code> are treated as Blender objects, distinguished by the <code>Forge_Model_Type</code> attribute of the <code>Object</code> type.</p>
+<p>Code example:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># register with bpy.types.Object.Forge_Model_Type</span>
+<span class="n">bpy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">objects</span><span class="p">[</span><span class="s2">"name_of_object"</span><span class="p">]</span><span class="o">.</span><span class="n">Forge_Model_Type</span>
+<span class="n">bpy</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">active_object</span><span class="o">.</span><span class="n">Forge_Model_Type</span>
+<span class="n">bpy</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">selected_objects</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">Forge_Model_Type</span>
+</code></pre></div>
+
+<p>Forge model types are:</p>
+<p><code>UNDEFINED</code>, <code>LINK</code>, <code>INERTIAL</code>, <code>VISUAL</code>, <code>COLLIDER</code>, <code>HFIELD</code>, <code>PLANE</code>, <code>JOINT</code>, <code>SITE</code>, <code>ACTUATOR</code>, <code>TENDON</code>, <code>EQUALITY</code>, <code>CONTACT</code>, <code>SENSOR</code>, <code>LIGHT</code>, <code>CAMERA</code>, <code>FRAME</code>, <code>REPLICATE</code>, <code>ATTACH</code>, <code>INCLUDE</code>.</p>
+<ul>
+<li><code>UNDEFINED</code> objects are not MJCF elements and are not exported as model elements.</li>
+<li><code>LINK</code> represents an MJCF <code>body</code> in Blender's model hierarchy.</li>
+<li><code>VISUAL</code>, <code>COLLIDER</code>, <code>HFIELD</code>, and <code>PLANE</code> all represent MJCF <code>geom</code> elements but have distinct Forge types and parameters.</li>
+<li>The remaining types each also have their own unique set of parameters.</li>
+</ul>
+<h2 id="hierarchy-rules">Hierarchy rules<a class="headerlink" href="#hierarchy-rules" title="Permanent link">&para;</a></h2>
+<p>An articulated model starts with a root <code>link</code>. An <code>inertial</code>, <code>joint</code>, or <code>site</code> must be a child of a <code>link</code>.</p>
+<p><code>visual</code>, <code>collider</code>, <code>light</code>, <code>camera</code>, <code>frame</code>, <code>replicate</code> and <code>attach</code> can either be children of a <code>link</code>, or exist as root nodes without a parent. A <code>collider</code> is never parented under a <code>visual</code>: keep it a sibling of its <code>visual</code>, under the same <code>link</code>. A <code>collider</code> under a <code>visual</code> is not exported — it vanishes from the MJCF — and <code>forge_define_parent</code> refuses to create that nesting.</p>
+<p><code>hfield</code> and <code>plane</code> exist as root nodes without a parent for now.</p>
+<p>In mjcf <code>actuator</code>, <code>tendon</code>, <code>equality</code>, <code>contact</code> and <code>sensor</code> do not use a hierarchy. In Forge, they will be created as children of their corresponding target model type.</p>
+<h2 id="create-rules">Create rules<a class="headerlink" href="#create-rules" title="Permanent link">&para;</a></h2>
+<h3 id="creation-order">Creation order:<a class="headerlink" href="#creation-order" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Create elements with <code>bpy.ops.forge.create_&lt;type&gt;</code>, optionally using selected existing model elements as targets.</li>
+<li>Adjust <code>location</code>, <code>rotation</code>, and <code>scale</code> as needed, respecting locked axes.<ul>
+<li>Do not change a component when the corresponding <code>lock_scale</code>, <code>lock_rotation</code>, or <code>lock_location</code> flag is <code>True</code>.</li>
+</ul>
+</li>
+<li>Edit the parameters supported by the model type as needed.</li>
+</ol>
+<h3 id="file-workflow-and-mesh-preprocessing">File workflow and mesh preprocessing<a class="headerlink" href="#file-workflow-and-mesh-preprocessing" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>forge_import_mjcf(filepath, import_material=True)</code> wraps <code>bpy.ops.forge.import_mjcf</code> and waits for its modal job. <strong>Import is destructive</strong>: it clears scene objects, collections, non-main scenes and orphaned data before rebuilding, so save first when current work matters. <code>envhdr</code> textures are imported into a Blender World environment texture and assigned to the main scene.</li>
+<li>Mesh assets support OBJ, STL and GLB. GLB accepts exactly one Mesh object; non-Mesh elements are discarded, and zero/multiple Mesh objects fail during asset loading. The Mesh node's transform is baked, file-space coordinates/UVs are preserved, and MJCF mesh <code>scale</code> is applied afterwards. MJCF defines the materials; embedded GLB materials are discarded. Missing/unsupported mesh files fail during asset loading.</li>
+<li><code>forge_export_mjcf(filepath, update_forge_only=False, use_glb=False, overwrite=False)</code> wraps <code>bpy.ops.forge.export_mjcf</code>, waits for completion and reports whether the XML exists. Existing destinations require explicit <code>overwrite=True</code>. Export writes a linked World environment image as an MJCF <code>&lt;texture type="envhdr"&gt;</code>; empty mesh assets (zero vertices or triangles) are skipped and do not produce mesh or geom references.</li>
+<li><code>forge_save_blendfile(filepath=None, overwrite=False, save_copy=False)</code> saves the current blend or a named destination. Existing files—including the current blend path—require explicit <code>overwrite=True</code>; <code>save_copy=True</code> does not change the active blend path.</li>
+<li><code>forge_coacd(name, ...)</code> wraps <code>bpy.ops.forge.coacds</code> for one selected <code>VISUAL</code> mesh. It reads triangle faces from the evaluated mesh and creates collider hulls while preserving the source object; generated hull names are returned in <code>created</code>. Important parameters: <code>threshold</code>, <code>max_convex_hull</code>, <code>preprocess_mode</code>, sampling/MCTS controls, <code>merge</code>, <code>decimate</code>/<code>max_ch_vertex</code>, <code>extrude</code>/<code>extrude_margin</code>, and <code>seed</code>.</li>
+</ul>
+<h3 id="create-tips">Create tips:<a class="headerlink" href="#create-tips" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Joints</strong>: <ul>
+<li>Joint in forge is Z-UP based and use local +Z in parent space; </li>
+<li>Rotate the joint object so Z points along the desired rotation axis. Position the joint at the pivot (e.g. top of a pendulum), not at the body center.</li>
+<li>First consider the location is at link local space location <code>[0, 0, 0]</code>, then consider location by needing.</li>
+</ul>
+</li>
+<li><strong>Inertials</strong>: <code>create_inertial</code> defaults to <code>inertial_model_type='VISUAL'</code> and <code>check_mesh_valid=False</code>. The operator can also use <code>COLLIDER</code>; enable <code>check_mesh_valid=True</code> for validation before calculation. The dedicated MCP wrapper uses the defaults. Primitive shapes use analytic mass and inertia; mesh geometry requires TetGen. When validation is enabled, boundary-only contact and separating coplanar faces are valid; actual crossings and non-separating coplanar overlap fail. An epsilon gap is not required for valid contact.</li>
+<li><strong>Names</strong>: operators use type prefixes for object names. If a name already exists, Blender automatically appends a numeric suffix such as <code>.001</code> or <code>.002</code> to keep it unique. Read the actual names from the tool's <code>created</code> result instead of guessing them, then use <code>forge_batch_rename</code> if needed.</li>
+<li><strong>Spacing</strong>: geometry sizes given at creation are full dimensions (BOX) / true radius &amp; height (SPHERE / CYLINDER / CAPSULE), exported to mjcf half-extents automatically; all in parent-local meters.</li>
+<li><strong>Collider</strong>: create collider for shape geometry is not necessary, if really necessary need set visual shape geometry <code>obj.Forge_Geometry</code> props <code>contype</code> and <code>conaffinity</code> to <code>0</code>.</li>
+</ul>
+<h3 id="model-create-rules">Model create rules:<a class="headerlink" href="#model-create-rules" title="Permanent link">&para;</a></h3>
+<h4 id="link"><code>link</code>:<a class="headerlink" href="#link" title="Permanent link">&para;</a></h4>
+<p>Create use <code>bpy.ops.forge.create_link()</code> optionally based on selected existing object(s):</p>
+<blockquote>
+<ul>
+<li>With no selection, the default location is the 3D cursor. Otherwise, placement depends on the selected object's type.</li>
+<li>Select object in type <code>[LINK, FRAME, REPLICATE]</code> location will at local space <code>[0, 0, 0]</code>.</li>
+<li>Select object in type <code>[VISUAL, COLLIDER]</code> whose parent is <code>[LINK, FRAME, REPLICATE]</code>: new link parented under that parent, location at selected object's local position and rotation zeroed.</li>
+<li>Select object in type <code>[VISUAL, COLLIDER]</code> without parent in <code>[LINK, FRAME, REPLICATE]</code>: location at selected object's location, marked as <code>Root Link</code>.</li>
+<li>With no selection, the link is created in the <code>World</code> collection as a root candidate. Use <code>bpy.ops.forge.mark_root_link()</code> to mark it. Export also discovers parentless roots in the <code>Link</code> and <code>Frame</code> collections; those roots are not exported twice.</li>
+</ul>
+</blockquote>
+<h4 id="inertial"><code>inertial</code>:<a class="headerlink" href="#inertial" title="Permanent link">&para;</a></h4>
+<p>Use <code>bpy.ops.forge.create_inertial(inertial_model_type='VISUAL', check_mesh_valid=False)</code> with selected existing <code>link</code> objects.</p>
+<blockquote>
+<ul>
+<li>Compute mass, center of mass, and principal inertia from children of the chosen type (<code>VISUAL</code> or <code>COLLIDER</code>), recursively through <code>FRAME</code> descendants. Child <code>LINK</code> hierarchies are excluded; at least one matching geometry object is required.</li>
+<li>Geometry validation is optional and off by default. Mesh geometry requires TetGen; primitive shapes do not.</li>
+<li>Create one new <code>INERTIAL</code> child per successful Link calculation. Existing inertials are not replaced.</li>
+</ul>
+</blockquote>
+<h4 id="joint"><code>joint</code>:<a class="headerlink" href="#joint" title="Permanent link">&para;</a></h4>
+<p>Create use <code>bpy.ops.forge.create_joint(joint_type='&lt;ENUM&gt;')</code> based on selected existing <code>link</code> object.</p>
+<blockquote>
+<ul>
+<li>Parameter <code>joint_type</code> in <code>[FREE, BALL, SLIDE, HINGE]</code>, default is <code>HINGE</code>.</li>
+</ul>
+</blockquote>
+<h4 id="geometry-shape"><code>geometry shape</code>:<a class="headerlink" href="#geometry-shape" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>visual</code>: use <code>bpy.ops.forge.create_geometry(geometry_type='&lt;ENUM&gt;', size_box=(1, 1, 1), size_radius=0.5, size_height=1)</code></li>
+</ul>
+<blockquote>
+<ul>
+<li>Select object in type <code>[LINK, FRAME, REPLICATE]</code>: create one geometry per selected object as child of it, location at local space <code>[0, 0, 0]</code>.</li>
+<li>Select none objects: create at 3d cursor location.</li>
+<li>Parameter <code>geometry_type</code> in <code>[BOX, CAPSULE, CYLINDER, SPHERE]</code></li>
+<li>Parameter used corresponding to <code>geometry_type</code>:<ul>
+<li><code>BOX</code>: <code>size_box</code></li>
+<li><code>CAPSULE</code>: <code>size_radius</code>, <code>size_height</code></li>
+<li><code>CYLINDER</code>: <code>size_radius</code>, <code>size_height</code></li>
+<li><code>SPHERE</code>: <code>size_radius</code></li>
+</ul>
+</li>
+<li>Size unit is <code>meter</code></li>
+</ul>
+</blockquote>
+<ul>
+<li><code>collider</code>: use <code>bpy.ops.forge.create_collider(collider_type='&lt;ENUM&gt;', create_method='&lt;ENUM&gt;', auto_size=False, use_min_as_height=False, size_box=(1, 1, 1), size_radius=0.5, size_height=1)</code></li>
+</ul>
+<blockquote>
+<p>Method of <code>create_method</code> is <code>GEOMETRY_TYPE</code> or <code>COLLIDER_TYPE</code>:</p>
+<ul>
+<li><code>GEOMETRY_TYPE</code>: only for selected <code>visual</code> object(s), will auto detect shape from selected visual, other parameter not need for this method — <code>collider_type</code> is ignored, the collider takes the visual's own geometry type.
+     For a mesh visual, prefer <code>COLLIDER_TYPE</code> with an explicit shape collider whenever that shape meets the collision requirements; use <code>GEOMETRY_TYPE</code> only when its resulting collider type follows the collider selection rule above.</li>
+<li><code>COLLIDER_TYPE</code>: will need explicit choose <code>collider_type</code>, this is the only method when select none or select <code>link</code>/<code>frame</code> object.</li>
+<li>Parameter <code>collider_type</code> in <code>[BOX, CAPSULE, CYLINDER, SPHERE, MESH, SDF]</code></li>
+<li>Parameter used corresponding to <code>collider_type</code> when <code>create_method='COLLIDER_TYPE'</code>:<ul>
+<li><code>BOX</code>: <code>size_box</code> or <code>auto_size</code></li>
+<li><code>CAPSULE</code>: <code>size_radius</code>, <code>size_height</code> or <code>auto_size</code></li>
+<li><code>CYLINDER</code>: <code>size_radius</code>, <code>size_height</code> or <code>auto_size</code></li>
+<li><code>SPHERE</code>: <code>size_radius</code> or <code>auto_size</code></li>
+<li><code>MESH</code>: no other parameter need, only available when <code>visual</code> object(s) selected, bake visual geometry to convex mesh collider</li>
+<li><code>SDF</code>: only with selected visuals; shares the visual's Mesh Data as a linked duplicate, preserving its parent and transform. Vertex edits affect both objects.
+   <code>auto_size</code>: auto-detect the selected <code>visual</code> geometry size; off by default. With a <code>link</code>/<code>frame</code> selection or no selection, explicit <code>size_*</code> values (or defaults) are used instead. A <code>replicate</code> selection is not accepted by this operator.
+   <code>use_min_as_height</code>: <code>CAPSULE</code> / <code>CYLINDER</code> only, default is off. When on, the height is taken from the selected <code>visual</code>'s <strong>smallest</strong> bounding-box axis instead of its largest, and the shape is oriented along that axis. Only takes effect together with <code>auto_size=True</code> — with explicit <code>size_radius</code>/<code>size_height</code> the values are used as given and the flag is ignored. The MCP tool <code>forge_create_collider</code> exposes this as <code>min_is_height</code>.</li>
+</ul>
+</li>
+<li>Size unit is <code>meter</code></li>
+</ul>
+</blockquote>
+<h4 id="geometry-mesh"><code>geometry mesh</code>:<a class="headerlink" href="#geometry-mesh" title="Permanent link">&para;</a></h4>
+<p>Create with traditional method. Use <code>bpy.ops.forge.define_model_type(Model_Type='&lt;ENUM&gt;')</code> to set object to corresponding model type.</p>
+<blockquote>
+<ul>
+<li><code>Model_Type</code> is corresponding to: <code>VISUAL</code> for visual object, <code>COLLIDER</code> for collider object.</li>
+</ul>
+</blockquote>
+<h4 id="hfield"><code>hfield</code>:<a class="headerlink" href="#hfield" title="Permanent link">&para;</a></h4>
+<p>Create use <code>bpy.ops.forge.create_height_field()</code>:</p>
+<blockquote>
+<ul>
+<li>Only can create when nothing selected, exist as root node without parent.</li>
+<li>Default location at 3d cursor location.</li>
+</ul>
+</blockquote>
+<h4 id="plane"><code>plane</code>:<a class="headerlink" href="#plane" title="Permanent link">&para;</a></h4>
+<p>Create use <code>bpy.ops.forge.create_plane()</code>:</p>
+<blockquote>
+<ul>
+<li>Only can create when nothing selected, exist as root node without parent.</li>
+<li>Default location at 3d cursor location.</li>
+</ul>
+</blockquote>
+<h4 id="site"><code>site</code>:<a class="headerlink" href="#site" title="Permanent link">&para;</a></h4>
+<p>Create use <code>bpy.ops.forge.create_site(site_type='&lt;ENUM&gt;', size_box=(0.2, 0.2, 0.2), size_radius=0.1, size_height=0.2)</code> based on selected existing <code>link</code> object(s).</p>
+<blockquote>
+<ul>
+<li>Parameter <code>site_type</code> in <code>[BOX, CAPSULE, CYLINDER, SPHERE]</code></li>
+<li>Parameter used corresponding to <code>site_type</code>:</li>
+<li><code>BOX</code>: <code>size_box</code></li>
+<li><code>CAPSULE</code>: <code>size_radius</code>, <code>size_height</code></li>
+<li><code>CYLINDER</code>: <code>size_radius</code>, <code>size_height</code></li>
+<li><code>SPHERE</code>: <code>size_radius</code></li>
+<li>Size unit is <code>meter</code></li>
+</ul>
+</blockquote>
+<h4 id="actuator"><code>actuator</code>:<a class="headerlink" href="#actuator" title="Permanent link">&para;</a></h4>
+<p>Create use <code>bpy.ops.forge.create_actuator(actuator_type='&lt;ENUM&gt;')</code> based on selected existing <code>link</code> | <code>joint</code> | <code>tendon</code> object(s).</p>
+<blockquote>
+<ul>
+<li>Parameter <code>actuator_type</code> in <code>[GENERAL, MOTOR, POSITION, VELOCITY, ADHESION]</code></li>
+</ul>
+</blockquote>
+<h4 id="tendon"><code>tendon</code>:<a class="headerlink" href="#tendon" title="Permanent link">&para;</a></h4>
+<p>Create use <code>bpy.ops.forge.create_tendon(tendon_type='&lt;ENUM&gt;')</code> based on selected existing <code>joint</code> object(s).</p>
+<blockquote>
+<ul>
+<li>Need select at least 2 <code>joint</code> objects, create single <code>tendon</code> from ordered selection.</li>
+<li>Only support <code>joint</code> subtype in <code>[SLIDE, HINGE]</code>.</li>
+<li>Parameter <code>tendon_type</code> currently only <code>FIXED</code>.</li>
+<li>Every ordered target item contains both <code>target</code> and exported <code>coef</code> (default <code>0.5</code>). Use <code>forge_set_tendon_targets(name, [{"target": "JNT_A", "coef": 0.25}, ...])</code> to replace the path without raw collection scripting.</li>
+</ul>
+</blockquote>
+<h4 id="equality"><code>equality</code>:<a class="headerlink" href="#equality" title="Permanent link">&para;</a></h4>
+<p>Create use <code>bpy.ops.forge.create_equality(equality_type='&lt;ENUM&gt;')</code> based on exactly 2 selected existing <code>link</code> | <code>joint</code> | <code>site</code> objects.</p>
+<blockquote>
+<ul>
+<li>Selected <code>joint</code> objects → <code>equality_type</code> is <code>JOINT</code>.</li>
+<li>Selected <code>link</code> / <code>site</code> objects → <code>equality_type</code> is <code>CONNECT</code> or <code>WELD</code>.</li>
+</ul>
+</blockquote>
+<h4 id="contact"><code>contact</code>:<a class="headerlink" href="#contact" title="Permanent link">&para;</a></h4>
+<p>Create use <code>bpy.ops.forge.create_contact(contact_type='&lt;ENUM&gt;')</code> based on selected existing <code>link</code> | <code>visual</code> | <code>collider</code> | <code>plane</code> | <code>hfield</code> objects.</p>
+<blockquote>
+<ul>
+<li>Need select at least 2 objects.</li>
+<li>Selected <code>link</code> objects → <code>contact_type</code> is <code>EXCLUDE</code>.</li>
+<li>Selected <code>visual</code> / <code>collider</code> / <code>plane</code> / <code>hfield</code> objects → <code>contact_type</code> is <code>PAIR</code>.</li>
+<li>Create one <code>contact</code> for each pair combination of selected objects.</li>
+</ul>
+</blockquote>
+<h4 id="sensor"><code>sensor</code>:<a class="headerlink" href="#sensor" title="Permanent link">&para;</a></h4>
+<p>Create use <code>bpy.ops.forge.create_sensor(Sensor_Type='&lt;ENUM&gt;', set_ref=False, set_xbody=False, set_subtree=False)</code> based on selected existing <code>link</code> | <code>joint</code> | <code>site</code> | <code>visual</code> | <code>collider</code> | <code>camera</code> objects.</p>
+<blockquote>
+<ul>
+<li><code>Sensor_Type</code> available values are decided by selected target model type:<ul>
+<li><code>joint</code>: <code>Jointpos</code>, <code>Jointvel</code></li>
+<li><code>site</code>: <code>Touch</code>, <code>Accelerometer</code>, <code>Velocimeter</code>, <code>Gyro</code>, <code>Framepos</code>, <code>Framequat</code>, <code>Framexaxis</code>, <code>Frameyaxis</code>, <code>Framezaxis</code>, <code>Framelinvel</code>, <code>Frameangvel</code>, <code>Contact</code></li>
+<li><code>link</code>: <code>Framepos</code>, <code>Framequat</code>, <code>Framexaxis</code>, <code>Frameyaxis</code>, <code>Framezaxis</code>, <code>Framelinvel</code>, <code>Frameangvel</code>, <code>Contact</code>, <code>Subtreecom</code>, <code>Subtreelinvel</code>, <code>Subtreeangmom</code></li>
+<li><code>link</code> with <code>set_xbody=True</code>: <code>Framepos</code>, <code>Framequat</code>, <code>Framexaxis</code>, <code>Frameyaxis</code>, <code>Framezaxis</code>, <code>Framelinvel</code>, <code>Frameangvel</code></li>
+<li><code>link</code> with <code>set_subtree=True</code>: <code>Contact</code></li>
+<li><code>visual</code> / <code>collider</code>: <code>Framepos</code>, <code>Framequat</code>, <code>Framexaxis</code>, <code>Frameyaxis</code>, <code>Framezaxis</code>, <code>Framelinvel</code>, <code>Frameangvel</code>, <code>Contact</code></li>
+<li><code>camera</code>: <code>Framepos</code>, <code>Framequat</code>, <code>Framexaxis</code>, <code>Frameyaxis</code>, <code>Framezaxis</code>, <code>Framelinvel</code>, <code>Frameangvel</code></li>
+<li>mixed selection in <code>[LINK, SITE, VISUAL, COLLIDER, CAMERA]</code> (e.g. 2 objects with different types): <code>Framepos</code>, <code>Framequat</code>, <code>Framexaxis</code>, <code>Frameyaxis</code>, <code>Framezaxis</code>, <code>Framelinvel</code>, <code>Frameangvel</code>, <code>Contact</code></li>
+</ul>
+</li>
+<li><code>set_ref=True</code>: need select 2 objects, first selected is target, second is reference; <code>Sensor_Type</code> range as <code>Framepos</code> ~ <code>Contact</code>; with <code>site</code> target start from <code>Touch</code>; with <code>link</code> target and <code>set_xbody=True</code> end at <code>Frameangvel</code>.</li>
+<li><code>set_xbody</code> / <code>set_subtree</code> only for <code>link</code> target, mutual exclusive.</li>
+<li><strong>Contact subtree sensors must explicitly set both <code>subtree1</code> and <code>subtree2</code>.</strong> Select exactly two existing <code>link</code> objects in order <code>[subtree1_root, subtree2_root]</code>, then call <code>forge_create_sensor(sensor_type="Contact", set_ref=True, set_subtree=True, select=[subtree1_root, subtree2_root])</code>. The first root becomes <code>Forge_Sensor.target</code> (MJCF <code>subtree1</code>), the second becomes <code>Forge_Sensor.ref</code> (MJCF <code>subtree2</code>). Do not create a one-sided subtree sensor or leave <code>ref</code> unset. Verify both pointers, <code>use_subtree=True</code> and <code>target_type="SUBTREE"</code>; after export, verify the <code>&lt;contact&gt;</code> sensor contains both attributes with the intended body names.</li>
+</ul>
+</blockquote>
+<h4 id="light"><code>light</code>:<a class="headerlink" href="#light" title="Permanent link">&para;</a></h4>
+<p>Create use <code>bpy.ops.forge.create_light(light_type='&lt;ENUM&gt;', light_mode='&lt;ENUM&gt;')</code> optionally based on selected existing <code>link</code> object(s).</p>
+<blockquote>
+<ul>
+<li>Select none objects create world light at 3d cursor location, <code>light_type</code> in <code>[DIRECTIONAL, SPOT, POINT]</code>, <code>light_mode</code> in <code>[FIXED, TRACK, TRACKCOM]</code>.</li>
+<li>Select 1 <code>link</code>: <code>light_type</code> in <code>[SPOT, POINT]</code>, <code>light_mode</code> in <code>[TARGETBODY, TARGETBODYCOM, FIXED, TRACK, TRACKCOM]</code>; when <code>light_mode</code> is <code>[TARGETBODY, TARGETBODYCOM]</code> create single world light at 3d cursor location targeting the selected <code>link</code>, other modes create child light of it.</li>
+<li>Select 2 <code>link</code>s: when <code>light_mode</code> is <code>[TARGETBODY, TARGETBODYCOM]</code> create single light, first selected is light position, second is target; other modes create one light per selected <code>link</code> as child of it.</li>
+<li>Select 3+ <code>link</code>s: <code>light_mode</code> restricted to <code>[FIXED, TRACK, TRACKCOM]</code>, create one light per selected <code>link</code> as child of it.</li>
+</ul>
+</blockquote>
+<h4 id="camera"><code>camera</code>:<a class="headerlink" href="#camera" title="Permanent link">&para;</a></h4>
+<p>Create use <code>bpy.ops.forge.create_camera(camera_type='&lt;ENUM&gt;', camera_mode='&lt;ENUM&gt;')</code> optionally based on selected existing <code>link</code> object(s).</p>
+<blockquote>
+<ul>
+<li><code>camera_type</code> in <code>[PERSPECTIVE, ORTHOGRAPHIC]</code>.</li>
+<li>Select none objects create world camera at 3d cursor location, <code>camera_mode</code> in <code>[FIXED, TRACK, TRACKCOM]</code>.</li>
+<li>Select 1 <code>link</code>: <code>camera_mode</code> in <code>[TARGETBODY, TARGETBODYCOM, FIXED, TRACK, TRACKCOM]</code>; when <code>camera_mode</code> is <code>[TARGETBODY, TARGETBODYCOM]</code> create single world camera at 3d cursor location targeting the selected <code>link</code>, other modes create child camera of it.</li>
+<li>Select 2 <code>link</code>s: when <code>camera_mode</code> is <code>[TARGETBODY, TARGETBODYCOM]</code> create single camera, first selected is camera position, second is target; other modes create one camera per selected <code>link</code> as child of it.</li>
+<li>Select 3+ <code>link</code>s: <code>camera_mode</code> restricted to <code>[FIXED, TRACK, TRACKCOM]</code>, create one camera per selected <code>link</code> as child of it.</li>
+</ul>
+</blockquote>
+<h4 id="frame"><code>frame</code>:<a class="headerlink" href="#frame" title="Permanent link">&para;</a></h4>
+<p>Create use <code>bpy.ops.forge.create_frame()</code> optionally based on selected existing <code>link</code> | <code>frame</code> | <code>replicate</code> object(s).</p>
+<blockquote>
+<ul>
+<li>Select none objects create at 3d cursor location.</li>
+<li>Select objects create one frame per selected object as child of it.</li>
+<li>Shift + Click: reverse parent, selected objects become child of new frame.</li>
+</ul>
+</blockquote>
+<h4 id="replicate"><code>replicate</code>:<a class="headerlink" href="#replicate" title="Permanent link">&para;</a></h4>
+<p>Create use <code>bpy.ops.forge.create_replicate(count=0, sep='', offset=(0, 0, 0), euler=(0, 0, 0))</code> based on selected existing <code>camera</code> | <code>light</code> | <code>visual</code> | <code>collider</code> | <code>site</code> | <code>link</code> | <code>frame</code> | <code>attach</code> | <code>replicate</code> objects.</p>
+<blockquote>
+<ul>
+<li>Parameter <code>count</code>: replicate count.</li>
+<li>Parameter <code>sep</code>: separator string.</li>
+<li>Parameter <code>offset</code>: offset vector between copies.</li>
+<li>Parameter <code>euler</code>: euler rotation between copies.</li>
+<li>Create single <code>replicate</code> object, selected objects as its source.</li>
+<li>A <code>replicate</code> owns its source: the selected objects move into the replicate's own viewport-hidden collection and cannot be selected afterwards. Replicate objects that no later operation still needs to select.</li>
+</ul>
+</blockquote>
+<h4 id="attach"><code>attach</code>:<a class="headerlink" href="#attach" title="Permanent link">&para;</a></h4>
+<p>Create use <code>bpy.ops.forge.create_attach()</code> optionally based on selected existing <code>link</code> | <code>frame</code> | <code>replicate</code> object.</p>
+<blockquote>
+<ul>
+<li>Need select exactly 1 object or none.</li>
+<li>Choose file in dialog via <code>Forge_Temp_Props</code>: <code>tmp_file</code>, <code>tmp_model</code>, <code>tmp_prefix</code>, <code>tmp_link</code>.</li>
+<li>Import the model from external mjcf file into scene, then create attach reference.</li>
+<li>Requires <code>Forge Library</code> asset library (Preferences -&gt; File Paths -&gt; Asset Libraries).</li>
+<li>The file must not be one already <code>include</code>d in the scene — attach and include take separate files. Sharing one reports <code>Attach fail: list index out of range</code>.</li>
+</ul>
+</blockquote>
+<h4 id="include"><code>include</code>:<a class="headerlink" href="#include" title="Permanent link">&para;</a></h4>
+<p>Create use <code>bpy.ops.forge.create_include()</code> only when nothing selected.</p>
+<blockquote>
+<ul>
+<li>Choose file in dialog via <code>Forge_Temp_Props.tmp_include</code>.</li>
+<li>Only add <code>include</code> tag when export, content of the file will not be exported.</li>
+</ul>
+</blockquote>
+<h3 id="material-creation-rules">Material creation rules:<a class="headerlink" href="#material-creation-rules" title="Permanent link">&para;</a></h3>
+<p>Materials are PBR datablocks from the bundled Forge library — not mjcf model objects; they attach to <code>visual</code>, <code>hfield</code> or <code>plane</code> geometry.</p>
+<h4 id="material"><code>material</code>:<a class="headerlink" href="#material" title="Permanent link">&para;</a></h4>
+<p>Use MCP <code>forge_create_material(category, material, use_existing=True, select=[...])</code>, which wraps <code>bpy.ops.forge.create_material(category='&lt;str&gt;', material='&lt;str&gt;')</code>, based on selected <code>visual</code>, <code>hfield</code> or <code>plane</code> object(s):</p>
+<blockquote>
+<ul>
+<li>Requires a non-empty selection where every object is type <code>VISUAL</code>, <code>HFIELD</code> or <code>PLANE</code> — poll fails when nothing is selected or any other type is selected.</li>
+<li>Parameter <code>category</code> in <code>[Crystal, Human, Liquid, Manmade, Metal, Organic, Plastic]</code> (~110 materials total).</li>
+<li>
+<p>Parameter <code>material</code> is the exact library name inside the category — e.g. <code>Gold</code>, <code>Water</code>, <code>Skin I</code>, <code>Titanium (Anodized)</code>; names carry parenthesized variants, match them exactly. Enumerate at runtime:</p>
+</li>
+<li>
+<p>Builds a Principled BSDF material datablock named after the library entry (base color is linear, set directly), non-render fields (<code>density</code>, <code>viscosity</code>, ...) stored as custom ID properties.</p>
+</li>
+<li>Parameter <code>use_existing</code> (default <code>True</code>): when an existing datablock with the same name is present it is assigned as-is — user tweaks are preserved, it is NOT rebuilt from the library. Pass <code>use_existing=False</code> to always build a fresh datablock from the library (Blender suffixes the taken name <code>.001</code>).</li>
+<li>Assigns to the first object-level material slot of every selected object (creating the slot when empty). This applies equally to mesh and primitive <code>visual</code>, <code>hfield</code>, and <code>plane</code> objects; shape/material modifier sockets are not edited by the operator.</li>
+</ul>
+</blockquote>
+<p>Enumerate categories / names from Python running inside Blender:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">bpy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">importlib</span>
+
+<span class="c1"># Resolve both legacy and extension-managed installs without assuming the</span>
+<span class="c1"># extension repository is named vscode_development or user_default.</span>
+<span class="n">module_name</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">bpy</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">addons</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">"Forge"</span> <span class="ow">or</span> <span class="n">name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">".Forge"</span><span class="p">)),</span>
+    <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">if</span> <span class="n">module_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">"Enable the Forge add-on before inspecting its material library"</span><span class="p">)</span>
+<span class="n">materials</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">module_name</span><span class="si">}</span><span class="s2">.core.materials"</span><span class="p">)</span>
+
+<span class="n">materials</span><span class="o">.</span><span class="n">get_categories</span><span class="p">()</span>  <span class="c1"># ['Crystal', 'Human', 'Liquid', ...]</span>
+<span class="n">materials</span><span class="o">.</span><span class="n">get_material_names</span><span class="p">(</span><span class="s2">"Metal"</span><span class="p">)</span>  <span class="c1"># ['Aluminum', 'Brass', 'Chromium', ...]</span>
+</code></pre></div>
+      </article>
+      
+      <nav class="page-navigation" aria-label="章节跳转">
+        <a class="previous-page" href="../mcp_skills.html"><span>← 上一章</span><strong>Overview</strong></a>
+        <a class="next-page" href="forge_modify.html"><span>下一章 →</span><strong>Forge modify</strong></a>
+      </nav>
+      
+      <footer class="manual-footer">Forge · Blender 插件使用文档</footer>
+    </main>
+    
+    <aside class="page-outline" id="manual-outline" aria-label="本页目录" tabindex="-1">
+      <div class="outline-heading"><p>本页目录</p><button class="outline-close" type="button" aria-label="关闭本页目录">×</button></div>
+      
+<ul>
+  
+  <li><a href="#general-rules">General rules</a>
+    
+<ul>
+  
+  <li><a href="#mcp-tool-workflow">MCP tool workflow</a>
+    
+  </li>
+  
+</ul>
+
+  </li>
+  
+  <li><a href="#forge-mjcf-model-types">Forge mjcf model types</a>
+    
+  </li>
+  
+  <li><a href="#hierarchy-rules">Hierarchy rules</a>
+    
+  </li>
+  
+  <li><a href="#create-rules">Create rules</a>
+    
+<ul>
+  
+  <li><a href="#creation-order">Creation order:</a>
+    
+  </li>
+  
+  <li><a href="#file-workflow-and-mesh-preprocessing">File workflow and mesh preprocessing</a>
+    
+  </li>
+  
+  <li><a href="#create-tips">Create tips:</a>
+    
+  </li>
+  
+  <li><a href="#model-create-rules">Model create rules:</a>
+    
+<ul>
+  
+  <li><a href="#link">link:</a>
+    
+  </li>
+  
+  <li><a href="#inertial">inertial:</a>
+    
+  </li>
+  
+  <li><a href="#joint">joint:</a>
+    
+  </li>
+  
+  <li><a href="#geometry-shape">geometry shape:</a>
+    
+  </li>
+  
+  <li><a href="#geometry-mesh">geometry mesh:</a>
+    
+  </li>
+  
+  <li><a href="#hfield">hfield:</a>
+    
+  </li>
+  
+  <li><a href="#plane">plane:</a>
+    
+  </li>
+  
+  <li><a href="#site">site:</a>
+    
+  </li>
+  
+  <li><a href="#actuator">actuator:</a>
+    
+  </li>
+  
+  <li><a href="#tendon">tendon:</a>
+    
+  </li>
+  
+  <li><a href="#equality">equality:</a>
+    
+  </li>
+  
+  <li><a href="#contact">contact:</a>
+    
+  </li>
+  
+  <li><a href="#sensor">sensor:</a>
+    
+  </li>
+  
+  <li><a href="#light">light:</a>
+    
+  </li>
+  
+  <li><a href="#camera">camera:</a>
+    
+  </li>
+  
+  <li><a href="#frame">frame:</a>
+    
+  </li>
+  
+  <li><a href="#replicate">replicate:</a>
+    
+  </li>
+  
+  <li><a href="#attach">attach:</a>
+    
+  </li>
+  
+  <li><a href="#include">include:</a>
+    
+  </li>
+  
+</ul>
+
+  </li>
+  
+  <li><a href="#material-creation-rules">Material creation rules:</a>
+    
+<ul>
+  
+  <li><a href="#material">material:</a>
+    
+  </li>
+  
+</ul>
+
+  </li>
+  
+</ul>
+
+  </li>
+  
+</ul>
+
+    </aside>
+    
+  </div>
+  <dialog class="image-preview" id="image-preview" aria-label="图片预览">
+    <form method="dialog" class="image-preview-close"><button type="submit" aria-label="关闭图片预览" autofocus>×</button></form>
+    <img class="image-preview-image" alt="">
+  </dialog>
+  <script>var base_url = document.body.dataset.baseUrl;</script>
+  <script src="../../assets/javascripts/image-preview.js"></script><script src="../../assets/javascripts/case-videos.js"></script><script src="../../search/main.js"></script><script src="../../assets/javascripts/manual.js"></script>
+</body>
+</html>

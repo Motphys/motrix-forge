@@ -1,0 +1,420 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Forge Blender add-on documentation · Forge 插件使用文档">
+  <link rel="icon" href="../../assets/favicon.ico" type="image/x-icon">
+  <script>
+    document.documentElement.classList.add("navigation-pending");
+    document.addEventListener("DOMContentLoaded", () => document.documentElement.classList.remove("navigation-pending"), { once: true });
+  </script>
+  <title>第 10 章：常见问题与脚本调用 — Forge 使用手册</title>
+  <script src="../../assets/javascripts/theme.js"></script>
+  <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+  <link rel="alternate" hreflang="en" href="../../en/forge_docs/10_troubleshooting_and_scripting.html">
+</head>
+<body data-base-url="../..">
+  <a class="skip-link" href="#main-content">跳至正文</a>
+  <header class="mobile-header">
+    <button type="button" class="menu-toggle" aria-controls="manual-sidebar" aria-expanded="false" aria-label="打开导航">☰</button>
+    <a href="../../introduction.zh-CN.html">Forge <span>使用手册</span></a>
+    
+<button type="button" class="theme-toggle theme-toggle-compact" data-theme-toggle aria-pressed="false" aria-label="切换至黑色主题">
+  <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg>
+  <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+  <span class="theme-label">浅色主题</span>
+</button>
+
+    <a href="../../en/forge_docs/10_troubleshooting_and_scripting.html" lang="en">EN</a>
+    
+    <button type="button" class="outline-toggle" aria-controls="manual-outline" aria-expanded="false" aria-label="打开本页目录"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M9 5h12M9 12h12M9 19h12M3 5h1M3 12h1M3 19h1"/></svg></button>
+    
+  </header>
+  <button class="sidebar-backdrop" type="button" aria-label="关闭导航" tabindex="-1"></button>
+  <aside class="manual-sidebar" id="manual-sidebar">
+    <a class="manual-brand" href="../../introduction.zh-CN.html"><img class="brand-logo" src="../../assets/Logo.png" alt="Forge"><span>Forge<span class="brand-subtitle">使用手册</span></span></a>
+    <form class="sidebar-search" action="../search.html" role="search">
+      <input type="hidden" name="lang" value="cn">
+      <span aria-hidden="true">⌕</span><input type="search" name="q" placeholder="搜索手册" aria-label="搜索手册">
+    </form>
+    <nav class="chapter-nav" aria-label="章节导航">
+      
+      
+      <details class="nav-group" data-nav-group="getting-started" data-active="false">
+        <summary class="nav-caption">开始使用</summary>
+        
+        <ul><li><a href="../../introduction.zh-CN.html">关于 Forge</a></li><li><a href="../installation.html">安装 Forge</a></li><li><a href="../preferences.html">配置 Forge</a></li><li><a href="../development.html">开发 Forge</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="examples" data-active="false">
+        <summary class="nav-caption">案例</summary>
+        
+        <ul><li><a href="../examples.html">应用案例</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="manual" data-active="true" open>
+        <summary class="nav-caption">使用手册</summary>
+        
+        <details class="nav-group nav-subgroup" data-nav-group="manual-contents" data-active="true" open>
+          <summary class="nav-caption nav-subcaption">章节目录</summary>
+          <ul><li><a href="../forge_docs.html">概览</a></li><li><a href="00_ui_overview.html">0. 界面总览与通用操作</a></li><li><a href="01_mcp_server.html">1. MCP 服务</a></li><li><a href="02_global_and_general.html">2. 全局与通用设置</a></li><li><a href="03_geometry_and_material.html">3. 几何与材质</a></li><li><a href="04_kinematics.html">4. 运动学与实例</a></li><li><a href="05_hardware.html">5. 硬件</a></li><li><a href="06_meta_elements.html">6. 元元素</a></li><li><a href="07_properties.html">7. 属性编辑</a></li><li><a href="08_import_export.html">8. 导入与导出</a></li><li><a href="09_coacd.html">9. CoACD 凸分解</a></li><li><a href="10_troubleshooting_and_scripting.html" class="active" aria-current="page">10. 常见问题与脚本调用</a></li></ul>
+        </details>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="mcp-reference" data-active="false">
+        <summary class="nav-caption">MCP 参考</summary>
+        
+        <ul><li><a href="../../reference/MCP_INSTALL.zh-CN.html">Forge MCP 安装与连接</a></li><li><a href="../../reference/mcp-server/README.zh-CN.html">Forge MCP 服务端参考</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="mcp-skills" data-active="false">
+        <summary class="nav-caption">MCP Skills (English only)</summary>
+        
+        <ul><li><a href="../mcp_skills.html">Overview</a></li><li><a href="../mcp_skills/forge_create.html">Forge create</a></li><li><a href="../mcp_skills/forge_modify.html">Forge modify</a></li><li><a href="../mcp_skills/forge_custom_material.html">Forge custom material</a></li><li><a href="../mcp_skills/forge_operators.html">Forge operators</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="documentation" data-active="false">
+        <summary class="nav-caption">文档</summary>
+        
+        <ul><li><a href="../preview.html">本地预览</a></li></ul>
+        
+      </details>
+      
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-controls">
+        
+<button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="切换至黑色主题">
+  <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg>
+  <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+  <span class="theme-label">浅色主题</span>
+</button>
+
+        <details class="language-switch">
+          <summary><span aria-hidden="true">◎</span> 简体中文 <span aria-hidden="true">⌃</span></summary>
+          <div class="language-options">
+            <a href="10_troubleshooting_and_scripting.html" lang="zh-CN" aria-current="true">简体中文 ✓</a>
+            <a href="../../en/forge_docs/10_troubleshooting_and_scripting.html" lang="en">English</a>
+          </div>
+        </details>
+      </div>
+      <nav class="project-links" aria-label="项目链接">
+        <a class="project-link" href="https://github.com/Motphys/motrix-forge" target="_blank" rel="noopener noreferrer" title="在新标签页打开 GitHub">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.68.08-.68 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.56 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.43.11-2.98 0 0 .95-.3 3.1 1.15a10.8 10.8 0 0 1 5.63 0c2.15-1.45 3.09-1.15 3.09-1.15.62 1.55.23 2.7.12 2.98.72.79 1.16 1.79 1.16 3.02 0 4.32-2.64 5.27-5.15 5.55.4.35.76 1.03.76 2.08v3.1c0 .3.2.65.78.54A11.25 11.25 0 0 0 12 .75Z"/></svg>
+          <span>GitHub</span>
+        </a>
+        <a class="project-link" href="https://www.motphys.com/" target="_blank" rel="noopener noreferrer" title="在新标签页打开 Motphys 官网">
+          <svg class="website-logo" width="24" height="24" viewBox="0 0 128 128" fill="currentColor" aria-hidden="true">
+            <polygon points="58.23 49.97 37.73 49.97 33.23 55.57 62.63 55.57 58.23 49.97"/>
+            <path d="M50.13,39.67c-1.1-1.4-3.2-1.4-4.3,0l-3.6,4.6h11.6l-3.6-4.6h-.1Z"/>
+            <path d="M118.13,85.27l-35.8-45.6c-1.1-1.4-3.2-1.4-4.3,0l-14.1,17.8-3.1,3.9H28.83l-4.5,5.7h32.2l-4.5,5.7H19.93l-4.5,5.7h32.2l-4.5,5.7H10.93l-1,1.3c-1.4,1.8-.1,4.4,2.1,4.4h103.9c2.3,0,3.6-2.6,2.1-4.4h0l.1-.2Z"/>
+          </svg>
+          <span>官网</span>
+        </a>
+      </nav>
+    </div>
+  </aside>
+  <script>
+/* Restore the sidebar synchronously, before revealing its first frame. */
+(() => {
+  "use strict";
+  const root = document.documentElement;
+  try {
+    const navigationKey = "forge-docs-navigation-groups";
+    let state = {};
+    try {
+      const saved = JSON.parse(localStorage.getItem(navigationKey));
+      if (saved && typeof saved === "object" && !Array.isArray(saved)) state = saved;
+    } catch { /* Keep native details usable without storage. */ }
+    const restoreGroups = scope => {
+      scope.querySelectorAll("[data-nav-group]").forEach(group => {
+        if (group.dataset.navRestored) return;
+        group.dataset.navRestored = "true";
+        const id = group.dataset.navGroup;
+        if (group.dataset.active === "true") group.open = true;
+        else if (typeof state[id] === "boolean") group.open = state[id];
+        group.addEventListener("toggle", () => {
+          state[id] = group.open;
+          try { localStorage.setItem(navigationKey, JSON.stringify(state)); } catch { /* Ignore unavailable storage. */ }
+        });
+      });
+    };
+    window.forgeRestoreNavigationGroups = restoreGroups;
+    const nav = document.querySelector(".chapter-nav");
+    if (!nav) return;
+    restoreGroups(nav);
+    const siteRoot = new URL(`${document.body.dataset.baseUrl || "."}/`, location.href).pathname;
+    const scrollKey = `forge-docs-navigation-scroll:${siteRoot}`;
+    try {
+      const saved = sessionStorage.getItem(scrollKey);
+      if (saved !== null && Number.isFinite(Number(saved)) && Number(saved) >= 0) nav.scrollTop = Number(saved);
+    } catch { /* Ignore unavailable storage. */ }
+    const save = () => {
+      try { sessionStorage.setItem(scrollKey, String(nav.scrollTop)); } catch { /* Ignore unavailable storage. */ }
+    };
+    nav.addEventListener("scroll", save, { passive: true });
+    nav.addEventListener("click", save);
+    window.addEventListener("pagehide", save);
+  } finally {
+    root.classList.remove("navigation-pending");
+  }
+})();
+</script>
+  <div class="manual-layout">
+    <main id="main-content" class="manual-main" tabindex="-1">
+      <div class="page-header">
+        <nav class="breadcrumbs" aria-label="当前位置"><a href="../../introduction.zh-CN.html">Forge 使用手册</a><span aria-hidden="true"> / </span><span>第 10 章：常见问题与脚本调用</span></nav>
+      </div>
+      <article class="manual-article">
+        <h1 id="第-10-章常见问题与脚本调用">第 10 章：常见问题与脚本调用<a class="headerlink" href="#第-10-章常见问题与脚本调用" title="Permanent link">&para;</a></h1>
+<h2 id="101-definition-为什么只修改了一个对象">10.1 Definition 为什么只修改了一个对象？<a class="headerlink" href="#101-definition-为什么只修改了一个对象" title="Permanent link">&para;</a></h2>
+<p><strong>Geometry</strong>、<strong>Collider</strong>、<strong>Site</strong>、<strong>Joint</strong> 和 <strong>Actuator</strong> 的 <strong>Definition</strong> 默认只修改活动对象。需要批量修改时，在弹窗中勾选 <strong>Apply to all selected</strong>；</p>
+<h2 id="102-target-或-reference-顺序反了">10.2 Target 或 Reference 顺序反了<a class="headerlink" href="#102-target-或-reference-顺序反了" title="Permanent link">&para;</a></h2>
+<p>取消选择，再按正确顺序重新选择：</p>
+<ul>
+<li><strong>Equality</strong>：第一个是 Target 1/父对象，第二个是 Target 2。</li>
+<li><strong>Sensor Reference</strong>：第一个是 Target，第二个是 Reference。</li>
+<li><strong>Targetbody Light</strong>：一个 Link 时该 Link 是目标；两个 Link 时第一个是 <strong>Light</strong> 位置/父对象，第二个是跟踪目标。</li>
+<li><strong>Targetbody Camera</strong>：一个 Link 时该 Link 是目标；两个 Link 时第一个是 <strong>Camera</strong> 位置/父对象，第二个是跟踪目标。</li>
+<li><strong>Tendon</strong>：Joint 按选择顺序加入目标列表。</li>
+<li><strong>Link Parent</strong>：例外；活动对象始终是父对象，应最后激活。</li>
+</ul>
+<h2 id="103-compute-inertial-找不到几何或计算失败">10.3 Compute Inertial 找不到几何或计算失败<a class="headerlink" href="#103-compute-inertial-找不到几何或计算失败" title="Permanent link">&para;</a></h2>
+<p>确认弹窗的 <strong>Inertial Model Type</strong> 与要使用的 <strong>Visual / Collider</strong> 一致，且几何是所选 <strong>Link</strong> 的直接子对象，或位于其 <strong>Frame</strong> 子层级中；不会搜索子 Link。Mesh 计算需要安装 <strong>TetGen</strong>；启用 <strong>Check Geometry</strong> 可先检查几何，失败时根据报告修复网格。Box、Sphere、Cylinder、Capsule 直接使用形状参数，不需要 TetGen。详细流程见<a href="04_kinematics.html#45-compute-inertial">4.5</a>。</p>
+<h2 id="104-创建操作后原对象不再选中">10.4 创建操作后原对象不再选中<a class="headerlink" href="#104-创建操作后原对象不再选中" title="Permanent link">&para;</a></h2>
+<p>多数 <strong>Creation Operator</strong> 会清除原选择，并选中新创建的对象。这是预期行为。要继续在原 <strong>Link</strong> 上创建其他子元素，需要重新选择 <strong>Link</strong>。</p>
+<h2 id="105-shape-size-与-object-scale">10.5 Shape Size 与 Object Scale<a class="headerlink" href="#105-shape-size-与-object-scale" title="Permanent link">&para;</a></h2>
+<p>优先在 <strong>Shape Properties</strong> 中修改 <strong>Size</strong>、<strong>Radius</strong>、<strong>Height</strong>。Primitive 类型通常由 <strong>Geometry Nodes Modifier</strong> 参数控制并锁定 <strong>Object Scale</strong>；切换为 <strong>Mesh</strong> 后，几何会被烘焙到网格，Object Scale 可能重新可编辑。</p>
+<h2 id="106-operator-id-速查">10.6 Operator ID 速查<a class="headerlink" href="#106-operator-id-速查" title="Permanent link">&para;</a></h2>
+<h3 id="creation">Creation<a class="headerlink" href="#creation" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>Operator ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Geometry / Collider / Site</td>
+<td><code>forge.create_geometry</code> / <code>forge.create_collider</code> / <code>forge.create_site</code></td>
+</tr>
+<tr>
+<td>Height Field / Plane</td>
+<td><code>forge.create_height_field</code> / <code>forge.create_plane</code></td>
+</tr>
+<tr>
+<td>Link / Joint / Inertial</td>
+<td><code>forge.create_link</code> / <code>forge.create_joint</code> / <code>forge.create_inertial</code></td>
+</tr>
+<tr>
+<td>Actuator / Tendon / Equality</td>
+<td><code>forge.create_actuator</code> / <code>forge.create_tendon</code> / <code>forge.create_equality</code></td>
+</tr>
+<tr>
+<td>Sensor / Contact</td>
+<td><code>forge.create_sensor</code> / <code>forge.create_contact</code></td>
+</tr>
+<tr>
+<td>Light / Camera</td>
+<td><code>forge.create_light</code> / <code>forge.create_camera</code></td>
+</tr>
+<tr>
+<td>Frame / Replicate</td>
+<td><code>forge.create_frame</code> / <code>forge.create_replicate</code></td>
+</tr>
+<tr>
+<td>Material</td>
+<td><code>forge.create_material</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>Operator ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model</td>
+<td><code>forge.define_model_type</code></td>
+</tr>
+<tr>
+<td>Geometry / Collider / Site</td>
+<td><code>forge.define_geometry_type</code> / <code>forge.define_collider_type</code> / <code>forge.define_site_type</code></td>
+</tr>
+<tr>
+<td>Joint / Actuator</td>
+<td><code>forge.define_joint_type</code> / <code>forge.define_actuator_type</code></td>
+</tr>
+<tr>
+<td>Parent / Root</td>
+<td><code>forge.define_parent</code> / <code>forge.mark_root_link</code></td>
+</tr>
+<tr>
+<td>Instance Link</td>
+<td><code>forge.mark_instance_link</code></td>
+</tr>
+<tr>
+<td>Mesh / Gizmo</td>
+<td><code>forge.mesh_check</code> / <code>forge.scale_gizmo_size</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="utilityio-与-coacd">Utility、IO 与 CoACD<a class="headerlink" href="#utilityio-与-coacd" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>Operator ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Batch Rename / Tag Select</td>
+<td><code>forge.batch_rename</code> / <code>forge.select_by_tag</code></td>
+</tr>
+<tr>
+<td>Model Type Select</td>
+<td><code>forge.select_by_model_type</code></td>
+</tr>
+<tr>
+<td>Select Hulls / Instance ID</td>
+<td><code>forge.select_hulls</code> / <code>forge.set_instance_idname</code></td>
+</tr>
+<tr>
+<td>Instance Link 标记</td>
+<td><code>forge.mark_instance_link</code>（使用规则见 <a href="04_kinematics.html#47-instance-使用规则">4.7</a>）</td>
+</tr>
+<tr>
+<td>Import / Export</td>
+<td><code>forge.import_mjcf</code> / <code>forge.export_mjcf</code></td>
+</tr>
+<tr>
+<td>Attach / Include</td>
+<td><code>forge.create_attach</code> / <code>forge.create_include</code></td>
+</tr>
+<tr>
+<td>CoACD</td>
+<td><code>forge.coacds</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h3>
+<p>Properties Operator 使用统一的 <code>forge.properties_*</code> 命名，包括 <code>global</code>、<code>visual</code>、<code>hfield</code>、<code>plane</code>、<code>shape</code>、<code>shape_site</code>、<code>link</code>、<code>joint</code>、<code>actuator</code>、<code>tendon</code>、<code>equality</code>、<code>contact</code>、<code>sensor</code>、<code>light</code>、<code>camera</code>、<code>replicate</code>。</p>
+<h2 id="107-blender-python-示例">10.7 Blender Python 示例<a class="headerlink" href="#107-blender-python-示例" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">bpy</span>
+
+<span class="c1"># 先确保处于 Object Mode，并取消选择全部对象。</span>
+<span class="k">if</span> <span class="n">bpy</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">mode</span> <span class="o">!=</span> <span class="s2">"OBJECT"</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">"Forge operators require Object Mode"</span><span class="p">)</span>
+<span class="n">bpy</span><span class="o">.</span><span class="n">ops</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">select_all</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s2">"DESELECT"</span><span class="p">)</span>
+
+<span class="n">bpy</span><span class="o">.</span><span class="n">ops</span><span class="o">.</span><span class="n">forge</span><span class="o">.</span><span class="n">create_geometry</span><span class="p">(</span>
+    <span class="n">geometry_type</span><span class="o">=</span><span class="s2">"BOX"</span><span class="p">,</span>
+    <span class="n">size_box</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Operator</strong> 调用受当前 <strong>Blender Context</strong> 和 <code>poll</code> 条件约束。批处理前应显式设置：</p>
+<ul>
+<li><strong>Object Mode</strong>；</li>
+<li>选择对象；</li>
+<li>活动对象；</li>
+<li>需要双目标时的 <strong>Forge</strong> 选择顺序。</li>
+</ul>
+<hr />
+      </article>
+      
+      <nav class="page-navigation" aria-label="章节跳转">
+        <a class="previous-page" href="09_coacd.html"><span>← 上一章</span><strong>9. CoACD 凸分解</strong></a>
+        
+      </nav>
+      
+      <footer class="manual-footer">Forge · Blender 插件使用文档</footer>
+    </main>
+    
+    <aside class="page-outline" id="manual-outline" aria-label="本页目录" tabindex="-1">
+      <div class="outline-heading"><p>本页目录</p><button class="outline-close" type="button" aria-label="关闭本页目录">×</button></div>
+      
+<ul>
+  
+  <li><a href="#101-definition-为什么只修改了一个对象">10.1 Definition 为什么只修改了一个对象？</a>
+    
+  </li>
+  
+  <li><a href="#102-target-或-reference-顺序反了">10.2 Target 或 Reference 顺序反了</a>
+    
+  </li>
+  
+  <li><a href="#103-compute-inertial-找不到几何或计算失败">10.3 Compute Inertial 找不到几何或计算失败</a>
+    
+  </li>
+  
+  <li><a href="#104-创建操作后原对象不再选中">10.4 创建操作后原对象不再选中</a>
+    
+  </li>
+  
+  <li><a href="#105-shape-size-与-object-scale">10.5 Shape Size 与 Object Scale</a>
+    
+  </li>
+  
+  <li><a href="#106-operator-id-速查">10.6 Operator ID 速查</a>
+    
+<ul>
+  
+  <li><a href="#creation">Creation</a>
+    
+  </li>
+  
+  <li><a href="#definition">Definition</a>
+    
+  </li>
+  
+  <li><a href="#utilityio-与-coacd">Utility、IO 与 CoACD</a>
+    
+  </li>
+  
+  <li><a href="#properties">Properties</a>
+    
+  </li>
+  
+</ul>
+
+  </li>
+  
+  <li><a href="#107-blender-python-示例">10.7 Blender Python 示例</a>
+    
+  </li>
+  
+</ul>
+
+    </aside>
+    
+  </div>
+  <dialog class="image-preview" id="image-preview" aria-label="图片预览">
+    <form method="dialog" class="image-preview-close"><button type="submit" aria-label="关闭图片预览" autofocus>×</button></form>
+    <img class="image-preview-image" alt="">
+  </dialog>
+  <script>var base_url = document.body.dataset.baseUrl;</script>
+  <script src="../../assets/javascripts/image-preview.js"></script><script src="../../assets/javascripts/case-videos.js"></script><script src="../../search/main.js"></script><script src="../../assets/javascripts/manual.js"></script>
+</body>
+</html>

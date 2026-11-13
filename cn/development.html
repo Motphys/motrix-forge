@@ -1,0 +1,338 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Forge Blender add-on documentation · Forge 插件使用文档">
+  <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
+  <script>
+    document.documentElement.classList.add("navigation-pending");
+    document.addEventListener("DOMContentLoaded", () => document.documentElement.classList.remove("navigation-pending"), { once: true });
+  </script>
+  <title>开发 Forge — Forge 使用手册</title>
+  <script src="../assets/javascripts/theme.js"></script>
+  <link rel="stylesheet" href="../assets/stylesheets/extra.css">
+  <link rel="alternate" hreflang="en" href="../en/development.html">
+</head>
+<body data-base-url="..">
+  <a class="skip-link" href="#main-content">跳至正文</a>
+  <header class="mobile-header">
+    <button type="button" class="menu-toggle" aria-controls="manual-sidebar" aria-expanded="false" aria-label="打开导航">☰</button>
+    <a href="../introduction.zh-CN.html">Forge <span>使用手册</span></a>
+    
+<button type="button" class="theme-toggle theme-toggle-compact" data-theme-toggle aria-pressed="false" aria-label="切换至黑色主题">
+  <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg>
+  <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+  <span class="theme-label">浅色主题</span>
+</button>
+
+    <a href="../en/development.html" lang="en">EN</a>
+    
+    <button type="button" class="outline-toggle" aria-controls="manual-outline" aria-expanded="false" aria-label="打开本页目录"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M9 5h12M9 12h12M9 19h12M3 5h1M3 12h1M3 19h1"/></svg></button>
+    
+  </header>
+  <button class="sidebar-backdrop" type="button" aria-label="关闭导航" tabindex="-1"></button>
+  <aside class="manual-sidebar" id="manual-sidebar">
+    <a class="manual-brand" href="../introduction.zh-CN.html"><img class="brand-logo" src="../assets/Logo.png" alt="Forge"><span>Forge<span class="brand-subtitle">使用手册</span></span></a>
+    <form class="sidebar-search" action="search.html" role="search">
+      <input type="hidden" name="lang" value="cn">
+      <span aria-hidden="true">⌕</span><input type="search" name="q" placeholder="搜索手册" aria-label="搜索手册">
+    </form>
+    <nav class="chapter-nav" aria-label="章节导航">
+      
+      
+      <details class="nav-group" data-nav-group="getting-started" data-active="true" open>
+        <summary class="nav-caption">开始使用</summary>
+        
+        <ul><li><a href="../introduction.zh-CN.html">关于 Forge</a></li><li><a href="installation.html">安装 Forge</a></li><li><a href="preferences.html">配置 Forge</a></li><li><a href="development.html" class="active" aria-current="page">开发 Forge</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="examples" data-active="false">
+        <summary class="nav-caption">案例</summary>
+        
+        <ul><li><a href="examples.html">应用案例</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="manual" data-active="false">
+        <summary class="nav-caption">使用手册</summary>
+        
+        <details class="nav-group nav-subgroup" data-nav-group="manual-contents" data-active="false">
+          <summary class="nav-caption nav-subcaption">章节目录</summary>
+          <ul><li><a href="forge_docs.html">概览</a></li><li><a href="forge_docs/00_ui_overview.html">0. 界面总览与通用操作</a></li><li><a href="forge_docs/01_mcp_server.html">1. MCP 服务</a></li><li><a href="forge_docs/02_global_and_general.html">2. 全局与通用设置</a></li><li><a href="forge_docs/03_geometry_and_material.html">3. 几何与材质</a></li><li><a href="forge_docs/04_kinematics.html">4. 运动学与实例</a></li><li><a href="forge_docs/05_hardware.html">5. 硬件</a></li><li><a href="forge_docs/06_meta_elements.html">6. 元元素</a></li><li><a href="forge_docs/07_properties.html">7. 属性编辑</a></li><li><a href="forge_docs/08_import_export.html">8. 导入与导出</a></li><li><a href="forge_docs/09_coacd.html">9. CoACD 凸分解</a></li><li><a href="forge_docs/10_troubleshooting_and_scripting.html">10. 常见问题与脚本调用</a></li></ul>
+        </details>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="mcp-reference" data-active="false">
+        <summary class="nav-caption">MCP 参考</summary>
+        
+        <ul><li><a href="../reference/MCP_INSTALL.zh-CN.html">Forge MCP 安装与连接</a></li><li><a href="../reference/mcp-server/README.zh-CN.html">Forge MCP 服务端参考</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="mcp-skills" data-active="false">
+        <summary class="nav-caption">MCP Skills (English only)</summary>
+        
+        <ul><li><a href="mcp_skills.html">Overview</a></li><li><a href="mcp_skills/forge_create.html">Forge create</a></li><li><a href="mcp_skills/forge_modify.html">Forge modify</a></li><li><a href="mcp_skills/forge_custom_material.html">Forge custom material</a></li><li><a href="mcp_skills/forge_operators.html">Forge operators</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="documentation" data-active="false">
+        <summary class="nav-caption">文档</summary>
+        
+        <ul><li><a href="preview.html">本地预览</a></li></ul>
+        
+      </details>
+      
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-controls">
+        
+<button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="切换至黑色主题">
+  <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg>
+  <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+  <span class="theme-label">浅色主题</span>
+</button>
+
+        <details class="language-switch">
+          <summary><span aria-hidden="true">◎</span> 简体中文 <span aria-hidden="true">⌃</span></summary>
+          <div class="language-options">
+            <a href="development.html" lang="zh-CN" aria-current="true">简体中文 ✓</a>
+            <a href="../en/development.html" lang="en">English</a>
+          </div>
+        </details>
+      </div>
+      <nav class="project-links" aria-label="项目链接">
+        <a class="project-link" href="https://github.com/Motphys/motrix-forge" target="_blank" rel="noopener noreferrer" title="在新标签页打开 GitHub">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.68.08-.68 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.56 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.43.11-2.98 0 0 .95-.3 3.1 1.15a10.8 10.8 0 0 1 5.63 0c2.15-1.45 3.09-1.15 3.09-1.15.62 1.55.23 2.7.12 2.98.72.79 1.16 1.79 1.16 3.02 0 4.32-2.64 5.27-5.15 5.55.4.35.76 1.03.76 2.08v3.1c0 .3.2.65.78.54A11.25 11.25 0 0 0 12 .75Z"/></svg>
+          <span>GitHub</span>
+        </a>
+        <a class="project-link" href="https://www.motphys.com/" target="_blank" rel="noopener noreferrer" title="在新标签页打开 Motphys 官网">
+          <svg class="website-logo" width="24" height="24" viewBox="0 0 128 128" fill="currentColor" aria-hidden="true">
+            <polygon points="58.23 49.97 37.73 49.97 33.23 55.57 62.63 55.57 58.23 49.97"/>
+            <path d="M50.13,39.67c-1.1-1.4-3.2-1.4-4.3,0l-3.6,4.6h11.6l-3.6-4.6h-.1Z"/>
+            <path d="M118.13,85.27l-35.8-45.6c-1.1-1.4-3.2-1.4-4.3,0l-14.1,17.8-3.1,3.9H28.83l-4.5,5.7h32.2l-4.5,5.7H19.93l-4.5,5.7h32.2l-4.5,5.7H10.93l-1,1.3c-1.4,1.8-.1,4.4,2.1,4.4h103.9c2.3,0,3.6-2.6,2.1-4.4h0l.1-.2Z"/>
+          </svg>
+          <span>官网</span>
+        </a>
+      </nav>
+    </div>
+  </aside>
+  <script>
+/* Restore the sidebar synchronously, before revealing its first frame. */
+(() => {
+  "use strict";
+  const root = document.documentElement;
+  try {
+    const navigationKey = "forge-docs-navigation-groups";
+    let state = {};
+    try {
+      const saved = JSON.parse(localStorage.getItem(navigationKey));
+      if (saved && typeof saved === "object" && !Array.isArray(saved)) state = saved;
+    } catch { /* Keep native details usable without storage. */ }
+    const restoreGroups = scope => {
+      scope.querySelectorAll("[data-nav-group]").forEach(group => {
+        if (group.dataset.navRestored) return;
+        group.dataset.navRestored = "true";
+        const id = group.dataset.navGroup;
+        if (group.dataset.active === "true") group.open = true;
+        else if (typeof state[id] === "boolean") group.open = state[id];
+        group.addEventListener("toggle", () => {
+          state[id] = group.open;
+          try { localStorage.setItem(navigationKey, JSON.stringify(state)); } catch { /* Ignore unavailable storage. */ }
+        });
+      });
+    };
+    window.forgeRestoreNavigationGroups = restoreGroups;
+    const nav = document.querySelector(".chapter-nav");
+    if (!nav) return;
+    restoreGroups(nav);
+    const siteRoot = new URL(`${document.body.dataset.baseUrl || "."}/`, location.href).pathname;
+    const scrollKey = `forge-docs-navigation-scroll:${siteRoot}`;
+    try {
+      const saved = sessionStorage.getItem(scrollKey);
+      if (saved !== null && Number.isFinite(Number(saved)) && Number(saved) >= 0) nav.scrollTop = Number(saved);
+    } catch { /* Ignore unavailable storage. */ }
+    const save = () => {
+      try { sessionStorage.setItem(scrollKey, String(nav.scrollTop)); } catch { /* Ignore unavailable storage. */ }
+    };
+    nav.addEventListener("scroll", save, { passive: true });
+    nav.addEventListener("click", save);
+    window.addEventListener("pagehide", save);
+  } finally {
+    root.classList.remove("navigation-pending");
+  }
+})();
+</script>
+  <div class="manual-layout">
+    <main id="main-content" class="manual-main" tabindex="-1">
+      <div class="page-header">
+        <nav class="breadcrumbs" aria-label="当前位置"><a href="../introduction.zh-CN.html">Forge 使用手册</a><span aria-hidden="true"> / </span><span>开发 Forge</span></nav>
+      </div>
+      <article class="manual-article">
+        <h1 id="开发-forge">开发 Forge<a class="headerlink" href="#开发-forge" title="Permanent link">&para;</a></h1>
+<p>Forge 的 Blender 插件、Agent 侧 MCP 服务和文档站点位于同一个仓库，共用根目录的 <code>.venv</code>。根据修改范围选择验证方式。</p>
+<h2 id="工程结构">工程结构<a class="headerlink" href="#工程结构" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code>Motrix-Forge/
+├──<span class="w"> </span>addon/
+│<span class="w">   </span>└──<span class="w"> </span>Forge/<span class="w">              </span><span class="c1"># Blender 插件源码、资源与 MCP Bridge</span>
+├──<span class="w"> </span>docs/<span class="w">                   </span><span class="c1"># 独立的中英文文档站点</span>
+├──<span class="w"> </span>mcp-server/
+│<span class="w">   </span>└──<span class="w"> </span>forge_mcp/<span class="w">          </span><span class="c1"># Agent 侧 stdio MCP 服务、工具、Skills 与文档索引</span>
+├──<span class="w"> </span>tests/
+│<span class="w">   </span>├──<span class="w"> </span>forge/<span class="w">              </span><span class="c1"># Blender 插件测试</span>
+│<span class="w">   </span>└──<span class="w"> </span>mcp/<span class="w">                </span><span class="c1"># MCP 单元、协议集成及端到端测试</span>
+├──<span class="w"> </span>pyproject.toml<span class="w">          </span><span class="c1"># 根开发环境与 uv workspace 配置</span>
+├──<span class="w"> </span>run_tests.py<span class="w">            </span><span class="c1"># Forge Blender 测试入口</span>
+└──<span class="w"> </span>run_all_tests.py<span class="w">        </span><span class="c1"># 全部测试套件入口</span>
+</code></pre></div>
+
+<p>插件负责在 Blender 中实际操作场景，MCP Server 负责对外提供工具接口，通过 TCP 调用插件的 MCP Bridge。文档工具也使用根目录的 <code>.venv</code>，依赖统一声明在根目录的 <code>pyproject.toml</code> 中。</p>
+<h2 id="准备开发环境">准备开发环境<a class="headerlink" href="#准备开发环境" title="Permanent link">&para;</a></h2>
+<p>根项目声明的 Python 版本范围是 <strong>3.11 ≤ 版本 &lt; 3.14</strong>（<code>&gt;=3.11,&lt;3.14</code>）。安装 uv 后，在仓库根目录执行：</p>
+<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>lfs<span class="w"> </span>pull
+uv<span class="w"> </span>sync
+</code></pre></div>
+
+<p><code>uv sync</code> 创建共享的 <code>.venv</code>，安装根开发依赖，并以可编辑模式安装 workspace 成员 <code>mcp-server</code> 中的 <code>forge-mcp</code>。修改服务源码后，不需要反复重新安装该包。</p>
+<p>插件测试还需要本机安装受支持的 Blender；Blender 内的功能依赖安装方法见<a href="preferences.html#dependencies依赖管理">配置 Forge：依赖管理</a>。</p>
+<h2 id="python-代码检查与格式化">Python 代码检查与格式化<a class="headerlink" href="#python-代码检查与格式化" title="Permanent link">&para;</a></h2>
+<p>在仓库根目录运行以下命令。<code>ruff.toml</code> 和 <code>addon/ruff.toml</code> 将 Ruff 的文件发现范围限制为 <code>.py</code> 脚本，Markdown、Notebook 等其他文件不在处理范围内。</p>
+<div class="codehilite"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>format<span class="w"> </span>.
+uv<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>check<span class="w"> </span>.
+uv<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>format<span class="w"> </span>--check<span class="w"> </span>.
+</code></pre></div>
+
+<p><code>format</code> 执行格式化；<code>check</code> 检查代码规则，<code>format --check</code> 检查格式，后两者均不修改文件。</p>
+<h2 id="运行测试">运行测试<a class="headerlink" href="#运行测试" title="Permanent link">&para;</a></h2>
+<p>在仓库根目录根据修改范围选择：</p>
+<table>
+<thead>
+<tr>
+<th>修改范围</th>
+<th>验证入口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MCP 工具逻辑与协议，不启动 Blender</td>
+<td><code>uv run pytest tests/mcp/unit tests/mcp/integration</code></td>
+</tr>
+<tr>
+<td>Forge 插件</td>
+<td><code>uv run python run_tests.py</code></td>
+</tr>
+<tr>
+<td>MCP 与 Blender 的实际调用</td>
+<td><code>uv run python tests/mcp/e2e/driver.py</code></td>
+</tr>
+<tr>
+<td>所有测试套件</td>
+<td><code>uv run python run_all_tests.py</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>run_tests.py</code> 查找 Blender 4.5+，优先使用发现的最新版本，并通过独立的后台 Blender 进程运行插件测试。需要指定可执行文件时，在 PowerShell 中设置：</p>
+<div class="codehilite"><pre><span></span><code><span class="nv">$env:BLENDER_PATH</span> <span class="p">=</span> <span class="s1">'C:\Program Files\Blender Foundation\Blender 4.5\blender.exe'</span>
+<span class="n">uv</span> <span class="n">run</span> <span class="n">python</span> <span class="n">run_tests</span><span class="p">.</span><span class="n">py</span>
+</code></pre></div>
+
+<p>把示例路径替换为实际安装位置。仅筛选相关插件测试时，可以继续传入 pytest 参数：</p>
+<div class="codehilite"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>run_tests.py<span class="w"> </span>-k<span class="w"> </span>inertia
+</code></pre></div>
+
+<p><code>run_all_tests.py</code> 还包含完整模型矩阵的端到端测试，各套件顺序执行。</p>
+<h2 id="验证界面改动">验证界面改动<a class="headerlink" href="#验证界面改动" title="Permanent link">&para;</a></h2>
+<ol>
+<li>将当前 <code>addon/Forge</code> 打包并安装到用于测试的 Blender，确认启用的是当前源码版本。</li>
+<li>重启 Blender，打开用于复现的模型。</li>
+<li>检查改动涉及的 Operator、属性面板、Gizmo 或导入导出行为。</li>
+<li>同步更新受影响的中文和英文操作文档。</li>
+</ol>
+<p>后台测试可验证数据和操作逻辑；涉及布局、交互或视口预览的改动还需要在 Blender 界面中检查。</p>
+<h2 id="修改文档站点">修改文档站点<a class="headerlink" href="#修改文档站点" title="Permanent link">&para;</a></h2>
+<p>先在仓库根目录执行 <code>uv sync</code> 安装依赖，再使用共享的根目录 <code>.venv</code> 预览站点：</p>
+<div class="codehilite"><pre><span></span><code><span class="n">python</span> <span class="n">docs</span><span class="p">/</span><span class="n">scripts</span><span class="p">/</span><span class="n">docs</span><span class="p">.</span><span class="n">py</span> <span class="n">serve</span>
+</code></pre></div>
+
+<p>打开 <a href="http://127.0.0.1:8000">http://127.0.0.1:8000</a>。修改 Markdown、图片、样式或模板后自动重新构建；修改 <code>docs/scripts/docs_hooks.py</code> 后需重启预览服务。</p>
+<p>构建发布前使用的静态 HTML：</p>
+<div class="codehilite"><pre><span></span><code><span class="n">python</span> <span class="n">docs</span><span class="p">/</span><span class="n">scripts</span><span class="p">/</span><span class="n">docs</span><span class="p">.</span><span class="n">py</span> <span class="n">build</span> <span class="p">-</span><span class="n">-strict</span>
+</code></pre></div>
+
+<p>结果位于被 Git 忽略的 <code>docs/site/</code>，不用手工维护 HTML。中文与英文页面使用对应文件名；新增操作章节放在各语言的 <code>forge_docs/</code> 中，构建时自动加入导航。详见<a href="preview.html">本地预览</a>。</p>
+<h2 id="提交前检查">提交前检查<a class="headerlink" href="#提交前检查" title="Permanent link">&para;</a></h2>
+<ul>
+<li>根据修改范围运行相关测试，记录验证环境和结果。</li>
+<li>页面或功能说明同时维护中英文版本，检查语言切换、图片和锚点链接。</li>
+<li>不将 <code>.venv</code> 或生成的 <code>docs/site/</code> 加入提交。</li>
+<li>反馈问题时提供 Blender 版本、源码 commit、复现步骤、预期与实际结果及相关日志。</li>
+</ul>
+<p>开始了解插件操作时，可以继续阅读<a href="forge_docs.html">使用手册目录</a>。</p>
+      </article>
+      
+      <nav class="page-navigation" aria-label="章节跳转">
+        <a class="previous-page" href="preferences.html"><span>← 上一章</span><strong>配置 Forge</strong></a>
+        <a class="next-page" href="examples.html"><span>下一章 →</span><strong>应用案例</strong></a>
+      </nav>
+      
+      <footer class="manual-footer">Forge · Blender 插件使用文档</footer>
+    </main>
+    
+    <aside class="page-outline" id="manual-outline" aria-label="本页目录" tabindex="-1">
+      <div class="outline-heading"><p>本页目录</p><button class="outline-close" type="button" aria-label="关闭本页目录">×</button></div>
+      
+<ul>
+  
+  <li><a href="#工程结构">工程结构</a>
+    
+  </li>
+  
+  <li><a href="#准备开发环境">准备开发环境</a>
+    
+  </li>
+  
+  <li><a href="#python-代码检查与格式化">Python 代码检查与格式化</a>
+    
+  </li>
+  
+  <li><a href="#运行测试">运行测试</a>
+    
+  </li>
+  
+  <li><a href="#验证界面改动">验证界面改动</a>
+    
+  </li>
+  
+  <li><a href="#修改文档站点">修改文档站点</a>
+    
+  </li>
+  
+  <li><a href="#提交前检查">提交前检查</a>
+    
+  </li>
+  
+</ul>
+
+    </aside>
+    
+  </div>
+  <dialog class="image-preview" id="image-preview" aria-label="图片预览">
+    <form method="dialog" class="image-preview-close"><button type="submit" aria-label="关闭图片预览" autofocus>×</button></form>
+    <img class="image-preview-image" alt="">
+  </dialog>
+  <script>var base_url = document.body.dataset.baseUrl;</script>
+  <script src="../assets/javascripts/image-preview.js"></script><script src="../assets/javascripts/case-videos.js"></script><script src="../search/main.js"></script><script src="../assets/javascripts/manual.js"></script>
+</body>
+</html>

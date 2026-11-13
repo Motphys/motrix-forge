@@ -1,0 +1,446 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Forge Blender add-on documentation · Forge 插件使用文档">
+  <link rel="icon" href="../../assets/favicon.ico" type="image/x-icon">
+  <script>
+    document.documentElement.classList.add("navigation-pending");
+    document.addEventListener("DOMContentLoaded", () => document.documentElement.classList.remove("navigation-pending"), { once: true });
+  </script>
+  <title>Forge custom material — Forge Manual</title>
+  <script src="../../assets/javascripts/theme.js"></script>
+  <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+  
+</head>
+<body data-base-url="../..">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="mobile-header">
+    <button type="button" class="menu-toggle" aria-controls="manual-sidebar" aria-expanded="false" aria-label="Open navigation">☰</button>
+    <a href="../../index.html">Forge <span>Manual</span></a>
+    
+<button type="button" class="theme-toggle theme-toggle-compact" data-theme-toggle aria-pressed="false" aria-label="Switch to dark theme">
+  <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg>
+  <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+  <span class="theme-label">Light theme</span>
+</button>
+
+    <a href="../../cn/mcp_skills/forge_custom_material.html" lang="zh-CN">中文</a>
+    
+    <button type="button" class="outline-toggle" aria-controls="manual-outline" aria-expanded="false" aria-label="Open page contents"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M9 5h12M9 12h12M9 19h12M3 5h1M3 12h1M3 19h1"/></svg></button>
+    
+  </header>
+  <button class="sidebar-backdrop" type="button" aria-label="Close navigation" tabindex="-1"></button>
+  <aside class="manual-sidebar" id="manual-sidebar">
+    <a class="manual-brand" href="../../index.html"><img class="brand-logo" src="../../assets/Logo.png" alt="Forge"><span>Forge<span class="brand-subtitle">Manual</span></span></a>
+    <form class="sidebar-search" action="../../search.html" role="search">
+      <input type="hidden" name="lang" value="en">
+      <span aria-hidden="true">⌕</span><input type="search" name="q" placeholder="Search manual" aria-label="Search manual">
+    </form>
+    <nav class="chapter-nav" aria-label="Chapter navigation">
+      
+      
+      <details class="nav-group" data-nav-group="getting-started" data-active="false">
+        <summary class="nav-caption">Getting started</summary>
+        
+        <ul><li><a href="../../index.html">About Forge</a></li><li><a href="../installation.html">Installation Forge</a></li><li><a href="../preferences.html">Config Forge</a></li><li><a href="../development.html">Development Forge</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="examples" data-active="false">
+        <summary class="nav-caption">Examples</summary>
+        
+        <ul><li><a href="../examples.html">Case studies</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="manual" data-active="false">
+        <summary class="nav-caption">User manual</summary>
+        
+        <details class="nav-group nav-subgroup" data-nav-group="manual-contents" data-active="false">
+          <summary class="nav-caption nav-subcaption">Contents</summary>
+          <ul><li><a href="../forge_docs.html">Overview</a></li><li><a href="../forge_docs/00_ui_overview.html">0. UI overview and common operations</a></li><li><a href="../forge_docs/01_mcp_server.html">1. MCP service</a></li><li><a href="../forge_docs/02_global_and_general.html">2. Global and General</a></li><li><a href="../forge_docs/03_geometry_and_material.html">3. Geometry and Material</a></li><li><a href="../forge_docs/04_kinematics.html">4. Kinematics and Instance</a></li><li><a href="../forge_docs/05_hardware.html">5. Hardware</a></li><li><a href="../forge_docs/06_meta_elements.html">6. Meta Elements</a></li><li><a href="../forge_docs/07_properties.html">7. Properties editing</a></li><li><a href="../forge_docs/08_import_export.html">8. Import and Export</a></li><li><a href="../forge_docs/09_coacd.html">9. CoACD convex decomposition</a></li><li><a href="../forge_docs/10_troubleshooting_and_scripting.html">10. Troubleshooting and scripting</a></li></ul>
+        </details>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="mcp-reference" data-active="false">
+        <summary class="nav-caption">MCP reference</summary>
+        
+        <ul><li><a href="../../reference/MCP_INSTALL.html">Forge MCP Setup and Connection</a></li><li><a href="../../reference/mcp-server/index.html">Forge MCP Server Reference</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="mcp-skills" data-active="true" open>
+        <summary class="nav-caption">MCP Skills</summary>
+        
+        <ul><li><a href="../mcp_skills.html">Overview</a></li><li><a href="forge_create.html">Forge create</a></li><li><a href="forge_modify.html">Forge modify</a></li><li><a href="forge_custom_material.html" class="active" aria-current="page">Forge custom material</a></li><li><a href="forge_operators.html">Forge operators</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="documentation" data-active="false">
+        <summary class="nav-caption">Documentation</summary>
+        
+        <ul><li><a href="../preview.html">Local preview</a></li></ul>
+        
+      </details>
+      
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-controls">
+        
+<button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Switch to dark theme">
+  <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg>
+  <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+  <span class="theme-label">Light theme</span>
+</button>
+
+        <details class="language-switch">
+          <summary><span aria-hidden="true">◎</span> English <span aria-hidden="true">⌃</span></summary>
+          <div class="language-options">
+            <a href="../../cn/mcp_skills/forge_custom_material.html" lang="zh-CN">简体中文</a>
+            <a href="forge_custom_material.html" lang="en" aria-current="true">English ✓</a>
+          </div>
+        </details>
+      </div>
+      <nav class="project-links" aria-label="Project links">
+        <a class="project-link" href="https://github.com/Motphys/motrix-forge" target="_blank" rel="noopener noreferrer" title="Open GitHub in a new tab">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.68.08-.68 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.56 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.43.11-2.98 0 0 .95-.3 3.1 1.15a10.8 10.8 0 0 1 5.63 0c2.15-1.45 3.09-1.15 3.09-1.15.62 1.55.23 2.7.12 2.98.72.79 1.16 1.79 1.16 3.02 0 4.32-2.64 5.27-5.15 5.55.4.35.76 1.03.76 2.08v3.1c0 .3.2.65.78.54A11.25 11.25 0 0 0 12 .75Z"/></svg>
+          <span>GitHub</span>
+        </a>
+        <a class="project-link" href="https://www.motphys.com/" target="_blank" rel="noopener noreferrer" title="Open the Motphys website in a new tab">
+          <svg class="website-logo" width="24" height="24" viewBox="0 0 128 128" fill="currentColor" aria-hidden="true">
+            <polygon points="58.23 49.97 37.73 49.97 33.23 55.57 62.63 55.57 58.23 49.97"/>
+            <path d="M50.13,39.67c-1.1-1.4-3.2-1.4-4.3,0l-3.6,4.6h11.6l-3.6-4.6h-.1Z"/>
+            <path d="M118.13,85.27l-35.8-45.6c-1.1-1.4-3.2-1.4-4.3,0l-14.1,17.8-3.1,3.9H28.83l-4.5,5.7h32.2l-4.5,5.7H19.93l-4.5,5.7h32.2l-4.5,5.7H10.93l-1,1.3c-1.4,1.8-.1,4.4,2.1,4.4h103.9c2.3,0,3.6-2.6,2.1-4.4h0l.1-.2Z"/>
+          </svg>
+          <span>Website</span>
+        </a>
+      </nav>
+    </div>
+  </aside>
+  <script>
+/* Restore the sidebar synchronously, before revealing its first frame. */
+(() => {
+  "use strict";
+  const root = document.documentElement;
+  try {
+    const navigationKey = "forge-docs-navigation-groups";
+    let state = {};
+    try {
+      const saved = JSON.parse(localStorage.getItem(navigationKey));
+      if (saved && typeof saved === "object" && !Array.isArray(saved)) state = saved;
+    } catch { /* Keep native details usable without storage. */ }
+    const restoreGroups = scope => {
+      scope.querySelectorAll("[data-nav-group]").forEach(group => {
+        if (group.dataset.navRestored) return;
+        group.dataset.navRestored = "true";
+        const id = group.dataset.navGroup;
+        if (group.dataset.active === "true") group.open = true;
+        else if (typeof state[id] === "boolean") group.open = state[id];
+        group.addEventListener("toggle", () => {
+          state[id] = group.open;
+          try { localStorage.setItem(navigationKey, JSON.stringify(state)); } catch { /* Ignore unavailable storage. */ }
+        });
+      });
+    };
+    window.forgeRestoreNavigationGroups = restoreGroups;
+    const nav = document.querySelector(".chapter-nav");
+    if (!nav) return;
+    restoreGroups(nav);
+    const siteRoot = new URL(`${document.body.dataset.baseUrl || "."}/`, location.href).pathname;
+    const scrollKey = `forge-docs-navigation-scroll:${siteRoot}`;
+    try {
+      const saved = sessionStorage.getItem(scrollKey);
+      if (saved !== null && Number.isFinite(Number(saved)) && Number(saved) >= 0) nav.scrollTop = Number(saved);
+    } catch { /* Ignore unavailable storage. */ }
+    const save = () => {
+      try { sessionStorage.setItem(scrollKey, String(nav.scrollTop)); } catch { /* Ignore unavailable storage. */ }
+    };
+    nav.addEventListener("scroll", save, { passive: true });
+    nav.addEventListener("click", save);
+    window.addEventListener("pagehide", save);
+  } finally {
+    root.classList.remove("navigation-pending");
+  }
+})();
+</script>
+  <div class="manual-layout">
+    <main id="main-content" class="manual-main" tabindex="-1">
+      <div class="page-header">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../../index.html">Forge Manual</a><span aria-hidden="true"> / </span><span>Forge custom material</span></nav>
+      </div>
+      <article class="manual-article" lang="en">
+        <h1 id="forge-custom-material">Forge custom material<a class="headerlink" href="#forge-custom-material" title="Permanent link">&para;</a></h1>
+<p>Create, inspect, or repair a Blender material that follows the custom textured-material node contract documented by the Forge material workflow.</p>
+<h2 id="when-this-skill-applies">When this skill applies<a class="headerlink" href="#when-this-skill-applies" title="Permanent link">&para;</a></h2>
+<p>Use this guide when a Forge <code>VISUAL</code>, <code>HEIGHT FIELD</code>, or <code>PLANE</code> needs a custom Blender material with texture maps, or when an existing material must be checked before MJCF export. The graph is an authoring contract: keep the four framed branches separate so each branch can be disconnected and replaced by a Principled BSDF parameter when a texture is not needed.</p>
+<p>The material is assigned through the object's first material slot. Do not confuse that slot with Forge geometry properties such as <code>group</code>, <code>friction</code>, or <code>density</code>.</p>
+<h2 id="required-graph">Required graph<a class="headerlink" href="#required-graph" title="Permanent link">&para;</a></h2>
+<p>Build one <code>ShaderNodeOutputMaterial</code> and one <code>ShaderNodeBsdfPrincipled</code>. Keep the Principled node's <code>name</code> set to exactly <code>Principled BSDF</code>, because the Forge exporter resolves this node by name. Connect the BSDF to the Output <code>Surface</code>. Use one <code>ShaderNodeTexCoord</code> and one <code>ShaderNodeMapping</code> as the shared coordinate source:</p>
+<div class="codehilite"><pre><span></span><code>Texture Coordinate (UV) -&gt; Mapping (Vector)
+                             ├-&gt; albedo Image Texture (Vector)
+                             ├-&gt; ARM Image Texture (Vector)
+                             ├-&gt; normal Image Texture (Vector)
+                             └-&gt; emission Image Texture (Vector)
+</code></pre></div>
+
+<p>The reference Mapping node is <code>Type: Point</code>, <code>Location: (0, 0, 0)</code>, <code>Rotation: (0°, 0°, 0°)</code>, and <code>Scale: (1, 1, 1)</code>. Use the UV output for ordinary mesh assets. If the asset intentionally uses generated/object coordinates, keep that choice consistent for every image branch.</p>
+<h3 id="base-color-branch-orange-frame">Base Color branch (orange frame)<a class="headerlink" href="#base-color-branch-orange-frame" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Image Texture for the albedo/base-color map. Use the image's native color data as <code>sRGB</code>.</li>
+<li>Feed its <code>Color</code> to a <code>ShaderNodeMix</code> configured with <code>data_type = "RGBA"</code>, <code>blend_type = "MULTIPLY"</code>, and <code>Factor = 1.0</code>; keep the other color input (<code>B</code>) white (<code>(1, 1, 1, 1)</code>).</li>
+<li>Connect the multiply result to Principled BSDF <code>Base Color</code>.</li>
+<li>If no albedo map is required, disconnect this branch and set the BSDF <code>Base Color</code> directly; do not leave a dead texture link that claims a texture dependency.</li>
+</ul>
+<h3 id="alpha-branch-conditional">Alpha branch (conditional)<a class="headerlink" href="#alpha-branch-conditional" title="Permanent link">&para;</a></h3>
+<p>Alpha is linked only when the material's intended use requires transparency. Decide this from the material usage, not from Blender's <code>surface_render_method</code> or <code>blend_method</code> properties. Use an explicit usage decision such as:</p>
+<ul>
+<li><code>OPAQUE</code>: no Alpha link;</li>
+<li><code>SEMITRANSPARENT</code>: create the Alpha link;</li>
+<li><code>MASK_CLIP</code>: create the Alpha link.</li>
+</ul>
+<p>For <code>SEMITRANSPARENT</code> or <code>MASK_CLIP</code>, the source color layer must be <code>rgba</code>; an <code>rgb</code> layer must not create an Alpha link. Opaque materials, hashed/dithered-only materials, and the importer's direct <code>material.texture</code> path do not get a synthesized Alpha link. The material-usage decision is the gate; the <code>rgba</code> role only confirms that an alpha source exists.</p>
+<ul>
+<li>Keep the material's base alpha value as the second input of a <code>ShaderNodeMath</code> set to <code>MULTIPLY</code> with clamping enabled (the importer uses the linear material alpha; the default is <code>1.0</code>).</li>
+<li>Connect the RGBA color Image Texture <code>Alpha</code> output to the Math node's first input, then connect the Math result to Principled BSDF <code>Alpha</code>.</li>
+<li>When there is no RGBA layer, leave Principled <code>Alpha</code> unlinked and use its direct scalar value. If an explicit material <code>rgba</code> parameter has an alpha below <code>1.0</code>, set that direct value even when no texture is present.</li>
+<li>Do not infer alpha from an RGB image, ARM, normal, or emission map. The branch is opt-in and must be disconnected when the material is opaque or its source is absent.</li>
+</ul>
+<h3 id="arm-branch-green-frame">ARM branch (green frame)<a class="headerlink" href="#arm-branch-green-frame" title="Permanent link">&para;</a></h3>
+<p>ARM is a packed, non-color texture. Set its Image Texture color space to <code>Non-Color</code> and connect its <code>Color</code> to <code>ShaderNodeSeparateXYZ</code> <code>Vector</code>.</p>
+<ul>
+<li><code>Separate XYZ Y</code> (the packed roughness channel) -&gt; a <code>ShaderNodeMath</code> set to <code>MULTIPLY</code>, with the other value at <code>1.0</code> and clamping enabled -&gt; Principled <code>Roughness</code>.</li>
+<li><code>Separate XYZ Z</code> (the packed metallic channel) -&gt; a second clamped <code>MULTIPLY</code> with the other value at <code>1.0</code> -&gt; Principled <code>Metallic</code>.</li>
+<li><code>Separate XYZ X</code> is the packed ambient-occlusion channel. The reference graph does not connect it to Principled; leave it unconnected unless the intended material workflow explicitly adds AO handling outside the Forge export contract.</li>
+<li>If ARM is absent, disconnect the roughness/metallic links and use the BSDF's direct scalar parameters.</li>
+</ul>
+<p>The multiply nodes are identity controls in the reference (<code>Value = 1.0</code>, <code>Clamp</code> enabled). Preserve them when repairing the reference graph; changing them changes the exported channel values.</p>
+<h3 id="normal-branch-blue-frame">Normal branch (blue frame)<a class="headerlink" href="#normal-branch-blue-frame" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Image Texture for the normal map, color space <code>Non-Color</code>.</li>
+<li>Image <code>Color</code> -&gt; <code>ShaderNodeNormalMap</code> <code>Color</code>.</li>
+<li>Normal Map <code>Strength = 1.0</code>, <code>Space = Tangent</code>.</li>
+<li>Normal Map <code>Normal</code> -&gt; Principled BSDF <code>Normal</code>.</li>
+<li>Without a normal map, disconnect the branch and leave the BSDF <code>Normal</code> input unlinked.</li>
+</ul>
+<h3 id="emission-branch-teal-frame">Emission branch (teal frame)<a class="headerlink" href="#emission-branch-teal-frame" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Image Texture for the emission map. The reference uses <code>sRGB</code>.</li>
+<li>Image <code>Color</code> -&gt; <code>ShaderNodeMix</code> with <code>data_type = "RGBA"</code>, <code>blend_type = "MULTIPLY"</code>, <code>Factor = 1.0</code>, and the other color input (<code>B</code>) white.</li>
+<li>Connect the result to Principled BSDF <code>Emission Color</code>.</li>
+<li>Set Principled <code>Emission Strength</code> to the desired value; the reference image uses <code>10.0</code>.</li>
+<li>Without an emission map, disconnect this branch and use the BSDF's direct emission color/strength.</li>
+</ul>
+<h2 id="reference-defaults">Reference defaults<a class="headerlink" href="#reference-defaults" title="Permanent link">&para;</a></h2>
+<p>The screenshot shows these useful defaults: Principled <code>IOR = 1.5</code>, <code>Alpha = 1.0</code>; image textures use <code>Interpolation: Linear</code>, <code>Projection: Flat</code>, <code>Extension: Repeat</code>, and <code>Single Image</code>; Normal Map <code>Strength = 1.0</code>; Mapping scale <code>(1, 1, 1)</code>. Treat these as reference values, not reasons to overwrite intentional material settings.</p>
+<h2 id="construction-and-repair-rules">Construction and repair rules<a class="headerlink" href="#construction-and-repair-rules" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Inspect the existing material and its first node tree before editing. Reuse image datablocks where possible; do not duplicate images merely to rename nodes.</li>
+<li>Keep one shared Mapping node and fan its Vector output out to every active image branch. A branch may omit the Mapping connection only when it deliberately uses another documented coordinate source.</li>
+<li>Use explicit node types and socket links, not screen coordinates or node labels alone. Labels such as <code>Tex_*_alb</code>, <code>Tex_*_arm</code>, <code>Tex_*_nrm</code>, and <code>*_Emissive</code> are helpful conventions but are not substitutes for links.</li>
+<li>Set texture color space by data meaning: albedo/emission are <code>sRGB</code>; ARM/normal are <code>Non-Color</code>.</li>
+<li>Preserve the four branch boundaries (Base Color, ARM, Normal, Emission). Each branch can be replaced by a direct Principled input when its map is unavailable.</li>
+<li>Validate every link after construction: Output Surface, Base Color, Roughness, Metallic, Normal, and Emission Color must resolve to the intended sockets; verify image paths exist and the material is in the object's first slot.</li>
+<li>A pure-parameter material is valid: no texture needs to be connected to Principled when direct BSDF values are intended. If no tiling is needed, the Mapping node may be omitted from the image vectors.</li>
+<li>Before export, ensure the graph still matches this contract. The Forge documentation warns that an incompatible custom graph can cause export failure; report unsupported node conversions instead of silently approximating them.</li>
+</ol>
+<h2 id="minimal-blender-python-skeleton">Minimal Blender Python skeleton<a class="headerlink" href="#minimal-blender-python-skeleton" title="Permanent link">&para;</a></h2>
+<p>Use this as a construction pattern, adapting image loading and material values to the asset. It deliberately leaves the ARM X/AO output unconnected, matching the reference image, and only adds the Alpha link when the material usage is <code>SEMITRANSPARENT</code> or <code>MASK_CLIP</code> and the color layer role is <code>rgba</code>.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">bpy</span>
+
+<span class="n">mat</span> <span class="o">=</span> <span class="n">bpy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">materials</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">"Custom_Material"</span><span class="p">)</span>
+<span class="n">mat</span><span class="o">.</span><span class="n">use_nodes</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">nt</span> <span class="o">=</span> <span class="n">mat</span><span class="o">.</span><span class="n">node_tree</span>
+<span class="n">nt</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+<span class="n">out</span> <span class="o">=</span> <span class="n">nt</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">"ShaderNodeOutputMaterial"</span><span class="p">)</span>
+<span class="n">bsdf</span> <span class="o">=</span> <span class="n">nt</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">"ShaderNodeBsdfPrincipled"</span><span class="p">)</span>
+<span class="n">bsdf</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">"Principled BSDF"</span>
+<span class="n">texcoord</span> <span class="o">=</span> <span class="n">nt</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">"ShaderNodeTexCoord"</span><span class="p">)</span>
+<span class="n">mapping</span> <span class="o">=</span> <span class="n">nt</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">"ShaderNodeMapping"</span><span class="p">)</span>
+<span class="n">mapping</span><span class="o">.</span><span class="n">vector_type</span> <span class="o">=</span> <span class="s2">"POINT"</span>
+<span class="n">mapping</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s2">"Scale"</span><span class="p">]</span><span class="o">.</span><span class="n">default_value</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">nt</span><span class="o">.</span><span class="n">links</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">texcoord</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s2">"UV"</span><span class="p">],</span> <span class="n">mapping</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s2">"Vector"</span><span class="p">])</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">image_node</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">non_color</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="n">nt</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">"ShaderNodeTexImage"</span><span class="p">)</span>
+    <span class="n">node</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">image</span>
+    <span class="n">node</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">label</span>
+    <span class="n">node</span><span class="o">.</span><span class="n">interpolation</span> <span class="o">=</span> <span class="s2">"Linear"</span>
+    <span class="n">node</span><span class="o">.</span><span class="n">projection</span> <span class="o">=</span> <span class="s2">"FLAT"</span>
+    <span class="n">node</span><span class="o">.</span><span class="n">extension</span> <span class="o">=</span> <span class="s2">"REPEAT"</span>
+    <span class="n">image</span><span class="o">.</span><span class="n">colorspace_settings</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">"Non-Color"</span> <span class="k">if</span> <span class="n">non_color</span> <span class="k">else</span> <span class="s2">"sRGB"</span>
+    <span class="n">nt</span><span class="o">.</span><span class="n">links</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mapping</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s2">"Vector"</span><span class="p">],</span> <span class="n">node</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s2">"Vector"</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">node</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">color_multiply</span><span class="p">(</span><span class="n">label</span><span class="p">):</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="n">nt</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">"ShaderNodeMix"</span><span class="p">)</span>
+    <span class="n">node</span><span class="o">.</span><span class="n">data_type</span> <span class="o">=</span> <span class="s2">"RGBA"</span>
+    <span class="n">node</span><span class="o">.</span><span class="n">blend_type</span> <span class="o">=</span> <span class="s2">"MULTIPLY"</span>
+    <span class="n">node</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s2">"Factor"</span><span class="p">]</span><span class="o">.</span><span class="n">default_value</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">node</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s2">"B"</span><span class="p">]</span><span class="o">.</span><span class="n">default_value</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">node</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">label</span>
+    <span class="k">return</span> <span class="n">node</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">value_multiply</span><span class="p">(</span><span class="n">label</span><span class="p">):</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="n">nt</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">"ShaderNodeMath"</span><span class="p">)</span>
+    <span class="n">node</span><span class="o">.</span><span class="n">operation</span> <span class="o">=</span> <span class="s2">"MULTIPLY"</span>
+    <span class="n">node</span><span class="o">.</span><span class="n">use_clamp</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">node</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">default_value</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">node</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">label</span>
+    <span class="k">return</span> <span class="n">node</span>
+
+
+<span class="c1"># Supply Image datablocks (or None for a direct BSDF parameter) before running</span>
+<span class="c1"># this block, for example: albedo_image = bpy.data.images.get("wood_alb.png").</span>
+<span class="c1"># A None value leaves that branch unlinked and uses the BSDF parameter instead.</span>
+<span class="c1"># Replace these placeholders with the appropriate Image datablocks.</span>
+<span class="n">albedo_image</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">arm_image</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">normal_image</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">emission_image</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">color_layer_role</span> <span class="o">=</span> <span class="s2">"rgb"</span>    <span class="c1"># use "rgba" only when the source layer explicitly carries alpha</span>
+<span class="n">material_usage</span> <span class="o">=</span> <span class="s2">"OPAQUE"</span>   <span class="c1"># or "SEMITRANSPARENT" / "MASK_CLIP"</span>
+<span class="n">base_alpha</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">bsdf</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s2">"Alpha"</span><span class="p">]</span><span class="o">.</span><span class="n">default_value</span> <span class="o">=</span> <span class="n">base_alpha</span>
+<span class="n">alb</span> <span class="o">=</span> <span class="n">image_node</span><span class="p">(</span><span class="n">albedo_image</span><span class="p">,</span> <span class="s2">"Tex_material_alb"</span><span class="p">)</span> <span class="k">if</span> <span class="n">albedo_image</span> <span class="k">else</span> <span class="kc">None</span>
+<span class="n">arm</span> <span class="o">=</span> <span class="n">image_node</span><span class="p">(</span><span class="n">arm_image</span><span class="p">,</span> <span class="s2">"Tex_material_arm"</span><span class="p">,</span> <span class="n">non_color</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">if</span> <span class="n">arm_image</span> <span class="k">else</span> <span class="kc">None</span>
+<span class="n">nrm</span> <span class="o">=</span> <span class="n">image_node</span><span class="p">(</span><span class="n">normal_image</span><span class="p">,</span> <span class="s2">"Tex_material_nrm"</span><span class="p">,</span> <span class="n">non_color</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">if</span> <span class="n">normal_image</span> <span class="k">else</span> <span class="kc">None</span>
+<span class="n">emi</span> <span class="o">=</span> <span class="n">image_node</span><span class="p">(</span><span class="n">emission_image</span><span class="p">,</span> <span class="s2">"Tex_material_emission"</span><span class="p">)</span> <span class="k">if</span> <span class="n">emission_image</span> <span class="k">else</span> <span class="kc">None</span>
+
+<span class="k">if</span> <span class="n">alb</span><span class="p">:</span>
+    <span class="n">alb_mix</span> <span class="o">=</span> <span class="n">color_multiply</span><span class="p">(</span><span class="s2">"Base Color Multiply"</span><span class="p">)</span>
+    <span class="n">nt</span><span class="o">.</span><span class="n">links</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">alb</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s2">"Color"</span><span class="p">],</span> <span class="n">alb_mix</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s2">"A"</span><span class="p">])</span>
+    <span class="n">nt</span><span class="o">.</span><span class="n">links</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">alb_mix</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s2">"Result"</span><span class="p">],</span> <span class="n">bsdf</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s2">"Base Color"</span><span class="p">])</span>
+    <span class="n">alpha_required</span> <span class="o">=</span> <span class="n">color_layer_role</span> <span class="o">==</span> <span class="s2">"rgba"</span> <span class="ow">and</span> <span class="n">material_usage</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">"SEMITRANSPARENT"</span><span class="p">,</span> <span class="s2">"MASK_CLIP"</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">alpha_required</span><span class="p">:</span>
+        <span class="n">alpha_mul</span> <span class="o">=</span> <span class="n">value_multiply</span><span class="p">(</span><span class="s2">"Alpha Multiply"</span><span class="p">)</span>
+        <span class="n">alpha_mul</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">default_value</span> <span class="o">=</span> <span class="n">base_alpha</span>
+        <span class="n">nt</span><span class="o">.</span><span class="n">links</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">alb</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s2">"Alpha"</span><span class="p">],</span> <span class="n">alpha_mul</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">nt</span><span class="o">.</span><span class="n">links</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">alpha_mul</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s2">"Value"</span><span class="p">],</span> <span class="n">bsdf</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s2">"Alpha"</span><span class="p">])</span>
+
+<span class="k">if</span> <span class="n">arm</span><span class="p">:</span>
+    <span class="n">sep</span> <span class="o">=</span> <span class="n">nt</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">"ShaderNodeSeparateXYZ"</span><span class="p">)</span>
+    <span class="n">rough_mul</span> <span class="o">=</span> <span class="n">value_multiply</span><span class="p">(</span><span class="s2">"ARM Roughness Multiply"</span><span class="p">)</span>
+    <span class="n">metal_mul</span> <span class="o">=</span> <span class="n">value_multiply</span><span class="p">(</span><span class="s2">"ARM Metallic Multiply"</span><span class="p">)</span>
+    <span class="n">nt</span><span class="o">.</span><span class="n">links</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">arm</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s2">"Color"</span><span class="p">],</span> <span class="n">sep</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s2">"Vector"</span><span class="p">])</span>
+    <span class="n">nt</span><span class="o">.</span><span class="n">links</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">sep</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s2">"Y"</span><span class="p">],</span> <span class="n">rough_mul</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">nt</span><span class="o">.</span><span class="n">links</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">sep</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s2">"Z"</span><span class="p">],</span> <span class="n">metal_mul</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">nt</span><span class="o">.</span><span class="n">links</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">rough_mul</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s2">"Value"</span><span class="p">],</span> <span class="n">bsdf</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s2">"Roughness"</span><span class="p">])</span>
+    <span class="n">nt</span><span class="o">.</span><span class="n">links</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">metal_mul</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s2">"Value"</span><span class="p">],</span> <span class="n">bsdf</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s2">"Metallic"</span><span class="p">])</span>
+
+<span class="k">if</span> <span class="n">nrm</span><span class="p">:</span>
+    <span class="n">normal</span> <span class="o">=</span> <span class="n">nt</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">"ShaderNodeNormalMap"</span><span class="p">)</span>
+    <span class="n">normal</span><span class="o">.</span><span class="n">space</span> <span class="o">=</span> <span class="s2">"TANGENT"</span>
+    <span class="n">normal</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s2">"Strength"</span><span class="p">]</span><span class="o">.</span><span class="n">default_value</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">nt</span><span class="o">.</span><span class="n">links</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">nrm</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s2">"Color"</span><span class="p">],</span> <span class="n">normal</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s2">"Color"</span><span class="p">])</span>
+    <span class="n">nt</span><span class="o">.</span><span class="n">links</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">normal</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s2">"Normal"</span><span class="p">],</span> <span class="n">bsdf</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s2">"Normal"</span><span class="p">])</span>
+
+<span class="k">if</span> <span class="n">emi</span><span class="p">:</span>
+    <span class="n">emi_mix</span> <span class="o">=</span> <span class="n">color_multiply</span><span class="p">(</span><span class="s2">"Emission Multiply"</span><span class="p">)</span>
+    <span class="n">nt</span><span class="o">.</span><span class="n">links</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">emi</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s2">"Color"</span><span class="p">],</span> <span class="n">emi_mix</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s2">"A"</span><span class="p">])</span>
+    <span class="n">emission_input</span> <span class="o">=</span> <span class="n">bsdf</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"Emission Color"</span><span class="p">)</span> <span class="ow">or</span> <span class="n">bsdf</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"Emission"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">emission_input</span><span class="p">:</span>
+        <span class="n">nt</span><span class="o">.</span><span class="n">links</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">emi_mix</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s2">"Result"</span><span class="p">],</span> <span class="n">emission_input</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">bsdf</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"Emission Strength"</span><span class="p">):</span>
+        <span class="n">bsdf</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s2">"Emission Strength"</span><span class="p">]</span><span class="o">.</span><span class="n">default_value</span> <span class="o">=</span> <span class="mf">10.0</span>
+
+<span class="n">nt</span><span class="o">.</span><span class="n">links</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">bsdf</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s2">"BSDF"</span><span class="p">],</span> <span class="n">out</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s2">"Surface"</span><span class="p">])</span>
+
+<span class="c1"># Replace this placeholder with the requested Forge VISUAL, HFIELD, or PLANE.</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">bpy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">objects</span><span class="p">[</span><span class="s2">"Visual"</span><span class="p">]</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">target</span><span class="o">.</span><span class="n">material_slots</span><span class="p">:</span>
+    <span class="n">target</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">materials</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">target</span><span class="o">.</span><span class="n">material_slots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">link</span> <span class="o">=</span> <span class="s2">"OBJECT"</span>
+<span class="n">target</span><span class="o">.</span><span class="n">material_slots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">material</span> <span class="o">=</span> <span class="n">mat</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"object"</span><span class="p">:</span> <span class="n">target</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">"material"</span><span class="p">:</span> <span class="n">mat</span><span class="o">.</span><span class="n">name</span><span class="p">}</span>
+</code></pre></div>
+
+<p>When modifying an existing material, prefer preserving its material name and image assignments. After editing, inspect the node links and save/export only to the user-specified destination.</p>
+      </article>
+      
+      <nav class="page-navigation" aria-label="Page navigation">
+        <a class="previous-page" href="forge_modify.html"><span>← Previous</span><strong>Forge modify</strong></a>
+        <a class="next-page" href="forge_operators.html"><span>Next →</span><strong>Forge operators</strong></a>
+      </nav>
+      
+      <footer class="manual-footer">Forge · Blender add-on documentation</footer>
+    </main>
+    
+    <aside class="page-outline" id="manual-outline" aria-label="On this page" tabindex="-1">
+      <div class="outline-heading"><p>On this page</p><button class="outline-close" type="button" aria-label="Close page contents">×</button></div>
+      
+<ul>
+  
+  <li><a href="#when-this-skill-applies">When this skill applies</a>
+    
+  </li>
+  
+  <li><a href="#required-graph">Required graph</a>
+    
+<ul>
+  
+  <li><a href="#base-color-branch-orange-frame">Base Color branch (orange frame)</a>
+    
+  </li>
+  
+  <li><a href="#alpha-branch-conditional">Alpha branch (conditional)</a>
+    
+  </li>
+  
+  <li><a href="#arm-branch-green-frame">ARM branch (green frame)</a>
+    
+  </li>
+  
+  <li><a href="#normal-branch-blue-frame">Normal branch (blue frame)</a>
+    
+  </li>
+  
+  <li><a href="#emission-branch-teal-frame">Emission branch (teal frame)</a>
+    
+  </li>
+  
+</ul>
+
+  </li>
+  
+  <li><a href="#reference-defaults">Reference defaults</a>
+    
+  </li>
+  
+  <li><a href="#construction-and-repair-rules">Construction and repair rules</a>
+    
+  </li>
+  
+  <li><a href="#minimal-blender-python-skeleton">Minimal Blender Python skeleton</a>
+    
+  </li>
+  
+</ul>
+
+    </aside>
+    
+  </div>
+  <dialog class="image-preview" id="image-preview" aria-label="Image preview">
+    <form method="dialog" class="image-preview-close"><button type="submit" aria-label="Close image preview" autofocus>×</button></form>
+    <img class="image-preview-image" alt="">
+  </dialog>
+  <script>var base_url = document.body.dataset.baseUrl;</script>
+  <script src="../../assets/javascripts/image-preview.js"></script><script src="../../assets/javascripts/case-videos.js"></script><script src="../../search/main.js"></script><script src="../../assets/javascripts/manual.js"></script>
+</body>
+</html>

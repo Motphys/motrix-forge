@@ -1,0 +1,361 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Forge Blender add-on documentation · Forge 插件使用文档">
+  <link rel="icon" href="../../assets/favicon.ico" type="image/x-icon">
+  <script>
+    document.documentElement.classList.add("navigation-pending");
+    document.addEventListener("DOMContentLoaded", () => document.documentElement.classList.remove("navigation-pending"), { once: true });
+  </script>
+  <title>Forge MCP Server Reference — Forge Manual</title>
+  <script src="../../assets/javascripts/theme.js"></script>
+  <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+  <link rel="alternate" hreflang="zh-CN" href="README.zh-CN.html">
+</head>
+<body data-base-url="../..">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="mobile-header">
+    <button type="button" class="menu-toggle" aria-controls="manual-sidebar" aria-expanded="false" aria-label="Open navigation">☰</button>
+    <a href="../../index.html">Forge <span>Manual</span></a>
+    
+<button type="button" class="theme-toggle theme-toggle-compact" data-theme-toggle aria-pressed="false" aria-label="Switch to dark theme">
+  <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg>
+  <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+  <span class="theme-label">Light theme</span>
+</button>
+
+    <a href="README.zh-CN.html" lang="zh-CN">中文</a>
+    
+    <button type="button" class="outline-toggle" aria-controls="manual-outline" aria-expanded="false" aria-label="Open page contents"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M9 5h12M9 12h12M9 19h12M3 5h1M3 12h1M3 19h1"/></svg></button>
+    
+  </header>
+  <button class="sidebar-backdrop" type="button" aria-label="Close navigation" tabindex="-1"></button>
+  <aside class="manual-sidebar" id="manual-sidebar">
+    <a class="manual-brand" href="../../index.html"><img class="brand-logo" src="../../assets/Logo.png" alt="Forge"><span>Forge<span class="brand-subtitle">Manual</span></span></a>
+    <form class="sidebar-search" action="../../search.html" role="search">
+      <input type="hidden" name="lang" value="en">
+      <span aria-hidden="true">⌕</span><input type="search" name="q" placeholder="Search manual" aria-label="Search manual">
+    </form>
+    <nav class="chapter-nav" aria-label="Chapter navigation">
+      
+      
+      <details class="nav-group" data-nav-group="getting-started" data-active="false">
+        <summary class="nav-caption">Getting started</summary>
+        
+        <ul><li><a href="../../index.html">About Forge</a></li><li><a href="../../en/installation.html">Installation Forge</a></li><li><a href="../../en/preferences.html">Config Forge</a></li><li><a href="../../en/development.html">Development Forge</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="examples" data-active="false">
+        <summary class="nav-caption">Examples</summary>
+        
+        <ul><li><a href="../../en/examples.html">Case studies</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="manual" data-active="false">
+        <summary class="nav-caption">User manual</summary>
+        
+        <details class="nav-group nav-subgroup" data-nav-group="manual-contents" data-active="false">
+          <summary class="nav-caption nav-subcaption">Contents</summary>
+          <ul><li><a href="../../en/forge_docs.html">Overview</a></li><li><a href="../../en/forge_docs/00_ui_overview.html">0. UI overview and common operations</a></li><li><a href="../../en/forge_docs/01_mcp_server.html">1. MCP service</a></li><li><a href="../../en/forge_docs/02_global_and_general.html">2. Global and General</a></li><li><a href="../../en/forge_docs/03_geometry_and_material.html">3. Geometry and Material</a></li><li><a href="../../en/forge_docs/04_kinematics.html">4. Kinematics and Instance</a></li><li><a href="../../en/forge_docs/05_hardware.html">5. Hardware</a></li><li><a href="../../en/forge_docs/06_meta_elements.html">6. Meta Elements</a></li><li><a href="../../en/forge_docs/07_properties.html">7. Properties editing</a></li><li><a href="../../en/forge_docs/08_import_export.html">8. Import and Export</a></li><li><a href="../../en/forge_docs/09_coacd.html">9. CoACD convex decomposition</a></li><li><a href="../../en/forge_docs/10_troubleshooting_and_scripting.html">10. Troubleshooting and scripting</a></li></ul>
+        </details>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="mcp-reference" data-active="true" open>
+        <summary class="nav-caption">MCP reference</summary>
+        
+        <ul><li><a href="../MCP_INSTALL.html">Forge MCP Setup and Connection</a></li><li><a href="index.html" class="active" aria-current="page">Forge MCP Server Reference</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="mcp-skills" data-active="false">
+        <summary class="nav-caption">MCP Skills</summary>
+        
+        <ul><li><a href="../../en/mcp_skills.html">Overview</a></li><li><a href="../../en/mcp_skills/forge_create.html">Forge create</a></li><li><a href="../../en/mcp_skills/forge_modify.html">Forge modify</a></li><li><a href="../../en/mcp_skills/forge_custom_material.html">Forge custom material</a></li><li><a href="../../en/mcp_skills/forge_operators.html">Forge operators</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="documentation" data-active="false">
+        <summary class="nav-caption">Documentation</summary>
+        
+        <ul><li><a href="../../en/preview.html">Local preview</a></li></ul>
+        
+      </details>
+      
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-controls">
+        
+<button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Switch to dark theme">
+  <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg>
+  <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+  <span class="theme-label">Light theme</span>
+</button>
+
+        <details class="language-switch">
+          <summary><span aria-hidden="true">◎</span> English <span aria-hidden="true">⌃</span></summary>
+          <div class="language-options">
+            <a href="README.zh-CN.html" lang="zh-CN">简体中文</a>
+            <a href="index.html" lang="en" aria-current="true">English ✓</a>
+          </div>
+        </details>
+      </div>
+      <nav class="project-links" aria-label="Project links">
+        <a class="project-link" href="https://github.com/Motphys/motrix-forge" target="_blank" rel="noopener noreferrer" title="Open GitHub in a new tab">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.68.08-.68 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.56 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.43.11-2.98 0 0 .95-.3 3.1 1.15a10.8 10.8 0 0 1 5.63 0c2.15-1.45 3.09-1.15 3.09-1.15.62 1.55.23 2.7.12 2.98.72.79 1.16 1.79 1.16 3.02 0 4.32-2.64 5.27-5.15 5.55.4.35.76 1.03.76 2.08v3.1c0 .3.2.65.78.54A11.25 11.25 0 0 0 12 .75Z"/></svg>
+          <span>GitHub</span>
+        </a>
+        <a class="project-link" href="https://www.motphys.com/" target="_blank" rel="noopener noreferrer" title="Open the Motphys website in a new tab">
+          <svg class="website-logo" width="24" height="24" viewBox="0 0 128 128" fill="currentColor" aria-hidden="true">
+            <polygon points="58.23 49.97 37.73 49.97 33.23 55.57 62.63 55.57 58.23 49.97"/>
+            <path d="M50.13,39.67c-1.1-1.4-3.2-1.4-4.3,0l-3.6,4.6h11.6l-3.6-4.6h-.1Z"/>
+            <path d="M118.13,85.27l-35.8-45.6c-1.1-1.4-3.2-1.4-4.3,0l-14.1,17.8-3.1,3.9H28.83l-4.5,5.7h32.2l-4.5,5.7H19.93l-4.5,5.7h32.2l-4.5,5.7H10.93l-1,1.3c-1.4,1.8-.1,4.4,2.1,4.4h103.9c2.3,0,3.6-2.6,2.1-4.4h0l.1-.2Z"/>
+          </svg>
+          <span>Website</span>
+        </a>
+      </nav>
+    </div>
+  </aside>
+  <script>
+/* Restore the sidebar synchronously, before revealing its first frame. */
+(() => {
+  "use strict";
+  const root = document.documentElement;
+  try {
+    const navigationKey = "forge-docs-navigation-groups";
+    let state = {};
+    try {
+      const saved = JSON.parse(localStorage.getItem(navigationKey));
+      if (saved && typeof saved === "object" && !Array.isArray(saved)) state = saved;
+    } catch { /* Keep native details usable without storage. */ }
+    const restoreGroups = scope => {
+      scope.querySelectorAll("[data-nav-group]").forEach(group => {
+        if (group.dataset.navRestored) return;
+        group.dataset.navRestored = "true";
+        const id = group.dataset.navGroup;
+        if (group.dataset.active === "true") group.open = true;
+        else if (typeof state[id] === "boolean") group.open = state[id];
+        group.addEventListener("toggle", () => {
+          state[id] = group.open;
+          try { localStorage.setItem(navigationKey, JSON.stringify(state)); } catch { /* Ignore unavailable storage. */ }
+        });
+      });
+    };
+    window.forgeRestoreNavigationGroups = restoreGroups;
+    const nav = document.querySelector(".chapter-nav");
+    if (!nav) return;
+    restoreGroups(nav);
+    const siteRoot = new URL(`${document.body.dataset.baseUrl || "."}/`, location.href).pathname;
+    const scrollKey = `forge-docs-navigation-scroll:${siteRoot}`;
+    try {
+      const saved = sessionStorage.getItem(scrollKey);
+      if (saved !== null && Number.isFinite(Number(saved)) && Number(saved) >= 0) nav.scrollTop = Number(saved);
+    } catch { /* Ignore unavailable storage. */ }
+    const save = () => {
+      try { sessionStorage.setItem(scrollKey, String(nav.scrollTop)); } catch { /* Ignore unavailable storage. */ }
+    };
+    nav.addEventListener("scroll", save, { passive: true });
+    nav.addEventListener("click", save);
+    window.addEventListener("pagehide", save);
+  } finally {
+    root.classList.remove("navigation-pending");
+  }
+})();
+</script>
+  <div class="manual-layout">
+    <main id="main-content" class="manual-main" tabindex="-1">
+      <div class="page-header">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../../index.html">Forge Manual</a><span aria-hidden="true"> / </span><span>Forge MCP Server Reference</span></nav>
+      </div>
+      <article class="manual-article">
+        <h1 id="forge-mcp-server-reference">Forge MCP Server Reference<a class="headerlink" href="#forge-mcp-server-reference" title="Permanent link">&para;</a></h1>
+<p><a href="README.zh-CN.html">中文说明</a></p>
+<p>This page covers the agent-side MCP Server architecture, environment variables, Skills and document discovery, tool categories, and development. Initial installation, client configuration, startup, and connection troubleshooting live in <a href="../MCP_INSTALL.html">MCP setup and connection</a>.</p>
+<h2 id="runtime-architecture">Runtime architecture<a class="headerlink" href="#runtime-architecture" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code>AI agent ──stdio──&gt; Forge MCP Server ──TCP──&gt; Blender Forge MCP Bridge
+</code></pre></div>
+
+<p>The MCP Server runs beside the agent; the Bridge runs in the Blender process that owns the scene. Scene queries and modeling operations go through the Bridge. Skill reads and documentation searches use files local to the server and do not require Blender to be running. For Blender-side preferences and dependencies, see <a href="../../en/preferences.html">Config Forge</a>.</p>
+<h2 id="client-startup-and-process-management">Client startup and process management<a class="headerlink" href="#client-startup-and-process-management" title="Permanent link">&para;</a></h2>
+<p>After preparing the environment as described in <a href="../MCP_INSTALL.html">setup and connection</a>, use this workflow:</p>
+<ol>
+<li>Enable Forge in Blender and start the <strong>MCP Bridge</strong>.</li>
+<li>Start Claude Code or Codex from the workspace directory containing the client configuration.</li>
+<li>The client reads the workspace configuration, starts and manages Forge MCP Server automatically, and communicates with it over stdio.</li>
+<li>Check the MCP connection status in the client and confirm that <code>forge</code> is connected before running Forge operations.</li>
+</ol>
+<p>After changing environment variables, Skills, or document files, reconnect or restart the MCP server through the client. Restarting only the Blender Bridge does not reload server-side documentation.</p>
+<h2 id="runtime-configuration">Runtime configuration<a class="headerlink" href="#runtime-configuration" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Env var</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FORGE_MCP_HOST</code></td>
+<td><code>localhost</code></td>
+<td>Blender bridge host</td>
+</tr>
+<tr>
+<td><code>FORGE_MCP_PORT</code></td>
+<td><code>9876</code></td>
+<td>Blender bridge port</td>
+</tr>
+<tr>
+<td><code>FORGE_MCP_TOKEN</code></td>
+<td><em>(empty)</em></td>
+<td>Shared bridge token; required when Blender binds outside localhost</td>
+</tr>
+<tr>
+<td><code>FORGE_MCP_TIMEOUT</code></td>
+<td><code>1800</code></td>
+<td>Response timeout in seconds (matches the addon deferred timeout)</td>
+</tr>
+<tr>
+<td><code>FORGE_MCP_SKILL_GATE</code></td>
+<td><code>soft</code></td>
+<td>How the authoring-guide gate behaves: <code>soft</code> runs the operation and attaches a one-time <code>skill_hint</code> naming the guide, <code>strict</code> refuses until the guide is read, <code>off</code> never intervenes</td>
+</tr>
+<tr>
+<td><code>FORGE_SKILLS_DIR</code></td>
+<td><em>(search)</em></td>
+<td>Directory holding the skill <code>.md</code> guides served by <code>forge_skill</code></td>
+</tr>
+<tr>
+<td><code>FORGE_DOCS_DIR</code></td>
+<td><em>(search)</em></td>
+<td>Directory holding the MJCF reference <code>.md</code> files searched by <code>forge_search_docs</code></td>
+</tr>
+<tr>
+<td><code>FORGE_BLENDER_DOCS_DIR</code></td>
+<td><em>(search)</em></td>
+<td>Blender docs root containing <code>api/</code> and <code>manual/</code> RST files (searched recursively)</td>
+</tr>
+<tr>
+<td><code>FORGE_TOOLS</code></td>
+<td><em>(all)</em></td>
+<td>Serve only the listed tool categories / name substrings; <code>readonly</code> keeps just the read-only tools; an invalid non-empty filter fails startup</td>
+</tr>
+</tbody>
+</table>
+<h2 id="skills-and-document-discovery">Skills and document discovery<a class="headerlink" href="#skills-and-document-discovery" title="Permanent link">&para;</a></h2>
+<p>At startup the server loads all <code>*.md</code> guides from the first populated Skills directory (search order: <code>FORGE_SKILLS_DIR</code>, the source-tree <code>forge_mcp/skills/</code>, any legacy <code>skills/</code> directory up the package path, then <code>./skills</code>). A one-line index of the loaded guides is injected as the server instructions, and each guide is served on demand by the <code>forge_skill</code> tool (<code>forge_skill(name="create")</code> / <code>forge_skill(name="modify")</code> / <code>forge_skill(name="operators")</code> / <code>forge_skill(name="custom_material")</code>), so agents discover the guides automatically but only pay the context cost when used. Pass <code>section</code> to fetch a single heading instead of the whole guide (e.g. <code>forge_skill(name="create", section="joint")</code> or <code>forge_skill(name="operators", section="create_sensor")</code>).</p>
+<p>The <code>forge_mcp/docs/mjcf/*.md</code> element reference (same discovery scheme via <code>FORGE_DOCS_DIR</code> / <code>forge_mcp/docs/mjcf</code> on the package path) is loaded into a paragraph-level search index served by <code>forge_search_docs</code>. The same reference is also exposed as MCP <strong>resources</strong> (<code>mjcf://&lt;element&gt;</code> per doc file, <code>mjcf://index</code> for the element hierarchy / path registry) so agents that prefer native resource reads can pull a whole document directly; <code>forge_search_docs</code> remains for keyword search.</p>
+<p>Read <code>forge_skill(name="create")</code> before authoring and <code>forge_skill(name="modify")</code> before editing. Enforcement is controlled by <code>FORGE_MCP_SKILL_GATE</code>: default <code>soft</code> allows the operation and attaches a one-time reading hint after a successful call; <code>strict</code> refuses operations until the required guide has been read. <code>forge_execute</code> uses the same policy for explicit <code>bpy.ops.forge.*</code> calls and <code>Forge_*</code> property writes; ordinary Blender modeling scripts are unaffected by this Forge gate. Tool filters retain <code>forge_skill</code> for operation access. Full authoring rules live in <a href="../../en/mcp_skills.html">MCP Skills</a>.</p>
+<p><code>forge_execute</code> injects <code>bpy</code> and <code>mathutils</code> into the script namespace. Scripts must assign a JSON-serializable dictionary to <code>result</code>, for example <code>result = {"scene": bpy.context.scene.name}</code>.</p>
+<p>Blender RST documentation is loaded recursively from <code>forge_mcp/docs/blender/</code>, including <code>api/</code> and <code>manual/</code>. Discovery checks <code>FORGE_BLENDER_DOCS_DIR</code>, <code>forge_mcp/docs/blender/</code>, <code>docs/blender/</code> along the package's ancestor paths, then <code>./docs/blender/</code>; the first populated directory wins independently of MJCF. Missing Blender documentation is allowed. Restart the server after changing documentation files.</p>
+<p><code>forge_search_docs</code> searches both references by default. Use <code>source="mjcf"</code>, <code>"blender"</code>, <code>"blender_api"</code>, or <code>"blender_manual"</code> to narrow results:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">forge_search_docs</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="s2">"bpy.ops.mesh.bevel"</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s2">"blender_api"</span><span class="p">)</span>
+<span class="n">forge_search_docs</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="s2">"bevel modifier"</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s2">"blender_manual"</span><span class="p">,</span> <span class="n">max_results</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">forge_search_docs</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="s2">"condim"</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s2">"mjcf"</span><span class="p">)</span>
+</code></pre></div>
+
+<p>RST headings and API directives become section breadcrumbs, including fully qualified function/property names. Text, parameter fields and inline code are searchable; presentation metadata is omitted. This text parser does not build Sphinx, execute directives, or expand external includes. Results contain <code>source</code>, <code>path</code> (e.g. <code>blender/api/bpy.ops.mesh.rst</code>, relative to <code>docs/</code>), <code>breadcrumb</code>, <code>text</code>, <code>score</code>, and <code>index</code>; existing MJCF paths stay unchanged. Results are sorted by score and context stays within the matching section. Documentation search requires no running Blender instance.</p>
+<h2 id="tools">Tools<a class="headerlink" href="#tools" title="Permanent link">&para;</a></h2>
+<p><code>forge_mcp.tools</code> registers tools by module:</p>
+<ul>
+<li><code>create.py</code> — <code>forge_create_*</code>: link, inertial, joint, geometry, collider, height_field, plane, site, actuator, tendon, equality, contact, sensor, light, camera, frame, replicate, attach, include, material.</li>
+<li><code>modify.py</code> — <code>forge_define_*</code>: model_type, geometry_type, collider_type, site_type, joint_type, actuator_type; plus define_parent, mark_root_link, mark_instance_link, mesh_check, scale_gizmo_size.</li>
+<li><code>utilities.py</code> — scene_info, batch_rename, set_instance_idname, select_by_tag, select_hulls.</li>
+<li><code>scene.py</code> — generic editing: object_info, measure, scene_config, set_transform, set_shape_size, set_property, set_scene_property, set_tendon_targets, rename, delete, execute.</li>
+<li><code>geometry.py</code> — <code>forge_coacd</code>: decompose one Forge <code>VISUAL</code> mesh into new Collider hulls while preserving the source object.</li>
+<li><code>io.py</code> — modal MJCF import/export plus explicit blend-file saving.</li>
+<li><code>capture.py</code> — <code>forge_screenshot</code>: capture an area (default the 3D viewport) or the whole window as a PNG image, with imbuf downsampling to a size budget; <code>layout=True</code> returns the window layout as JSON instead.</li>
+<li><code>blendfile.py</code> — <code>forge_blendfile_summary</code>: path/save status/backups, datablock counts, missing external files, linked libraries (direct vs indirect).</li>
+<li><code>docs.py</code> — <code>forge_search_docs</code>: ranked full-text search over the bundled MJCF element reference and local Blender RST API/manual.</li>
+<li><code>skill.py</code> — <code>forge_skill</code>: return the full text of an auto-loaded <code>skills/*.md</code> authoring guide, or a single section via <code>section</code> (<code>forge_skill(name="create", section="joint")</code>); unknown / ambiguous section names raise listing the available ones.</li>
+</ul>
+<p>Tools are annotated with MCP <code>ToolAnnotations</code> (<code>tools/_hints.py</code>): read-only hints on query tools, destructive hints on recursive delete, arbitrary execute, MJCF import, CoACD and blend-file saving.</p>
+<p>Every op tool (<code>create</code> / <code>modify</code> / op wrappers in <code>utilities</code>) accepts <code>select: list[str]</code> — object names that replace the Blender selection before the operator runs (order matters, first becomes active; <code>null</code> keeps the current selection). Results include <code>created</code>: names of new scene objects, so generated names never need guessing.</p>
+<p>Conventions worth knowing (learned building a Newton's cradle end-to-end):</p>
+<ul>
+<li>A joint's exported rotation axis is its <strong>local +Z in parent space</strong> — rotate the joint object so its Z points along the desired world axis.</li>
+<li>Shape sizes are <strong>local</strong> to the parent (a child link's local frame differs from world) — check with <code>forge_measure</code> (world bboxes) after editing.</li>
+<li><code>mesh_check</code> ignores boundary-only point-point, point-edge, point-face, edge-edge, and edge-face contact when incident geometry does not cross the other mesh. A coplanar shared face is also valid when its plane separates both complete objects, independent of winding; non-separating coplanar overlap and actual crossings remain intersections. Valid contact needs no epsilon gap.</li>
+<li>Blender silently suffixes name collisions (<code>.001</code>) — including with orphaned (out-of-scene) datablocks; <code>forge_rename</code> refuses instead.</li>
+<li><code>Forge_Model_Type</code> is stored as an enum <strong>index</strong>; tools resolve it to names (<code>LINK</code>, <code>JOINT</code>, ...).</li>
+</ul>
+<p>Note: <code>bpy.ops.forge.properties_*</code> popup dialogs are UI-only and ineffective for agents — parameters are changed via direct property access (<code>obj.Forge_&lt;Type&gt;.&lt;property&gt;</code>) and shape / gizmo sizes via <code>obj.modifiers[...]</code>.</p>
+<h2 id="development-and-tests">Development and tests<a class="headerlink" href="#development-and-tests" title="Permanent link">&para;</a></h2>
+<p>From the full repository root:</p>
+<div class="codehilite"><pre><span></span><code>uv<span class="w"> </span>sync
+uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>tests/mcp/unit<span class="w"> </span>tests/mcp/integration
+</code></pre></div>
+
+<p><code>uv sync</code> installs <code>forge-mcp</code> in editable mode into the root <code>.venv</code>, alongside add-on test dependencies. <code>uv sync --all-packages</code> is also supported. End-to-end tests require Blender; see <a href="../../en/development.html">Development Forge</a>.</p>
+<p>For server-package development in an independent source directory:</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>mcp-server
+uv<span class="w"> </span>venv<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.11
+uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--editable<span class="w"> </span>.
+</code></pre></div>
+
+<p>Keep <code>forge_mcp/skills/</code> and <code>forge_mcp/docs/</code> with the source. Installer and client startup instructions are maintained only in <a href="../MCP_INSTALL.html">setup and connection</a>.</p>
+      </article>
+      
+      <nav class="page-navigation" aria-label="Page navigation">
+        <a class="previous-page" href="../MCP_INSTALL.html"><span>← Previous</span><strong>Forge MCP Setup and Connection</strong></a>
+        
+      </nav>
+      
+      <footer class="manual-footer">Forge · Blender add-on documentation</footer>
+    </main>
+    
+    <aside class="page-outline" id="manual-outline" aria-label="On this page" tabindex="-1">
+      <div class="outline-heading"><p>On this page</p><button class="outline-close" type="button" aria-label="Close page contents">×</button></div>
+      
+<ul>
+  
+  <li><a href="#runtime-architecture">Runtime architecture</a>
+    
+  </li>
+  
+  <li><a href="#client-startup-and-process-management">Client startup and process management</a>
+    
+  </li>
+  
+  <li><a href="#runtime-configuration">Runtime configuration</a>
+    
+  </li>
+  
+  <li><a href="#skills-and-document-discovery">Skills and document discovery</a>
+    
+  </li>
+  
+  <li><a href="#tools">Tools</a>
+    
+  </li>
+  
+  <li><a href="#development-and-tests">Development and tests</a>
+    
+  </li>
+  
+</ul>
+
+    </aside>
+    
+  </div>
+  <dialog class="image-preview" id="image-preview" aria-label="Image preview">
+    <form method="dialog" class="image-preview-close"><button type="submit" aria-label="Close image preview" autofocus>×</button></form>
+    <img class="image-preview-image" alt="">
+  </dialog>
+  <script>var base_url = document.body.dataset.baseUrl;</script>
+  <script src="../../assets/javascripts/image-preview.js"></script><script src="../../assets/javascripts/case-videos.js"></script><script src="../../search/main.js"></script><script src="../../assets/javascripts/manual.js"></script>
+</body>
+</html>

@@ -1,0 +1,615 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Forge Blender add-on documentation · Forge 插件使用文档">
+  <link rel="icon" href="../../assets/favicon.ico" type="image/x-icon">
+  <script>
+    document.documentElement.classList.add("navigation-pending");
+    document.addEventListener("DOMContentLoaded", () => document.documentElement.classList.remove("navigation-pending"), { once: true });
+  </script>
+  <title>Forge modify — Forge Manual</title>
+  <script src="../../assets/javascripts/theme.js"></script>
+  <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+  
+</head>
+<body data-base-url="../..">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="mobile-header">
+    <button type="button" class="menu-toggle" aria-controls="manual-sidebar" aria-expanded="false" aria-label="Open navigation">☰</button>
+    <a href="../../index.html">Forge <span>Manual</span></a>
+    
+<button type="button" class="theme-toggle theme-toggle-compact" data-theme-toggle aria-pressed="false" aria-label="Switch to dark theme">
+  <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg>
+  <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+  <span class="theme-label">Light theme</span>
+</button>
+
+    <a href="../../cn/mcp_skills/forge_modify.html" lang="zh-CN">中文</a>
+    
+    <button type="button" class="outline-toggle" aria-controls="manual-outline" aria-expanded="false" aria-label="Open page contents"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M9 5h12M9 12h12M9 19h12M3 5h1M3 12h1M3 19h1"/></svg></button>
+    
+  </header>
+  <button class="sidebar-backdrop" type="button" aria-label="Close navigation" tabindex="-1"></button>
+  <aside class="manual-sidebar" id="manual-sidebar">
+    <a class="manual-brand" href="../../index.html"><img class="brand-logo" src="../../assets/Logo.png" alt="Forge"><span>Forge<span class="brand-subtitle">Manual</span></span></a>
+    <form class="sidebar-search" action="../../search.html" role="search">
+      <input type="hidden" name="lang" value="en">
+      <span aria-hidden="true">⌕</span><input type="search" name="q" placeholder="Search manual" aria-label="Search manual">
+    </form>
+    <nav class="chapter-nav" aria-label="Chapter navigation">
+      
+      
+      <details class="nav-group" data-nav-group="getting-started" data-active="false">
+        <summary class="nav-caption">Getting started</summary>
+        
+        <ul><li><a href="../../index.html">About Forge</a></li><li><a href="../installation.html">Installation Forge</a></li><li><a href="../preferences.html">Config Forge</a></li><li><a href="../development.html">Development Forge</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="examples" data-active="false">
+        <summary class="nav-caption">Examples</summary>
+        
+        <ul><li><a href="../examples.html">Case studies</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="manual" data-active="false">
+        <summary class="nav-caption">User manual</summary>
+        
+        <details class="nav-group nav-subgroup" data-nav-group="manual-contents" data-active="false">
+          <summary class="nav-caption nav-subcaption">Contents</summary>
+          <ul><li><a href="../forge_docs.html">Overview</a></li><li><a href="../forge_docs/00_ui_overview.html">0. UI overview and common operations</a></li><li><a href="../forge_docs/01_mcp_server.html">1. MCP service</a></li><li><a href="../forge_docs/02_global_and_general.html">2. Global and General</a></li><li><a href="../forge_docs/03_geometry_and_material.html">3. Geometry and Material</a></li><li><a href="../forge_docs/04_kinematics.html">4. Kinematics and Instance</a></li><li><a href="../forge_docs/05_hardware.html">5. Hardware</a></li><li><a href="../forge_docs/06_meta_elements.html">6. Meta Elements</a></li><li><a href="../forge_docs/07_properties.html">7. Properties editing</a></li><li><a href="../forge_docs/08_import_export.html">8. Import and Export</a></li><li><a href="../forge_docs/09_coacd.html">9. CoACD convex decomposition</a></li><li><a href="../forge_docs/10_troubleshooting_and_scripting.html">10. Troubleshooting and scripting</a></li></ul>
+        </details>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="mcp-reference" data-active="false">
+        <summary class="nav-caption">MCP reference</summary>
+        
+        <ul><li><a href="../../reference/MCP_INSTALL.html">Forge MCP Setup and Connection</a></li><li><a href="../../reference/mcp-server/index.html">Forge MCP Server Reference</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="mcp-skills" data-active="true" open>
+        <summary class="nav-caption">MCP Skills</summary>
+        
+        <ul><li><a href="../mcp_skills.html">Overview</a></li><li><a href="forge_create.html">Forge create</a></li><li><a href="forge_modify.html" class="active" aria-current="page">Forge modify</a></li><li><a href="forge_custom_material.html">Forge custom material</a></li><li><a href="forge_operators.html">Forge operators</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="documentation" data-active="false">
+        <summary class="nav-caption">Documentation</summary>
+        
+        <ul><li><a href="../preview.html">Local preview</a></li></ul>
+        
+      </details>
+      
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-controls">
+        
+<button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Switch to dark theme">
+  <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg>
+  <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+  <span class="theme-label">Light theme</span>
+</button>
+
+        <details class="language-switch">
+          <summary><span aria-hidden="true">◎</span> English <span aria-hidden="true">⌃</span></summary>
+          <div class="language-options">
+            <a href="../../cn/mcp_skills/forge_modify.html" lang="zh-CN">简体中文</a>
+            <a href="forge_modify.html" lang="en" aria-current="true">English ✓</a>
+          </div>
+        </details>
+      </div>
+      <nav class="project-links" aria-label="Project links">
+        <a class="project-link" href="https://github.com/Motphys/motrix-forge" target="_blank" rel="noopener noreferrer" title="Open GitHub in a new tab">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.68.08-.68 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.56 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.43.11-2.98 0 0 .95-.3 3.1 1.15a10.8 10.8 0 0 1 5.63 0c2.15-1.45 3.09-1.15 3.09-1.15.62 1.55.23 2.7.12 2.98.72.79 1.16 1.79 1.16 3.02 0 4.32-2.64 5.27-5.15 5.55.4.35.76 1.03.76 2.08v3.1c0 .3.2.65.78.54A11.25 11.25 0 0 0 12 .75Z"/></svg>
+          <span>GitHub</span>
+        </a>
+        <a class="project-link" href="https://www.motphys.com/" target="_blank" rel="noopener noreferrer" title="Open the Motphys website in a new tab">
+          <svg class="website-logo" width="24" height="24" viewBox="0 0 128 128" fill="currentColor" aria-hidden="true">
+            <polygon points="58.23 49.97 37.73 49.97 33.23 55.57 62.63 55.57 58.23 49.97"/>
+            <path d="M50.13,39.67c-1.1-1.4-3.2-1.4-4.3,0l-3.6,4.6h11.6l-3.6-4.6h-.1Z"/>
+            <path d="M118.13,85.27l-35.8-45.6c-1.1-1.4-3.2-1.4-4.3,0l-14.1,17.8-3.1,3.9H28.83l-4.5,5.7h32.2l-4.5,5.7H19.93l-4.5,5.7h32.2l-4.5,5.7H10.93l-1,1.3c-1.4,1.8-.1,4.4,2.1,4.4h103.9c2.3,0,3.6-2.6,2.1-4.4h0l.1-.2Z"/>
+          </svg>
+          <span>Website</span>
+        </a>
+      </nav>
+    </div>
+  </aside>
+  <script>
+/* Restore the sidebar synchronously, before revealing its first frame. */
+(() => {
+  "use strict";
+  const root = document.documentElement;
+  try {
+    const navigationKey = "forge-docs-navigation-groups";
+    let state = {};
+    try {
+      const saved = JSON.parse(localStorage.getItem(navigationKey));
+      if (saved && typeof saved === "object" && !Array.isArray(saved)) state = saved;
+    } catch { /* Keep native details usable without storage. */ }
+    const restoreGroups = scope => {
+      scope.querySelectorAll("[data-nav-group]").forEach(group => {
+        if (group.dataset.navRestored) return;
+        group.dataset.navRestored = "true";
+        const id = group.dataset.navGroup;
+        if (group.dataset.active === "true") group.open = true;
+        else if (typeof state[id] === "boolean") group.open = state[id];
+        group.addEventListener("toggle", () => {
+          state[id] = group.open;
+          try { localStorage.setItem(navigationKey, JSON.stringify(state)); } catch { /* Ignore unavailable storage. */ }
+        });
+      });
+    };
+    window.forgeRestoreNavigationGroups = restoreGroups;
+    const nav = document.querySelector(".chapter-nav");
+    if (!nav) return;
+    restoreGroups(nav);
+    const siteRoot = new URL(`${document.body.dataset.baseUrl || "."}/`, location.href).pathname;
+    const scrollKey = `forge-docs-navigation-scroll:${siteRoot}`;
+    try {
+      const saved = sessionStorage.getItem(scrollKey);
+      if (saved !== null && Number.isFinite(Number(saved)) && Number(saved) >= 0) nav.scrollTop = Number(saved);
+    } catch { /* Ignore unavailable storage. */ }
+    const save = () => {
+      try { sessionStorage.setItem(scrollKey, String(nav.scrollTop)); } catch { /* Ignore unavailable storage. */ }
+    };
+    nav.addEventListener("scroll", save, { passive: true });
+    nav.addEventListener("click", save);
+    window.addEventListener("pagehide", save);
+  } finally {
+    root.classList.remove("navigation-pending");
+  }
+})();
+</script>
+  <div class="manual-layout">
+    <main id="main-content" class="manual-main" tabindex="-1">
+      <div class="page-header">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../../index.html">Forge Manual</a><span aria-hidden="true"> / </span><span>Forge modify</span></nav>
+      </div>
+      <article class="manual-article" lang="en">
+        <h1 id="forge-modify">Forge modify<a class="headerlink" href="#forge-modify" title="Permanent link">&para;</a></h1>
+<p>Modify MJCF model elements with Forge tools.</p>
+<h2 id="general-rules">General rules<a class="headerlink" href="#general-rules" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Specification compliance</strong>: these guides are the authoritative specification of the Forge tool surface — strictly follow the rules, signatures, parameter ranges and workflows documented here. Never read, search or infer behavior from the addon source code (<code>addon/Forge/**</code>); source internals are not part of the interface. Runtime inspection through the MCP tools (<code>forge_object_info</code>, <code>forge_scene_config</code>, ...) is allowed.</li>
+<li><strong>No undocumented operations</strong>: work only through what these guides document. When a needed operation, parameter or enum value has no documented implementation, do not improvise with raw <code>bpy</code> or undocumented APIs — stop and report the gap (what was attempted, what is missing) as feedback.</li>
+<li>
+<p><strong>Main scene</strong>: the main scene must be named <code>Scene</code>. Forge resolves the active scene through <code>scene.Main_Scene</code> (defaults to <code>"Scene"</code>), e.g. <code>bpy.data.scenes[scene.Main_Scene].Forge_Props</code>. Modify the model in the scene named <code>Scene</code> only — do not rename or delete it, and do not modify objects in another scene.</p>
+</li>
+<li>
+<p><strong>Collider selection</strong>: prefer shape colliders (<code>BOX</code>, <code>CAPSULE</code>, <code>CYLINDER</code>, <code>SPHERE</code>). Consider a <code>MESH</code> collider only when shape colliders cannot meet the required collision geometry or accuracy. A mesh visual alone is not a reason to choose a mesh collider.</p>
+</li>
+</ul>
+<h3 id="mcp-tool-workflow">MCP tool workflow<a class="headerlink" href="#mcp-tool-workflow" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Prefer dedicated MCP tools: inspect with <code>forge_blendfile_summary</code>, <code>forge_scene_info</code>, <code>forge_object_info</code> and <code>forge_measure</code>; change model/type/parent with <code>forge_define_*</code>; edit values with <code>forge_set_transform</code>, <code>forge_set_shape_size</code>, <code>forge_set_property</code> and <code>forge_rename</code>; validate with <code>forge_mesh_check</code>. Use <code>forge_execute</code> only for a Forge property or collection edit that no dedicated tool can express. Its skill check applies to explicit <code>bpy.ops.forge.*</code> calls and direct <code>Forge_*</code> property writes; ordinary Blender modelling edits are allowed even when the target object has a Forge model type.</li>
+<li><strong>Skill gate scope</strong>: generic Blender deletion/removal operations remain available without a Forge guide. Use the dedicated Forge operations for Forge hierarchy changes, especially <code>forge_define_parent</code>; direct <code>obj.parent</code> assignment is only the documented detach escape hatch below.</li>
+<li>Every <code>bpy.ops.forge.*</code> operator (signature, defaults, <code>poll</code>, MCP wrapper) is inventoried in the <code>operators</code> skill — <code>forge_skill(name="operators", section="&lt;operator name&gt;")</code> for a single entry.</li>
+<li>Follow <strong>inspect → edit → verify → validate → save/export</strong>. Read object types, parents, locks and current property values before mutation. Re-read every changed object, remeasure world-space bounds, mesh-check the relevant visuals, and use <code>forge_screenshot</code> when visual confirmation adds value.</li>
+<li>Every MCP <code>select=[...]</code> argument is ordered. The first name becomes the active object and list indices become Forge <code>selected_order</code> values. For <code>forge_define_parent</code>, put the intended parent first and the children after it; for target/reference operations preserve the order documented in the create rules.</li>
+<li><code>forge_object_info</code> returns the whole <code>Forge_&lt;Type&gt;</code> group, modifier sockets and transforms — but <strong>not</strong> Blender-native <code>obj.data</code>. Read light / camera data (<code>energy</code>, <code>angle</code>, <code>clip_start</code>, ...) with <code>forge_execute</code>; write it with <code>forge_set_property</code> <code>data:</code>-prefixed keys.</li>
+<li><code>forge_delete</code> recursively removes all descendants of every named root. Inspect <code>children</code> first and name only the intended roots. Inspect output destinations before save/export and do not overwrite files unless requested.</li>
+</ul>
+<h2 id="modify-tips">Modify tips<a class="headerlink" href="#modify-tips" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Joint axis</strong>: the exported mjcf <code>axis</code> is the joint object's local +Z expressed in parent space (<code>obj.matrix_local.to_3x3().transposed()[2]</code>). Default creation gives +Z along parent +Z; rotate the joint object's euler so its Z aligns with the desired world axis (e.g. <code>rotation_euler = (-90°, 0, 0)</code> makes the axis point along parent +Y).</li>
+<li><strong>Local vs world coordinates</strong>: <code>location</code> and shape sizes are in the parent's local space. When a link sits below / away from the world origin, convert: <code>local = world - parent_world</code> (for unrotated parents). Verify placements with evaluated world bounding boxes, not socket values.</li>
+<li><strong>Shape size sockets</strong> are arrays for BOX (<code>Socket_0</code> = full xyz dimensions, written as a 3-tuple) and scalars for SPHERE (visual <code>Socket_0</code> / collider <code>Socket_3</code> = radius); assigning a scalar to an array socket raises <code>TypeError</code>. On Blender 5.2+ read/write a socket as <code>mod.properties.inputs.Socket_N.value</code>; on Blender 4.x–5.1 use <code>mod["Socket_N"]</code>. Prefer <code>forge_set_shape_size</code>, which handles both. Modifier names capitalize the shape (<code>Geometry_Box</code>, <code>Collider_Sphere</code>). <code>forge_set_shape_size</code> covers all four shapes: BOX takes the full (x, y, z) tuple, SPHERE a radius, CAPSULE / CYLINDER a <code>(radius, height)</code> pair — height is the full length of the straight section (capsule overall length = height + 2·radius); height socket is visual <code>Socket_2</code>, collider / site <code>Socket_4</code>.</li>
+<li><strong>mesh_check scope</strong>: the check reports pairwise intersections between <em>all</em> selected objects. Boundary-only point-point, point-edge, point-face, edge-edge, and edge-face contact is allowed when incident geometry does not cross the other mesh. A coplanar shared face is also allowed when its plane separates the two complete objects (for example aligned boxes placed flush), independent of face winding. Non-separating coplanar area overlap and actual face crossings still count as intersections. Scope selection per-link to avoid reporting unrelated geometry.</li>
+<li><strong>Name collisions</strong>: Blender silently suffixes duplicates (<code>.001</code>) — including against orphaned datablocks left out of the scene after failed operations. Renaming to a "free-looking" name can no-op; check the result or purge orphans first.</li>
+<li><strong>Locked transforms</strong>: Forge locks scale on most model objects (and location/rotation on some); scripts must respect <code>lock_location</code> / <code>lock_rotation</code> / <code>lock_scale</code> instead of assigning.</li>
+<li><strong><code>forge_set_property</code> value types are not what the names suggest</strong> — always read the returned <code>skipped</code> map. A write that lands in <code>skipped</code> did <strong>not</strong> happen, and the tool still returns success. Two traps seen in practice: several <code>Forge_*</code> flags are <strong>uppercase string enums, not bools</strong> (actuator <code>ctrllimited</code> takes <code>'FALSE'</code> / <code>'TRUE'</code> / <code>'AUTO'</code> — passing <code>true</code> or <code>"true"</code> is skipped), and array properties have <strong>fixed arity</strong> (actuator <code>gear</code> needs 6 elements, not 1). The <code>skipped</code> value carries the underlying <code>bpy_struct</code> message, which names the expected type or arity.</li>
+</ul>
+<h2 id="modify-rules">Modify rules<a class="headerlink" href="#modify-rules" title="Permanent link">&para;</a></h2>
+<h3 id="modify-order">Modify order:<a class="headerlink" href="#modify-order" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Select target object(s).</li>
+<li>Change the type with the appropriate documented <code>bpy.ops.forge.define_*</code> operator when needed.</li>
+<li>Edit parameters supported by the model type through <code>obj.Forge_&lt;Type&gt;.&lt;property&gt;</code> directly; popup dialogs are UI-only.</li>
+<li>Adjust <code>location</code>, <code>rotation</code>, and <code>scale</code> as needed, respecting locked axes.</li>
+</ol>
+<h3 id="relationship-retargeting">Relationship retargeting:<a class="headerlink" href="#relationship-retargeting" title="Permanent link">&para;</a></h3>
+<p>Post-creation relationship changes go through <code>forge_set_property</code> Object-target properties — pass the target object's <strong>name</strong> as a string, <code>null</code> clears:</p>
+<ul>
+<li><code>actuator.target</code> — any <code>link</code> / <code>joint</code> / <code>tendon</code> object; <code>target_type</code> re-detects from the new target.</li>
+<li><code>equality.target1</code> / <code>target2</code> — <code>JOINT</code> equality uses <code>target1</code> and an optional <code>target2</code>; when present, both are exported as joint references.</li>
+<li><code>contact.target1</code> / <code>target2</code>.</li>
+<li><code>sensor.target</code> and <code>sensor.ref</code> (frame sensor types and Contact filters). For a Contact subtree sensor, both must reference existing <code>link</code> objects: <code>target</code> exports as <code>subtree1</code>, <code>ref</code> as <code>subtree2</code>. Set both explicitly when creating or retargeting; do not clear either endpoint. Verify <code>use_subtree=True</code>, <code>target_type="SUBTREE"</code> and both pointers after editing, and both named attributes in the exported <code>&lt;contact&gt;</code> sensor.</li>
+<li><code>light.target</code> / <code>camera.target</code> — only meaningful while <code>mode</code> is <code>TARGETBODY</code> / <code>TARGETBODYCOM</code>.</li>
+<li>Tendon joint path: <code>forge_set_tendon_targets</code> (ordered replace). <code>attach</code> reference fields (<code>model</code> / <code>file</code> / <code>link</code> / <code>prefix</code>) are plain strings, not pointers.</li>
+<li><strong>Detach has no dedicated implementation</strong>: <code>forge_define_parent</code> only assigns a parent; no operator or tool clears one. The only path is the <code>forge_execute</code> escape hatch (<code>obj.parent = None</code>; collection membership is not updated) — otherwise report the gap.</li>
+</ul>
+<h3 id="model-modify-rules">Model modify rules:<a class="headerlink" href="#model-modify-rules" title="Permanent link">&para;</a></h3>
+<h4 id="model-type"><code>model type</code>:<a class="headerlink" href="#model-type" title="Permanent link">&para;</a></h4>
+<p><code>bpy.ops.forge.define_model_type(Model_Type='&lt;type&gt;')</code> only for selected <code>UNDEFINED</code> type object(s):</p>
+<blockquote>
+<ul>
+<li>
+<p>Available <code>Model_Type</code> decided by selected object type:</p>
+<ul>
+<li><code>EMPTY</code> object: <code>LINK</code></li>
+<li><code>MESH</code> object: <code>VISUAL</code> or <code>COLLIDER</code></li>
+<li><code>LIGHT</code> object: <code>LIGHT</code></li>
+<li><code>CAMERA</code> object: <code>CAMERA</code></li>
+</ul>
+</li>
+<li>
+<p><code>VISUAL</code>: set geometry type <code>MESH</code>, group <code>2</code>, <code>contype</code>/<code>conaffinity</code> <code>0</code>, rename with prefix <code>GEO_</code>.</p>
+</li>
+<li><code>COLLIDER</code>: set geometry type <code>MESH</code>, group <code>3</code>, rename with prefix <code>COL_</code>.</li>
+<li><code>LINK</code>: rename with prefix <code>LNK_</code>.</li>
+<li><code>LIGHT</code>: set light type by Blender light type (<code>SUN</code> → <code>DIRECTIONAL</code>, else <code>SPOT</code>/<code>POINT</code>), mode <code>FIXED</code>, rename with prefix <code>LIT_</code>; <code>AREA</code> light not support.</li>
+<li><code>CAMERA</code>: set camera type by Blender camera type (<code>ORTHO</code> → <code>ORTHOGRAPHIC</code>, <code>PERSP</code> → <code>PERSPECTIVE</code>), mode <code>FIXED</code>, rename with prefix <code>CAM_</code>; only <code>PERSP</code>/<code>ORTHO</code> camera support.</li>
+<li>Object with parent move to corresponding type collection, without parent move to <code>WORLD</code> collection.</li>
+</ul>
+</blockquote>
+<h4 id="geometry-type-visual"><code>geometry type</code> (visual):<a class="headerlink" href="#geometry-type-visual" title="Permanent link">&para;</a></h4>
+<p><code>bpy.ops.forge.define_geometry_type(geometry_type='&lt;type&gt;', apply_to_all=False)</code> based on selected <code>visual</code> object(s):</p>
+<blockquote>
+<ul>
+<li>parameter <code>geometry_type</code> in <code>[BOX, CAPSULE, CYLINDER, SPHERE, MESH, SDF]</code></li>
+<li><code>apply_to_all</code>: default <code>False</code> only apply to active object, <code>True</code> apply to all selected.</li>
+<li>Size is preserved as the bounding-box equivalent; exact shape parameters may differ across a round-trip
+  through another shape (e.g. CYLINDER r=0.05 -&gt; SPHERE -&gt; CYLINDER yields r=0.1).</li>
+<li>Switch to <code>MESH</code> / <code>SDF</code>: bake primitive geometry into mesh, scale unlock. Switching between MESH and SDF preserves the mesh and modifiers. SDF exports with a mesh asset reference.</li>
+<li>Switch from <code>MESH</code> / <code>SDF</code>: use object dimensions as size.</li>
+</ul>
+</blockquote>
+<h4 id="collider-type"><code>collider type</code>:<a class="headerlink" href="#collider-type" title="Permanent link">&para;</a></h4>
+<p><code>bpy.ops.forge.define_collider_type(collider_type='&lt;type&gt;', apply_to_all=False)</code> based on selected <code>collider</code> object(s):</p>
+<blockquote>
+<ul>
+<li>parameter <code>collider_type</code> in <code>[BOX, CAPSULE, CYLINDER, SPHERE, MESH, SDF]</code></li>
+<li>Size is preserved as the bounding-box equivalent; exact shape parameters may differ across a round-trip
+  through another shape (e.g. CYLINDER r=0.05 -&gt; SPHERE -&gt; CYLINDER yields r=0.1).</li>
+<li>Switch to <code>MESH</code> / <code>SDF</code>: bake current primitive or convex modifier into mesh, scale unlock. Existing mesh geometry is preserved.</li>
+<li>Switch from <code>MESH</code> / <code>SDF</code>: use object dimensions as size.</li>
+</ul>
+</blockquote>
+<h4 id="site-type"><code>site type</code>:<a class="headerlink" href="#site-type" title="Permanent link">&para;</a></h4>
+<p><code>bpy.ops.forge.define_site_type(site_type='&lt;type&gt;', apply_to_all=False)</code> based on selected <code>site</code> object(s):</p>
+<blockquote>
+<ul>
+<li>parameter <code>site_type</code> in <code>[BOX, CAPSULE, CYLINDER, SPHERE]</code></li>
+<li>Size is preserved as the bounding-box equivalent; exact shape parameters may differ across a round-trip
+  through another shape.</li>
+</ul>
+</blockquote>
+<h4 id="joint-type"><code>joint type</code>:<a class="headerlink" href="#joint-type" title="Permanent link">&para;</a></h4>
+<p><code>bpy.ops.forge.define_joint_type(joint_type='&lt;type&gt;', apply_to_all=False)</code> based on selected <code>joint</code> object(s):</p>
+<blockquote>
+<ul>
+<li>parameter <code>joint_type</code> in <code>[FREE, BALL, SLIDE, HINGE]</code></li>
+<li>Update joint shape gizmo when type changed.</li>
+</ul>
+</blockquote>
+<h4 id="actuator-type"><code>actuator type</code>:<a class="headerlink" href="#actuator-type" title="Permanent link">&para;</a></h4>
+<p><code>bpy.ops.forge.define_actuator_type(actuator_type='&lt;type&gt;', apply_to_all=False)</code> based on selected <code>actuator</code> object(s):</p>
+<blockquote>
+<ul>
+<li>parameter <code>actuator_type</code> in <code>[GENERAL, MOTOR, POSITION, VELOCITY, ADHESION]</code></li>
+</ul>
+</blockquote>
+<h4 id="parent"><code>parent</code>:<a class="headerlink" href="#parent" title="Permanent link">&para;</a></h4>
+<p><code>bpy.ops.forge.define_parent()</code> change parent of selected object(s) to active object:</p>
+<blockquote>
+<ul>
+<li>Active object is <code>link</code> | <code>frame</code> | <code>replicate</code>: parent selected object(s) in <code>[LINK, VISUAL, COLLIDER, JOINT, SITE, LIGHT, CAMERA, FRAME, REPLICATE, ATTACH]</code> to it.</li>
+<li>Active object is <code>visual</code>: refused (poll fails) — a <code>collider</code> under a <code>visual</code> is not exported; parent the <code>collider</code> to the <code>link</code> instead.</li>
+<li>Children of a selected <code>visual</code> object (for example colliders still bound to it) are reparented to the active object first, so a legacy <code>collider</code>-under-<code>visual</code> nesting is repaired rather than recreated.</li>
+<li>World position of child preserved after reparent.</li>
+</ul>
+</blockquote>
+<h4 id="root-link"><code>root link</code>:<a class="headerlink" href="#root-link" title="Permanent link">&para;</a></h4>
+<p><code>bpy.ops.forge.mark_root_link()</code> based on selected <code>link</code> | <code>frame</code> | <code>replicate</code> object(s):</p>
+<blockquote>
+<ul>
+<li>Parentless objects are marked directly.</li>
+<li>Objects with a parent are unparented while preserving their world transform, then marked.</li>
+<li>Set <code>obj["Root Link"] = True</code>.</li>
+</ul>
+</blockquote>
+<h4 id="mesh-check"><code>mesh check</code>:<a class="headerlink" href="#mesh-check" title="Permanent link">&para;</a></h4>
+<p><code>bpy.ops.forge.mesh_check()</code> based on selected <code>visual</code> object(s):</p>
+<blockquote>
+<ul>
+<li>Check mesh validation, report error info.</li>
+<li>Use before compute inertial / export.</li>
+</ul>
+</blockquote>
+<h4 id="gizmo-size"><code>gizmo size</code>:<a class="headerlink" href="#gizmo-size" title="Permanent link">&para;</a></h4>
+<p><code>bpy.ops.forge.scale_gizmo_size()</code> change gizmo display size of selected object(s), or all objects when none selected:</p>
+<blockquote>
+<ul>
+<li>Scale from scene <code>Forge_Props.gizmo_scale</code>.</li>
+</ul>
+</blockquote>
+<h3 id="utilities">Utilities:<a class="headerlink" href="#utilities" title="Permanent link">&para;</a></h3>
+<h4 id="batch-rename"><code>batch rename</code>:<a class="headerlink" href="#batch-rename" title="Permanent link">&para;</a></h4>
+<p><code>bpy.ops.forge.batch_rename(new_name='', numerate='###')</code> based on selected object(s):</p>
+<blockquote>
+<ul>
+<li>Rename selected objects to <code>{new_name}_{index}</code> with zero padding by <code>numerate</code> length, index start from 0.</li>
+</ul>
+</blockquote>
+<h4 id="instance-idname"><code>instance idname</code>:<a class="headerlink" href="#instance-idname" title="Permanent link">&para;</a></h4>
+<p><code>bpy.ops.forge.set_instance_idname()</code> based on selected <code>link</code> object(s):</p>
+<blockquote>
+<ul>
+<li>Mark selected links as instances of scene <code>Forge_Props.instance_body</code> (<code>INSTANCE_IDNAME</code> custom property); run again with no instance body to clear. Links already marked <code>INSTANCE_LINK</code> are refused (warning).</li>
+<li>Mark the instance source first with <code>bpy.ops.forge.mark_instance_link()</code> (<code>INSTANCE_LINK</code> custom property, toggle). A marked link never exports as a <code>&lt;body&gt;</code>; referenced ones provide assets for their copies, unreferenced ones export nothing at all (warned); <code>Forge_Props.instance_body</code> only lists marked links. The instance link's children are written into every <code>INSTANCE_IDNAME</code> link, element names prefixed <code>&lt;instance&gt;_&lt;name&gt;</code>; global sections (<code>actuator</code> / <code>sensor</code> / …) are not duplicated per instance.</li>
+</ul>
+</blockquote>
+<h4 id="select-by-tag"><code>select by tag</code>:<a class="headerlink" href="#select-by-tag" title="Permanent link">&para;</a></h4>
+<p><code>bpy.ops.forge.select_by_tag()</code> only in object mode:</p>
+<blockquote>
+<ul>
+<li>Select objects whose name contains scene <code>Forge_Props.select_tag</code>.</li>
+</ul>
+</blockquote>
+<h4 id="select-hulls"><code>select hulls</code>:<a class="headerlink" href="#select-hulls" title="Permanent link">&para;</a></h4>
+<p><code>bpy.ops.forge.select_hulls()</code> only in object mode:</p>
+<blockquote>
+<ul>
+<li>Select convex hull objects by name template from addon preferences (<code>coacd_name_template</code>).</li>
+</ul>
+</blockquote>
+<h3 id="parameter-modify-rules">Parameter modify rules:<a class="headerlink" href="#parameter-modify-rules" title="Permanent link">&para;</a></h3>
+<p>Each model type has its own parameter group <code>obj.Forge_&lt;Type&gt;</code> on the object — always change parameters by direct property assignment. <code>bpy.ops.forge.properties_*</code> popup dialogs are UI-only and ineffective for agents; never use them.</p>
+<h4 id="direct-property-access">Direct property access:<a class="headerlink" href="#direct-property-access" title="Permanent link">&para;</a></h4>
+<p>Parameters grouped by model type, then by sub-type (set property <code>type</code> / <code>mode</code> directly to switch sub-type, same as <code>bpy.ops.forge.define_*</code>). Shape / gizmo sizes live in geometry-node modifier sockets <code>obj.modifiers[...]</code> — readable / writable as <code>mod.properties.inputs.Socket_N.value</code> on Blender 5.2+ and <code>mod["Socket_N"]</code> on Blender 4.x–5.1. Both surfaces are Forge edits, so <code>forge_set_property</code> and <code>forge_set_shape_size</code> ask for this guide.</p>
+<ul>
+<li><code>link</code>: <code>obj.Forge_Link</code> — <code>mocap</code>, <code>gravcomp</code></li>
+<li><code>visual</code> / <code>collider</code> / <code>hfield</code> / <code>plane</code> (all mjcf <code>geom</code>): <code>obj.Forge_Geometry</code> — <code>group</code>, <code>condim</code>, <code>contype</code>, <code>conaffinity</code>, <code>priority</code>, <code>friction</code>, <code>mass</code>, <code>density</code>, <code>solmix</code>, <code>solref</code>, <code>solimp</code>, <code>margin</code>, <code>gap</code> (hfield / plane UI hides <code>friction</code> / <code>mass</code> / <code>density</code>, but they are exported when non-default)<ul>
+<li>shape size in geometry modifier <code>obj.modifiers[...]</code>:<ul>
+<li><code>visual</code>: <code>BOX</code> size <code>Socket_0</code>; <code>SPHERE</code> size <code>Socket_0</code>; <code>CAPSULE</code> / <code>CYLINDER</code> size <code>Socket_0</code> + height <code>Socket_2</code>; <code>MESH</code> no size sockets. Material is the first object-level material slot, assigned by <code>forge_create_material</code>.</li>
+<li><code>collider</code>: <code>BOX</code> / <code>SPHERE</code> size <code>Socket_3</code>; <code>CAPSULE</code> / <code>CYLINDER</code> size <code>Socket_3</code> + height <code>Socket_4</code>; <code>MESH</code> no size sockets</li>
+<li><code>hfield</code>: <code>nrow</code> <code>Socket_0</code>, <code>ncol</code> <code>Socket_2</code>, <code>use_elevation</code> <code>Socket_3</code>, <code>radius_x</code> <code>Socket_4</code>, <code>radius_y</code> <code>Socket_5</code>, <code>elevation_z</code> <code>Socket_6</code>, <code>base_z</code> <code>Socket_7</code>, <code>height_map</code> <code>Socket_8</code>, <code>use_height_map</code> <code>Socket_10</code>, <code>offset</code> <code>Socket_11</code>; material is the first object-level material slot.</li>
+<li><code>plane</code>: <code>half_size_x</code> <code>Socket_2</code>, <code>half_size_y</code> <code>Socket_3</code>, <code>infinite</code> <code>Socket_4</code>; material is the first object-level material slot.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>site</code>: <code>obj.Forge_Geometry</code> — <code>group</code>; shape size in site modifier: <code>BOX</code> / <code>SPHERE</code> size <code>Socket_3</code>; <code>CAPSULE</code> / <code>CYLINDER</code> size <code>Socket_3</code> + height <code>Socket_4</code></li>
+<li><code>joint</code>: <code>obj.Forge_Joint</code> per type:<ul>
+<li><code>range</code> on <code>BALL</code> / <code>HINGE</code> is stored in <strong>radians</strong>. Export converts it to degrees only when <code>Forge_GlobalConfig.g_compiler.angle == "DEGREE"</code>; with <code>"RADIAN"</code> it is written unchanged. For a HINGE limit of ±90°, set <code>range = [-pi/2, pi/2]</code>, not <code>[-90, 90]</code>. <code>forge_object_info</code> returns the stored radians.</li>
+<li><code>ref</code> and <code>springref</code> on <code>HINGE</code> follow the same rule, and are <strong>scalars</strong>: a 90° reference is <code>ref = pi/2</code>, exported as <code>ref="90"</code>. A <code>SLIDE</code>'s <code>range</code>, <code>ref</code> and <code>springref</code> are linear values (meters) and are written unchanged whatever the compiler unit; <code>actuatorfrcrange</code> is a force range, not an angle. A <code>BALL</code> has no <code>ref</code> or <code>springref</code>: MJCF's ball joint does not carry them, so they are not exported at all.</li>
+<li><code>FREE</code>: <code>stiffness</code>, <code>armature</code>, <code>damping</code>, <code>frictionloss</code></li>
+<li><code>BALL</code>: <code>springdamper</code>, <code>solreflimit</code>, <code>solimplimit</code>, <code>solreffriction</code>, <code>solimpfriction</code>, <code>stiffness</code>, <code>range</code>, <code>limited</code>, <code>margin</code>, <code>armature</code>, <code>damping</code>, <code>frictionloss</code></li>
+<li><code>SLIDE</code> / <code>HINGE</code>: BALL params + <code>ref</code>, <code>springref</code>, <code>actuatorfrcrange</code>, <code>actuatorfrclimited</code></li>
+<li>gizmo modifier: <code>display_size</code> <code>Socket_0</code>, <code>range</code> display <code>Socket_3</code></li>
+</ul>
+</li>
+<li><code>actuator</code>: <code>obj.Forge_Actuator</code> — <code>type</code>, <code>target</code>, <code>target_type</code> (auto-detected from <code>target</code>) always; per type:<ul>
+<li><code>GENERAL</code> / <code>MOTOR</code>: <code>ctrllimited</code>, <code>ctrlrange</code>, <code>forcelimited</code>, <code>forcerange</code>, <code>gear</code>, <code>gaintype</code>, <code>biastype</code>, <code>dynprm</code>, <code>gainprm</code>, <code>biasprm</code></li>
+<li><code>POSITION</code>: same as <code>GENERAL</code> + <code>kp</code>, <code>kv</code>, <code>inheritrange</code></li>
+<li><code>VELOCITY</code>: same as <code>GENERAL</code> + <code>kv</code></li>
+<li><code>ADHESION</code>: <code>ctrllimited</code>, <code>ctrlrange</code>, <code>forcelimited</code>, <code>forcerange</code>, <code>gain</code> (no <code>gear</code> / <code>dynprm</code> / <code>gainprm</code> / <code>biasprm</code>)</li>
+</ul>
+</li>
+<li><code>tendon</code>: <code>obj.Forge_Tendon</code> — <code>type</code>, <code>targets</code> (ordered target path; every <code>targets.items[]</code> has <code>target</code> and exported <code>coef</code>, default <code>0.5</code>; replace safely with <code>forge_set_tendon_targets</code>, or edit with <code>forge.add_tendon_target_item</code> / <code>forge.remove_tendon_target_item</code>), <code>range</code>, <code>limited</code>, <code>solreflimit</code>, <code>solimplimit</code>, <code>springlength</code>, <code>stiffness</code>, <code>damping</code></li>
+<li><code>equality</code>: <code>obj.Forge_Equality</code> — <code>active</code>, <code>type</code>, <code>target1</code>, <code>target2</code>, <code>target_type</code>; <code>target2</code> is optional, including for <code>JOINT</code> equality. Type-specific parameters:<ul>
+<li><code>CONNECT</code>: <code>anchor</code>, <code>solref</code>, <code>solimp</code></li>
+<li><code>WELD</code>: <code>anchor</code>, <code>solref</code>, <code>solimp</code>, <code>relpose</code></li>
+<li><code>JOINT</code>: <code>solref</code>, <code>solimp</code>, <code>polycoef</code></li>
+</ul>
+</li>
+<li><code>contact</code>: <code>obj.Forge_Contact</code> — <code>type</code>, <code>target1</code>, <code>target2</code> always; per type:<ul>
+<li><code>EXCLUDE</code>: no extra params</li>
+<li><code>PAIR</code>: <code>condim</code>, <code>friction</code>, <code>solref</code>, <code>solreffriction</code>, <code>margin</code>, <code>gap</code></li>
+</ul>
+</li>
+<li><code>sensor</code>: <code>obj.Forge_Sensor</code> — <code>type</code>, <code>target_type</code>, <code>target</code>, <code>noise</code>, <code>cutoff</code> always; per type:<ul>
+<li><code>Framepos</code> / <code>Framequat</code> / <code>Framexaxis</code> / <code>Frameyaxis</code> / <code>Framezaxis</code> / <code>Framelinvel</code> / <code>Frameangvel</code>: <code>ref_type</code>, <code>ref</code>, <code>use_xbody</code>. <code>ref_type</code> is independent of <code>target_type</code> and exports as MJCF <code>reftype</code>; use the actual reference object's kind — MJCF <code>reftype</code> accepts only <code>BODY</code>, <code>XBODY</code>, <code>GEOM</code>, <code>SITE</code>, <code>CAMERA</code>, so a <code>JOINT</code> can never be a reference (<code>create_sensor</code> refuses a selection that pairs a joint with another object).</li>
+<li><code>Contact</code>: <code>ref</code>, <code>use_subtree</code>, <code>num</code> (auto-computed from <code>data</code>), <code>data</code>, <code>reduce</code>. With <code>use_subtree=True</code>, explicitly set both <code>target</code> (<code>subtree1</code>) and <code>ref</code> (<code>subtree2</code>) to <code>link</code> objects; a missing second root is incomplete under this authoring workflow.</li>
+<li><code>Touch</code> / <code>Accelerometer</code> / <code>Velocimeter</code> / <code>Gyro</code> / <code>Jointpos</code> / <code>Jointvel</code> / <code>Subtreecom</code> / <code>Subtreelinvel</code> / <code>Subtreeangmom</code>: no extra params</li>
+</ul>
+</li>
+<li><code>light</code>: <code>obj.Forge_Light</code> — <code>type</code>, <code>mode</code>; <code>target</code> only when <code>mode</code> is <code>TARGETBODY</code> / <code>TARGETBODYCOM</code>; Blender light data <code>obj.data</code>: <code>use_shadow</code>, <code>color</code>, <code>energy</code>; <code>SPOT</code> / <code>POINT</code> additionally <code>shadow_soft_size</code>, <code>cutoff_distance</code>; <code>DIRECTIONAL</code> instead <code>angle</code>; <code>SPOT</code> additionally <code>spot_size</code>, <code>spot_blend</code></li>
+<li><code>camera</code>: <code>obj.Forge_Camera</code> — <code>type</code>, <code>mode</code>; <code>target</code> only when <code>mode</code> is <code>TARGETBODY</code> / <code>TARGETBODYCOM</code>; Blender camera data <code>obj.data</code>: <code>PERSPECTIVE</code> <code>angle</code> / <code>ORTHOGRAPHIC</code> <code>ortho_scale</code>, plus <code>clip_start</code>, <code>clip_end</code></li>
+<li><code>inertial</code>: <code>obj.Forge_Inertial</code> — <code>mass</code>, <code>diaginertia</code>, <code>fullinertia</code> (position / quaternion from object transform)</li>
+<li><code>attach</code>: <code>obj.Forge_Attach</code> — <code>model</code>, <code>file</code>, <code>link</code>, <code>prefix</code></li>
+<li><code>replicate</code>: <code>obj.Forge_Replicate</code> — <code>count</code>, <code>sep</code>, <code>offset</code>, <code>euler</code> (<code>count</code> / <code>offset</code> / <code>euler</code> mirrored to modifier sockets <code>Socket_0</code> / <code>Socket_2</code> / <code>Socket_3</code>)</li>
+<li><code>include</code>: <code>obj.Forge_Include</code> — <code>file</code> is the user-facing/reference filename; <code>rawfile</code> is the resolved source path used by export. Preserve or update <code>rawfile</code> when relocating an include, otherwise export may read the stale source.</li>
+</ul>
+<h4 id="scene-level-configs-forge_globalconfig-forge_visualconfig">Scene-level configs — <code>Forge_GlobalConfig</code> / <code>Forge_VisualConfig</code>:<a class="headerlink" href="#scene-level-configs-forge_globalconfig-forge_visualconfig" title="Permanent link">&para;</a></h4>
+<p>File workflow, compiler / option / statistic and visual settings live on the <strong>scene</strong>, not on objects. Use <code>forge_scene_config(group)</code> to inspect and <code>forge_set_scene_property(group, values)</code> to edit. The direct equivalents are <code>scene.Forge_Props</code>, <code>scene.Forge_GlobalConfig.&lt;group&gt;</code> and <code>scene.Forge_VisualConfig.&lt;group&gt;</code> (same rule as object params: popup operators are UI-only). Every global/visual group and sub-group has a <code>reset()</code> method; only non-default properties are exported.</p>
+<ul>
+<li>
+<p><code>Forge_Props</code> (<code>group="forge_props"</code>) — workflow/display settings: <code>scale_factor</code>, <code>gizmo_scale</code>, <code>rel_path</code>, <code>select_tag</code>, <code>import_file_path</code>, <code>export_path</code>, <code>import_material</code>, <code>update_forge_only</code>, <code>instance_body</code>, <code>world_collection</code>, <code>use_glb</code>. Treat <code>is_importing</code>, <code>is_exporting</code>, <code>is_attaching</code>, <code>is_including</code>, the modal-operation slot (<code>modal_operation_active</code>, <code>modal_operation_name</code>, <code>modal_operation_token</code>, <code>modal_operation_deferred</code>, <code>modal_operation_status</code>, <code>modal_operation_message</code>, <code>cancel_requested</code>), progress values and info strings as operation state; read them but do not manually drive them. Only one modal Forge operation may run at a time — a second one fails while <code>modal_operation_active</code> is set.</p>
+</li>
+<li>
+<p><code>Forge_GlobalConfig</code> — exported as root-level mjcf sections:</p>
+<ul>
+<li><code>g_compiler</code> (<code>&lt;compiler&gt;</code>): <code>autolimits</code>, <code>angle</code> in <code>[RADIAN, DEGREE]</code>, <code>eulerseq</code> in <code>[XYZ, XZY, YXZ, YZX, ZXY, ZYX]</code>, <code>assetdir</code>, <code>meshdir</code>, <code>texturedir</code></li>
+<li><code>g_option</code> (<code>&lt;option&gt;</code>): <code>timestep</code>, <code>iterations</code>, <code>tolerance</code>, <code>gravity</code> (float[3]), <code>o_solref</code> / <code>o_solimp</code> / <code>o_friction</code> (float arrays, contact override), <code>o_margin</code><ul>
+<li><code>g_option.flag</code> (<code>&lt;flag&gt;</code>): <code>constraint</code>, <code>equality</code>, <code>frictionloss</code>, <code>limit</code>, <code>contact</code>, <code>gravity</code>, <code>actuation</code>, <code>refsafe</code>, <code>override</code> — bool, exported as enable / disable</li>
+</ul>
+</li>
+<li><code>g_statistic</code> (<code>&lt;statistic&gt;</code>): <code>extent</code>, <code>center</code> (float[3])</li>
+</ul>
+</li>
+<li><code>Forge_VisualConfig</code> — exported as the <code>&lt;visual&gt;</code> section:<ul>
+<li><code>v_global</code> (<code>&lt;global&gt;</code>): <code>orthographic</code>, <code>fovy</code>, <code>azimuth</code>, <code>elevation</code> — angle props are <strong>radians</strong> (converted to degrees at export)</li>
+<li><code>v_headlight</code> (<code>&lt;headlight&gt;</code>): <code>active</code> (0/1), <code>ambient</code> / <code>diffuse</code> / <code>specular</code> (float[3] color)</li>
+<li><code>v_map</code> (<code>&lt;map&gt;</code>): <code>fogstart</code>, <code>fogend</code>, <code>znear</code>, <code>zfar</code></li>
+<li><code>v_rgba</code> (<code>&lt;rgba&gt;</code>): <code>fog</code>, <code>haze</code>, <code>joint</code>, <code>bv</code>, <code>contactforce</code> (float[4] color)</li>
+<li><code>v_quality</code> (<code>&lt;quality&gt;</code>): <code>shadowsize</code>, <code>pointshadowsize</code></li>
+<li><code>v_tonemapping</code> (<code>&lt;tonemapping&gt;</code>): <code>method</code> in <code>[none, aces]</code></li>
+<li><code>v_ssgi</code> (<code>&lt;ssgi&gt;</code>) (Motphys extension): <code>active</code>, <code>resolutionscale</code>, <code>raycount</code>, <code>stepcount</code>, <code>thickness</code>, <code>intensity</code>, <code>gidenoiseoffset</code>, <code>rraycount</code>, <code>rdenoiseoffset</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="popup-dialogs-ineffective-for-agents">Popup dialogs — ineffective for agents:<a class="headerlink" href="#popup-dialogs-ineffective-for-agents" title="Permanent link">&para;</a></h4>
+<p>All <code>bpy.ops.forge.properties_*</code> popups (<code>properties_link</code>, <code>properties_shape</code>, <code>properties_shape_site</code>, <code>properties_hfield</code>, <code>properties_plane</code>, <code>properties_joint</code>, <code>properties_actuator</code>, <code>properties_tendon</code>, <code>properties_equality</code>, <code>properties_contact</code>, <code>properties_sensor</code>, <code>properties_light</code>, <code>properties_camera</code>, <code>properties_replicate</code>, and scene-level <code>properties_global</code> / <code>properties_visual</code>) open a modal UI window that cannot be driven programmatically — never use them. Every parameter they edit is reachable via the direct property access above.</p>
+<p>The file-browser helpers are dialog-driven too — assign their target property directly instead:</p>
+<ul>
+<li><code>forge.temp_file</code> / <code>forge.temp_link</code> / <code>forge.temp_include</code> → write <code>scene.Forge_Temp_Props.tmp_file</code> / <code>tmp_model</code> / <code>tmp_prefix</code> / <code>tmp_link</code> / <code>tmp_include</code> directly (this is what <code>forge_create_attach</code> / <code>forge_create_include</code> do).</li>
+<li><code>forge.file_path</code> / <code>forge.export_path</code> → write <code>scene.Forge_Props.import_file_path</code> / <code>export_path</code> (plus <code>rel_path</code>) directly (this is what <code>forge_import_mjcf</code> / <code>forge_export_mjcf</code> do).</li>
+</ul>
+      </article>
+      
+      <nav class="page-navigation" aria-label="Page navigation">
+        <a class="previous-page" href="forge_create.html"><span>← Previous</span><strong>Forge create</strong></a>
+        <a class="next-page" href="forge_custom_material.html"><span>Next →</span><strong>Forge custom material</strong></a>
+      </nav>
+      
+      <footer class="manual-footer">Forge · Blender add-on documentation</footer>
+    </main>
+    
+    <aside class="page-outline" id="manual-outline" aria-label="On this page" tabindex="-1">
+      <div class="outline-heading"><p>On this page</p><button class="outline-close" type="button" aria-label="Close page contents">×</button></div>
+      
+<ul>
+  
+  <li><a href="#general-rules">General rules</a>
+    
+<ul>
+  
+  <li><a href="#mcp-tool-workflow">MCP tool workflow</a>
+    
+  </li>
+  
+</ul>
+
+  </li>
+  
+  <li><a href="#modify-tips">Modify tips</a>
+    
+  </li>
+  
+  <li><a href="#modify-rules">Modify rules</a>
+    
+<ul>
+  
+  <li><a href="#modify-order">Modify order:</a>
+    
+  </li>
+  
+  <li><a href="#relationship-retargeting">Relationship retargeting:</a>
+    
+  </li>
+  
+  <li><a href="#model-modify-rules">Model modify rules:</a>
+    
+<ul>
+  
+  <li><a href="#model-type">model type:</a>
+    
+  </li>
+  
+  <li><a href="#geometry-type-visual">geometry type (visual):</a>
+    
+  </li>
+  
+  <li><a href="#collider-type">collider type:</a>
+    
+  </li>
+  
+  <li><a href="#site-type">site type:</a>
+    
+  </li>
+  
+  <li><a href="#joint-type">joint type:</a>
+    
+  </li>
+  
+  <li><a href="#actuator-type">actuator type:</a>
+    
+  </li>
+  
+  <li><a href="#parent">parent:</a>
+    
+  </li>
+  
+  <li><a href="#root-link">root link:</a>
+    
+  </li>
+  
+  <li><a href="#mesh-check">mesh check:</a>
+    
+  </li>
+  
+  <li><a href="#gizmo-size">gizmo size:</a>
+    
+  </li>
+  
+</ul>
+
+  </li>
+  
+  <li><a href="#utilities">Utilities:</a>
+    
+<ul>
+  
+  <li><a href="#batch-rename">batch rename:</a>
+    
+  </li>
+  
+  <li><a href="#instance-idname">instance idname:</a>
+    
+  </li>
+  
+  <li><a href="#select-by-tag">select by tag:</a>
+    
+  </li>
+  
+  <li><a href="#select-hulls">select hulls:</a>
+    
+  </li>
+  
+</ul>
+
+  </li>
+  
+  <li><a href="#parameter-modify-rules">Parameter modify rules:</a>
+    
+<ul>
+  
+  <li><a href="#direct-property-access">Direct property access:</a>
+    
+  </li>
+  
+  <li><a href="#scene-level-configs-forge_globalconfig-forge_visualconfig">Scene-level configs — Forge_GlobalConfig / Forge_VisualConfig:</a>
+    
+  </li>
+  
+  <li><a href="#popup-dialogs-ineffective-for-agents">Popup dialogs — ineffective for agents:</a>
+    
+  </li>
+  
+</ul>
+
+  </li>
+  
+</ul>
+
+  </li>
+  
+</ul>
+
+    </aside>
+    
+  </div>
+  <dialog class="image-preview" id="image-preview" aria-label="Image preview">
+    <form method="dialog" class="image-preview-close"><button type="submit" aria-label="Close image preview" autofocus>×</button></form>
+    <img class="image-preview-image" alt="">
+  </dialog>
+  <script>var base_url = document.body.dataset.baseUrl;</script>
+  <script src="../../assets/javascripts/image-preview.js"></script><script src="../../assets/javascripts/case-videos.js"></script><script src="../../search/main.js"></script><script src="../../assets/javascripts/manual.js"></script>
+</body>
+</html>

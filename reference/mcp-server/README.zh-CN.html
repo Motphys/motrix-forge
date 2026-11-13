@@ -1,0 +1,363 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Forge Blender add-on documentation · Forge 插件使用文档">
+  <link rel="icon" href="../../assets/favicon.ico" type="image/x-icon">
+  <script>
+    document.documentElement.classList.add("navigation-pending");
+    document.addEventListener("DOMContentLoaded", () => document.documentElement.classList.remove("navigation-pending"), { once: true });
+  </script>
+  <title>Forge MCP 服务端参考 — Forge 使用手册</title>
+  <script src="../../assets/javascripts/theme.js"></script>
+  <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+  <link rel="alternate" hreflang="en" href="index.html">
+</head>
+<body data-base-url="../..">
+  <a class="skip-link" href="#main-content">跳至正文</a>
+  <header class="mobile-header">
+    <button type="button" class="menu-toggle" aria-controls="manual-sidebar" aria-expanded="false" aria-label="打开导航">☰</button>
+    <a href="../../introduction.zh-CN.html">Forge <span>使用手册</span></a>
+    
+<button type="button" class="theme-toggle theme-toggle-compact" data-theme-toggle aria-pressed="false" aria-label="切换至黑色主题">
+  <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg>
+  <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+  <span class="theme-label">浅色主题</span>
+</button>
+
+    <a href="index.html" lang="en">EN</a>
+    
+    <button type="button" class="outline-toggle" aria-controls="manual-outline" aria-expanded="false" aria-label="打开本页目录"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M9 5h12M9 12h12M9 19h12M3 5h1M3 12h1M3 19h1"/></svg></button>
+    
+  </header>
+  <button class="sidebar-backdrop" type="button" aria-label="关闭导航" tabindex="-1"></button>
+  <aside class="manual-sidebar" id="manual-sidebar">
+    <a class="manual-brand" href="../../introduction.zh-CN.html"><img class="brand-logo" src="../../assets/Logo.png" alt="Forge"><span>Forge<span class="brand-subtitle">使用手册</span></span></a>
+    <form class="sidebar-search" action="../../cn/search.html" role="search">
+      <input type="hidden" name="lang" value="cn">
+      <span aria-hidden="true">⌕</span><input type="search" name="q" placeholder="搜索手册" aria-label="搜索手册">
+    </form>
+    <nav class="chapter-nav" aria-label="章节导航">
+      
+      
+      <details class="nav-group" data-nav-group="getting-started" data-active="false">
+        <summary class="nav-caption">开始使用</summary>
+        
+        <ul><li><a href="../../introduction.zh-CN.html">关于 Forge</a></li><li><a href="../../cn/installation.html">安装 Forge</a></li><li><a href="../../cn/preferences.html">配置 Forge</a></li><li><a href="../../cn/development.html">开发 Forge</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="examples" data-active="false">
+        <summary class="nav-caption">案例</summary>
+        
+        <ul><li><a href="../../cn/examples.html">应用案例</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="manual" data-active="false">
+        <summary class="nav-caption">使用手册</summary>
+        
+        <details class="nav-group nav-subgroup" data-nav-group="manual-contents" data-active="false">
+          <summary class="nav-caption nav-subcaption">章节目录</summary>
+          <ul><li><a href="../../cn/forge_docs.html">概览</a></li><li><a href="../../cn/forge_docs/00_ui_overview.html">0. 界面总览与通用操作</a></li><li><a href="../../cn/forge_docs/01_mcp_server.html">1. MCP 服务</a></li><li><a href="../../cn/forge_docs/02_global_and_general.html">2. 全局与通用设置</a></li><li><a href="../../cn/forge_docs/03_geometry_and_material.html">3. 几何与材质</a></li><li><a href="../../cn/forge_docs/04_kinematics.html">4. 运动学与实例</a></li><li><a href="../../cn/forge_docs/05_hardware.html">5. 硬件</a></li><li><a href="../../cn/forge_docs/06_meta_elements.html">6. 元元素</a></li><li><a href="../../cn/forge_docs/07_properties.html">7. 属性编辑</a></li><li><a href="../../cn/forge_docs/08_import_export.html">8. 导入与导出</a></li><li><a href="../../cn/forge_docs/09_coacd.html">9. CoACD 凸分解</a></li><li><a href="../../cn/forge_docs/10_troubleshooting_and_scripting.html">10. 常见问题与脚本调用</a></li></ul>
+        </details>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="mcp-reference" data-active="true" open>
+        <summary class="nav-caption">MCP 参考</summary>
+        
+        <ul><li><a href="../MCP_INSTALL.zh-CN.html">Forge MCP 安装与连接</a></li><li><a href="README.zh-CN.html" class="active" aria-current="page">Forge MCP 服务端参考</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="mcp-skills" data-active="false">
+        <summary class="nav-caption">MCP Skills (English only)</summary>
+        
+        <ul><li><a href="../../cn/mcp_skills.html">Overview</a></li><li><a href="../../cn/mcp_skills/forge_create.html">Forge create</a></li><li><a href="../../cn/mcp_skills/forge_modify.html">Forge modify</a></li><li><a href="../../cn/mcp_skills/forge_custom_material.html">Forge custom material</a></li><li><a href="../../cn/mcp_skills/forge_operators.html">Forge operators</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="documentation" data-active="false">
+        <summary class="nav-caption">文档</summary>
+        
+        <ul><li><a href="../../cn/preview.html">本地预览</a></li></ul>
+        
+      </details>
+      
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-controls">
+        
+<button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="切换至黑色主题">
+  <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg>
+  <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+  <span class="theme-label">浅色主题</span>
+</button>
+
+        <details class="language-switch">
+          <summary><span aria-hidden="true">◎</span> 简体中文 <span aria-hidden="true">⌃</span></summary>
+          <div class="language-options">
+            <a href="README.zh-CN.html" lang="zh-CN" aria-current="true">简体中文 ✓</a>
+            <a href="index.html" lang="en">English</a>
+          </div>
+        </details>
+      </div>
+      <nav class="project-links" aria-label="项目链接">
+        <a class="project-link" href="https://github.com/Motphys/motrix-forge" target="_blank" rel="noopener noreferrer" title="在新标签页打开 GitHub">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.68.08-.68 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.56 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.43.11-2.98 0 0 .95-.3 3.1 1.15a10.8 10.8 0 0 1 5.63 0c2.15-1.45 3.09-1.15 3.09-1.15.62 1.55.23 2.7.12 2.98.72.79 1.16 1.79 1.16 3.02 0 4.32-2.64 5.27-5.15 5.55.4.35.76 1.03.76 2.08v3.1c0 .3.2.65.78.54A11.25 11.25 0 0 0 12 .75Z"/></svg>
+          <span>GitHub</span>
+        </a>
+        <a class="project-link" href="https://www.motphys.com/" target="_blank" rel="noopener noreferrer" title="在新标签页打开 Motphys 官网">
+          <svg class="website-logo" width="24" height="24" viewBox="0 0 128 128" fill="currentColor" aria-hidden="true">
+            <polygon points="58.23 49.97 37.73 49.97 33.23 55.57 62.63 55.57 58.23 49.97"/>
+            <path d="M50.13,39.67c-1.1-1.4-3.2-1.4-4.3,0l-3.6,4.6h11.6l-3.6-4.6h-.1Z"/>
+            <path d="M118.13,85.27l-35.8-45.6c-1.1-1.4-3.2-1.4-4.3,0l-14.1,17.8-3.1,3.9H28.83l-4.5,5.7h32.2l-4.5,5.7H19.93l-4.5,5.7h32.2l-4.5,5.7H10.93l-1,1.3c-1.4,1.8-.1,4.4,2.1,4.4h103.9c2.3,0,3.6-2.6,2.1-4.4h0l.1-.2Z"/>
+          </svg>
+          <span>官网</span>
+        </a>
+      </nav>
+    </div>
+  </aside>
+  <script>
+/* Restore the sidebar synchronously, before revealing its first frame. */
+(() => {
+  "use strict";
+  const root = document.documentElement;
+  try {
+    const navigationKey = "forge-docs-navigation-groups";
+    let state = {};
+    try {
+      const saved = JSON.parse(localStorage.getItem(navigationKey));
+      if (saved && typeof saved === "object" && !Array.isArray(saved)) state = saved;
+    } catch { /* Keep native details usable without storage. */ }
+    const restoreGroups = scope => {
+      scope.querySelectorAll("[data-nav-group]").forEach(group => {
+        if (group.dataset.navRestored) return;
+        group.dataset.navRestored = "true";
+        const id = group.dataset.navGroup;
+        if (group.dataset.active === "true") group.open = true;
+        else if (typeof state[id] === "boolean") group.open = state[id];
+        group.addEventListener("toggle", () => {
+          state[id] = group.open;
+          try { localStorage.setItem(navigationKey, JSON.stringify(state)); } catch { /* Ignore unavailable storage. */ }
+        });
+      });
+    };
+    window.forgeRestoreNavigationGroups = restoreGroups;
+    const nav = document.querySelector(".chapter-nav");
+    if (!nav) return;
+    restoreGroups(nav);
+    const siteRoot = new URL(`${document.body.dataset.baseUrl || "."}/`, location.href).pathname;
+    const scrollKey = `forge-docs-navigation-scroll:${siteRoot}`;
+    try {
+      const saved = sessionStorage.getItem(scrollKey);
+      if (saved !== null && Number.isFinite(Number(saved)) && Number(saved) >= 0) nav.scrollTop = Number(saved);
+    } catch { /* Ignore unavailable storage. */ }
+    const save = () => {
+      try { sessionStorage.setItem(scrollKey, String(nav.scrollTop)); } catch { /* Ignore unavailable storage. */ }
+    };
+    nav.addEventListener("scroll", save, { passive: true });
+    nav.addEventListener("click", save);
+    window.addEventListener("pagehide", save);
+  } finally {
+    root.classList.remove("navigation-pending");
+  }
+})();
+</script>
+  <div class="manual-layout">
+    <main id="main-content" class="manual-main" tabindex="-1">
+      <div class="page-header">
+        <nav class="breadcrumbs" aria-label="当前位置"><a href="../../introduction.zh-CN.html">Forge 使用手册</a><span aria-hidden="true"> / </span><span>Forge MCP 服务端参考</span></nav>
+      </div>
+      <article class="manual-article">
+        <h1 id="forge-mcp-服务端参考">Forge MCP 服务端参考<a class="headerlink" href="#forge-mcp-服务端参考" title="Permanent link">&para;</a></h1>
+<p><a href="index.html">English README</a></p>
+<p>本页介绍 Agent 侧 MCP Server 的运行架构、环境变量、Skills 与文档加载机制、工具分类以及开发调试。首次安装、客户端配置、启动和连接排查统一见 <a href="../MCP_INSTALL.zh-CN.html">MCP 安装与连接</a>。</p>
+<h2 id="运行架构">运行架构<a class="headerlink" href="#运行架构" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code>AI Agent ──stdio──&gt; Forge MCP Server ──TCP──&gt; Blender Forge MCP Bridge
+</code></pre></div>
+
+<p>MCP Server 运行在 Agent 侧；Bridge 运行在拥有场景的 Blender 进程中。场景查询和建模操作经由 Bridge 执行，Skills 读取和文档搜索使用服务本地的文件，不要求 Blender 正在运行。Blender 端的设置和依赖见<a href="../../cn/preferences.html">配置 Forge</a>。</p>
+<h2 id="客户端启动与进程管理">客户端启动与进程管理<a class="headerlink" href="#客户端启动与进程管理" title="Permanent link">&para;</a></h2>
+<p>完成<a href="../MCP_INSTALL.zh-CN.html">安装与连接</a>中的环境准备后，按以下流程使用：</p>
+<ol>
+<li>在 Blender 中启用 Forge，并启动 <strong>MCP Bridge</strong>。</li>
+<li>在包含客户端配置的工作区目录启动 Claude Code 或 Codex。</li>
+<li>客户端读取工作区配置，自动启动和管理 Forge MCP Server，通过 stdio 与其通信。</li>
+<li>在客户端查看 MCP 连接状态，确认 <code>forge</code> 已连接，再执行 Forge 操作。</li>
+</ol>
+<p>修改环境变量、Skills 或文档文件后，通过客户端重新连接或重启 MCP 服务。仅重启 Blender Bridge 不会重新加载服务端文档。</p>
+<h2 id="运行时配置">运行时配置<a class="headerlink" href="#运行时配置" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>环境变量</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FORGE_MCP_HOST</code></td>
+<td><code>localhost</code></td>
+<td>Blender bridge 主机</td>
+</tr>
+<tr>
+<td><code>FORGE_MCP_PORT</code></td>
+<td><code>9876</code></td>
+<td>Blender bridge 端口</td>
+</tr>
+<tr>
+<td><code>FORGE_MCP_TOKEN</code></td>
+<td>空</td>
+<td>Blender 监听非 localhost 时使用的共享 Token</td>
+</tr>
+<tr>
+<td><code>FORGE_MCP_TIMEOUT</code></td>
+<td><code>1800</code></td>
+<td>响应超时时间（秒）</td>
+</tr>
+<tr>
+<td><code>FORGE_MCP_SKILL_GATE</code></td>
+<td><code>soft</code></td>
+<td><code>soft</code> 执行并附带一次阅读提示；<code>strict</code> 要求先读取对应 skill；<code>off</code> 关闭检查</td>
+</tr>
+<tr>
+<td><code>FORGE_SKILLS_DIR</code></td>
+<td>自动搜索</td>
+<td><code>forge_skill</code> 使用的 skill 文档目录</td>
+</tr>
+<tr>
+<td><code>FORGE_DOCS_DIR</code></td>
+<td>自动搜索</td>
+<td><code>forge_search_docs</code> 使用的 MJCF 文档目录</td>
+</tr>
+<tr>
+<td><code>FORGE_BLENDER_DOCS_DIR</code></td>
+<td>自动搜索</td>
+<td>Blender API/manual RST 文档根目录</td>
+</tr>
+<tr>
+<td><code>FORGE_TOOLS</code></td>
+<td>全部</td>
+<td>按类别或名称过滤工具；<code>readonly</code> 只保留只读工具；无效的非空过滤条件会使服务启动失败</td>
+</tr>
+</tbody>
+</table>
+<h2 id="skills-与文档自动加载">Skills 与文档自动加载<a class="headerlink" href="#skills-与文档自动加载" title="Permanent link">&para;</a></h2>
+<p>启动时服务会加载第一个包含文档的目录：</p>
+<ol>
+<li><code>FORGE_SKILLS_DIR</code>；</li>
+<li>源码目录 <code>forge_mcp/skills/</code>；</li>
+<li>上层目录中的旧版 <code>skills/</code>；</li>
+<li>当前目录的 <code>./skills</code>。</li>
+</ol>
+<p>加载的 skill 摘要会注入 MCP server instructions，并通过 <code>forge_skill</code> 按需读取：</p>
+<div class="codehilite"><pre><span></span><code>forge_skill(name="create")
+forge_skill(name="modify")
+forge_skill(name="operators")
+forge_skill(name="custom_material")
+</code></pre></div>
+
+<p>可以传入 <code>section</code> 只读取一个章节，例如：<code>forge_skill(name="create", section="joint")</code>。</p>
+<p>MJCF 文档位于 <code>forge_mcp/docs/mjcf/*.md</code>，通过 <code>forge_search_docs</code> 建立段落级搜索索引，也作为 MCP resources 暴露：<code>mjcf://&lt;element&gt;</code> 和 <code>mjcf://index</code>。</p>
+<p>Blender RST 文档位于 <code>forge_mcp/docs/blender/</code>，包括 <code>api/</code> 和 <code>manual/</code>。可用 <code>source="mjcf"</code>、<code>"blender"</code>、<code>"blender_api"</code> 或 <code>"blender_manual"</code> 限定搜索：</p>
+<div class="codehilite"><pre><span></span><code><span class="n">forge_search_docs</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="s2">"bpy.ops.mesh.bevel"</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s2">"blender_api"</span><span class="p">)</span>
+<span class="n">forge_search_docs</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="s2">"bevel modifier"</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s2">"blender_manual"</span><span class="p">,</span> <span class="n">max_results</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">forge_search_docs</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="s2">"condim"</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s2">"mjcf"</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Forge 建模应先读取相应的 <code>create</code> 或 <code>modify</code> skill。实际检查行为由 <code>FORGE_MCP_SKILL_GATE</code> 控制：默认 <code>soft</code> 不阻止操作，而是在成功调用后附带一次阅读提示；<code>strict</code> 才会拒绝尚未读取所需 skill 的操作。<code>forge_execute</code> 对显式调用 <code>bpy.ops.forge.*</code> 或通过 <code>Forge_*</code> 属性组写入采用相同策略；普通 Blender 建模脚本不受这一 Forge 检查限制。完整创作规则见<a href="../../cn/mcp_skills.html">英文 MCP Skills</a>。</p>
+<p><code>forge_execute</code> 会自动向脚本注入 <code>bpy</code> 和 <code>mathutils</code>。脚本必须把 JSON 可序列化的字典赋给 <code>result</code>，例如 <code>result = {"scene": bpy.context.scene.name}</code>。</p>
+<h2 id="工具概览">工具概览<a class="headerlink" href="#工具概览" title="Permanent link">&para;</a></h2>
+<p><code>forge_mcp.tools</code> 按模块注册工具，主要包括：</p>
+<ul>
+<li><code>create.py</code>：创建 link、joint、geometry、material、sensor、camera 等 MJCF 元素；</li>
+<li><code>modify.py</code>：修改模型、geometry、collider、site、joint、actuator 等类型；</li>
+<li><code>utilities.py</code>：场景信息、批量重命名、按 tag 选择等；</li>
+<li><code>scene.py</code>：对象信息、测量、变换、属性设置、重命名、删除和执行操作；</li>
+<li><code>geometry.py</code>：对 Forge visual mesh 执行 CoACD 凸分解；</li>
+<li><code>io.py</code>：MJCF 导入/导出及 blend 文件保存；</li>
+<li><code>capture.py</code>：截取 Blender 区域或窗口；</li>
+<li><code>blendfile.py</code>：blend 文件摘要、缺失外部文件和链接库检查；</li>
+<li><code>docs.py</code>：MJCF 与 Blender 文档全文搜索；</li>
+<li><code>skill.py</code>：读取 skill 全文或指定章节。</li>
+</ul>
+<p>所有工具都带有 MCP <code>ToolAnnotations</code>。写操作、删除、导入、CoACD 和保存等高风险操作会标记相应的 destructive hint 或 approval hint。</p>
+<h2 id="开发与测试">开发与测试<a class="headerlink" href="#开发与测试" title="Permanent link">&para;</a></h2>
+<p>在完整仓库根目录执行：</p>
+<div class="codehilite"><pre><span></span><code>uv<span class="w"> </span>sync
+uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>tests/mcp/unit<span class="w"> </span>tests/mcp/integration
+</code></pre></div>
+
+<p><code>uv sync</code> 把 <code>forge-mcp</code> 以可编辑模式安装到根 <code>.venv</code>，并安装插件测试依赖。也可使用 <code>uv sync --all-packages</code>。端到端测试需要 Blender，见<a href="../../cn/development.html">开发 Forge</a>。</p>
+<p>仅开发服务包时，可在独立源码目录创建环境：</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>mcp-server
+uv<span class="w"> </span>venv<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.11
+uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--editable<span class="w"> </span>.
+</code></pre></div>
+
+<p>保留 <code>forge_mcp/skills/</code> 和 <code>forge_mcp/docs/</code>。安装脚本与客户端启动步骤只在<a href="../MCP_INSTALL.zh-CN.html">安装与连接</a>维护。</p>
+      </article>
+      
+      <nav class="page-navigation" aria-label="章节跳转">
+        <a class="previous-page" href="../MCP_INSTALL.zh-CN.html"><span>← 上一章</span><strong>Forge MCP 安装与连接</strong></a>
+        
+      </nav>
+      
+      <footer class="manual-footer">Forge · Blender 插件使用文档</footer>
+    </main>
+    
+    <aside class="page-outline" id="manual-outline" aria-label="本页目录" tabindex="-1">
+      <div class="outline-heading"><p>本页目录</p><button class="outline-close" type="button" aria-label="关闭本页目录">×</button></div>
+      
+<ul>
+  
+  <li><a href="#运行架构">运行架构</a>
+    
+  </li>
+  
+  <li><a href="#客户端启动与进程管理">客户端启动与进程管理</a>
+    
+  </li>
+  
+  <li><a href="#运行时配置">运行时配置</a>
+    
+  </li>
+  
+  <li><a href="#skills-与文档自动加载">Skills 与文档自动加载</a>
+    
+  </li>
+  
+  <li><a href="#工具概览">工具概览</a>
+    
+  </li>
+  
+  <li><a href="#开发与测试">开发与测试</a>
+    
+  </li>
+  
+</ul>
+
+    </aside>
+    
+  </div>
+  <dialog class="image-preview" id="image-preview" aria-label="图片预览">
+    <form method="dialog" class="image-preview-close"><button type="submit" aria-label="关闭图片预览" autofocus>×</button></form>
+    <img class="image-preview-image" alt="">
+  </dialog>
+  <script>var base_url = document.body.dataset.baseUrl;</script>
+  <script src="../../assets/javascripts/image-preview.js"></script><script src="../../assets/javascripts/case-videos.js"></script><script src="../../search/main.js"></script><script src="../../assets/javascripts/manual.js"></script>
+</body>
+</html>

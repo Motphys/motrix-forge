@@ -1,0 +1,252 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Forge Blender add-on documentation · Forge 插件使用文档">
+  <link rel="icon" href="../../assets/favicon.ico" type="image/x-icon">
+  <script>
+    document.documentElement.classList.add("navigation-pending");
+    document.addEventListener("DOMContentLoaded", () => document.documentElement.classList.remove("navigation-pending"), { once: true });
+  </script>
+  <title>Chapter 1: MCP service — Forge Manual</title>
+  <script src="../../assets/javascripts/theme.js"></script>
+  <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+  <link rel="alternate" hreflang="zh-CN" href="../../cn/forge_docs/01_mcp_server.html">
+</head>
+<body data-base-url="../..">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="mobile-header">
+    <button type="button" class="menu-toggle" aria-controls="manual-sidebar" aria-expanded="false" aria-label="Open navigation">☰</button>
+    <a href="../../index.html">Forge <span>Manual</span></a>
+    
+<button type="button" class="theme-toggle theme-toggle-compact" data-theme-toggle aria-pressed="false" aria-label="Switch to dark theme">
+  <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg>
+  <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+  <span class="theme-label">Light theme</span>
+</button>
+
+    <a href="../../cn/forge_docs/01_mcp_server.html" lang="zh-CN">中文</a>
+    
+    <button type="button" class="outline-toggle" aria-controls="manual-outline" aria-expanded="false" aria-label="Open page contents"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M9 5h12M9 12h12M9 19h12M3 5h1M3 12h1M3 19h1"/></svg></button>
+    
+  </header>
+  <button class="sidebar-backdrop" type="button" aria-label="Close navigation" tabindex="-1"></button>
+  <aside class="manual-sidebar" id="manual-sidebar">
+    <a class="manual-brand" href="../../index.html"><img class="brand-logo" src="../../assets/Logo.png" alt="Forge"><span>Forge<span class="brand-subtitle">Manual</span></span></a>
+    <form class="sidebar-search" action="../../search.html" role="search">
+      <input type="hidden" name="lang" value="en">
+      <span aria-hidden="true">⌕</span><input type="search" name="q" placeholder="Search manual" aria-label="Search manual">
+    </form>
+    <nav class="chapter-nav" aria-label="Chapter navigation">
+      
+      
+      <details class="nav-group" data-nav-group="getting-started" data-active="false">
+        <summary class="nav-caption">Getting started</summary>
+        
+        <ul><li><a href="../../index.html">About Forge</a></li><li><a href="../installation.html">Installation Forge</a></li><li><a href="../preferences.html">Config Forge</a></li><li><a href="../development.html">Development Forge</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="examples" data-active="false">
+        <summary class="nav-caption">Examples</summary>
+        
+        <ul><li><a href="../examples.html">Case studies</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="manual" data-active="true" open>
+        <summary class="nav-caption">User manual</summary>
+        
+        <details class="nav-group nav-subgroup" data-nav-group="manual-contents" data-active="true" open>
+          <summary class="nav-caption nav-subcaption">Contents</summary>
+          <ul><li><a href="../forge_docs.html">Overview</a></li><li><a href="00_ui_overview.html">0. UI overview and common operations</a></li><li><a href="01_mcp_server.html" class="active" aria-current="page">1. MCP service</a></li><li><a href="02_global_and_general.html">2. Global and General</a></li><li><a href="03_geometry_and_material.html">3. Geometry and Material</a></li><li><a href="04_kinematics.html">4. Kinematics and Instance</a></li><li><a href="05_hardware.html">5. Hardware</a></li><li><a href="06_meta_elements.html">6. Meta Elements</a></li><li><a href="07_properties.html">7. Properties editing</a></li><li><a href="08_import_export.html">8. Import and Export</a></li><li><a href="09_coacd.html">9. CoACD convex decomposition</a></li><li><a href="10_troubleshooting_and_scripting.html">10. Troubleshooting and scripting</a></li></ul>
+        </details>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="mcp-reference" data-active="false">
+        <summary class="nav-caption">MCP reference</summary>
+        
+        <ul><li><a href="../../reference/MCP_INSTALL.html">Forge MCP Setup and Connection</a></li><li><a href="../../reference/mcp-server/index.html">Forge MCP Server Reference</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="mcp-skills" data-active="false">
+        <summary class="nav-caption">MCP Skills</summary>
+        
+        <ul><li><a href="../mcp_skills.html">Overview</a></li><li><a href="../mcp_skills/forge_create.html">Forge create</a></li><li><a href="../mcp_skills/forge_modify.html">Forge modify</a></li><li><a href="../mcp_skills/forge_custom_material.html">Forge custom material</a></li><li><a href="../mcp_skills/forge_operators.html">Forge operators</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="documentation" data-active="false">
+        <summary class="nav-caption">Documentation</summary>
+        
+        <ul><li><a href="../preview.html">Local preview</a></li></ul>
+        
+      </details>
+      
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-controls">
+        
+<button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Switch to dark theme">
+  <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg>
+  <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+  <span class="theme-label">Light theme</span>
+</button>
+
+        <details class="language-switch">
+          <summary><span aria-hidden="true">◎</span> English <span aria-hidden="true">⌃</span></summary>
+          <div class="language-options">
+            <a href="../../cn/forge_docs/01_mcp_server.html" lang="zh-CN">简体中文</a>
+            <a href="01_mcp_server.html" lang="en" aria-current="true">English ✓</a>
+          </div>
+        </details>
+      </div>
+      <nav class="project-links" aria-label="Project links">
+        <a class="project-link" href="https://github.com/Motphys/motrix-forge" target="_blank" rel="noopener noreferrer" title="Open GitHub in a new tab">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.68.08-.68 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.56 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.43.11-2.98 0 0 .95-.3 3.1 1.15a10.8 10.8 0 0 1 5.63 0c2.15-1.45 3.09-1.15 3.09-1.15.62 1.55.23 2.7.12 2.98.72.79 1.16 1.79 1.16 3.02 0 4.32-2.64 5.27-5.15 5.55.4.35.76 1.03.76 2.08v3.1c0 .3.2.65.78.54A11.25 11.25 0 0 0 12 .75Z"/></svg>
+          <span>GitHub</span>
+        </a>
+        <a class="project-link" href="https://www.motphys.com/" target="_blank" rel="noopener noreferrer" title="Open the Motphys website in a new tab">
+          <svg class="website-logo" width="24" height="24" viewBox="0 0 128 128" fill="currentColor" aria-hidden="true">
+            <polygon points="58.23 49.97 37.73 49.97 33.23 55.57 62.63 55.57 58.23 49.97"/>
+            <path d="M50.13,39.67c-1.1-1.4-3.2-1.4-4.3,0l-3.6,4.6h11.6l-3.6-4.6h-.1Z"/>
+            <path d="M118.13,85.27l-35.8-45.6c-1.1-1.4-3.2-1.4-4.3,0l-14.1,17.8-3.1,3.9H28.83l-4.5,5.7h32.2l-4.5,5.7H19.93l-4.5,5.7h32.2l-4.5,5.7H10.93l-1,1.3c-1.4,1.8-.1,4.4,2.1,4.4h103.9c2.3,0,3.6-2.6,2.1-4.4h0l.1-.2Z"/>
+          </svg>
+          <span>Website</span>
+        </a>
+      </nav>
+    </div>
+  </aside>
+  <script>
+/* Restore the sidebar synchronously, before revealing its first frame. */
+(() => {
+  "use strict";
+  const root = document.documentElement;
+  try {
+    const navigationKey = "forge-docs-navigation-groups";
+    let state = {};
+    try {
+      const saved = JSON.parse(localStorage.getItem(navigationKey));
+      if (saved && typeof saved === "object" && !Array.isArray(saved)) state = saved;
+    } catch { /* Keep native details usable without storage. */ }
+    const restoreGroups = scope => {
+      scope.querySelectorAll("[data-nav-group]").forEach(group => {
+        if (group.dataset.navRestored) return;
+        group.dataset.navRestored = "true";
+        const id = group.dataset.navGroup;
+        if (group.dataset.active === "true") group.open = true;
+        else if (typeof state[id] === "boolean") group.open = state[id];
+        group.addEventListener("toggle", () => {
+          state[id] = group.open;
+          try { localStorage.setItem(navigationKey, JSON.stringify(state)); } catch { /* Ignore unavailable storage. */ }
+        });
+      });
+    };
+    window.forgeRestoreNavigationGroups = restoreGroups;
+    const nav = document.querySelector(".chapter-nav");
+    if (!nav) return;
+    restoreGroups(nav);
+    const siteRoot = new URL(`${document.body.dataset.baseUrl || "."}/`, location.href).pathname;
+    const scrollKey = `forge-docs-navigation-scroll:${siteRoot}`;
+    try {
+      const saved = sessionStorage.getItem(scrollKey);
+      if (saved !== null && Number.isFinite(Number(saved)) && Number(saved) >= 0) nav.scrollTop = Number(saved);
+    } catch { /* Ignore unavailable storage. */ }
+    const save = () => {
+      try { sessionStorage.setItem(scrollKey, String(nav.scrollTop)); } catch { /* Ignore unavailable storage. */ }
+    };
+    nav.addEventListener("scroll", save, { passive: true });
+    nav.addEventListener("click", save);
+    window.addEventListener("pagehide", save);
+  } finally {
+    root.classList.remove("navigation-pending");
+  }
+})();
+</script>
+  <div class="manual-layout">
+    <main id="main-content" class="manual-main" tabindex="-1">
+      <div class="page-header">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../../index.html">Forge Manual</a><span aria-hidden="true"> / </span><span>Chapter 1: MCP service</span></nav>
+      </div>
+      <article class="manual-article">
+        <h1 id="chapter-1-mcp-service">Chapter 1: MCP service<a class="headerlink" href="#chapter-1-mcp-service" title="Permanent link">&para;</a></h1>
+<h2 id="add-on-side-mcp-service-port">Add-on-side MCP service port<a class="headerlink" href="#add-on-side-mcp-service-port" title="Permanent link">&para;</a></h2>
+<div style="flex: 1; text-align: center; ">
+    <img src="../../assets/images/manual/00-forge-sidebar-overview-1.png" width="292" alt="MCP panel">
+</div>
+
+<p>Service configuration:</p>
+<p>See <a href="../preferences.html">Config Forge</a> for the complete connection, Polling, Startup, and Debug settings.</p>
+<ul>
+<li><strong>Address:</strong> <code>localhost</code> by default.</li>
+<li><strong>Port:</strong> <code>9876</code> by default.</li>
+<li><strong>Auto-start server:</strong> the automatic startup option in the add-on preferences; enabled by default.</li>
+<li><strong>Authentication Token:</strong> configure a shared token when the listening address is not localhost.</li>
+<li><strong>Log requests to console:</strong> toggle request/response logging immediately, without restarting the Bridge. Logs go to Blender's system console, rather than the Python Console editor; on Windows, use <strong>Window → Toggle System Console</strong>.</li>
+</ul>
+<p><strong>Start/Stop MCP Bridge</strong> in the sidebar controls the TCP bridge on the Blender add-on side. It is not the MCP server on the agent side.</p>
+<h2 id="agent-side-mcp-service">Agent-side MCP service<a class="headerlink" href="#agent-side-mcp-service" title="Permanent link">&para;</a></h2>
+<p>Use it as follows:</p>
+<ul>
+<li>Prepare the workspace and install dependencies using <a href="../../reference/MCP_INSTALL.html">MCP setup and connection</a>. The full repository's development environment uses the root <code>.venv</code>; a minimal MCP workspace uses <code>mcp-server/.venv</code>.</li>
+<li>Make sure Forge is enabled in Blender and start the add-on-side MCP bridge.</li>
+<li>Start Claude Code or Codex from the workspace directory. The client reads its configuration and automatically starts and manages Forge MCP Server. For the full installation, startup, and connection checks, see <a href="../../reference/MCP_INSTALL.html">MCP setup and connection</a>.</li>
+<li>Claude Code reads <code>.mcp.json</code> at the workspace root. Codex uses the workspace's <code>.codex/config.toml</code>; see the installation guide for startup instructions.</li>
+<li><strong>Portable workspace:</strong> copy the complete workspace, including <code>.mcp.json</code>, <code>.codex/config.toml</code>, and <code>mcp-server/</code>, to any location. In a console run <code>mcp-server/install.ps1</code> on Windows or <code>bash mcp-server/install.sh</code> on Unix-like systems to install dependencies, then start the agent (<code>claude</code> or <code>codex</code>) from that directory. Codex should use <code>CODEX_HOME="$PWD/.codex"</code>. The host machine must have <a href="https://docs.astral.sh/uv/">uv</a> installed.</li>
+<li>The default connection is <code>localhost:9876</code>. For a non-default address, set <code>FORGE_MCP_HOST</code> and <code>FORGE_MCP_PORT</code>; set <code>FORGE_MCP_TOKEN</code> when authentication is enabled.</li>
+<li>Check the connection before running Forge operations: Codex users can run <code>codex mcp list</code>, while Claude Code users can run <code>claude mcp list</code>; <code>/mcp</code> is also available in either client's TUI. Scene queries and edits require the Blender-side Bridge. Reading Skills and searching local documentation do not.</li>
+<li><code>mcp-server</code> and <code>addon/Forge</code> are independent components. The former provides agent-side stdio MCP; the latter runs in the Blender instance that owns the scene. See <a href="../installation.html">Installation Forge</a> for Blender version requirements. Operating scenes through an agent requires both components.</li>
+<li>When distributing only <code>mcp-server</code>, keep the source directories <code>forge_mcp/skills</code> and <code>forge_mcp/docs</code> and create the environment with the installation scripts above. Use <code>FORGE_BLENDER_DOCS_DIR</code> to override the default Blender documentation directory.</li>
+<li>For cross-machine connections, configure the bridge in the add-on preferences or with the background command's <code>--host</code>, <code>--port</code>, and <code>--token</code> options; set <code>FORGE_MCP_HOST</code>, <code>FORGE_MCP_PORT</code>, and <code>FORGE_MCP_TOKEN</code> in the client process. Both sides must use the same token. Non-localhost listeners must use a token and should be protected by a firewall or VPN.</li>
+<li><strong>The Bridge requires Blender's online-access permission.</strong> Without it, the port does not listen. Use <code>--online-mode</code> for background launches, or allow online access in Preferences for GUI sessions. If startup fails, check the <strong>Debug</strong> error message in Forge preferences.</li>
+</ul>
+<p>For the complete configuration and environment-variable reference, see <a href="../../reference/mcp-server/index.html"><code>mcp-server/README.md</code></a>.</p>
+<hr />
+      </article>
+      
+      <nav class="page-navigation" aria-label="Page navigation">
+        <a class="previous-page" href="00_ui_overview.html"><span>← Previous</span><strong>0. UI overview and common operations</strong></a>
+        <a class="next-page" href="02_global_and_general.html"><span>Next →</span><strong>2. Global and General</strong></a>
+      </nav>
+      
+      <footer class="manual-footer">Forge · Blender add-on documentation</footer>
+    </main>
+    
+    <aside class="page-outline" id="manual-outline" aria-label="On this page" tabindex="-1">
+      <div class="outline-heading"><p>On this page</p><button class="outline-close" type="button" aria-label="Close page contents">×</button></div>
+      
+<ul>
+  
+  <li><a href="#add-on-side-mcp-service-port">Add-on-side MCP service port</a>
+    
+  </li>
+  
+  <li><a href="#agent-side-mcp-service">Agent-side MCP service</a>
+    
+  </li>
+  
+</ul>
+
+    </aside>
+    
+  </div>
+  <dialog class="image-preview" id="image-preview" aria-label="Image preview">
+    <form method="dialog" class="image-preview-close"><button type="submit" aria-label="Close image preview" autofocus>×</button></form>
+    <img class="image-preview-image" alt="">
+  </dialog>
+  <script>var base_url = document.body.dataset.baseUrl;</script>
+  <script src="../../assets/javascripts/image-preview.js"></script><script src="../../assets/javascripts/case-videos.js"></script><script src="../../search/main.js"></script><script src="../../assets/javascripts/manual.js"></script>
+</body>
+</html>

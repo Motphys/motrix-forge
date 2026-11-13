@@ -1,0 +1,789 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Forge Blender add-on documentation · Forge 插件使用文档">
+  <link rel="icon" href="../../assets/favicon.ico" type="image/x-icon">
+  <script>
+    document.documentElement.classList.add("navigation-pending");
+    document.addEventListener("DOMContentLoaded", () => document.documentElement.classList.remove("navigation-pending"), { once: true });
+  </script>
+  <title>第 7 章：属性编辑 — Forge 使用手册</title>
+  <script src="../../assets/javascripts/theme.js"></script>
+  <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+  <link rel="alternate" hreflang="en" href="../../en/forge_docs/07_properties.html">
+</head>
+<body data-base-url="../..">
+  <a class="skip-link" href="#main-content">跳至正文</a>
+  <header class="mobile-header">
+    <button type="button" class="menu-toggle" aria-controls="manual-sidebar" aria-expanded="false" aria-label="打开导航">☰</button>
+    <a href="../../introduction.zh-CN.html">Forge <span>使用手册</span></a>
+    
+<button type="button" class="theme-toggle theme-toggle-compact" data-theme-toggle aria-pressed="false" aria-label="切换至黑色主题">
+  <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg>
+  <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+  <span class="theme-label">浅色主题</span>
+</button>
+
+    <a href="../../en/forge_docs/07_properties.html" lang="en">EN</a>
+    
+    <button type="button" class="outline-toggle" aria-controls="manual-outline" aria-expanded="false" aria-label="打开本页目录"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M9 5h12M9 12h12M9 19h12M3 5h1M3 12h1M3 19h1"/></svg></button>
+    
+  </header>
+  <button class="sidebar-backdrop" type="button" aria-label="关闭导航" tabindex="-1"></button>
+  <aside class="manual-sidebar" id="manual-sidebar">
+    <a class="manual-brand" href="../../introduction.zh-CN.html"><img class="brand-logo" src="../../assets/Logo.png" alt="Forge"><span>Forge<span class="brand-subtitle">使用手册</span></span></a>
+    <form class="sidebar-search" action="../search.html" role="search">
+      <input type="hidden" name="lang" value="cn">
+      <span aria-hidden="true">⌕</span><input type="search" name="q" placeholder="搜索手册" aria-label="搜索手册">
+    </form>
+    <nav class="chapter-nav" aria-label="章节导航">
+      
+      
+      <details class="nav-group" data-nav-group="getting-started" data-active="false">
+        <summary class="nav-caption">开始使用</summary>
+        
+        <ul><li><a href="../../introduction.zh-CN.html">关于 Forge</a></li><li><a href="../installation.html">安装 Forge</a></li><li><a href="../preferences.html">配置 Forge</a></li><li><a href="../development.html">开发 Forge</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="examples" data-active="false">
+        <summary class="nav-caption">案例</summary>
+        
+        <ul><li><a href="../examples.html">应用案例</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="manual" data-active="true" open>
+        <summary class="nav-caption">使用手册</summary>
+        
+        <details class="nav-group nav-subgroup" data-nav-group="manual-contents" data-active="true" open>
+          <summary class="nav-caption nav-subcaption">章节目录</summary>
+          <ul><li><a href="../forge_docs.html">概览</a></li><li><a href="00_ui_overview.html">0. 界面总览与通用操作</a></li><li><a href="01_mcp_server.html">1. MCP 服务</a></li><li><a href="02_global_and_general.html">2. 全局与通用设置</a></li><li><a href="03_geometry_and_material.html">3. 几何与材质</a></li><li><a href="04_kinematics.html">4. 运动学与实例</a></li><li><a href="05_hardware.html">5. 硬件</a></li><li><a href="06_meta_elements.html">6. 元元素</a></li><li><a href="07_properties.html" class="active" aria-current="page">7. 属性编辑</a></li><li><a href="08_import_export.html">8. 导入与导出</a></li><li><a href="09_coacd.html">9. CoACD 凸分解</a></li><li><a href="10_troubleshooting_and_scripting.html">10. 常见问题与脚本调用</a></li></ul>
+        </details>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="mcp-reference" data-active="false">
+        <summary class="nav-caption">MCP 参考</summary>
+        
+        <ul><li><a href="../../reference/MCP_INSTALL.zh-CN.html">Forge MCP 安装与连接</a></li><li><a href="../../reference/mcp-server/README.zh-CN.html">Forge MCP 服务端参考</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="mcp-skills" data-active="false">
+        <summary class="nav-caption">MCP Skills (English only)</summary>
+        
+        <ul><li><a href="../mcp_skills.html">Overview</a></li><li><a href="../mcp_skills/forge_create.html">Forge create</a></li><li><a href="../mcp_skills/forge_modify.html">Forge modify</a></li><li><a href="../mcp_skills/forge_custom_material.html">Forge custom material</a></li><li><a href="../mcp_skills/forge_operators.html">Forge operators</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="documentation" data-active="false">
+        <summary class="nav-caption">文档</summary>
+        
+        <ul><li><a href="../preview.html">本地预览</a></li></ul>
+        
+      </details>
+      
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-controls">
+        
+<button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="切换至黑色主题">
+  <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg>
+  <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+  <span class="theme-label">浅色主题</span>
+</button>
+
+        <details class="language-switch">
+          <summary><span aria-hidden="true">◎</span> 简体中文 <span aria-hidden="true">⌃</span></summary>
+          <div class="language-options">
+            <a href="07_properties.html" lang="zh-CN" aria-current="true">简体中文 ✓</a>
+            <a href="../../en/forge_docs/07_properties.html" lang="en">English</a>
+          </div>
+        </details>
+      </div>
+      <nav class="project-links" aria-label="项目链接">
+        <a class="project-link" href="https://github.com/Motphys/motrix-forge" target="_blank" rel="noopener noreferrer" title="在新标签页打开 GitHub">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.68.08-.68 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.56 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.43.11-2.98 0 0 .95-.3 3.1 1.15a10.8 10.8 0 0 1 5.63 0c2.15-1.45 3.09-1.15 3.09-1.15.62 1.55.23 2.7.12 2.98.72.79 1.16 1.79 1.16 3.02 0 4.32-2.64 5.27-5.15 5.55.4.35.76 1.03.76 2.08v3.1c0 .3.2.65.78.54A11.25 11.25 0 0 0 12 .75Z"/></svg>
+          <span>GitHub</span>
+        </a>
+        <a class="project-link" href="https://www.motphys.com/" target="_blank" rel="noopener noreferrer" title="在新标签页打开 Motphys 官网">
+          <svg class="website-logo" width="24" height="24" viewBox="0 0 128 128" fill="currentColor" aria-hidden="true">
+            <polygon points="58.23 49.97 37.73 49.97 33.23 55.57 62.63 55.57 58.23 49.97"/>
+            <path d="M50.13,39.67c-1.1-1.4-3.2-1.4-4.3,0l-3.6,4.6h11.6l-3.6-4.6h-.1Z"/>
+            <path d="M118.13,85.27l-35.8-45.6c-1.1-1.4-3.2-1.4-4.3,0l-14.1,17.8-3.1,3.9H28.83l-4.5,5.7h32.2l-4.5,5.7H19.93l-4.5,5.7h32.2l-4.5,5.7H10.93l-1,1.3c-1.4,1.8-.1,4.4,2.1,4.4h103.9c2.3,0,3.6-2.6,2.1-4.4h0l.1-.2Z"/>
+          </svg>
+          <span>官网</span>
+        </a>
+      </nav>
+    </div>
+  </aside>
+  <script>
+/* Restore the sidebar synchronously, before revealing its first frame. */
+(() => {
+  "use strict";
+  const root = document.documentElement;
+  try {
+    const navigationKey = "forge-docs-navigation-groups";
+    let state = {};
+    try {
+      const saved = JSON.parse(localStorage.getItem(navigationKey));
+      if (saved && typeof saved === "object" && !Array.isArray(saved)) state = saved;
+    } catch { /* Keep native details usable without storage. */ }
+    const restoreGroups = scope => {
+      scope.querySelectorAll("[data-nav-group]").forEach(group => {
+        if (group.dataset.navRestored) return;
+        group.dataset.navRestored = "true";
+        const id = group.dataset.navGroup;
+        if (group.dataset.active === "true") group.open = true;
+        else if (typeof state[id] === "boolean") group.open = state[id];
+        group.addEventListener("toggle", () => {
+          state[id] = group.open;
+          try { localStorage.setItem(navigationKey, JSON.stringify(state)); } catch { /* Ignore unavailable storage. */ }
+        });
+      });
+    };
+    window.forgeRestoreNavigationGroups = restoreGroups;
+    const nav = document.querySelector(".chapter-nav");
+    if (!nav) return;
+    restoreGroups(nav);
+    const siteRoot = new URL(`${document.body.dataset.baseUrl || "."}/`, location.href).pathname;
+    const scrollKey = `forge-docs-navigation-scroll:${siteRoot}`;
+    try {
+      const saved = sessionStorage.getItem(scrollKey);
+      if (saved !== null && Number.isFinite(Number(saved)) && Number(saved) >= 0) nav.scrollTop = Number(saved);
+    } catch { /* Ignore unavailable storage. */ }
+    const save = () => {
+      try { sessionStorage.setItem(scrollKey, String(nav.scrollTop)); } catch { /* Ignore unavailable storage. */ }
+    };
+    nav.addEventListener("scroll", save, { passive: true });
+    nav.addEventListener("click", save);
+    window.addEventListener("pagehide", save);
+  } finally {
+    root.classList.remove("navigation-pending");
+  }
+})();
+</script>
+  <div class="manual-layout">
+    <main id="main-content" class="manual-main" tabindex="-1">
+      <div class="page-header">
+        <nav class="breadcrumbs" aria-label="当前位置"><a href="../../introduction.zh-CN.html">Forge 使用手册</a><span aria-hidden="true"> / </span><span>第 7 章：属性编辑</span></nav>
+      </div>
+      <article class="manual-article">
+        <h1 id="第-7-章属性编辑">第 7 章：属性编辑<a class="headerlink" href="#第-7-章属性编辑" title="Permanent link">&para;</a></h1>
+<h2 id="71-三个属性入口">7.1 三个属性入口<a class="headerlink" href="#71-三个属性入口" title="Permanent link">&para;</a></h2>
+<h3 id="model-define-global">Model Define → Global<a class="headerlink" href="#model-define-global" title="Permanent link">&para;</a></h3>
+<p>用于 Scene 级的 Global Properties 与 Visual Properties，详见第 2 章。必须先取消所有对象选择。</p>
+<h3 id="3d-视图属性-gizmo">3D 视图属性 Gizmo<a class="headerlink" href="#3d-视图属性-gizmo" title="Permanent link">&para;</a></h3>
+<p>在 <strong>Object Mode</strong> 中选择 <strong>Forge</strong> 对象后，点击随对象显示的彩色 <strong>Gizmo</strong>，可打开对应的 <strong>Properties</strong> 弹窗。</p>
+<div style="display: flex; gap: 24px; align-items: flex-start;">
+  <div style="flex: 1; text-align: center; ">
+    <strong>蓝色 Gizmo</strong>
+  </div>
+  <div style="flex: 1.8; text-align: center; ">
+    <strong>点击 Gizmo 后</strong>
+  </div>
+</div>
+<div style="display: flex; gap: 24px; align-items: flex-start;">
+  <div style="flex: 1; text-align: center; ">
+    <img
+      src="../../assets/images/manual/07-gizmo-properties-0.png"
+      width="300"
+      alt="对象属性 Gizmo">
+  </div>
+  <div style="flex: 1.8; text-align: center; ">
+    <img
+      src="../../assets/images/manual/07-gizmo-properties-1.png"
+      width="580"
+      alt="Gizmo 打开的属性弹窗">
+  </div>
+</div>
+
+<h3 id="object-properties-forge-properties">Object Properties → Forge Properties<a class="headerlink" href="#object-properties-forge-properties" title="Permanent link">&para;</a></h3>
+<p>显示活动对象的：</p>
+<ul>
+<li><strong>Local/World Location</strong> 与 <strong>Rotation</strong>；</li>
+<li><strong>Dimensions</strong>；</li>
+<li><strong>Parent</strong>；</li>
+<li><strong>Forge Model Type</strong>；</li>
+<li>当前类型对应的模型属性数据。</li>
+</ul>
+<p>面板查看步骤：</p>
+<ol>
+<li>打开 <code>Properties</code> 窗口 <img alt="Properties 窗口位置" src="../../assets/images/manual/07-forge-properties-area.png" />；</li>
+<li>切换到 <code>Object Properties</code> 页签 <img alt="Object Properties 页签" src="../../assets/images/manual/07-forge-properties-tab.png" />；</li>
+<li>展开 <code>Forge Properties</code>，查看当前 Model Type 对应的属性。</li>
+</ol>
+<div align="center">
+  <img src="../../assets/images/manual/07-forge-properties.png" alt="Forge properties">
+</div>
+
+<h2 id="72-看不到属性-gizmo">7.2 看不到属性 Gizmo<a class="headerlink" href="#72-看不到属性-gizmo" title="Permanent link">&para;</a></h2>
+<p>请依次确认：</p>
+<ol>
+<li>当前在 <strong>3D</strong> 视图 且处于 <strong>Object Mode</strong> <img alt="" src="../../assets/images/manual/07-object-model.png" />。</li>
+<li><strong>3D</strong> 视图的 <strong>Gizmos</strong> 显示已开启 <img alt="" src="../../assets/images/manual/07-3d-gizmo.png" />。</li>
+<li>活动对象的 <strong>Blender</strong> 类型和 <strong>Forge</strong> 类型正确。</li>
+<li>形状类对象仍具有 <strong>Forge</strong> 创建时添加的 <strong>Geometry Nodes Modifier</strong>。</li>
+</ol>
+<h2 id="73-对象属性弹窗一览">7.3 对象属性弹窗一览<a class="headerlink" href="#73-对象属性弹窗一览" title="Permanent link">&para;</a></h2>
+<p>以下属性弹窗均为 UI-only Operator，供 Blender 界面交互使用。</p>
+<h3 id="height-field">Height Field<a class="headerlink" href="#height-field" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID：</strong> <code>forge.properties_hfield</code></p>
+<table>
+<thead>
+<tr>
+<th>主要可编辑内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nrow/Ncol、Elevation、X/Y Radius、Elevation Z、Base Z、Offset、Use Height Map、Height Map、接触/求解属性</td>
+</tr>
+</tbody>
+</table>
+<p>弹窗：</p>
+<div style="display: flex; gap: 24px; align-items: flex-start;">
+  <div style="flex: 1; text-align: center; ">
+    <strong>Hfield Properties</strong>
+  </div>
+  <div style="flex: 1; text-align: center; ">
+    <strong>Model Properties</strong>
+  </div>
+</div>
+<div style="display: flex; gap: 24px; align-items: flex-start;">
+  <div style="flex: 1; text-align: center; ">
+    <img
+      src="../../assets/images/manual/07-hfield-properties.png"
+      width="412"
+      alt="Hfield Properties弹窗">
+  </div>
+  <div style="flex: 1; text-align: center; ">
+    <img
+      src="../../assets/images/manual/07-hfield-model-properties.png"
+      width="412"
+      alt="Hfield Model Properties弹窗">
+  </div>
+</div>
+
+<h3 id="plane">Plane<a class="headerlink" href="#plane" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID：</strong> <code>forge.properties_plane</code></p>
+<table>
+<thead>
+<tr>
+<th>主要可编辑内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>X/Y Half Size、Infinite、接触/求解属性</td>
+</tr>
+</tbody>
+</table>
+<p>弹窗：</p>
+<div style="display: flex; gap: 24px; align-items: flex-start;">
+  <div style="flex: 1; text-align: center; ">
+    <strong>Plane Properties</strong>
+  </div>
+  <div style="flex: 1; text-align: center; ">
+    <strong>Model Properties</strong>
+  </div>
+</div>
+<div style="display: flex; gap: 24px; align-items: flex-start;">
+  <div style="flex: 1; text-align: center; ">
+    <img
+      src="../../assets/images/manual/07-plane-properties.png"
+      width="412"
+      alt="Hfield Properties弹窗">
+  </div>
+  <div style="flex: 1; text-align: center; ">
+    <img
+      src="../../assets/images/manual/07-hfield-model-properties.png"
+      width="412"
+      alt="Hfield Model Properties弹窗">
+  </div>
+</div>
+
+<h3 id="visual-collider">Visual / Collider<a class="headerlink" href="#visual-collider" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID：</strong> <code>forge.properties_shape</code></p>
+<table>
+<thead>
+<tr>
+<th>主要可编辑内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基本形状尺寸；Group、Condim、Contype、Conaffinity、Priority、Friction、Mass、Density、Margin、Gap、Solver</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Box</strong>：编辑 <strong>X/Y/Z Size</strong>。</li>
+<li><strong>Sphere</strong>：编辑 <strong>Radius</strong>。</li>
+<li><strong>Capsule/Cylinder</strong>：编辑 <strong>Radius</strong> 与 <strong>Height</strong>。</li>
+<li><strong>Mesh</strong> 类型：没有 <strong>Primitive Size</strong> 输入，应修改 <strong>Mesh</strong> 本身或对象尺寸。</li>
+</ul>
+<p>材质不在此弹窗中编辑。请使用 <strong>Create Material</strong>，或在 Blender 的对象材质槽中直接指定材质。</p>
+<p><strong>Model Properties</strong> 区域保存 <strong>MJCF Geometry</strong> 的碰撞、质量和 <strong>Solver</strong> 参数。弹窗：</p>
+<div style="display: flex; gap: 24px; align-items: flex-start;">
+  <div style="flex: 1; text-align: center; ">
+    <strong>Visual Properties</strong>
+  </div>
+  <div style="flex: 1; text-align: center; ">
+    <strong>Collider Properties</strong>
+  </div>
+</div>
+<div style="display: flex; gap: 24px; align-items: flex-start;">
+  <div style="flex: 1; text-align: center; ">
+    <img
+      src="../../assets/images/manual/07-shape-properties-0.png"
+      width="412"
+      alt="Geom Properties弹窗">
+  </div>
+  <div style="flex: 1; text-align: center; ">
+    <img
+      src="../../assets/images/manual/07-shape-properties-1.png"
+      width="412"
+      alt="Geom Properties弹窗">
+  </div>
+</div>
+
+<h3 id="link">Link<a class="headerlink" href="#link" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID：</strong> <code>forge.properties_link</code></p>
+<table>
+<thead>
+<tr>
+<th>主要可编辑内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Empty Display Type、Display Size、Mocap、Gravcomp</td>
+</tr>
+</tbody>
+</table>
+<p>弹窗：</p>
+<div align="center">
+  <img src="../../assets/images/manual/07-link-properties.png" alt="Link properties">
+</div>
+
+<h3 id="site">Site<a class="headerlink" href="#site" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID：</strong> <code>forge.properties_shape_site</code></p>
+<table>
+<thead>
+<tr>
+<th>主要可编辑内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Box/Sphere/Capsule/Cylinder 的尺寸与 Group</td>
+</tr>
+</tbody>
+</table>
+<p>弹窗：</p>
+<div align="center">
+  <img src="../../assets/images/manual/07-site-properties.png" alt="Site properties">
+</div>
+
+<h3 id="inertial">Inertial<a class="headerlink" href="#inertial" title="Permanent link">&para;</a></h3>
+<p>选中 <strong>Inertial</strong>，在 <strong>Object Properties → Forge Properties → Inertial Info</strong> 查看 <code>mass</code>、<code>diaginertia</code> 和 <code>fullinertia</code>。当前面板只读，也没有单独的惯量属性弹窗；需要修改数值时可通过 Python 操作对象的 <code>Forge_Inertial</code>：</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">bpy</span>
+
+<span class="n">inertial</span> <span class="o">=</span> <span class="n">bpy</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">active_object</span><span class="o">.</span><span class="n">Forge_Inertial</span>
+<span class="n">inertial</span><span class="o">.</span><span class="n">mass</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">inertial</span><span class="o">.</span><span class="n">fullinertia</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+</code></pre></div>
+
+<ul>
+<li><code>diaginertia</code> 为惯性主轴坐标系下的三个对角分量；对象相对于父 Link 的旋转决定主轴方向，位置为质心。</li>
+<li><code>fullinertia</code> 为质心处、以 <strong>Link 坐标轴</strong> 表达的完整对称惯量张量，顺序为 <code>Ixx, Iyy, Izz, Ixy, Ixz, Iyz</code>。它根据当前旋转和对角惯量实时派生。</li>
+<li>写入非零 <code>fullinertia</code> 时需为正定张量；Forge 会分解它并同步更新主轴旋转与 <code>diaginertia</code>。脚本应一次赋值完整的六分量数组，避免逐分量写入不完整张量。</li>
+<li>质量或惯量变更会更新等效长方体。质量须为有限正数、三个对角惯量须为有限正数且满足惯量三角关系，才会显示预览；不满足时不绘制。</li>
+</ul>
+<h3 id="joint">Joint<a class="headerlink" href="#joint" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID：</strong> <code>forge.properties_joint</code></p>
+<table>
+<thead>
+<tr>
+<th>主要可编辑内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Type、Display Size、Springdamper、Solver、Range、Force Range、Stiffness、Ref、Armature、Damping、Frictionloss</td>
+</tr>
+</tbody>
+</table>
+<p>弹窗：</p>
+<div align="center">
+  <img
+    src="../../assets/images/manual/07-joint-properties.png"
+    width="412"
+    alt="Joint Properties弹窗">
+
+</div>
+
+<h3 id="actuator">Actuator<a class="headerlink" href="#actuator" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID：</strong> <code>forge.properties_actuator</code></p>
+<table>
+<thead>
+<tr>
+<th>主要可编辑内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Type、Target、控制/力范围、Gain/Bias 类型、类型专用参数、Gear/Dynamics/Gain/Bias 数组</td>
+</tr>
+</tbody>
+</table>
+<p>弹窗：</p>
+<div align="center">
+  <img
+    src="../../assets/images/manual/07-actuator-properties.png"
+    width="492"
+    alt="Actuator Properties弹窗">
+
+</div>
+
+<h3 id="tendon">Tendon<a class="headerlink" href="#tendon" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID：</strong> <code>forge.properties_tendon</code></p>
+<p><strong>Tendon</strong> 可通过 <code>+</code> / <code>-</code> 增删 Target 列表项，对应 Operator 分别为 <code>forge.add_tendon_target_item</code> 和 <code>forge.remove_tendon_target_item</code>。这两个 Operator 也是 UI 辅助入口；脚本/MCP 应直接维护 Tendon 的 Target 集合。</p>
+<table>
+<thead>
+<tr>
+<th>主要可编辑内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Type、Target 列表增删、Range、Solver、Spring Length、Stiffness、Damping</td>
+</tr>
+</tbody>
+</table>
+<p>弹窗：</p>
+<div align="center">
+  <img
+    src="../../assets/images/manual/07-tendon-properties.png"
+    width="412"
+    alt="Tendon Properties弹窗">
+
+</div>
+
+<h3 id="equality">Equality<a class="headerlink" href="#equality" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID：</strong> <code>forge.properties_equality</code></p>
+<p><strong>Equality</strong> 的 <strong>Active</strong> 关闭后，主体参数不可编辑。</p>
+<table>
+<thead>
+<tr>
+<th>主要可编辑内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Active、Type、Target 1/2、类型专用参数</td>
+</tr>
+</tbody>
+</table>
+<p>弹窗：</p>
+<div align="center">
+  <img
+    src="../../assets/images/manual/07-equality-properties.png"
+    width="412"
+    alt="Equality Properties弹窗">
+
+</div>
+
+<h3 id="contact">Contact<a class="headerlink" href="#contact" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID：</strong> <code>forge.properties_contact</code></p>
+<p><strong>Contact</strong> 只有 <strong>Pair</strong> 类型显示碰撞和 <strong>Solver</strong> 参数。</p>
+<table>
+<thead>
+<tr>
+<th>主要可编辑内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Type、Target 1/2；Pair 的 Condim、Friction、Solver、Margin、Gap</td>
+</tr>
+</tbody>
+</table>
+<p>弹窗：</p>
+<div style="display: flex; gap: 24px; align-items: flex-start;">
+  <div style="flex: 1; text-align: center; ">
+    <strong>Exclude Properties</strong>
+  </div>
+  <div style="flex: 1; text-align: center; ">
+    <strong>Pair Properties</strong>
+  </div>
+</div>
+<div style="display: flex; gap: 24px; align-items: flex-start;">
+  <div style="flex: 1; text-align: center; ">
+    <img
+      src="../../assets/images/manual/07-contact-properties-0.png"
+      width="412"
+      alt="Contact Properties弹窗">
+  </div>
+  <div style="flex: 1; text-align: center; ">
+    <img
+      src="../../assets/images/manual/07-contact-properties-1.png"
+      width="412"
+      alt="Contact Properties弹窗">
+  </div>
+</div>
+
+<h3 id="sensor">Sensor<a class="headerlink" href="#sensor" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID：</strong> <code>forge.properties_sensor</code></p>
+<p><strong>Frame Sensor</strong> 可设置 <strong>Reference</strong>；<strong>Contact Sensor</strong> 会根据 <strong>Target Type</strong> 显示 <strong>Link</strong>、<strong>Geom</strong>、<strong>Subtree</strong> 或 <strong>Site</strong> 名称。</p>
+<table>
+<thead>
+<tr>
+<th>主要可编辑内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sensor/Target Type、Target、Reference、Xbody/Subtree、Noise、Cutoff；Contact Sensor 的 Data/Reduce</td>
+</tr>
+</tbody>
+</table>
+<p>弹窗：</p>
+<div align="center">
+  <img
+    src="../../assets/images/manual/07-sensor-properties.png"
+    width="412"
+    alt="Sensor Properties弹窗">
+
+</div>
+
+<h3 id="light">Light<a class="headerlink" href="#light" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID：</strong> <code>forge.properties_light</code></p>
+<p><strong>Light</strong> 只有 <strong>Targetbody/Targetbodycom</strong> 模式显示 <strong>Target</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>主要可编辑内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Type、Mode、Target、Shadow、Color、Energy、Size/Distance/Angle/Spot 参数</td>
+</tr>
+</tbody>
+</table>
+<p>弹窗：</p>
+<div align="center">
+  <img
+    src="../../assets/images/manual/07-light-properties.png"
+    width="412"
+    alt="Light Properties弹窗">
+
+</div>
+
+<h3 id="camera">Camera<a class="headerlink" href="#camera" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID：</strong> <code>forge.properties_camera</code></p>
+<p><strong>Camera</strong> 只有 <strong>Targetbody/Targetbodycom</strong> 模式显示 <strong>Target</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>主要可编辑内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Type、Mode、Target、FOV 或 Ortho Scale、Clip Start/End</td>
+</tr>
+</tbody>
+</table>
+<p>弹窗：</p>
+<div align="center">
+  <img
+    src="../../assets/images/manual/07-camera-properties.png"
+    width="412"
+    alt="Camera Properties弹窗">
+
+</div>
+
+<h3 id="replicate">Replicate<a class="headerlink" href="#replicate" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID：</strong> <code>forge.properties_replicate</code></p>
+<table>
+<thead>
+<tr>
+<th>主要可编辑内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Count、Offset、Euler、Separator</td>
+</tr>
+</tbody>
+</table>
+<p>弹窗：</p>
+<div align="center">
+  <img
+    src="../../assets/images/manual/07-replicate-properties.png"
+    width="412"
+    alt="Replicate Properties弹窗">
+
+</div>
+
+<p>动态字段：</p>
+<ul>
+<li><strong>Global / Visual</strong>：<strong>Headlight</strong> 和 <strong>SSGI</strong> 的详细参数分别受 <strong>Active</strong> 开关控制；关闭时对应字段会被禁用。</li>
+<li><strong>Height Field</strong>：只有启用 <strong>Use Height Map</strong> 后才显示 <strong>Height Map</strong> 字段。</li>
+<li><strong>Plane</strong>：<strong>Infinite</strong> 是独立开关，不会隐藏 <strong>Half Size</strong> 字段。</li>
+<li><strong>Visual / Collider</strong>：几何类型决定尺寸字段；<strong>Box</strong> 显示三轴 <strong>Size</strong>，<strong>Sphere</strong> 显示 <strong>Radius</strong>，<strong>Capsule/Cylinder</strong> 显示 <strong>Radius + Height</strong>。<strong>Mesh</strong> 不显示 Primitive 尺寸。材质通过对象的第一个 <strong>Material Slot</strong> 管理。</li>
+<li><strong>Site</strong>：几何类型决定显示 <strong>Size</strong>、<strong>Radius</strong> 或 <strong>Radius + Height</strong>。</li>
+<li><strong>Link</strong>：<strong>Display Type / Display Size / Mocap / Gravcomp</strong> 始终显示，没有按类型隐藏的字段。</li>
+<li><strong>Joint</strong>：<strong>Free</strong> 只显示基础的 <strong>Stiffness / Armature / Damping / Frictionloss</strong>；其他类型才显示 <strong>Springdamper</strong>、Solver、Range、Limited 等字段；<strong>Ball</strong> 不显示 <strong>Actuator Force Range/Limited</strong>。</li>
+<li><strong>Actuator</strong>：<strong>Position</strong> 显示 <strong>Kp / Kv / Inheritrange</strong>，<strong>Velocity</strong> 显示 <strong>Kv</strong>，<strong>Adhesion</strong> 显示 <strong>Gain</strong>；其他类型显示 <strong>Gear / Dynamics / Gain / Bias</strong> 数组。</li>
+<li><strong>Tendon</strong>：<strong>Target</strong> 字段来自可变长度的 Target 列表，列表项数量由 <code>+ / -</code> 控制。</li>
+<li><strong>Equality</strong>：关闭 <strong>Active</strong> 时其余字段不可编辑；只有设置 <strong>Target 1</strong> 后才显示 <strong>Target 2</strong>，其余参数按 Equality 类型变化。</li>
+<li><strong>Contact</strong>：只有 <strong>Pair</strong> 类型显示 <strong>Condim、Friction、Solver、Margin、Gap</strong>；<strong>Exclude</strong> 不显示这些字段。</li>
+<li><strong>Sensor</strong>：<strong>Contact</strong> Sensor 会根据 <strong>Target Type</strong> 将目标字段标记为 <strong>Link1/2、Geom1/2、Subtree1/2</strong> 或 <strong>Site</strong>；Frame 类 Sensor 在设置 Target 后显示 <strong>Reference</strong> 与 <strong>Use Xbody</strong>，Contact 类 Sensor 在需要第二目标时显示 <strong>Reference</strong> 与 <strong>Use Subtree</strong>。</li>
+<li><strong>Light</strong>：只有 <strong>Targetbody/Targetbodycom</strong> 模式显示 <strong>Target</strong>；<strong>Spot/Point</strong> 显示 <strong>Shadow Soft Size / Cutoff Distance</strong>，其他类型显示 <strong>Angle</strong>；<strong>Spot</strong> 额外显示 <strong>Spot Size / Spot Blend</strong>。</li>
+<li><strong>Camera</strong>：只有 <strong>Targetbody/Targetbodycom</strong> 模式显示 <strong>Target</strong>；<strong>Perspective</strong> 显示 <strong>FOV/Angle</strong>，<strong>Orthographic</strong> 显示 <strong>Ortho Scale</strong>。</li>
+<li><strong>Replicate</strong>：仅在对象仍具有 Replicate Modifier 时显示 <strong>Count / Offset / Euler</strong>；<strong>Separator</strong> 始终属于 Replicate 属性。</li>
+</ul>
+<h2 id="74-修改如何生效">7.4 修改如何生效<a class="headerlink" href="#74-修改如何生效" title="Permanent link">&para;</a></h2>
+<p>属性弹窗直接修改 <strong>Object</strong>、<strong>Modifier</strong> 或 <strong>Scene</strong> 数据，不需要 <strong>Apply/Save</strong> 按钮。关闭弹窗后修改仍然保留，并可使用 <strong>Blender Undo</strong> 撤销。</p>
+<p>优先在 <strong>Properties</strong> 中修改 <strong>Size</strong>、<strong>Radius</strong>、<strong>Height</strong>。<strong>Forge</strong> 的多个对象会锁定 <strong>Object Scale</strong>，形状尺寸由 <strong>Geometry Nodes Modifier</strong> 参数驱动。</p>
+<hr />
+      </article>
+      
+      <nav class="page-navigation" aria-label="章节跳转">
+        <a class="previous-page" href="06_meta_elements.html"><span>← 上一章</span><strong>6. 元元素</strong></a>
+        <a class="next-page" href="08_import_export.html"><span>下一章 →</span><strong>8. 导入与导出</strong></a>
+      </nav>
+      
+      <footer class="manual-footer">Forge · Blender 插件使用文档</footer>
+    </main>
+    
+    <aside class="page-outline" id="manual-outline" aria-label="本页目录" tabindex="-1">
+      <div class="outline-heading"><p>本页目录</p><button class="outline-close" type="button" aria-label="关闭本页目录">×</button></div>
+      
+<ul>
+  
+  <li><a href="#71-三个属性入口">7.1 三个属性入口</a>
+    
+<ul>
+  
+  <li><a href="#model-define-global">Model Define → Global</a>
+    
+  </li>
+  
+  <li><a href="#3d-视图属性-gizmo">3D 视图属性 Gizmo</a>
+    
+  </li>
+  
+  <li><a href="#object-properties-forge-properties">Object Properties → Forge Properties</a>
+    
+  </li>
+  
+</ul>
+
+  </li>
+  
+  <li><a href="#72-看不到属性-gizmo">7.2 看不到属性 Gizmo</a>
+    
+  </li>
+  
+  <li><a href="#73-对象属性弹窗一览">7.3 对象属性弹窗一览</a>
+    
+<ul>
+  
+  <li><a href="#height-field">Height Field</a>
+    
+  </li>
+  
+  <li><a href="#plane">Plane</a>
+    
+  </li>
+  
+  <li><a href="#visual-collider">Visual / Collider</a>
+    
+  </li>
+  
+  <li><a href="#link">Link</a>
+    
+  </li>
+  
+  <li><a href="#site">Site</a>
+    
+  </li>
+  
+  <li><a href="#inertial">Inertial</a>
+    
+  </li>
+  
+  <li><a href="#joint">Joint</a>
+    
+  </li>
+  
+  <li><a href="#actuator">Actuator</a>
+    
+  </li>
+  
+  <li><a href="#tendon">Tendon</a>
+    
+  </li>
+  
+  <li><a href="#equality">Equality</a>
+    
+  </li>
+  
+  <li><a href="#contact">Contact</a>
+    
+  </li>
+  
+  <li><a href="#sensor">Sensor</a>
+    
+  </li>
+  
+  <li><a href="#light">Light</a>
+    
+  </li>
+  
+  <li><a href="#camera">Camera</a>
+    
+  </li>
+  
+  <li><a href="#replicate">Replicate</a>
+    
+  </li>
+  
+</ul>
+
+  </li>
+  
+  <li><a href="#74-修改如何生效">7.4 修改如何生效</a>
+    
+  </li>
+  
+</ul>
+
+    </aside>
+    
+  </div>
+  <dialog class="image-preview" id="image-preview" aria-label="图片预览">
+    <form method="dialog" class="image-preview-close"><button type="submit" aria-label="关闭图片预览" autofocus>×</button></form>
+    <img class="image-preview-image" alt="">
+  </dialog>
+  <script>var base_url = document.body.dataset.baseUrl;</script>
+  <script src="../../assets/javascripts/image-preview.js"></script><script src="../../assets/javascripts/case-videos.js"></script><script src="../../search/main.js"></script><script src="../../assets/javascripts/manual.js"></script>
+</body>
+</html>

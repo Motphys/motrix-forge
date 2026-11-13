@@ -1,0 +1,483 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Forge Blender add-on documentation · Forge 插件使用文档">
+  <link rel="icon" href="../../assets/favicon.ico" type="image/x-icon">
+  <script>
+    document.documentElement.classList.add("navigation-pending");
+    document.addEventListener("DOMContentLoaded", () => document.documentElement.classList.remove("navigation-pending"), { once: true });
+  </script>
+  <title>Chapter 3: Model Define — Geometry and Material — Forge Manual</title>
+  <script src="../../assets/javascripts/theme.js"></script>
+  <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+  <link rel="alternate" hreflang="zh-CN" href="../../cn/forge_docs/03_geometry_and_material.html">
+</head>
+<body data-base-url="../..">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="mobile-header">
+    <button type="button" class="menu-toggle" aria-controls="manual-sidebar" aria-expanded="false" aria-label="Open navigation">☰</button>
+    <a href="../../index.html">Forge <span>Manual</span></a>
+    
+<button type="button" class="theme-toggle theme-toggle-compact" data-theme-toggle aria-pressed="false" aria-label="Switch to dark theme">
+  <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg>
+  <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+  <span class="theme-label">Light theme</span>
+</button>
+
+    <a href="../../cn/forge_docs/03_geometry_and_material.html" lang="zh-CN">中文</a>
+    
+    <button type="button" class="outline-toggle" aria-controls="manual-outline" aria-expanded="false" aria-label="Open page contents"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M9 5h12M9 12h12M9 19h12M3 5h1M3 12h1M3 19h1"/></svg></button>
+    
+  </header>
+  <button class="sidebar-backdrop" type="button" aria-label="Close navigation" tabindex="-1"></button>
+  <aside class="manual-sidebar" id="manual-sidebar">
+    <a class="manual-brand" href="../../index.html"><img class="brand-logo" src="../../assets/Logo.png" alt="Forge"><span>Forge<span class="brand-subtitle">Manual</span></span></a>
+    <form class="sidebar-search" action="../../search.html" role="search">
+      <input type="hidden" name="lang" value="en">
+      <span aria-hidden="true">⌕</span><input type="search" name="q" placeholder="Search manual" aria-label="Search manual">
+    </form>
+    <nav class="chapter-nav" aria-label="Chapter navigation">
+      
+      
+      <details class="nav-group" data-nav-group="getting-started" data-active="false">
+        <summary class="nav-caption">Getting started</summary>
+        
+        <ul><li><a href="../../index.html">About Forge</a></li><li><a href="../installation.html">Installation Forge</a></li><li><a href="../preferences.html">Config Forge</a></li><li><a href="../development.html">Development Forge</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="examples" data-active="false">
+        <summary class="nav-caption">Examples</summary>
+        
+        <ul><li><a href="../examples.html">Case studies</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="manual" data-active="true" open>
+        <summary class="nav-caption">User manual</summary>
+        
+        <details class="nav-group nav-subgroup" data-nav-group="manual-contents" data-active="true" open>
+          <summary class="nav-caption nav-subcaption">Contents</summary>
+          <ul><li><a href="../forge_docs.html">Overview</a></li><li><a href="00_ui_overview.html">0. UI overview and common operations</a></li><li><a href="01_mcp_server.html">1. MCP service</a></li><li><a href="02_global_and_general.html">2. Global and General</a></li><li><a href="03_geometry_and_material.html" class="active" aria-current="page">3. Geometry and Material</a></li><li><a href="04_kinematics.html">4. Kinematics and Instance</a></li><li><a href="05_hardware.html">5. Hardware</a></li><li><a href="06_meta_elements.html">6. Meta Elements</a></li><li><a href="07_properties.html">7. Properties editing</a></li><li><a href="08_import_export.html">8. Import and Export</a></li><li><a href="09_coacd.html">9. CoACD convex decomposition</a></li><li><a href="10_troubleshooting_and_scripting.html">10. Troubleshooting and scripting</a></li></ul>
+        </details>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="mcp-reference" data-active="false">
+        <summary class="nav-caption">MCP reference</summary>
+        
+        <ul><li><a href="../../reference/MCP_INSTALL.html">Forge MCP Setup and Connection</a></li><li><a href="../../reference/mcp-server/index.html">Forge MCP Server Reference</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="mcp-skills" data-active="false">
+        <summary class="nav-caption">MCP Skills</summary>
+        
+        <ul><li><a href="../mcp_skills.html">Overview</a></li><li><a href="../mcp_skills/forge_create.html">Forge create</a></li><li><a href="../mcp_skills/forge_modify.html">Forge modify</a></li><li><a href="../mcp_skills/forge_custom_material.html">Forge custom material</a></li><li><a href="../mcp_skills/forge_operators.html">Forge operators</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="documentation" data-active="false">
+        <summary class="nav-caption">Documentation</summary>
+        
+        <ul><li><a href="../preview.html">Local preview</a></li></ul>
+        
+      </details>
+      
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-controls">
+        
+<button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Switch to dark theme">
+  <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg>
+  <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+  <span class="theme-label">Light theme</span>
+</button>
+
+        <details class="language-switch">
+          <summary><span aria-hidden="true">◎</span> English <span aria-hidden="true">⌃</span></summary>
+          <div class="language-options">
+            <a href="../../cn/forge_docs/03_geometry_and_material.html" lang="zh-CN">简体中文</a>
+            <a href="03_geometry_and_material.html" lang="en" aria-current="true">English ✓</a>
+          </div>
+        </details>
+      </div>
+      <nav class="project-links" aria-label="Project links">
+        <a class="project-link" href="https://github.com/Motphys/motrix-forge" target="_blank" rel="noopener noreferrer" title="Open GitHub in a new tab">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.68.08-.68 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.56 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.43.11-2.98 0 0 .95-.3 3.1 1.15a10.8 10.8 0 0 1 5.63 0c2.15-1.45 3.09-1.15 3.09-1.15.62 1.55.23 2.7.12 2.98.72.79 1.16 1.79 1.16 3.02 0 4.32-2.64 5.27-5.15 5.55.4.35.76 1.03.76 2.08v3.1c0 .3.2.65.78.54A11.25 11.25 0 0 0 12 .75Z"/></svg>
+          <span>GitHub</span>
+        </a>
+        <a class="project-link" href="https://www.motphys.com/" target="_blank" rel="noopener noreferrer" title="Open the Motphys website in a new tab">
+          <svg class="website-logo" width="24" height="24" viewBox="0 0 128 128" fill="currentColor" aria-hidden="true">
+            <polygon points="58.23 49.97 37.73 49.97 33.23 55.57 62.63 55.57 58.23 49.97"/>
+            <path d="M50.13,39.67c-1.1-1.4-3.2-1.4-4.3,0l-3.6,4.6h11.6l-3.6-4.6h-.1Z"/>
+            <path d="M118.13,85.27l-35.8-45.6c-1.1-1.4-3.2-1.4-4.3,0l-14.1,17.8-3.1,3.9H28.83l-4.5,5.7h32.2l-4.5,5.7H19.93l-4.5,5.7h32.2l-4.5,5.7H10.93l-1,1.3c-1.4,1.8-.1,4.4,2.1,4.4h103.9c2.3,0,3.6-2.6,2.1-4.4h0l.1-.2Z"/>
+          </svg>
+          <span>Website</span>
+        </a>
+      </nav>
+    </div>
+  </aside>
+  <script>
+/* Restore the sidebar synchronously, before revealing its first frame. */
+(() => {
+  "use strict";
+  const root = document.documentElement;
+  try {
+    const navigationKey = "forge-docs-navigation-groups";
+    let state = {};
+    try {
+      const saved = JSON.parse(localStorage.getItem(navigationKey));
+      if (saved && typeof saved === "object" && !Array.isArray(saved)) state = saved;
+    } catch { /* Keep native details usable without storage. */ }
+    const restoreGroups = scope => {
+      scope.querySelectorAll("[data-nav-group]").forEach(group => {
+        if (group.dataset.navRestored) return;
+        group.dataset.navRestored = "true";
+        const id = group.dataset.navGroup;
+        if (group.dataset.active === "true") group.open = true;
+        else if (typeof state[id] === "boolean") group.open = state[id];
+        group.addEventListener("toggle", () => {
+          state[id] = group.open;
+          try { localStorage.setItem(navigationKey, JSON.stringify(state)); } catch { /* Ignore unavailable storage. */ }
+        });
+      });
+    };
+    window.forgeRestoreNavigationGroups = restoreGroups;
+    const nav = document.querySelector(".chapter-nav");
+    if (!nav) return;
+    restoreGroups(nav);
+    const siteRoot = new URL(`${document.body.dataset.baseUrl || "."}/`, location.href).pathname;
+    const scrollKey = `forge-docs-navigation-scroll:${siteRoot}`;
+    try {
+      const saved = sessionStorage.getItem(scrollKey);
+      if (saved !== null && Number.isFinite(Number(saved)) && Number(saved) >= 0) nav.scrollTop = Number(saved);
+    } catch { /* Ignore unavailable storage. */ }
+    const save = () => {
+      try { sessionStorage.setItem(scrollKey, String(nav.scrollTop)); } catch { /* Ignore unavailable storage. */ }
+    };
+    nav.addEventListener("scroll", save, { passive: true });
+    nav.addEventListener("click", save);
+    window.addEventListener("pagehide", save);
+  } finally {
+    root.classList.remove("navigation-pending");
+  }
+})();
+</script>
+  <div class="manual-layout">
+    <main id="main-content" class="manual-main" tabindex="-1">
+      <div class="page-header">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../../index.html">Forge Manual</a><span aria-hidden="true"> / </span><span>Chapter 3: Model Define — Geometry and Material</span></nav>
+      </div>
+      <article class="manual-article">
+        <h1 id="chapter-3-model-define-geometry-and-material">Chapter 3: Model Define — Geometry and Material<a class="headerlink" href="#chapter-3-model-define-geometry-and-material" title="Permanent link">&para;</a></h1>
+<h2 id="31-geometry-group-layout">3.1 Geometry group layout<a class="headerlink" href="#31-geometry-group-layout" title="Permanent link">&para;</a></h2>
+<p>The <strong>Geometry</strong> group contains, from top to bottom:</p>
+<ol>
+<li>Create geometry(s) / Create collider(s)</li>
+<li>Define geometry(s) / Define collider(s)</li>
+<li>Create height field / Create plane</li>
+<li>Check Mesh(s)</li>
+</ol>
+<div align="center"><img src="../../assets/images/manual/03-geom-define.png" alt="Geometry group"></div>
+
+<h2 id="32-create-visual-geometry">3.2 Create Visual Geometry<a class="headerlink" href="#32-create-visual-geometry" title="Permanent link">&para;</a></h2>
+<p><strong>Button:</strong> <strong>Create geometry(s)</strong></p>
+<p><strong>Operator ID:</strong> <code>forge.create_geometry</code></p>
+<p>Dialog:</p>
+<div align="center"><img src="../../assets/images/manual/03-visual-creation.png" alt="Create geometry(s)"></div>
+
+<p>Available when no object is selected, or when every selected object is a <strong>Link</strong>, <strong>Frame</strong>, or <strong>Replicate</strong>.</p>
+<ul>
+<li>With no selection, create one <strong>Visual</strong> in <strong>World</strong>.</li>
+<li>With a selection, create one <strong>Visual</strong> for every selected parent object.</li>
+<li>Types: <strong>Box</strong>, <strong>Capsule</strong>, <strong>Cylinder</strong>, and <strong>Sphere</strong>.</li>
+<li>Dimensions:</li>
+<li><strong>Box</strong> uses the three-axis <strong>Size</strong>;</li>
+<li><strong>Sphere</strong> uses <strong>Radius</strong>;</li>
+<li><strong>Capsule/Cylinder</strong> use <strong>Radius</strong> and <strong>Height</strong>.</li>
+</ul>
+<p>After creation, the new <strong>Visual</strong> objects become the current selection.</p>
+<h2 id="33-create-collider">3.3 Create Collider<a class="headerlink" href="#33-create-collider" title="Permanent link">&para;</a></h2>
+<p><strong>Button:</strong> <strong>Create collider(s)</strong></p>
+<p><strong>Operator ID:</strong> <code>forge.create_collider</code></p>
+<p>Dialog:</p>
+<div style="display: flex; gap: 24px; align-items: flex-start;">
+  <div style="flex: 1; text-align: center; "><strong>With no object selected: choose Collider type manually</strong></div>
+  <div style="flex: 1; text-align: center; "><strong>Use the selected object's Geometry type</strong></div>
+  <div style="flex: 1; text-align: center; "><strong>Choose Collider type manually</strong></div>
+</div>
+<div style="display: flex; gap: 24px; align-items: flex-start;">
+  <div style="flex: 1; text-align: center; "><img src="../../assets/images/manual/03-collider-creation-0.png" width="314" alt="Create collider(s) dialog"></div>
+  <div style="flex: 1; text-align: center; "><img src="../../assets/images/manual/03-collider-creation-1.png" width="314" alt="Create collider(s) dialog"></div>
+  <div style="flex: 1; text-align: center; "><img src="../../assets/images/manual/03-collider-creation-2.png" width="314" alt="Create collider(s) dialog"></div>
+</div>
+
+<p>Available when:</p>
+<ul>
+<li>no object is selected;</li>
+<li>all selected objects are <strong>Link/Frame</strong>; or</li>
+<li>all selected objects are <strong>Visual</strong>.</li>
+</ul>
+<p>When <strong>Visual</strong> objects are selected, there are two <strong>Method</strong> options:</p>
+<ul>
+<li><strong>Geometry type:</strong> each <strong>Collider</strong> follows the type of its corresponding <strong>Visual</strong>.</li>
+<li><strong>Collider type:</strong> every <strong>Collider</strong> uses one explicitly selected type. <strong>Auto size</strong> can automatically calculate dimensions for non-<strong>Mesh</strong> types. For <strong>Capsule</strong> / <strong>Cylinder</strong>, <strong>Use Min As Height</strong> takes the height from the visual's smallest bounding-box axis (and orients the shape along it) instead of the largest; it has no effect without <strong>Auto size</strong>.</li>
+</ul>
+<p>With no selection or with <strong>Link/Frame</strong> selected, creation uses the specified <strong>Collider Type</strong> and <strong>Size</strong>.</p>
+<h2 id="34-change-geometry-collider-type">3.4 Change Geometry / Collider type<a class="headerlink" href="#34-change-geometry-collider-type" title="Permanent link">&para;</a></h2>
+<p>Dialogs:</p>
+<div style="display: flex; gap: 24px; align-items: flex-start;">
+  <div style="flex: 1; text-align: center; "><strong>Visual Define</strong></div>
+  <div style="flex: 1; text-align: center; "><strong>Collider Define</strong></div>
+</div>
+<div style="display: flex; gap: 24px; align-items: flex-start;">
+  <div style="flex: 1; text-align: center; "><img src="../../assets/images/manual/03-visual-define.png" width="314" alt="Visual Define dialog"></div>
+  <div style="flex: 1; text-align: center; "><img src="../../assets/images/manual/03-collider-define.png" width="314" alt="Collider Define dialog"></div>
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Button</th>
+<th>Operator ID</th>
+<th>Applies to</th>
+<th>Types</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Define geometry(s)</td>
+<td><code>forge.define_geometry_type</code></td>
+<td>Visual</td>
+<td>Box, Capsule, Cylinder, Sphere, Mesh, Sdf</td>
+</tr>
+<tr>
+<td>Define collider(s)</td>
+<td><code>forge.define_collider_type</code></td>
+<td>Collider</td>
+<td>Box, Capsule, Cylinder, Sphere, Mesh, Sdf</td>
+</tr>
+</tbody>
+</table>
+<p>The dialog starts with the active object's current type and modifies only the active object by default. Enable <strong>Apply to all selected</strong> to modify the whole selection. Changing type also switches or rebuilds the corresponding shape.</p>
+<p>SDF uses an existing mesh: define a Visual as <strong>Sdf</strong> to export <code>type="sdf"</code> with a mesh asset reference. Switching between Mesh and SDF preserves the mesh; switching from a primitive first applies its shape modifier. Converting a primitive to <strong>Mesh</strong> or <strong>Sdf</strong> preserves its material slots, material assignments, and active material slot, without changing other objects sharing the original mesh.</p>
+<p>Colliders also support <strong>Sdf</strong>. Select a Visual and choose Sdf in <strong>Create collider(s)</strong> to share its Mesh Data as a linked duplicate, preserving its parent and transform. Vertex edits affect both objects. Use <strong>Define collider(s)</strong> to change an existing collider. SDF colliders use mesh inertia computation and export as <code>type="sdf"</code>, reusing the visual's mesh asset when shared or an STL asset when exported alone.</p>
+<h2 id="35-height-field-and-plane">3.5 Height Field and Plane<a class="headerlink" href="#35-height-field-and-plane" title="Permanent link">&para;</a></h2>
+<p>These two buttons are available only when no object is selected, and create the result in World. They currently have no dialog.</p>
+<table>
+<thead>
+<tr>
+<th>Button</th>
+<th>Operator ID</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Create height field</td>
+<td><code>forge.create_height_field</code></td>
+<td>Create a Height Field; edit detailed parameters in Properties.</td>
+</tr>
+<tr>
+<td>Create plane</td>
+<td><code>forge.create_plane</code></td>
+<td>Create a Plane; edit detailed parameters in Properties.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="36-mesh-check">3.6 Mesh Check<a class="headerlink" href="#36-mesh-check" title="Permanent link">&para;</a></h2>
+<p><strong>Button:</strong> <strong>Check Mesh(s)</strong></p>
+<p><strong>Operator ID:</strong> <code>forge.mesh_check</code></p>
+<p>Available only when every selected object is a <strong>Visual</strong>. It checks whether the meshes satisfy the requirements of later operations such as inertial calculation and displays errors and elapsed time in the status/report area.</p>
+<ul>
+<li>Check whether the <strong>Visual</strong> model is manifold.</li>
+<li>Check whether <strong>Visual</strong> models intersect.</li>
+</ul>
+<p><strong>Compute Inertial</strong> validates geometry only when <strong>Check Geometry</strong> is enabled (off by default), using its chosen <strong>Visual / Collider</strong> source. If validation fails, repair open, degenerate, or otherwise invalid meshes first.</p>
+<h2 id="37-material-group">3.7 Material group<a class="headerlink" href="#37-material-group" title="Permanent link">&para;</a></h2>
+<div align="center"><img src="../../assets/images/manual/03-mat-define.png" alt="Material group"></div>
+
+<p><strong>Button:</strong> <strong>Common Material</strong></p>
+<p><strong>Operator ID:</strong> <code>forge.create_material</code></p>
+<p>Dialog:</p>
+<div align="center"><img src="../../assets/images/manual/03-mat-creation.png" alt="Create Material"></div>
+
+<p>Available when all selected objects are <strong>Visual</strong>, <strong>Height Field</strong>, or <strong>Plane</strong>. It creates a parameter-only material:</p>
+<ol>
+<li>Choose a <strong>Category</strong> from the <strong>Forge PBR Library</strong>.</li>
+<li>Choose a <strong>Material</strong>.</li>
+<li>When <strong>Use Existing</strong> is enabled, an existing Blender material with the same name is reused first.</li>
+<li>On confirmation, assign the reused or newly created material to the first <strong>Material Slot</strong> of every selected object. Reusing preserves existing material settings; creating uses the library parameters. <strong>Visual</strong>, <strong>Height Field</strong>, and <strong>Plane</strong> all use an object-level material slot.</li>
+</ol>
+<p>A suffix at the end of the material name selects the exported MJCF <code>alpha_mode</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Name suffix</th>
+<th>Exported <code>alpha_mode</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_blend</code></td>
+<td><code>blend</code></td>
+</tr>
+<tr>
+<td><code>_mask</code></td>
+<td><code>mask</code></td>
+</tr>
+<tr>
+<td><code>_multiply</code></td>
+<td><code>multiply</code></td>
+</tr>
+</tbody>
+</table>
+<p>The suffix is part of the material name, so the exported <code>&lt;material name&gt;</code> keeps it as well. Without one of these suffixes the MJCF default opaque mode is used.</p>
+<h3 id="assign-an-existing-material">• Assign an existing material<a class="headerlink" href="#assign-an-existing-material" title="Permanent link">&para;</a></h3>
+<p><strong>Button:</strong> <strong>Assign Material</strong></p>
+<p><strong>Operator ID:</strong> <code>forge.assign_material</code></p>
+<p>Dialog:</p>
+<div align="center">
+  <img src="../../assets/images/manual/03-mat-assign.png" alt="Assign Material">
+</div>
+
+<ol>
+<li>Select one or more <strong>Visual</strong>, <strong>Height Field</strong>, or <strong>Plane</strong> objects.</li>
+<li>Click <strong>Assign Material</strong> in the <strong>Material</strong> group.</li>
+<li>Choose an existing Blender material from the searchable <strong>Material</strong> dropdown and confirm. The dialog initially selects the active object's material when available.</li>
+</ol>
+<p>The selected material is assigned to the first object-level <strong>Material Slot</strong> of every selected object, creating the slot if needed. Other slots are preserved. This reuses the existing material, including its shader nodes and settings, without creating a copy. Unselected objects keep their assignments, including objects sharing the same mesh. Create or import a material first if none are available.</p>
+<h3 id="create-a-checker-material">• Create a checker material<a class="headerlink" href="#create-a-checker-material" title="Permanent link">&para;</a></h3>
+<p><strong>Button:</strong> <strong>Checker Material</strong></p>
+<p><strong>Operator ID:</strong> <code>forge.create_checker_material</code></p>
+<p>Dialog:</p>
+<div align="center">
+  <img src="../../assets/images/manual/03-mat-checker.png" alt="Checker Material">
+</div>
+
+<p>Select one or more <strong>Visual</strong>, <strong>Height Field</strong>, or <strong>Plane</strong> objects, then click <strong>Checker Material</strong> in the <strong>Material</strong> group. Every selected object must be one of these types.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Meaning</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Color 1</strong></td>
+<td>First checker color</td>
+<td>Black</td>
+</tr>
+<tr>
+<td><strong>Color 2</strong></td>
+<td>Second checker color</td>
+<td>White</td>
+</tr>
+<tr>
+<td><strong>Repeat</strong></td>
+<td>Integer repeat count along both UV axes, from 1 to 128</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<p>Confirm to create a new material and assign it to the first object-level <strong>Material Slot</strong> of every selected object. Each invocation creates a new material; selected objects share that material.</p>
+<p>The generated shader uses <strong>Texture Coordinate (UV) → Mapping → Checker Texture → Principled BSDF (Base Color)</strong>. <strong>Repeat</strong> sets Mapping Scale X and Y; Z remains 1. The Checker Texture node's <strong>Scale</strong> is 2. Keep this node layout and Scale when editing a checker for MJCF export; adjust tiling with Mapping instead.</p>
+<p>Export writes a native MJCF <code>&lt;texture type="2d" builtin="checker"&gt;</code> and an RGB texture layer on the material, without baking or writing an image file. <strong>Color 1 / Color 2</strong> become <code>rgb1</code> / <code>rgb2</code>, with linear Blender colors converted to sRGB. Mapping Scale X/Y becomes the material's <code>texrepeat</code>; matching values produce <code>texuniform="true"</code>, otherwise <code>false</code>. The texture is written before the material that references it.</p>
+<p>With <strong>Import material</strong> enabled, importing an MJCF 2D builtin checker restores the UV, Mapping, and Checker Texture nodes, colors, and <code>texrepeat</code>. Both a material's <code>texture</code> attribute and RGB/RGBA <code>&lt;layer&gt;</code> references are supported. Imported U/V repeat values may differ; the creation dialog's <strong>Repeat</strong> sets both axes together.</p>
+<h3 id="create-a-custom-material">• Create a custom material<a class="headerlink" href="#create-a-custom-material" title="Permanent link">&para;</a></h3>
+<p>The image below shows a complete custom material with texture maps. Each of the four framed sections can be disconnected from the BSDF node and replaced with the BSDF's direct parameter. The scene exports either parameters or textures depending on whether a node is connected to the BSDF input.</p>
+<div align="center"><img src="../../assets/images/manual/03-material-node.png" alt="Custom Material"></div>
+
+<blockquote>
+<p>For image textures, follow the node layout above. For procedural checkers, use the checker layout described in the previous section.
+A parameter-only material does not need any node connected to the BSDF node.
+If tiling is not required, the <strong>Mapping</strong> node does not need to be connected
+to the texture node.</p>
+</blockquote>
+<hr />
+      </article>
+      
+      <nav class="page-navigation" aria-label="Page navigation">
+        <a class="previous-page" href="02_global_and_general.html"><span>← Previous</span><strong>2. Global and General</strong></a>
+        <a class="next-page" href="04_kinematics.html"><span>Next →</span><strong>4. Kinematics and Instance</strong></a>
+      </nav>
+      
+      <footer class="manual-footer">Forge · Blender add-on documentation</footer>
+    </main>
+    
+    <aside class="page-outline" id="manual-outline" aria-label="On this page" tabindex="-1">
+      <div class="outline-heading"><p>On this page</p><button class="outline-close" type="button" aria-label="Close page contents">×</button></div>
+      
+<ul>
+  
+  <li><a href="#31-geometry-group-layout">3.1 Geometry group layout</a>
+    
+  </li>
+  
+  <li><a href="#32-create-visual-geometry">3.2 Create Visual Geometry</a>
+    
+  </li>
+  
+  <li><a href="#33-create-collider">3.3 Create Collider</a>
+    
+  </li>
+  
+  <li><a href="#34-change-geometry-collider-type">3.4 Change Geometry / Collider type</a>
+    
+  </li>
+  
+  <li><a href="#35-height-field-and-plane">3.5 Height Field and Plane</a>
+    
+  </li>
+  
+  <li><a href="#36-mesh-check">3.6 Mesh Check</a>
+    
+  </li>
+  
+  <li><a href="#37-material-group">3.7 Material group</a>
+    
+<ul>
+  
+  <li><a href="#assign-an-existing-material">• Assign an existing material</a>
+    
+  </li>
+  
+  <li><a href="#create-a-checker-material">• Create a checker material</a>
+    
+  </li>
+  
+  <li><a href="#create-a-custom-material">• Create a custom material</a>
+    
+  </li>
+  
+</ul>
+
+  </li>
+  
+</ul>
+
+    </aside>
+    
+  </div>
+  <dialog class="image-preview" id="image-preview" aria-label="Image preview">
+    <form method="dialog" class="image-preview-close"><button type="submit" aria-label="Close image preview" autofocus>×</button></form>
+    <img class="image-preview-image" alt="">
+  </dialog>
+  <script>var base_url = document.body.dataset.baseUrl;</script>
+  <script src="../../assets/javascripts/image-preview.js"></script><script src="../../assets/javascripts/case-videos.js"></script><script src="../../search/main.js"></script><script src="../../assets/javascripts/manual.js"></script>
+</body>
+</html>

@@ -1,0 +1,395 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Forge Blender add-on documentation · Forge 插件使用文档">
+  <link rel="icon" href="../../assets/favicon.ico" type="image/x-icon">
+  <script>
+    document.documentElement.classList.add("navigation-pending");
+    document.addEventListener("DOMContentLoaded", () => document.documentElement.classList.remove("navigation-pending"), { once: true });
+  </script>
+  <title>第 5 章：Model Define — 硬件 — Forge 使用手册</title>
+  <script src="../../assets/javascripts/theme.js"></script>
+  <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+  <link rel="alternate" hreflang="en" href="../../en/forge_docs/05_hardware.html">
+</head>
+<body data-base-url="../..">
+  <a class="skip-link" href="#main-content">跳至正文</a>
+  <header class="mobile-header">
+    <button type="button" class="menu-toggle" aria-controls="manual-sidebar" aria-expanded="false" aria-label="打开导航">☰</button>
+    <a href="../../introduction.zh-CN.html">Forge <span>使用手册</span></a>
+    
+<button type="button" class="theme-toggle theme-toggle-compact" data-theme-toggle aria-pressed="false" aria-label="切换至黑色主题">
+  <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg>
+  <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+  <span class="theme-label">浅色主题</span>
+</button>
+
+    <a href="../../en/forge_docs/05_hardware.html" lang="en">EN</a>
+    
+    <button type="button" class="outline-toggle" aria-controls="manual-outline" aria-expanded="false" aria-label="打开本页目录"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M9 5h12M9 12h12M9 19h12M3 5h1M3 12h1M3 19h1"/></svg></button>
+    
+  </header>
+  <button class="sidebar-backdrop" type="button" aria-label="关闭导航" tabindex="-1"></button>
+  <aside class="manual-sidebar" id="manual-sidebar">
+    <a class="manual-brand" href="../../introduction.zh-CN.html"><img class="brand-logo" src="../../assets/Logo.png" alt="Forge"><span>Forge<span class="brand-subtitle">使用手册</span></span></a>
+    <form class="sidebar-search" action="../search.html" role="search">
+      <input type="hidden" name="lang" value="cn">
+      <span aria-hidden="true">⌕</span><input type="search" name="q" placeholder="搜索手册" aria-label="搜索手册">
+    </form>
+    <nav class="chapter-nav" aria-label="章节导航">
+      
+      
+      <details class="nav-group" data-nav-group="getting-started" data-active="false">
+        <summary class="nav-caption">开始使用</summary>
+        
+        <ul><li><a href="../../introduction.zh-CN.html">关于 Forge</a></li><li><a href="../installation.html">安装 Forge</a></li><li><a href="../preferences.html">配置 Forge</a></li><li><a href="../development.html">开发 Forge</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="examples" data-active="false">
+        <summary class="nav-caption">案例</summary>
+        
+        <ul><li><a href="../examples.html">应用案例</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="manual" data-active="true" open>
+        <summary class="nav-caption">使用手册</summary>
+        
+        <details class="nav-group nav-subgroup" data-nav-group="manual-contents" data-active="true" open>
+          <summary class="nav-caption nav-subcaption">章节目录</summary>
+          <ul><li><a href="../forge_docs.html">概览</a></li><li><a href="00_ui_overview.html">0. 界面总览与通用操作</a></li><li><a href="01_mcp_server.html">1. MCP 服务</a></li><li><a href="02_global_and_general.html">2. 全局与通用设置</a></li><li><a href="03_geometry_and_material.html">3. 几何与材质</a></li><li><a href="04_kinematics.html">4. 运动学与实例</a></li><li><a href="05_hardware.html" class="active" aria-current="page">5. 硬件</a></li><li><a href="06_meta_elements.html">6. 元元素</a></li><li><a href="07_properties.html">7. 属性编辑</a></li><li><a href="08_import_export.html">8. 导入与导出</a></li><li><a href="09_coacd.html">9. CoACD 凸分解</a></li><li><a href="10_troubleshooting_and_scripting.html">10. 常见问题与脚本调用</a></li></ul>
+        </details>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="mcp-reference" data-active="false">
+        <summary class="nav-caption">MCP 参考</summary>
+        
+        <ul><li><a href="../../reference/MCP_INSTALL.zh-CN.html">Forge MCP 安装与连接</a></li><li><a href="../../reference/mcp-server/README.zh-CN.html">Forge MCP 服务端参考</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="mcp-skills" data-active="false">
+        <summary class="nav-caption">MCP Skills (English only)</summary>
+        
+        <ul><li><a href="../mcp_skills.html">Overview</a></li><li><a href="../mcp_skills/forge_create.html">Forge create</a></li><li><a href="../mcp_skills/forge_modify.html">Forge modify</a></li><li><a href="../mcp_skills/forge_custom_material.html">Forge custom material</a></li><li><a href="../mcp_skills/forge_operators.html">Forge operators</a></li></ul>
+        
+      </details>
+      
+      
+      <details class="nav-group" data-nav-group="documentation" data-active="false">
+        <summary class="nav-caption">文档</summary>
+        
+        <ul><li><a href="../preview.html">本地预览</a></li></ul>
+        
+      </details>
+      
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-controls">
+        
+<button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="切换至黑色主题">
+  <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13a8.5 8.5 0 0 1-9.5-9.5A8.5 8.5 0 1 0 20.5 13Z"/></svg>
+  <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+  <span class="theme-label">浅色主题</span>
+</button>
+
+        <details class="language-switch">
+          <summary><span aria-hidden="true">◎</span> 简体中文 <span aria-hidden="true">⌃</span></summary>
+          <div class="language-options">
+            <a href="05_hardware.html" lang="zh-CN" aria-current="true">简体中文 ✓</a>
+            <a href="../../en/forge_docs/05_hardware.html" lang="en">English</a>
+          </div>
+        </details>
+      </div>
+      <nav class="project-links" aria-label="项目链接">
+        <a class="project-link" href="https://github.com/Motphys/motrix-forge" target="_blank" rel="noopener noreferrer" title="在新标签页打开 GitHub">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.68.08-.68 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.56 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.43.11-2.98 0 0 .95-.3 3.1 1.15a10.8 10.8 0 0 1 5.63 0c2.15-1.45 3.09-1.15 3.09-1.15.62 1.55.23 2.7.12 2.98.72.79 1.16 1.79 1.16 3.02 0 4.32-2.64 5.27-5.15 5.55.4.35.76 1.03.76 2.08v3.1c0 .3.2.65.78.54A11.25 11.25 0 0 0 12 .75Z"/></svg>
+          <span>GitHub</span>
+        </a>
+        <a class="project-link" href="https://www.motphys.com/" target="_blank" rel="noopener noreferrer" title="在新标签页打开 Motphys 官网">
+          <svg class="website-logo" width="24" height="24" viewBox="0 0 128 128" fill="currentColor" aria-hidden="true">
+            <polygon points="58.23 49.97 37.73 49.97 33.23 55.57 62.63 55.57 58.23 49.97"/>
+            <path d="M50.13,39.67c-1.1-1.4-3.2-1.4-4.3,0l-3.6,4.6h11.6l-3.6-4.6h-.1Z"/>
+            <path d="M118.13,85.27l-35.8-45.6c-1.1-1.4-3.2-1.4-4.3,0l-14.1,17.8-3.1,3.9H28.83l-4.5,5.7h32.2l-4.5,5.7H19.93l-4.5,5.7h32.2l-4.5,5.7H10.93l-1,1.3c-1.4,1.8-.1,4.4,2.1,4.4h103.9c2.3,0,3.6-2.6,2.1-4.4h0l.1-.2Z"/>
+          </svg>
+          <span>官网</span>
+        </a>
+      </nav>
+    </div>
+  </aside>
+  <script>
+/* Restore the sidebar synchronously, before revealing its first frame. */
+(() => {
+  "use strict";
+  const root = document.documentElement;
+  try {
+    const navigationKey = "forge-docs-navigation-groups";
+    let state = {};
+    try {
+      const saved = JSON.parse(localStorage.getItem(navigationKey));
+      if (saved && typeof saved === "object" && !Array.isArray(saved)) state = saved;
+    } catch { /* Keep native details usable without storage. */ }
+    const restoreGroups = scope => {
+      scope.querySelectorAll("[data-nav-group]").forEach(group => {
+        if (group.dataset.navRestored) return;
+        group.dataset.navRestored = "true";
+        const id = group.dataset.navGroup;
+        if (group.dataset.active === "true") group.open = true;
+        else if (typeof state[id] === "boolean") group.open = state[id];
+        group.addEventListener("toggle", () => {
+          state[id] = group.open;
+          try { localStorage.setItem(navigationKey, JSON.stringify(state)); } catch { /* Ignore unavailable storage. */ }
+        });
+      });
+    };
+    window.forgeRestoreNavigationGroups = restoreGroups;
+    const nav = document.querySelector(".chapter-nav");
+    if (!nav) return;
+    restoreGroups(nav);
+    const siteRoot = new URL(`${document.body.dataset.baseUrl || "."}/`, location.href).pathname;
+    const scrollKey = `forge-docs-navigation-scroll:${siteRoot}`;
+    try {
+      const saved = sessionStorage.getItem(scrollKey);
+      if (saved !== null && Number.isFinite(Number(saved)) && Number(saved) >= 0) nav.scrollTop = Number(saved);
+    } catch { /* Ignore unavailable storage. */ }
+    const save = () => {
+      try { sessionStorage.setItem(scrollKey, String(nav.scrollTop)); } catch { /* Ignore unavailable storage. */ }
+    };
+    nav.addEventListener("scroll", save, { passive: true });
+    nav.addEventListener("click", save);
+    window.addEventListener("pagehide", save);
+  } finally {
+    root.classList.remove("navigation-pending");
+  }
+})();
+</script>
+  <div class="manual-layout">
+    <main id="main-content" class="manual-main" tabindex="-1">
+      <div class="page-header">
+        <nav class="breadcrumbs" aria-label="当前位置"><a href="../../introduction.zh-CN.html">Forge 使用手册</a><span aria-hidden="true"> / </span><span>第 5 章：Model Define — 硬件</span></nav>
+      </div>
+      <article class="manual-article">
+        <h1 id="第-5-章model-define-硬件">第 5 章：Model Define — 硬件<a class="headerlink" href="#第-5-章model-define-硬件" title="Permanent link">&para;</a></h1>
+<h2 id="51-hardware-分组布局">5.1 Hardware 分组布局<a class="headerlink" href="#51-hardware-分组布局" title="Permanent link">&para;</a></h2>
+<p><strong>Hardware</strong> 从上到下包括 <strong>Create Actuator/Site</strong>、<strong>Define Actuator/Site</strong>、<strong>Create Tendon/Equality</strong>、<strong>Create Sensor/Contact</strong>、<strong>Create Light/Camera</strong>。</p>
+<div align="center">
+  <img src="../../assets/images/manual/05-hardware-region.png" alt="Hardware 分组">
+</div>
+
+<h2 id="52-actuator">5.2 Actuator<a class="headerlink" href="#52-actuator" title="Permanent link">&para;</a></h2>
+<h3 id="create-actuators">Create actuator(s)<a class="headerlink" href="#create-actuators" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID：</strong> <code>forge.create_actuator</code></p>
+<p>弹窗：</p>
+<div align="center">
+  <img src="../../assets/images/manual/05-actuator-creation.png" alt="Create actuator(s)">
+</div>
+
+<p>所选对象必须全部为 <strong>Link</strong>、<strong>Joint</strong> 或 <strong>Tendon</strong>。<strong>Forge</strong> 为每个目标创建一个 <strong>Actuator</strong>，类型为 <strong>General</strong>、<strong>Motor</strong>、<strong>Position</strong>、<strong>Velocity</strong> 或 <strong>Adhesion</strong>，默认为 <strong>Position</strong>。</p>
+<h3 id="define-actuators">Define actuator(s)<a class="headerlink" href="#define-actuators" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID：</strong> <code>forge.define_actuator_type</code></p>
+<p>弹窗：</p>
+<div align="center">
+  <img src="../../assets/images/manual/05-actuator-define.png" alt="Define actuator(s)">
+</div>
+
+<p>所选对象必须全部为 <strong>Actuator</strong>。默认只修改活动对象；勾选 <strong>Apply to all selected</strong> 后批量修改。</p>
+<h2 id="53-site">5.3 Site<a class="headerlink" href="#53-site" title="Permanent link">&para;</a></h2>
+<h3 id="create-sites">Create site(s)<a class="headerlink" href="#create-sites" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID：</strong> <code>forge.create_site</code></p>
+<p>弹窗：</p>
+<div align="center">
+  <img src="../../assets/images/manual/05-site-creation.png" alt="Create site(s)">
+</div>
+
+<p>所选对象必须全部为 <strong>Link</strong>。<strong>Forge</strong> 为每个 <strong>Link</strong> 创建一个 <strong>Site</strong>；类型可选 <strong>Box</strong>、<strong>Capsule</strong>、<strong>Cylinder</strong>、<strong>Sphere</strong>，并可设置 <strong>Size</strong>、<strong>Radius</strong> 或 <strong>Height</strong>。</p>
+<h3 id="define-sites">Define site(s)<a class="headerlink" href="#define-sites" title="Permanent link">&para;</a></h3>
+<p><strong>Operator ID：</strong> <code>forge.define_site_type</code></p>
+<p>弹窗：</p>
+<div align="center">
+  <img src="../../assets/images/manual/05-site-define.png" alt="Define site(s)">
+</div>
+
+<p>所选对象必须全部为 <strong>Site</strong>。可修改为 <strong>Box</strong>、<strong>Capsule</strong>、<strong>Cylinder</strong> 或 <strong>Sphere</strong>；默认只修改活动 <strong>Site</strong>，可用 <strong>Apply to all selected</strong> 批量修改。</p>
+<h2 id="54-create-tendon">5.4 Create Tendon<a class="headerlink" href="#54-create-tendon" title="Permanent link">&para;</a></h2>
+<p><strong>Operator ID：</strong> <code>forge.create_tendon</code></p>
+<p>弹窗：</p>
+<div align="center">
+  <img src="../../assets/images/manual/05-tendon-creation.png" alt="Create tendon">
+</div>
+
+<p>至少选择两个 <strong>Joint</strong>，且全部必须为 <strong>Slide</strong> 或 <strong>Hinge</strong>。<strong>Forge</strong> 按选择顺序把这些 <strong>Joint</strong> 组成一个 <strong>Fixed Tendon</strong>。</p>
+<h2 id="55-create-equality">5.5 Create Equality<a class="headerlink" href="#55-create-equality" title="Permanent link">&para;</a></h2>
+<p><strong>Operator ID：</strong> <code>forge.create_equality</code></p>
+<p>弹窗：</p>
+<div align="center">
+  <img src="../../assets/images/manual/05-equality-creation.png" alt="Create equality">
+</div>
+
+<p>必须恰好选择两个同类对象：</p>
+<ul>
+<li>两个 <strong>Link</strong> 或两个 <strong>Site</strong>：可选 <strong>Connect</strong>、<strong>Weld</strong>；</li>
+<li>两个 <strong>Joint</strong>：只可选 <strong>Joint Equality</strong>。</li>
+</ul>
+<p>第一个选择对象是 <strong>Target 1</strong>，同时也是新 <strong>Equality</strong> 对象的父对象；第二个是 <strong>Target 2</strong>。</p>
+<h2 id="56-create-sensors">5.6 Create Sensor(s)<a class="headerlink" href="#56-create-sensors" title="Permanent link">&para;</a></h2>
+<p><strong>Operator ID：</strong> <code>forge.create_sensor</code></p>
+<p>弹窗：</p>
+<div align="center">
+  <img src="../../assets/images/manual/05-sensor-creation.png" alt="Create sensor(s)">
+</div>
+
+<p><strong>Sensor Type</strong> 会根据选择动态变化：</p>
+<ul>
+<li><strong>Link</strong>：<strong>Body Sensor</strong>（<strong>Frame</strong> 系列、<strong>Contact</strong>、<strong>Subtreecom/Subtreelinvel/Subtreeangmom</strong>）；勾选 <strong>Use Xbody</strong> 后仅 Frame 系列，勾选 <strong>Use Subtree</strong> 后仅 <strong>Contact</strong>。</li>
+<li><strong>Joint</strong>：只提供 <strong>Joint</strong> 支持的 <strong>Sensor</strong>；<strong>Joint</strong> 不能作为 <strong>Frame Sensor</strong> 的 <strong>Target/Reference</strong>。</li>
+<li><strong>Site</strong>、<strong>Visual/Collider</strong>、<strong>Camera</strong>：提供对应目标类型支持的 <strong>Sensor</strong>。</li>
+<li>恰好选择两个兼容对象时可启用 <strong>Use Reference</strong>；第一个是 <strong>Target</strong>，第二个是 <strong>Reference</strong>。</li>
+</ul>
+<p>注意：</p>
+<ul>
+<li><strong>Use Xbody</strong> 与 <strong>Use Subtree</strong> 互斥；</li>
+<li>切换 <strong>Reference/Xbody/Subtree</strong> 会重置 <strong>Sensor Type</strong>；</li>
+<li>下拉框显示 <code>None</code> 表示当前组合没有合法 <strong>Sensor</strong>。</li>
+</ul>
+<h2 id="57-create-contact">5.7 Create Contact<a class="headerlink" href="#57-create-contact" title="Permanent link">&para;</a></h2>
+<p><strong>Operator ID：</strong> <code>forge.create_contact</code></p>
+<p>弹窗：</p>
+<div align="center">
+  <img src="../../assets/images/manual/05-contact-creation.png" alt="Create contact">
+</div>
+
+<ul>
+<li>至少选择两个 <strong>Link</strong>：创建 <strong>Exclude</strong>。</li>
+<li>至少选择两个 <strong>Visual/Collider/Plane/Height Field</strong>：创建 <strong>Pair</strong>。</li>
+<li>选择超过两个对象：为所有对象两两组合创建 <strong>Contact</strong>。</li>
+</ul>
+<p>每个 <strong>Contact</strong> 的第一个目标也是其父对象。</p>
+<h2 id="58-light">5.8 Light<a class="headerlink" href="#58-light" title="Permanent link">&para;</a></h2>
+<p><strong>Operator ID：</strong> <code>forge.create_light</code></p>
+<p>弹窗：</p>
+<div align="center">
+  <img src="../../assets/images/manual/05-light-creation.png" alt="Create light">
+</div>
+
+<p>未选择对象或所选对象全部为 <strong>Link</strong> 时可用。类型：无选择时为 <strong>Directional</strong>、<strong>Spot</strong>、<strong>Point</strong>（默认 <strong>Directional</strong>），选择 <strong>Link</strong> 时仅 <strong>Spot</strong>、<strong>Point</strong>（默认 <strong>Spot</strong>）；模式：选择 1～2 个 <strong>Link</strong> 时为全部五种（默认 <strong>Targetbody</strong>），无选择或选择 ≥3 个 <strong>Link</strong> 时仅 <strong>Fixed</strong>、<strong>Track</strong>、<strong>Trackcom</strong>（默认 <strong>Fixed</strong>）。</p>
+<ul>
+<li>无选择：在 <strong>3D Cursor</strong> 位置创建 <strong>World Light</strong>。</li>
+<li>普通跟踪模式：为每个所选 <strong>Link</strong> 创建子 <strong>Light</strong>。</li>
+<li>选择一个 <strong>Link</strong> 并使用 <strong>Targetbody/Targetbodycom</strong> 模式：在 <strong>3D Cursor</strong> 位置创建 <strong>World Light</strong>，并以该 <strong>Link</strong> 为目标。</li>
+<li>选择两个 <strong>Link</strong> 并使用 <strong>Targetbody/Targetbodycom</strong> 模式：第一个是 <strong>Light</strong> 的位置（父对象），第二个是目标，创建单个 <strong>Light</strong>。</li>
+</ul>
+<h2 id="59-camera">5.9 Camera<a class="headerlink" href="#59-camera" title="Permanent link">&para;</a></h2>
+<p>弹窗：</p>
+<div align="center">
+  <img src="../../assets/images/manual/05-camera-creation.png" alt="Create camera">
+</div>
+
+<p><strong>Operator ID：</strong> <code>forge.create_camera</code></p>
+<p>未选择对象或所选对象全部为 <strong>Link</strong> 时可用。类型为 <strong>Perspective</strong> 或 <strong>Orthographic</strong>；模式：选择 1～2 个 <strong>Link</strong> 时为全部五种（默认 <strong>Targetbody</strong>），无选择或选择 ≥3 个 <strong>Link</strong> 时仅 <strong>Fixed</strong>、<strong>Track</strong>、<strong>Trackcom</strong>（默认 <strong>Fixed</strong>）。</p>
+<ul>
+<li>无选择：在 <strong>3D Cursor</strong> 位置创建 <strong>World Camera</strong>。</li>
+<li>普通跟踪模式：为每个所选 <strong>Link</strong> 创建子 <strong>Camera</strong>。</li>
+<li>选择一个 <strong>Link</strong> 并使用 <strong>Targetbody/Targetbodycom</strong> 模式：在 <strong>3D Cursor</strong> 位置创建 <strong>World Camera</strong>，并以该 <strong>Link</strong> 为目标；其他模式为该 <strong>Link</strong> 创建子 <strong>Camera</strong>。</li>
+<li>选择两个 <strong>Link</strong> 并使用 <strong>Targetbody/Targetbodycom</strong> 模式：第一个是 <strong>Camera</strong> 的位置（父对象），第二个是目标，创建单个 <strong>Camera</strong>。</li>
+</ul>
+<hr />
+      </article>
+      
+      <nav class="page-navigation" aria-label="章节跳转">
+        <a class="previous-page" href="04_kinematics.html"><span>← 上一章</span><strong>4. 运动学与实例</strong></a>
+        <a class="next-page" href="06_meta_elements.html"><span>下一章 →</span><strong>6. 元元素</strong></a>
+      </nav>
+      
+      <footer class="manual-footer">Forge · Blender 插件使用文档</footer>
+    </main>
+    
+    <aside class="page-outline" id="manual-outline" aria-label="本页目录" tabindex="-1">
+      <div class="outline-heading"><p>本页目录</p><button class="outline-close" type="button" aria-label="关闭本页目录">×</button></div>
+      
+<ul>
+  
+  <li><a href="#51-hardware-分组布局">5.1 Hardware 分组布局</a>
+    
+  </li>
+  
+  <li><a href="#52-actuator">5.2 Actuator</a>
+    
+<ul>
+  
+  <li><a href="#create-actuators">Create actuator(s)</a>
+    
+  </li>
+  
+  <li><a href="#define-actuators">Define actuator(s)</a>
+    
+  </li>
+  
+</ul>
+
+  </li>
+  
+  <li><a href="#53-site">5.3 Site</a>
+    
+<ul>
+  
+  <li><a href="#create-sites">Create site(s)</a>
+    
+  </li>
+  
+  <li><a href="#define-sites">Define site(s)</a>
+    
+  </li>
+  
+</ul>
+
+  </li>
+  
+  <li><a href="#54-create-tendon">5.4 Create Tendon</a>
+    
+  </li>
+  
+  <li><a href="#55-create-equality">5.5 Create Equality</a>
+    
+  </li>
+  
+  <li><a href="#56-create-sensors">5.6 Create Sensor(s)</a>
+    
+  </li>
+  
+  <li><a href="#57-create-contact">5.7 Create Contact</a>
+    
+  </li>
+  
+  <li><a href="#58-light">5.8 Light</a>
+    
+  </li>
+  
+  <li><a href="#59-camera">5.9 Camera</a>
+    
+  </li>
+  
+</ul>
+
+    </aside>
+    
+  </div>
+  <dialog class="image-preview" id="image-preview" aria-label="图片预览">
+    <form method="dialog" class="image-preview-close"><button type="submit" aria-label="关闭图片预览" autofocus>×</button></form>
+    <img class="image-preview-image" alt="">
+  </dialog>
+  <script>var base_url = document.body.dataset.baseUrl;</script>
+  <script src="../../assets/javascripts/image-preview.js"></script><script src="../../assets/javascripts/case-videos.js"></script><script src="../../search/main.js"></script><script src="../../assets/javascripts/manual.js"></script>
+</body>
+</html>
