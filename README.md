@@ -41,13 +41,16 @@
 
 ### Use cases
 
-![forge_pipeline](/media/videos/HD/forge_pipeline.mp4)
+https://github.com/user-attachments/assets/137e81d3-cddc-43dd-93dc-688faafccb00
+
 *Edit and configure a wheel loader with Forge → edit and configure the loader's working environment → export and simulate and train in MotrixSim*
 
-![arbitrary_robotic_arm](/media/videos/HD/arbitrary_robotic_arm.mp4)
+https://github.com/user-attachments/assets/1356a4c7-2246-4b2b-b00a-3b698e9219b5
+
 *Edit and configure an arbitrary robotic arm with Forge → export and simulate and train in MotrixSim*
 
-![forge_with_agent](/media/videos/HD/forge_with_agent.mp4)
+https://github.com/user-attachments/assets/9c5093ca-8a07-46af-a308-6daf60d05ba6
+
 *Use an agent to create, edit, and configure the scene in the image through Forge → export and simulate in MotrixSim*
 
 > MJCF is a standardized XML scene format for precisely describing the kinematic structure, inertial properties, geometric collision, and actuator/sensor configuration of articulated multibody systems. It is the data foundation for MotrixSim's contact-intensive simulation and embodied-intelligence policy training.
