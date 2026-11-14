@@ -30,12 +30,6 @@ Right
    Right-eye image input.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

@@ -9,39 +9,39 @@ Extrude
    :Menu:      :menuselection:`Mesh --> Extrude`
    :Shortcut:  :kbd:`Alt-E`
 
-This operators shown in this menu are dependent of what part of a mesh is currently selected.
-Many of the operators are also available in the :doc:`Vertex </modeling/meshes/editing/vertex/index>`,
+The available operators in this menu depend on the current selection.
+Many of them are also available in the :doc:`Vertex </modeling/meshes/editing/vertex/index>`,
 :doc:`Edge </modeling/meshes/editing/edge/index>`, and :doc:`Face </modeling/meshes/editing/face/index>` menus.
 
 
 Extrude Faces
 =============
 
-Available when a :term:`Face` is selected.
+Available when at least one face is selected.
 
-See :ref:`bpy.ops.view3d.edit_mesh_extrude_move_normal`.
+See :doc:`/modeling/meshes/editing/face/extrude_faces`.
 
 
 Extrude Faces Along Normals
 ===========================
 
-Available when a :term:`Face` is selected.
+Available when at least one face is selected.
 
-See :ref:`bpy.ops.view3d.edit_mesh_extrude_move_shrink_fatten`.
+See :doc:`/modeling/meshes/editing/face/extrude_faces_normal`.
 
 
 Extrude Individual Faces
 ========================
 
-Available when a :term:`Face` is selected.
+Available when at least one face is selected.
 
-See :ref:`tool-mesh-extrude_individual`.
+See :doc:`/modeling/meshes/editing/face/extrude_individual_faces`.
 
 
 Extrude Manifold
 ================
 
-Available when a :term:`Face` is selected.
+Available when at least one face is selected.
 
 See :doc:`/modeling/meshes/tools/extrude_manifold`.
 
@@ -49,17 +49,17 @@ See :doc:`/modeling/meshes/tools/extrude_manifold`.
 Extrude Edges
 =============
 
-Available when a :term:`Edge` is selected.
+Available when at least one edge is selected.
 
-See :ref:`bpy.ops.mesh.extrude_edges_move`.
+See :doc:`/modeling/meshes/editing/edge/extrude_edges`.
 
 
 Extrude Vertices
 ================
 
-Available when a :term:`Vertex` is selected.
+Available when at least one vertex is selected.
 
-See :ref:`bpy.ops.mesh.extrude_vertices_move`.
+See :doc:`/modeling/meshes/editing/vertex/extrude_vertices`.
 
 
 .. _bpy.ops.mesh.extrude_repeat:
@@ -72,16 +72,16 @@ Extrude Repeat
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Mesh --> Extrude --> Extrude Repeat`
 
-This tool behaves similar to the :doc:`/modeling/modifiers/generate/array`,
-by extruding the selection along the Z axis of the view.
-If the selection is not :term:`Manifold` it's extruded the specified number of times.
+Repeatedly extrudes the selection along the current viewing direction, away from the
+current viewpoint. Works best when using a :doc:`top or side view </editors/3dview/navigate/viewpoint>`
+or a custom viewing direction with :doc:`orthographic projection </editors/3dview/navigate/projections>`.
 
-Offset X, Y, Z
-   Distance between the instances.
 Steps
-   Number of instances.
+   Number of extrusions.
+Offset X, Y, Z
+   Distance between each extrusion.
 Scale Offset
-   Multiplication factor to increase or decrease the offset.
+   Multiplication factor for the *Offset*.
 
 
 Spin

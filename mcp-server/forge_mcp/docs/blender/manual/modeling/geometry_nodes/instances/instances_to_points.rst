@@ -36,12 +36,6 @@ Radius
    Controls the radius of the result points.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

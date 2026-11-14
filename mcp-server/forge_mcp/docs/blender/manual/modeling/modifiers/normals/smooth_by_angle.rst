@@ -22,4 +22,4 @@ Options
 Angle
    Maximum angle between face normals that will be considered as smooth.
 Ignore Sharpness
-   Smooth all edges, even if they have been marked as sharp.
+   Smooth all edges, even if they have been marked as :ref:`Sharp <bpy.ops.mesh.mark_sharp>`.

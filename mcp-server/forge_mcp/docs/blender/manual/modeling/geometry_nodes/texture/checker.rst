@@ -46,12 +46,6 @@ Scale
    For example, using the Math node.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

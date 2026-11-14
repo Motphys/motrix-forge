@@ -5,3 +5,7 @@ Strip Sound Modifier Type Items
 
 :SOUND_EQUALIZER: Sound Equalizer.
 
+:PITCH: Pitch.
+
+:ECHO: Echo.
+

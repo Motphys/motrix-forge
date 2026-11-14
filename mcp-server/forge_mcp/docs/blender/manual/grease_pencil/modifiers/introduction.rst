@@ -45,10 +45,6 @@ Each modifier's interface shares the same basic components like modifiers for me
 
 See :ref:`Modifiers Interface <bpy.types.Modifier.show>` for more information.
 
-.. note::
-
-   Grease Pencil strokes, unlike meshes, still can not be edited directly in the place.
-
 
 .. _grease-pencil_modifiers_apply:
 

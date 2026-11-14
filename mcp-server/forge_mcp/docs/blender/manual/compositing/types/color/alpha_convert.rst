@@ -19,7 +19,7 @@ If you want to do a compositing operation with straight alpha,
 the *Alpha Convert* node can be used. Typically this would be a color correction operation
 where it might give better results working on RGB channels without alpha.
 If the alpha is converted to straight in the Compositor,
-it should be converted back to premultiplied before the *Composite Output* node,
+it should be converted back to premultiplied before the *Group Output* node,
 otherwise some artifacts might occur.
 
 
@@ -28,12 +28,7 @@ Inputs
 
 Image
    Standard color input.
-
-
-Properties
-==========
-
-Mapping
+Type
    The direction of convert alpha.
    For details on the difference between both ways to store alpha values see :term:`Alpha Channel`.
 

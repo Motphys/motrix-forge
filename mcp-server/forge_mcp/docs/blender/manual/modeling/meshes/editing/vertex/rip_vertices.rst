@@ -11,53 +11,71 @@ Rip Vertices
    :Menu:      :menuselection:`Vertex --> Rip Vertices`
    :Shortcut:  :kbd:`V`
 
-Rip creates a "hole" in the mesh by making a copy of selected vertices and edges,
-still linked to the neighboring non-selected vertices,
-so that the new edges are borders of the faces on one side, and the old ones,
-borders of the faces on the other side of the rip.
+Cuts the mesh open along two neighboring edges of each selected vertex.
+The vertices can then be moved away using the mouse to create a hole.
+When they're in the desired position, press :kbd:`LMB` or :kbd:`Return` to
+confirm. Alternatively, press :kbd:`RMB` or :kbd:`Esc` to leave them
+at their original position (but still disconnected).
 
+When a single vertex is selected, the cutting direction is determined
+by the position of the mouse cursor. Otherwise, it's determined by
+the orientation of the selected edge(s).
+
+.. note::
+
+   *Rip Vertices* doesn't support "ripping out" entire faces from their
+   surroundings. Use :ref:`bpy.ops.mesh.split` instead.
+
+.. seealso::
+
+   :ref:`bpy.ops.mesh.edge_split` only cuts along the selected edges,
+   leaving surrounding unselected edges unchanged.
 
 Examples
 ========
 
+Ripping a single vertex:
+
 .. list-table::
 
    * - .. figure:: /images/modeling_meshes_editing_vertex_rip-vertices_before.png
-          :width: 260px
 
-          Selected vertex.
+          Mouse cursor to the right.
 
      - .. figure:: /images/modeling_meshes_editing_vertex_rip-vertices_after.png
-          :width: 260px
 
-          Hole created after using rip on vertex.
+          Ripping results in a vertical cut.
+
+   * - .. figure:: /images/modeling_meshes_editing_vertex_rip-vertices_alt-before.png
+
+          Mouse cursor below.
+
+     - .. figure:: /images/modeling_meshes_editing_vertex_rip-vertices_alt-after.png
+
+          Ripping results in a horizontal cut.
+
+Ripping vertices along edges in one direction:
+
+.. list-table::
 
    * - .. figure:: /images/modeling_meshes_editing_vertex_rip-vertices_edges-before.png
-          :width: 260px
 
-          Edges selected.
+          Vertical edges selected.
 
      - .. figure:: /images/modeling_meshes_editing_vertex_rip-vertices_edges-after.png
-          :width: 260px
 
-          Result of rip with edge selection.
+          Ripping cuts vertically regardless of mouse position.
+
+As a less common scenario, it's also possible to cut in multiple directions:
+
+.. list-table::
 
    * - .. figure:: /images/modeling_meshes_editing_vertex_rip-vertices_complexselection-before.png
-          :width: 260px
 
-          A complex selection of vertices.
+          Before ripping.
 
      - .. figure:: /images/modeling_meshes_editing_vertex_rip-vertices_complexselection-after.png
-          :width: 260px
 
-          Result of rip operation.
+          After ripping.
 
-
-Limitations
-===========
-
-Rip will only work when edges and/or vertices are selected.
-Using the tool when a face is selected (explicitly or implicitly), will return an error
-message *"Cannot perform ripping with faces selected this way"*.
-If your selection includes edges or vertices that are not "between" two faces :term:`Manifold`,
-it will also fail with the message *"No proper selection or faces include"*.
+Ripping multiple disjoint "islands" of vertices, however, is not supported and will result in an error.

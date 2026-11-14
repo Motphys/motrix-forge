@@ -17,6 +17,7 @@ Nodes that can operate on different geometry types (volume, mesh).
 .. toctree::
    :maxdepth: 2
 
+   material/index.rst
    Operations <operations/index.rst>
 
 -----
@@ -26,3 +27,12 @@ Nodes that can operate on different geometry types (volume, mesh).
 
    geometry_to_instance.rst
    join_geometry.rst
+
+-----
+
+.. toctree::
+   :maxdepth: 2
+   :titlesonly:
+
+   geometry_input.rst
+   selection/index.rst

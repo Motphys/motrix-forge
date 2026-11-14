@@ -7,513 +7,615 @@ Pose Operators
 
    Apply the current pose as the new rest pose
 
-   :arg selected: Selected Only, Only apply the selected bones (with propagation to children)
-   :type selected: boolean, (optional)
+   :param selected: Selected Only, Only apply the selected bones (with propagation to children) (optional)
+   :type selected: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: autoside_names(*, axis='XAXIS')
 
    Automatically renames the selected bones according to which side of the target axis they fall on
 
-   :arg axis: Axis, Axis to tag names with
+   :param axis: Axis, Axis to tag names with (optional)
 
-      * ``XAXIS``
+      - ``XAXIS``
         X-Axis -- Left/Right.
-      * ``YAXIS``
+      - ``YAXIS``
         Y-Axis -- Front/Back.
-      * ``ZAXIS``
+      - ``ZAXIS``
         Z-Axis -- Top/Bottom.
-   :type axis: enum in [``'XAXIS'``, ``'YAXIS'``, ``'ZAXIS'``], (optional)
+   :type axis: Literal['XAXIS', 'YAXIS', 'ZAXIS']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: blend_to_neighbor(*, factor=0.5, prev_frame=0, next_frame=0, channels='ALL', axis_lock='FREE')
 
    Blend from current position to previous or next keyframe
 
-   :arg factor: Factor, Weighting factor for which keyframe is favored more
-   :type factor: float in [0, 1], (optional)
-   :arg prev_frame: Previous Keyframe, Frame number of keyframe immediately before the current frame
-   :type prev_frame: int in [-1048574, 1048574], (optional)
-   :arg next_frame: Next Keyframe, Frame number of keyframe immediately after the current frame
-   :type next_frame: int in [-1048574, 1048574], (optional)
-   :arg channels: Channels, Set of properties that are affected
+   :param factor: Factor, Weighting factor for which keyframe is favored more (in [0, 1], optional)
+   :type factor: float
+   :param prev_frame: Previous Keyframe, Frame number of keyframe immediately before the current frame (in [-1048574, 1048574], optional)
+   :type prev_frame: int
+   :param next_frame: Next Keyframe, Frame number of keyframe immediately after the current frame (in [-1048574, 1048574], optional)
+   :type next_frame: int
+   :param channels: Channels, Set of properties that are affected (optional)
 
-      * ``ALL``
+      - ``ALL``
         All Properties -- All properties, including transforms, bendy bone shape, and custom properties.
-      * ``LOC``
+      - ``LOC``
         Location -- Location only.
-      * ``ROT``
+      - ``ROT``
         Rotation -- Rotation only.
-      * ``SIZE``
+      - ``SIZE``
         Scale -- Scale only.
-      * ``BBONE``
+      - ``BBONE``
         Bendy Bone -- Bendy Bone shape properties.
-      * ``CUSTOM``
+      - ``CUSTOM``
         Custom Properties -- Custom properties.
-   :type channels: enum in [``'ALL'``, ``'LOC'``, ``'ROT'``, ``'SIZE'``, ``'BBONE'``, ``'CUSTOM'``], (optional)
-   :arg axis_lock: Axis Lock, Transform axis to restrict effects to
+   :type channels: Literal['ALL', 'LOC', 'ROT', 'SIZE', 'BBONE', 'CUSTOM']
+   :param axis_lock: Axis Lock, Transform axis to restrict effects to (optional)
 
-      * ``FREE``
+      - ``FREE``
         Free -- All axes are affected.
-      * ``X``
+      - ``X``
         X -- Only X-axis transforms are affected.
-      * ``Y``
+      - ``Y``
         Y -- Only Y-axis transforms are affected.
-      * ``Z``
+      - ``Z``
         Z -- Only Z-axis transforms are affected.
-   :type axis_lock: enum in [``'FREE'``, ``'X'``, ``'Y'``, ``'Z'``], (optional)
+   :type axis_lock: Literal['FREE', 'X', 'Y', 'Z']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: blend_with_rest(*, factor=0.5, prev_frame=0, next_frame=0, channels='ALL', axis_lock='FREE')
 
    Make the current pose more similar to, or further away from, the rest pose
 
-   :arg factor: Factor, Weighting factor for which keyframe is favored more
-   :type factor: float in [0, 1], (optional)
-   :arg prev_frame: Previous Keyframe, Frame number of keyframe immediately before the current frame
-   :type prev_frame: int in [-1048574, 1048574], (optional)
-   :arg next_frame: Next Keyframe, Frame number of keyframe immediately after the current frame
-   :type next_frame: int in [-1048574, 1048574], (optional)
-   :arg channels: Channels, Set of properties that are affected
+   :param factor: Factor, Weighting factor for which keyframe is favored more (in [0, 1], optional)
+   :type factor: float
+   :param prev_frame: Previous Keyframe, Frame number of keyframe immediately before the current frame (in [-1048574, 1048574], optional)
+   :type prev_frame: int
+   :param next_frame: Next Keyframe, Frame number of keyframe immediately after the current frame (in [-1048574, 1048574], optional)
+   :type next_frame: int
+   :param channels: Channels, Set of properties that are affected (optional)
 
-      * ``ALL``
+      - ``ALL``
         All Properties -- All properties, including transforms, bendy bone shape, and custom properties.
-      * ``LOC``
+      - ``LOC``
         Location -- Location only.
-      * ``ROT``
+      - ``ROT``
         Rotation -- Rotation only.
-      * ``SIZE``
+      - ``SIZE``
         Scale -- Scale only.
-      * ``BBONE``
+      - ``BBONE``
         Bendy Bone -- Bendy Bone shape properties.
-      * ``CUSTOM``
+      - ``CUSTOM``
         Custom Properties -- Custom properties.
-   :type channels: enum in [``'ALL'``, ``'LOC'``, ``'ROT'``, ``'SIZE'``, ``'BBONE'``, ``'CUSTOM'``], (optional)
-   :arg axis_lock: Axis Lock, Transform axis to restrict effects to
+   :type channels: Literal['ALL', 'LOC', 'ROT', 'SIZE', 'BBONE', 'CUSTOM']
+   :param axis_lock: Axis Lock, Transform axis to restrict effects to (optional)
 
-      * ``FREE``
+      - ``FREE``
         Free -- All axes are affected.
-      * ``X``
+      - ``X``
         X -- Only X-axis transforms are affected.
-      * ``Y``
+      - ``Y``
         Y -- Only Y-axis transforms are affected.
-      * ``Z``
+      - ``Z``
         Z -- Only Z-axis transforms are affected.
-   :type axis_lock: enum in [``'FREE'``, ``'X'``, ``'Y'``, ``'Z'``], (optional)
+   :type axis_lock: Literal['FREE', 'X', 'Y', 'Z']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: breakdown(*, factor=0.5, prev_frame=0, next_frame=0, channels='ALL', axis_lock='FREE')
 
    Create a suitable breakdown pose on the current frame
 
-   :arg factor: Factor, Weighting factor for which keyframe is favored more
-   :type factor: float in [0, 1], (optional)
-   :arg prev_frame: Previous Keyframe, Frame number of keyframe immediately before the current frame
-   :type prev_frame: int in [-1048574, 1048574], (optional)
-   :arg next_frame: Next Keyframe, Frame number of keyframe immediately after the current frame
-   :type next_frame: int in [-1048574, 1048574], (optional)
-   :arg channels: Channels, Set of properties that are affected
+   :param factor: Factor, Weighting factor for which keyframe is favored more (in [0, 1], optional)
+   :type factor: float
+   :param prev_frame: Previous Keyframe, Frame number of keyframe immediately before the current frame (in [-1048574, 1048574], optional)
+   :type prev_frame: int
+   :param next_frame: Next Keyframe, Frame number of keyframe immediately after the current frame (in [-1048574, 1048574], optional)
+   :type next_frame: int
+   :param channels: Channels, Set of properties that are affected (optional)
 
-      * ``ALL``
+      - ``ALL``
         All Properties -- All properties, including transforms, bendy bone shape, and custom properties.
-      * ``LOC``
+      - ``LOC``
         Location -- Location only.
-      * ``ROT``
+      - ``ROT``
         Rotation -- Rotation only.
-      * ``SIZE``
+      - ``SIZE``
         Scale -- Scale only.
-      * ``BBONE``
+      - ``BBONE``
         Bendy Bone -- Bendy Bone shape properties.
-      * ``CUSTOM``
+      - ``CUSTOM``
         Custom Properties -- Custom properties.
-   :type channels: enum in [``'ALL'``, ``'LOC'``, ``'ROT'``, ``'SIZE'``, ``'BBONE'``, ``'CUSTOM'``], (optional)
-   :arg axis_lock: Axis Lock, Transform axis to restrict effects to
+   :type channels: Literal['ALL', 'LOC', 'ROT', 'SIZE', 'BBONE', 'CUSTOM']
+   :param axis_lock: Axis Lock, Transform axis to restrict effects to (optional)
 
-      * ``FREE``
+      - ``FREE``
         Free -- All axes are affected.
-      * ``X``
+      - ``X``
         X -- Only X-axis transforms are affected.
-      * ``Y``
+      - ``Y``
         Y -- Only Y-axis transforms are affected.
-      * ``Z``
+      - ``Z``
         Z -- Only Z-axis transforms are affected.
-   :type axis_lock: enum in [``'FREE'``, ``'X'``, ``'Y'``, ``'Z'``], (optional)
+   :type axis_lock: Literal['FREE', 'X', 'Y', 'Z']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
-.. function:: constraint_add(*, type='')
+.. function:: constraint_add(*, type='CHILD_OF')
 
    Add a constraint to the active bone
 
-   :arg type: Type
-   :type type: enum in :ref:`rna_enum_constraint_type_items`, (optional)
+   :param type: Type, (optional)
+   :type type: Literal[:ref:`rna_enum_constraint_type_items`]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
-.. function:: constraint_add_with_targets(*, type='')
+.. function:: constraint_add_with_targets(*, type='CHILD_OF')
 
    Add a constraint to the active bone, with target (where applicable) set to the selected Objects/Bones
 
-   :arg type: Type
-   :type type: enum in :ref:`rna_enum_constraint_type_items`, (optional)
+   :param type: Type, (optional)
+   :type type: Literal[:ref:`rna_enum_constraint_type_items`]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: constraints_clear()
 
    Clear all constraints from the selected bones
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: constraints_copy()
 
    Copy constraints to other selected bones
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: copy()
 
    Copy the current pose of the selected bones to the internal clipboard
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: flip_names(*, do_strip_numbers=False)
 
    Flips (and corrects) the axis suffixes of the names of selected bones
 
-   :arg do_strip_numbers: Strip Numbers, Try to remove right-most dot-number from flipped names.Warning: May result in incoherent naming in some cases
-   :type do_strip_numbers: boolean, (optional)
+   :param do_strip_numbers: Strip Numbers, Try to remove right-most dot-number from flipped names.Warning: May result in incoherent naming in some cases(optional)
+   :type do_strip_numbers: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: hide(*, unselected=False)
 
    Tag selected bones to not be visible in Pose Mode
 
-   :arg unselected: Unselected
-   :type unselected: boolean, (optional)
+   :param unselected: Unselected, (optional)
+   :type unselected: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: ik_add(*, with_targets=True)
 
-   Add IK Constraint to the active Bone
+   Add an IK Constraint to the active Bone. The target can be a selected bone or object
 
-   :arg with_targets: With Targets, Assign IK Constraint with targets derived from the select bones/objects
-   :type with_targets: boolean, (optional)
+   :param with_targets: With Targets, Assign IK Constraint with targets derived from the select bones/objects (optional)
+   :type with_targets: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: ik_clear()
 
    Remove all IK Constraints from selected bones
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: loc_clear()
 
    Reset locations of selected bones to their default values
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: paste(*, flipped=False, selected_mask=False)
 
    Paste the stored pose on to the current pose
 
-   :arg flipped: Flipped on X-Axis, Paste the stored pose flipped on to current pose
-   :type flipped: boolean, (optional)
-   :arg selected_mask: On Selected Only, Only paste the stored pose on to selected bones in the current pose
-   :type selected_mask: boolean, (optional)
+   :param flipped: Flipped on X-Axis, Paste the stored pose flipped on to current pose (optional)
+   :type flipped: bool
+   :param selected_mask: On Selected Only, Only paste the stored pose on to selected bones in the current pose (optional)
+   :type selected_mask: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: paths_calculate(*, display_type='RANGE', range='SCENE', bake_location='HEADS')
 
    Calculate paths for the selected bones
 
-   :arg display_type: Display type
-   :type display_type: enum in :ref:`rna_enum_motionpath_display_type_items`, (optional)
-   :arg range: Computation Range
-   :type range: enum in :ref:`rna_enum_motionpath_range_items`, (optional)
-   :arg bake_location: Bake Location, Which point on the bones is used when calculating paths
-   :type bake_location: enum in :ref:`rna_enum_motionpath_bake_location_items`, (optional)
+   :param display_type: Display Type, (optional)
+   :type display_type: Literal[:ref:`rna_enum_motionpath_display_type_items`]
+   :param range: Computation Range, (optional)
+   :type range: Literal[:ref:`rna_enum_motionpath_range_items`]
+   :param bake_location: Bake Location, Which point on the bones is used when calculating paths (optional)
+   :type bake_location: Literal[:ref:`rna_enum_motionpath_bake_location_items`]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: paths_clear(*, only_selected=False)
 
    Undocumented, consider `contributing <https://developer.blender.org/>`__.
 
-   :arg only_selected: Only Selected, Only clear motion paths of selected bones
-   :type only_selected: boolean, (optional)
+   :param only_selected: Only Selected, Only clear motion paths of selected bones (optional)
+   :type only_selected: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: paths_range_update()
 
    Update frame range for motion paths from the Scene's current frame range
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: paths_update()
 
    Recalculate paths for bones that already have them
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: propagate(*, mode='NEXT_KEY', end_frame=250.0)
 
    Copy selected aspects of the current pose to subsequent poses already keyframed
 
-   :arg mode: Terminate Mode, Method used to determine when to stop propagating pose to keyframes
+   :param mode: Terminate Mode, Method used to determine when to stop propagating pose to keyframes (optional)
 
-      * ``NEXT_KEY``
+      - ``NEXT_KEY``
         To Next Keyframe -- Propagate pose to first keyframe following the current frame only.
-      * ``LAST_KEY``
+      - ``LAST_KEY``
         To Last Keyframe -- Propagate pose to the last keyframe only (i.e. making action cyclic).
-      * ``BEFORE_FRAME``
+      - ``BEFORE_FRAME``
         Before Frame -- Propagate pose to all keyframes between current frame and 'Frame' property.
-      * ``BEFORE_END``
+      - ``BEFORE_END``
         Before Last Keyframe -- Propagate pose to all keyframes from current frame until no more are found.
-      * ``SELECTED_KEYS``
+      - ``SELECTED_KEYS``
         On Selected Keyframes -- Propagate pose to all selected keyframes.
-      * ``SELECTED_MARKERS``
+      - ``SELECTED_MARKERS``
         On Selected Markers -- Propagate pose to all keyframes occurring on frames with Scene Markers after the current frame.
-   :type mode: enum in [``'NEXT_KEY'``, ``'LAST_KEY'``, ``'BEFORE_FRAME'``, ``'BEFORE_END'``, ``'SELECTED_KEYS'``, ``'SELECTED_MARKERS'``], (optional)
-   :arg end_frame: End Frame, Frame to stop propagating frames to (for 'Before Frame' mode)
-   :type end_frame: float in [1.17549e-38, inf], (optional)
+   :type mode: Literal['NEXT_KEY', 'LAST_KEY', 'BEFORE_FRAME', 'BEFORE_END', 'SELECTED_KEYS', 'SELECTED_MARKERS']
+   :param end_frame: End Frame, Frame to stop propagating frames to (for 'Before Frame' mode) (in [1.17549e-38, inf], optional)
+   :type end_frame: float
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: push(*, factor=0.5, prev_frame=0, next_frame=0, channels='ALL', axis_lock='FREE')
 
    Exaggerate the current pose in regards to the breakdown pose
 
-   :arg factor: Factor, Weighting factor for which keyframe is favored more
-   :type factor: float in [0, 1], (optional)
-   :arg prev_frame: Previous Keyframe, Frame number of keyframe immediately before the current frame
-   :type prev_frame: int in [-1048574, 1048574], (optional)
-   :arg next_frame: Next Keyframe, Frame number of keyframe immediately after the current frame
-   :type next_frame: int in [-1048574, 1048574], (optional)
-   :arg channels: Channels, Set of properties that are affected
+   :param factor: Factor, Weighting factor for which keyframe is favored more (in [0, 1], optional)
+   :type factor: float
+   :param prev_frame: Previous Keyframe, Frame number of keyframe immediately before the current frame (in [-1048574, 1048574], optional)
+   :type prev_frame: int
+   :param next_frame: Next Keyframe, Frame number of keyframe immediately after the current frame (in [-1048574, 1048574], optional)
+   :type next_frame: int
+   :param channels: Channels, Set of properties that are affected (optional)
 
-      * ``ALL``
+      - ``ALL``
         All Properties -- All properties, including transforms, bendy bone shape, and custom properties.
-      * ``LOC``
+      - ``LOC``
         Location -- Location only.
-      * ``ROT``
+      - ``ROT``
         Rotation -- Rotation only.
-      * ``SIZE``
+      - ``SIZE``
         Scale -- Scale only.
-      * ``BBONE``
+      - ``BBONE``
         Bendy Bone -- Bendy Bone shape properties.
-      * ``CUSTOM``
+      - ``CUSTOM``
         Custom Properties -- Custom properties.
-   :type channels: enum in [``'ALL'``, ``'LOC'``, ``'ROT'``, ``'SIZE'``, ``'BBONE'``, ``'CUSTOM'``], (optional)
-   :arg axis_lock: Axis Lock, Transform axis to restrict effects to
+   :type channels: Literal['ALL', 'LOC', 'ROT', 'SIZE', 'BBONE', 'CUSTOM']
+   :param axis_lock: Axis Lock, Transform axis to restrict effects to (optional)
 
-      * ``FREE``
+      - ``FREE``
         Free -- All axes are affected.
-      * ``X``
+      - ``X``
         X -- Only X-axis transforms are affected.
-      * ``Y``
+      - ``Y``
         Y -- Only Y-axis transforms are affected.
-      * ``Z``
+      - ``Z``
         Z -- Only Z-axis transforms are affected.
-   :type axis_lock: enum in [``'FREE'``, ``'X'``, ``'Y'``, ``'Z'``], (optional)
+   :type axis_lock: Literal['FREE', 'X', 'Y', 'Z']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: quaternions_flip()
 
    Flip quaternion values to achieve desired rotations, while maintaining the same orientations
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: relax(*, factor=0.5, prev_frame=0, next_frame=0, channels='ALL', axis_lock='FREE')
 
    Make the current pose more similar to its breakdown pose
 
-   :arg factor: Factor, Weighting factor for which keyframe is favored more
-   :type factor: float in [0, 1], (optional)
-   :arg prev_frame: Previous Keyframe, Frame number of keyframe immediately before the current frame
-   :type prev_frame: int in [-1048574, 1048574], (optional)
-   :arg next_frame: Next Keyframe, Frame number of keyframe immediately after the current frame
-   :type next_frame: int in [-1048574, 1048574], (optional)
-   :arg channels: Channels, Set of properties that are affected
+   :param factor: Factor, Weighting factor for which keyframe is favored more (in [0, 1], optional)
+   :type factor: float
+   :param prev_frame: Previous Keyframe, Frame number of keyframe immediately before the current frame (in [-1048574, 1048574], optional)
+   :type prev_frame: int
+   :param next_frame: Next Keyframe, Frame number of keyframe immediately after the current frame (in [-1048574, 1048574], optional)
+   :type next_frame: int
+   :param channels: Channels, Set of properties that are affected (optional)
 
-      * ``ALL``
+      - ``ALL``
         All Properties -- All properties, including transforms, bendy bone shape, and custom properties.
-      * ``LOC``
+      - ``LOC``
         Location -- Location only.
-      * ``ROT``
+      - ``ROT``
         Rotation -- Rotation only.
-      * ``SIZE``
+      - ``SIZE``
         Scale -- Scale only.
-      * ``BBONE``
+      - ``BBONE``
         Bendy Bone -- Bendy Bone shape properties.
-      * ``CUSTOM``
+      - ``CUSTOM``
         Custom Properties -- Custom properties.
-   :type channels: enum in [``'ALL'``, ``'LOC'``, ``'ROT'``, ``'SIZE'``, ``'BBONE'``, ``'CUSTOM'``], (optional)
-   :arg axis_lock: Axis Lock, Transform axis to restrict effects to
+   :type channels: Literal['ALL', 'LOC', 'ROT', 'SIZE', 'BBONE', 'CUSTOM']
+   :param axis_lock: Axis Lock, Transform axis to restrict effects to (optional)
 
-      * ``FREE``
+      - ``FREE``
         Free -- All axes are affected.
-      * ``X``
+      - ``X``
         X -- Only X-axis transforms are affected.
-      * ``Y``
+      - ``Y``
         Y -- Only Y-axis transforms are affected.
-      * ``Z``
+      - ``Z``
         Z -- Only Z-axis transforms are affected.
-   :type axis_lock: enum in [``'FREE'``, ``'X'``, ``'Y'``, ``'Z'``], (optional)
+   :type axis_lock: Literal['FREE', 'X', 'Y', 'Z']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: reveal(*, select=True)
 
    Reveal all bones hidden in Pose Mode
 
-   :arg select: Select
-   :type select: boolean, (optional)
+   :param select: Select, (optional)
+   :type select: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: rot_clear()
 
    Reset rotations of selected bones to their default values
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: rotation_mode_set(*, type='QUATERNION')
 
    Set the rotation representation used by selected bones
 
-   :arg type: Rotation Mode
-   :type type: enum in :ref:`rna_enum_object_rotation_mode_items`, (optional)
+   :param type: Rotation Mode, (optional)
+   :type type: Literal[:ref:`rna_enum_object_rotation_mode_items`]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: scale_clear()
 
    Reset scaling of selected bones to their default values
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: select_all(*, action='TOGGLE')
 
    Toggle selection status of all bones
 
-   :arg action: Action, Selection action to execute
+   :param action: Action, Selection action to execute (optional)
 
-      * ``TOGGLE``
+      - ``TOGGLE``
         Toggle -- Toggle selection for all elements.
-      * ``SELECT``
+      - ``SELECT``
         Select -- Select all elements.
-      * ``DESELECT``
+      - ``DESELECT``
         Deselect -- Deselect all elements.
-      * ``INVERT``
+      - ``INVERT``
         Invert -- Invert selection of all elements.
-   :type action: enum in [``'TOGGLE'``, ``'SELECT'``, ``'DESELECT'``, ``'INVERT'``], (optional)
+   :type action: Literal['TOGGLE', 'SELECT', 'DESELECT', 'INVERT']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: select_constraint_target()
 
    Select bones used as targets for the currently selected bones
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: select_grouped(*, extend=False, type='COLLECTION')
 
    Select all visible bones grouped by similar properties
 
-   :arg extend: Extend, Extend selection instead of deselecting everything first
-   :type extend: boolean, (optional)
-   :arg type: Type
+   :param extend: Extend, Extend selection instead of deselecting everything first (optional)
+   :type extend: bool
+   :param type: Type, (optional)
 
-      * ``COLLECTION``
+      - ``COLLECTION``
         Collection -- Same collections as the active bone.
-      * ``COLOR``
+      - ``COLOR``
         Color -- Same color as the active bone.
-      * ``KEYINGSET``
+      - ``KEYINGSET``
         Keying Set -- All bones affected by active Keying Set.
-      * ``CHILDREN``
+      - ``CHILDREN``
         Children -- Select all children of currently selected bones.
-      * ``CHILDREN_IMMEDIATE``
+      - ``CHILDREN_IMMEDIATE``
         Immediate Children -- Select direct children of currently selected bones.
-      * ``PARENT``
+      - ``PARENT``
         Parents -- Select the parents of currently selected bones.
-      * ``SIBILINGS``
+      - ``SIBLINGS``
         Siblings -- Select all bones that have the same parent as currently selected bones.
-   :type type: enum in [``'COLLECTION'``, ``'COLOR'``, ``'KEYINGSET'``, ``'CHILDREN'``, ``'CHILDREN_IMMEDIATE'``, ``'PARENT'``, ``'SIBILINGS'``], (optional)
+   :type type: Literal['COLLECTION', 'COLOR', 'KEYINGSET', 'CHILDREN', 'CHILDREN_IMMEDIATE', 'PARENT', 'SIBLINGS']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: select_hierarchy(*, direction='PARENT', extend=False)
 
    Select immediate parent/children of selected bones
 
-   :arg direction: Direction
-   :type direction: enum in [``'PARENT'``, ``'CHILD'``], (optional)
-   :arg extend: Extend, Extend the selection
-   :type extend: boolean, (optional)
+   :param direction: Direction, (optional)
+   :type direction: Literal['PARENT', 'CHILD']
+   :param extend: Extend, Extend the selection (optional)
+   :type extend: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: select_linked()
 
-   Select all bones linked by parent/child connections to the current selection
+   Select all bones linked by connected parent/child relationships from the current selection
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: select_linked_pick(*, extend=False)
 
-   Select bones linked by parent/child connections under the mouse cursor
+   Select bones linked by connected parent/child relationships under the mouse cursor
 
-   :arg extend: Extend, Extend selection instead of deselecting everything first
-   :type extend: boolean, (optional)
+   :param extend: Extend, Extend selection instead of deselecting everything first (optional)
+   :type extend: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: select_mirror(*, only_active=False, extend=False)
 
    Mirror the bone selection
 
-   :arg only_active: Active Only, Only operate on the active bone
-   :type only_active: boolean, (optional)
-   :arg extend: Extend, Extend the selection
-   :type extend: boolean, (optional)
+   :param only_active: Active Only, Only operate on the active bone (optional)
+   :type only_active: bool
+   :param extend: Extend, Extend the selection (optional)
+   :type extend: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: select_parent()
 
    Select bones that are parents of the currently selected bones
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: selection_set_add()
 
    Create a new empty Selection Set
 
-   :File: `startup\bl_operators\bone_selection_sets.py\:143 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\bone_selection_sets.py#L143>`__
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
+   :File: `startup\bl_operators\bone_selection_sets.py\:147 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\bone_selection_sets.py#L147>`__
 
 .. function:: selection_set_add_and_assign()
 
    Create a new Selection Set with the currently selected bones
 
-   :File: `startup\bl_operators\bone_selection_sets.py\:274 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\bone_selection_sets.py#L274>`__
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
+   :File: `startup\bl_operators\bone_selection_sets.py\:278 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\bone_selection_sets.py#L278>`__
 
 .. function:: selection_set_assign()
 
    Add selected bones to Selection Set
 
-   :File: `startup\bl_operators\bone_selection_sets.py\:190 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\bone_selection_sets.py#L190>`__
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
+   :File: `startup\bl_operators\bone_selection_sets.py\:194 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\bone_selection_sets.py#L194>`__
 
 .. function:: selection_set_copy()
 
    Copy the selected Selection Set(s) to the clipboard
 
-   :File: `startup\bl_operators\bone_selection_sets.py\:286 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\bone_selection_sets.py#L286>`__
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
+   :File: `startup\bl_operators\bone_selection_sets.py\:290 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\bone_selection_sets.py#L290>`__
 
 .. function:: selection_set_delete_all()
 
    Remove all Selection Sets from this Armature
 
-   :File: `startup\bl_operators\bone_selection_sets.py\:73 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\bone_selection_sets.py#L73>`__
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
+   :File: `startup\bl_operators\bone_selection_sets.py\:77 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\bone_selection_sets.py#L77>`__
 
 .. function:: selection_set_deselect()
 
    Remove Selection Set bones from current selection
 
-   :File: `startup\bl_operators\bone_selection_sets.py\:257 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\bone_selection_sets.py#L257>`__
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
+   :File: `startup\bl_operators\bone_selection_sets.py\:261 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\bone_selection_sets.py#L261>`__
 
 .. function:: selection_set_move(*, direction='UP')
 
    Move the active Selection Set up/down the list of sets
 
-   :arg direction: Move Direction, Direction to move the active Selection Set: UP (default) or DOWN
-   :type direction: enum in [``'UP'``, ``'DOWN'``], (optional)
-   :File: `startup\bl_operators\bone_selection_sets.py\:122 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\bone_selection_sets.py#L122>`__
+   :param direction: Move Direction, Direction to move the active Selection Set: UP (default) or DOWN (optional)
+   :type direction: Literal['UP', 'DOWN']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
+   :File: `startup\bl_operators\bone_selection_sets.py\:126 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\bone_selection_sets.py#L126>`__
 
 
 .. function:: selection_set_paste()
 
    Add new Selection Set(s) from the clipboard
 
-   :File: `startup\bl_operators\bone_selection_sets.py\:298 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\bone_selection_sets.py#L298>`__
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
+   :File: `startup\bl_operators\bone_selection_sets.py\:302 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\bone_selection_sets.py#L302>`__
 
 .. function:: selection_set_remove()
 
    Remove a Selection Set from this Armature
 
-   :File: `startup\bl_operators\bone_selection_sets.py\:161 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\bone_selection_sets.py#L161>`__
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
+   :File: `startup\bl_operators\bone_selection_sets.py\:165 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\bone_selection_sets.py#L165>`__
 
 .. function:: selection_set_remove_bones()
 
    Remove the selected bones from all Selection Sets
 
-   :File: `startup\bl_operators\bone_selection_sets.py\:85 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\bone_selection_sets.py#L85>`__
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
+   :File: `startup\bl_operators\bone_selection_sets.py\:89 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\bone_selection_sets.py#L89>`__
 
 .. function:: selection_set_select(*, selection_set_index=-1)
 
    Select the bones from this Selection Set
 
-   :arg selection_set_index: Selection Set Index, Which Selection Set to select; -1 uses the active Selection Set
-   :type selection_set_index: int in [-inf, inf], (optional)
-   :File: `startup\bl_operators\bone_selection_sets.py\:235 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\bone_selection_sets.py#L235>`__
+   :param selection_set_index: Selection Set Index, Which Selection Set to select; -1 uses the active Selection Set (in [-inf, inf], optional)
+   :type selection_set_index: int
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
+   :File: `startup\bl_operators\bone_selection_sets.py\:239 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\bone_selection_sets.py#L239>`__
 
 
 .. function:: selection_set_unassign()
 
    Remove selected bones from Selection Set
 
-   :File: `startup\bl_operators\bone_selection_sets.py\:209 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\bone_selection_sets.py#L209>`__
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
+   :File: `startup\bl_operators\bone_selection_sets.py\:213 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\bone_selection_sets.py#L213>`__
 
 .. function:: transforms_clear()
 
    Reset location, rotation, and scaling of selected bones to their default values
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: user_transforms_clear(*, only_selected=True)
 
    Reset pose bone transforms to keyframed state
 
-   :arg only_selected: Only Selected, Only visible/selected bones
-   :type only_selected: boolean, (optional)
+   :param only_selected: Only Selected, Only visible/selected bones (optional)
+   :type only_selected: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: visual_transform_apply()
 
    Apply final constrained position of pose bones to their transform
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]

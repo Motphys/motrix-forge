@@ -30,12 +30,6 @@ Strings
    Multiple string values to be combined in connection order.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

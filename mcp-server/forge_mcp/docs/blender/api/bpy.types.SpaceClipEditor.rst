@@ -5,333 +5,356 @@ SpaceClipEditor(Space)
 
 base classes --- :class:`bpy_struct`, :class:`Space`
 
+
 .. class:: SpaceClipEditor(Space)
 
    Clip editor space data
 
    .. attribute:: annotation_source
 
-      Where the annotation comes from
+      Where the annotation comes from (default ``'CLIP'``)
 
-      * ``CLIP``
+      - ``CLIP``
         Clip -- Show annotation data-block which belongs to movie clip.
-      * ``TRACK``
+      - ``TRACK``
         Track -- Show annotation data-block which belongs to active track.
 
-      :type: enum in [``'CLIP'``, ``'TRACK'``], default ``'CLIP'``
+      :type: Literal['CLIP', 'TRACK']
 
    .. attribute:: blend_factor
 
-      Overlay blending factor of rasterized mask
+      Overlay blending factor of rasterized mask (in [0, 1], default 0.7)
 
-      :type: float in [0, 1], default 0.7
+      :type: float
 
    .. attribute:: clip
 
       Movie clip displayed and edited in this space
 
-      :type: :class:`MovieClip`
+      :type: :class:`MovieClip` | None
 
    .. data:: clip_user
 
-      Parameters defining which frame of the movie clip is displayed
+      Parameters defining which frame of the movie clip is displayed (readonly, never None)
 
-      :type: :class:`MovieClipUser`, (readonly, never None)
+      :type: :class:`MovieClipUser`
 
    .. attribute:: cursor_location
 
-      2D cursor location for this view
+      2D cursor location for this view (array of 2 items, in [-inf, inf], default (0.0, 0.0))
 
-      :type: :class:`mathutils.Vector` of 2 items in [-inf, inf], default (0.0, 0.0)
+      :type: :class:`mathutils.Vector`
 
    .. attribute:: lock_selection
 
-      Lock viewport to selected markers during playback
+      Lock viewport to selected markers during playback (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: lock_time_cursor
 
-      Lock curves view to time cursor during playback and tracking
+      Lock curves view to time cursor during playback and tracking (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: mask
 
       Mask displayed and edited in this space
 
-      :type: :class:`Mask`
+      :type: :class:`Mask` | None
 
    .. attribute:: mask_display_type
 
-      Display type for mask splines
+      Display type for mask splines (default ``'OUTLINE'``)
 
-      * ``OUTLINE``
+      - ``OUTLINE``
         Outline -- Display white edges with black outline.
-      * ``DASH``
+      - ``DASH``
         Dash -- Display dashed black-white edges.
-      * ``BLACK``
+      - ``BLACK``
         Black -- Display black edges.
-      * ``WHITE``
+      - ``WHITE``
         White -- Display white edges.
 
-      :type: enum in [``'OUTLINE'``, ``'DASH'``, ``'BLACK'``, ``'WHITE'``], default ``'OUTLINE'``
+      :type: Literal['OUTLINE', 'DASH', 'BLACK', 'WHITE']
 
    .. attribute:: mask_overlay_mode
 
-      Overlay mode of rasterized mask
+      Overlay mode of rasterized mask (default ``'ALPHACHANNEL'``)
 
-      * ``ALPHACHANNEL``
+      - ``ALPHACHANNEL``
         Alpha Channel -- Show alpha channel of the mask.
-      * ``COMBINED``
+      - ``COMBINED``
         Combined -- Combine space background image with the mask.
 
-      :type: enum in [``'ALPHACHANNEL'``, ``'COMBINED'``], default ``'ALPHACHANNEL'``
+      :type: Literal['ALPHACHANNEL', 'COMBINED']
 
    .. attribute:: mode
 
-      Editing context being displayed
+      Editing context being displayed (default ``'TRACKING'``)
 
-      :type: enum in :ref:`rna_enum_clip_editor_mode_items`, default ``'TRACKING'``
+      :type: Literal[:ref:`rna_enum_clip_editor_mode_items`]
+
+   .. data:: overlay
+
+      Settings for display of overlays in the Movie Clip editor (readonly, never None)
+
+      :type: :class:`SpaceClipOverlay`
 
    .. attribute:: path_length
 
-      Length of displaying path, in frames
+      Length of displaying path, in frames (in [0, inf], default 20)
 
-      :type: int in [0, inf], default 20
+      :type: int
 
    .. attribute:: pivot_point
 
-      Pivot center for rotation/scaling
+      Pivot center for rotation/scaling (default ``'MEDIAN_POINT'``)
 
-      * ``BOUNDING_BOX_CENTER``
+      - ``BOUNDING_BOX_CENTER``
         Bounding Box Center -- Pivot around bounding box center of selected object(s).
-      * ``CURSOR``
+      - ``CURSOR``
         2D Cursor -- Pivot around the 2D cursor.
-      * ``INDIVIDUAL_ORIGINS``
+      - ``INDIVIDUAL_ORIGINS``
         Individual Origins -- Pivot around each object's own origin.
-      * ``MEDIAN_POINT``
+      - ``MEDIAN_POINT``
         Median Point -- Pivot around the median point of selected objects.
 
-      :type: enum in [``'BOUNDING_BOX_CENTER'``, ``'CURSOR'``, ``'INDIVIDUAL_ORIGINS'``, ``'MEDIAN_POINT'``], default ``'MEDIAN_POINT'``
+      :type: Literal['BOUNDING_BOX_CENTER', 'CURSOR', 'INDIVIDUAL_ORIGINS', 'MEDIAN_POINT']
 
    .. data:: scopes
 
-      Scopes to visualize movie clip statistics
+      Scopes to visualize movie clip statistics (readonly)
 
-      :type: :class:`MovieClipScopes`, (readonly)
+      :type: :class:`MovieClipScopes` | None
 
    .. attribute:: show_annotation
 
-      Show annotations for this view
+      Show annotations for this view (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_blue_channel
 
-      Show blue channel in the frame
+      Show blue channel in the frame (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_bundles
 
-      Show projection of 3D markers into footage
+      Show projection of 3D markers into footage (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: show_disabled
 
-      Show disabled tracks from the footage
+      Show disabled tracks from the footage (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_filters
 
-      Show filters for graph editor
+      Show filters for graph editor (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: show_gizmo
 
-      Show gizmos of all types
+      Show gizmos of all types (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_gizmo_navigate
 
-      Viewport navigation gizmo
+      Viewport navigation gizmo (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_graph_frames
 
-      Show curve for per-frame average error (camera motion should be solved first)
+      Show curve for per-frame average error (camera motion should be solved first) (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_graph_hidden
 
-      Include channels from objects/bone that are not visible
+      Include channels from objects/bone that are not visible (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: show_graph_only_selected
 
-      Only include channels relating to selected objects and data
+      Only include channels relating to selected objects and data (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: show_graph_tracks_error
 
-      Display the reprojection error curve for selected tracks
+      Display the reprojection error curve for selected tracks (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: show_graph_tracks_motion
 
-      Display the speed curves (in "x" direction red, in "y" direction green) for the selected tracks
+      Display speed curves for the selected tracks (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_green_channel
 
-      Show green channel in the frame
+      Show green channel in the frame (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_grid
 
-      Show grid showing lens distortion
+      Show grid showing lens distortion (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: show_marker_pattern
 
-      Show pattern boundbox for markers
+      Show pattern boundbox for markers (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_marker_search
 
-      Show search boundbox for markers
+      Show search boundbox for markers (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: show_mask_overlay
 
-      :type: boolean, default False
+      (default False)
+
+      :type: bool
 
    .. attribute:: show_mask_spline
 
-      :type: boolean, default True
+      (default True)
+
+      :type: bool
 
    .. attribute:: show_metadata
 
-      Show metadata of clip
+      Show metadata of clip (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: show_names
 
-      Show track names and status
+      Show track names and status (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: show_red_channel
 
-      Show red channel in the frame
+      Show red channel in the frame (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_region_channels
 
-      :type: boolean, default False
+      (default False)
+
+      :type: bool
 
    .. attribute:: show_region_hud
 
-      :type: boolean, default False
+      (default False)
+
+      :type: bool
 
    .. attribute:: show_region_toolbar
 
-      :type: boolean, default False
+      (default False)
+
+      :type: bool
 
    .. attribute:: show_region_ui
 
-      :type: boolean, default False
+      (default False)
+
+      :type: bool
 
    .. attribute:: show_seconds
 
-      Show timing as a timecode instead of frames
+      Show timing as a timecode instead of frames (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: show_stable
 
-      Show stable footage in editor (if stabilization is enabled)
+      Show stable footage in editor (if stabilization is enabled) (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: show_tiny_markers
 
-      Show markers in a more compact manner
+      Show markers in a more compact manner (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: show_track_path
 
-      Show path of how track moves
+      Show path of how track moves (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: use_grayscale_preview
 
-      Display frame in grayscale mode
+      Display frame in grayscale mode (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_manual_calibration
 
-      Use manual calibration helpers
+      Use manual calibration helpers (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_mute_footage
 
-      Mute footage and show black background instead
+      Mute footage and show black background instead (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: view
 
-      Type of the clip editor view
+      Type of the clip editor view (default ``'CLIP'``)
 
-      * ``CLIP``
+      - ``CLIP``
         Clip -- Show editing clip preview.
-      * ``GRAPH``
+      - ``GRAPH``
         Graph -- Show graph view for active element.
-      * ``DOPESHEET``
+      - ``DOPESHEET``
         Dope Sheet -- Dope Sheet view for tracking data.
 
-      :type: enum in [``'CLIP'``, ``'GRAPH'``, ``'DOPESHEET'``], default ``'CLIP'``
+      :type: Literal['CLIP', 'GRAPH', 'DOPESHEET']
 
    .. attribute:: zoom_percentage
 
-      Zoom percentage
+      Zoom percentage (in [0.4, 80000], default 100.0)
 
-      :type: float in [0.4, 80000], default 100.0
+      :type: float
 
    .. classmethod:: bl_rna_get_subclass(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: :class:`bpy.types.Struct` | None
       :return: The RNA type or default when not found.
-      :rtype: :class:`bpy.types.Struct` subclass
+      :rtype: :class:`bpy.types.Struct`
 
 
    .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: type | None
       :return: The class or default when not found.
       :rtype: type
 
@@ -342,15 +365,15 @@ base classes --- :class:`bpy_struct`, :class:`Space`
       It will be called every time the specified region in the space type will be drawn.
       Note: All arguments are positional only for now.
    
-      :arg callback:
+      :param callback:
          A function that will be called when the region is drawn.
          It gets the specified arguments as input, it's return value is ignored.
       :type callback: Callable[..., Any]
-      :arg args: Arguments that will be passed to the callback.
+      :param args: Arguments that will be passed to the callback.
       :type args: tuple[Any, ...]
-      :arg region_type: The region type the callback draws in; usually ``WINDOW``. (:class:`bpy.types.Region.type`)
+      :param region_type: The region type the callback draws in; usually ``WINDOW``. (:class:`bpy.types.Region.type`)
       :type region_type: str
-      :arg draw_type: Usually ``POST_PIXEL`` for 2D drawing and ``POST_VIEW`` for 3D drawing. In some cases ``PRE_VIEW`` can be used. ``BACKDROP`` can be used for backdrops in the node editor.
+      :param draw_type: Usually ``POST_PIXEL`` for 2D drawing and ``POST_VIEW`` for 3D drawing. In some cases ``PRE_VIEW`` can be used. ``BACKDROP`` can be used for backdrops in the node editor.
       :type draw_type: str
       :return: Handler that can be removed later on.
       :rtype: object
@@ -360,9 +383,9 @@ base classes --- :class:`bpy_struct`, :class:`Space`
    
       Remove a draw handler that was added previously.
    
-      :arg handler: The draw handler that should be removed.
+      :param handler: The draw handler that should be removed.
       :type handler: object
-      :arg region_type: Region type the callback was added to.
+      :param region_type: Region type the callback was added to.
       :type region_type: str
 
 
@@ -372,10 +395,10 @@ Inherited Properties
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.id_data`
-   * :class:`Space.type`
-   * :class:`Space.show_locked_time`
-   * :class:`Space.show_region_header`
+   - :class:`bpy_struct.id_data`
+   - :class:`Space.type`
+   - :class:`Space.show_locked_time`
+   - :class:`Space.show_region_header`
 
 Inherited Functions
 -------------------
@@ -383,31 +406,32 @@ Inherited Functions
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.as_pointer`
-   * :class:`bpy_struct.driver_add`
-   * :class:`bpy_struct.driver_remove`
-   * :class:`bpy_struct.get`
-   * :class:`bpy_struct.id_properties_clear`
-   * :class:`bpy_struct.id_properties_ensure`
-   * :class:`bpy_struct.id_properties_ui`
-   * :class:`bpy_struct.is_property_hidden`
-   * :class:`bpy_struct.is_property_overridable_library`
-   * :class:`bpy_struct.is_property_readonly`
-   * :class:`bpy_struct.is_property_set`
-   * :class:`bpy_struct.items`
-   * :class:`bpy_struct.keyframe_delete`
-   * :class:`bpy_struct.keyframe_insert`
-   * :class:`bpy_struct.keys`
-   * :class:`bpy_struct.path_from_id`
-   * :class:`bpy_struct.path_resolve`
-   * :class:`bpy_struct.pop`
-   * :class:`bpy_struct.property_overridable_library_set`
-   * :class:`bpy_struct.property_unset`
-   * :class:`bpy_struct.rna_ancestors`
-   * :class:`bpy_struct.type_recast`
-   * :class:`bpy_struct.values`
-   * :class:`Space.bl_rna_get_subclass`
-   * :class:`Space.bl_rna_get_subclass_py`
-   * :class:`Space.draw_handler_add`
-   * :class:`Space.draw_handler_remove`
+   - :class:`bpy_struct.as_pointer`
+   - :class:`bpy_struct.driver_add`
+   - :class:`bpy_struct.driver_remove`
+   - :class:`bpy_struct.get`
+   - :class:`bpy_struct.id_properties_clear`
+   - :class:`bpy_struct.id_properties_ensure`
+   - :class:`bpy_struct.id_properties_ui`
+   - :class:`bpy_struct.is_property_hidden`
+   - :class:`bpy_struct.is_property_overridable_library`
+   - :class:`bpy_struct.is_property_readonly`
+   - :class:`bpy_struct.is_property_set`
+   - :class:`bpy_struct.items`
+   - :class:`bpy_struct.keyframe_delete`
+   - :class:`bpy_struct.keyframe_insert`
+   - :class:`bpy_struct.keys`
+   - :class:`bpy_struct.path_from_id`
+   - :class:`bpy_struct.path_from_module`
+   - :class:`bpy_struct.path_resolve`
+   - :class:`bpy_struct.pop`
+   - :class:`bpy_struct.property_overridable_library_set`
+   - :class:`bpy_struct.property_unset`
+   - :class:`bpy_struct.rna_ancestors`
+   - :class:`bpy_struct.type_recast`
+   - :class:`bpy_struct.values`
+   - :class:`Space.bl_rna_get_subclass`
+   - :class:`Space.bl_rna_get_subclass_py`
+   - :class:`Space.draw_handler_add`
+   - :class:`Space.draw_handler_remove`
 

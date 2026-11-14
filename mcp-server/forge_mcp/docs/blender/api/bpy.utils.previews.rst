@@ -14,7 +14,7 @@ This allows scripts to generate their own previews, and use them as icons in UI 
 Custom Icon Example
 -------------------
 
-.. literalinclude:: __/__/__/scripts/templates_py/ui_previews_custom_icon.py
+.. literalinclude:: __/__/__/scripts/templates_py/UI/previews_custom_icon.py
 
 .. function:: new()
 
@@ -25,10 +25,10 @@ Custom Icon Example
 
    Remove the specified previews collection.
    
-   :arg pcoll: Preview collection to close.
+   :param pcoll: Preview collection to close.
    :type pcoll: :class:`ImagePreviewCollection`
 
-.. class:: bpy.utils.previews.ImagePreviewCollection
+.. class:: ImagePreviewCollection
 
    Dictionary-like class of previews.
    
@@ -49,17 +49,17 @@ Custom Icon Example
 
       Close the collection and clear all previews.
 
-   .. method:: load(name, filepath, filetype, force_reload=False)
+   .. method:: load(name, filepath, file_type, force_reload=False)
    
       Generate a new preview from given file path.
    
-      :arg name: The name (unique id) identifying the preview.
+      :param name: The name (unique id) identifying the preview.
       :type name: str
-      :arg filepath: The file path to generate the preview from.
+      :param filepath: The file path to generate the preview from.
       :type filepath: str | bytes
-      :arg filetype: The type of file, needed to generate the preview in ['IMAGE', 'MOVIE', 'BLEND', 'FONT'].
-      :type filetype: str
-      :arg force_reload: If True, force running thumbnail manager even if preview already exists in cache.
+      :param file_type: The type of file, needed to generate the preview.
+      :type file_type: Literal['IMAGE', 'MOVIE', 'BLEND', 'FONT', 'OBJECT_IO']
+      :param force_reload: If True, force running thumbnail manager even if preview already exists in cache.
       :type force_reload: bool
       :return: The Preview matching given name, or a new empty one.
       :rtype: :class:`bpy.types.ImagePreview`
@@ -69,11 +69,17 @@ Custom Icon Example
    
       Generate a new empty preview.
    
-      :arg name: The name (unique id) identifying the preview.
+      :param name: The name (unique id) identifying the preview.
       :type name: str
       :return: The Preview matching given name, or a new empty one.
       :rtype: :class:`bpy.types.ImagePreview`
       :raises KeyError: if ``name`` already exists.
+
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
 

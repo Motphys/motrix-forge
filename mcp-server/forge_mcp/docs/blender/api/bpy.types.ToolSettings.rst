@@ -5,848 +5,937 @@ ToolSettings(bpy_struct)
 
 base class --- :class:`bpy_struct`
 
+
 .. class:: ToolSettings(bpy_struct)
 
 
+   .. attribute:: anim_fix_to_cam_use_loc
+
+      Create location keys when fixing to the scene camera (default False)
+
+      :type: bool
+
+   .. attribute:: anim_fix_to_cam_use_rot
+
+      Create rotation keys when fixing to the scene camera (default False)
+
+      :type: bool
+
+   .. attribute:: anim_fix_to_cam_use_scale
+
+      Create scale keys when fixing to the scene camera (default False)
+
+      :type: bool
+
+   .. attribute:: anim_mirror_bone
+
+      Bone to use for the mirroring (default "", never None)
+
+      :type: str
+
+   .. attribute:: anim_mirror_object
+
+      Object to mirror over. Leave empty and name a bone to always mirror over that bone of the active armature
+
+      :type: :class:`Object` | None
+
+   .. attribute:: anim_relative_object
+
+      Object to which matrices are made relative
+
+      :type: :class:`Object` | None
+
    .. attribute:: annotation_stroke_placement_view2d
 
-      * ``IMAGE``
+      (default ``'IMAGE'``)
+
+      - ``IMAGE``
         Image -- Stick stroke to the image.
-      * ``VIEW``
+      - ``VIEW``
         View -- Stick stroke to the view.
 
-      :type: enum in [``'IMAGE'``, ``'VIEW'``], default ``'VIEW'``
+      :type: Literal['IMAGE', 'VIEW']
 
    .. attribute:: annotation_stroke_placement_view3d
 
-      How annotation strokes are orientated in 3D space
+      How annotation strokes are orientated in 3D space (default ``'CURSOR'``)
 
-      * ``CURSOR``
+      - ``CURSOR``
         3D Cursor -- Draw stroke at 3D cursor location.
-      * ``VIEW``
+      - ``VIEW``
         View -- Stick stroke to the view.
-      * ``SURFACE``
+      - ``SURFACE``
         Surface -- Stick stroke to surfaces.
 
-      :type: enum in [``'CURSOR'``, ``'VIEW'``, ``'SURFACE'``], default ``'CURSOR'``
+      :type: Literal['CURSOR', 'VIEW', 'SURFACE']
 
    .. attribute:: annotation_thickness
 
-      Thickness of annotation strokes
+      Thickness of annotation strokes (in [1, 10], default 3)
 
-      :type: int in [1, 10], default 3
+      :type: int
 
    .. attribute:: auto_keying_mode
 
-      Mode of automatic keyframe insertion for objects, bones and masks
+      Can add additional constraints on when auto keying can insert keyframes (default ``'ADD_REPLACE_KEYS'``)
 
-      :type: enum in [``'ADD_REPLACE_KEYS'``, ``'REPLACE_KEYS'``], default ``'ADD_REPLACE_KEYS'``
+      :type: Literal['ADD_REPLACE_KEYS', 'REPLACE_KEYS']
 
    .. data:: curve_paint_settings
 
-      :type: :class:`CurvePaintSettings`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`CurvePaintSettings`
 
    .. data:: curves_sculpt
 
-      :type: :class:`CurvesSculpt`, (readonly)
+      (readonly)
+
+      :type: :class:`CurvesSculpt` | None
 
    .. data:: custom_bevel_profile_preset
 
-      Used for defining a profile's path
+      Used for defining a profile's path (readonly)
 
-      :type: :class:`CurveProfile`, (readonly)
+      :type: :class:`CurveProfile` | None
 
    .. attribute:: double_threshold
 
-      Threshold distance for Auto Merge
+      Threshold distance for Auto Merge (in [0, 1], default 0.001)
 
-      :type: float in [0, 1], default 0.001
+      :type: float
 
    .. data:: gpencil_interpolate
 
-      Settings for Grease Pencil interpolation tools
+      Settings for Grease Pencil interpolation tools (readonly)
 
-      :type: :class:`GPencilInterpolateSettings`, (readonly)
+      :type: :class:`GPencilInterpolateSettings` | None
 
    .. data:: gpencil_paint
 
-      :type: :class:`GpPaint`, (readonly)
+      (readonly)
+
+      :type: :class:`GpPaint` | None
 
    .. data:: gpencil_sculpt
 
-      Settings for stroke sculpting tools and brushes
+      Settings for stroke sculpting tools and brushes (readonly)
 
-      :type: :class:`GPencilSculptSettings`, (readonly)
+      :type: :class:`GPencilSculptSettings` | None
 
    .. data:: gpencil_sculpt_paint
 
-      :type: :class:`GpSculptPaint`, (readonly)
+      (readonly)
+
+      :type: :class:`GpSculptPaint` | None
 
    .. attribute:: gpencil_selectmode_edit
 
-      :type: enum in :ref:`rna_enum_grease_pencil_selectmode_items`, default ``'POINT'``
+      (default ``'POINT'``)
+
+      :type: Literal[:ref:`rna_enum_grease_pencil_selectmode_items`]
 
    .. attribute:: gpencil_stroke_placement_view3d
 
-      * ``ORIGIN``
+      (default ``'ORIGIN'``)
+
+      - ``ORIGIN``
         Origin -- Draw stroke at Object origin.
-      * ``CURSOR``
+      - ``CURSOR``
         3D Cursor -- Draw stroke at 3D cursor location.
-      * ``SURFACE``
+      - ``SURFACE``
         Surface -- Stick stroke to surfaces.
-      * ``STROKE``
+      - ``STROKE``
         Stroke -- Stick stroke to other strokes.
 
-      :type: enum in [``'ORIGIN'``, ``'CURSOR'``, ``'SURFACE'``, ``'STROKE'``], default ``'ORIGIN'``
+      :type: Literal['ORIGIN', 'CURSOR', 'SURFACE', 'STROKE']
 
    .. attribute:: gpencil_stroke_snap_mode
 
-      * ``NONE``
+      (default ``'NONE'``)
+
+      - ``NONE``
         All Points -- Snap to all points.
-      * ``ENDS``
+      - ``ENDS``
         End Points -- Snap to first and last points and interpolate.
-      * ``FIRST``
+      - ``FIRST``
         First Point -- Snap to first point.
 
-      :type: enum in [``'NONE'``, ``'ENDS'``, ``'FIRST'``], default ``'NONE'``
+      :type: Literal['NONE', 'ENDS', 'FIRST']
 
    .. attribute:: gpencil_surface_offset
 
-      Offset along the normal when drawing on surfaces
+      Offset along the normal when drawing on surfaces (in [-inf, inf], default 0.15)
 
-      :type: float in [-inf, inf], default 0.15
+      :type: float
 
    .. data:: gpencil_vertex_paint
 
-      :type: :class:`GpVertexPaint`, (readonly)
+      (readonly)
+
+      :type: :class:`GpVertexPaint` | None
 
    .. data:: gpencil_weight_paint
 
-      :type: :class:`GpWeightPaint`, (readonly)
+      (readonly)
+
+      :type: :class:`GpWeightPaint` | None
 
    .. data:: image_paint
 
-      :type: :class:`ImagePaint`, (readonly)
+      (readonly)
+
+      :type: :class:`ImagePaint` | None
 
    .. attribute:: keyframe_type
 
-      Type of keyframes to create when inserting keyframes
+      Type of keyframes to create when inserting keyframes (default ``'KEYFRAME'``)
 
-      :type: enum in :ref:`rna_enum_beztriple_keyframe_type_items`, default ``'KEYFRAME'``
+      :type: Literal[:ref:`rna_enum_beztriple_keyframe_type_items`]
 
    .. attribute:: lock_markers
 
-      Prevent marker editing
+      Prevent marker editing (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: lock_object_mode
 
-      Restrict selection to objects using the same mode as the active object, to prevent accidental mode switch when selecting
+      Restrict selection to objects using the same mode as the active object, to prevent accidental mode switch when selecting (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: mesh_select_mode
 
-      Which mesh elements selection works on
+      Which mesh elements selection works on (array of 3 items, default (False, False, False))
 
-      :type: boolean array of 3 items, default (False, False, False)
+      :type: :class:`bpy_prop_array`\ [bool]
 
    .. attribute:: normal_vector
 
-      Normal vector used to copy, add or multiply
+      Normal vector used to copy, add or multiply (array of 3 items, in [-inf, inf], default (0.0, 0.0, 0.0))
 
-      :type: :class:`mathutils.Vector` of 3 items in [-inf, inf], default (0.0, 0.0, 0.0)
+      :type: :class:`mathutils.Vector`
 
    .. data:: paint_mode
 
-      :type: :class:`PaintModeSettings`, (readonly)
+      (readonly)
+
+      :type: :class:`PaintModeSettings` | None
 
    .. data:: particle_edit
 
-      :type: :class:`ParticleEdit`, (readonly)
+      (readonly)
+
+      :type: :class:`ParticleEdit` | None
 
    .. attribute:: plane_axis
 
-      The axis used for placing the base region
+      The axis used for placing the base region (default ``'Z'``)
 
-      :type: enum in :ref:`rna_enum_axis_xyz_items`, default ``'Z'``
+      :type: Literal[:ref:`rna_enum_axis_xyz_items`]
 
    .. attribute:: plane_axis_auto
 
-      Select the closest axis when placing objects (surface overrides)
+      Select the closest axis when placing objects (surface overrides) (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: plane_depth
 
-      The initial depth used when placing the cursor
+      The initial depth used when placing the cursor (default ``'SURFACE'``)
 
-      * ``SURFACE``
+      - ``SURFACE``
         Surface -- Start placing on the surface, using the 3D cursor position as a fallback.
-      * ``CURSOR_PLANE``
+      - ``CURSOR_PLANE``
         Cursor Plane -- Start placement using a point projected onto the orientation axis at the 3D cursor position.
-      * ``CURSOR_VIEW``
+      - ``CURSOR_VIEW``
         Cursor View -- Start placement using a point projected onto the view plane at the 3D cursor position.
 
-      :type: enum in [``'SURFACE'``, ``'CURSOR_PLANE'``, ``'CURSOR_VIEW'``], default ``'SURFACE'``
+      :type: Literal['SURFACE', 'CURSOR_PLANE', 'CURSOR_VIEW']
 
    .. attribute:: plane_orientation
 
-      The initial depth used when placing the cursor
+      The initial depth used when placing the cursor (default ``'SURFACE'``)
 
-      * ``SURFACE``
+      - ``SURFACE``
         Surface -- Use the surface normal (using the transform orientation as a fallback).
-      * ``DEFAULT``
+      - ``DEFAULT``
         Default -- Use the current transform orientation.
 
-      :type: enum in [``'SURFACE'``, ``'DEFAULT'``], default ``'SURFACE'``
+      :type: Literal['SURFACE', 'DEFAULT']
 
    .. attribute:: playhead_snap_distance
 
-      Maximum distance for snapping in pixels
+      Maximum distance for snapping in pixels (in [-inf, inf], default 20)
 
-      :type: int in [-inf, inf], default 20
+      :type: int
 
    .. attribute:: proportional_distance
 
-      Display size for proportional editing circle
+      Display size for proportional editing circle (in [1e-05, 5000], default 1.0)
 
-      :type: float in [1e-05, 5000], default 1.0
+      :type: float
 
    .. attribute:: proportional_edit_falloff
 
-      Falloff type for proportional editing mode
+      Falloff type for proportional editing mode (default ``'SMOOTH'``)
 
-      :type: enum in :ref:`rna_enum_proportional_falloff_items`, default ``'SMOOTH'``
+      :type: Literal[:ref:`rna_enum_proportional_falloff_items`]
 
    .. attribute:: proportional_size
 
-      Display size for proportional editing circle
+      Display size for proportional editing circle (in [1e-05, 5000], default 1.0)
 
-      :type: float in [1e-05, 5000], default 1.0
+      :type: float
 
    .. data:: sculpt
 
-      :type: :class:`Sculpt`, (readonly)
+      (readonly)
+
+      :type: :class:`Sculpt` | None
 
    .. data:: sequencer_tool_settings
 
-      :type: :class:`SequencerToolSettings`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`SequencerToolSettings`
 
    .. attribute:: show_uv_local_view
 
-      Display only faces with the currently displayed image assigned
+      Display only faces with the currently displayed image assigned (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: snap_angle_increment_2d
 
-      Angle used for rotation increments in 2D editors
+      Angle used for rotation increments in 2D editors (in [0, 3.14159], default 0.0872665)
 
-      :type: float in [0, 3.14159], default 0.0872665
+      :type: float
 
    .. attribute:: snap_angle_increment_2d_precision
 
-      Precision angle used for rotation increments in 2D editors
+      Precision angle used for rotation increments in 2D editors (in [0, 3.14159], default 0.0174533)
 
-      :type: float in [0, 3.14159], default 0.0174533
+      :type: float
 
    .. attribute:: snap_angle_increment_3d
 
-      Angle used for rotation increments in 3D editors
+      Angle used for rotation increments in 3D editors (in [0, 3.14159], default 0.0872665)
 
-      :type: float in [0, 3.14159], default 0.0872665
+      :type: float
 
    .. attribute:: snap_angle_increment_3d_precision
 
-      Precision angle used for rotation increments in 3D editors
+      Precision angle used for rotation increments in 3D editors (in [0, 3.14159], default 0.0174533)
 
-      :type: float in [0, 3.14159], default 0.0174533
+      :type: float
 
    .. attribute:: snap_anim_element
 
-      Type of element to snap to
+      Type of element to snap to (default ``'FRAME'``)
 
-      :type: enum in :ref:`rna_enum_snap_animation_element_items`, default ``'FRAME'``
+      :type: Literal[:ref:`rna_enum_snap_animation_element_items`]
 
    .. attribute:: snap_elements
 
-      Type of element to snap to
+      Type of element to snap to (default {``'INCREMENT'``})
 
-      :type: enum set in :ref:`rna_enum_snap_element_items`, default {``'INCREMENT'``}
+      :type: set[Literal[:ref:`rna_enum_snap_element_items`]]
 
    .. attribute:: snap_elements_base
 
-      Type of element for the "Snap Base" to snap to
+      Type of element for the "Snap Base" to snap to (default {``'INCREMENT'``})
 
-      * ``INCREMENT``
+      - ``INCREMENT``
         Increment -- Snap to increments.
-      * ``GRID``
+      - ``GRID``
         Grid -- Snap to grid.
-      * ``VERTEX``
+      - ``VERTEX``
         Vertex -- Snap to vertices.
-      * ``EDGE``
+      - ``EDGE``
         Edge -- Snap to edges.
-      * ``FACE``
+      - ``FACE``
         Face -- Snap by projecting onto faces.
-      * ``VOLUME``
+      - ``VOLUME``
         Volume -- Snap to volume.
-      * ``EDGE_MIDPOINT``
+      - ``EDGE_MIDPOINT``
         Edge Center -- Snap to the middle of edges.
-      * ``EDGE_PERPENDICULAR``
+      - ``EDGE_PERPENDICULAR``
         Edge Perpendicular -- Snap to the nearest point on an edge.
+      - ``FACE_MIDPOINT``
+        Face Center -- Snap to the middle of faces.
 
-      :type: enum set in {``'INCREMENT'``, ``'GRID'``, ``'VERTEX'``, ``'EDGE'``, ``'FACE'``, ``'VOLUME'``, ``'EDGE_MIDPOINT'``, ``'EDGE_PERPENDICULAR'``}, default {``'INCREMENT'``}
+      :type: set[Literal['INCREMENT', 'GRID', 'VERTEX', 'EDGE', 'FACE', 'VOLUME', 'EDGE_MIDPOINT', 'EDGE_PERPENDICULAR', 'FACE_MIDPOINT']]
 
    .. attribute:: snap_elements_individual
 
-      Type of element for individual transformed elements to snap to
+      Type of element for individual transformed elements to snap to (default set())
 
-      * ``FACE_PROJECT``
+      - ``FACE_PROJECT``
         Face Project -- Snap by projecting onto faces.
-      * ``FACE_NEAREST``
+      - ``FACE_NEAREST``
         Face Nearest -- Snap to nearest point on faces.
 
-      :type: enum set in {``'FACE_PROJECT'``, ``'FACE_NEAREST'``}, default {``'FACE_PROJECT'``}
+      :type: set[Literal['FACE_PROJECT', 'FACE_NEAREST']]
 
    .. attribute:: snap_elements_tool
 
-      The target to use while snapping
+      The target to use while snapping (default ``'GEOMETRY'``)
 
-      * ``GEOMETRY``
+      - ``GEOMETRY``
         Geometry -- Snap to all geometry.
-      * ``DEFAULT``
+      - ``DEFAULT``
         Default -- Use the current snap settings.
 
-      :type: enum in [``'GEOMETRY'``, ``'DEFAULT'``], default ``'GEOMETRY'``
+      :type: Literal['GEOMETRY', 'DEFAULT']
 
    .. attribute:: snap_face_nearest_steps
 
-      Number of steps to break transformation into for face nearest snapping
+      Number of steps to break transformation into for face nearest snapping (in [1, 100], default 1)
 
-      :type: int in [1, 100], default 1
+      :type: int
 
    .. attribute:: snap_playhead_element
 
-      Type of element to snap to
+      Type of element to snap to (default {``'KEY'``, ``'Strip'``})
 
-      * ``FRAME``
+      - ``FRAME``
         Frames -- Snap to frame increments.
-      * ``SECOND``
+      - ``SECOND``
         Seconds -- Snap to second increments.
-      * ``MARKER``
+      - ``MARKER``
         Markers -- Snap to markers.
-      * ``KEY``
+      - ``KEY``
         Keyframes -- Snap to keyframes.
-      * ``Strip``
+      - ``Strip``
         Strips -- Snap to Strips.
 
-      :type: enum set in {``'FRAME'``, ``'SECOND'``, ``'MARKER'``, ``'KEY'``, ``'Strip'``}, default {``'FRAME'``}
+      :type: set[Literal['FRAME', 'SECOND', 'MARKER', 'KEY', 'Strip']]
 
    .. attribute:: snap_playhead_frame_step
 
-      At which interval to snap to frames
+      At which interval to snap to frames (in [1, 32768], default 2)
 
-      :type: int in [1, 32768], default 2
+      :type: int
 
    .. attribute:: snap_playhead_second_step
 
-      At which interval to snap to seconds
+      At which interval to snap to seconds (in [1, 32768], default 1)
 
-      :type: int in [1, 32768], default 1
+      :type: int
 
    .. attribute:: snap_target
 
-      Which part to snap onto the target
+      Which part to snap onto the target (default ``'CLOSEST'``)
 
-      :type: enum in :ref:`rna_enum_snap_source_items`, default ``'CLOSEST'``
+      :type: Literal[:ref:`rna_enum_snap_source_items`]
 
    .. attribute:: snap_uv_element
 
-      Type of element to snap to
+      Type of element to snap to (default {``'INCREMENT'``})
 
-      * ``INCREMENT``
+      - ``INCREMENT``
         Increment -- Snap to increments of grid.
-      * ``GRID``
+      - ``GRID``
         Grid -- Snap to grid.
-      * ``VERTEX``
+      - ``VERTEX``
         Vertex -- Snap to vertices.
 
-      :type: enum set in {``'INCREMENT'``, ``'GRID'``, ``'VERTEX'``}, default {``'INCREMENT'``}
+      :type: set[Literal['INCREMENT', 'GRID', 'VERTEX']]
 
    .. data:: statvis
 
-      :type: :class:`MeshStatVis`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`MeshStatVis`
 
    .. attribute:: transform_pivot_point
 
-      Pivot center for rotation/scaling
+      Pivot center for rotation/scaling (default ``'MEDIAN_POINT'``)
 
-      * ``BOUNDING_BOX_CENTER``
+      - ``BOUNDING_BOX_CENTER``
         Bounding Box Center -- Pivot around bounding box center of selected object(s).
-      * ``CURSOR``
+      - ``CURSOR``
         3D Cursor -- Pivot around the 3D cursor.
-      * ``INDIVIDUAL_ORIGINS``
+      - ``INDIVIDUAL_ORIGINS``
         Individual Origins -- Pivot around each object's own origin.
-      * ``MEDIAN_POINT``
+      - ``MEDIAN_POINT``
         Median Point -- Pivot around the median point of selected objects.
-      * ``ACTIVE_ELEMENT``
+      - ``ACTIVE_ELEMENT``
         Active Element -- Pivot around active object.
 
-      :type: enum in [``'BOUNDING_BOX_CENTER'``, ``'CURSOR'``, ``'INDIVIDUAL_ORIGINS'``, ``'MEDIAN_POINT'``, ``'ACTIVE_ELEMENT'``], default ``'MEDIAN_POINT'``
-
-   .. data:: unified_paint_settings
-
-      :type: :class:`UnifiedPaintSettings`, (readonly, never None)
+      :type: Literal['BOUNDING_BOX_CENTER', 'CURSOR', 'INDIVIDUAL_ORIGINS', 'MEDIAN_POINT', 'ACTIVE_ELEMENT']
 
    .. attribute:: use_annotation_project_only_selected
 
-      Project the strokes only onto selected objects
+      Project the strokes only onto selected objects (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_annotation_stroke_endpoints
 
-      Only use the first and last parts of the stroke for snapping
+      Only use the first and last parts of the stroke for snapping (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_auto_normalize
 
-      Ensure all bone-deforming vertex groups add up to 1.0 while weight painting or assigning to vertices
+      Ensure all bone-deforming vertex groups add up to 1.0 while weight painting or assigning to vertices (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_edge_path_live_unwrap
 
-      Changing edge seams recalculates UV unwrap
+      Changing edge seams recalculates UV unwrap (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_gpencil_automerge_strokes
 
-      Join the last drawn stroke with previous strokes in the active layer by distance
+      Join the last drawn stroke with previous strokes in the active layer by distance (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_gpencil_draw_additive
 
-      When creating new frames, the strokes from the previous/active frame are included as the basis for the new one
+      When creating new frames, the strokes from the previous/active frame are included as the basis for the new one (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_gpencil_draw_onback
 
-      New strokes are drawn below of all strokes in the layer
+      New strokes are drawn below of all strokes in the layer (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_gpencil_project_only_selected
 
-      Project the strokes only onto selected objects
+      Project the strokes only onto selected objects (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_gpencil_select_mask_point
 
-      Only sculpt selected stroke points
+      Only sculpt selected stroke points (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_gpencil_select_mask_segment
 
-      Only sculpt selected stroke points between other strokes
+      Only sculpt selected stroke points between other strokes (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_gpencil_select_mask_stroke
 
-      Only sculpt selected strokes
+      Only sculpt selected strokes (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_gpencil_thumbnail_list
 
-      Show compact list of colors instead of thumbnails
+      Show compact list of colors instead of thumbnails (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: use_gpencil_vertex_select_mask_point
 
-      Only paint selected stroke points
+      Only paint selected stroke points (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_gpencil_vertex_select_mask_segment
 
-      Only paint selected stroke points between other strokes
+      Only paint selected stroke points between other strokes (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_gpencil_vertex_select_mask_stroke
 
-      Only paint selected strokes
+      Only paint selected strokes (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_gpencil_weight_data_add
 
-      Weight data for new strokes is added according to the current vertex group and weight. If no vertex group selected, weight is not added.
+      Weight data for new strokes is added according to the current vertex group and weight. If no vertex group selected, weight is not added. (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_grease_pencil_multi_frame_editing
 
-      Enable multi-frame editing
+      Enable multi-frame editing (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_keyframe_cycle_aware
 
-      For channels with cyclic extrapolation, keyframe insertion is automatically remapped inside the cycle time range, and keeps ends in sync. Curves newly added to actions with a Manual Frame Range and Cyclic Animation are automatically made cyclic.
+      For channels with cyclic extrapolation, keyframe insertion is automatically remapped inside the cycle time range, and keeps ends in sync. Curves newly added to actions with a Manual Frame Range and Cyclic Animation are automatically made cyclic. (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_keyframe_insert_auto
 
-      Automatic keyframe insertion for objects, bones and masks
+      Automatically insert keyframes on modified properties (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: use_keyframe_insert_keyingset
 
-      Automatic keyframe insertion using active Keying Set only
+      Automatic keyframe insertion using active Keying Set only (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_lock_relative
 
-      Display bone-deforming groups as if all locked deform groups were deleted, and the remaining ones were re-normalized
+      Display bone-deforming groups as if all locked deform groups were deleted, and the remaining ones were re-normalized (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_mesh_automerge
 
-      Automatically merge vertices moved to the same location
+      Automatically merge vertices moved to the same location (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_mesh_automerge_and_split
 
-      Automatically split edges and faces
+      Automatically split edges and faces (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_multipaint
 
-      Paint across the weights of all selected bones, maintaining their relative influence
+      Paint across the weights of all selected bones, maintaining their relative influence (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_proportional_action
 
-      Proportional editing in action editor
+      Proportional editing in action editor (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_proportional_connected
 
-      Proportional Editing using connected geometry only
+      Proportional Editing using connected geometry only (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_proportional_edit
 
-      Proportional edit mode
+      Proportional edit mode (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_proportional_edit_mask
 
-      Proportional editing mask mode
+      Proportional editing mask mode (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_proportional_edit_objects
 
-      Proportional editing object mode
+      Proportional editing object mode (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_proportional_fcurve
 
-      Proportional editing in F-Curve editor
+      Proportional editing in F-Curve editor (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_proportional_projected
 
-      Proportional Editing using screen space locations
+      Proportional Editing using screen space locations (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_record_with_nla
 
-      Add a new NLA Track + Strip for every loop/pass made over the animation to allow non-destructive tweaking
+      Add a new NLA Track + Strip for every loop/pass made over the animation to allow non-destructive tweaking (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_snap
 
-      Snap during transform
+      Snap during transform (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_snap_align_rotation
 
-      Align rotation with the snapping target
+      Align rotation with the snapping target (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_snap_anim
 
-      Enable snapping when transforming keyframes
+      Enable snapping when transforming keyframes (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: use_snap_backface_culling
 
-      Exclude back facing geometry from snapping
+      Exclude back facing geometry from snapping (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_snap_driver
 
-      Enable snapping when transforming keys in the Driver Editor
+      Enable snapping when transforming keys in the Driver Editor (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_snap_driver_absolute
 
-      Snap to full values
+      Snap to full values (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_snap_edit
 
-      Snap onto non-active objects in edit mode (edit mode only)
+      Snap onto non-active objects in edit mode (edit mode only) (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: use_snap_grid_absolute
 
-      Absolute grid alignment while translating (based on the pivot center)
+      Absolute grid alignment while translating (based on the pivot center) (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_snap_node
 
-      Snap Node during transform
+      Snap Node during transform (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_snap_nonedit
 
-      Snap onto objects not in edit mode (edit mode only)
+      Snap onto objects not in edit mode (edit mode only) (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: use_snap_peel_object
 
-      Consider objects as whole when finding volume center
+      Consider objects as whole when finding volume center (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_snap_playhead
 
-      Snap playhead when scrubbing
+      Snap playhead when scrubbing (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_snap_rotate
 
-      Rotate is affected by the snapping settings
+      Rotate is affected by the snapping settings (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_snap_scale
 
-      Scale is affected by snapping settings
+      Scale is affected by snapping settings (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_snap_selectable
 
-      Snap only onto objects that are selectable
+      Snap only onto objects that are selectable (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_snap_self
 
-      Snap onto itself only if enabled (edit mode only)
+      Snap onto itself only if enabled (edit mode only) (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: use_snap_sequencer
 
-      Snap strips during transform
+      Snap strips during transform (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: use_snap_time_absolute
 
-      Absolute time alignment when transforming keyframes
+      Absolute time alignment when transforming keyframes (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_snap_to_same_target
 
-      Snap only to target that source was initially near ("Face Nearest" only)
+      Snap only to target that source was initially near ("Face Nearest" only) (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_snap_translate
 
-      Move is affected by snapping settings
+      Move is affected by snapping settings (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: use_snap_uv
 
-      Snap UV during transform
+      Snap UV during transform (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_transform_correct_face_attributes
 
-      Correct data such as UVs and color attributes when transforming
+      Correct data such as UVs and color attributes when transforming (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_transform_correct_keep_connected
 
-      During the Face Attributes correction, merge attributes connected to the same vertex
+      During the Face Attributes correction, merge attributes connected to the same vertex (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_transform_data_origin
 
-      Transform object origins, while leaving the shape in place
+      Transform object origins, while leaving the shape in place (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_transform_pivot_point_align
 
-      Only transform object locations, without affecting rotation or scaling
+      Only transform object locations, without affecting rotation or scaling (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_transform_skip_children
 
-      Transform the parents, leaving the children in place
+      Transform the parents, leaving the children in place (default False)
 
-      :type: boolean, default False
+      :type: bool
+
+   .. attribute:: use_uv_custom_region
+
+      Custom defined region (default False)
+
+      :type: bool
+
+   .. attribute:: use_uv_select_island
+
+      Island selection (default False)
+
+      :type: bool
 
    .. attribute:: use_uv_select_sync
 
-      Keep UV and edit mode mesh selection in sync
+      Keep UV and edit mode mesh selection in sync (default True)
 
-      :type: boolean, default False
+      :type: bool
 
    .. data:: uv_sculpt
 
-      :type: :class:`UvSculpt`, (readonly)
+      (readonly)
+
+      :type: :class:`UvSculpt` | None
 
    .. attribute:: uv_sculpt_all_islands
 
-      Brush operates on all islands
+      Brush operates on all islands (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: uv_sculpt_lock_borders
 
-      Disable editing of boundary edges
+      Disable editing of boundary edges (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: uv_select_mode
 
-      UV selection and display mode
+      UV selection and display mode (default ``'VERTEX'``)
 
-      :type: enum in :ref:`rna_enum_mesh_select_mode_uv_items`, default ``'VERTEX'``
+      :type: Literal[:ref:`rna_enum_mesh_select_mode_uv_items`]
 
    .. attribute:: uv_sticky_select_mode
 
-      Method for extending UV vertex selection
+      Method for extending UV vertex selection (default ``'SHARED_LOCATION'``)
 
-      * ``DISABLED``
+      - ``DISABLED``
         Disabled -- Sticky vertex selection disabled.
-      * ``SHARED_LOCATION``
+      - ``SHARED_LOCATION``
         Shared Location -- Select UVs that are at the same location and share a mesh vertex.
-      * ``SHARED_VERTEX``
+      - ``SHARED_VERTEX``
         Shared Vertex -- Select UVs that share a mesh vertex, whether or not they are at the same location.
 
-      :type: enum in [``'DISABLED'``, ``'SHARED_LOCATION'``, ``'SHARED_VERTEX'``], default ``'SHARED_LOCATION'``
+      :type: Literal['DISABLED', 'SHARED_LOCATION', 'SHARED_VERTEX']
 
    .. attribute:: vertex_group_subset
 
-      Filter Vertex groups for Display
+      Filter Vertex groups for Display (default ``'ALL'``)
 
-      * ``ALL``
+      - ``ALL``
         All -- All Vertex Groups.
-      * ``BONE_DEFORM``
+      - ``BONE_DEFORM``
         Deform -- Vertex Groups assigned to Deform Bones.
-      * ``OTHER_DEFORM``
+      - ``OTHER_DEFORM``
         Other -- Vertex Groups assigned to non Deform Bones.
 
-      :type: enum in [``'ALL'``, ``'BONE_DEFORM'``, ``'OTHER_DEFORM'``], default ``'ALL'``
+      :type: Literal['ALL', 'BONE_DEFORM', 'OTHER_DEFORM']
 
    .. attribute:: vertex_group_user
 
-      Display unweighted vertices
+      Display unweighted vertices (default ``'ACTIVE'``)
 
-      * ``NONE``
+      - ``NONE``
         None.
-      * ``ACTIVE``
+      - ``ACTIVE``
         Active -- Show vertices with no weights in the active group.
-      * ``ALL``
+      - ``ALL``
         All -- Show vertices with no weights in any group.
 
-      :type: enum in [``'NONE'``, ``'ACTIVE'``, ``'ALL'``], default ``'NONE'``
+      :type: Literal['NONE', 'ACTIVE', 'ALL']
 
    .. attribute:: vertex_group_weight
 
-      Weight to assign in vertex groups
+      Weight to assign in vertex groups (in [0, 1], default 1.0)
 
-      :type: float in [0, 1], default 1.0
+      :type: float
 
    .. data:: vertex_paint
 
-      :type: :class:`VertexPaint`, (readonly)
+      (readonly)
+
+      :type: :class:`VertexPaint` | None
 
    .. data:: weight_paint
 
-      :type: :class:`VertexPaint`, (readonly)
+      (readonly)
+
+      :type: :class:`VertexPaint` | None
 
    .. attribute:: workspace_tool_type
 
-      Action when dragging in the viewport
+      Action when dragging in the viewport (default ``'FALLBACK'``)
 
-      :type: enum in [``'DEFAULT'``, ``'FALLBACK'``], default ``'FALLBACK'``
+      :type: Literal['DEFAULT', 'FALLBACK']
 
    .. classmethod:: bl_rna_get_subclass(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: :class:`bpy.types.Struct` | None
       :return: The RNA type or default when not found.
-      :rtype: :class:`bpy.types.Struct` subclass
+      :rtype: :class:`bpy.types.Struct`
 
 
    .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: type | None
       :return: The class or default when not found.
       :rtype: type
 
@@ -857,7 +946,7 @@ Inherited Properties
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.id_data`
+   - :class:`bpy_struct.id_data`
 
 Inherited Functions
 -------------------
@@ -865,29 +954,30 @@ Inherited Functions
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.as_pointer`
-   * :class:`bpy_struct.driver_add`
-   * :class:`bpy_struct.driver_remove`
-   * :class:`bpy_struct.get`
-   * :class:`bpy_struct.id_properties_clear`
-   * :class:`bpy_struct.id_properties_ensure`
-   * :class:`bpy_struct.id_properties_ui`
-   * :class:`bpy_struct.is_property_hidden`
-   * :class:`bpy_struct.is_property_overridable_library`
-   * :class:`bpy_struct.is_property_readonly`
-   * :class:`bpy_struct.is_property_set`
-   * :class:`bpy_struct.items`
-   * :class:`bpy_struct.keyframe_delete`
-   * :class:`bpy_struct.keyframe_insert`
-   * :class:`bpy_struct.keys`
-   * :class:`bpy_struct.path_from_id`
-   * :class:`bpy_struct.path_resolve`
-   * :class:`bpy_struct.pop`
-   * :class:`bpy_struct.property_overridable_library_set`
-   * :class:`bpy_struct.property_unset`
-   * :class:`bpy_struct.rna_ancestors`
-   * :class:`bpy_struct.type_recast`
-   * :class:`bpy_struct.values`
+   - :class:`bpy_struct.as_pointer`
+   - :class:`bpy_struct.driver_add`
+   - :class:`bpy_struct.driver_remove`
+   - :class:`bpy_struct.get`
+   - :class:`bpy_struct.id_properties_clear`
+   - :class:`bpy_struct.id_properties_ensure`
+   - :class:`bpy_struct.id_properties_ui`
+   - :class:`bpy_struct.is_property_hidden`
+   - :class:`bpy_struct.is_property_overridable_library`
+   - :class:`bpy_struct.is_property_readonly`
+   - :class:`bpy_struct.is_property_set`
+   - :class:`bpy_struct.items`
+   - :class:`bpy_struct.keyframe_delete`
+   - :class:`bpy_struct.keyframe_insert`
+   - :class:`bpy_struct.keys`
+   - :class:`bpy_struct.path_from_id`
+   - :class:`bpy_struct.path_from_module`
+   - :class:`bpy_struct.path_resolve`
+   - :class:`bpy_struct.pop`
+   - :class:`bpy_struct.property_overridable_library_set`
+   - :class:`bpy_struct.property_unset`
+   - :class:`bpy_struct.rna_ancestors`
+   - :class:`bpy_struct.type_recast`
+   - :class:`bpy_struct.values`
 
 References
 ----------
@@ -895,6 +985,7 @@ References
 .. hlist::
    :columns: 2
 
-   * :class:`Context.tool_settings`
-   * :class:`Scene.tool_settings`
+   - :mod:`bpy.context.tool_settings`
+   - :class:`Context.tool_settings`
+   - :class:`Scene.tool_settings`
 

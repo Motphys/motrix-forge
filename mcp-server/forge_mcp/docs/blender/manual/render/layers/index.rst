@@ -1,7 +1,7 @@
 
-###################
-  Layers & Passes
-###################
+########################
+  View Layers & Passes
+########################
 
 .. toctree::
    :maxdepth: 2
@@ -10,3 +10,4 @@
    view_layer.rst
    passes.rst
    filter.rst
+   override.rst

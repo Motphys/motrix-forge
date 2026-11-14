@@ -20,13 +20,13 @@ convention for menus.
 .. note::
 
    Menus have their :class:`UILayout.operator_context` initialized as
-   'EXEC_REGION_WIN' rather than 'INVOKE_REGION_WIN' (see :ref:`Execution Context <operator-execution_context>`).
+   'EXEC_REGION_WIN' rather than 'INVOKE_REGION_WIN' (see :ref:`Execution Context <rna_enum_operator_context_items>`).
    If the operator context needs to initialize inputs from the
    :class:`Operator.invoke` function, then this needs to be explicitly set.
    When a menu is added to UI elements such as a panel or header,
    the operator execution context will be inherited from them.
 
-.. literalinclude:: ..\examples\bpy.types.Menu.py
+.. literalinclude:: ../examples/bpy.types.Menu.0.py
    :lines: 24-
 
 
@@ -35,7 +35,7 @@ Submenus
 
 This menu demonstrates some different functions.
 
-.. literalinclude:: ..\examples\bpy.types.Menu.1.py
+.. literalinclude:: ../examples/bpy.types.Menu.1.py
    :lines: 7-
 
 
@@ -48,7 +48,7 @@ Instead, the add-on can add menu items to existing menus.
 
 The function menu_draw acts like :class:`Menu.draw`.
 
-.. literalinclude:: ..\examples\bpy.types.Menu.2.py
+.. literalinclude:: ../examples/bpy.types.Menu.2.py
    :lines: 11-
 
 
@@ -63,7 +63,7 @@ This example shows how you can add a preset menu.
 This example uses the object display options,
 however you can use properties defined by your own scripts too.
 
-.. literalinclude:: ..\examples\bpy.types.Menu.3.py
+.. literalinclude:: ../examples/bpy.types.Menu.3.py
    :lines: 14-
 
 
@@ -80,10 +80,11 @@ material properties) and choose *Execute Custom Action*.
 
 Executing the operator will then print all values.
 
-.. literalinclude:: ..\examples\bpy.types.Menu.4.py
+.. literalinclude:: ../examples/bpy.types.Menu.4.py
    :lines: 16-
 
 base class --- :class:`bpy_struct`
+
 
 .. class:: Menu(bpy_struct)
 
@@ -91,64 +92,83 @@ base class --- :class:`bpy_struct`
 
    .. attribute:: bl_description
 
-      :type: string, default ""
+      (default "")
+
+      :type: str
 
    .. attribute:: bl_idname
 
-      If this is set, the menu gets a custom ID, otherwise it takes the name of the class used to define the menu (for example, if the class name is "OBJECT_MT_hello", and bl_idname is not set by the script, then bl_idname = "OBJECT_MT_hello")
+      If this is set, the menu gets a custom ID, otherwise it takes the name of the class used to define the menu (for example, if the class name is "OBJECT_MT_hello", and bl_idname is not set by the script, then bl_idname = "OBJECT_MT_hello") (default "", never None)
 
-      :type: string, default "", (never None)
+      :type: str
 
    .. attribute:: bl_label
 
-      The menu label
+      The menu label (default "", never None)
 
-      :type: string, default "", (never None)
+      :type: str
 
    .. attribute:: bl_options
 
-      Options for this menu type
+      Options for this menu type (default set())
 
-      * ``SEARCH_ON_KEY_PRESS``
+      - ``SEARCH_ON_KEY_PRESS``
         Search on Key Press -- Open a menu search when a key pressed while the menu is open.
 
-      :type: enum set in {``'SEARCH_ON_KEY_PRESS'``}, default {``'SEARCH_ON_KEY_PRESS'``}
+      :type: set[Literal['SEARCH_ON_KEY_PRESS']]
 
    .. attribute:: bl_owner_id
 
-      :type: string, default "", (never None)
+      (default "", never None)
+
+      :type: str
 
    .. attribute:: bl_translation_context
 
-      :type: string, default "*", (never None)
+      (default "*", never None)
+
+      :type: str
 
    .. data:: layout
 
-      Defines the structure of the menu in the UI
+      Defines the structure of the menu in the UI (readonly)
 
-      :type: :class:`UILayout`, (readonly)
+      :type: :class:`UILayout` | None
 
    .. classmethod:: poll(context)
 
       If this method returns a non-null output, then the menu can be drawn
 
-      :type context: :class:`Context`
-      :rtype: boolean
+      :param context: The context
+      :type context: :class:`Context` | None
+      :rtype: bool
 
    .. method:: draw(context)
 
       Draw UI elements into the menu UI layout
 
-      :type context: :class:`Context`
+      :param context: The context
+      :type context: :class:`Context` | None
 
    .. classmethod:: append(draw_func)
 
       Append a draw function to this menu,
       takes the same arguments as the menus draw function
+      
+      :param draw_func: Draw function to append.
+      :type draw_func: Callable[[Self, :class:`Context`], None]
 
    .. classmethod:: draw_collapsible(context, layout)
 
-   .. method:: draw_preset(_context)
+      Draw the menu inline when the header shows menus, otherwise draw it
+      as a collapsed icon. Intended for use within header draw functions.
+      
+      :param context: The context.
+      :type context: :class:`Context`
+      :param layout: The layout to draw into.
+      :type layout: :class:`UILayout`
+
+   .. method:: draw_preset(context)
 
       Define these on the subclass:
       - preset_operator (string)
@@ -158,50 +178,78 @@ base class --- :class:`bpy_struct`
       - preset_add_operator (string)
       - preset_extensions (set of strings)
       - preset_operator_defaults (dict of keyword args)
+      
+      :param context: The context.
+      :type context: :class:`Context`
 
    .. classmethod:: is_extended()
 
-   .. method:: path_menu(searchpaths, operator, *, props_default=None, prop_filepath='filepath', filter_ext=None, filter_path=None, display_name=None, add_operator=None, add_operator_props=None)
+      Test if any draw function has been added via :meth:`append` or :meth:`prepend`.
+      
+      :return: True when at least one draw function has been added.
+      :rtype: bool
+
+   .. method:: path_menu(searchpaths, operator, *, props_default=None, prop_filepath='filepath', filter_ext=None, filter_path=None, display_name=None, add_operator=None, add_operator_props=None, translate=True, recursive_paths=False)
 
       Populate a menu from a list of paths.
       
-      :arg searchpaths: Paths to scan.
+      :param searchpaths: Paths to scan.
       :type searchpaths: Sequence[str]
-      :arg operator: The operator id to use with each file.
+      :param operator: The operator id to use with each file.
       :type operator: str
-      :arg prop_filepath: Optional operator filepath property (defaults to "filepath").
+      :param prop_filepath: Optional operator filepath property (defaults to "filepath").
       :type prop_filepath: str
-      :arg props_default: Properties to assign to each operator.
-      :type props_default: dict[str, Any]
-      :arg filter_ext: Optional callback that takes the file extensions.
+      :param props_default: Properties to assign to each operator.
+      :type props_default: dict[str, Any] | None
+      :param filter_ext: Optional callback that takes the file extensions.
       
          Returning false excludes the file from the list.
       
       :type filter_ext: Callable[[str], bool] | None
-      :arg display_name: Optional callback that takes the full path, returns the name to display.
-      :type display_name: Callable[[str], str]
+      :param filter_path: Optional callback that takes the file name, returns false to exclude it.
+      :type filter_path: Callable[[str], bool] | None
+      :param display_name: Optional callback that takes the full path, returns the name to display.
+      :type display_name: Callable[[str], str] | None
+      :param add_operator: Optional operator id used to add or remove entries.
+      :type add_operator: str | None
+      :param add_operator_props: Properties to assign to the add/remove operator.
+      :type add_operator_props: dict[str, Any] | None
+      :param translate: Translate the displayed names.
+      :type translate: bool
+      :param recursive_paths: Add submenus for sub-directories instead of listing their contents.
+      :type recursive_paths: bool
 
    .. classmethod:: prepend(draw_func)
 
       Prepend a draw function to this menu, takes the same arguments as
       the menus draw function
+      
+      :param draw_func: Draw function to prepend.
+      :type draw_func: Callable[[Self, :class:`Context`], None]
 
    .. classmethod:: remove(draw_func)
 
-      Remove a draw function that has been added to this menu
+      Remove a draw function that has been added to this menu.
+      
+      :param draw_func: Draw function previously registered via :meth:`append` or :meth:`prepend`.
+      :type draw_func: Callable[[Self, :class:`Context`], None]
 
    .. classmethod:: bl_rna_get_subclass(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: :class:`bpy.types.Struct` | None
       :return: The RNA type or default when not found.
-      :rtype: :class:`bpy.types.Struct` subclass
+      :rtype: :class:`bpy.types.Struct`
 
 
    .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: type | None
       :return: The class or default when not found.
       :rtype: type
 
@@ -212,7 +260,7 @@ Inherited Properties
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.id_data`
+   - :class:`bpy_struct.id_data`
 
 Inherited Functions
 -------------------
@@ -220,27 +268,28 @@ Inherited Functions
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.as_pointer`
-   * :class:`bpy_struct.driver_add`
-   * :class:`bpy_struct.driver_remove`
-   * :class:`bpy_struct.get`
-   * :class:`bpy_struct.id_properties_clear`
-   * :class:`bpy_struct.id_properties_ensure`
-   * :class:`bpy_struct.id_properties_ui`
-   * :class:`bpy_struct.is_property_hidden`
-   * :class:`bpy_struct.is_property_overridable_library`
-   * :class:`bpy_struct.is_property_readonly`
-   * :class:`bpy_struct.is_property_set`
-   * :class:`bpy_struct.items`
-   * :class:`bpy_struct.keyframe_delete`
-   * :class:`bpy_struct.keyframe_insert`
-   * :class:`bpy_struct.keys`
-   * :class:`bpy_struct.path_from_id`
-   * :class:`bpy_struct.path_resolve`
-   * :class:`bpy_struct.pop`
-   * :class:`bpy_struct.property_overridable_library_set`
-   * :class:`bpy_struct.property_unset`
-   * :class:`bpy_struct.rna_ancestors`
-   * :class:`bpy_struct.type_recast`
-   * :class:`bpy_struct.values`
+   - :class:`bpy_struct.as_pointer`
+   - :class:`bpy_struct.driver_add`
+   - :class:`bpy_struct.driver_remove`
+   - :class:`bpy_struct.get`
+   - :class:`bpy_struct.id_properties_clear`
+   - :class:`bpy_struct.id_properties_ensure`
+   - :class:`bpy_struct.id_properties_ui`
+   - :class:`bpy_struct.is_property_hidden`
+   - :class:`bpy_struct.is_property_overridable_library`
+   - :class:`bpy_struct.is_property_readonly`
+   - :class:`bpy_struct.is_property_set`
+   - :class:`bpy_struct.items`
+   - :class:`bpy_struct.keyframe_delete`
+   - :class:`bpy_struct.keyframe_insert`
+   - :class:`bpy_struct.keys`
+   - :class:`bpy_struct.path_from_id`
+   - :class:`bpy_struct.path_from_module`
+   - :class:`bpy_struct.path_resolve`
+   - :class:`bpy_struct.pop`
+   - :class:`bpy_struct.property_overridable_library_set`
+   - :class:`bpy_struct.property_unset`
+   - :class:`bpy_struct.rna_ancestors`
+   - :class:`bpy_struct.type_recast`
+   - :class:`bpy_struct.values`
 

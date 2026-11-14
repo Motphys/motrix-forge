@@ -5,89 +5,108 @@ TexMapping(bpy_struct)
 
 base class --- :class:`bpy_struct`
 
+
 .. class:: TexMapping(bpy_struct)
 
    Texture coordinate mapping settings
 
    .. attribute:: mapping
 
-      * ``FLAT``
+      (default ``'FLAT'``)
+
+      - ``FLAT``
         Flat -- Map X and Y coordinates directly.
-      * ``CUBE``
+      - ``CUBE``
         Cube -- Map using the normal vector.
-      * ``TUBE``
+      - ``TUBE``
         Tube -- Map with Z as central axis.
-      * ``SPHERE``
+      - ``SPHERE``
         Sphere -- Map with Z as central axis.
 
-      :type: enum in [``'FLAT'``, ``'CUBE'``, ``'TUBE'``, ``'SPHERE'``], default ``'FLAT'``
+      :type: Literal['FLAT', 'CUBE', 'TUBE', 'SPHERE']
 
    .. attribute:: mapping_x
 
-      :type: enum in [``'NONE'``, ``'X'``, ``'Y'``, ``'Z'``], default ``'NONE'``
+      (default ``'NONE'``)
+
+      :type: Literal['NONE', 'X', 'Y', 'Z']
 
    .. attribute:: mapping_y
 
-      :type: enum in [``'NONE'``, ``'X'``, ``'Y'``, ``'Z'``], default ``'NONE'``
+      (default ``'NONE'``)
+
+      :type: Literal['NONE', 'X', 'Y', 'Z']
 
    .. attribute:: mapping_z
 
-      :type: enum in [``'NONE'``, ``'X'``, ``'Y'``, ``'Z'``], default ``'NONE'``
+      (default ``'NONE'``)
+
+      :type: Literal['NONE', 'X', 'Y', 'Z']
 
    .. attribute:: max
 
-      Maximum value for clipping
+      Maximum value for clipping (array of 3 items, in [-inf, inf], default (0.0, 0.0, 0.0))
 
-      :type: :class:`mathutils.Vector` of 3 items in [-inf, inf], default (0.0, 0.0, 0.0)
+      :type: :class:`mathutils.Vector`
 
    .. attribute:: min
 
-      Minimum value for clipping
+      Minimum value for clipping (array of 3 items, in [-inf, inf], default (0.0, 0.0, 0.0))
 
-      :type: :class:`mathutils.Vector` of 3 items in [-inf, inf], default (0.0, 0.0, 0.0)
+      :type: :class:`mathutils.Vector`
 
    .. attribute:: rotation
 
-      :type: :class:`mathutils.Euler` rotation of 3 items in [-inf, inf], default (0.0, 0.0, 0.0)
+      (array of 3 items, in [-inf, inf], default (0.0, 0.0, 0.0))
+
+      :type: :class:`mathutils.Euler`
 
    .. attribute:: scale
 
-      :type: :class:`mathutils.Vector` of 3 items in [-inf, inf], default (0.0, 0.0, 0.0)
+      (array of 3 items, in [-inf, inf], default (0.0, 0.0, 0.0))
+
+      :type: :class:`mathutils.Vector`
 
    .. attribute:: translation
 
-      :type: :class:`mathutils.Vector` of 3 items in [-inf, inf], default (0.0, 0.0, 0.0)
+      (array of 3 items, in [-inf, inf], default (0.0, 0.0, 0.0))
+
+      :type: :class:`mathutils.Vector`
 
    .. attribute:: use_max
 
-      Whether to use maximum clipping value
+      Whether to use maximum clipping value (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_min
 
-      Whether to use minimum clipping value
+      Whether to use minimum clipping value (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: vector_type
 
-      Type of vector that the mapping transforms
+      Type of vector that the mapping transforms (default ``'POINT'``)
 
-      :type: enum in :ref:`rna_enum_mapping_type_items`, default ``'POINT'``
+      :type: Literal[:ref:`rna_enum_mapping_type_items`]
 
    .. classmethod:: bl_rna_get_subclass(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: :class:`bpy.types.Struct` | None
       :return: The RNA type or default when not found.
-      :rtype: :class:`bpy.types.Struct` subclass
+      :rtype: :class:`bpy.types.Struct`
 
 
    .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: type | None
       :return: The class or default when not found.
       :rtype: type
 
@@ -98,7 +117,7 @@ Inherited Properties
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.id_data`
+   - :class:`bpy_struct.id_data`
 
 Inherited Functions
 -------------------
@@ -106,29 +125,30 @@ Inherited Functions
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.as_pointer`
-   * :class:`bpy_struct.driver_add`
-   * :class:`bpy_struct.driver_remove`
-   * :class:`bpy_struct.get`
-   * :class:`bpy_struct.id_properties_clear`
-   * :class:`bpy_struct.id_properties_ensure`
-   * :class:`bpy_struct.id_properties_ui`
-   * :class:`bpy_struct.is_property_hidden`
-   * :class:`bpy_struct.is_property_overridable_library`
-   * :class:`bpy_struct.is_property_readonly`
-   * :class:`bpy_struct.is_property_set`
-   * :class:`bpy_struct.items`
-   * :class:`bpy_struct.keyframe_delete`
-   * :class:`bpy_struct.keyframe_insert`
-   * :class:`bpy_struct.keys`
-   * :class:`bpy_struct.path_from_id`
-   * :class:`bpy_struct.path_resolve`
-   * :class:`bpy_struct.pop`
-   * :class:`bpy_struct.property_overridable_library_set`
-   * :class:`bpy_struct.property_unset`
-   * :class:`bpy_struct.rna_ancestors`
-   * :class:`bpy_struct.type_recast`
-   * :class:`bpy_struct.values`
+   - :class:`bpy_struct.as_pointer`
+   - :class:`bpy_struct.driver_add`
+   - :class:`bpy_struct.driver_remove`
+   - :class:`bpy_struct.get`
+   - :class:`bpy_struct.id_properties_clear`
+   - :class:`bpy_struct.id_properties_ensure`
+   - :class:`bpy_struct.id_properties_ui`
+   - :class:`bpy_struct.is_property_hidden`
+   - :class:`bpy_struct.is_property_overridable_library`
+   - :class:`bpy_struct.is_property_readonly`
+   - :class:`bpy_struct.is_property_set`
+   - :class:`bpy_struct.items`
+   - :class:`bpy_struct.keyframe_delete`
+   - :class:`bpy_struct.keyframe_insert`
+   - :class:`bpy_struct.keys`
+   - :class:`bpy_struct.path_from_id`
+   - :class:`bpy_struct.path_from_module`
+   - :class:`bpy_struct.path_resolve`
+   - :class:`bpy_struct.pop`
+   - :class:`bpy_struct.property_overridable_library_set`
+   - :class:`bpy_struct.property_unset`
+   - :class:`bpy_struct.rna_ancestors`
+   - :class:`bpy_struct.type_recast`
+   - :class:`bpy_struct.values`
 
 References
 ----------
@@ -136,15 +156,15 @@ References
 .. hlist::
    :columns: 2
 
-   * :class:`ShaderNodeTexBrick.texture_mapping`
-   * :class:`ShaderNodeTexChecker.texture_mapping`
-   * :class:`ShaderNodeTexEnvironment.texture_mapping`
-   * :class:`ShaderNodeTexGabor.texture_mapping`
-   * :class:`ShaderNodeTexGradient.texture_mapping`
-   * :class:`ShaderNodeTexImage.texture_mapping`
-   * :class:`ShaderNodeTexMagic.texture_mapping`
-   * :class:`ShaderNodeTexNoise.texture_mapping`
-   * :class:`ShaderNodeTexSky.texture_mapping`
-   * :class:`ShaderNodeTexVoronoi.texture_mapping`
-   * :class:`ShaderNodeTexWave.texture_mapping`
+   - :class:`ShaderNodeTexBrick.texture_mapping`
+   - :class:`ShaderNodeTexChecker.texture_mapping`
+   - :class:`ShaderNodeTexEnvironment.texture_mapping`
+   - :class:`ShaderNodeTexGabor.texture_mapping`
+   - :class:`ShaderNodeTexGradient.texture_mapping`
+   - :class:`ShaderNodeTexImage.texture_mapping`
+   - :class:`ShaderNodeTexMagic.texture_mapping`
+   - :class:`ShaderNodeTexNoise.texture_mapping`
+   - :class:`ShaderNodeTexSky.texture_mapping`
+   - :class:`ShaderNodeTexVoronoi.texture_mapping`
+   - :class:`ShaderNodeTexWave.texture_mapping`
 

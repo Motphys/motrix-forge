@@ -20,12 +20,6 @@ Geometry
    Standard geometry input.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

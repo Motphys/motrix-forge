@@ -3,6 +3,12 @@
 Apply
 *****
 
+.. reference::
+
+   :Mode:      Object Mode
+   :Menu:      :menuselection:`Object --> Apply`
+   :Shortcut:  :kbd:`Ctrl-A`
+
 These operations lets you apply several transformations to the selected objects.
 The object transformation coordinates are transferred to the object data.
 If the objects have hierarchical descendants, it also applies those transformations to their children.
@@ -17,27 +23,33 @@ Transforms
 
    :Mode:      Object Mode
    :Menu:      :menuselection:`Object --> Apply --> Location / Rotation / Scale / Rotation & Scale`
-   :Shortcut:  :kbd:`Ctrl-A`
 
-Applying transform values essentially resets the values of object's location, rotation or scale,
-while visually keeping the object data in-place.
-The object origin point is moved to the global origin, the rotation is cleared and scale values are set to 1.
+Applying transforms resets an object's *Location*, *Rotation*, or *Scale* values
+while visually keeping the object in place.
+In practice, this means:
 
-For simple cases you won't notice any difference the 3D Viewport or rendered output,
-yet modifiers and constraints may depend on object transformation.
+- The object's origin is moved to the global origin (for location).
+- Rotation values are cleared to zero.
+- Scale values are reset to 1.0.
+
+The geometry itself is adjusted so that the object continues to appear unchanged in the 3D Viewport
+and final render.
+
+For simple cases you may not notice a difference,
+but applying transforms can affect how modifiers, constraints, and parenting behave,
+since they often depend on an object's transform values.
 
 .. warning:: Armature Objects
 
-   While applying transformations to armatures is supported,
-   this does **not** apply to their pose location, animation curves or constraints.
-   This tool should be used before rigging and animation.
+   Applying transforms to armatures is supported, but it does **not** affect pose locations,
+   animation curves, or constraints.
+   It is recommended to apply transforms before rigging and animation.
 
-When applying transforms to an object that shares Object Data between multiple objects,
-the object must first be made a :ref:`Single User <data-system-datablock-make-single-user>`
-which can be performed by confirming the pop-up message.
+.. important::
 
-When running *Apply Transform*, the :ref:`bpy.ops.screen.redo_last` panel lets you choose
-the combination of transformations to apply.
+   When applying transforms to an object that shares Object Data with other objects,
+   the data must first be made a :ref:`Single User <data-system-datablock-make-single-user>`.
+   Blender will prompt you to confirm this action.
 
 
 Options
@@ -56,15 +68,17 @@ Scale
    Apply (set) the scale of the selection.
    This will make Blender consider the current scale to be equivalent to 0 in each plane
    i.e. the selection will not scaled, the current scale will be considered to be the "default scale".
-Rotation and Scale
+Rotation & Scale
    Apply (set) the rotation and scale of the selection. Do the above two applications simultaneously.
 Apply Properties
    Modify properties such as curve vertex radius, font size and bone envelope
    according to the applied transformation. (Found in the :ref:`bpy.ops.screen.redo_last` panel)
+Corrective Flip Normals
+   Flips surface normals when applying a negative scale.
+   This prevents inverted shading that can occur when objects have negative scaling.
 
 
 .. _bpy.ops.object.transforms_to_deltas:
-.. _bpy.ops.object.anim_transforms_to_deltas:
 
 Transforms to Deltas
 ====================
@@ -73,20 +87,20 @@ Transforms to Deltas
 
    :Mode:      Object Mode
    :Menu:      :menuselection:`Object --> Apply --> Location / Rotation / Scale to Deltas`
-   :Shortcut:  :kbd:`Ctrl-A`
 
-Converts primary object transformations to :ref:`delta transforms <bpy.types.Object.delta>`,
-any existing delta transforms will be included as well.
+Converts the object's primary transforms (*Location*, *Rotation*, *Scale*) into
+:ref:`Delta Transforms <bpy.types.Object.delta>`.
+Any existing delta transforms will be added to the new values.
 
-- Location to Deltas
-- Rotation to Deltas
-- Scale to Deltas
+This allows you to "bake" the current transforms into the delta channels, while leaving the primary
+transform channels free for new adjustments or keyframes.
 
-All Transforms to Deltas
-   Converts all primary transformations to delta transforms.
-Animated Transform to Deltas
-   Converts the primary transformation animations
-   (of the translation, scale, and, rotation values) to delta transforms.
+Available options:
+
+- **Location to Deltas** -- Converts the object's location to *Delta Location*.
+- **Rotation to Deltas** -- Converts the object's rotation to *Delta Rotation*.
+- **Scale to Deltas** -- Converts the object's scale to *Delta Scale*.
+- **All Transforms to Deltas** -- Converts all three at once.
 
 
 Options
@@ -94,6 +108,28 @@ Options
 
 Reset Values
    Clear primary transform values after transferring to deltas.
+
+   Clears the primary transform values after transferring them to deltas.
+   When enabled, the object's main *Location*, *Rotation*, and *Scale* are reset
+   (e.g. to 0 for location/rotation and 1 for scale), while the appearance remains unchanged
+   because the deltas now contain the previous values.
+
+
+.. _bpy.ops.object.anim_transforms_to_deltas:
+
+Animated Transform to Deltas
+============================
+
+.. reference::
+
+   :Mode:      Object Mode
+   :Menu:      :menuselection:`Object --> Apply --> Animated Transform to Deltas`
+
+Converts existing animation keyframes from the object's primary transforms
+(*Location*, *Rotation*, *Scale*) into :ref:`Delta Transforms <bpy.types.Object.delta>`.
+
+This means that the animation data is moved from the main transform channels
+to the corresponding delta channels, leaving the main transforms unchanged at their current values.
 
 
 .. _bpy.ops.object.visual_transform_apply:
@@ -105,10 +141,13 @@ Visual Transform
 
    :Mode:      Object Mode
    :Menu:      :menuselection:`Object --> Apply --> Visual Transform`
-   :Shortcut:  :kbd:`Ctrl-A`
 
-Apply (set) the result of a constraint and apply this back to the object's location, rotation and scale.
+Apply the result of each selected object's constraints to that object's own transformation.
+This will make the objects keep their location, rotation, and scale even if their
+constraints are disabled or deleted.
 
+
+.. _objects-apply-visual_geometry_as_mesh:
 
 Visual Geometry as Mesh
 =======================
@@ -117,7 +156,6 @@ Visual Geometry as Mesh
 
    :Mode:      Object Mode
    :Menu:      :menuselection:`Object --> Apply --> Visual Geometry to Mesh`
-   :Shortcut:  :kbd:`Ctrl-A`
 
 Apply the visual state of all selected objects (modifiers, shape keys, hooks, etc.) to object data.
 This is a way to freeze all object data into static meshes, as well as converts non-mesh types to mesh.

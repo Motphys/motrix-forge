@@ -44,7 +44,7 @@ Import Method
    This option can be found in the center of the Asset Browser header
    (when an asset library other than *Current File* or *Essentials* is selected):
 
-   :Follow Preferences:
+   :Follow Asset or Preferences:
       Use the import method set in the :ref:`File Path Preferences <bpy.types.UserAssetLibrary.import_method>`.
    :Link:
       The asset will be :ref:`linked <bpy.ops.wm.link>` to the current blend-file, and thus be read-only.
@@ -60,19 +60,12 @@ Import Method
 
       Since the file now has its own copy of the asset, later changes to
       the asset file will not be reflected in the file it's appended from.
-   :Append (Reuse Data):
-      *Specific to the Asset Browser*.
+   :Pack:
+      Imports the asset as *linked* data and immediately packs it into the current blend-file.
+      This ensures that the asset remains available even if the original library data is modified
+      or becomes unavailable.
 
-      The first time an asset is used, it will be appended, including its dependencies,
-      just as described previously. However, Blender will keep track of where it originated,
-      and the next time the asset is used, as much data as possible will be reused.
-      Dragging a material into the scene three times will only load it once,
-      and just assign the same material three times.
-      Dragging an object into the scene three times will create three copies of the object,
-      but all copies will share their mesh data, materials, etc.
-
-      Since the file now has its own copy of the asset, later changes to
-      the asset file will not be reflected in the file it's appended from.
+      Useful for maintaining self-contained files that do not rely on external asset library paths.
 
 .. _bpy.types.FileAssetSelectParams.instance_collections_on_link:
 .. _bpy.types.FileAssetSelectParams.instance_collections_on_append:
@@ -83,7 +76,7 @@ Instance Collections -- When Linking/Appending
    Some asset types such as collections can be created as an instanced collection.
    This is done by enabling the *Instance* option after dragging collection assets into the 3D Viewport.
    By enabling these options, an empty object is added that uses an instance of the collection.
-   If these option is disabled, the full collection hierarchy will be added to the scene.
+   If this option is disabled, the full collection hierarchy will be added to the scene.
 
    Collection Assets from the current file will always be instanced.
 
@@ -118,6 +111,29 @@ Sort By
       Sort the asset list so that assets in the same catalog are kept together.
       Within a single catalog, assets are ordered by name.
       The catalogs are in order of the flattened catalog hierarchy.
+
+
+.. _bpy.types.FileAssetSelectIDFilter:
+
+Filter
+^^^^^^
+
+Controls which asset types are displayed when browsing an asset library.
+
+.. _bpy.types.FileAssetSelectParams.asset_access:
+
+Access
+   Filters assets based on whether they are available locally or must be
+   downloaded from an online asset library.
+
+   :Online and Offline:
+      Shows both downloaded assets and assets that are available online.
+   :Online Only:
+      Shows only assets that are available online and have not yet been
+      downloaded.
+   :Offline Only:
+      Shows only assets that are already available locally, either from
+      local asset libraries or previously downloaded online assets.
 
 
 Main Region
@@ -174,7 +190,7 @@ Copy Bundle to Asset Library
    become available as part of the library.
 
 Catalogs
-   Tree view that shows the :doc:`catalogs </files/asset_libraries/catalogs>` of the selected
+   :ref:`ui-tree-view` that shows the :doc:`catalogs </files/asset_libraries/catalogs>` of the selected
    asset library. A catalog is a group of assets; when you select one, only the assets in that
    catalog and its child catalogs will be listed.
 
@@ -287,6 +303,21 @@ the search term will also be shown.
    For example, see :doc:`/animation/armatures/posing/editing/pose_library`.
 
 
+Import
+^^^^^^
+
+.. _bpy.types.AssetMetaData.use_preferred_import_method:
+
+Preferred Method
+   Uses the asset's preferred import method when
+   :ref:`Follow Asset or Preferences <bpy.types.FileAssetSelectParams.import_method>`
+   is selected in the Asset Browser.
+
+   This allows assets to specify the import method that best suits their
+   intended use. For example, a base mesh for sculpting can specify that it
+   should always be appended so it is immediately editable after import.
+
+
 .. _assets-using:
 
 Using Assets
@@ -295,7 +326,7 @@ Using Assets
 As a general rule, **an asset can be used by dragging it from the Asset Browser to the desired location**.
 Objects and worlds can be dragged from the Asset Browser into the scene.
 Materials can be dragged onto the object that should use them.
-Geometry nodes can also be dragged onto objects to add a :doc:`/modeling/modifiers/generate/geometry_nodes`.
+Geometry nodes can also be dragged onto objects to add a :doc:`/modeling/modifiers/geometry_nodes`.
 The use of pose assets is different, and is described in :doc:`/animation/armatures/posing/editing/pose_library`.
 
 When you drag a collection, it will be added as an

@@ -14,7 +14,7 @@ Blender has several selection tools that can be used across the different editor
    use :kbd:`Shift-LMB` to add a single item to the selection, but the
    :doc:`Outliner </editors/outliner/introduction>` uses :kbd:`Ctrl-LMB`.
    Similarly, most editors use :kbd:`Ctrl-RMB` for performing a *Lasso Select*,
-   but :doc:`node editors </interface/controls/nodes/introduction>` use :kbd:`Ctrl-Alt-LMB`.
+   but :doc:`node editors </interface/controls/nodes/index>` use :kbd:`Ctrl-Alt-LMB`.
 
 Most selection tools come in two variants, where one variant is available in the Toolbar
 and the other in the *Select* menu. While the variants' names are almost identical

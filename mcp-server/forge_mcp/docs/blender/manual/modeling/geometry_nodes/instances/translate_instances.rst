@@ -31,12 +31,6 @@ Local Space
    Otherwise they are translated in the local space of the modifier object.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

@@ -12,6 +12,3 @@ Mesh Select Mode Uv Items
 :FACE: Face.
 
    Face selection mode.
-:ISLAND: Island.
-
-   Island selection mode.

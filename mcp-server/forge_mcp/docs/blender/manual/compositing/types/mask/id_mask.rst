@@ -39,12 +39,6 @@ Index
    Whether to smooth the mask edges.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 
@@ -57,7 +51,7 @@ Example
 
 In the example below, the left and right cubes are assigned a *Pass Index* of 1 and 2 respectively.
 We extract a mask for the left cube, then use it to turn that cube red with a
-:doc:`/compositing/types/color/mix/mix_color`. The masks for the other Pass Indexes are also shown.
+:doc:`/compositing/types/color/mix_color`. The masks for the other Pass Indexes are also shown.
 
 .. figure:: /images/compositing_types_converter_id-mask_example.png
 

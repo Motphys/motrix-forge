@@ -31,6 +31,30 @@ Normal
    Normal used for shading.
 
 
+Thin Film :guilabel:`Cycles Only`
+---------------------------------
+
+Thin Film simulates the effect of interference in a thin film sitting on top of the material.
+This causes the specular reflection to be colored in a way which strongly depends on the view
+angle as well as the film thickness and the index of refraction (:term:`IOR`) of the film and
+the material itself.
+
+This effect is commonly seen on e.g. oil films, soap bubbles or glass coatings. While its
+influence is more obvious in specular highlights, it also affects transmission.
+
+Thickness
+   The thickness of the film in nanometers. A value of 0 disables the simulation.
+   The interference effect is strongest between roughly 100 and 1000 nanometers, since this is
+   near the wavelengths of visible light.
+IOR
+   Index of refraction (:term:`IOR`) of the thin film.
+   The common range for this value is between 1.0 (vacuum and air) and roughly 2.0,
+   though some materials can reach higher values.
+   The default value of 1.33 is a good approximation for water.
+   Note that when the value is set to 1.0 or to the main IOR of the material, the thin film
+   effect disappears since the film optically blends into the air or the material.
+
+
 Properties
 ==========
 

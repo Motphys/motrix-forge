@@ -24,19 +24,23 @@ Adding Strips
 
    The Add Menu.
 
-The Add menu is the main menu you will be using to add content to the Video Sequencer.
-In general, you load up your strips, create strips of special transition effects,
-and then animate out your sequence by selecting "Do Sequence" and clicking the *Animation* button.
-You can use the Add menu in the header,
-or hover your mouse cursor over the Sequence workspace and press :kbd:`Shift-A`.
+The Add menu is the primary way to add content to the Video Sequencer.
+It can be accessed from the Sequencer header or by hovering the mouse cursor
+over the Sequence workspace and pressing :kbd:`Shift-A`.
 
-Blender does not care which of these you use; you can freely mix and match any of them.
-When you choose to add one of these, it lets you either choose a data-block or
-the editor area will switch to a File Browser for you to select what you want to add.
-Supported files are filtered by default.
+In general, you load media strips, add effect and transition strips,
+and build your edit by arranging and animating these strips over time.
+When adding items that require external data, the editor will switch
+to a File Browser to select the files to add. Supported file types are
+filtered by default.
 
-The start frame of the newly created strips will be placed at the position of the frame indicator.
-When loading multiple files (movie and sound) at the same time each will be added one after the other.
+The Add menu also includes a *Search...* entry, which allows quickly finding
+and adding strips by name, similar to add menus in other editors.
+
+The start frame of newly created strips is placed at the current position
+of the Playhead.
+When loading multiple files (such as movies and sounds) at the same time,
+each strip is added sequentially.
 
 
 Adding Effects & Transitions
@@ -66,6 +70,9 @@ thus layering effects on top of one another.
 
 If you picked the wrong effect from the menu,
 you can always exchange it using :ref:`sequencer-edit-change`.
+
+Some effects such as Brightness/Contrast and Hue/Saturation
+can be applied using :ref:`bpy.types.StripModifier`.
 
 
 .. _sequencer-strip-colors:

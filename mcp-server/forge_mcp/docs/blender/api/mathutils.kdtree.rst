@@ -6,44 +6,48 @@ KDTree Utilities (mathutils.kdtree)
 Generic 3-dimensional kd-tree to perform spatial searches.
 
 
-.. literalinclude:: ..\examples\mathutils.kdtree.py
+.. literalinclude:: ../examples/mathutils.kdtree.0.py
 
-.. class:: mathutils.kdtree.KDTree
+.. class:: KDTree(size)
 
-   KdTree(size) -> new kd-tree initialized to hold ``size`` items.
-   
+   KDTree(size) -> new kd-tree initialized to hold up to ``size`` items.
+
+   :param size: Maximum number of items.
+   :type size: int
+
    .. note::
-   
-      :class:`KDTree.balance` must have been called before using any of the ``find`` methods.
+
+      :meth:`KDTree.balance` must have been called before using any of the ``find`` methods.
 
    .. method:: balance()
    
       Balance the tree.
    
-   .. note::
+      .. note::
    
-      This builds the entire tree, avoid calling after each insertion.
+         This builds the entire tree, avoid calling after each insertion.
 
 
-   .. method:: find(co, filter=None)
+   .. method:: find(co, *, filter=None)
    
       Find nearest point to ``co``.
    
-      :arg co: 3D coordinates.
+      :param co: 3D coordinate.
       :type co: Sequence[float]
-      :arg filter: function which takes an index and returns True for indices to include in the search.
-      :type filter: Callable[[int], bool]
-      :return: Returns (position, index, distance).
-      :rtype: tuple[:class:`Vector`, int, float]
+      :param filter: function which takes an index and returns True for indices to include in the search.
+      :type filter: Callable[[int], bool] | None
+      :return: Returns (position, index, distance),
+         or (None, None, None) when no match is found.
+      :rtype: tuple[:class:`Vector`, int, float] | tuple[None, None, None]
 
 
    .. method:: find_n(co, n)
    
       Find nearest ``n`` points to ``co``.
    
-      :arg co: 3D coordinates.
+      :param co: 3D coordinate.
       :type co: Sequence[float]
-      :arg n: Number of points to find.
+      :param n: Number of points to find.
       :type n: int
       :return: Returns a list of tuples (position, index, distance).
       :rtype: list[tuple[:class:`Vector`, int, float]]
@@ -53,9 +57,9 @@ Generic 3-dimensional kd-tree to perform spatial searches.
    
       Find all points within ``radius`` of ``co``.
    
-      :arg co: 3D coordinates.
+      :param co: 3D coordinate.
       :type co: Sequence[float]
-      :arg radius: Distance to search for points.
+      :param radius: Maximum distance to search for points.
       :type radius: float
       :return: Returns a list of tuples (position, index, distance).
       :rtype: list[tuple[:class:`Vector`, int, float]]
@@ -65,9 +69,9 @@ Generic 3-dimensional kd-tree to perform spatial searches.
    
       Insert a point into the KDTree.
    
-      :arg co: Point 3d position.
+      :param co: Point 3d position.
       :type co: Sequence[float]
-      :arg index: The index of the point.
+      :param index: The index of the point (must be non-negative).
       :type index: int
 
 

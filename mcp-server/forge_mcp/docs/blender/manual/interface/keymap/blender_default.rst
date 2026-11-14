@@ -10,8 +10,79 @@ this page shows common keys used in Blender's default keymap.
    it could be expanded.
 
 
-Global Keys
-===========
+Selecting
+=========
+
+Blender has two main selection modes: left-click select and right-click select.
+See the :ref:`Select with Mouse Button <keymap-blender_default-prefs-select_with>` preference.
+
+
+Hovering
+========
+
+The following shortcuts can be pressed while hovering the mouse cursor
+over an editable field.
+
+
+.. _keymap-common-properties:
+
+Properties
+----------
+
+.. list-table::
+   :align: left
+   :width: 95%
+   :widths: 20 80
+
+   * - :kbd:`Ctrl-C`
+     - Copy the (single) value of the field.
+   * - :kbd:`Ctrl-V`
+     - Paste the (single) value of the field.
+   * - :kbd:`Ctrl-Alt-C`
+     - Copy the entire vector or color of the field.
+   * - :kbd:`Ctrl-Alt-V`
+     - Paste the entire vector or color of the field.
+   * - :kbd:`RMB`
+     - Open the context menu.
+   * - :kbd:`Backspace`
+     - Reset the value to its default.
+   * - :kbd:`Minus`
+     - Invert the value's sign (multiply by -1.0).
+   * - :kbd:`Ctrl-Wheel`
+     - Change the value in incremental steps.
+
+       For fields with a pop-up list of values, this cycles the value.
+   * - :kbd:`Return`
+     - Activates menus and toggles checkboxes.
+   * - :kbd:`Alt`
+     - Hold while editing values to apply the change to all selected items
+       (objects, bones, sequence-strips).
+
+       This can be used for number fields and toggles.
+
+
+Dragging
+========
+
+The following shortcuts can be used while moving/rotating/scaling an object in the 3D Viewport,
+dragging the slider of a value, and so on. Note that they should be pressed after starting
+the drag, not before.
+
+.. list-table::
+   :align: left
+   :width: 95%
+   :widths: 20 80
+
+   * - :kbd:`Ctrl`
+     - Snap to coarse increments, making it easier to (say) rotate an object by exactly 90°.
+   * - :kbd:`Shift`
+     - Make the value change more slowly in response to mouse movement, giving you more precision.
+   * - :kbd:`Shift-Ctrl`
+     - Snap to fine increments.
+
+
+General
+=======
 
 .. list-table::
    :align: left
@@ -112,6 +183,12 @@ These keys are shared across editors such as the 3D Viewport, UV and Graph edito
    :width: 95%
    :widths: 20 80
 
+   * - :kbd:`MMB`
+     - Orbit View
+   * - :kbd:`Shift-MMB`
+     - Pan View
+   * - :kbd:`Ctrl-MMB`
+     - Zoom View
    * - :kbd:`Tab`
      - Toggle Edit mode.
    * - :kbd:`Ctrl-Tab`
@@ -130,6 +207,53 @@ These keys are shared across editors such as the 3D Viewport, UV and Graph edito
      - Toggle gizmos.
    * - :kbd:`Shift-AccentGrave`
      - Start :ref:`Fly/Walk Navigation <3dview-fly-walk>`.
+
+.. seealso:: :doc:`3D Viewport Navigation </editors/3dview/navigate/navigation>`
+
+
+Animation
+=========
+
+.. list-table::
+   :align: left
+   :width: 95%
+   :widths: 20 80
+
+   * - :kbd:`I`
+     - Insert a :doc:`keyframe </animation/keyframes/introduction>`.
+   * - :kbd:`Alt-I`
+     - Clear the keyframe.
+   * - :kbd:`Shift-Alt-I`
+     - Clear all keyframes.
+   * - :kbd:`Ctrl-D`
+     - Assign a :doc:`driver </animation/drivers/introduction>`.
+   * - :kbd:`Ctrl-Alt-D`
+     - Clear the driver.
+   * - :kbd:`K`
+     - Add the property to the current
+       :doc:`keying set </animation/keyframes/keying_sets>`.
+   * - :kbd:`Alt-K`
+     - Remove the property from the current keying set.
+
+
+Python Scripting
+================
+
+.. list-table::
+   :align: left
+   :width: 95%
+   :widths: 20 80
+
+   * - :kbd:`Ctrl-C`
+     - When pressed while hovering over an :ref:`operator button <ui-operator-buttons>`,
+       copies its Python command to the clipboard. This command can then be used in the
+       :doc:`Python Console </editors/python_console>` or in the :doc:`Text Editor </editors/text_editor>`
+       when writing scripts.
+   * - :kbd:`Shift-Ctrl-C`
+     - When pressed while hovering over a field, copies its relative data path (also available from
+       the context menu). Useful when writing drivers or scripts.
+   * - :kbd:`Shift-Ctrl-Alt-C`
+     - When pressed while hovering over a field, copies its full data path.
 
 
 Platform Specific Keys

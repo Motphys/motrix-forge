@@ -13,14 +13,37 @@ as well as a *Select* menu.
 Sync Selection
 ==============
 
-If turned off (the default), the UV Editor only shows the faces that are selected in the
-3D Viewport. Selecting an item in one editor does not automatically select it in the other.
-If one 3D vertex/edge corresponds to multiple UV vertices/edges, you can select each
-of those individually.
+When enabled (the default), the UV Editor and 3D Viewport share a synchronized selection state.
+Selecting components (vertices, edges, or faces) in one editor will automatically select the
+corresponding elements in the other.
 
-If turned on, the UV Editor always shows all faces. Selecting an item in one editor also
-selects it in the other. If one 3D vertex/edge corresponds to multiple UV vertices/edges,
-you can't select those individually (you can only select all of them).
+With *Sync Selection* enabled, all faces are visible in the UV Editor at all times,
+since UV visibility follows mesh selection in the 3D Viewport.
+
+Viewport Selection
+   Selecting a vertex, edge, or face in the 3D Viewport selects all its corresponding UV elements.
+UV Selection
+   Selecting a UV will select vertices, edges and faces in the 3D viewport.
+
+   With vertex & edge selection modes it is possible for only *some* of the UV's attached to a vertex to be selected.
+
+When disabled, only the UVs belonging to the currently selected faces in the 3D Viewport are shown.
+Selections in the UV Editor are independent, allowing individual UV vertices and edges to be selected
+even if they correspond to the same mesh vertex or edge. Selecting in one editor no longer affects
+the other.
+
+.. note::
+
+   Currently, only some 3D Viewport selection operations preserve per-UV selection data, including
+   basic picking, box, circle, and lasso selection. Other operators, such as *Select Random* or
+   *Select Similar*, will reset the stored UV selection, causing all UVs connected to selected mesh
+   elements to become selected. Support for additional operators may be added later.
+
+.. hint::
+
+   Internally, UV selection data is stored per face corner and created on demand to avoid overhead.
+   Python scripts that modify mesh selections can use the API functions to synchronize or clear the
+   UV selection state as needed.
 
 
 .. _bpy.ops.uv.select_mode:
@@ -33,8 +56,8 @@ Selection Mode
 :Edge: :kbd:`2` Select edges.
 :Face: :kbd:`3` Select faces.
 
-If *Sync Selection* is enabled, you can hold :kbd:`Shift` while clicking a selection mode to
-activate multiple ones at the same time, or :kbd:`Ctrl` to expand/contract the selection.
+If *Sync Selection* is enabled, you can hold :kbd:`Shift` while clicking a selection mode
+to activate multiple modes at the same time.
 
 .. seealso::
 
@@ -53,7 +76,6 @@ UV Island Selection
    :Shortcut:  :kbd:`4`
 
 Select contiguous groups of faces that are connected in the UV map.
-Only available for *Face* select mode or if *Sync Selection* is disabled.
 
 
 .. _bpy.types.ToolSettings.uv_sticky_select_mode:
@@ -62,18 +84,19 @@ Sticky Selection Mode
 =====================
 
 Options for automatically selecting additional UV vertices.
-Only available for *Face* select mode or if *Sync Selection* is disabled.
 
 Disabled
    Each UV vertex can be selected independently of the others.
+
 Shared Location
-   Automatically select UV vertices that correspond to the same mesh vertex and have the same UV coordinates.
-   This is the default and gives the illusion that multiple faces in a UV map can share the same vertex;
-   in reality, they have separate vertices that overlap.
+   Automatically select UV vertices that correspond to the same mesh vertex
+   and have the same UV coordinates.
+   This is the default and gives the illusion that multiple faces in a UV map
+   can share the same vertex; in reality, they have separate vertices that overlap.
+
 Shared Vertex
    Automatically select UV vertices that correspond to the same mesh vertex,
    even if they have different UV coordinates.
-   This is also the behavior when *Sync Selection* is enabled.
 
 
 Select Menu
@@ -83,91 +106,145 @@ Select Menu
 
 All :kbd:`A`
    Selects all UV elements.
+
 None :kbd:`Alt-A`
    Deselects all UV elements.
+
 Invert :kbd:`Ctrl-I`
    Inverts the current selection.
-Box Select :kbd:`B`
+
+Box Select :kbd:`Alt-B`
    See :ref:`Box Select <bpy.ops.*.select_box>`.
+
 Box Select Pinned :kbd:`Ctrl-B`
    Like *Box Select*, but only selects :ref:`pinned <bpy.ops.uv.pin>` UV vertices.
+
 Circle Select
    See :ref:`Circle Select <bpy.ops.*.select_circle>`.
+
 Lasso Select
    See :ref:`Lasso Select <bpy.ops.*.select_lasso>`.
+
 More/Less :kbd:`Ctrl-NumpadPlus`, :kbd:`Ctrl-NumpadMinus`
-   Expands/contracts the selection to/from the adjacent elements.
+   Expands/contracts the selection to/from adjacent elements.
+
+All by Trait
+   Tile
+      See :ref:`bpy.ops.uv.select_tile`.
+   Pinned :kbd:`Shift-P`
+      See :ref:`bpy.ops.uv.select_pinned`.
+   Overlap
+      See :ref:`bpy.ops.uv.select_overlap`.
+   Winding
+      See :ref:`bpy.ops.uv.select_by_winding`.
+
 
 .. _bpy.ops.uv.select_similar:
 
-Select Similar :kbd:`Shift-G`
-   Selects UV elements that are similar to the :term:`active` one in some way.
-   The :ref:`bpy.ops.screen.redo_last` panel provides several options:
+Select Similar
+==============
 
-   Type
-      The property to compare. Which properties are available depends on the
-      :ref:`Selection Mode <bpy.types.ToolSettings.uv_select_mode>`.
+.. reference::
 
-      Vertex Selection Mode
-         :Pinned: Selects vertices with the same :ref:`pinned <bpy.ops.uv.pin>` state.
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Select --> Select Similar`
+   :Shortcut:  :kbd:`Shift-G`
 
-      Edge Selection Mode
-         :Length: Selects edges with a similar length in the UV map.
-         :Length 3D: Selects edges with a similar length in the 3D mesh.
-         :Pinned: Selects edges with the same pinned state.
+Selects UV elements that are similar to the :term:`active` one in some way.
+The :ref:`bpy.ops.screen.redo_last` panel provides several options:
 
-      Face Selection Mode
-         :Area: Selects faces with a similar area in the UV map.
-         :Area 3D: Selects faces with a similar area in the 3D mesh.
-         :Material: Selects faces that have the same :doc:`Material </render/materials/index>`.
-         :Object:
-            Selects faces that belong to the same object.
-            This is useful when multiple objects are in Edit mode at once.
-         :Polygon Sides: Selects faces with a similar number of edges.
-         :Winding: Select faces that have the same orientation (facing upwards or downwards in the UV map).
+Type
+   The property to compare. Which properties are available depends on the
+   :ref:`Selection Mode <bpy.types.ToolSettings.uv_select_mode>`.
 
-      Island Selection Mode
-         :Area: Selects islands with a similar area in the UV map.
-         :Area 3D: Selects islands with a similar area in the 3D mesh.
-         :Amount of Faces in Island: Selects islands with a similar number of faces.
+   Vertex Selection Mode
+      :Pinned:
+         Selects vertices with the same :ref:`pinned <bpy.ops.uv.pin>` state.
 
-   Compare
-      The comparison operator.
+   Edge Selection Mode
+      :Length:
+         Selects edges with a similar length in the UV map.
+      :Length 3D:
+         Selects edges with a similar length in the 3D mesh.
+      :Pinned:
+         Selects edges with the same pinned state.
 
-      :Equal: Select elements whose value is equal.
-      :Greater: Select elements whose value is greater or equal.
-      :Less: Select elements whose value is less or equal.
-   Threshold
-      Tolerance for values that are almost, but not quite the same. A higher threshold will select more elements.
+   Face Selection Mode
+      :Area:
+         Selects faces with a similar area in the UV map.
+      :Area 3D:
+         Selects faces with a similar area in the 3D mesh.
+      :Material:
+         Selects faces that have the same :doc:`Material </render/materials/index>`.
+      :Object:
+         Selects faces that belong to the same object.
+         This is useful when multiple objects are in Edit mode at once.
+      :Polygon Sides:
+         Selects faces with a similar number of edges.
+      :Winding:
+         Selects faces that have the same orientation
+         (facing upwards or downwards in the UV map).
+
+   Island Selection Mode
+      :Area:
+         Selects islands with a similar area in the UV map.
+      :Area 3D:
+         Selects islands with a similar area in the 3D mesh.
+      :Amount of Faces in Island:
+         Selects islands with a similar number of faces.
+
+Compare
+   The comparison operator.
+
+   :Equal:
+      Select elements whose value is equal.
+   :Greater:
+      Select elements whose value is greater or equal.
+   :Less:
+      Select elements whose value is less or equal.
+
+Threshold
+   Tolerance for values that are almost, but not quite the same.
+   A higher threshold will select more elements.
+
 
 Select Linked
-   Linked :kbd:`Ctrl-L`
-      Selects all elements that are connected to the currently selected ones.
-   Shortest Path
-      Selects the path between two selected elements. (See below)
-Select Pinned :kbd:`Shift-P`
-   Selects all pinned UVs.
-Select Split :kbd:`Y`
-   "Detaches" the selected faces so they can be moved elsewhere without affecting their neighbors.
+=============
 
-   .. hint::
+.. _bpy.ops.uv.select_linked:
 
-      Unlike :doc:`Split Selection </modeling/meshes/editing/mesh/split>` for meshes, which physically disconnects
-      faces, this is a pure selection operator. In UV space, the faces were never connected to begin with;
-      it only seemed that way because *Sticky Selection* automatically selected the vertices of the neighboring faces.
-      *Select Split* deselects those vertices again.
+Linked
+------
 
-      As an alternative to *Select Split*, you can set the *Sticky Selection Mode* to *Disabled*.
+.. reference::
 
-Select Overlap
-   Selects all UV faces that overlap each other.
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Select --> Select Linked --> Linked`
+   :Shortcut:  :kbd:`Ctrl-L`
+
+Selects all UV elements that are connected to the currently selected ones.
+
+This operation expands the selection to include all UVs that are part of the same
+connected UV island. Connectivity is determined by shared UV edges, not by the
+underlying mesh topology.
+
+This is useful for quickly selecting an entire UV island when only a portion
+of it is currently selected, such as when adjusting layout, packing, or applying
+transforms to a whole island.
+
+Delimit
+   Restricts how linked UV selection expands.
+
+   :Seam: Stop selection across edges marked as seams.
+   :Sharp: Stop selection across sharp edges.
+   :Material: Stop selection across faces using different materials.
 
 
 .. _bpy.ops.uv.shortest_path_select:
 .. _bpy.ops.uv.shortest_path_pick:
 
 Shortest Path
-=============
+-------------
 
 .. reference::
 
@@ -175,37 +252,153 @@ Shortest Path
    :Menu:      :menuselection:`Select --> Select Linked --> Shortest Path`
    :Shortcut:  :kbd:`Ctrl-LMB`
 
-Selects all the UV elements along the shortest path between two elements: the two selected elements when
-activated using the menu, or the active one and the clicked one when activated using the shortcut.
+Selects all the UV elements along the shortest path between two elements:
+the two selected elements when activated using the menu,
+or the active one and the clicked one when activated using the shortcut.
 
 Face Stepping
-   For vertices: allows the path to step across faces, following their diagonal rather than
-   their edges.
+   For vertices: allows the path to step across faces, following their diagonal
+   rather than their edges.
 
-   For edges: selects disconnected edges that are perpendicular to the path (edge ring),
-   rather than connected edges along the path (edge loop).
+   For edges: selects disconnected edges that are perpendicular to the path
+   (edge ring), rather than connected edges along the path (edge loop).
 
-   For faces: allows the path to go through faces that only share a vertex, rather than an edge.
+   For faces: allows the path to go through faces that only share a vertex,
+   rather than an edge.
+
 Topology Distance
    Calculates the distance by simply counting edges rather than measuring their lengths.
-Fill Region :kbd:`Shift-Ctrl-LMB`
-   Selects all shortest paths (rather than just one).
-Dashed Line Options
-   Allows to only select elements at regular intervals, creating a "dashed line" rather
-   than a continuous one.
 
-   Deselected
-      The number of deselected elements in the repetitive sequence.
-   Selected
-      The number of selected elements in the repetitive sequence.
-   Offset
-      The number of elements to offset the sequence by.
+Fill Region :kbd:`Shift-Ctrl-LMB`
+   Selects all shortest paths rather than just one.
+
+The following settings allow selecting elements at regular intervals,
+creating a "dashed line" rather than a continuous one.
+
+Deselected
+   The number of deselected elements in the repetitive sequence.
+
+Selected
+   The number of selected elements in the repetitive sequence.
+
+Offset
+   The number of elements to offset the sequence by.
 
 .. seealso::
 
    Mesh edit :ref:`Select Shortest Path <bpy.ops.mesh.shortest_path_select>`.
 
-.. _bpy.ops.uv.select_edge_loop:
+
+Select Split
+============
+
+.. reference::
+
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Select --> Select Split`
+   :Shortcut:  :kbd:`Y`
+
+"Detaches" the selected faces so they can be moved elsewhere without affecting
+their neighbors.
+
+.. hint::
+
+   Unlike :doc:`Split Selection </modeling/meshes/editing/mesh/split>` for meshes,
+   which physically disconnects faces, this is a pure selection operator.
+   In UV space, the faces were never connected to begin with;
+   it only seemed that way because *Sticky Selection* automatically selected the
+   vertices of neighboring faces. *Select Split* deselects those vertices again.
+
+   As an alternative to *Select Split*, you can set the *Sticky Selection Mode*
+   to *Disabled*.
+
+
+Select All by Trait
+===================
+
+.. _bpy.ops.uv.select_tile:
+
+Select Tile
+-----------
+
+.. reference::
+
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Select --> Select All by Trait --> Tile`
+
+Selects UV faces that lie within a specific UV tile, primarily intended for use
+with :doc:`UDIM workflows </modeling/meshes/uv/workflows/udims>`.
+
+The initial tile is determined by the position of the 2D Cursor.
+All UV faces whose coordinates fall inside that tile are selected.
+
+This operator is useful when working with multi-tile UV layouts, allowing you to
+quickly isolate and operate on UVs assigned to a particular UDIM tile, such as for
+packing, transforming, or baking textures.
+
+To select a different tile, move the 2D Cursor to the desired tile location
+and run the operator again.
+
+
+.. _bpy.ops.uv.select_pinned:
+
+Select Pinned
+-------------
+
+.. reference::
+
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Select --> Select All by Trait --> Pinned`
+
+   :Shortcut:  :kbd:`Shift-P`
+
+Selects all pinned UVs in the UV Editor.
+
+Pinned UVs are constrained during unwrapping and certain transform operations,
+allowing them to stay fixed while other UVs are adjusted.
+This operator is useful for quickly identifying or modifying pinned regions,
+such as when refining UV layouts or controlling unwrap behavior.
+
+
+.. _bpy.ops.uv.select_overlap:
+
+Select Overlap
+--------------
+
+.. reference::
+
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Select --> Select All by Trait --> Overlap`
+
+Selects all UV faces that overlap with one another in the UV Editor. Selects the entire island when island selection mode is enabled
+
+Overlapping UVs share the same or partially intersecting texture space,
+which can cause rendering artifacts, texture bleeding, or incorrect baking results.
+This operator helps identify problematic areas in a UV layout.
+
+It is commonly used when preparing UVs for texture baking, lightmaps,
+or game engine export, where overlapping UVs are often undesirable.
+Once selected, overlapping faces can be moved, scaled, or repacked
+to resolve the overlap.
+
+
+.. _bpy.ops.uv.select_by_winding:
+
+Select by Winding
+-----------------
+
+.. reference::
+
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Select --> Select All by Trait --> Winding`
+
+Selects faces by their winding - positive or negative,
+where a negative winding would mirror the content of an image displayed on the mesh.
+
+This can be useful to detect problems when flipping the UV mapping isn't desired.
+
+
+.. _bpy.ops.uv.select_loop:
 
 Select Edge Loop
 ================
@@ -215,18 +408,18 @@ Select Edge Loop
    :Mode:      Edit Mode
    :Shortcut:  :kbd:`Alt-LMB`, or :kbd:`Shift-Alt-LMB` for extending the existing selection.
 
-Holding :kbd:`Alt` while clicking an edge selects that edge and then expands the selection as far as
-possible in the two directions parallel to it. (While this of course works for selecting edge "loops"
-that go all the way around a mesh, it also works if there's no loop.)
+Holding :kbd:`Alt` while clicking an edge selects that edge and then expands the selection
+as far as possible in the two directions parallel to it.
+While this works for selecting edge loops that wrap around a mesh,
+it also works for partial loops.
 
-You can additionally hold :kbd:`Shift` to extend the current selection rather than replacing it.
+You can additionally hold :kbd:`Shift` to extend the current selection
+rather than replacing it.
 
 .. seealso::
 
    Mesh edit :ref:`Select Edge Loops <bpy.ops.mesh.loop_select>`.
 
-
-.. _bpy.ops.uv.select_edge_ring:
 
 Select Edge Ring
 ================
@@ -237,11 +430,13 @@ Select Edge Ring
    :Shortcut:  :kbd:`Ctrl-Alt-LMB`, or :kbd:`Shift-Ctrl-Alt-LMB` for extending the existing selection.
 
 Holding :kbd:`Ctrl-Alt` while clicking an edge selects that edge and then expands the selection
-as far as possible in the two directions perpendicular to it. (While this of course works for selecting
-edge "rings" that go all the way around a mesh, it also works if there's no ring.)
+as far as possible in the two directions perpendicular to it.
+While this works for selecting edge rings that wrap around a mesh,
+it also works when a complete ring does not exist.
 
-You can additionally hold :kbd:`Shift` to extend the current selection rather than replacing it.
+You can additionally hold :kbd:`Shift` to extend the current selection
+rather than replacing it.
 
 .. seealso::
 
-   Mesh edit :ref:`Select Edge Rings <bpy.ops.mesh.select_edge_ring>`.
+   Mesh edit :ref:`Select Edge Rings <bpy.ops.mesh.select_edge_ring_multi>`.

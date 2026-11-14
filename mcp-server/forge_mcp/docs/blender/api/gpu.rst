@@ -18,6 +18,7 @@ Some higher level functions can be found in the :mod:`gpu_extras` module.
    gpu.texture.rst
    gpu.platform.rst
    gpu.capabilities.rst
+   gpu.compute.rst
 
 
 Geometry Batches
@@ -129,7 +130,7 @@ They can be set using the ``shader.uniform_*`` functions after the shader has be
 Batch Creation
 ++++++++++++++
 
-Batches can be creates by first manually creating VBOs and IBOs.
+Batches can be created by first manually creating VBOs and IBOs.
 However, it is recommended to use the :class:`gpu_extras.batch.batch_for_shader` function.
 It makes sure that all the vertex attributes necessary for a specific shader are provided.
 Consequently, the shader has to be passed to the function as well.
@@ -158,41 +159,41 @@ In Blender Offscreen Rendering is done using the :class:`gpu.types.GPUOffScreen`
 Examples
 ++++++++
 
-To try these examples, just copy them into Blenders text editor and execute them.
+To try these examples, just copy them into Blender's text editor and execute them.
 To keep the examples relatively small, they just register a draw function that can't easily be removed anymore.
 Blender has to be restarted in order to delete the draw handlers.
 
 3D Points with Single Color
 
-.. literalinclude:: ..\examples\gpu.1.py
+.. literalinclude:: ../examples/gpu.1.py
    :lines: 147-
 
 
 Triangle with Custom Shader
 ---------------------------
 
-.. literalinclude:: ..\examples\gpu.2.py
+.. literalinclude:: ../examples/gpu.2.py
    :lines: 5-
 
 
 Wireframe Cube using Index Buffer
 ---------------------------------
 
-.. literalinclude:: ..\examples\gpu.3.py
+.. literalinclude:: ../examples/gpu.3.py
    :lines: 5-
 
 
 Mesh with Random Vertex Colors
 ------------------------------
 
-.. literalinclude:: ..\examples\gpu.4.py
+.. literalinclude:: ../examples/gpu.4.py
    :lines: 5-
 
 
 2D Rectangle
 ------------
 
-.. literalinclude:: ..\examples\gpu.5.py
+.. literalinclude:: ../examples/gpu.5.py
    :lines: 5-
 
 
@@ -201,7 +202,7 @@ Mesh with Random Vertex Colors
 
 To use this example you have to provide an image that should be displayed.
 
-.. literalinclude:: ..\examples\gpu.6.py
+.. literalinclude:: ../examples/gpu.6.py
    :lines: 7-
 
 
@@ -213,7 +214,7 @@ Generate a texture using Offscreen Rendering
 #. Make a new shader for drawing a planar texture in 3D.
 #. Draw the generated texture using the new shader.
 
-.. literalinclude:: ..\examples\gpu.7.py
+.. literalinclude:: ../examples/gpu.7.py
    :lines: 10-
 
 
@@ -227,7 +228,7 @@ Currently almost all of the execution time is spent in the last line.
 In the future this will hopefully be solved by implementing the Python buffer protocol
 for :class:`gpu.types.Buffer` and :class:`bpy.types.Image.pixels` (aka ``bpy_prop_array``).
 
-.. literalinclude:: ..\examples\gpu.8.py
+.. literalinclude:: ../examples/gpu.8.py
    :lines: 12-
 
 
@@ -238,7 +239,7 @@ The scene has to have a camera for this example to work.
 You could also make this independent of a specific camera,
 but Blender does not expose good functions to create view and projection matrices yet.
 
-.. literalinclude:: ..\examples\gpu.9.py
+.. literalinclude:: ../examples/gpu.9.py
    :lines: 9-
 
 
@@ -251,7 +252,7 @@ for all points that will be visible on the screen.
 In the fragment shader the ``sin`` of the arc length is calculated.
 Based on the result a decision is made on whether the fragment should be drawn or not.
 
-.. literalinclude:: ..\examples\gpu.10.py
+.. literalinclude:: ../examples/gpu.10.py
    :lines: 11-
 
 
@@ -264,6 +265,12 @@ The expected result is a 2x2 plane (size of the default cube),
 which changes color from a green-black gradient to a green-red gradient,
 based on current time.
 
-.. literalinclude:: ..\examples\gpu.11.py
+.. literalinclude:: ../examples/gpu.11.py
    :lines: 11-
+
+.. function:: init()
+
+   Initializes the GPU module for background use.
+   If the initialization fails, a SystemError will be raised.
+
 

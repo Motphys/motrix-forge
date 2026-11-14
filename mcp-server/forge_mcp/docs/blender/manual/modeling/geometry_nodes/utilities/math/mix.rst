@@ -5,5 +5,5 @@
 Mix Node
 ********
 
-.. include:: /render/shader_nodes/converter/mix.rst
+.. include:: /render/shader_nodes/utilities/math/mix.rst
    :start-after: .. --- copy below this line ---

@@ -2,7 +2,7 @@
 Navigation
 **********
 
-.. figure:: /images/editors_preferences_section_navigation.png
+.. figure:: /images/editors_preferences_section_navigation.webp
 
    Blender Preferences navigation section.
 

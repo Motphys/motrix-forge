@@ -9,5 +9,4 @@ Settings for objects and object data.
    :maxdepth: 2
 
    object_data.rst
-   adaptive_subdiv.rst
    cameras.rst

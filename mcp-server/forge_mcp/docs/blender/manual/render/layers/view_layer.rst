@@ -5,11 +5,11 @@ View Layer
 
 .. reference::
 
-   :Panel:     :menuselection:`Properties --> Scene --> View Layer`
+   :Panel:     :menuselection:`Properties --> View Layer --> View Layer`
 
 .. figure:: /images/render_layers_view-layer_panel.png
 
-   View Layer panel (shown here for the EEVEE render engine).
+   View Layer panel.
 
 The Layer Panel shows the settings of the active View Layer.
 
@@ -26,8 +26,3 @@ Render Single Layer
    .. note::
 
       This option is ignored when rendering from the command line.
-
-.. seealso::
-
-   Additional options shown in this panel are different for each render engine.
-   See :doc:`Render Passes </render/layers/passes>` for the options per render engine.

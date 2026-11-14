@@ -12,7 +12,7 @@ Knife Topology Tool
    :Menu:      :menuselection:`Mesh --> Knife Topology Tool`
    :Shortcut:  :kbd:`K`
 
-The Knife tool lets you interactively "cut through" faces,
+The Knife tool allows to interactively "cut through" faces,
 subdividing them and creating a chain of new edges along the way.
 
 
@@ -23,13 +23,12 @@ First, select the tool in the Toolbar or press :kbd:`K`. The cursor
 will change into a scalpel to indicate it's active.
 
 Click :kbd:`LMB` at the place where you want to start cutting.
-This can be anywhere: on an existing vertex, edge or face,
+This can be anywhere: on an existing vertex, edge, or face,
 or even outside of the mesh.
 
-Move your mouse to the next location. You'll see a purple line indicating
-the new edges that will be created, and green squares indicating the new
-vertices. Click :kbd:`LMB` to confirm: the green squares will turn red,
-and you can define the next line in the cutting path.
+Move your mouse to the next location. You'll see a yellow line indicating
+the new edges that will be created, and aqua dots indicating the new
+vertices. Click :kbd:`LMB` to confirm and start on the next cutting segment.
 
 Once you're done, press :kbd:`Spacebar` or :kbd:`Return` to apply the cuts.
 Alternatively, press :kbd:`Esc` to cancel.
@@ -76,19 +75,17 @@ Measurements
    The measurements to show along the cutting path: distances, angles, or both.
 
    .. list-table::
+      :widths: 1 1 1
 
       * - .. figure:: /images/modeling_meshes_tools_knife-measurement-distance.png
-             :width: 240px
 
              Only distances.
 
         - .. figure:: /images/modeling_meshes_tools_knife-measurement-angles.png
-             :width: 240px
 
              Only angles.
 
         - .. figure:: /images/modeling_meshes_tools_knife-measurement-both.png
-             :width: 240px
 
              Both distances and angles.
 
@@ -103,13 +100,11 @@ Angle Snapping
       :widths: 1 1
 
       * - .. figure:: /images/modeling_meshes_tools_knife_angle-before.png
-             :width: 240px
 
-             Relative snapping at 90°. Blender highlights the reference edge in yellow
+             Relative snapping at 90°. Blender highlights the reference edge in red
              and shows the snapping direction in white.
 
         - .. figure:: /images/modeling_meshes_tools_knife_angle-after.png
-             :width: 240px
 
              Doing a few more cuts and applying.
 

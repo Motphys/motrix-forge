@@ -5,262 +5,399 @@ ThemeUserInterface(bpy_struct)
 
 base class --- :class:`bpy_struct`
 
+
 .. class:: ThemeUserInterface(bpy_struct)
 
    Theme settings for user interface elements
 
+   .. attribute:: axis_w
+
+      W-axis for quaternion and axis-angle rotations (array of 3 items, in [0, 1], default (0.0, 0.0, 0.0))
+
+      :type: :class:`mathutils.Color`
+
    .. attribute:: axis_x
 
-      :type: :class:`mathutils.Color` of 3 items in [0, 1], default (0.0, 0.0, 0.0)
+      (array of 3 items, in [0, 1], default (0.0, 0.0, 0.0))
+
+      :type: :class:`mathutils.Color`
 
    .. attribute:: axis_y
 
-      :type: :class:`mathutils.Color` of 3 items in [0, 1], default (0.0, 0.0, 0.0)
+      (array of 3 items, in [0, 1], default (0.0, 0.0, 0.0))
+
+      :type: :class:`mathutils.Color`
 
    .. attribute:: axis_z
 
-      :type: :class:`mathutils.Color` of 3 items in [0, 1], default (0.0, 0.0, 0.0)
+      (array of 3 items, in [0, 1], default (0.0, 0.0, 0.0))
+
+      :type: :class:`mathutils.Color`
 
    .. attribute:: editor_border
 
-      Color of the border between editors
+      Color of the border between editors (array of 3 items, in [0, 1], default (0.0, 0.0, 0.0))
 
-      :type: :class:`mathutils.Color` of 3 items in [0, 1], default (0.0, 0.0, 0.0)
+      :type: :class:`mathutils.Color`
 
    .. attribute:: editor_outline
 
-      Color of the outline of each editor, except the active one
+      Color of the outline of each editor, except the active one (array of 4 items, in [0, 1], default (0.0, 0.0, 0.0, 0.0))
 
-      :type: float array of 4 items in [0, 1], default (0.0, 0.0, 0.0, 0.0)
+      :type: :class:`bpy_prop_array`\ [float]
 
    .. attribute:: editor_outline_active
 
-      Color of the outline of the active editor
+      Color of the outline of the active editor (array of 4 items, in [0, 1], default (0.0, 0.0, 0.0, 0.0))
 
-      :type: float array of 4 items in [0, 1], default (0.0, 0.0, 0.0, 0.0)
+      :type: :class:`bpy_prop_array`\ [float]
 
    .. attribute:: gizmo_a
 
-      :type: :class:`mathutils.Color` of 3 items in [0, 1], default (0.0, 0.0, 0.0)
+      (array of 3 items, in [0, 1], default (0.0, 0.0, 0.0))
+
+      :type: :class:`mathutils.Color`
 
    .. attribute:: gizmo_b
 
-      :type: :class:`mathutils.Color` of 3 items in [0, 1], default (0.0, 0.0, 0.0)
+      (array of 3 items, in [0, 1], default (0.0, 0.0, 0.0))
+
+      :type: :class:`mathutils.Color`
 
    .. attribute:: gizmo_hi
 
-      :type: :class:`mathutils.Color` of 3 items in [0, 1], default (0.0, 0.0, 0.0)
+      (array of 3 items, in [0, 1], default (0.0, 0.0, 0.0))
+
+      :type: :class:`mathutils.Color`
 
    .. attribute:: gizmo_primary
 
-      :type: :class:`mathutils.Color` of 3 items in [0, 1], default (0.0, 0.0, 0.0)
+      (array of 3 items, in [0, 1], default (0.0, 0.0, 0.0))
+
+      :type: :class:`mathutils.Color`
 
    .. attribute:: gizmo_secondary
 
-      :type: :class:`mathutils.Color` of 3 items in [0, 1], default (0.0, 0.0, 0.0)
+      (array of 3 items, in [0, 1], default (0.0, 0.0, 0.0))
+
+      :type: :class:`mathutils.Color`
 
    .. attribute:: gizmo_view_align
 
-      :type: :class:`mathutils.Color` of 3 items in [0, 1], default (0.0, 0.0, 0.0)
+      (array of 3 items, in [0, 1], default (0.0, 0.0, 0.0))
+
+      :type: :class:`mathutils.Color`
 
    .. attribute:: icon_alpha
 
-      Transparency of icons in the interface, to reduce contrast
+      Transparency of icons in the interface, to reduce contrast (in [0, 1], default 0.0)
 
-      :type: float in [0, 1], default 0.0
+      :type: float
 
    .. attribute:: icon_autokey
 
-      Color of Auto Keying indicator when enabled
+      Color of Auto Keying indicator when enabled (array of 4 items, in [0, 1], default (0.0, 0.0, 0.0, 0.0))
 
-      :type: float array of 4 items in [0, 1], default (0.0, 0.0, 0.0, 0.0)
+      :type: :class:`bpy_prop_array`\ [float]
 
    .. attribute:: icon_border_intensity
 
-      Control the intensity of the border around themes icons
+      Control the intensity of the border around themes icons (in [0, 1], default 0.0)
 
-      :type: float in [0, 1], default 0.0
+      :type: float
 
    .. attribute:: icon_collection
 
-      :type: float array of 4 items in [0, 1], default (0.0, 0.0, 0.0, 0.0)
+      (array of 4 items, in [0, 1], default (0.0, 0.0, 0.0, 0.0))
+
+      :type: :class:`bpy_prop_array`\ [float]
 
    .. attribute:: icon_folder
 
-      Color of folders in the file browser
+      Color of folders in the file browser (array of 4 items, in [0, 1], default (0.0, 0.0, 0.0, 0.0))
 
-      :type: float array of 4 items in [0, 1], default (0.0, 0.0, 0.0, 0.0)
+      :type: :class:`bpy_prop_array`\ [float]
 
    .. attribute:: icon_modifier
 
-      :type: float array of 4 items in [0, 1], default (0.0, 0.0, 0.0, 0.0)
+      (array of 4 items, in [0, 1], default (0.0, 0.0, 0.0, 0.0))
+
+      :type: :class:`bpy_prop_array`\ [float]
 
    .. attribute:: icon_object
 
-      :type: float array of 4 items in [0, 1], default (0.0, 0.0, 0.0, 0.0)
+      (array of 4 items, in [0, 1], default (0.0, 0.0, 0.0, 0.0))
+
+      :type: :class:`bpy_prop_array`\ [float]
 
    .. attribute:: icon_object_data
 
-      :type: float array of 4 items in [0, 1], default (0.0, 0.0, 0.0, 0.0)
+      (array of 4 items, in [0, 1], default (0.0, 0.0, 0.0, 0.0))
+
+      :type: :class:`bpy_prop_array`\ [float]
 
    .. attribute:: icon_saturation
 
-      Saturation of icons in the interface
+      Saturation of icons in the interface (in [0, 1], default 0.0)
 
-      :type: float in [0, 1], default 0.0
+      :type: float
 
    .. attribute:: icon_scene
 
-      :type: float array of 4 items in [0, 1], default (0.0, 0.0, 0.0, 0.0)
+      (array of 4 items, in [0, 1], default (0.0, 0.0, 0.0, 0.0))
+
+      :type: :class:`bpy_prop_array`\ [float]
 
    .. attribute:: icon_shading
 
-      :type: float array of 4 items in [0, 1], default (0.0, 0.0, 0.0, 0.0)
+      (array of 4 items, in [0, 1], default (0.0, 0.0, 0.0, 0.0))
+
+      :type: :class:`bpy_prop_array`\ [float]
+
+   .. attribute:: link
+
+      Color of link widgets (array of 4 items, in [0, 1], default (0.0, 0.0, 0.0, 0.0))
+
+      :type: :class:`bpy_prop_array`\ [float]
 
    .. attribute:: menu_shadow_fac
 
-      Blending factor for menu shadows
+      Blending factor for panel and menu shadows (in [0.01, 1], default 0.0)
 
-      :type: float in [0.01, 1], default 0.0
+      :type: float
 
    .. attribute:: menu_shadow_width
 
-      Width of menu shadows, set to zero to disable
+      Width of panel and menu shadows, set to zero to disable (in [0, 24], default 0)
 
-      :type: int in [0, 24], default 0
+      :type: int
+
+   .. attribute:: panel_active
+
+      Color of the outline of top-level panels that are active (array of 4 items, in [0, 1], default (0.0, 0.0, 0.0, 0.0))
+
+      :type: :class:`bpy_prop_array`\ [float]
+
+   .. attribute:: panel_back
+
+      (array of 4 items, in [0, 1], default (0.0, 0.0, 0.0, 0.0))
+
+      :type: :class:`bpy_prop_array`\ [float]
+
+   .. attribute:: panel_header
+
+      (array of 4 items, in [0, 1], default (0.0, 0.0, 0.0, 0.0))
+
+      :type: :class:`bpy_prop_array`\ [float]
+
+   .. attribute:: panel_outline
+
+      Color of the outline of top-level panels (array of 4 items, in [0, 1], default (0.0, 0.0, 0.0, 0.0))
+
+      :type: :class:`bpy_prop_array`\ [float]
 
    .. attribute:: panel_roundness
 
-      Roundness of the corners of panels and sub-panels
+      Roundness of the corners of panels and sub-panels (in [0, 1], default 0.4)
 
-      :type: float in [0, 1], default 0.4
+      :type: float
+
+   .. attribute:: panel_sub_back
+
+      (array of 4 items, in [0, 1], default (0.0, 0.0, 0.0, 0.0))
+
+      :type: :class:`bpy_prop_array`\ [float]
+
+   .. attribute:: panel_text
+
+      (array of 3 items, in [0, 1], default (0.0, 0.0, 0.0))
+
+      :type: :class:`mathutils.Color`
+
+   .. attribute:: panel_title
+
+      (array of 3 items, in [0, 1], default (0.0, 0.0, 0.0))
+
+      :type: :class:`mathutils.Color`
 
    .. attribute:: transparent_checker_primary
 
-      Primary color of checkerboard pattern indicating transparent areas
+      Primary color of checkerboard pattern indicating transparent areas (array of 3 items, in [0, 1], default (0.0, 0.0, 0.0))
 
-      :type: :class:`mathutils.Color` of 3 items in [0, 1], default (0.0, 0.0, 0.0)
+      :type: :class:`mathutils.Color`
 
    .. attribute:: transparent_checker_secondary
 
-      Secondary color of checkerboard pattern indicating transparent areas
+      Secondary color of checkerboard pattern indicating transparent areas (array of 3 items, in [0, 1], default (0.0, 0.0, 0.0))
 
-      :type: :class:`mathutils.Color` of 3 items in [0, 1], default (0.0, 0.0, 0.0)
+      :type: :class:`mathutils.Color`
 
    .. attribute:: transparent_checker_size
 
-      Size of checkerboard pattern indicating transparent areas
+      Size of checkerboard pattern indicating transparent areas (in [2, 48], default 0)
 
-      :type: int in [2, 48], default 0
+      :type: int
 
    .. data:: wcol_box
 
-      :type: :class:`ThemeWidgetColors`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeWidgetColors`
+
+   .. data:: wcol_curve
+
+      (readonly, never None)
+
+      :type: :class:`ThemeWidgetColors`
 
    .. data:: wcol_list_item
 
-      :type: :class:`ThemeWidgetColors`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeWidgetColors`
 
    .. data:: wcol_menu
 
-      :type: :class:`ThemeWidgetColors`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeWidgetColors`
 
    .. data:: wcol_menu_back
 
-      :type: :class:`ThemeWidgetColors`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeWidgetColors`
 
    .. data:: wcol_menu_item
 
-      :type: :class:`ThemeWidgetColors`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeWidgetColors`
 
    .. data:: wcol_num
 
-      :type: :class:`ThemeWidgetColors`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeWidgetColors`
 
    .. data:: wcol_numslider
 
-      :type: :class:`ThemeWidgetColors`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeWidgetColors`
 
    .. data:: wcol_option
 
-      :type: :class:`ThemeWidgetColors`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeWidgetColors`
 
    .. data:: wcol_pie_menu
 
-      :type: :class:`ThemeWidgetColors`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeWidgetColors`
 
    .. data:: wcol_progress
 
-      :type: :class:`ThemeWidgetColors`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeWidgetColors`
 
    .. data:: wcol_pulldown
 
-      :type: :class:`ThemeWidgetColors`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeWidgetColors`
 
    .. data:: wcol_radio
 
-      :type: :class:`ThemeWidgetColors`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeWidgetColors`
 
    .. data:: wcol_regular
 
-      :type: :class:`ThemeWidgetColors`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeWidgetColors`
 
    .. data:: wcol_scroll
 
-      :type: :class:`ThemeWidgetColors`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeWidgetColors`
 
    .. data:: wcol_state
 
-      :type: :class:`ThemeWidgetStateColors`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeWidgetStateColors`
 
    .. data:: wcol_tab
 
-      :type: :class:`ThemeWidgetColors`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeWidgetColors`
 
    .. data:: wcol_text
 
-      :type: :class:`ThemeWidgetColors`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeWidgetColors`
 
    .. data:: wcol_toggle
 
-      :type: :class:`ThemeWidgetColors`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeWidgetColors`
 
    .. data:: wcol_tool
 
-      :type: :class:`ThemeWidgetColors`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeWidgetColors`
 
    .. data:: wcol_toolbar_item
 
-      :type: :class:`ThemeWidgetColors`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeWidgetColors`
 
    .. data:: wcol_tooltip
 
-      :type: :class:`ThemeWidgetColors`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeWidgetColors`
 
    .. attribute:: widget_emboss
 
-      Color of the 1px shadow line underlying widgets
+      Color of the 1px shadow line underlying widgets (array of 4 items, in [0, 1], default (0.0, 0.0, 0.0, 0.0))
 
-      :type: float array of 4 items in [0, 1], default (0.0, 0.0, 0.0, 0.0)
+      :type: :class:`bpy_prop_array`\ [float]
 
    .. attribute:: widget_text_cursor
 
-      Color of the text insertion cursor (caret)
+      Color of the text insertion cursor (caret) (array of 3 items, in [0, 1], default (0.0, 0.0, 0.0))
 
-      :type: :class:`mathutils.Color` of 3 items in [0, 1], default (0.0, 0.0, 0.0)
+      :type: :class:`mathutils.Color`
 
    .. classmethod:: bl_rna_get_subclass(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: :class:`bpy.types.Struct` | None
       :return: The RNA type or default when not found.
-      :rtype: :class:`bpy.types.Struct` subclass
+      :rtype: :class:`bpy.types.Struct`
 
 
    .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: type | None
       :return: The class or default when not found.
       :rtype: type
 
@@ -271,7 +408,7 @@ Inherited Properties
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.id_data`
+   - :class:`bpy_struct.id_data`
 
 Inherited Functions
 -------------------
@@ -279,29 +416,30 @@ Inherited Functions
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.as_pointer`
-   * :class:`bpy_struct.driver_add`
-   * :class:`bpy_struct.driver_remove`
-   * :class:`bpy_struct.get`
-   * :class:`bpy_struct.id_properties_clear`
-   * :class:`bpy_struct.id_properties_ensure`
-   * :class:`bpy_struct.id_properties_ui`
-   * :class:`bpy_struct.is_property_hidden`
-   * :class:`bpy_struct.is_property_overridable_library`
-   * :class:`bpy_struct.is_property_readonly`
-   * :class:`bpy_struct.is_property_set`
-   * :class:`bpy_struct.items`
-   * :class:`bpy_struct.keyframe_delete`
-   * :class:`bpy_struct.keyframe_insert`
-   * :class:`bpy_struct.keys`
-   * :class:`bpy_struct.path_from_id`
-   * :class:`bpy_struct.path_resolve`
-   * :class:`bpy_struct.pop`
-   * :class:`bpy_struct.property_overridable_library_set`
-   * :class:`bpy_struct.property_unset`
-   * :class:`bpy_struct.rna_ancestors`
-   * :class:`bpy_struct.type_recast`
-   * :class:`bpy_struct.values`
+   - :class:`bpy_struct.as_pointer`
+   - :class:`bpy_struct.driver_add`
+   - :class:`bpy_struct.driver_remove`
+   - :class:`bpy_struct.get`
+   - :class:`bpy_struct.id_properties_clear`
+   - :class:`bpy_struct.id_properties_ensure`
+   - :class:`bpy_struct.id_properties_ui`
+   - :class:`bpy_struct.is_property_hidden`
+   - :class:`bpy_struct.is_property_overridable_library`
+   - :class:`bpy_struct.is_property_readonly`
+   - :class:`bpy_struct.is_property_set`
+   - :class:`bpy_struct.items`
+   - :class:`bpy_struct.keyframe_delete`
+   - :class:`bpy_struct.keyframe_insert`
+   - :class:`bpy_struct.keys`
+   - :class:`bpy_struct.path_from_id`
+   - :class:`bpy_struct.path_from_module`
+   - :class:`bpy_struct.path_resolve`
+   - :class:`bpy_struct.pop`
+   - :class:`bpy_struct.property_overridable_library_set`
+   - :class:`bpy_struct.property_unset`
+   - :class:`bpy_struct.rna_ancestors`
+   - :class:`bpy_struct.type_recast`
+   - :class:`bpy_struct.values`
 
 References
 ----------
@@ -309,5 +447,5 @@ References
 .. hlist::
    :columns: 2
 
-   * :class:`Theme.user_interface`
+   - :class:`Theme.user_interface`
 

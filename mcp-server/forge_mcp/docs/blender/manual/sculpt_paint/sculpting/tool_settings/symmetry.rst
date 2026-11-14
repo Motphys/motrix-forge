@@ -26,7 +26,7 @@ Tiling
 Feather
    Reduces the strength of the stroke where it overlaps the planes of symmetry.
 
-.. _bpy.types.Sculpt.radial_symmetry:
+.. _bpy.types.Mesh.radial_symmetry:
 
 Radial X, Y, Z
    These settings allow for radial symmetry in the desired axes.

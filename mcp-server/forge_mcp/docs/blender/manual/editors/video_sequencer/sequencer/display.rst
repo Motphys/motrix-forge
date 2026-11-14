@@ -3,7 +3,7 @@
 Display
 *******
 
-.. _bpy.types.SpaceSequenceEditor.show_strip_overlay:
+.. _bpy.types.SpaceSequenceEditor.show_overlays:
 .. _bpy.types.SequencerTimelineOverlay:
 
 Sequencer Overlays
@@ -53,16 +53,6 @@ Duration
 Animation Curves
    Shows animation curves for volume (Sound strips) and opacity (other strips).
 
-.. _bpy.types.SequencerTimelineOverlay.show_thumbnails:
-
-Thumbnails
-   Displays thumbnails across the full width of each Movie or Image strip.
-   The thumbnail size depends on the vertical zoom level (which can be adjusted
-   by dragging up and down with :kbd:`Ctrl-MMB`). Zooming in results in taller
-   strips with bigger, but fewer thumbnails. Zooming out results in narrower
-   strips with smaller, but more thumbnails.
-
-
 .. _bpy.types.SequencerTimelineOverlay.show_strip_tag_color:
 
 Color Tags
@@ -78,6 +68,23 @@ Offsets
    the strip's handles). See :ref:`bpy.types.Strip.frame_offset_start`.
 
 
+Thumbnails
+----------
+
+.. _bpy.types.SequencerTimelineOverlay.thumbnail_display_style:
+
+Thumbnails
+   How thumbnails are displayed.
+   The thumbnail size depends on the vertical zoom level (which can be adjusted
+   by dragging up and down with :kbd:`Ctrl-MMB`). Zooming in results in taller
+   strips with bigger, but fewer thumbnails. Zooming out results in narrower
+   strips with smaller, but more thumbnails.
+
+   :None: Do not show strip thumbnails.
+   :Strip Ends: Show thumbnails only at the beginning and end of the strip.
+   :Continuous: Displays thumbnails across the full width of each Movie or Image strips.
+
+
 Waveforms
 ---------
 
@@ -88,7 +95,7 @@ Type
 
    :On: Enable waveforms for all strips.
    :Strip:
-      Use the :ref:`Display Waveform <bpy.types.SoundSequence.show_waveform>`
+      Use the :ref:`Display Waveform <bpy.types.SoundStrip.show_waveform>`
       option of each individual strip.
    :Off: Disable waveforms for all strips.
 

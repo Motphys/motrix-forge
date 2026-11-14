@@ -5,143 +5,115 @@
 Shrinkwrap Constraint
 *********************
 
-The *Shrinkwrap* constraint is the "object counterpart" of
-the :doc:`Shrinkwrap Modifier </modeling/modifiers/deform/shrinkwrap>`.
-It moves the owner origin and therefore the owner object's location to the surface of its target.
-This implies that the target *must* have a surface; thus, you can only use meshes as targets.
+The *Shrinkwrap* constraint snaps an object or bone to the surface of a mesh. It's similar
+to the :doc:`/modeling/modifiers/deform/shrinkwrap`, which snaps every vertex of a mesh to
+the surface of another.
 
+Like other constraints, the *Shrinkwrap* constraint ignores the geometry of its owner object
+and purely works with its :doc:`origin </scene_layout/object/origin>`. This means that, if the
+origin is at the object's center, the object will clip into the target mesh instead of sitting
+on its surface. This can be mitigated with the *Distance* setting.
 
 Options
 =======
 
 .. figure:: /images/animation_constraints_relationship_shrinkwrap_panel.png
 
-   Shrinkwrap panel.
+   Shrinkwrap constraint.
 
-Target
-   :ref:`ui-data-id` used to select the constraint's target, which *must* be a mesh object,
-   and is not functional (red state) when it has none.
-   See :ref:`common constraint properties <rigging-constraints-interface-common-target>` for more information.
+:ref:`Target <rigging-constraints-interface-common-target>`
+   The mesh object to snap to.
 
 Distance
-   This number field controls the offset of the owner from the shrunk computed position on the target's surface.
-
-Influence
-   Controls the percentage of affect the constraint has on the object.
-   See :ref:`common constraint properties <bpy.types.constraint.influence>` for more information.
-
+   How far to stay away from the surface.
 
 Mode
-----
+   How to find the point to snap to.
 
-This selector allows you to select which method to use to compute the point on
-the target's surface to which to move the owner's origin. You have these options:
+   :Nearest Surface Point:
+      Snap to the surface point that's closest to the constraint owner's original location.
+   :Project:
+      Project the owner's original location along a certain axis and snap to the first
+      intersection with the target surface. See `Project Mode Settings`_.
+   :Nearest Vertex:
+      Snap to the mesh vertex that's closest to the owner's original location.
+   :Target Normal Project:
+      Snap to the nearest surface point that, if projected along its normal, intersects
+      the constraint owner's original location.
+
+      This mode produces better results than *Nearest Surface Point* but is also slower to
+      calculate. In addition, the surface normal is obtained by interpolating the surrounding
+      vertex normals, which may not match the expected normal if the mesh uses flat shading.
+
+Snap Mode
+   Determines how the *Distance* offset is applied.
+
+   :On Surface:
+      Snap to the point that's *Distance* away from the surface and is on the same side
+      as the owner's original location: if the owner was previously outside the mesh,
+      it stays outside, and if it was inside, it stays inside.
+   :Outside Surface:
+      Snap to the point that's *Distance* away from the surface and is on the outside,
+      regardless of where the owner was originally.
+   :Above Surface:
+      Like *Outside Surface*, but applies the offset along the interpolated surface normal.
+      (The other modes apply it along the line between the constraint owner's original location
+      and the snapping point on the target surface).
+   :Inside:
+      "Shrinks" the mesh by *Distance* and traps the owner inside it. (If the owner was already
+      inside the shrunk volume, the constraint does nothing.)
+   :Outside:
+      "Inflates" the mesh by *Distance* and pushes the owner out of it. (If the owner was already
+      outside the inflated volume, the constraint does nothing.)
+
+   The *Inside* and *Outside* modes can be used for very crude collision detection. Because
+   they only check the closest face of the target mesh, they won't give the expected result
+   near sharp corners.
+
+   If *Mode* is set to *Nearest Vertex*, this setting is not available and the constraint
+   owner is simply snapped to the nearest location that's *Distance* away from the nearest
+   vertex, regardless of any surface normals.
+
+Align To Normal
+   Aligns the specified local axis of the owner to the interpolated surface normal of the target.
+   This is done using a :term:`swing` rotation.
+
+   Not available for the *Nearest Vertex* mode.
+
+:ref:`bpy.types.constraint.influence`
+   How strongly the constraint affects the owner.
 
 
-Nearest Surface Point
-^^^^^^^^^^^^^^^^^^^^^
-
-The chosen target's surface's point will be the nearest one to the original owner's location.
-This is the default and most commonly useful option.
-
-
-Projection
-^^^^^^^^^^
-
-The target's surface point is determined by projecting the owner's origin along a given axis.
+Project Mode Settings
+---------------------
 
 Project Axis
-   This axis is controlled by the radio buttons that show up when you select this type.
-   This mean the projection axis can only be aligned with one of the three axes, or their opposites.
-   When the projection of the owner's origin along the selected direction does not hit the target's surface,
-   the owner's location is left unchanged.
-
-   +X, +Y, +Z, -X, -Y, -Z
+   The axis and direction to project along. If no intersection is found, the owner's location is left unchanged.
 
 Space
-   Coordinate space in which the axis direction is specified.
+   Coordinate space for the projection axis.
 
 Distance
    Distance cutoff after which projection is assumed to have failed, leaving the location unchanged.
+   A value of 0 means there's no limit.
 
 Project Opposite
-   In addition to the selected projection axis, project in the opposite direction and
-   choose the closest hit.
+   Also project in the opposite direction (along the same axis).
 
 Face Cull
-   This radio button allows you to prevent any projection over the "front side"
-   (respectively the "back side") of the target's faces. The "side" of a face is determined
-   by its normal (front being the side "from where" the normal "originates").
-
-   Off, Front, Back
-
-   Invert Cull
-      When used with *Project Opposite* and *Face Culling*, it inverts the *Front* or *Back* cull choice
-      for the opposite direction.
-
-
-Nearest Vertex
-^^^^^^^^^^^^^^
-
-This method is very similar to the *Nearest Surface Point* one,
-except that the owner's possible shrink locations are limited to the target's vertices.
-
-This method doesn't support the *Snap Mode* setting described below.
-
-
-Target Normal Projection
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-This method is similar to *Nearest Surface Point*, but produces a much smoother
-projection in return for being significantly slower.
-
-Instead of finding the closest point, it searches for the nearest point
-that has its interpolated smooth normal pointing towards or away from the original owner position.
-Non-manifold boundary edges are specially handled as infinitely thin cylinders
-that emit normals in all perpendicular directions; ignores flat shading.
-
-
-Snap Mode
----------
-
-Most Shrinkwrap types support an additional setting to control how the owner is moved to
-the target point selected by the methods described above. Some of the choices
-only differ if *Distance* is not zero.
-
-On Surface
-   The owner location is always changed. The offset is applied along the projection line
-   connecting the original owner location and selected target point towards
-   the original position.
-
-Outside Surface
-   Like *On Surface*, but the offset is always applied towards the outside of the target.
-
-Above Surface
-   Like *On Surface*, but the offset is applied along the smooth normal of the target.
-
-Inside
-   The owner is not moved if it is already inside the target.
-   Offset shrinks the allowed volume towards the inside along the projection line.
-
-Outside
-   The owner is not moved if it is already outside the target.
-   Offset expands the exclusion volume towards the outside along the projection line.
-
-The *Inside* and *Outside* options can be used for very crude collision detection.
-The inside vs outside determination is done based on the target normal and
-is not always stable near 90 degree and sharper angles in the target mesh.
-
-
-Align To Normal
----------------
-
-Whenever *Snap Mode* is available, it is also possible to align the specified
-local axis of the object to the smooth normal of the target at the selected
-point. The axis is selected via radio buttons.
-
-The alignment is performed via smallest rotation, like in
-:doc:`Damped Track </animation/constraints/tracking/damped_track>` constraint.
-
+   :Off:
+      Snap to the first encountered face regardless of its normal.
+   :Front:
+      Don't snap if the projection hit the front side of a face (specifically, if the normal of
+      the face points towards the constraint owner). In general, this means the owner will
+      get snapped to the surface if it's inside the target mesh, and keep its original location otherwise.
+   :Back:
+      Don't snap if the projection hit the back side of a face (specifically, if the normal of
+      the face points away from the constraint owner). In general, this means the owner will get
+      snapped to the surface if it's outside the target mesh, and keep its original location otherwise.
+   :Invert Cull:
+      If *Project Opposite* is enabled and an intersection is found in this opposite direction,
+      use the opposite *Face Cull* option (so *Back* if *Front* was chosen and vice versa).
 
 Example
 =======

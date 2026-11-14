@@ -11,22 +11,26 @@ Separate
    :Menu:      :menuselection:`Mesh --> Separate`
    :Shortcut:  :kbd:`P`
 
-At some point, you will come to a time when you need to cut parts away from a mesh to be separate.
-
-To separate an object, the vertices (or faces) must be selected and then separated,
-though there are several different ways to do this.
+Splits the mesh into two or more new, separate mesh objects.
 
 .. figure:: /images/modeling_meshes_editing_mesh_separate_example.png
 
    Suzanne dissected neatly.
 
+Options
+=======
+
 Selection
-   Separates the selected elements.
+   Disconnects the selected geometry from its surroundings and moves it into a new object.
 By Material
-   Separates fragments based on the materials assigned to the different faces.
+   Splits the mesh into an object per :ref:`material slot <bpy.types.MaterialSlot>`,
+   each containing the faces using that material slot. This is done for the whole mesh regardless
+   of the selection.
 By Loose Parts
-   Creates one object for every independent (disconnected) fragment of the original mesh.
+   Creates an object for every independent (disconnected) piece of the original mesh.
+   This is done for the whole mesh regardless of the selection.
 
 .. seealso::
 
-   :ref:`Joining objects <object-join>`.
+   - :ref:`bpy.ops.mesh.split` for disconnecting geometry without moving it into a new object.
+   - :doc:`/scene_layout/object/editing/join` for merging multiple objects into one.

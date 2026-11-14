@@ -16,24 +16,23 @@ Visibility
 
    There are several other :doc:`general visibility </scene_layout/object/properties/visibility>` properties.
 
-Mask
-   .. _bpy.types.Object.is_shadow_catcher:
+.. _bpy.types.Object.is_shadow_catcher:
 
-   Shadow Catcher
-      Enables the object to only receive shadow rays. It is to be noted that,
-      shadow catcher objects will interact with other CG objects via indirect light interaction.
-      This simplifies compositing :abbr:`CGI (Computer-Generated Imagery)` elements into real-world footage.
+Mask -- Shadow Catcher
+   Enables the object to only receive shadow rays. It is to be noted that,
+   shadow catcher objects will interact with other CG objects via indirect light interaction.
+   This simplifies compositing :abbr:`CGI (Computer-Generated Imagery)` elements into real-world footage.
 
-      .. note::
+   .. note::
 
-         The *Shadow Catcher* outputs different results depending on if the *Shadow Catcher* pass is enabled in
-         :ref:`Render Layer <render_layers_passes_data>` settings. With the *Shadow Catcher* pass enabled, all
-         indirect light interactions are captured. With it disabled, a simple approximation is used instead.
-         The simple approximation is used in viewport rendering.
+      The *Shadow Catcher* outputs different results depending on if the *Shadow Catcher* pass is enabled in
+      :ref:`Render Layer <render_layers_passes_data>` settings. With the *Shadow Catcher* pass enabled, all
+      indirect light interactions are captured. With it disabled, a simple approximation is used instead.
+      The simple approximation is used in viewport rendering.
 
-      .. figure:: /images/render_cycles_object-settings_object-data_shadow-catcher.jpg
+   .. figure:: /images/render_cycles_object-settings_object-data_shadow-catcher.jpg
 
-         Example of the shadow catcher. Note how the material of the plane can still be viewed in the spheres.
+      Example of the shadow catcher. Note how the material of the plane can still be viewed in the spheres.
 
 
 .. _cycles-ray-visibility:
@@ -148,7 +147,7 @@ Shadow Terminator
 
 Geometry Offset
    Offset rays from the surface to reduce shadow terminator artifacts on low-poly geometry.
-   Higher values affect more triangles, a value of one affecting all triangles and zero having no affect.
+   Higher values affect more triangles, a value of one affecting all triangles and zero having no effect.
    The default value only affects triangles at grazing angles to light and should eliminate most artifacts.
 
    Unlike the *Shading Offset*, this option has little affect on the lighting
@@ -198,36 +197,27 @@ to selectively speed up caustic rendering of objects in your scene.
 
    The rendering technique used to speed up the rendering of caustics is based on
    :abbr:`MNEE (Manifold Next Event Estimation)`. There are a number of limitations with this technique
-   and it's implementation in Cycles:
+   and its implementation in Cycles:
 
    - Only refractive caustics in the shadows of objects work. Caustics from reflections or caustics that
      fall outside shadows are not rendered with this technique.
-
    - MNEE Caustics are an approximation of caustics and will produce physically inaccurate results
      in many situations. Examples include incorrect brightnesses and the incorrect representation of
      caustics caused by rough or curved surfaces.
-
    - In complex materials with multiple refractive BSDFs, MNEE will only generate caustics for one of
      the BSDFs.
-
    - :ref:`Filter Glossy <bpy.types.CyclesRenderSettings.blur_glossy>` settings are ignored when using
      MNEE for refractive caustics.
-
    - MNEE Caustic rays can pass through up to 6 Caustic Caster surfaces between a Caustic Receiver and a
      Shadow Caustic light before the ray is terminated and caustics are ignored.
-
    - The :ref:`Ambient Occlusion <bpy.types.ShaderNodeAmbientOcclusion>` and
      :ref:`Bevel <bpy.types.ShaderNodeBevel>` nodes will not produce a valid result on objects that are
      a Caustic caster or Caustic receiver while the scene contains a active Caustic caster,
      Caustic receiver, and :ref:`Shadow Caustic Light <bpy.types.CyclesLightSettings.is_caustics_light>`.
-
    - MNEE Caustics only work if the caustic caster has smooth normals.
-
    - Volumetric materials are not considered when calculating MNEE caustics.
-
    - Bump and normal maps are ignored when calculating caustics.
-
-   - GPU rendering using *HIP* devices is not supported.
+   - GPU rendering using Radeon RX 6000 series *HIP* devices on Windows is not supported.
 
 .. _bpy.types.CyclesObjectSettings.is_caustics_caster:
 

@@ -19,12 +19,6 @@ Boundary Edges
    Edges used to split faces into separate groups.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

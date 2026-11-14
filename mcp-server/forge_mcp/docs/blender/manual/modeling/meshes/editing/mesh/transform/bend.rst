@@ -10,72 +10,64 @@ Bend
    :Menu:      :menuselection:`Object/Mesh/Curve/Surface --> Transform --> Bend`
    :Shortcut:  :kbd:`Shift-W`
 
-.. list-table:: Bend Transform with Clamp on and off.
+This transformation bends part of the selection into a circle segment. It's similar to
+:doc:`/modeling/meshes/editing/mesh/transform/warp`, except that here, the 3D Cursor
+is on the circle instead of at the center.
+
+.. list-table::
+   :widths: 1 1 1
 
    * - .. figure:: /images/modeling_meshes_editing_mesh_transform_bend_example-clamp-1.png
-          :width: 320px
 
           Before.
 
      - .. figure:: /images/modeling_meshes_editing_mesh_transform_bend_example-clamp-2.png
-          :width: 320px
 
           Clamp on.
 
      - .. figure:: /images/modeling_meshes_editing_mesh_transform_bend_example-clamp-3.png
-          :width: 320px
 
           Clamp off.
-
-This tool rotates a line of selected elements forming an arc between the mouse cursor and the 3D cursor.
-
 
 Usage
 =====
 
-The *Bend* tool can be used in any case where you might want to bend a shape in two
-with a gradual transition between both sides.
+#. Align the 3D Viewport's :doc:`viewpoint </editors/3dview/navigate/viewpoint>` to the plane
+   in which the bend should happen.
+#. Place the :doc:`/editors/3dview/3d_cursor` at the base of the bend. The geometry around
+   this point will stay in place.
+#. Place the mouse cursor so that the line between it and the 3D Cursor lies along the
+   geometry to bend.
+#. Press :kbd:`Shift-W` to activate the tool and move the mouse to bend the geometry.
 
-This may take a little getting used to, the basics are listed below controls are noted here:
+   - The distance between the mouse cursor and the 3D Cursor determines the bend radius
+     and how much of the selected geometry is bent (instead of just rotated).
+     Hold :kbd:`Alt` to disable clamping and bend all selected geometry instead.
+   - The angle between the original line and the new line determines the bend angle.
 
-- The initial position of the cursors define the axis to bend on.
-- The distance of the mouse cursor to the 3D cursor controls how sharp the bend will be.
-- The relative angle of the mouse cursor to the initial axis defines the bend angle.
-
-If this seems overly complicated, it's probably best to try the tool
-where it becomes quickly apparent how the tool reacts to your input.
-
-Bend Angle
-   The amount of rotation.
-Radius
-   The sharpness of the bend.
-Clamp
-   Normally the arc turns through a clamped rotation angle with the selected elements extended along
-   a tangent line beyond that (see above left).
-   When the clamp is deactivated, the arc continues around aligning the selected elements into a circle (right).
-
-   When off :kbd:`Alt` all selected elements follow a circle,
-   even when outside the segment between the 3D cursor and the mouse.
+#. Press :kbd:`LMB` or :kbd:`Return` to confirm, or :kbd:`RMB` or :kbd:`Esc` to cancel.
 
 .. note::
 
-   Unlike most other transform modes, *Bend* is not effected by *Pivot Point* or *Transform Orientation*,
-   always using the View Plane instead.
+   Unlike most other transform tools, *Bend* does not take into account the
+   :doc:`transform orientation </editors/3dview/controls/orientation>` or the
+   :doc:`pivot point </editors/3dview/controls/pivot_point/index>`, instead always
+   using the view plane and the 3D Cursor.
 
 .. hint::
 
-   You can turn the bend angle through multiple rotations potentially forming a spiral shape.
+   Moving the mouse cursor around the 3D Cursor multiple times will correspondingly
+   bend the geometry over multiple circle revolutions.
+
+Options
+=======
+
+Unlike other operators, the Bend operator doesn't support the
+:ref:`bpy.ops.screen.redo_last` panel.
+
+Example
+=======
 
 .. figure:: /images/modeling_meshes_editing_mesh_transform_bend_example-usage.png
 
-   Bend Transform example.
-
-
-Known Limitations
-=================
-
-
-Adjust Last Operation Unsupported
----------------------------------
-
-Since the bend tool relies on cursor input, it does not support adjusting the last bend operation.
+   Multiple consecutive bends.

@@ -9,23 +9,24 @@ Capture Attribute Node
    :align: right
    :alt: Capture Attribute node.
 
-The *Capture Attribute* node stores the result of a field on a geometry,
-and outputs the data as a node socket so it can be used by other nodes.
+The *Capture Attribute* node stores one or more fields on a geometry,
+and outputs those same fields so they can be read by other nodes.
 
-The result is stored on the geometry just like a regular attribute with
-a name, but instead of referencing it with a name, it is retrieved whenever
-the socket is connected to the input of a node. Later on when evaluating the node tree,
-the attribute will be removed automatically if it is no longer used.
+This storing and retrieving of a field can also be done with the
+:doc:`/modeling/geometry_nodes/attribute/store_named_attribute`
+and the :doc:`/modeling/geometry_nodes/geometry/read/named_attribute`
+respectively. The difference is that the *Capture Attribute* node creates
+an :ref:`anonymous attribute <anonymous-attributes>`, meaning there's no
+need to specify a name and there's no clutter at the end.
+This makes the node ideal for temporary data storage.
 
-This node is essential because field input nodes like the :doc:`/modeling/geometry_nodes/geometry/read/radius`
-work in the context of the node they are connected to. Meaning that in order to pass data like ``radius``
-to a geometry that doesn't have radius, an explicit node link with the output of this node must be used.
+A common use case is saving information that would normally be lost while
+converting geometry -- see the example below.
 
 .. note::
 
-   Because this node stores an :ref:`anonymous attribute <anonymous-attributes>` in the geometry,
-   it's essential to use the geometry output for further operations in the node tree.
-   The anonymous attribute will not exist for any other geometry besides the output.
+   The new attribute is only available in the geometry produced by this node.
+   It can't be read in the geometry of "sibling" or "upstream" nodes.
 
 
 Inputs
@@ -34,10 +35,19 @@ Inputs
 Geometry
    Standard geometry input.
 
+Selection
+   Boolean field indicating which elements are captured.
+
+   The captured fields are only evaluated for selected elements.
+   Unselected elements are assigned the default value for the corresponding data type
+
 Capture Items
-   The input field to evaluate.
-   More fields can be added by dragging sockets into the blank socket or in the *Capture Items* panel.
-   Items can be renamed by :kbd:`Ctrl-LMB` on the socket name or in the nodes *Properties* panel.
+   The fields to store. Inputs can be added by connecting another node's output
+   to this node's blank input, or by using the *Capture Items* list in the node's
+   *Properties* panel.
+
+   The inputs can be renamed by clicking them with :kbd:`Ctrl-LMB` in the node
+   itself or in its *Capture Items* list. The latter also accepts double clicking.
 
 
 Properties
@@ -54,11 +64,10 @@ Capture Items
 
    :Menu: :menuselection:`Sidebar --> Node --> Properties --> Capture Items`
 
-Manages the input fields sockets of the node.
-Field sockets can be added, removed, reorganized, and renamed from the :ref:`ui-list-view`.
+:ref:`ui-list-view` for adding, removing, reordering, and renaming the inputs of the node.
 
 Data Type
-   The :ref:`data type <attribute-data-types>` used for the evaluated data.
+   The :ref:`data type <attribute-data-types>` of the selected input.
 
 
 Outputs
@@ -67,22 +76,32 @@ Outputs
 Geometry
    Standard geometry output.
 
+Selection
+   Passes through the evaluated *Selection* field.
+
+   This can be used by downstream nodes without evaluating the selection field again.
+
 Attribute
-   The result of the evaluated field, stored on the geometry.
+   The node has an attribute output for each of its field inputs.
 
 
-Examples
-========
+Example
+=======
 
 .. figure:: /images/modeling_geometry-nodes_attribute_capture-attribute_example.png
 
-Here, a noise texture is evaluated in along the path of the curve in one dimension
-and rendered with a shader. The capture node is required because the output of
-the :doc:`/modeling/geometry_nodes/curve/operations/curve_to_mesh` does not have a "curve parameter",
-since it is a mesh and not a curve. So, the :doc:`/modeling/geometry_nodes/curve/read/spline_parameter`
-must be evaluated while the geometry is still a curve.
+The goal of this example is to turn a Curve into a tube-shaped mesh with pieces
+cut away at regular intervals. At first, this seems straightforward: use the
+:doc:`/modeling/geometry_nodes/curve/operations/curve_to_mesh` to create the tube,
+read from the :doc:`/modeling/geometry_nodes/curve/read/spline_parameter` to find
+out where each tube vertex lies on the original curve, and do some math to decide
+whether to delete the vertex.
 
-Internally, after the noise texture is evaluated on the curve,
-it is automatically copied to the mesh result of the Curve to Mesh node.
-This means that anywhere *Attribute* output of this node can be connected along
-the same stream of geometry nodes, the internal attribute will be available.
+This alone doesn't work, however: the *Spline Parameter* node calculates its outputs
+on the fly, and it can only do so for curves. Once the curve has been converted
+to a mesh, this node can no longer be used.
+
+This is where the *Capture Attribute* node comes in: it can *store* the calculated
+distance on each curve control point. The *Curve to Mesh* node then transfers these
+numbers to the mesh vertices (as it does for any attribute). From there, the attribute
+can be retrieved again by connecting to the same *Capture Attribute* node that stored it.

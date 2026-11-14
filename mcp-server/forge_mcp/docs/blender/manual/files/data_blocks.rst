@@ -27,13 +27,13 @@ Some common characteristics:
 - They can have their own animation data.
 - They can have :doc:`/files/custom_properties`.
 
-User will typically interact with the higher level data types (objects, meshes, etc.).
+You will typically interact with the higher level data types (objects, meshes, etc.).
 When doing more complex projects, managing data-blocks becomes more important,
 especially when inter-linking blend-files.
 The main editor for that is the :doc:`Outliner </editors/outliner/index>`.
 
-Not all data in Blender is a data-block,
-bones, sequence strips or vertex groups e.g. are not,
+Not all data in Blender is a data-block. E.g.
+bones, sequence strips or vertex groups are not;
 they belong to armature, scene and mesh types respectively.
 
 
@@ -47,16 +47,10 @@ Data-Block Types
    it is the only comprehensive list of data-blocks, and something which you cannot
    find directly just through looking at the interface.
    ::
-   (TODO add) links to related docs for each type.
-
-.. Image source Scene tab --> Active keying set panel --> ID-block (sound replaced).
-
-.. figure:: /images/files_data-blocks_id-types.png
-   :align: right
-
-   Data-blocks types with their icon.
+   Use :ref:`bpy.types.SpaceOutliner.filter_id_type` as a reference list.
 
 For reference, here is a table of data-blocks types stored in blend-files.
+
 
 Link
    Library Linking, supports being linked into other blend-files.
@@ -88,168 +82,189 @@ Pack
      - Link
      - Pack
      - Description
-   * - :doc:`Action </animation/actions>`
+   * - :bl-icon:`action` :doc:`Action </animation/actions>`
      - |tick|
      - |none|
      - Stores animation F-Curves.
        Used as data-block animation data, and the Nonlinear Animation editor.
-   * - :doc:`Armature </animation/armatures/introduction>`
+   * - :bl-icon:`armature_data` :doc:`Armature </animation/armatures/introduction>`
      - |tick|
      - |none|
      - Skeleton used to deform meshes.
        Used as data of armature objects, and by the Armature Modifier.
-   * - :doc:`Brush </sculpt_paint/brush/index>`
+   * - :bl-icon:`brush_data` :doc:`Brush </sculpt_paint/brush/index>`
      - |tick|
      - |none|
      - Used as brush assets in sculpt and paint modes.
-   * - :doc:`Camera </render/cameras>`
-     - |tick|
-     - |none|
-     - Used as data by camera objects.
-   * - :doc:`Cache File </modeling/modifiers/modify/mesh_sequence_cache>`
+   * - :bl-icon:`file_blank` :doc:`Cache File </modeling/modifiers/modify/mesh_sequence_cache>`
      - |tick|
      - |none|
      - Used by Mesh Cache modifiers.
-   * - :doc:`Curve </modeling/curves/introduction>`
+   * - :bl-icon:`camera_data` :doc:`Camera </render/cameras>`
      - |tick|
      - |none|
-     - Used as data by curve, font & surface objects.
-   * - :doc:`Font </modeling/texts/introduction>`
-     - |tick|
-     - |tick|
-     - References font files.
-       Used by curve object-data of text objects.
-   * - :doc:`Grease Pencil </grease_pencil/introduction>`
-     - |tick|
-     - |none|
-     - 2D/3D sketch data used by Grease Pencil objects.
-       Used as overlay *helper* info, by the 3D Viewport, Image, Sequencer & Movie Clip editors.
-   * - :doc:`Collection </scene_layout/collections/introduction>`
+     - Used as data by camera objects.
+   * - :bl-icon:`outliner_collection` :doc:`Collection </scene_layout/collections/introduction>`
      - |tick|
      - |none|
      - Group and organize objects in scenes.
        Used to instance objects, and in library linking.
-   * - :doc:`Image </editors/image/introduction>`
+   * - :bl-icon:`curve_data` :doc:`Curve </modeling/curves/introduction>`
+     - |tick|
+     - |none|
+     - Used as data by curve, font & surface objects.
+   * - :bl-icon:`curve_data` :doc:`Curves </modeling/curves_new/index>`
+     - |tick|
+     - |none|
+     - New curve data type (replacing curve).
+   * - :bl-icon:`font_data` :doc:`Font </modeling/texts/introduction>`
+     - |tick|
+     - |tick|
+     - References font files.
+       Used by curve object-data of text objects.
+   * - :bl-icon:`greasepencil` :doc:`Grease Pencil </grease_pencil/introduction>`
+     - |tick|
+     - |none|
+     - 2D/3D sketch data used by Grease Pencil objects.
+       Used as overlay *helper* info, by the 3D Viewport, Image, Sequencer & Movie Clip editors.
+   * - :bl-icon:`greasepencil` :doc:`Grease Pencil v3 </grease_pencil/introduction>`
+     - |tick|
+     - |none|
+     - 2D/3D sketch data used by Grease Pencil objects.
+       Used as overlay *helper* info, by the 3D Viewport, Image, Sequencer & Movie Clip editors.
+   * - :bl-icon:`image_data` :doc:`Image </editors/image/introduction>`
      - |tick|
      - |tick|
      - Image files.
        Used by shader nodes and textures.
-   * - :doc:`Keys (Shape Keys) </animation/shape_keys/introduction>`
+   * - :bl-icon:`shapekey_data` :doc:`Key (Shape Keys) </animation/shape_keys/introduction>`
      - |cross|
      - |none|
      - Geometry shape storage, which can be animated.
        Used by mesh, curve, and lattice objects.
-   * - :doc:`Light </render/lights/light_object>`
-     - |tick|
-     - |none|
-     - Used as object data by light objects.
-   * - :doc:`Library </files/linked_libraries/index>`
-     - |cross|
-     - |tick|
-     - References to an external blend-file.
-       Access from the Outliner's *Blender File* view.
-   * - :doc:`Line Style </render/freestyle/introduction>`
-     - |tick|
-     - |none|
-     - Used by the Freestyle renderer.
-   * - :doc:`Lattice </animation/lattice>`
+   * - :bl-icon:`lattice_data` :doc:`Lattice </animation/lattice>`
      - |tick|
      - |none|
      - Grid based lattice deformation.
        Used as data of lattice objects, and by the Lattice Modifier.
-   * - :doc:`Mask </movie_clip/masking/introduction>`
+   * - :bl-icon:`library_data_direct` :doc:`Library </files/linked_libraries/index>`
+     - |cross|
+     - |tick|
+     - References to an external blend-file.
+       Access from the Outliner's *Blender File* view.
+   * - :bl-icon:`light_data` :doc:`Light </render/lights/light_object>`
+     - |tick|
+     - |none|
+     - Used as object data by light objects.
+   * - :bl-icon:`lightprobe_sphere` :doc:`Light Probe </render/eevee/light_probes/index>`
+     - |tick|
+     - |none|
+     - Help achieve complex real-time lighting in EEVEE.
+   * - :bl-icon:`line_data` :doc:`Line Style </render/freestyle/introduction>`
+     - |tick|
+     - |none|
+     - Used by the Freestyle renderer.
+   * - :bl-icon:`mod_mask` :doc:`Mask </movie_clip/masking/introduction>`
      - |tick|
      - |none|
      - 2D animated mask curves.
        Used by compositing nodes & sequencer strip.
-   * - :doc:`Material </render/materials/introduction>`
+   * - :bl-icon:`material_data` :doc:`Material </render/materials/introduction>`
      - |tick|
      - |none|
      - Set shading and texturing render properties.
        Used by objects, meshes & curves.
-   * - :doc:`Metaball </modeling/metas/introduction>`
-     - |tick|
-     - |none|
-     - An isosurface in 3D space.
-       Used as data of metaball objects.
-   * - :doc:`Mesh </modeling/meshes/introduction>`
+   * - :bl-icon:`mesh_data` :doc:`Mesh </modeling/meshes/introduction>`
      - |tick|
      - |none|
      - Geometry made of vertices/edges/faces.
        Used as data of mesh objects.
-   * - :doc:`Movie Clip </editors/clip/introduction>`
+   * - :bl-icon:`meta_data` :doc:`Metaball </modeling/metas/introduction>`
+     - |tick|
+     - |none|
+     - An isosurface in 3D space.
+       Used as data of metaball objects.
+   * - :bl-icon:`tracker` :ref:`Movie Clip <bpy.types.MovieClip>`
      - |tick|
      - |cross|
      - Reference to an image sequence or video file.
        Used in the *Movie Clip* editor.
-   * - :doc:`Node Tree </render/shader_nodes/groups>`
+   * - :bl-icon:`nodetree` :doc:`Node Tree </render/shader_nodes/groups>`
      - |tick|
      - |none|
      - Groups of re-usable nodes.
        Used in the node editors.
-   * - :doc:`Object </scene_layout/object/introduction>`
+   * - :bl-icon:`object_data` :doc:`Object </scene_layout/object/introduction>`
      - |tick|
      - |none|
      - An entity in the scene with location, scale, rotation.
        Used by scenes & collections.
-   * - :doc:`Paint Curve </sculpt_paint/brush/stroke>`
+   * - :bl-icon:`curve_bezcurve` :doc:`Paint Curve </sculpt_paint/brush/stroke>`
      - |tick|
      - |none|
      - Stores a paint or sculpt stroke.
        Access from the paint tools.
-   * - :doc:`Palette </sculpt_paint/index>`
+   * - :bl-icon:`color` :doc:`Palette </sculpt_paint/index>`
      - |tick|
      - |none|
      - Store color presets.
        Access from the paint tools.
-   * - :doc:`Particle </physics/particles/introduction>`
+   * - :bl-icon:`particles` :doc:`Particle </physics/particles/introduction>`
      - |tick|
      - |none|
      - Particle settings.
        Used by particle systems.
-   * - :doc:`Light Probe </render/eevee/light_probes/index>`
+   * - :bl-icon:`pointcloud_data` :doc:`Point Cloud </modeling/point_cloud/index>`
      - |tick|
      - |none|
-     - Help achieve complex real-time lighting in EEVEE.
-   * - :doc:`Scene </scene_layout/scene/introduction>`
+     - Collection of points in 3D space.
+   * - :bl-icon:`scene_data` :doc:`Scene </scene_layout/scene/introduction>`
      - |tick|
      - |none|
      - Primary store of all data displayed and animated.
        Used as top-level storage for objects & animation.
-   * - :doc:`Sounds </render/output/audio/speaker>`
+   * - :bl-icon:`workspace` :doc:`Screen </interface/window_system/index>`
+     - |tick|
+     - |none|
+     - Low level user interface storage.
+   * - :bl-icon:`sound` :doc:`Sound </render/output/audio/speaker>`
      - |tick|
      - |tick|
      - Reference to sound files.
        Used as data of speaker objects.
-   * - :doc:`Speaker </render/output/audio/speaker>`
+   * - :bl-icon:`speaker` :doc:`Speaker </render/output/audio/speaker>`
      - |tick|
      - |none|
      - Sound sources for a 3D scene.
        Used as data of speaker object.
-   * - :doc:`Text </editors/text_editor>`
+   * - :bl-icon:`text` :doc:`Text </editors/text_editor>`
      - |tick|
      - |cross|
      - Text data.
        Used by Python scripts and OSL shaders.
-   * - :doc:`Texture </render/materials/legacy_textures/introduction>`
+   * - :bl-icon:`texture_data` :doc:`Texture </render/materials/legacy_textures/introduction>`
      - |tick|
      - |none|
      - 2D/3D textures.
        Used by brushes and modifiers.
-   * - :doc:`Window Manager </interface/window_system/introduction>`
+   * - :bl-icon:`volume_data` :doc:`Volume </modeling/volumes/index>`
+     - |tick|
+     - |none|
+     - Volumetric objects used to contain grids of data.
+   * - :bl-icon:`window` :doc:`Window Manager </interface/window_system/introduction>`
      - |cross|
      - |none|
      - The overarching manager for all of Blender's user interface.
        Includes Workspaces, notification system, operators, and keymaps.
-   * - :doc:`World </render/lights/world>`
-     - |tick|
-     - |none|
-     - Define global render environment settings.
-   * - :doc:`Workspace </interface/window_system/workspaces>`
+   * - :bl-icon:`workspace` :doc:`Workspace </interface/window_system/workspaces>`
      - |cross|
      - |none|
      - UI layout.
        Used by each window, which has its own workspace.
+   * - :bl-icon:`world_data` :doc:`World </render/lights/world>`
+     - |tick|
+     - |none|
+     - Define global render environment settings.
 
 
 .. _data-system-datablock-life-time:
@@ -285,25 +300,27 @@ but you can still manually remove it if needed.
 
    :ref:`Linked data <bpy.ops.wm.link>` cannot be protected that way.
 
+
 .. _data-system-datablock-name-and-rename:
 
 Name & Rename
 =============
 
-Data-blocks names are unique within their namespace. A data-block namespace is defined by its type, and the blendfile
+A data-block's name is unique within its namespace. A data-block namespace is defined by its type, and the blendfile
 it is stored in.
 
 This means that there can be for example an Object and a Mesh named the same, but there cannot be two local objects
 named the same in a blendfile. However, it is possible to have one local and several linked Objects sharing the same
 name.
 
-Data-block names have a fixed length of 63 bytes, i.e. 63 basic ASCII characters, or less when using diacritics or
-non-latin glyphs (the UTF8 encoding will then typically use more than a byte per character).
+Data-block names have a fixed length of 255 bytes and are UTF-8 encoded. This is room for 255 basic ASCII characters,
+or less when using diacritics or non-latin glyphs, which use more than one byte per character. Data-block names cannot
+contain a Null character (`U+0000`).
 
-When Blender has to name a new data-block, or rename an existing one, it will check for name collisions. If a
+When Blender has to name a new data-block or rename an existing one, it will check for name collisions. If a
 data-block with the same name already exists, the (re)named data-block will get a numeric extension added as a
-post-fix to its 'root name', like e.g. `.001`. The first available index is used (up to the `999` value, after that
-the postfix index values are simply incremented until no collision happen anymore).
+post-fix to its 'root name', like e.g. `.001`. The first available index is used up to the `999` value - after that
+the postfix index values are simply incremented until no collision happens anymore.
 
 In case adding the numeric suffix would make the data-block name too long, the root name part will be shortened as
 needed.
@@ -312,7 +329,7 @@ Blender will never rename another data-block when doing automatic naming. So e.g
 there are already `Cube` and `Cube.001` local objects, the new one will be named `Cube.002`.
 
 Local data-blocks can be renamed by the user in several places in the UI (like the ID selection widget, or the
-Outliner view). When renamed from the UI, the behavior in case of name collision is as follow:
+Outliner view). When renamed from the UI, the behavior in case of name collision is as follows:
 
 - If the original root name is different than in the new requested name, the renamed data-block gets the first
   available numerical suffix.
@@ -321,10 +338,37 @@ Outliner view). When renamed from the UI, the behavior in case of name collision
     rename the data-block to `Cube.002`.
 
 - If the original root name is the same as in the new requested name, the renamed data-block gets the requested name,
-  and the conflicting of data-block is renamed accordingly.
+  and the conflicting data-block is renamed accordingly.
 
   - E.g. assuming that there are three objects named `Sphere`, `Cube` and `Cube.001`, renaming `Cube.001` to `Cube`
     will rename the data-block to `Cube`, and the other data-block to `Cube.001`.
+
+
+.. _data-system-datablock-name-hidden:
+
+Dot-Prefixed Names (Hidden Data)
+--------------------------------
+
+Data-block names that begin with a dot (``.``) are considered *hidden*.
+
+Hidden data-blocks:
+
+- Are not shown in File Browsers by default.
+- Are hidden in most data-block selection menus.
+- Are commonly used for internal, temporary, or helper data.
+
+This naming convention is useful for marking implementation details
+that should not normally be selected or edited directly by users.
+
+Hidden data-blocks can be made visible through user preferences:
+
+- Enable :ref:`Defaults -- Show Hidden Files/Data-Blocks <bpy.types.PreferencesFilePaths.show_hidden_files_datablocks>`
+  to display dot-prefixed data-blocks in File Browsers and data ID selectors.
+- Enable :ref:`Search -- Show Hidden <bpy.types.Preferences.show_hidden_ids>`
+  to display dot-prefixed data-blocks in search menus.
+
+Even when hidden in the interface, dot-prefixed data-blocks behave like any other data-block
+in terms of linking, usage counting, and saving.
 
 
 Sharing
@@ -374,7 +418,7 @@ This can be achieved by :kbd:`Shift-LMB` on the "X" icon next to its name.
 
 .. warning::
 
-   Deleting some data-blocks can lead to deletion of some of its users, which would become invalid without them.
+   Deleting some data-blocks can lead to deletion of some of their users, which would become invalid without them.
    The main example is that object-data deletion (like mesh, curve, camera...) will also delete all objects using it.
 
 Those two operations are also available in the context menu

@@ -26,8 +26,7 @@ The top track highlighted in orange is special: this is the Action Track. Unlike
 it doesn't contain strips -- instead, it contains the object's *active action*,
 which is where new keyframes are added to by default.
 
-Editors like the :doc:`Timeline </editors/timeline>` and the
-:doc:`Dope Sheet Editor </editors/dope_sheet/introduction>`
+Editors like the :doc:`Dope Sheet Editor </editors/dope_sheet/introduction>`
 normally only show the keyframes of this active action. If you want to edit another action,
 you can select it in the NLA editor and press :kbd:`Tab` to enter Tweak Mode.
 
@@ -50,6 +49,8 @@ Adjust Last Operation
    completed operation. See :ref:`bpy.ops.screen.redo_last`.
 Channels
    Shows or hides the Track Region.
+Playback Controls
+   Show or hide the :ref:`Playback Controls <animation-editors-footer>`.
 
 ----------
 
@@ -83,7 +84,7 @@ Show Local Markers
    .. figure:: /images/editors_nla_tracks_local_markers.png
 
       Local markers shown in the NLA Editor (top) and the Action Editor (bottom).
-Show Seconds :kbd:`Ctrl-T`
+Use Timecode :kbd:`Ctrl-T`
    Shows timing in seconds instead of frames.
 Sync Visible Range
    Synchronizes the horizontal panning and scale of the editor
@@ -98,7 +99,7 @@ Set Preview Range :kbd:`P`
    having to manually rewind each time.
 
    You can change the start or end frame using the corresponding button in the
-   Timeline editor's :ref:`Playback <timeline-playback>` popover.
+   Timeline editor's :ref:`Playback <animation-editors-playback>` popover.
    Alternatively, you can simply run *Set Preview Range* again.
 Clear Preview Range :kbd:`Alt-P`
    Clears the preview range.
@@ -171,6 +172,7 @@ Selected Objects
 
 See :doc:`/editors/nla/strips` for details on the various strip types.
 
+
 Track Menu
 ----------
 
@@ -183,6 +185,7 @@ Strip Menu
 
 Contains tools for working with NLA strips.
 See :doc:`Editing Strips </editors/nla/editing/strip>` for details.
+
 
 Filters
 -------
@@ -230,10 +233,20 @@ Absolute Time Snap
    removing the subsecond offset.
 
 
-Playhead
---------
+Playback Controls
+=================
 
-Options for playhead snapping which helps you position the playhead precisely when scrubbing
-by snapping it to specific elements like frames, markers, or keyframes.
+The Playback Controls region contains controls and options
+related to playback, keying, auto keyframing, and transport.
 
-See :ref:`Playhead Snapping <playhead-snapping>` for more information.
+These settings allow you to:
+
+- Control how animations are previewed and synchronized with audio.
+- Insert and manage keyframes through keying sets and auto keying.
+- Navigate the timeline using playback and transport controls.
+- Adjust frame ranges and preview specific segments of the animation.
+
+.. seealso::
+
+   For a detailed description of all properties and controls commonly found in the footer,
+   see the :ref:`Playback Controls <animation-editors-footer>` documentation.

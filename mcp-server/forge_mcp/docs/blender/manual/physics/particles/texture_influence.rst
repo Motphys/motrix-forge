@@ -11,12 +11,10 @@ Texture Influence
 
    :Panel:     :menuselection:`Texture --> Influence`
 
-.. todo:: Update image
+.. figure:: /images/physics_particles_texture-influence_panel.png
+   :align: right
 
-   .. figure:: /images/physics_particles_texture-influence_panel.png
-      :align: right
-
-      Texture influence settings.
+   Texture influence settings.
 
 Defines the settings of a Particle system spatial with a texture.
 

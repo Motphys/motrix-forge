@@ -15,20 +15,14 @@ Inverts the colors in the input image, producing a negative.
 Inputs
 ======
 
-Factor
-   The amount of influence the node exerts on the image.
 Color
    Standard color input.
+Factor
+   The amount of influence the node exerts on the image.
 Invert Color
    Invert the color channels.
 Invert Alpha
    Invert the alpha channel.
-
-
-Properties
-==========
-
-This node has no properties.
 
 
 Outputs

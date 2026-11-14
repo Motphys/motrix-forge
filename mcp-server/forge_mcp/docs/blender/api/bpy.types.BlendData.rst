@@ -5,273 +5,295 @@ BlendData(bpy_struct)
 
 base class --- :class:`bpy_struct`
 
+
 .. class:: BlendData(bpy_struct)
 
    Main data structure representing a .blend file and all its data-blocks
 
    .. data:: actions
 
-      Action data-blocks
+      Action data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataActions` :class:`bpy_prop_collection` of :class:`Action`, (readonly)
+      :type: :class:`BlendDataActions`\ [:class:`Action`]
+
+   .. data:: all_ids
+
+      Read-only list of all IDs listed in Blender data-base (default None, readonly)
+
+      :type: :class:`bpy_prop_collection`\ [:class:`ID`]
+
+   .. data:: annotations
+
+      Annotation data-blocks (legacy Grease Pencil) (default None, readonly)
+
+      :type: :class:`BlendDataAnnotations`\ [:class:`Annotation`]
 
    .. data:: armatures
 
-      Armature data-blocks
+      Armature data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataArmatures` :class:`bpy_prop_collection` of :class:`Armature`, (readonly)
+      :type: :class:`BlendDataArmatures`\ [:class:`Armature`]
 
    .. data:: brushes
 
-      Brush data-blocks
+      Brush data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataBrushes` :class:`bpy_prop_collection` of :class:`Brush`, (readonly)
+      :type: :class:`BlendDataBrushes`\ [:class:`Brush`]
 
    .. data:: cache_files
 
-      Cache Files data-blocks
+      Cache Files data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataCacheFiles` :class:`bpy_prop_collection` of :class:`CacheFile`, (readonly)
+      :type: :class:`BlendDataCacheFiles`\ [:class:`CacheFile`]
 
    .. data:: cameras
 
-      Camera data-blocks
+      Camera data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataCameras` :class:`bpy_prop_collection` of :class:`Camera`, (readonly)
+      :type: :class:`BlendDataCameras`\ [:class:`Camera`]
 
    .. data:: collections
 
-      Collection data-blocks
+      Collection data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataCollections` :class:`bpy_prop_collection` of :class:`Collection`, (readonly)
+      :type: :class:`BlendDataCollections`\ [:class:`Collection`]
+
+   .. data:: colorspace
+
+      Information about the color space used for data-blocks in a blend file (readonly, never None)
+
+      :type: :class:`BlendFileColorspace`
 
    .. data:: curves
 
-      Curve data-blocks
+      Curve data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataCurves` :class:`bpy_prop_collection` of :class:`Curve`, (readonly)
+      :type: :class:`BlendDataCurves`\ [:class:`Curve`]
 
    .. data:: filepath
 
-      Path to the .blend file
+      Path to the .blend file (default "", readonly, never None)
 
-      :type: string, default "", (readonly, never None)
+      :type: str
 
    .. data:: fonts
 
-      Vector font data-blocks
+      Vector font data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataFonts` :class:`bpy_prop_collection` of :class:`VectorFont`, (readonly)
+      :type: :class:`BlendDataFonts`\ [:class:`VectorFont`]
 
    .. data:: grease_pencils
 
-      Annotation data-blocks (legacy Grease Pencil)
+      Grease Pencil data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataGreasePencils` :class:`bpy_prop_collection` of :class:`GreasePencil`, (readonly)
-
-   .. data:: grease_pencils_v3
-
-      Grease Pencil data-blocks
-
-      :type: :class:`BlendDataGreasePencilsV3` :class:`bpy_prop_collection` of :class:`GreasePencilv3`, (readonly)
+      :type: :class:`BlendDataGreasePencilsV3`\ [:class:`GreasePencil`]
 
    .. data:: hair_curves
 
-      Hair curve data-blocks
+      Hair curve data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataHairCurves` :class:`bpy_prop_collection` of :class:`Curves`, (readonly)
+      :type: :class:`BlendDataHairCurves`\ [:class:`Curves`]
 
    .. data:: images
 
-      Image data-blocks
+      Image data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataImages` :class:`bpy_prop_collection` of :class:`Image`, (readonly)
+      :type: :class:`BlendDataImages`\ [:class:`Image`]
 
    .. data:: is_dirty
 
-      Have recent edits been saved to disk
+      Have recent edits been saved to disk (default False, readonly)
 
-      :type: boolean, default False, (readonly)
+      :type: bool
 
    .. data:: is_saved
 
-      Has the current session been saved to disk as a .blend file
+      Has the current session been saved to disk as a .blend file (default False, readonly)
 
-      :type: boolean, default False, (readonly)
+      :type: bool
 
    .. data:: lattices
 
-      Lattice data-blocks
+      Lattice data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataLattices` :class:`bpy_prop_collection` of :class:`Lattice`, (readonly)
+      :type: :class:`BlendDataLattices`\ [:class:`Lattice`]
 
    .. data:: libraries
 
-      Library data-blocks
+      Library data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataLibraries` :class:`bpy_prop_collection` of :class:`Library`, (readonly)
+      :type: :class:`BlendDataLibraries`\ [:class:`Library`]
 
    .. data:: lightprobes
 
-      Light Probe data-blocks
+      Light Probe data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataProbes` :class:`bpy_prop_collection` of :class:`LightProbe`, (readonly)
+      :type: :class:`BlendDataProbes`\ [:class:`LightProbe`]
 
    .. data:: lights
 
-      Light data-blocks
+      Light data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataLights` :class:`bpy_prop_collection` of :class:`Light`, (readonly)
+      :type: :class:`BlendDataLights`\ [:class:`Light`]
 
    .. data:: linestyles
 
-      Line Style data-blocks
+      Line Style data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataLineStyles` :class:`bpy_prop_collection` of :class:`FreestyleLineStyle`, (readonly)
+      :type: :class:`BlendDataLineStyles`\ [:class:`FreestyleLineStyle`]
 
    .. data:: masks
 
-      Masks data-blocks
+      Masks data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataMasks` :class:`bpy_prop_collection` of :class:`Mask`, (readonly)
+      :type: :class:`BlendDataMasks`\ [:class:`Mask`]
 
    .. data:: materials
 
-      Material data-blocks
+      Material data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataMaterials` :class:`bpy_prop_collection` of :class:`Material`, (readonly)
+      :type: :class:`BlendDataMaterials`\ [:class:`Material`]
 
    .. data:: meshes
 
-      Mesh data-blocks
+      Mesh data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataMeshes` :class:`bpy_prop_collection` of :class:`Mesh`, (readonly)
+      :type: :class:`BlendDataMeshes`\ [:class:`Mesh`]
 
    .. data:: metaballs
 
-      Metaball data-blocks
+      Metaball data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataMetaBalls` :class:`bpy_prop_collection` of :class:`MetaBall`, (readonly)
+      :type: :class:`BlendDataMetaBalls`\ [:class:`MetaBall`]
 
    .. data:: movieclips
 
-      Movie Clip data-blocks
+      Movie Clip data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataMovieClips` :class:`bpy_prop_collection` of :class:`MovieClip`, (readonly)
+      :type: :class:`BlendDataMovieClips`\ [:class:`MovieClip`]
 
    .. data:: node_groups
 
-      Node group data-blocks
+      Node group data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataNodeTrees` :class:`bpy_prop_collection` of :class:`NodeTree`, (readonly)
+      :type: :class:`BlendDataNodeTrees`\ [:class:`NodeTree`]
 
    .. data:: objects
 
-      Object data-blocks
+      Object data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataObjects` :class:`bpy_prop_collection` of :class:`Object`, (readonly)
+      :type: :class:`BlendDataObjects`\ [:class:`Object`]
 
    .. data:: paint_curves
 
-      Paint Curves data-blocks
+      Paint Curves data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataPaintCurves` :class:`bpy_prop_collection` of :class:`PaintCurve`, (readonly)
+      :type: :class:`BlendDataPaintCurves`\ [:class:`PaintCurve`]
 
    .. data:: palettes
 
-      Palette data-blocks
+      Palette data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataPalettes` :class:`bpy_prop_collection` of :class:`Palette`, (readonly)
+      :type: :class:`BlendDataPalettes`\ [:class:`Palette`]
 
    .. data:: particles
 
-      Particle data-blocks
+      Particle data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataParticles` :class:`bpy_prop_collection` of :class:`ParticleSettings`, (readonly)
+      :type: :class:`BlendDataParticles`\ [:class:`ParticleSettings`]
 
    .. data:: pointclouds
 
-      Point cloud data-blocks
+      Point cloud data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataPointClouds` :class:`bpy_prop_collection` of :class:`PointCloud`, (readonly)
+      :type: :class:`BlendDataPointClouds`\ [:class:`PointCloud`]
 
    .. data:: scenes
 
-      Scene data-blocks
+      Scene data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataScenes` :class:`bpy_prop_collection` of :class:`Scene`, (readonly)
+      :type: :class:`BlendDataScenes`\ [:class:`Scene`]
 
    .. data:: screens
 
-      Screen data-blocks
+      Screen data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataScreens` :class:`bpy_prop_collection` of :class:`Screen`, (readonly)
+      :type: :class:`BlendDataScreens`\ [:class:`Screen`]
 
    .. data:: shape_keys
 
-      Shape Key data-blocks
+      Shape Key data-blocks (default None, readonly)
 
-      :type: :class:`bpy_prop_collection` of :class:`Key`, (readonly)
+      :type: :class:`bpy_prop_collection`\ [:class:`Key`]
 
    .. data:: sounds
 
-      Sound data-blocks
+      Sound data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataSounds` :class:`bpy_prop_collection` of :class:`Sound`, (readonly)
+      :type: :class:`BlendDataSounds`\ [:class:`Sound`]
 
    .. data:: speakers
 
-      Speaker data-blocks
+      Speaker data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataSpeakers` :class:`bpy_prop_collection` of :class:`Speaker`, (readonly)
+      :type: :class:`BlendDataSpeakers`\ [:class:`Speaker`]
 
    .. data:: texts
 
-      Text data-blocks
+      Text data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataTexts` :class:`bpy_prop_collection` of :class:`Text`, (readonly)
+      :type: :class:`BlendDataTexts`\ [:class:`Text`]
 
    .. data:: textures
 
-      Texture data-blocks
+      Texture data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataTextures` :class:`bpy_prop_collection` of :class:`Texture`, (readonly)
+      :type: :class:`BlendDataTextures`\ [:class:`Texture`]
 
    .. attribute:: use_autopack
 
-      Automatically pack all external data into .blend file
+      Automatically pack all external data into .blend file (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. data:: version
 
-      File format version the .blend file was saved with
+      File format version the .blend file was saved with (array of 3 items, in [0, inf], default (0, 0, 0), readonly)
 
-      :type: int array of 3 items in [0, inf], default (0, 0, 0), (readonly)
+      :type: :class:`bpy_prop_array`\ [int]
 
    .. data:: volumes
 
-      Volume data-blocks
+      Volume data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataVolumes` :class:`bpy_prop_collection` of :class:`Volume`, (readonly)
+      :type: :class:`BlendDataVolumes`\ [:class:`Volume`]
 
    .. data:: window_managers
 
-      Window manager data-blocks
+      Window manager data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataWindowManagers` :class:`bpy_prop_collection` of :class:`WindowManager`, (readonly)
+      :type: :class:`BlendDataWindowManagers`\ [:class:`WindowManager`]
 
    .. data:: workspaces
 
-      Workspace data-blocks
+      Workspace data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataWorkSpaces` :class:`bpy_prop_collection` of :class:`WorkSpace`, (readonly)
+      :type: :class:`BlendDataWorkSpaces`\ [:class:`WorkSpace`]
 
    .. data:: worlds
 
-      World data-blocks
+      World data-blocks (default None, readonly)
 
-      :type: :class:`BlendDataWorlds` :class:`bpy_prop_collection` of :class:`World`, (readonly)
+      :type: :class:`BlendDataWorlds`\ [:class:`World`]
+
+   .. method:: pack_linked_ids_hierarchy(root_id)
+
+      Pack the given linked ID and its dependencies into current blendfile
+
+      :param root_id: Root linked ID to pack
+      :type root_id: :class:`ID` | None
+      :return: The packed ID matching the given root ID
+      :rtype: :class:`ID`
 
    .. method:: batch_remove(ids)
    
@@ -280,63 +302,84 @@ base class --- :class:`bpy_struct`
       Note that this function is quicker than individual calls to :func:`remove()` (from :class:`bpy.types.BlendData`
       ID collections), but less safe/versatile (it can break Blender, e.g. by removing all scenes...).
    
-      :arg ids: Sequence of IDs (types can be mixed).
+      :param ids: Sequence of IDs (types can be mixed).
       :type ids: Sequence[:class:`bpy.types.ID`]
 
 
    .. classmethod:: bl_rna_get_subclass(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: :class:`bpy.types.Struct` | None
       :return: The RNA type or default when not found.
-      :rtype: :class:`bpy.types.Struct` subclass
+      :rtype: :class:`bpy.types.Struct`
 
 
    .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: type | None
       :return: The class or default when not found.
       :rtype: type
 
 
-   .. method:: file_path_map(subset=None, key_types=None, include_libraries=False)
+   .. method:: file_path_foreach(visit_path_fn, *, subset=None, visit_types=None, flags={'SKIP_PACKED', 'SKIP_WEAK_REFERENCES'})
+   
+      Call ``visit_path_fn`` for the file paths used by all ID data-blocks in current ``bpy.data``.
+   
+      For list of valid set members for visit_types, see: :class:`bpy.types.KeyingSetPath.id_type`.
+   
+      :param visit_path_fn: function that takes three parameters: the data-block, a file path, and a :class:`bpy.types.BlendDataPathMeta` metadata object. The function should return either ``None`` or a ``str``. In the latter case, the visited file path will be replaced with the returned string.
+      :type visit_path_fn: Callable[[:class:`bpy.types.ID`, str, :class:`bpy.types.BlendDataPathMeta`], str|None]
+      :param subset: When given, only these data-blocks and their used file paths will be visited.
+      :type subset: set[str] | None
+      :param visit_types: When given, only visit data-blocks of these types. Ignored if ``subset`` is also given.
+      :type visit_types: set[str] | None
+      :type flags: set[str]
+      :param flags: Set of flags that influence which data-blocks are visited. See :ref:`rna_enum_file_path_foreach_flag_items`.
+
+
+   .. method:: file_path_map(*, subset=None, key_types=None, include_libraries=False)
    
       Returns a mapping of all ID data-blocks in current ``bpy.data`` to a set of all file paths used by them.
    
       For list of valid set members for key_types, see: :class:`bpy.types.KeyingSetPath.id_type`.
    
-      :arg subset: When given, only these data-blocks and their used file paths will be included as keys/values in the map.
-      :type subset: sequence
-      :arg key_types: When given, filter the keys mapped by ID types. Ignored if ``subset`` is also given.
-      :type key_types: set of strings
-      :arg include_libraries: Include library file paths of linked data. False by default.
+      :param subset: When given, only these data-blocks and their used file paths will be included as keys/values in the map.
+      :type subset: Sequence[:class:`bpy.types.ID`] | None
+      :param key_types: When given, filter the keys mapped by ID types. Ignored if ``subset`` is also given.
+      :type key_types: set[str] | None
+      :param include_libraries: Include library file paths of linked data. False by default.
       :type include_libraries: bool
       :return: dictionary of :class:`bpy.types.ID` instances, with sets of file path strings as their values.
-      :rtype: dict
+      :rtype: dict[:class:`bpy.types.ID`, set[str]]
 
 
-   .. method:: orphans_purge()
+   .. method:: orphans_purge(do_local_ids=True, do_linked_ids=True, do_recursive=False)
    
       Remove (delete) all IDs with no user.
    
-      :arg do_local_ids: Include unused local IDs in the deletion, defaults to True
-      :type do_local_ids: bool, optional
-      :arg do_linked_ids: Include unused linked IDs in the deletion, defaults to True
-      :type do_linked_ids: bool, optional
-      :arg do_recursive: Recursively check for unused IDs, ensuring no orphaned one remain after a single run of that function, defaults to False
-      :type do_recursive: bool, optional
+      :param do_local_ids: Include unused local IDs in the deletion, defaults to True
+      :type do_local_ids: bool
+      :param do_linked_ids: Include unused linked IDs in the deletion, defaults to True
+      :type do_linked_ids: bool
+      :param do_recursive: Recursively check for unused IDs, ensuring no orphaned one remain after a single run of that function, defaults to False
+      :type do_recursive: bool
       :return: The number of deleted IDs.
+      :rtype: int
 
 
-   .. method:: temp_data(filepath=None)
+   .. staticmethod:: temp_data(*, filepath=None)
    
       A context manager that temporarily creates blender file data.
    
-      :arg filepath: The file path for the newly temporary data. When None, the path of the currently open file is used.
+      :param filepath: The file path for the newly temporary data. When None, the path of the currently open file is used.
       :type filepath: str | bytes | None
    
-      :return: Blend file data which is freed once the context exists.
+      :return: Blend file data which is freed once the context exits.
       :rtype: :class:`bpy.types.BlendData`
 
 
@@ -346,12 +389,12 @@ base class --- :class:`bpy_struct`
    
       For list of valid set members for key_types & value_types, see: :class:`bpy.types.KeyingSetPath.id_type`.
    
-      :arg subset: When passed, only these data-blocks and their users will be included as keys/values in the map.
-      :type subset: Sequence[:class:`bpy.types.ID`]
-      :arg key_types: Filter the keys mapped by ID types.
-      :type key_types: set[str]
-      :arg value_types: Filter the values in the set by ID types.
-      :type value_types: set[str]
+      :param subset: When passed, only these data-blocks and their users will be included as keys/values in the map.
+      :type subset: Sequence[:class:`bpy.types.ID`] | None
+      :param key_types: Filter the keys mapped by ID types.
+      :type key_types: set[str] | None
+      :param value_types: Filter the values in the set by ID types.
+      :type value_types: set[str] | None
       :return: dictionary that maps data-blocks ID's to their users.
       :rtype: dict[:class:`bpy.types.ID`, set[:class:`bpy.types.ID`]]
 
@@ -362,7 +405,7 @@ Inherited Properties
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.id_data`
+   - :class:`bpy_struct.id_data`
 
 Inherited Functions
 -------------------
@@ -370,29 +413,30 @@ Inherited Functions
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.as_pointer`
-   * :class:`bpy_struct.driver_add`
-   * :class:`bpy_struct.driver_remove`
-   * :class:`bpy_struct.get`
-   * :class:`bpy_struct.id_properties_clear`
-   * :class:`bpy_struct.id_properties_ensure`
-   * :class:`bpy_struct.id_properties_ui`
-   * :class:`bpy_struct.is_property_hidden`
-   * :class:`bpy_struct.is_property_overridable_library`
-   * :class:`bpy_struct.is_property_readonly`
-   * :class:`bpy_struct.is_property_set`
-   * :class:`bpy_struct.items`
-   * :class:`bpy_struct.keyframe_delete`
-   * :class:`bpy_struct.keyframe_insert`
-   * :class:`bpy_struct.keys`
-   * :class:`bpy_struct.path_from_id`
-   * :class:`bpy_struct.path_resolve`
-   * :class:`bpy_struct.pop`
-   * :class:`bpy_struct.property_overridable_library_set`
-   * :class:`bpy_struct.property_unset`
-   * :class:`bpy_struct.rna_ancestors`
-   * :class:`bpy_struct.type_recast`
-   * :class:`bpy_struct.values`
+   - :class:`bpy_struct.as_pointer`
+   - :class:`bpy_struct.driver_add`
+   - :class:`bpy_struct.driver_remove`
+   - :class:`bpy_struct.get`
+   - :class:`bpy_struct.id_properties_clear`
+   - :class:`bpy_struct.id_properties_ensure`
+   - :class:`bpy_struct.id_properties_ui`
+   - :class:`bpy_struct.is_property_hidden`
+   - :class:`bpy_struct.is_property_overridable_library`
+   - :class:`bpy_struct.is_property_readonly`
+   - :class:`bpy_struct.is_property_set`
+   - :class:`bpy_struct.items`
+   - :class:`bpy_struct.keyframe_delete`
+   - :class:`bpy_struct.keyframe_insert`
+   - :class:`bpy_struct.keys`
+   - :class:`bpy_struct.path_from_id`
+   - :class:`bpy_struct.path_from_module`
+   - :class:`bpy_struct.path_resolve`
+   - :class:`bpy_struct.pop`
+   - :class:`bpy_struct.property_overridable_library_set`
+   - :class:`bpy_struct.property_unset`
+   - :class:`bpy_struct.rna_ancestors`
+   - :class:`bpy_struct.type_recast`
+   - :class:`bpy_struct.values`
 
 References
 ----------
@@ -400,6 +444,6 @@ References
 .. hlist::
    :columns: 2
 
-   * :class:`Context.blend_data`
-   * :class:`RenderEngine.update`
+   - :class:`Context.blend_data`
+   - :class:`RenderEngine.update`
 

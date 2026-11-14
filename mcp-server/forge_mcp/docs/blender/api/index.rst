@@ -1,11 +1,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Blender 4.5 Python API Documentation
+Blender 5.2 Python API Documentation
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 Welcome to the Python API documentation for `Blender <https://www.blender.org>`__, the free and open source 3D creation suite.
 
-This site can be used offline: `Download the full documentation (zipped HTML files) <blender_python_reference_4_5.zip>`__
+This site can be used offline: `Download the full documentation (zipped HTML files) <blender_python_reference_5_2.zip>`__
 
 .. toctree::
    :hidden:
@@ -20,6 +20,7 @@ This site can be used offline: `Download the full documentation (zipped HTML fil
    info_gotcha.rst
    info_advanced.rst
    change_log.rst
+   info_contributing.rst
 
 Documentation
 =============
@@ -32,6 +33,7 @@ Documentation
 - :doc:`info_gotcha`: Some of the problems you may encounter when writing scripts.
 - :doc:`info_advanced`: Topics which may not be required for typical usage.
 - :doc:`change_log`: List of changes since last Blender release
+- :doc:`info_contributing`: Guide for contributing to Blender's Python API documentation.
 
 .. toctree::
    :maxdepth: 1
@@ -52,7 +54,6 @@ Documentation
    :caption: Standalone Modules
 
    aud
-   bgl
    bl_math
    blf
    bmesh
@@ -60,13 +61,13 @@ Documentation
    freestyle
    gpu
    gpu_extras
-   idprop.types
+   idprop
    imbuf
    mathutils
 
 Indices
 =======
 
-* :ref:`genindex`
-* :ref:`modindex`
+- :ref:`genindex`
+- :ref:`modindex`
 

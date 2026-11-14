@@ -5,145 +5,157 @@ Surface Operators
 
 .. function:: primitive_nurbs_surface_circle_add(*, radius=1.0, enter_editmode=False, align='WORLD', location=(0.0, 0.0, 0.0), rotation=(0.0, 0.0, 0.0), scale=(0.0, 0.0, 0.0))
 
-   Construct a Nurbs surface Circle
+   Construct a NURBS surface circle
 
-   :arg radius: Radius
-   :type radius: float in [0, inf], (optional)
-   :arg enter_editmode: Enter Edit Mode, Enter edit mode when adding this object
-   :type enter_editmode: boolean, (optional)
-   :arg align: Align, The alignment of the new object
+   :param radius: Radius, (in [0, inf], optional)
+   :type radius: float
+   :param enter_editmode: Enter Edit Mode, Enter edit mode when adding this object (optional)
+   :type enter_editmode: bool
+   :param align: Align, The alignment of the new object (optional)
 
-      * ``WORLD``
+      - ``WORLD``
         World -- Align the new object to the world.
-      * ``VIEW``
+      - ``VIEW``
         View -- Align the new object to the view.
-      * ``CURSOR``
+      - ``CURSOR``
         3D Cursor -- Use the 3D cursor orientation for the new object.
-   :type align: enum in [``'WORLD'``, ``'VIEW'``, ``'CURSOR'``], (optional)
-   :arg location: Location, Location for the newly added object
-   :type location: :class:`mathutils.Vector` of 3 items in [-inf, inf], (optional)
-   :arg rotation: Rotation, Rotation for the newly added object
-   :type rotation: :class:`mathutils.Euler` rotation of 3 items in [-inf, inf], (optional)
-   :arg scale: Scale, Scale for the newly added object
-   :type scale: :class:`mathutils.Vector` of 3 items in [-inf, inf], (optional)
+   :type align: Literal['WORLD', 'VIEW', 'CURSOR']
+   :param location: Location, Location for the newly added object (array of 3 items, in [-inf, inf], optional)
+   :type location: :class:`mathutils.Vector` | Sequence[float]
+   :param rotation: Rotation, Rotation for the newly added object (array of 3 items, in [-inf, inf], optional)
+   :type rotation: :class:`mathutils.Euler` | Sequence[float]
+   :param scale: Scale, Scale for the newly added object (array of 3 items, in [-inf, inf], optional)
+   :type scale: :class:`mathutils.Vector` | Sequence[float]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: primitive_nurbs_surface_curve_add(*, radius=1.0, enter_editmode=False, align='WORLD', location=(0.0, 0.0, 0.0), rotation=(0.0, 0.0, 0.0), scale=(0.0, 0.0, 0.0))
 
-   Construct a Nurbs surface Curve
+   Construct a NURBS surface curve
 
-   :arg radius: Radius
-   :type radius: float in [0, inf], (optional)
-   :arg enter_editmode: Enter Edit Mode, Enter edit mode when adding this object
-   :type enter_editmode: boolean, (optional)
-   :arg align: Align, The alignment of the new object
+   :param radius: Radius, (in [0, inf], optional)
+   :type radius: float
+   :param enter_editmode: Enter Edit Mode, Enter edit mode when adding this object (optional)
+   :type enter_editmode: bool
+   :param align: Align, The alignment of the new object (optional)
 
-      * ``WORLD``
+      - ``WORLD``
         World -- Align the new object to the world.
-      * ``VIEW``
+      - ``VIEW``
         View -- Align the new object to the view.
-      * ``CURSOR``
+      - ``CURSOR``
         3D Cursor -- Use the 3D cursor orientation for the new object.
-   :type align: enum in [``'WORLD'``, ``'VIEW'``, ``'CURSOR'``], (optional)
-   :arg location: Location, Location for the newly added object
-   :type location: :class:`mathutils.Vector` of 3 items in [-inf, inf], (optional)
-   :arg rotation: Rotation, Rotation for the newly added object
-   :type rotation: :class:`mathutils.Euler` rotation of 3 items in [-inf, inf], (optional)
-   :arg scale: Scale, Scale for the newly added object
-   :type scale: :class:`mathutils.Vector` of 3 items in [-inf, inf], (optional)
+   :type align: Literal['WORLD', 'VIEW', 'CURSOR']
+   :param location: Location, Location for the newly added object (array of 3 items, in [-inf, inf], optional)
+   :type location: :class:`mathutils.Vector` | Sequence[float]
+   :param rotation: Rotation, Rotation for the newly added object (array of 3 items, in [-inf, inf], optional)
+   :type rotation: :class:`mathutils.Euler` | Sequence[float]
+   :param scale: Scale, Scale for the newly added object (array of 3 items, in [-inf, inf], optional)
+   :type scale: :class:`mathutils.Vector` | Sequence[float]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: primitive_nurbs_surface_cylinder_add(*, radius=1.0, enter_editmode=False, align='WORLD', location=(0.0, 0.0, 0.0), rotation=(0.0, 0.0, 0.0), scale=(0.0, 0.0, 0.0))
 
-   Construct a Nurbs surface Cylinder
+   Construct a NURBS surface cylinder
 
-   :arg radius: Radius
-   :type radius: float in [0, inf], (optional)
-   :arg enter_editmode: Enter Edit Mode, Enter edit mode when adding this object
-   :type enter_editmode: boolean, (optional)
-   :arg align: Align, The alignment of the new object
+   :param radius: Radius, (in [0, inf], optional)
+   :type radius: float
+   :param enter_editmode: Enter Edit Mode, Enter edit mode when adding this object (optional)
+   :type enter_editmode: bool
+   :param align: Align, The alignment of the new object (optional)
 
-      * ``WORLD``
+      - ``WORLD``
         World -- Align the new object to the world.
-      * ``VIEW``
+      - ``VIEW``
         View -- Align the new object to the view.
-      * ``CURSOR``
+      - ``CURSOR``
         3D Cursor -- Use the 3D cursor orientation for the new object.
-   :type align: enum in [``'WORLD'``, ``'VIEW'``, ``'CURSOR'``], (optional)
-   :arg location: Location, Location for the newly added object
-   :type location: :class:`mathutils.Vector` of 3 items in [-inf, inf], (optional)
-   :arg rotation: Rotation, Rotation for the newly added object
-   :type rotation: :class:`mathutils.Euler` rotation of 3 items in [-inf, inf], (optional)
-   :arg scale: Scale, Scale for the newly added object
-   :type scale: :class:`mathutils.Vector` of 3 items in [-inf, inf], (optional)
+   :type align: Literal['WORLD', 'VIEW', 'CURSOR']
+   :param location: Location, Location for the newly added object (array of 3 items, in [-inf, inf], optional)
+   :type location: :class:`mathutils.Vector` | Sequence[float]
+   :param rotation: Rotation, Rotation for the newly added object (array of 3 items, in [-inf, inf], optional)
+   :type rotation: :class:`mathutils.Euler` | Sequence[float]
+   :param scale: Scale, Scale for the newly added object (array of 3 items, in [-inf, inf], optional)
+   :type scale: :class:`mathutils.Vector` | Sequence[float]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: primitive_nurbs_surface_sphere_add(*, radius=1.0, enter_editmode=False, align='WORLD', location=(0.0, 0.0, 0.0), rotation=(0.0, 0.0, 0.0), scale=(0.0, 0.0, 0.0))
 
-   Construct a Nurbs surface Sphere
+   Construct a NURBS surface sphere
 
-   :arg radius: Radius
-   :type radius: float in [0, inf], (optional)
-   :arg enter_editmode: Enter Edit Mode, Enter edit mode when adding this object
-   :type enter_editmode: boolean, (optional)
-   :arg align: Align, The alignment of the new object
+   :param radius: Radius, (in [0, inf], optional)
+   :type radius: float
+   :param enter_editmode: Enter Edit Mode, Enter edit mode when adding this object (optional)
+   :type enter_editmode: bool
+   :param align: Align, The alignment of the new object (optional)
 
-      * ``WORLD``
+      - ``WORLD``
         World -- Align the new object to the world.
-      * ``VIEW``
+      - ``VIEW``
         View -- Align the new object to the view.
-      * ``CURSOR``
+      - ``CURSOR``
         3D Cursor -- Use the 3D cursor orientation for the new object.
-   :type align: enum in [``'WORLD'``, ``'VIEW'``, ``'CURSOR'``], (optional)
-   :arg location: Location, Location for the newly added object
-   :type location: :class:`mathutils.Vector` of 3 items in [-inf, inf], (optional)
-   :arg rotation: Rotation, Rotation for the newly added object
-   :type rotation: :class:`mathutils.Euler` rotation of 3 items in [-inf, inf], (optional)
-   :arg scale: Scale, Scale for the newly added object
-   :type scale: :class:`mathutils.Vector` of 3 items in [-inf, inf], (optional)
+   :type align: Literal['WORLD', 'VIEW', 'CURSOR']
+   :param location: Location, Location for the newly added object (array of 3 items, in [-inf, inf], optional)
+   :type location: :class:`mathutils.Vector` | Sequence[float]
+   :param rotation: Rotation, Rotation for the newly added object (array of 3 items, in [-inf, inf], optional)
+   :type rotation: :class:`mathutils.Euler` | Sequence[float]
+   :param scale: Scale, Scale for the newly added object (array of 3 items, in [-inf, inf], optional)
+   :type scale: :class:`mathutils.Vector` | Sequence[float]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: primitive_nurbs_surface_surface_add(*, radius=1.0, enter_editmode=False, align='WORLD', location=(0.0, 0.0, 0.0), rotation=(0.0, 0.0, 0.0), scale=(0.0, 0.0, 0.0))
 
-   Construct a Nurbs surface Patch
+   Construct a NURBS surface patch
 
-   :arg radius: Radius
-   :type radius: float in [0, inf], (optional)
-   :arg enter_editmode: Enter Edit Mode, Enter edit mode when adding this object
-   :type enter_editmode: boolean, (optional)
-   :arg align: Align, The alignment of the new object
+   :param radius: Radius, (in [0, inf], optional)
+   :type radius: float
+   :param enter_editmode: Enter Edit Mode, Enter edit mode when adding this object (optional)
+   :type enter_editmode: bool
+   :param align: Align, The alignment of the new object (optional)
 
-      * ``WORLD``
+      - ``WORLD``
         World -- Align the new object to the world.
-      * ``VIEW``
+      - ``VIEW``
         View -- Align the new object to the view.
-      * ``CURSOR``
+      - ``CURSOR``
         3D Cursor -- Use the 3D cursor orientation for the new object.
-   :type align: enum in [``'WORLD'``, ``'VIEW'``, ``'CURSOR'``], (optional)
-   :arg location: Location, Location for the newly added object
-   :type location: :class:`mathutils.Vector` of 3 items in [-inf, inf], (optional)
-   :arg rotation: Rotation, Rotation for the newly added object
-   :type rotation: :class:`mathutils.Euler` rotation of 3 items in [-inf, inf], (optional)
-   :arg scale: Scale, Scale for the newly added object
-   :type scale: :class:`mathutils.Vector` of 3 items in [-inf, inf], (optional)
+   :type align: Literal['WORLD', 'VIEW', 'CURSOR']
+   :param location: Location, Location for the newly added object (array of 3 items, in [-inf, inf], optional)
+   :type location: :class:`mathutils.Vector` | Sequence[float]
+   :param rotation: Rotation, Rotation for the newly added object (array of 3 items, in [-inf, inf], optional)
+   :type rotation: :class:`mathutils.Euler` | Sequence[float]
+   :param scale: Scale, Scale for the newly added object (array of 3 items, in [-inf, inf], optional)
+   :type scale: :class:`mathutils.Vector` | Sequence[float]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: primitive_nurbs_surface_torus_add(*, radius=1.0, enter_editmode=False, align='WORLD', location=(0.0, 0.0, 0.0), rotation=(0.0, 0.0, 0.0), scale=(0.0, 0.0, 0.0))
 
-   Construct a Nurbs surface Torus
+   Construct a NURBS surface torus
 
-   :arg radius: Radius
-   :type radius: float in [0, inf], (optional)
-   :arg enter_editmode: Enter Edit Mode, Enter edit mode when adding this object
-   :type enter_editmode: boolean, (optional)
-   :arg align: Align, The alignment of the new object
+   :param radius: Radius, (in [0, inf], optional)
+   :type radius: float
+   :param enter_editmode: Enter Edit Mode, Enter edit mode when adding this object (optional)
+   :type enter_editmode: bool
+   :param align: Align, The alignment of the new object (optional)
 
-      * ``WORLD``
+      - ``WORLD``
         World -- Align the new object to the world.
-      * ``VIEW``
+      - ``VIEW``
         View -- Align the new object to the view.
-      * ``CURSOR``
+      - ``CURSOR``
         3D Cursor -- Use the 3D cursor orientation for the new object.
-   :type align: enum in [``'WORLD'``, ``'VIEW'``, ``'CURSOR'``], (optional)
-   :arg location: Location, Location for the newly added object
-   :type location: :class:`mathutils.Vector` of 3 items in [-inf, inf], (optional)
-   :arg rotation: Rotation, Rotation for the newly added object
-   :type rotation: :class:`mathutils.Euler` rotation of 3 items in [-inf, inf], (optional)
-   :arg scale: Scale, Scale for the newly added object
-   :type scale: :class:`mathutils.Vector` of 3 items in [-inf, inf], (optional)
+   :type align: Literal['WORLD', 'VIEW', 'CURSOR']
+   :param location: Location, Location for the newly added object (array of 3 items, in [-inf, inf], optional)
+   :type location: :class:`mathutils.Vector` | Sequence[float]
+   :param rotation: Rotation, Rotation for the newly added object (array of 3 items, in [-inf, inf], optional)
+   :type rotation: :class:`mathutils.Euler` | Sequence[float]
+   :param scale: Scale, Scale for the newly added object (array of 3 items, in [-inf, inf], optional)
+   :type scale: :class:`mathutils.Vector` | Sequence[float]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 

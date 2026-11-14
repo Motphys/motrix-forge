@@ -34,10 +34,6 @@ Maximum
    It is possible to have a separation between the *Minimum* and *Maximum* values to allow
    for a gradient of transparency between foreground and background objects.
 
-
-Properties
-==========
-
 Color Space
    This button selects what color model the channels will represent.
 
@@ -46,16 +42,16 @@ Color Space
 Key Channel
    This button selects the channel, defined by the *Color Space*, to use to determine the matte.
 
-Algorithm
+Limit Method
    Method to calculate the difference between levels.
 
    :Max:
       Limit by the maximum of the other two channels other than the *Key Channel*.
    :Single:
-      Limit by the maximum of the selected *Limiting Channel*.
+      Limit by the selected *Limit Channel*.
 
-      Limiting Channel
-         The channel to use when computing the maximum, the options are defined by the *Color Space*.
+Limit Channel
+   The channel to use for the *Single* limit method. The options are defined by the *Color Space*.
 
 
 Outputs

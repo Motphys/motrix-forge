@@ -28,8 +28,8 @@ Scatter
 -------
 
 Coefficients
-   Probability density per color channel of an out-scattering event occurring per unit distance traveled in the medium.
-   It is equivalent to :math:`\text{Color} \times \text{Density}` in
+   Probability density per color channel of an out-scattering event occurring per unit distance traveled in the
+   medium. It is equivalent to :math:`\text{Color} \times \text{Density}` in
    :ref:`Volume Scatter <bpy.types.ShaderNodeVolumeScatter>`.
 Anisotropy :guilabel:`Henyey-Greenstein` :guilabel:`Draine`
    Controls the relative amount of backward and forward scattering.
@@ -49,7 +49,7 @@ Diameter :guilabel:`Mie`
 
 .. note::
 
-   Above inputs are the same in :ref:`Volume Scatter <bpy.types.ShaderNodeVolumeScatter.density>`.
+   Above inputs are the same in :ref:`Volume Scatter <bpy.types.ShaderNodeVolumeScatter>`.
 
 
 Emission

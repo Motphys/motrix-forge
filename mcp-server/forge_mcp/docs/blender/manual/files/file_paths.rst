@@ -39,16 +39,32 @@ the template syntax will remain as-is in the path field.
 Available Variables
 -------------------
 
-The following variables are currently available in template expressions:
+The following variables are currently available in template expressions.
 
-:``blend_name``: The current blend file's name (without the .blend).
+Available in all paths that support template expressions:
+
+:``blend_name``: The currently open blend file's name (without the .blend).
+:``blend_dir``: Path up to (but not including) the currently open blend file.
+:``blend_name_lib``: Like ``blend_name``, except that for path properties on
+    library-linked data-blocks it will be the name of the library blend file
+    that the data-block comes from.
+:``blend_dir_lib``: Like ``blend_dir``, except that for path properties on
+    library-linked data-blocks it will be the path to the library blend file
+    that the data-block comes from.
+
+Available only in render output paths (including in the compositor File Output node):
+
 :``fps``: The frames per second of the current scene.
-:``resolution_x / resolution_y``: The x and y resolution of the rendered
-    image. This factors in the resolution scale as well, so if the scene
-    resolution is 1000x600 and the scale is 50%, then ``resolution_x`` and
-    ``resolution_y`` will be 500 and 300, respectively.
+:``resolution_x / resolution_y``: The x and y resolution of the rendered image.
+    This factors in the resolution scale as well, so if the scene resolution is
+    1000x600 and the scale is 50%, then ``resolution_x`` and ``resolution_y``
+    will be 500 and 300, respectively.
+:``scene_name``: Name of the current scene.
+:``camera_name``: Name of the current render camera.
 
-The set of available variables will expand over time.
+Available only in path properties on a node:
+
+:``node_name``: The name of the node that the path property is on.
 
 
 Syntax

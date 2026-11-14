@@ -3,68 +3,84 @@ Pointcloud Operators
 
 .. module:: bpy.ops.pointcloud
 
-.. function:: attribute_set(*, value_float=0.0, value_float_vector_2d=(0.0, 0.0), value_float_vector_3d=(0.0, 0.0, 0.0), value_int=0, value_int_vector_2d=(0, 0), value_color=(1.0, 1.0, 1.0, 1.0), value_bool=False)
+.. function:: attribute_set(*, value_float=0.0, value_float_vector_2d=(0.0, 0.0), value_float_vector_3d=(0.0, 0.0, 0.0), value_float_vector_4d=(0.0, 0.0, 0.0, 0.0), value_int=0, value_int_vector_2d=(0, 0), value_color=(1.0, 1.0, 1.0, 1.0), value_bool=False)
 
    Set values of the active attribute for selected elements
 
-   :arg value_float: Value
-   :type value_float: float in [-inf, inf], (optional)
-   :arg value_float_vector_2d: Value
-   :type value_float_vector_2d: float array of 2 items in [-inf, inf], (optional)
-   :arg value_float_vector_3d: Value
-   :type value_float_vector_3d: float array of 3 items in [-inf, inf], (optional)
-   :arg value_int: Value
-   :type value_int: int in [-inf, inf], (optional)
-   :arg value_int_vector_2d: Value
-   :type value_int_vector_2d: int array of 2 items in [-inf, inf], (optional)
-   :arg value_color: Value
-   :type value_color: float array of 4 items in [-inf, inf], (optional)
-   :arg value_bool: Value
-   :type value_bool: boolean, (optional)
+   :param value_float: Value, (in [-inf, inf], optional)
+   :type value_float: float
+   :param value_float_vector_2d: Value, (array of 2 items, in [-inf, inf], optional)
+   :type value_float_vector_2d: Sequence[float]
+   :param value_float_vector_3d: Value, (array of 3 items, in [-inf, inf], optional)
+   :type value_float_vector_3d: Sequence[float]
+   :param value_float_vector_4d: Value, (array of 4 items, in [-inf, inf], optional)
+   :type value_float_vector_4d: Sequence[float]
+   :param value_int: Value, (in [-inf, inf], optional)
+   :type value_int: int
+   :param value_int_vector_2d: Value, (array of 2 items, in [-inf, inf], optional)
+   :type value_int_vector_2d: Sequence[int]
+   :param value_color: Value, (array of 4 items, in [-inf, inf], optional)
+   :type value_color: Sequence[float]
+   :param value_bool: Value, (optional)
+   :type value_bool: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: delete()
 
    Remove selected points
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: duplicate()
 
    Copy selected points
 
-.. function:: duplicate_move(*, POINTCLOUD_OT_duplicate=None, TRANSFORM_OT_translate=None)
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
+.. function:: duplicate_move(*, POINTCLOUD_OT_duplicate={}, TRANSFORM_OT_translate={})
 
    Make copies of selected elements and move them
 
-   :arg POINTCLOUD_OT_duplicate: Duplicate, Copy selected points
-   :type POINTCLOUD_OT_duplicate: :class:`POINTCLOUD_OT_duplicate`, (optional)
-   :arg TRANSFORM_OT_translate: Move, Move selected items
-   :type TRANSFORM_OT_translate: :class:`TRANSFORM_OT_translate`, (optional)
+   :param POINTCLOUD_OT_duplicate: Duplicate, Copy selected points (optional, :func:`bpy.ops.pointcloud.duplicate` keyword arguments)
+   :type POINTCLOUD_OT_duplicate: dict[str, Any]
+   :param TRANSFORM_OT_translate: Move, Move selected items (optional, :func:`bpy.ops.transform.translate` keyword arguments)
+   :type TRANSFORM_OT_translate: dict[str, Any]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: select_all(*, action='TOGGLE')
 
-   (De)select all point cloud
+   (De)select all points
 
-   :arg action: Action, Selection action to execute
+   :param action: Action, Selection action to execute (optional)
 
-      * ``TOGGLE``
+      - ``TOGGLE``
         Toggle -- Toggle selection for all elements.
-      * ``SELECT``
+      - ``SELECT``
         Select -- Select all elements.
-      * ``DESELECT``
+      - ``DESELECT``
         Deselect -- Deselect all elements.
-      * ``INVERT``
+      - ``INVERT``
         Invert -- Invert selection of all elements.
-   :type action: enum in [``'TOGGLE'``, ``'SELECT'``, ``'DESELECT'``, ``'INVERT'``], (optional)
+   :type action: Literal['TOGGLE', 'SELECT', 'DESELECT', 'INVERT']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: select_random(*, seed=0, probability=0.5)
 
-   Randomizes existing selection or create new random selection
+   Randomize existing selection or create new random selection
 
-   :arg seed: Seed, Source of randomness
-   :type seed: int in [-inf, inf], (optional)
-   :arg probability: Probability, Chance of every point being included in the selection
-   :type probability: float in [0, 1], (optional)
+   :param seed: Seed, Source of randomness (in [-inf, inf], optional)
+   :type seed: int
+   :param probability: Probability, Chance of every point being included in the selection (in [0, 1], optional)
+   :type probability: float
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: separate()
 
    Separate selected geometry into a new point cloud
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]

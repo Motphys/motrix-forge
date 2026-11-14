@@ -22,12 +22,6 @@ Relative
    Output the handle positions relative to the control point
    instead of in the local space of the geometry.
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

@@ -38,7 +38,7 @@ Background Scene
 .. _bpy.types.Scene.active_clip:
 
 Active Clip
-   Selects a :doc:`Movie Clip </movie_clip/index>` that can be used by
+   Selects a :ref:`Movie Clip <bpy.types.MovieClip>` that can be used by
    :doc:`/animation/constraints/motion_tracking/index` or a camera's :ref:`bpy.types.CameraBackgroundImage`.
 
 
@@ -293,6 +293,9 @@ See :ref:`animation-actions-slots-manual-assign` for more information.
 Scene
    Specifies the action and slot where animation data for scene properties is stored/retrieved.
 
-Compositing Node Tree
-   Specifies the action and slot where animation data for
-   :doc:`Compositing Nodes </compositing/index>` is stored/retrieved.
+
+Custom Properties
+=================
+
+Create and manage your own properties to store data in the scene's data block.
+See the :ref:`Custom Properties <files-data_blocks-custom-properties>` page for more information.

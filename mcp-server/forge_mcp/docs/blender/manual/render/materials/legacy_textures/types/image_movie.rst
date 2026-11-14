@@ -195,65 +195,9 @@ Interpolation
 
              Enlarged Image texture with *Interpolation*.
 
-.. _bpy.types.ImageTexture.use_mipmap:
-
-MIP Map
-   :term:`Mip-maps <Mip-map>` are precalculated, smaller, filtered textures for a certain size.
-   A series of pictures is generated, each half the size of the former one.
-   This optimizes the filtering process. By default, this option is enabled and speeds up rendering.
-   When this option is off,
-   you generally get a sharper image, but this can significantly increase calculation time if the filter dimension
-   (see below) becomes large. Without mip-maps you may get varying pictures from slightly different camera angles,
-   when the textures become very small. This would be noticeable in an animation.
-
-.. _bpy.types.ImageTexture.use_mipmap_gauss:
-
-Gaussian Filter
-   Used in conjunction with mip-mapping, it enables the mip-map to be made smaller based on color similarities.
-   In game engines, you want your textures, especially your mip-map textures,
-   to be as small as possible to increase rendering speed and frame rate.
-
-.. _bpy.types.ImageTexture.filter_type:
-
-Filter Type
-   Texture filter to use for image sampling.
-   Just like a *pixel* represents a *pic* ture *el* ement, a *texel* represents a *tex* ture *el* ement.
-   When a texture (2D texture space) is mapped onto a 3D model (3D model space),
-   different algorithms can be used to compute a value for each pixel based on samples from several texels.
-
-   :Box:
-      A fast and simple nearest-neighbor interpolation known as Monte Carlo integration.
-   :EWA (Elliptical Weighted Average):
-      One of the most efficient direct
-      convolution algorithms developed by Paul Heckbert and Ned Greene in the 1980s.
-      For each texel, EWA samples, weights, and accumulates texels within an elliptical footprint
-      and then divides the result by the sum of the weights.
-
-      Eccentricity
-         Maximum Eccentricity. Higher values give less blur at distant/oblique angles, but is slower.
-   :FELINE (Fast Elliptical Lines):
-      Uses several isotropic probes at several points along a line in texture space to produce
-      an anisotropic filter to reduce aliasing artifacts without considerably increasing rendering time.
-
-      Light Probes
-         Number of probes to use. An integer between 1 and 256.
-         Further reading: McCormack, J; Farkas, KI; Perry, R; Jouppi, NP (1999)
-         `Simple and Table Feline: Fast Elliptical Lines for Anisotropic Texture Mapping
-         <https://www.hpl.hp.com/techreports/Compaq-DEC/WRL-99-1.pdf>`__, WRL
-   :Area:
-      Area filter to use for image sampling.
-
-      Eccentricity
-         Maximum Eccentricity. Higher values give less blur at distant/oblique angles, but is slower.
-
 .. _bpy.types.ImageTexture.filter_size:
 
 Size
-   The filter size used in rendering, and also by the options *Mip Map* and *Interpolation*.
+   Multiply the filter size used by interpolation.
    If you notice gray lines or outlines around the textured object, particularly where the image is transparent,
    turn this value down from 1.0 to 0.1 or so.
-
-.. _bpy.types.ImageTexture.use_filter_size_min:
-
-Minimum Size
-   Use Filter Size as a minimal filter value in pixels.

@@ -14,6 +14,7 @@ and selectively exposes inputs and outputs of those nodes.
 
 Group nodes can simplify a node tree by hiding away complexity and reusing functionality.
 
+
 Group Input
 ===========
 
@@ -22,6 +23,7 @@ bringing in each input right where you need it (rather than dragging long links 
 
 The input slots can be edited in the *Group* tab of the *Sidebar*.
 
+
 Group Output
 ============
 
@@ -29,6 +31,12 @@ Receives the outputs of the node group. You can have multiple of these nodes in 
 outputting each result right where it's produced (rather than dragging long links all across your graph).
 
 The output slots can be edited in the *Group* tab of the *Sidebar*.
+
+
+Linked
+======
+
+Lists node groups that are referenced indirectly through other node groups.
 
 
 Node Groups

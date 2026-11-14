@@ -8,10 +8,15 @@ UV Map Node
    :align: right
    :alt: UV Map Node.
 
-The *UV Map* node is used to retrieve specific UV maps.
-Unlike the :doc:`Texture Coordinate Node </render/shader_nodes/input/texture_coordinate>`
-which only provides the active UV map,
-this node can retrieve any UV map belonging to the object using the material.
+The *UV Map* node outputs texture coordinates from a specific :ref:`UV map <uv-maps-panel>`.
+It is especially useful when working with multiple UV layouts in the same material.
+The node is most commonly connected to the *Vector* input of texture nodes,
+allowing textures to be placed or manipulated.
+
+.. note::
+
+   Unlike the :doc:`Texture Coordinate Node </render/shader_nodes/input/texture_coordinate>`,
+   which only outputs the active render UV map, this node can access any UV map assigned to the object.
 
 
 Inputs
@@ -28,11 +33,13 @@ From Instancer :guilabel:`Cycles Only`
    option of the :doc:`Texture Coordinate Node </render/shader_nodes/input/texture_coordinate>`.
 
 UV Map
-   UV map to use.
+   The name of the :ref:`UV map <uv-maps-panel>` to use.
+   This list is populated from the UV maps available on the object's mesh data-block.
+   If left unset, the :ref:`Active Render <bpy.types.MeshUVLoopLayer.active_render>` UV map is used.
 
 
 Outputs
 =======
 
 UV
-   UV mapping coordinates from the specified UV map.
+   UV coordinates from the specified UV map.

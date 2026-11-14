@@ -140,6 +140,15 @@ Shadow Caustics
    :ref:`Cast and Receive caustics object settings <bpy.types.CyclesObjectSettings.is_caustics_caster>`
    to selectively speed up refractive caustic rendering of select objects.
 
+.. _bpy.types.CyclesWorldSettings.use_shadows:
+
+Cast Shadow
+   Allows the world background to cast shadows in the scene.
+
+   When enabled, objects can block light coming from the world environment.
+   Disabling this prevents the world from contributing shadowing, which can be useful
+   for artistic control or reducing overly dark indirect lighting.
+
 
 Volume
 ------
@@ -163,17 +172,11 @@ Interpolation
    :Linear: Simple interpolation which gives good results for thin volumes.
    :Cubic: Smoothed high-quality interpolation needed for more dense volumes, but slower.
 
-.. _bpy.types.CyclesWorldSettings.homogeneous_volume:
-
-Homogeneous
-   Assume volume has the same density everywhere (not using any textures), for faster rendering.
-   Usually this is automatically determined by the renderer.
-   This settings provides a manual control for cases where it is not detected.
-
 .. _bpy.types.CyclesWorldSettings.volume_step_size:
 
-Step Size
+Step Size :guilabel:`Biased`
    Distance between volume shader samples for world volume shaders.
+   Only enabled when :menuselection:`Render --> Volumes --> Biased` is enabled.
    See :doc:`Volume Render Settings </render/cycles/render_settings/volumes>` for more information.
 
 

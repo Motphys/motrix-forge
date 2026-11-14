@@ -34,12 +34,6 @@ Reverse
    Boolean value that changes the direction from clockwise to counterclockwise when it is enabled.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

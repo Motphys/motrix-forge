@@ -20,7 +20,7 @@ This page lists definitions for terms used in Blender and this manual.
 
    :doc:`Action </animation/actions>`
       Blender's container for animation data.  In Blender, animatable :term:`data-blocks <Data-Block>` do not store
-      their own animation data, but instead store their animation data an actions.
+      their own animation data, but instead store their animation data in actions.
 
    Action Safe
       Area of the screen visible on most devices. Place content inside it to ensure it does not get cut off.
@@ -224,20 +224,32 @@ This page lists definitions for terms used in Blender and this manual.
          whose standards have been updated for HDTV and commonly referred to as the HDMI format for component video.
 
    Color Space
-      A coordinate system in which a vector represent a color value.
-      This way the color space defines three things:
+      A color space is a coordinate system in which a vector represents a color value.
+      The definition of a color space specifies three things:
 
-      - The exact color of each of the :term:`Primaries`
-      - The :term:`White Point`
-      - A transfer function
+      - The exact color of each of the :term:`Primaries`.
+      - The :term:`White Point`.
+      - A transfer function (also called a tone response curve).
 
-      The color spaces supported by Blender depend on the active :ref:`OCIO config <ocio-config>`.
-      The default supported color spaces are described in detail here:
-      :ref:`Default OpenColorIO Configuration <ocio-config-default-color-spaces>`
+      The color spaces available in Blender depend on the active :ref:`OCIO config <ocio-config>`.
+      The default supported color spaces are described in detail at
+      :ref:`Default OpenColorIO Configuration <ocio-config-default-color-spaces>`.
+
+      Linear
+         A linear color space means that the numerical values of the color channels are directly proportional
+         to light intensity. This is the most physically accurate representation of color and is used internally
+         for rendering, shading, and compositing to ensure correct blending and lighting calculations.
 
       sRGB
-         A color space that uses the Rec .709 :term:`Primaries` and a D65 white point,
-         and 2.2 gamma correction value as the transfer function.
+         A widely used display-referred color space that uses the Rec.709 :term:`Primaries` and a D65 white point.
+         It applies an approximate 2.2 gamma transfer function to better match human perception of brightness.
+         sRGB is the standard for monitors, images, and the web, making it the most common format for saving
+         or displaying images outside of Blender.
+
+      - Linear color space is recommended for internal work, such as rendering and compositing.
+      - sRGB is typically used for output images intended for screens and general distribution.
+      - Wide gamut and high dynamic range workflows may use other color spaces, such as ACES, depending on
+        the active OCIO configuration.
 
    Concave Face
       Face in which one vertex is inside a triangle formed by other vertices of the face.
@@ -552,8 +564,6 @@ This page lists definitions for terms used in Blender and this manual.
       The mip-mapping calculations are made by CPUs, but modern graphic processors
       can be selected for this task and are way faster.
 
-      See the mip-map option present in the :doc:`System Preferences </editors/preferences/system>`.
-
    MIS
    Multiple Importance Sampling
       A process of estimating the direction of light rays to improve sampling quality.
@@ -577,7 +587,7 @@ This page lists definitions for terms used in Blender and this manual.
 
    NDOF
    3D Mouse
-      A general term used to describe a 3D mouse, or any input devices which supports
+      A general term used to describe a 3D mouse, or any input devices which support
       more degrees of freedom than a conventional 2D input device, see: :ref:`hardware-ndof`.
 
    Nonlinear Animation
@@ -658,7 +668,7 @@ This page lists definitions for terms used in Blender and this manual.
 
    Panel
       A user interface element that contains buttons.
-      Panels are collapsible to hide there contents and can often be rearranged.
+      Panels are collapsible to hide their contents and can often be rearranged.
       See :ref:`bpy.types.Panel` as described in the user interface section.
 
    Parent
@@ -843,7 +853,7 @@ This page lists definitions for terms used in Blender and this manual.
    Rolling Shutter
       In real CMOS cameras the sensor is read out with scanlines
       and hence different scanlines are sampled at a different moment in time.
-      This, for example, make vertical straight lines being curved when doing a horizontal camera pan.
+      This, for example, makes vertical straight lines being curved when doing a horizontal camera pan.
       See also `Rolling Shutter <https://en.wikipedia.org/wiki/Rolling_shutter>`__ on Wikipedia.
 
    Roughness Map
@@ -998,7 +1008,7 @@ This page lists definitions for terms used in Blender and this manual.
 
       A white point is defined by a set of `CIE illuminates <https://en.wikipedia.org/wiki/Standard_illuminant>`__
       which correspond to a color temperature.
-      For example, D65 corresponds to 6500 K light and D70 corresponding to 7000 K.
+      For example, D65 corresponds to 6500 K light and D70 corresponds to 7000 K.
 
    World Space
       A 3D coordinate system that originates at a point at the origin of the world.

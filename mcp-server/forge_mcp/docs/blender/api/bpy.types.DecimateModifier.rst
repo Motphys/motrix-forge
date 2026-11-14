@@ -5,105 +5,112 @@ DecimateModifier(Modifier)
 
 base classes --- :class:`bpy_struct`, :class:`Modifier`
 
+
 .. class:: DecimateModifier(Modifier)
 
    Decimation modifier
 
    .. attribute:: angle_limit
 
-      Only dissolve angles below this (planar only)
+      Only dissolve angles below this (planar only) (in [0, 3.14159], default 0.0872665)
 
-      :type: float in [0, 3.14159], default 0.0872665
+      :type: float
 
    .. attribute:: decimate_type
 
-      * ``COLLAPSE``
+      (default ``'COLLAPSE'``)
+
+      - ``COLLAPSE``
         Collapse -- Use edge collapsing.
-      * ``UNSUBDIV``
+      - ``UNSUBDIV``
         Un-Subdivide -- Use un-subdivide face reduction.
-      * ``DISSOLVE``
+      - ``DISSOLVE``
         Planar -- Dissolve geometry to form planar polygons.
 
-      :type: enum in [``'COLLAPSE'``, ``'UNSUBDIV'``, ``'DISSOLVE'``], default ``'COLLAPSE'``
+      :type: Literal['COLLAPSE', 'UNSUBDIV', 'DISSOLVE']
 
    .. attribute:: delimit
 
-      Limit merging geometry
+      Limit merging geometry (default set())
 
-      :type: enum set in :ref:`rna_enum_mesh_delimit_mode_items`, default {``'NORMAL'``}
+      :type: set[Literal[:ref:`rna_enum_mesh_delimit_mode_items`]]
 
    .. data:: face_count
 
-      The current number of faces in the decimated mesh
+      The current number of faces in the decimated mesh (in [-inf, inf], default 0, readonly)
 
-      :type: int in [-inf, inf], default 0, (readonly)
+      :type: int
 
    .. attribute:: invert_vertex_group
 
-      Invert vertex group influence (collapse only)
+      Invert vertex group influence (collapse only) (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: iterations
 
-      Number of times reduce the geometry (unsubdivide only)
+      Number of times reduce the geometry (unsubdivide only) (in [0, 32767], default 0)
 
-      :type: int in [0, 32767], default 0
+      :type: int
 
    .. attribute:: ratio
 
-      Ratio of triangles to reduce to (collapse only)
+      Ratio of triangles to reduce to (collapse only) (in [0, 1], default 1.0)
 
-      :type: float in [0, 1], default 1.0
+      :type: float
 
    .. attribute:: symmetry_axis
 
-      Axis of symmetry
+      Axis of symmetry (default ``'X'``)
 
-      :type: enum in :ref:`rna_enum_axis_xyz_items`, default ``'X'``
+      :type: Literal[:ref:`rna_enum_axis_xyz_items`]
 
    .. attribute:: use_collapse_triangulate
 
-      Keep triangulated faces resulting from decimation (collapse only)
+      Keep triangulated faces resulting from decimation (collapse only) (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_dissolve_boundaries
 
-      Dissolve all vertices in between face boundaries (planar only)
+      Dissolve all vertices in between face boundaries (planar only) (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_symmetry
 
-      Maintain symmetry on an axis
+      Maintain symmetry on an axis (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: vertex_group
 
-      Vertex group name (collapse only)
+      Vertex group name (collapse only) (default "", never None)
 
-      :type: string, default "", (never None)
+      :type: str
 
    .. attribute:: vertex_group_factor
 
-      Vertex group strength
+      Vertex group strength (in [0, 1000], default 1.0)
 
-      :type: float in [0, 1000], default 1.0
+      :type: float
 
    .. classmethod:: bl_rna_get_subclass(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: :class:`bpy.types.Struct` | None
       :return: The RNA type or default when not found.
-      :rtype: :class:`bpy.types.Struct` subclass
+      :rtype: :class:`bpy.types.Struct`
 
 
    .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: type | None
       :return: The class or default when not found.
       :rtype: type
 
@@ -114,20 +121,20 @@ Inherited Properties
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.id_data`
-   * :class:`Modifier.name`
-   * :class:`Modifier.type`
-   * :class:`Modifier.show_viewport`
-   * :class:`Modifier.show_render`
-   * :class:`Modifier.show_in_editmode`
-   * :class:`Modifier.show_on_cage`
-   * :class:`Modifier.show_expanded`
-   * :class:`Modifier.is_active`
-   * :class:`Modifier.use_pin_to_last`
-   * :class:`Modifier.is_override_data`
-   * :class:`Modifier.use_apply_on_spline`
-   * :class:`Modifier.execution_time`
-   * :class:`Modifier.persistent_uid`
+   - :class:`bpy_struct.id_data`
+   - :class:`Modifier.name`
+   - :class:`Modifier.type`
+   - :class:`Modifier.show_viewport`
+   - :class:`Modifier.show_render`
+   - :class:`Modifier.show_in_editmode`
+   - :class:`Modifier.show_on_cage`
+   - :class:`Modifier.show_expanded`
+   - :class:`Modifier.is_active`
+   - :class:`Modifier.use_pin_to_last`
+   - :class:`Modifier.is_override_data`
+   - :class:`Modifier.use_apply_on_spline`
+   - :class:`Modifier.execution_time`
+   - :class:`Modifier.persistent_uid`
 
 Inherited Functions
 -------------------
@@ -135,29 +142,30 @@ Inherited Functions
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.as_pointer`
-   * :class:`bpy_struct.driver_add`
-   * :class:`bpy_struct.driver_remove`
-   * :class:`bpy_struct.get`
-   * :class:`bpy_struct.id_properties_clear`
-   * :class:`bpy_struct.id_properties_ensure`
-   * :class:`bpy_struct.id_properties_ui`
-   * :class:`bpy_struct.is_property_hidden`
-   * :class:`bpy_struct.is_property_overridable_library`
-   * :class:`bpy_struct.is_property_readonly`
-   * :class:`bpy_struct.is_property_set`
-   * :class:`bpy_struct.items`
-   * :class:`bpy_struct.keyframe_delete`
-   * :class:`bpy_struct.keyframe_insert`
-   * :class:`bpy_struct.keys`
-   * :class:`bpy_struct.path_from_id`
-   * :class:`bpy_struct.path_resolve`
-   * :class:`bpy_struct.pop`
-   * :class:`bpy_struct.property_overridable_library_set`
-   * :class:`bpy_struct.property_unset`
-   * :class:`bpy_struct.rna_ancestors`
-   * :class:`bpy_struct.type_recast`
-   * :class:`bpy_struct.values`
-   * :class:`Modifier.bl_rna_get_subclass`
-   * :class:`Modifier.bl_rna_get_subclass_py`
+   - :class:`bpy_struct.as_pointer`
+   - :class:`bpy_struct.driver_add`
+   - :class:`bpy_struct.driver_remove`
+   - :class:`bpy_struct.get`
+   - :class:`bpy_struct.id_properties_clear`
+   - :class:`bpy_struct.id_properties_ensure`
+   - :class:`bpy_struct.id_properties_ui`
+   - :class:`bpy_struct.is_property_hidden`
+   - :class:`bpy_struct.is_property_overridable_library`
+   - :class:`bpy_struct.is_property_readonly`
+   - :class:`bpy_struct.is_property_set`
+   - :class:`bpy_struct.items`
+   - :class:`bpy_struct.keyframe_delete`
+   - :class:`bpy_struct.keyframe_insert`
+   - :class:`bpy_struct.keys`
+   - :class:`bpy_struct.path_from_id`
+   - :class:`bpy_struct.path_from_module`
+   - :class:`bpy_struct.path_resolve`
+   - :class:`bpy_struct.pop`
+   - :class:`bpy_struct.property_overridable_library_set`
+   - :class:`bpy_struct.property_unset`
+   - :class:`bpy_struct.rna_ancestors`
+   - :class:`bpy_struct.type_recast`
+   - :class:`bpy_struct.values`
+   - :class:`Modifier.bl_rna_get_subclass`
+   - :class:`Modifier.bl_rna_get_subclass_py`
 

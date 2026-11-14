@@ -11,7 +11,8 @@ Preparations
 If the language you want to translate has not been started by someone else already and you wish to create a set of new
 files for the desired language, say 'fr' (French), then you must first use the environment you have created, as guided
 in :ref:`Getting Started <about-getting-started>`, in particular
-:doc:`/contribute/manual/getting_started/local_editing/install/index` and :doc:`/contribute/manual/getting_started/local_editing/build` sections.
+:doc:`/contribute/manual/getting_started/local_editing/install/index` and 
+:doc:`/contribute/manual/getting_started/local_editing/build` sections.
 
 This will give you a foundation environment for:
 

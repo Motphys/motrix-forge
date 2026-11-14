@@ -83,14 +83,14 @@ the :ref:`splash`.
 
 :doc:`Manual </index>`
    This is a link to the Official Blender Manual (which you are now reading).
-`Release Notes <https://developer.blender.org/docs/release_notes/>`__
-   Link to the release notes for the current Blender version.
-`Tutorials <https://www.blender.org/support/tutorials>`__
-   Multiple tutorials to help you learn to use Blender.
 `Support <https://www.blender.org/support>`__
    Links to various sites, providing both community and professional support.
 `User Communities <https://www.blender.org/community/>`__
    Lists of many different community sites and support venues.
+`Get Involved <https://www.blender.org/get-involved>`__
+   Learn how to give back to the Blender community by contributing to projects or donating.
+`Release Notes <https://developer.blender.org/docs/release_notes/>`__
+   Link to the release notes for the current Blender version.
 
 ----
 

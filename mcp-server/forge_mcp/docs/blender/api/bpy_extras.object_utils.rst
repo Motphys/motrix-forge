@@ -7,10 +7,10 @@ bpy_extras submodule (bpy_extras.object_utils)
 
    Return a matrix using the operator settings and view context.
    
-   :arg context: The context to use.
+   :param context: The context to use.
    :type context: :class:`bpy.types.Context`
-   :arg operator: The operator, checked for location and rotation properties.
-   :type operator: :class:`bpy.types.Operator`
+   :param operator: The operator, checked for location and rotation properties.
+   :type operator: :class:`bpy.types.Operator` | None
    :return: the matrix from the context and settings.
    :rtype: :class:`mathutils.Matrix`
 
@@ -19,25 +19,35 @@ bpy_extras submodule (bpy_extras.object_utils)
    Add an object using the view context and preference to initialize the
    location, rotation and layer.
    
-   :arg context: The context to use.
+   :param context: The context to use.
    :type context: :class:`bpy.types.Context`
-   :arg obdata: Valid object data to used for the new object or None.
+   :param obdata: Valid object data to be used for the new object or None.
    :type obdata: :class:`bpy.types.ID` | None
-   :arg operator: The operator, checked for location and rotation properties.
-   :type operator: :class:`bpy.types.Operator`
-   :arg name: Optional name
-   :type name: str
+   :param operator: The operator, checked for location and rotation properties.
+   :type operator: :class:`bpy.types.Operator` | None
+   :param name: Optional name
+   :type name: str | None
    :return: the newly created object in the scene.
    :rtype: :class:`bpy.types.Object`
 
 .. function:: object_add_grid_scale(context)
 
    Return scale which should be applied on object
-   data to align it to grid scale
+   data to align it to grid scale.
+   
+   :param context: The context.
+   :type context: :class:`bpy.types.Context`
+   :return: The grid scale.
+   :rtype: float
 
 .. function:: object_add_grid_scale_apply_operator(operator, context)
 
-   Scale an operators distance values by the grid size.
+   Scale an operator's distance values by the grid size.
+   
+   :param operator: The operator to scale.
+   :type operator: :class:`bpy.types.Operator`
+   :param context: The context.
+   :type context: :class:`bpy.types.Context`
 
 .. function:: world_to_camera_view(scene, obj, coord)
 
@@ -52,11 +62,11 @@ bpy_extras submodule (bpy_extras.object_utils)
    Takes shift-x/y, lens angle and sensor size into account
    as well as perspective/ortho projections.
    
-   :arg scene: Scene to use for frame size.
+   :param scene: Scene to use for frame size.
    :type scene: :class:`bpy.types.Scene`
-   :arg obj: Camera object.
+   :param obj: Camera object.
    :type obj: :class:`bpy.types.Object`
-   :arg coord: World space location.
+   :param coord: World space location.
    :type coord: :class:`mathutils.Vector`
    :return: a vector where X and Y map to the view plane and
       Z is the depth on the view axis.
@@ -68,16 +78,31 @@ bpy_extras submodule (bpy_extras.object_utils)
    
    If the object has no shape keys, there is nothing to lock, and the function returns False.
    
-   :arg obj: Object to check.
+   :param obj: Object to check.
    :type obj: :class:`bpy.types.Object`
-   :arg operator: Currently running operator to report the error through. Use None to suppress emitting the message.
-   :type operator: :class:`bpy.types.Operator`
+   :param operator: Currently running operator to report the error through. Use None to suppress emitting the message.
+   :type operator: :class:`bpy.types.Operator` | None
    :return: True if the shape key was locked.
+   :rtype: bool
 
-.. class:: bpy_extras.object_utils.AddObjectHelper
+.. class:: AddObjectHelper
 
 
-   .. method:: align_update_callback(_context)
+   .. method:: align_update_callback(context)
+
+      Update callback for the align property, resets rotation for world alignment.
+      
+      :param context: The context.
+      :type context: :class:`bpy.types.Context`
+
+   .. classmethod:: poll(context)
+
+      Check the scene is not linked from a library.
+      
+      :param context: The context.
+      :type context: :class:`bpy.types.Context`
+      :return: True when the scene is local (not linked from a library).
+      :rtype: bool
 
 
 

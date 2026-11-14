@@ -5,10 +5,9 @@ Property Subtype Number Array Items
 
 :COLOR: Linear Color.
 
-   Color in the linear space.
+   Color in the scene linear working color space.
 :TRANSLATION: Translation.
 
-   Color in the gamma corrected space.
 :DIRECTION: Direction.
 
 :VELOCITY: Velocity.
@@ -30,8 +29,9 @@ Property Subtype Number Array Items
 
 :XYZ_LENGTH: XYZ Length.
 
-:COLOR_GAMMA: Gamma-Corrected Color.
+:COLOR_GAMMA: sRGB Color.
 
+   Color in sRGB color space (mainly for user interface colors).
 :COORDINATES: Coordinates.
 
 :LAYER: Layer.

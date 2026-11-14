@@ -108,7 +108,7 @@ The material :doc:`Attribute Node </render/shader_nodes/input/attribute>` in the
 automatically searches for the attribute property in multiple locations. This, for example, can allow
 setting a certain value of the custom attribute at the :doc:`Scene </scene_layout/scene/introduction>`
 or :doc:`World </render/lights/world>` level, and then overriding it
-differently for one :doc:`View Layer </scene_layout/view_layers/introduction>`.
+differently for one :doc:`View Layer </render/layers/introduction>`.
 
 .. figure:: /images/animation_drivers_workflow-examples_attribute-lookup.png
    :width: 200px

@@ -46,7 +46,7 @@ Transform
 :ref:`Measure <tool-measure>`
    Measure distances in the scene.
 
-:ref:`Roll <tool-bone-role>`
+:ref:`Roll <tool-bone-roll>`
    Rotates a bone around its local Y axis.
 
 Bone Size

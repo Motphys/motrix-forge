@@ -32,12 +32,6 @@ Radius
    the :doc:`position </modeling/geometry_nodes/geometry/read/position>` won't work.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

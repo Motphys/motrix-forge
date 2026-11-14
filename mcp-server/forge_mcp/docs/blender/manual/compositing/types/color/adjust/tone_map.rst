@@ -22,6 +22,15 @@ Inputs
 
 Image
    :abbr:`HDR (High Dynamic Range)` image.
+Type
+   Algorithm used for tone mapping:
+
+   :Rh Simple:
+      A simplified Reinhard tone mapping operator that uses the image's average luminance.
+      Suitable for quick and general-purpose tone mapping.
+   :R/D Photoreceptor:
+      A more complex algorithm modeling human photoreceptor response,
+      allowing finer adjustments in adaptation, contrast, and color correction.
 Intensity :guilabel:`R/D Photoreceptor`
    If less than zero, darkens image; otherwise, makes it brighter.
 Contrast :guilabel:`R/D Photoreceptor`
@@ -36,20 +45,6 @@ Balance :guilabel:`Rh Simple`
    Normally always 1, but can be used as an extra control to alter the brightness curve.
 Gamma :guilabel:`Rh Simple`
    If not used, set to 1.
-
-
-Properties
-==========
-
-Tonemap Type
-   Algorithm used for tone mapping:
-
-   :Rh Simple:
-      A simplified Reinhard tone mapping operator that uses the image's average luminance.
-      Suitable for quick and general-purpose tone mapping.
-   :R/D Photoreceptor:
-      A more complex algorithm modeling human photoreceptor response,
-      allowing finer adjustments in adaptation, contrast, and color correction.
 
 
 Outputs

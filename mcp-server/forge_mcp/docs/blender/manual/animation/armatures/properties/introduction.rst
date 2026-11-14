@@ -54,11 +54,9 @@ Inverse Kinematics
    :Mode:      All Modes
    :Panel:     :menuselection:`Armature --> Inverse Kinematics`
 
-.. todo:: Update image
+.. figure:: /images/animation_armatures_posing_bone-constraints_inverse-kinematics_introduction_panel.png
 
-   .. figure:: /images/animation_armatures_posing_bone-constraints_inverse-kinematics_introduction_panel.png
-
-      The Inverse Kinematics panel.
+   The Inverse Kinematics panel.
 
 Defines the type of :doc:`IK solver </animation/armatures/posing/bone_constraints/inverse_kinematics/introduction>`
 used in your animation.

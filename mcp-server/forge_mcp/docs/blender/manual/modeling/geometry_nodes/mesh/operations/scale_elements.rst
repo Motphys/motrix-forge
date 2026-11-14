@@ -31,6 +31,10 @@ Center
 Axis :guilabel:`Single Axis Mode Only`
    Axis along which to scale each element. This vector is normalized internally, so the length does not matter.
 
+Scale Mode
+   :Uniform: Scale elements by the same factor in every direction.
+   :Single Axis: Scale elements in a single direction defined by the *Axis* input.
+
 
 Properties
 ==========
@@ -41,16 +45,13 @@ Domain
    :Face: Scale faces.
    :Edge: Scale edges.
 
-Scale Mode
-   :Uniform: Scale elements by the same factor in every direction.
-   :Single Axis: Scale elements in a single direction defined by the *Axis* input.
-
 
 Output
 ======
 
 Geometry
    Standard geometry output.
+
 
 Examples
 ========

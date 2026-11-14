@@ -10,96 +10,74 @@ Edge Slide
 
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Edge --> Edge Slide`
-   :Shortcut:  :kbd:`G`, :kbd:`G`
+   :Shortcut:  :kbd:`G` twice
 
-Slides one or more edges across adjacent faces with a few restrictions involving the selection
-of edges (i.e. the selection *must* define a valid loop, see below).
+Moves the selected edges across their neighboring faces.
 
-Even :kbd:`E`
-   Forces the edge loop to match the shape of the adjacent edge loop.
-   You can flip to the opposite vertex using :kbd:`F`.
-Flipped :kbd:`F`
-   When Even mode is active, this flips between the two adjacent edge loops the active edge loop will match.
-Clamp :kbd:`Alt` or :kbd:`C`
-   Toggle clamping the slide within the edge extents.
-Factor
-   Determines the amount of slide performed.
-   Negative values correspond to slides toward one face, while positive ones, refer to the other one.
-   It is also displayed in the 3D Viewport footer.
-Mirror Editing
-   Lets you propagate the operation to the symmetrical elements of the mesh (if present, in local X direction).
-Correct UVs
-   Corrects the corresponding UV coordinates, if these exist, to avoid image distortions.
+.. hint::
 
+   Use :ref:`bpy.ops.mesh.loop_select` to quickly select a chain of edges
+   that goes around the mesh.
 
 Usage
 =====
 
-By default, the position of vertices on the edge loop move as a percentage of the distance
-between their original position and the adjacent edge loop, regardless of the edges' lengths.
+Select one or more edges, press :kbd:`G` twice, move the mouse, and click :kbd:`LMB` to confirm
+(or :kbd:`RMB` to cancel).
+
+By default, the vertices on the selected edges all move by the same *percentage* towards their
+neighbor:
 
 .. list-table::
+   :widths: 1 1
 
    * - .. figure:: /images/modeling_meshes_editing_edge_edge-slide_before.png
-          :width: 320px
 
-          Selected edge loop.
+          Selected edges.
 
      - .. figure:: /images/modeling_meshes_editing_edge_edge-slide_after.png
-          :width: 320px
 
-          Repositioned edge loop.
+          Repositioned edges.
 
 
-Even Mode
----------
-
-*Even* mode keeps the shape of the selected edge loop the same as one of the edge loops adjacent to it,
-rather than sliding a percentage along each perpendicular edge.
-
-In *Even* mode, the tool shows the position along the length of the currently selected edge
-which is marked in yellow, from the vertex that has an enlarged red marker.
-Movement of the sliding edge loop is restricted to this length. As you move the mouse
-the length indicator in the header changes showing where along the length of the edge you are.
+In *Even* mode, the vertices instead keep the same *distance* from their neighbor.
+The red dot indicates which side they look at (i.e. which neighbor they pick):
 
 .. list-table::
+   :widths: 1 1
 
    * - .. figure:: /images/modeling_meshes_editing_edge_edge-slide_even.png
-          :width: 320px
 
           Even Mode enabled.
 
      - .. figure:: /images/modeling_meshes_editing_edge_edge-slide_even-flip.png
-          :width: 320px
 
           Even Mode with Flip enabled.
 
-Moving the mouse moves the selected edge loop towards or away from the start vertex,
-but the loop line will only move as far as the length of the currently selected edge,
-conforming to the shape of one of the bounding edge loops.
+Options
+=======
 
+While the tool is active, the *Factor* is shown at the top of the 3D Viewport and the shortcuts
+are shown in the :doc:`status bar </interface/window_system/status_bar>`. After confirming
+with :kbd:`LMB`, the options can still be changed in the :ref:`bpy.ops.screen.redo_last` panel.
 
-Limitations & Workarounds
--------------------------
+Factor
+   Direction and amount to slide. Values of -1 and 1 move each selected edge fully towards
+   one of its neighbors.
+Even :kbd:`E`
+   By default, each vertex is moved by the same percentage along the length of its edge.
+   Use *Even* to instead move all vertices so they're at the same absolute distance from
+   a neighboring vertex. (The *Factor* input is still a relative number, however.)
+Flipped :kbd:`F`
+   Use the other neighboring vertex when *Even* is active.
+Clamp :kbd:`Alt` or :kbd:`C`
+   Prevents the edges from moving outside their neighboring faces.
+Mirror Editing
+   Also slide matching edges on the other side of the mesh.
+   :ref:`Mesh Symmetry <modeling_meshes_tools-settings_mirror>` needs to be enabled for this to work.
+Correct UVs
+   Corrects the UV coordinates of the moved vertices to avoid texture distortion.
 
-There are restrictions on the type of edge selections that can be operated upon.
-Invalid selections are:
+.. seealso::
 
-Loop Crosses Itself
-   This means that the tool could not find any suitable faces that were adjacent to the selected edge(s).
-   An example that shows this is selecting two edges that share the same face.
-   A face cannot be adjacent to itself.
-Multiple Edge Loops
-   The selected edges are not in the same edge loop, which means they do not have a common edge.
-   You can minimize this error by always selecting edges end-to-end or in a "chain".
-   If you select multiple edges just make sure they are connected.
-   This will decrease the possibility of getting looping errors.
-Border Edges
-   When a single edge was selected in a single-sided object.
-   An edge loop cannot be found because there is only one face.
-   Remember, edge loops are loops that span two or more faces.
-
-A general rule of thumb is that if multiple edges are selected they should be connected end-to-end
-such that they form a continuous chain. This is *literally* a general rule because you
-can still select edges in a chain that are invalid because some of the edges in the chain are
-in different edge loops.
+   :doc:`/modeling/meshes/editing/vertex/slide_vertices`

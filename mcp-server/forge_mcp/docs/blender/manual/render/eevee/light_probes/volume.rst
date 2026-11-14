@@ -1,3 +1,5 @@
+.. _bpy.types.LightProbeVolume:
+
 ******************
 Light Probe Volume
 ******************
@@ -25,6 +27,8 @@ Properties
 
    :Panel:     :menuselection:`Object Data --> Probe`
 
+.. _bpy.types.LightProbeVolume.intensity:
+
 Intensity
    Intensity factor of the recorded lighting.
    Making this parameter anything other than 1.0 is not physically correct.
@@ -32,13 +36,19 @@ Intensity
 
 .. rubric:: Sampling Bias
 
+.. _bpy.types.LightProbeVolume.normal_bias:
+
 Normal Bias
    Offset sampling of the irradiance grid in the surface normal direction to reduce light bleeding.
    Can lead to specular appearance of diffuse surface if set too high.
 
+.. _bpy.types.LightProbeVolume.view_bias:
+
 View Bias
    Offset sampling of the irradiance grid in the viewing direction to reduce light bleeding.
    Can lead to view dependent result if set too high. Prefer this if camera is static.
+
+.. _bpy.types.LightProbeVolume.facing_bias:
 
 Facing Bias
    When set to zero, avoids capturing points behind the shaded surface to bleed light onto
@@ -52,12 +62,18 @@ During the baking process, a validity score is assigned to each capture point.
 This score is based on the number of back-faces hit when capturing the incoming lighting.
 Only materials with *Single Sided* turned on for Light Probe Volumes will reduce the validity score.
 
+.. _bpy.types.LightProbeVolume.validity_threshold:
+
 Validity Threshold
    Capture points with validity below this threshold will be ignored during lighting interpolation.
-   This remove the influence of capture points trapped inside closed geometry, reducing the artifacts they produced.
+   This removes the influence of capture points trapped inside closed geometry, reducing the artifacts they produced.
+
+.. _bpy.types.LightProbeVolume.dilation_threshold:
 
 Dilation Threshold
    Capture points with validity below this threshold will have their data replaced using valid neighbors.
+
+.. _bpy.types.LightProbeVolume.dilation_radius:
 
 Radius
    Radius in capture points in which to search for a valid neighbor.
@@ -88,17 +104,24 @@ There are a few way to deal with this issue:
 
    The internal scene representation can be inspected using the ``Debug Value`` 3, 4 and 5.
 
+
 Resolution
 ----------
+
+.. _bpy.types.LightProbeVolume.resolution:
 
 Resolution X, Y, Z
    Spatial resolution for volumetric light probes is determined per probe.
    The local volume is divided into a regular grid of the specified dimensions.
    The lighting will be captured for each cell in this grid.
 
+.. _bpy.types.LightProbeVolume.bake_samples:
+
 Bake Samples
    Number of ray directions to evaluate when baking.
    This increases the baking time proportionally to the size of the scene representation.
+
+.. _bpy.types.LightProbeVolume.surfel_density:
 
 Surfel Resolution
    Number of surfels to spawn in one local unit distance.
@@ -112,38 +135,50 @@ Surfel Resolution
 Capture
 -------
 
+.. _bpy.types.LightProbeVolume.capture_distance:
+
 Capture Distance
    Distance around the light probe volume that will be captured during the bake.
    A distance of 0 will only considered the inside of the volume.
 
-World Contribution
+.. _bpy.types.LightProbeVolume.capture_world:
+
+Contributions -- World
    Bake incoming light from the world instead of just visibility for more accurate lighting,
    but lose correct blending to surrounding irradiance volumes.
 
-Indirect Light Contribution
+.. _bpy.types.LightProbeVolume.capture_indirect:
+
+Contributions -- Indirect Light
    Capture light bounces from light source.
 
-Emission Contribution
+.. _bpy.types.LightProbeVolume.capture_emission:
+
+Contributions -- Emission
    Capture emissive surfaces when baking.
 
 
 Clamping
 ^^^^^^^^
 
+.. _bpy.types.LightProbeVolume.clamp_direct:
+
 Direct Light
    Clamp incoming direct light. 0.0 disables direct light clamping.
    Here direct light refers to the light that bounces only once (from the light object)
    or light coming from emissive materials.
+
+.. _bpy.types.LightProbeVolume.clamp_indirect:
 
 Indirect Light
    Clamp incoming indirect light. 0.0 disables indirect light clamping.
    Here indirect light refers to the light that bounces off a surface after the first bounce (from the light object)
    or during the first bounce if the light comes from emissive materials.
 
-.. tip::
+   .. tip::
 
-   Setting *Clamp Indirect* to a very small non-zero value will effectively only record the first light bounce
-   leading.
+      Setting *Clamp Indirect* to a very small non-zero value will effectively only record the first light bounce
+      leading.
 
 
 Offset
@@ -154,8 +189,12 @@ the bake process adjusts their location before capturing light.
 It moves the capture points slightly away from surrounding surfaces and tries to move them out of objects
 if they are not too far bellow the surface.
 
+.. _bpy.types.LightProbeVolume.surface_bias:
+
 Surface Offset
    Distance to move the capture points away from surfaces.
+
+.. _bpy.types.LightProbeVolume.escape_bias:
 
 Search Distance
    Distance to search for valid capture positions if the capture point is near the back-face of a single-sided object.
@@ -171,8 +210,8 @@ Viewport Display
 Data
    Show the captured light using small diffuse spheres of the given size.
 
-Influence
-   Show the influence bounds in the 3D Viewport. The inner sphere is where the falloff starts.
-
 Clipping
    Show the clipping distance in the 3D Viewport.
+
+Influence
+   Show the influence bounds in the 3D Viewport. The inner sphere is where the falloff starts.

@@ -19,14 +19,16 @@ Inputs
 This node has no inputs.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 
 Is Viewport
    Boolean value that indicates whether geometry nodes are evaluated for preview.
+
+
+Example
+=======
+
+.. figure:: /images/modeling_geometry-nodes_is_viewport_example.jpg
+
+   Using *Is Viewport* to switch between low quality and high quality.

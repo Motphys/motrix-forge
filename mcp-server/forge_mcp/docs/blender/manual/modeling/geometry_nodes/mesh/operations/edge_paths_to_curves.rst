@@ -31,12 +31,6 @@ Next Vertex Index
    Describes the path to follow at every vertex.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

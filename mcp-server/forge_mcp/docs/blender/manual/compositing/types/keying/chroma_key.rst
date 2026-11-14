@@ -32,12 +32,6 @@ Falloff
    Increase to make nearby pixels partially transparent producing a smoother blend along the edges.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

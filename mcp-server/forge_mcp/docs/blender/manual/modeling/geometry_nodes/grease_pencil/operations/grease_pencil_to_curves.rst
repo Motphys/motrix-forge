@@ -30,12 +30,6 @@ Instances as Layers
       operation after creating the curve geometry instances. This can simplify some logic later on, but
       typically keeping this operation off will be much better for performance.
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

@@ -66,7 +66,8 @@ Transmission Depth :guilabel:`Cycles Only`
    A typical use case is to avoid black spots in the render (caused by rays hitting
    the bounce limit) by switching from a transmissive to a diffuse shader past a
    certain point. See :doc:`/render/shader_nodes/shader/mix`.
-
+Portal Depth: :guilabel:`Cycles Only`
+   Number of times the ray has passed through a :doc:`/render/shader_nodes/shader/ray_portal`.
 
 EEVEE Support
 =============

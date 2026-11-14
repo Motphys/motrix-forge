@@ -45,12 +45,6 @@ Weight
    Without any Weight and Group ID inputs, each point will have the same indices in the curve.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

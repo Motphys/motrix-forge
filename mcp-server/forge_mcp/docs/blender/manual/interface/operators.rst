@@ -26,8 +26,15 @@ Modal operators exist as a concept in between :doc:`Tools </interface/tool_syste
 and regular operators.
 They require some sort of interactive input.
 
-The action of a modal operator can be confirmed using :kbd:`LMB` or :kbd:`Return`.
-To cancel a modal operator use :kbd:`RMB` or :kbd:`Esc`.
+.. list-table::
+   :align: left
+   :width: 95%
+   :widths: 20 80
+
+   * - :kbd:`Esc`, :kbd:`RMB`
+     - Cancels a modal operator.
+   * - :kbd:`Return`, :kbd:`LMB`
+     - Confirms the action of a modal operator.
 
 
 Slider Operators

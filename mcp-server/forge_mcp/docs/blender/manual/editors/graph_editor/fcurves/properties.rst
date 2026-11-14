@@ -36,11 +36,11 @@ RNA Array Index
 Display Color
    How to determine the color of the F-Curve in the Graph editor.
 
-   Auto Rainbow
+   :Auto Rainbow:
       Assigns a unique color to each curve that uses this setting.
-   Auto XYZ to RGB
+   :Auto XYZ to RGB:
       Detects curves that animate an X/Y/Z coordinate and colors them red/green/blue accordingly.
-   User Defined
+   :User Defined:
       Lets you choose the color yourself.
 
 .. _bpy.types.FCurve.auto_smoothing:
@@ -49,19 +49,13 @@ Handle Smoothing
    How to compute the :ref:`Bézier handles <editors-graph-fcurves-settings-handles>`
    when using the *Automatic* or *Auto Clamped* handle type.
 
-   .. figure:: /images/editors_graph-editor_fcurves_sidebar_curve_auto-smoothing.png
-      :align: center
-
-      Handle smoothing mode comparison.
-
-   None
+   :None:
       Only directly adjacent key values are considered when computing the handles.
 
       This older method is very simple and predictable, but it can only produce
       truly smooth curves in the most trivial cases. Notice that the red curve
       in the image above has a few kinks in the middle.
-
-   Continuous Acceleration
+   :Continuous Acceleration:
       A system of equations is solved in order to avoid or minimize jumps in acceleration
       at every keyframe.
 
@@ -82,6 +76,11 @@ Handle Smoothing
          better suited for limited animation, which uses a small number of interpolated keys with
          minimal manual polish. In case of highly polished high key rate animation, the benefits of
          smoothing may not outweigh the workflow disruption from more extensive change propagation.
+
+   .. figure:: /images/editors_graph-editor_fcurves_sidebar_curve_auto-smoothing.png
+      :align: center
+
+      Handle smoothing mode comparison.
 
 
 Active Keyframe
@@ -151,7 +150,7 @@ Interpolation
 
       For more info and a few live demos,
       see `easings.net <https://easings.net>`__ and
-      `Robert Penner's Easing Functions <http://robertpenner.com/easing>`__.
+      `Robert Penner's Easing Functions <https://robertpenner.com/easing>`__.
 
 
    .. rubric:: Dynamic Effects
@@ -183,14 +182,14 @@ Interpolation
 Easing
    This option only applies to the *Easing* and *Dynamic Effects* categories above.
 
-   Automatic Easing
+   :Automatic Easing:
       Automatically pick the most commonly used type: *Ease In* when using one of the *Easing* interpolations,
       and *Ease Out* when using one of the *Dynamic Effects*.
-   Ease In
+   :Ease In:
       The value accelerates, moving slowly at the beginning of the curve segment and speeding up towards the end.
-   Ease Out
+   :Ease Out:
       The value decelerates, moving quickly at the beginning of the curve segment and slowing down towards the end.
-   Ease In Out
+   :Ease In Out:
       The value moves slowly in the beginning, speeds up towards the middle, and slows down again towards the end.
 
 .. _bpy.types.Keyframe.co_ui:
@@ -262,9 +261,8 @@ Left/Right Handle Type
 
       Manual handles that can be moved independently, and thus can result in a sharp change of direction.
 
+.. _bpy.types.Keyframe.handle_left:
+.. _bpy.types.Keyframe.handle_right:
 
-   .. _bpy.types.Keyframe.handle_left:
-   .. _bpy.types.Keyframe.handle_right:
-
-   Frame, Value
-      The frame and value for the left/right handle of the active keyframe.
+Frame, Value
+   The frame and value for the left/right handle of the active keyframe.

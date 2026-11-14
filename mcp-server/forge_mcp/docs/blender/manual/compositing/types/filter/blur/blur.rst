@@ -21,15 +21,6 @@ Size
    The optional Size input will be multiplied with the X and Y blur radius values.
    It also accepts a value image, to control the blur radius with a mask.
    The values should be mapped between (0 to 1) for an optimal effect.
-Extend Bounds
-   Allows the image, that is being blurred, to extend past its original dimension.
-Separable
-   Use faster approximation by blurring along the horizontal and vertical directions independently.
-
-
-Properties
-==========
-
 Type
    The difference between the types is in the way they handle sharp edges,
    smooth gradients and preserve the highs and the lows.
@@ -42,6 +33,10 @@ Type
    :Fast Gaussian: An approximation of the Gaussian.
    :Catmull-Rom: Catmull-Rom keeps sharp contrast edges crisp.
    :Mitch: Preserve the highs, but give an almost out-of-focus blur while smoothing sharp edges.
+Extend Bounds
+   Allows the image, that is being blurred, to extend past its original dimension.
+Separable
+   Use faster approximation by blurring along the horizontal and vertical directions independently.
 
 
 Outputs

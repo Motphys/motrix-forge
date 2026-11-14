@@ -5,88 +5,93 @@ MotionPath(bpy_struct)
 
 base class --- :class:`bpy_struct`
 
+
 .. class:: MotionPath(bpy_struct)
 
    Cache of the world-space positions of an element over a frame range
 
    .. attribute:: color
 
-      Custom color for motion path before the current frame
+      Custom color for motion path before the current frame (array of 3 items, in [0, inf], default (0.0, 0.0, 0.0))
 
-      :type: :class:`mathutils.Color` of 3 items in [0, inf], default (0.0, 0.0, 0.0)
+      :type: :class:`mathutils.Color`
 
    .. attribute:: color_post
 
-      Custom color for motion path after the current frame
+      Custom color for motion path after the current frame (array of 3 items, in [0, inf], default (0.0, 0.0, 0.0))
 
-      :type: :class:`mathutils.Color` of 3 items in [0, inf], default (0.0, 0.0, 0.0)
+      :type: :class:`mathutils.Color`
 
    .. data:: frame_end
 
-      End frame of the stored range
+      End frame of the stored range (in [-inf, inf], default 0, readonly)
 
-      :type: int in [-inf, inf], default 0, (readonly)
+      :type: int
 
    .. data:: frame_start
 
-      Starting frame of the stored range
+      Starting frame of the stored range (in [-inf, inf], default 0, readonly)
 
-      :type: int in [-inf, inf], default 0, (readonly)
+      :type: int
 
    .. attribute:: is_modified
 
-      Path is being edited
+      Path is being edited (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. data:: length
 
-      Number of frames cached
+      Number of frames cached (in [-inf, inf], default 0, readonly)
 
-      :type: int in [-inf, inf], default 0, (readonly)
+      :type: int
 
    .. attribute:: line_thickness
 
-      Line thickness for motion path
+      Line thickness for motion path (in [1, 6], default 0)
 
-      :type: int in [1, 6], default 0
+      :type: int
 
    .. attribute:: lines
 
-      Use straight lines between keyframe points
+      Use straight lines between keyframe points (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. data:: points
 
-      Cached positions per frame
+      Cached positions per frame (default None, readonly)
 
-      :type: :class:`bpy_prop_collection` of :class:`MotionPathVert`, (readonly)
+      :type: :class:`bpy_prop_collection`\ [:class:`MotionPathVert`]
 
    .. data:: use_bone_head
 
-      For PoseBone paths, use the bone head location when calculating this path
+      For PoseBone paths, use the bone head location when calculating this path (default False, readonly)
 
-      :type: boolean, default False, (readonly)
+      :type: bool
 
    .. attribute:: use_custom_color
 
-      Use custom color for this motion path
+      Use custom color for this motion path (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. classmethod:: bl_rna_get_subclass(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: :class:`bpy.types.Struct` | None
       :return: The RNA type or default when not found.
-      :rtype: :class:`bpy.types.Struct` subclass
+      :rtype: :class:`bpy.types.Struct`
 
 
    .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: type | None
       :return: The class or default when not found.
       :rtype: type
 
@@ -97,7 +102,7 @@ Inherited Properties
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.id_data`
+   - :class:`bpy_struct.id_data`
 
 Inherited Functions
 -------------------
@@ -105,29 +110,30 @@ Inherited Functions
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.as_pointer`
-   * :class:`bpy_struct.driver_add`
-   * :class:`bpy_struct.driver_remove`
-   * :class:`bpy_struct.get`
-   * :class:`bpy_struct.id_properties_clear`
-   * :class:`bpy_struct.id_properties_ensure`
-   * :class:`bpy_struct.id_properties_ui`
-   * :class:`bpy_struct.is_property_hidden`
-   * :class:`bpy_struct.is_property_overridable_library`
-   * :class:`bpy_struct.is_property_readonly`
-   * :class:`bpy_struct.is_property_set`
-   * :class:`bpy_struct.items`
-   * :class:`bpy_struct.keyframe_delete`
-   * :class:`bpy_struct.keyframe_insert`
-   * :class:`bpy_struct.keys`
-   * :class:`bpy_struct.path_from_id`
-   * :class:`bpy_struct.path_resolve`
-   * :class:`bpy_struct.pop`
-   * :class:`bpy_struct.property_overridable_library_set`
-   * :class:`bpy_struct.property_unset`
-   * :class:`bpy_struct.rna_ancestors`
-   * :class:`bpy_struct.type_recast`
-   * :class:`bpy_struct.values`
+   - :class:`bpy_struct.as_pointer`
+   - :class:`bpy_struct.driver_add`
+   - :class:`bpy_struct.driver_remove`
+   - :class:`bpy_struct.get`
+   - :class:`bpy_struct.id_properties_clear`
+   - :class:`bpy_struct.id_properties_ensure`
+   - :class:`bpy_struct.id_properties_ui`
+   - :class:`bpy_struct.is_property_hidden`
+   - :class:`bpy_struct.is_property_overridable_library`
+   - :class:`bpy_struct.is_property_readonly`
+   - :class:`bpy_struct.is_property_set`
+   - :class:`bpy_struct.items`
+   - :class:`bpy_struct.keyframe_delete`
+   - :class:`bpy_struct.keyframe_insert`
+   - :class:`bpy_struct.keys`
+   - :class:`bpy_struct.path_from_id`
+   - :class:`bpy_struct.path_from_module`
+   - :class:`bpy_struct.path_resolve`
+   - :class:`bpy_struct.pop`
+   - :class:`bpy_struct.property_overridable_library_set`
+   - :class:`bpy_struct.property_unset`
+   - :class:`bpy_struct.rna_ancestors`
+   - :class:`bpy_struct.type_recast`
+   - :class:`bpy_struct.values`
 
 References
 ----------
@@ -135,6 +141,6 @@ References
 .. hlist::
    :columns: 2
 
-   * :class:`Object.motion_path`
-   * :class:`PoseBone.motion_path`
+   - :class:`Object.motion_path`
+   - :class:`PoseBone.motion_path`
 

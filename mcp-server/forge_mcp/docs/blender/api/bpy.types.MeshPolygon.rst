@@ -5,75 +5,76 @@ MeshPolygon(bpy_struct)
 
 base class --- :class:`bpy_struct`
 
+
 .. class:: MeshPolygon(bpy_struct)
 
    Polygon in a Mesh data-block
 
    .. data:: area
 
-      Read only area of this face
+      Read only area of this face (in [0, inf], default 0.0, readonly)
 
-      :type: float in [0, inf], default 0.0, (readonly)
+      :type: float
 
    .. data:: center
 
-      Center of this face
+      Center of this face (array of 3 items, in [-inf, inf], default (0.0, 0.0, 0.0), readonly)
 
-      :type: :class:`mathutils.Vector` of 3 items in [-inf, inf], default (0.0, 0.0, 0.0), (readonly)
+      :type: :class:`mathutils.Vector`
 
    .. attribute:: hide
 
-      :type: boolean, default False
+      (default False)
+
+      :type: bool
 
    .. data:: index
 
-      Index of this face
+      Index of this face (in [0, inf], default 0, readonly)
 
-      :type: int in [0, inf], default 0, (readonly)
+      :type: int
 
    .. attribute:: loop_start
 
-      Index of the first loop of this face
+      Index of the first loop of this face (in [0, inf], default 0)
 
-      :type: int in [0, inf], default 0
+      :type: int
 
    .. data:: loop_total
 
-      Number of loops used by this face
+      Number of loops used by this face (in [0, inf], default 0, readonly)
 
-      :type: int in [0, inf], default 0, (readonly)
+      :type: int
 
    .. attribute:: material_index
 
-      Material slot index of this face
+      Material slot index of this face (in [0, inf], default 0)
 
-      :type: int in [0, inf], default 0
+      :type: int
 
    .. data:: normal
 
-      Local space unit length normal vector for this face
+      Local space unit length normal vector for this face (array of 3 items, in [-1, 1], default (0.0, 0.0, 0.0), readonly)
 
-      :type: :class:`mathutils.Vector` of 3 items in [-1, 1], default (0.0, 0.0, 0.0), (readonly)
+      :type: :class:`mathutils.Vector`
 
    .. attribute:: select
 
-      :type: boolean, default False
+      (default False)
 
-   .. attribute:: use_freestyle_mark
-
-      Face mark for Freestyle line rendering
-
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_smooth
 
-      :type: boolean, default False
+      (default False)
+
+      :type: bool
 
    .. attribute:: vertices
 
-      Vertex indices
+      Vertex indices (array of 3 items, in [0, inf], default (0, 0, 0))
 
-      :type: int array of 3 items in [0, inf], default (0, 0, 0)
+      :type: :class:`bpy_prop_array`\ [int]
 
    .. data:: edge_keys
 
@@ -92,16 +93,20 @@ base class --- :class:`bpy_struct`
 
    .. classmethod:: bl_rna_get_subclass(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: :class:`bpy.types.Struct` | None
       :return: The RNA type or default when not found.
-      :rtype: :class:`bpy.types.Struct` subclass
+      :rtype: :class:`bpy.types.Struct`
 
 
    .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: type | None
       :return: The class or default when not found.
       :rtype: type
 
@@ -112,7 +117,7 @@ Inherited Properties
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.id_data`
+   - :class:`bpy_struct.id_data`
 
 Inherited Functions
 -------------------
@@ -120,29 +125,30 @@ Inherited Functions
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.as_pointer`
-   * :class:`bpy_struct.driver_add`
-   * :class:`bpy_struct.driver_remove`
-   * :class:`bpy_struct.get`
-   * :class:`bpy_struct.id_properties_clear`
-   * :class:`bpy_struct.id_properties_ensure`
-   * :class:`bpy_struct.id_properties_ui`
-   * :class:`bpy_struct.is_property_hidden`
-   * :class:`bpy_struct.is_property_overridable_library`
-   * :class:`bpy_struct.is_property_readonly`
-   * :class:`bpy_struct.is_property_set`
-   * :class:`bpy_struct.items`
-   * :class:`bpy_struct.keyframe_delete`
-   * :class:`bpy_struct.keyframe_insert`
-   * :class:`bpy_struct.keys`
-   * :class:`bpy_struct.path_from_id`
-   * :class:`bpy_struct.path_resolve`
-   * :class:`bpy_struct.pop`
-   * :class:`bpy_struct.property_overridable_library_set`
-   * :class:`bpy_struct.property_unset`
-   * :class:`bpy_struct.rna_ancestors`
-   * :class:`bpy_struct.type_recast`
-   * :class:`bpy_struct.values`
+   - :class:`bpy_struct.as_pointer`
+   - :class:`bpy_struct.driver_add`
+   - :class:`bpy_struct.driver_remove`
+   - :class:`bpy_struct.get`
+   - :class:`bpy_struct.id_properties_clear`
+   - :class:`bpy_struct.id_properties_ensure`
+   - :class:`bpy_struct.id_properties_ui`
+   - :class:`bpy_struct.is_property_hidden`
+   - :class:`bpy_struct.is_property_overridable_library`
+   - :class:`bpy_struct.is_property_readonly`
+   - :class:`bpy_struct.is_property_set`
+   - :class:`bpy_struct.items`
+   - :class:`bpy_struct.keyframe_delete`
+   - :class:`bpy_struct.keyframe_insert`
+   - :class:`bpy_struct.keys`
+   - :class:`bpy_struct.path_from_id`
+   - :class:`bpy_struct.path_from_module`
+   - :class:`bpy_struct.path_resolve`
+   - :class:`bpy_struct.pop`
+   - :class:`bpy_struct.property_overridable_library_set`
+   - :class:`bpy_struct.property_unset`
+   - :class:`bpy_struct.rna_ancestors`
+   - :class:`bpy_struct.type_recast`
+   - :class:`bpy_struct.values`
 
 References
 ----------
@@ -150,5 +156,5 @@ References
 .. hlist::
    :columns: 2
 
-   * :class:`Mesh.polygons`
+   - :class:`Mesh.polygons`
 

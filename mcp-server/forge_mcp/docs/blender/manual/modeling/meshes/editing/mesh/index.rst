@@ -21,6 +21,7 @@
    snap_symmetry.rst
    Normals <normals.rst>
    shading.rst
+   weights.rst
    set_attribute.rst
    sort_elements.rst
    cleanup.rst

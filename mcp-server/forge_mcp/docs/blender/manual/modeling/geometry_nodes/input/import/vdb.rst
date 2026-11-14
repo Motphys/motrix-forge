@@ -23,12 +23,6 @@ Path
    The path to the VDB file to be imported.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

@@ -34,7 +34,8 @@ Operation
    :Or: Returns a value where the bits of either A or B are set.
    :Exclusive Or: Returns a value where only one of A or B has the bit set (XOR).
    :Not: Inverts the bits of A. Equivalent to `-A - 1` in decimal.
-   :Shift: Shifts the bits of A by the amount specified in *Shift*. Positive shifts are to the left; negative to the right.
+   :Shift: Shifts the bits of A by the amount specified in *Shift*. Positive shifts are to the left; negative to the
+    right.
    :Rotate: Rotates the bits of A by the amount specified in *Shift*. Positive rotates left; negative rotates right.
 
 

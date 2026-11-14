@@ -15,13 +15,13 @@ Name
    The track name can be changed with this field.
    Track names are used for linking tracking data to other areas, like a Follow Track constraint.
 
-Enable (eye icon)
+:bl-icon:`hide_off` Enable
    This toggle controls if the marker is enabled.
    If a marker is disabled, its position is not used either by solver nor by constraints.
 
 .. _bpy.types.MovieTrackingTrack.lock:
 
-Lock (padlock icon)
+:bl-icon:`unlock` / :bl-icon:`locked` Lock
    The toggle controls whether the track is locked. Locked tracks cannot be edited at all.
    This helps to prevent accidental changes to tracks which are "finished"
    (tracked accurate along the whole footage).
@@ -65,7 +65,7 @@ Grayscale Preview (B/W)
 
 .. _bpy.types.MovieTrackingTrack.use_alpha_preview:
 
-Mask Preview (black/white icon)
+:bl-icon:`image_alpha` Alpha
    Applies mask defined by an annotation tool in the preview widget.
 
 .. _bpy.types.MovieTrackingTrack.weight:

@@ -7,17 +7,13 @@ Subdivision
 
    :Panel:     :menuselection:`Render --> Subdivision`
 
-.. note::
-
-   These settings are only available if :ref:`Experimental Feature Set <cycles-experimental-features>` is turned on.
-
-These settings are used to control :doc:`Adaptive Subdivision </render/cycles/object_settings/adaptive_subdiv>`.
+These settings are used to control :ref:`Adaptive Subdivision <modifiers-generate-subsurf-adaptive-subdivision>`.
 
 .. _bpy.types.CyclesRenderSettings.preview_dicing_rate:
 .. _bpy.types.CyclesRenderSettings.dicing_rate:
 
 Dicing Rate Render, Viewport
-   Size of :term:`Micropolygons` in pixels for the final/viewport render.
+   Multiplier for the size of :term:`Micropolygons` for the final/viewport render.
 
 .. _bpy.types.CyclesRenderSettings.offscreen_dicing_scale:
 

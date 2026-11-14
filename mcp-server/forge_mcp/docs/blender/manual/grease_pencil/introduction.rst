@@ -8,7 +8,7 @@ from a mouse or pressure-sensitive stylus and places it in 3D space
 as a collection of points, which are defined as a stroke.
 
 The Grease Pencil object can be used to make traditional 2D animation, cut-out animation,
-motion graphics, or used it as storyboard tool, among other things.
+motion graphics, or use it as a storyboard tool, among other things.
 
 .. figure:: /images/grease-pencil_introduction_example.png
 
@@ -48,7 +48,7 @@ Note the following pre-configured setup for the 2D Animation template:
 
 - 2D Animation is the default active workspace.
 - :menuselection:`World Properties --> Surface (Background) --> Color` is set to white.
-- :menuselection:`Render Properties --> Color Management` is set to Standard.
+- Color management :ref:`bpy.types.ColorManagedViewSettings.view_transform` is set to *Standard*.
 - The :doc:`drawing plane <./modes/draw/drawing_planes>` is set to Front (X-Z).
 - Line and Fill layers, along with some stroke materials, are configured for Grease Pencil.
 - The animation timeline will automatically create a new keyframe when Grease Pencil is used on empty frames.

@@ -23,9 +23,29 @@ Inputs
 Image
    The input RGBA image to be processed.
 
-Fac
+Factor
    Blend factor for how strongly the node affects the image.
    A value of 1.0 fully applies the effect; lower values blend with the original.
+
+Spill Channel
+   Selects which channel to reduce:
+
+   :R: Suppress red spill.
+   :G: Suppress green spill (common for green screens).
+   :B: Suppress blue spill (common for blue screens).
+
+Limit Method
+   Chooses the method for spill reduction:
+
+   :Simple: Compares the *Limiting Channel* channel to the others and reduces it if it is higher.
+   :Average: Uses the average of the other two channels to set the limit for the despill channel.
+
+Limit Channel :guilabel:`Simple`
+   When using the *Simple* algorithm, you can choose which channel(s) to use as a reference for limiting:
+
+   :R: Use red as the reference.
+   :G: Use green as the reference.
+   :B: Use blue as the reference.
 
 Limit Strength
    Specifies the limiting strength of the limit channel.
@@ -39,30 +59,6 @@ If disabled, the spill channel will have a unit scale, while other channels will
 
 Strength
    Specifics the spilling strength of each color channel.
-
-
-Properties
-==========
-
-Despill Channel
-   Selects which channel to reduce:
-
-   :R: Suppress red spill.
-   :G: Suppress green spill (common for green screens).
-   :B: Suppress blue spill (common for blue screens).
-
-Algorithm
-   Chooses the method for spill reduction:
-
-   :Simple: Compares the *Limiting Channel* channel to the others and reduces it if it is higher.
-   :Average: Uses the average of the other two channels to set the limit for the despill channel.
-
-Limiting Channel :guilabel:`Simple`
-   When using the *Simple* algorithm, you can choose which channel(s) to use as a reference for limiting:
-
-   :R: Use red as the reference.
-   :G: Use green as the reference.
-   :B: Use blue as the reference.
 
 
 Outputs

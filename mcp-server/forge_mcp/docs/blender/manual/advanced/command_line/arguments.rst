@@ -106,7 +106,7 @@ Format Options
 ``-F``, ``--render-format`` ``<format>``
    Set the render format.
    Valid options are:
-   ``TGA`` ``RAWTGA`` ``JPEG`` ``IRIS`` ``AVIRAW`` ``AVIJPEG`` ``PNG`` ``BMP`` ``HDR`` ``TIFF``.
+   ``TGA`` ``RAWTGA`` ``JPEG`` ``IRIS`` ``PNG`` ``BMP`` ``HDR`` ``TIFF``.
 
    Formats that can be compiled into Blender, not available on all systems:
    ``OPEN_EXR`` ``OPEN_EXR_MULTILAYER`` ``FFMPEG`` ``CINEON`` ``DPX`` ``JP2`` ``WEBP``.
@@ -149,22 +149,25 @@ Window Options
 ==============
 
 ``-w``, ``--window-border``
-   Force opening with borders.
-
-``-W``, ``--window-fullscreen``
-   Force opening in full-screen mode.
-
-``-p``, ``--window-geometry`` ``<sx>`` ``<sy>`` ``<w>`` ``<h>``
-   Open with lower left corner at ``<sx>``, ``<sy>`` and width and height as ``<w>``, ``<h>``.
+   Force opening with borders, in a normal (non maximized) state.
 
 ``-M``, ``--window-maximized``
    Force opening maximized.
+
+``-W``, ``--window-fullscreen``
+   Force opening full-screen.
+
+``-p``, ``--window-geometry`` ``<sx>`` ``<sy>`` ``<w>`` ``<h>``
+   Open with lower left corner at ``<sx>``, ``<sy>`` and width and height as ``<w>``, ``<h>``.
 
 ``-con``, ``--start-console``
    Start with the console window open (ignored if ``-b`` is set), (Windows only).
 
 ``--no-native-pixels``
    Do not use native pixel size, for high resolution displays (MacBook ``Retina``).
+
+``--no-window-frame``
+   Disable all window decorations (Linux only).
 
 ``--no-window-focus``
    Open behind other windows and without taking focus.
@@ -190,6 +193,9 @@ Python Options
 
 ``--python-expr`` ``<expression>``
    Run the given expression as a Python script.
+
+   The expression may be a complete multi-line script;
+   you are limited only by the platform's maximum argument length.
 
 ``--python-console``
    Run Blender with an interactive console.
@@ -224,28 +230,38 @@ Logging Options
 
 ``--log`` ``<match>``
    Enable logging categories, taking a single comma separated argument.
-   Multiple categories can be matched using a ``.*`` suffix,
-   so ``--log "wm.*"`` logs every kind of window-manager message.
-   Sub-string can be matched using a ``*`` prefix and suffix,
-   so ``--log "*undo*"`` logs every kind of undo-related message.
-   Use "^" prefix to ignore, so ``--log "*,^wm.operator.*"`` logs all except for ``wm.operators.*``
-   Use "*" to log everything.
+
+   ``--log "*"``: everything
+   ``--log "event"``:  every category starting with ``event``.
+   ``--log "render,cycles"``: both render and cycles messages.
+   ``--log "*mesh*"``: every category containing ``mesh`` sub-string.
+   ``--log "*,^operator"``: everything except operators, with ``^prefix`` to exclude.
 
 ``--log-level`` ``<level>``
-   Set the logging verbosity level (higher for more details) defaults to 1,
-   use -1 to log all levels.
+   Set the logging verbosity level.
 
-``--log-show-basename``
-   Only show file name in output (not the leading path).
+   fatal: Fatal errors only
+   error: Errors only
+   warning: Warnings
+   info: Information about devices, files, configuration, operations
+   debug: Verbose messages for developers
+   trace: Very verbose code execution tracing
+
+``--log-show-memory``
+   Show memory usage for each log message.
+
+``--log-show-source``
+   Show source file and function name in output.
 
 ``--log-show-backtrace``
    Show a back trace for each log message (debug builds only).
 
-``--log-show-timestamp``
-   Show a timestamp for each log message in seconds since start.
-
 ``--log-file`` ``<filepath>``
    Set a file to output the log to.
+
+``--log-list-categories``
+   List all available logging categories for ``--log``, and exit.
+
 
 
 .. _command-line-args-debug-options:
@@ -267,17 +283,11 @@ Debug Options
 ``--debug-events``
    Enable debug messages for the event system.
 
-``--debug-ffmpeg``
-   Enable debug messages from FFmpeg library.
-
 ``--debug-handlers``
    Enable debug messages for event handling.
 
 ``--debug-libmv``
    Enable debug messages from libmv library.
-
-``--debug-cycles``
-   Enable debug messages from Cycles.
 
 ``--debug-memory``
    Enable fully guarded memory allocation and debugging.
@@ -327,11 +337,31 @@ Debug Options
 ``--debug-gpu-compile-shaders``
    Compile all statically defined shaders to test platform compatibility.
 
+``--debug-gpu-shader-debug-info``
+   Enable shader debug info generation (Vulkan only).
+
 ``--debug-gpu-scope-capture``
    Capture the GPU commands issued inside the give scope name.
 
+``--debug-gpu-shader-source``
+   Save the compiled GPU shader source code for the given shader name.
+   The given name can contain leading or trailing wildcard "*" to match multiple shaders. Files are saved in the current working directory inside a directory named "Shaders".
+
+``--debug-gpu-shader-no-preprocessor``
+   Skip preprocessor pass and rely on driver or shader compiler preprocessor instead.
+   Also disable dead code elimination.
+
+``--debug-gpu-shader-no-dce``
+   Skip dead code elimination pass.
+
+``--debug-gpu-no-texture-pool``
+   Disable memory aliasing optimizations in the GPU texture pool.
+
 ``--debug-gpu-renderdoc``
    Enable RenderDoc integration for GPU frame grabbing and debugging.
+
+``--debug-gpu-vulkan-local-read``
+   Force Vulkan dynamic rendering local read when supported by device.
 
 ``--debug-wm``
    Enable debug messages for the window manager, shows all operators in search, shows keymap errors.
@@ -347,7 +377,7 @@ Debug Options
    Enable all debug messages.
 
 ``--debug-io``
-   Enable debug messages for I/O (Collada, ...).
+   Enable debug messages for I/O.
 
 
 ``--debug-fpe``
@@ -379,6 +409,14 @@ GPU Options
 
 ``--gpu-backend``
    Force to use a specific GPU backend. Valid options: ``vulkan``,  ``metal``,  ``opengl``.
+
+``--gpu-vsync``
+   Set the VSync.
+   Valid options are: ``on``, ``off`` & ``auto`` for adaptive sync.
+
+   * The default settings depend on the GPU driver.
+   * Disabling VSync can be useful for testing performance.
+   * ``auto`` is only supported by the OpenGL backend.
 
 ``--gpu-compilation-subprocesses``
    Override the Max Compilation Subprocesses setting (OpenGL only).
@@ -453,6 +491,13 @@ Misc Options
 ``--unregister-allusers``
    Unregister blend-file extension for all users, then exit (Windows & Linux only).
 
+``--qos`` ``<level>``
+   Set the Quality of Service (QoS) mode for hybrid CPU architectures (Windows only).
+
+   default: Uses the default behavior of the OS.
+   high: Always makes use of performance cores.
+   eco: Schedules Blender threads exclusively to efficiency cores.
+
 ``-v``, ``--version``
    Print Blender version and exit.
 
@@ -482,8 +527,11 @@ Other Options
    NOTE: this is an alternative way to get the same effect as when setting the
    ``No Override Auto Resync`` User Preferences Debug option.
 
-``--debug-gpu-vulkan-local-read``
-   Force Vulkan dynamic rendering local read when supported by device.
+``--debug-ffmpeg``
+   Enable debug messages from FFmpeg video input and output.
+
+``--debug-cycles``
+   Enable debug messages from Cycles.
 
 
 .. _command-line-args-argument-parsing:
@@ -543,7 +591,9 @@ Environment Variables
 :BLENDER_SYSTEM_PYTHON:     Directory to replace bundled Python libraries.
 :BLENDER_CUSTOM_SPLASH:     Full path to an image that replaces the splash screen.
 :BLENDER_CUSTOM_SPLASH_BANNER: Full path to an image to overlay on the splash screen.
-:OCIO:                      Path to override the OpenColorIO configuration file.
+:BLENDER_OCIO:              Path to override the OpenColorIO configuration file.
+                           If not set, the ``OCIO`` environment variable is used.
+:SPNAV_SOCKET:              The socket path to connect to the 3D-mouse daemon (Unix only).
 :TEMP:                      Store temporary files here (MS-Windows).
 :TMPDIR:                    Store temporary files here (UNIX Systems).
                            The path must reference an existing directory or it will be ignored.

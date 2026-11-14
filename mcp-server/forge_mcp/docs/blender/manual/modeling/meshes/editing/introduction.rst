@@ -3,37 +3,14 @@
 Introduction
 ************
 
-Blender provides a variety of operators for editing meshes.
-These operators are used to add, duplicate, move and delete elements.
+Blender provides a variety of operators for editing meshes. They are available through the
+menu and context menu of the 3D Viewport when in :doc:`Edit Mode </editors/3dview/modes>`.
+Some menus can also be opened as a popover with a keyboard shortcut:
 
-These are available through the Menus in the 3D Viewport header, and context menus in the 3D Viewport,
-as well as individual shortcut keys.
+- :kbd:`Ctrl-V` Vertex
+- :kbd:`Ctrl-E` Edge
+- :kbd:`Ctrl-F` Face
 
-.. note::
-
-   All the "transform precision/snap" keys :kbd:`Ctrl` and/or :kbd:`Shift`
-   also work for all these advanced operations, but most of them do not have
-   :doc:`axis locking </scene_layout/object/editing/transform/control/axis_locking>`
-   possibilities, and some of them do not take into account
-   the :doc:`pivot point </editors/3dview/controls/pivot_point/index>`
-   and/or :doc:`transform orientation </editors/3dview/controls/orientation>` either.
-
-These transform operators are available in the *Transform* section of the *Mesh* menu in the header.
-Note that, some of these can also be used on other editable objects, like curves, surfaces, and lattices.
-
-
-Accessing Mesh Operators
-========================
-
-The mesh editing operations are found in various places, and available through shortcuts as well.
-
-
-Menus
------
-
-These menus are located in the header.
-Some of the menus can be accessed with shortcuts:
-
-- :kbd:`Ctrl-F` brings up the Face operators menu
-- :kbd:`Ctrl-E` brings up the Edge operators menu
-- :kbd:`Ctrl-V` brings up the Vertex operators menu
+Some operators allow interactively transforming a mesh element or changing a value by
+moving the mouse. These usually also support holding :kbd:`Ctrl` to toggle snapping,
+and :kbd:`Shift` to change more slowly for better precision.

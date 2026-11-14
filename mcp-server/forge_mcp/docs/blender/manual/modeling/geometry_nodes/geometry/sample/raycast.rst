@@ -25,6 +25,14 @@ Attribute
    An optional field input evaluated on the *Target Geometry* that will be interpolated at the hit points.
    The resulting values are outputted with the *Attribute* output.
 
+Interpolation
+   How attributes of the target mesh are mapped to the attribute values on the result geometry.
+
+   :Interpolated:
+      Vertex and corner attributes are interpolated smoothly, with a barycentric function.
+   :Nearest:
+      Choose the value of the closest vertex without interpolating.
+
 Source Position
    The position from where to start each ray. By default, this is the same as
    if the :doc:`/modeling/geometry_nodes/geometry/read/position` was connected.
@@ -40,13 +48,8 @@ Ray Length
 Properties
 ==========
 
-Mapping
-   How attributes of the target mesh are mapped to the attribute values on the result geometry.
-
-   :Interpolated:
-      Vertex and corner attributes are interpolated smoothly, with a bilinear function.
-   :Nearest:
-      Choose the value of the closest vertex without interpolating.
+Data Type
+   The :ref:`data type <attribute-data-types>` used for the evaluated data.
 
 
 Outputs

@@ -3,10 +3,18 @@ BMesh Types (bmesh.types)
 
 .. module:: bmesh.types
 
+.. |UV_STICKY_SELECT_MODE_REF| replace:: (:class:`bpy.types.ToolSettings.uv_sticky_select_mode` which may be passed in directly).
+
+.. |UV_STICKY_SELECT_MODE_TYPE| replace:: Literal['SHARED_LOCATION', 'DISABLED', 'SHARED_VERTEX']
+
+.. |UV_SELECT_FLUSH_MODE_NEEDED| replace:: This function is selection-mode independent, typically :meth:`bmesh.types.BMesh.uv_select_flush_mode` should be called afterwards.
+
+.. |UV_SELECT_SYNC_TO_MESH_NEEDED| replace:: This function doesn't flush the selection to the mesh, typically :meth:`bmesh.types.BMesh.uv_select_sync_to_mesh` should be called afterwards.
+
 Base Mesh Type
 --------------
 
-.. class:: bmesh.types.BMesh
+.. class:: BMesh
 
    The BMesh data structure
 
@@ -15,14 +23,14 @@ Base Mesh Type
       Calculate triangle tessellation from quads/ngons.
    
       :return: The triangulated faces.
-      :rtype: list[tuple[:class:`BMLoop`, :class:`BMLoop`, :class:`BMLoop`]]
+      :rtype: list[tuple[:class:`bmesh.types.BMLoop`, :class:`bmesh.types.BMLoop`, :class:`bmesh.types.BMLoop`]]
 
 
-   .. method:: calc_volume(signed=False)
+   .. method:: calc_volume(*, signed=False)
    
       Calculate mesh volume based on face normals.
    
-      :arg signed: when signed is true, negative values may be returned.
+      :param signed: when signed is true, negative values may be returned.
       :type signed: bool
       :return: The volume of the mesh.
       :rtype: float
@@ -36,7 +44,7 @@ Base Mesh Type
    .. method:: copy()
    
       :return: A copy of this BMesh.
-      :rtype: :class:`BMesh`
+      :rtype: :class:`bmesh.types.BMesh`
 
 
    .. method:: free()
@@ -46,21 +54,23 @@ Base Mesh Type
       .. note::
    
          The BMesh is freed automatically, typically when the script finishes executing.
-         However in some cases its hard to predict when this will be and its useful to
+         However in some cases it's hard to predict when this will be and it's useful to
          explicitly free the data.
 
 
-   .. method:: from_mesh(mesh, face_normals=True, vertex_normals=True, use_shape_key=False, shape_key_index=0)
+   .. method:: from_mesh(mesh, *, face_normals=True, vertex_normals=True, use_shape_key=False, shape_key_index=0)
    
-      Initialize this bmesh from existing mesh datablock.
+      Initialize this bmesh from existing mesh data-block.
    
-      :arg mesh: The mesh data to load.
-      :type mesh: :class:`Mesh`
+      :param mesh: The mesh data to load.
+      :type mesh: :class:`bpy.types.Mesh`
+      :param face_normals: Calculate face normals.
       :type face_normals: bool
+      :param vertex_normals: Calculate vertex normals.
       :type vertex_normals: bool
-      :arg use_shape_key: Use the locations from a shape key.
+      :param use_shape_key: Use the locations from a shape key.
       :type use_shape_key: bool
-      :arg shape_key_index: The shape key index to use.
+      :param shape_key_index: The shape key index to use.
       :type shape_key_index: int
    
       .. note::
@@ -71,18 +81,19 @@ Base Mesh Type
          Further calls will copy custom-data to matching layers, layers missing on the target mesh won't be added.
 
 
-   .. method:: from_object(object, depsgraph, cage=False, face_normals=True, vertex_normals=True)
+   .. method:: from_object(object, depsgraph, *, cage=False, face_normals=True, vertex_normals=True)
    
       Initialize this bmesh from existing object data-block (only meshes are currently supported).
    
-      :arg object: The object data to load.
-      :type object: :class:`Object`
-      :type depsgraph: :class:`Depsgraph`
-      :arg cage: Get the mesh as a deformed cage.
+      :param object: The object data to load.
+      :type object: :class:`bpy.types.Object`
+      :param depsgraph: The dependency graph for evaluated data.
+      :type depsgraph: :class:`bpy.types.Depsgraph`
+      :param cage: Get the mesh as a deformed cage.
       :type cage: bool
-      :arg face_normals: Calculate face normals.
+      :param face_normals: Calculate face normals.
       :type face_normals: bool
-      :arg vertex_normals: Calculate vertex normals.
+      :param vertex_normals: Calculate vertex normals.
       :type vertex_normals: bool
 
 
@@ -97,52 +108,145 @@ Base Mesh Type
 
    .. method:: select_flush(select)
    
-      Flush selection, independent of the current selection mode.
+      Flush selection from vertices, independent of the current selection mode.
    
-      :arg select: flush selection or de-selected elements.
+      :param select: flush selection or de-selected elements.
       :type select: bool
 
 
-   .. method:: select_flush_mode()
+   .. method:: select_flush_mode(*, flush_down=False)
    
-      flush selection based on the current mode current :class:`BMesh.select_mode`.
+      Flush selection based on the current mode :attr:`bmesh.types.BMesh.select_mode`.
+   
+      :param flush_down: Flush selection down from faces to edges & verts or from edges to verts. This option is ignored when vertex selection mode is enabled.
+      :type flush_down: bool
 
 
    .. method:: to_mesh(mesh)
    
-      Writes this BMesh data into an existing Mesh datablock.
+      Writes this BMesh data into an existing Mesh data-block.
    
-      :arg mesh: The mesh data to write into.
-      :type mesh: :class:`Mesh`
+      :param mesh: The mesh data to write into.
+      :type mesh: :class:`bpy.types.Mesh`
 
 
-   .. method:: transform(matrix, filter=None)
+   .. method:: transform(matrix, *, filter=None)
    
       Transform the mesh (optionally filtering flagged data only).
    
-      :arg matrix: 4x4x transform matrix.
+      :param matrix: 4x4 transform matrix.
       :type matrix: :class:`mathutils.Matrix`
-      :arg filter: set of values in ('SELECT', 'HIDE', 'SEAM', 'SMOOTH', 'TAG').
-      :type filter: set[str]
+      :param filter: Flag to filter vertices.
+      :type filter: set[Literal['SELECT', 'HIDE', 'SEAM', 'SMOOTH', 'TAG']] | None
+
+
+   .. method:: uv_select_flush(select)
+   
+      Flush selection from UV vertices to edges & faces independent of the selection mode.
+   
+      :param select: Flush selection or de-selected elements.
+      :type select: bool
+   
+      .. note::
+   
+         - |UV_SELECT_SYNC_TO_MESH_NEEDED|
+
+
+   .. method:: uv_select_flush_mode(*, flush_down=False)
+   
+      Flush UV selection based on the current mode :attr:`bmesh.types.BMesh.select_mode`.
+   
+      :param flush_down: Flush selection down from faces to edges & verts or from edges to verts. This option is ignored when vertex selection mode is enabled.
+      :type flush_down: bool
+
+
+   .. method:: uv_select_flush_shared(select)
+   
+      Flush selection from UV vertices to contiguous UV's independent of the selection mode.
+   
+      :param select: Flush selection or de-selected elements.
+      :type select: bool
+   
+      .. note::
+   
+         - |UV_SELECT_SYNC_TO_MESH_NEEDED|
+
+
+   .. method:: uv_select_foreach_set(select, /, *, loop_verts=(), loop_edges=(), faces=(), sticky_select_mode='SHARED_LOCATION')
+   
+      Set the UV selection state for loop-vertices, loop-edges & faces.
+   
+      This is a close equivalent to selecting in the UV editor.
+   
+      :param select: The selection state to set.
+      :type select: bool
+      :param loop_verts: Loop verts to operate on.
+      :type loop_verts: Iterable[:class:`bmesh.types.BMLoop`]
+      :param loop_edges: Loop edges to operate on.
+      :type loop_edges: Iterable[:class:`bmesh.types.BMLoop`]
+      :param faces: Faces to operate on.
+      :type faces: Iterable[:class:`bmesh.types.BMFace`]
+      :param sticky_select_mode: See |UV_STICKY_SELECT_MODE_REF|.
+      :type sticky_select_mode: |UV_STICKY_SELECT_MODE_TYPE|
+   
+      .. note::
+   
+         - |UV_SELECT_FLUSH_MODE_NEEDED|
+         - |UV_SELECT_SYNC_TO_MESH_NEEDED|
+
+
+   .. method:: uv_select_foreach_set_from_mesh(select, /, *, verts=(), edges=(), faces=(), sticky_select_mode='SHARED_LOCATION')
+   
+      Select or de-select mesh elements, updating the UV selection.
+   
+      An equivalent to selecting from the 3D viewport for selection operations that support maintaining a synchronized UV selection.
+   
+      :param select: The selection state to set.
+      :type select: bool
+      :param verts: Verts to operate on.
+      :type verts: Iterable[:class:`bmesh.types.BMVert`]
+      :param edges: Edges to operate on.
+      :type edges: Iterable[:class:`bmesh.types.BMEdge`]
+      :param faces: Faces to operate on.
+      :type faces: Iterable[:class:`bmesh.types.BMFace`]
+      :param sticky_select_mode: See |UV_STICKY_SELECT_MODE_REF|.
+      :type sticky_select_mode: |UV_STICKY_SELECT_MODE_TYPE|
+
+
+   .. method:: uv_select_sync_from_mesh(*, sticky_select_mode='SHARED_LOCATION')
+   
+      Sync selection from mesh to UVs.
+   
+      :param sticky_select_mode: Behavior when flushing from the mesh to UV selection |UV_STICKY_SELECT_MODE_REF|. This should only be used when preparing to create a UV selection.
+      :type sticky_select_mode: |UV_STICKY_SELECT_MODE_TYPE|
+   
+      .. note::
+   
+         - |UV_SELECT_SYNC_TO_MESH_NEEDED|
+
+
+   .. method:: uv_select_sync_to_mesh()
+   
+      Sync selection from UVs to the mesh.
 
 
    .. attribute:: edges
 
-      This meshes edge sequence (read-only).
+      This mesh's edge sequence (read-only).
       
-      :type: :class:`BMEdgeSeq`
+      :type: :class:`bmesh.types.BMEdgeSeq`
 
 
    .. attribute:: faces
 
-      This meshes face sequence (read-only).
+      This mesh's face sequence (read-only).
       
-      :type: :class:`BMFaceSeq`
+      :type: :class:`bmesh.types.BMFaceSeq`
 
 
    .. attribute:: is_valid
 
-      True when this element is valid (hasn't been removed).
+      True when this element is valid (hasn't been freed or removed).
       
       :type: bool
 
@@ -156,9 +260,9 @@ Base Mesh Type
 
    .. attribute:: loops
 
-      This meshes loops (read-only).
+      This mesh's loops (read-only).
       
-      :type: :class:`BMLoopSeq`
+      :type: :class:`bmesh.types.BMLoopSeq`
       
       .. note::
       
@@ -169,29 +273,46 @@ Base Mesh Type
 
       Sequence of selected items (the last is displayed as active).
       
-      :type: :class:`BMEditSelSeq`
+      :type: :class:`bmesh.types.BMEditSelSeq`
 
 
    .. attribute:: select_mode
 
-      The selection mode, values can be {'VERT', 'EDGE', 'FACE'}, can't be assigned an empty set.
+      The selection mode, cannot be assigned an empty set.
       
-      :type: set
+      :type: set[Literal['VERT', 'EDGE', 'FACE']]
+
+
+   .. attribute:: uv_select_sync_valid
+
+      When true, the UV selection has been synchronized. Setting to False means the UV selection will be ignored. While setting to true is supported it is up to the script author to ensure a correct selection state before doing so.
+      
+      :type: bool
 
 
    .. attribute:: verts
 
-      This meshes vert sequence (read-only).
+      This mesh's vert sequence (read-only).
       
-      :type: :class:`BMVertSeq`
+      :type: :class:`bmesh.types.BMVertSeq`
 
+
+   .. details:: Special Methods
+
+      .. method:: __hash__()
+
+         :rtype: int
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
 
 Mesh Elements
 -------------
 
-.. class:: bmesh.types.BMVert
+.. class:: BMVert
 
    The BMesh vertex type
 
@@ -199,7 +320,7 @@ Mesh Elements
    
       Return the angle between this vert's two connected edges.
    
-      :arg fallback: return this when the vert doesn't have 2 edges
+      :param fallback: return this when the vert doesn't have 2 edges
          (instead of raising a :exc:`ValueError`).
       :type fallback: Any
       :return: Angle between edges in radians.
@@ -219,22 +340,26 @@ Mesh Elements
    .. method:: copy_from(other)
    
       Copy values from another element of matching type.
+   
+      :param other: Another element of the same type to copy from.
+      :type other: Self
 
 
    .. method:: copy_from_face_interp(face)
    
-      Interpolate the customdata from a face onto this loop (the loops vert should overlap the face).
+      Interpolate the customdata from a face onto this vert (the vert should overlap the face).
    
-      :arg face: The face to interpolate data from.
-      :type face: :class:`BMFace`
+      :param face: The face to interpolate data from.
+      :type face: :class:`bmesh.types.BMFace`
 
 
    .. method:: copy_from_vert_interp(vert_pair, fac)
    
       Interpolate the customdata from a vert between 2 other verts.
    
-      :arg vert_pair: The verts between which to interpolate data from.
-      :type vert_pair: Sequence[:class:`BMVert`]
+      :param vert_pair: The verts between which to interpolate data from.
+      :type vert_pair: Sequence[:class:`bmesh.types.BMVert`]
+      :param fac: The interpolation factor.
       :type fac: float
 
 
@@ -243,7 +368,7 @@ Mesh Elements
       Set the hide state.
       This is different from the *hide* attribute because it updates the selection and hide state of associated geometry.
    
-      :arg hide: Hidden or visible.
+      :param hide: Hidden or visible.
       :type hide: bool
 
 
@@ -262,12 +387,12 @@ Mesh Elements
       Set the selection.
       This is different from the *select* attribute because it updates the selection state of associated geometry.
    
-      :arg select: Select or de-select.
+      :param select: Select or de-select.
       :type select: bool
    
       .. note::
    
-         Currently this only flushes down, so selecting a face will select all its vertices but de-selecting a vertex       won't de-select all the faces that use it, before finishing with a mesh typically flushing is still needed.
+         This flushes selection down (e.g. selecting a face also selects its edges and vertices), but not up (e.g. de-selecting a vertex won't de-select faces that use it). Before finishing with a mesh, flushing is typically still needed.
 
 
    .. attribute:: co
@@ -296,7 +421,7 @@ Mesh Elements
       
          It's also possible to assign any number to this attribute for a scripts internal logic.
       
-         To ensure the value is up to date - see :class:`BMElemSeq.index_update`.
+         To ensure the value is up to date - see :meth:`bmesh.types.BMElemSeq.index_update`.
 
 
    .. attribute:: is_boundary
@@ -315,7 +440,7 @@ Mesh Elements
 
    .. attribute:: is_valid
 
-      True when this element is valid (hasn't been removed).
+      True when this element is valid (hasn't been freed or removed).
       
       :type: bool
 
@@ -331,21 +456,21 @@ Mesh Elements
 
       Edges connected to this vertex (read-only).
       
-      :type: :class:`BMElemSeq` of :class:`BMEdge`
+      :type: :class:`bmesh.types.BMElemSeq`\ [:class:`bmesh.types.BMEdge`]
 
 
    .. attribute:: link_faces
 
       Faces connected to this vertex (read-only).
       
-      :type: :class:`BMElemSeq` of :class:`BMFace`
+      :type: :class:`bmesh.types.BMElemSeq`\ [:class:`bmesh.types.BMFace`]
 
 
    .. attribute:: link_loops
 
       Loops that use this vertex (read-only).
       
-      :type: :class:`BMElemSeq` of :class:`BMLoop`
+      :type: :class:`bmesh.types.BMElemSeq`\ [:class:`bmesh.types.BMLoop`]
 
 
    .. attribute:: normal
@@ -369,15 +494,40 @@ Mesh Elements
       :type: bool
 
 
+   .. details:: Special Methods
+
+      .. method:: __getitem__(key)
+
+         :param key: Index or key.
+         :type key: int
+         :rtype: float
+
+      .. method:: __hash__()
+
+         :rtype: int
+
+      .. method:: __repr__()
+
+         :rtype: str
+
+      .. method:: __setitem__(key, value)
+
+         :param key: Index or key.
+         :type key: int
+         :param value: Value to assign.
+         :type value: object
 
 
-.. class:: bmesh.types.BMEdge
+
+.. class:: BMEdge
 
    The BMesh edge connecting 2 verts
 
    .. method:: calc_face_angle(fallback=None)
    
-      :arg fallback: return this when the edge doesn't have 2 faces
+      Return the angle between this edge's two connected faces.
+   
+      :param fallback: return this when the edge doesn't have 2 faces
          (instead of raising a :exc:`ValueError`).
       :type fallback: Any
       :return: The angle between 2 connected faces in radians.
@@ -386,7 +536,9 @@ Mesh Elements
 
    .. method:: calc_face_angle_signed(fallback=None)
    
-      :arg fallback: return this when the edge doesn't have 2 faces
+      Return the signed angle between this edge's two connected faces.
+   
+      :param fallback: return this when the edge doesn't have 2 faces
          (instead of raising a :exc:`ValueError`).
       :type fallback: Any
       :return: The angle between 2 connected faces in radians (negative for concave join).
@@ -394,6 +546,8 @@ Mesh Elements
 
 
    .. method:: calc_length()
+   
+      Return the length of the edge.
    
       :return: The length between both verts.
       :rtype: float
@@ -404,8 +558,8 @@ Mesh Elements
       Return the tangent at this edge relative to a face (pointing inward into the face).
       This uses the face normal for calculation.
    
-      :arg loop: The loop used for tangent calculation.
-      :type loop: :class:`BMLoop`
+      :param loop: The loop used for tangent calculation.
+      :type loop: :class:`bmesh.types.BMLoop`
       :return: a normalized vector.
       :rtype: :class:`mathutils.Vector`
 
@@ -413,6 +567,9 @@ Mesh Elements
    .. method:: copy_from(other)
    
       Copy values from another element of matching type.
+   
+      :param other: Another element of the same type to copy from.
+      :type other: Self
 
 
    .. method:: hide_set(hide)
@@ -420,7 +577,7 @@ Mesh Elements
       Set the hide state.
       This is different from the *hide* attribute because it updates the selection and hide state of associated geometry.
    
-      :arg hide: Hidden or visible.
+      :param hide: Hidden or visible.
       :type hide: bool
 
 
@@ -437,10 +594,10 @@ Mesh Elements
    
       Return the other vertex on this edge or None if the vertex is not used by this edge.
    
-      :arg vert: a vert in this edge.
-      :type vert: :class:`BMVert`
-      :return: The edges other vert.
-      :rtype: :class:`BMVert` | None
+      :param vert: a vert in this edge.
+      :type vert: :class:`bmesh.types.BMVert`
+      :return: The edge's other vert.
+      :rtype: :class:`bmesh.types.BMVert` | None
 
 
    .. method:: select_set(select)
@@ -448,12 +605,12 @@ Mesh Elements
       Set the selection.
       This is different from the *select* attribute because it updates the selection state of associated geometry.
    
-      :arg select: Select or de-select.
+      :param select: Select or de-select.
       :type select: bool
    
       .. note::
    
-         Currently this only flushes down, so selecting a face will select all its vertices but de-selecting a vertex       won't de-select all the faces that use it, before finishing with a mesh typically flushing is still needed.
+         This flushes selection down (e.g. selecting a face also selects its edges and vertices), but not up (e.g. de-selecting a vertex won't de-select faces that use it). Before finishing with a mesh, flushing is typically still needed.
 
 
    .. attribute:: hide
@@ -475,7 +632,7 @@ Mesh Elements
       
          It's also possible to assign any number to this attribute for a scripts internal logic.
       
-         To ensure the value is up to date - see :class:`BMElemSeq.index_update`.
+         To ensure the value is up to date - see :meth:`bmesh.types.BMElemSeq.index_update`.
 
 
    .. attribute:: is_boundary
@@ -508,7 +665,7 @@ Mesh Elements
 
    .. attribute:: is_valid
 
-      True when this element is valid (hasn't been removed).
+      True when this element is valid (hasn't been freed or removed).
       
       :type: bool
 
@@ -524,14 +681,14 @@ Mesh Elements
 
       Faces connected to this edge, (read-only).
       
-      :type: :class:`BMElemSeq` of :class:`BMFace`
+      :type: :class:`bmesh.types.BMElemSeq`\ [:class:`bmesh.types.BMFace`]
 
 
    .. attribute:: link_loops
 
       Loops connected to this edge, (read-only).
       
-      :type: :class:`BMElemSeq` of :class:`BMLoop`
+      :type: :class:`bmesh.types.BMElemSeq`\ [:class:`bmesh.types.BMLoop`]
 
 
    .. attribute:: seam
@@ -566,12 +723,35 @@ Mesh Elements
 
       Verts this edge uses (always 2), (read-only).
       
-      :type: :class:`BMElemSeq` of :class:`BMVert`
+      :type: :class:`bmesh.types.BMElemSeq`\ [:class:`bmesh.types.BMVert`]
+
+
+   .. details:: Special Methods
+
+      .. method:: __getitem__(key)
+
+         :param key: Index or key.
+         :type key: int
+         :rtype: float
+
+      .. method:: __hash__()
+
+         :rtype: int
+
+      .. method:: __repr__()
+
+         :rtype: str
+
+      .. method:: __setitem__(key, value)
+
+         :param key: Index or key.
+         :type key: int
+         :param value: Value to assign.
+         :type value: object
 
 
 
-
-.. class:: bmesh.types.BMFace
+.. class:: BMFace
 
    The BMesh face with 3 or more sides
 
@@ -579,7 +759,7 @@ Mesh Elements
    
       Return the area of the face.
    
-      :return: Return the area of the face.
+      :return: The area of the face.
       :rtype: float
 
 
@@ -611,7 +791,7 @@ Mesh Elements
    
       Return the perimeter of the face.
    
-      :return: Return the perimeter of the face.
+      :return: The perimeter of the face.
       :rtype: float
 
 
@@ -651,30 +831,33 @@ Mesh Elements
       :rtype: :class:`mathutils.Vector`
 
 
-   .. method:: copy(verts=True, edges=True)
+   .. method:: copy(*, verts=True, edges=True)
    
       Make a copy of this face.
    
-      :arg verts: When set, the faces verts will be duplicated too.
+      :param verts: When set, the faces verts will be duplicated too.
       :type verts: bool
-      :arg edges: When set, the faces edges will be duplicated too.
+      :param edges: When set, the faces edges will be duplicated too.
       :type edges: bool
       :return: The newly created face.
-      :rtype: :class:`BMFace`
+      :rtype: :class:`bmesh.types.BMFace`
 
 
    .. method:: copy_from(other)
    
       Copy values from another element of matching type.
+   
+      :param other: Another element of the same type to copy from.
+      :type other: Self
 
 
    .. method:: copy_from_face_interp(face, vert=True)
    
       Interpolate the customdata from another face onto this one (faces should overlap).
    
-      :arg face: The face to interpolate data from.
-      :type face: :class:`BMFace`
-      :arg vert: When True, also copy vertex data.
+      :param face: The face to interpolate data from.
+      :type face: :class:`bmesh.types.BMFace`
+      :param vert: When True, also copy vertex data.
       :type vert: bool
 
 
@@ -683,7 +866,7 @@ Mesh Elements
       Set the hide state.
       This is different from the *hide* attribute because it updates the selection and hide state of associated geometry.
    
-      :arg hide: Hidden or visible.
+      :param hide: Hidden or visible.
       :type hide: bool
 
 
@@ -703,19 +886,31 @@ Mesh Elements
       Set the selection.
       This is different from the *select* attribute because it updates the selection state of associated geometry.
    
-      :arg select: Select or de-select.
+      :param select: Select or de-select.
       :type select: bool
    
       .. note::
    
-         Currently this only flushes down, so selecting a face will select all its vertices but de-selecting a vertex       won't de-select all the faces that use it, before finishing with a mesh typically flushing is still needed.
+         This flushes selection down (e.g. selecting a face also selects its edges and vertices), but not up (e.g. de-selecting a vertex won't de-select faces that use it). Before finishing with a mesh, flushing is typically still needed.
+
+
+   .. method:: uv_select_set(select)
+   
+      Set the UV face selection state.
+   
+      :param select: Select or de-select.
+      :type select: bool
+   
+      .. note::
+   
+         This flushes selection down (selecting a face also selects its edges and vertices), but not up. Before finishing with a mesh, flushing with :meth:`bmesh.types.BMesh.uv_select_flush_mode` is still needed.
 
 
    .. attribute:: edges
 
       Edges of this face, (read-only).
       
-      :type: :class:`BMElemSeq` of :class:`BMEdge`
+      :type: :class:`bmesh.types.BMElemSeq`\ [:class:`bmesh.types.BMEdge`]
 
 
    .. attribute:: hide
@@ -737,12 +932,12 @@ Mesh Elements
       
          It's also possible to assign any number to this attribute for a scripts internal logic.
       
-         To ensure the value is up to date - see :class:`BMElemSeq.index_update`.
+         To ensure the value is up to date - see :meth:`bmesh.types.BMElemSeq.index_update`.
 
 
    .. attribute:: is_valid
 
-      True when this element is valid (hasn't been removed).
+      True when this element is valid (hasn't been freed or removed).
       
       :type: bool
 
@@ -751,7 +946,7 @@ Mesh Elements
 
       Loops of this face, (read-only).
       
-      :type: :class:`BMElemSeq` of :class:`BMLoop`
+      :type: :class:`bmesh.types.BMElemSeq`\ [:class:`bmesh.types.BMLoop`]
 
 
    .. attribute:: material_index
@@ -789,18 +984,48 @@ Mesh Elements
       :type: bool
 
 
+   .. attribute:: uv_select
+
+      UV selected state of this element.
+      
+      :type: bool
+
+
    .. attribute:: verts
 
       Verts of this face, (read-only).
       
-      :type: :class:`BMElemSeq` of :class:`BMVert`
+      :type: :class:`bmesh.types.BMElemSeq`\ [:class:`bmesh.types.BMVert`]
+
+
+   .. details:: Special Methods
+
+      .. method:: __getitem__(key)
+
+         :param key: Index or key.
+         :type key: int
+         :rtype: float
+
+      .. method:: __hash__()
+
+         :rtype: int
+
+      .. method:: __repr__()
+
+         :rtype: str
+
+      .. method:: __setitem__(key, value)
+
+         :param key: Index or key.
+         :type key: int
+         :param value: Value to assign.
+         :type value: object
 
 
 
+.. class:: BMLoop
 
-.. class:: bmesh.types.BMLoop
-
-   This is normally accessed from :class:`BMFace.loops` where each face loop represents a corner of the face.
+   This is normally accessed from :class:`bmesh.types.BMFace.loops` where each face loop represents a corner of the face.
 
    .. method:: calc_angle()
    
@@ -832,32 +1057,59 @@ Mesh Elements
    .. method:: copy_from(other)
    
       Copy values from another element of matching type.
+   
+      :param other: Another element of the same type to copy from.
+      :type other: Self
 
 
    .. method:: copy_from_face_interp(face, vert=True, multires=True)
    
-      Interpolate the customdata from a face onto this loop (the loops vert should overlap the face).
+      Interpolate the customdata from a face onto this loop (the loop's vert should overlap the face).
    
-      :arg face: The face to interpolate data from.
-      :type face: :class:`BMFace`
-      :arg vert: When enabled, interpolate the loops vertex data (optional).
+      :param face: The face to interpolate data from.
+      :type face: :class:`bmesh.types.BMFace`
+      :param vert: When enabled, interpolate the loop's vertex data (optional).
       :type vert: bool
-      :arg multires: When enabled, interpolate the loops multires data (optional).
+      :param multires: When enabled, interpolate the loop's multires data (optional).
       :type multires: bool
+
+
+   .. method:: uv_select_edge_set(select)
+   
+      Set the UV edge selection state.
+   
+      :param select: Select or de-select.
+      :type select: bool
+   
+      .. note::
+   
+         This flushes selection down (selecting an edge also selects its vertices), but not up (de-selecting a vertex won't de-select the edges & faces that use it). Before finishing with a mesh, flushing with :meth:`bmesh.types.BMesh.uv_select_flush_mode` is still needed.
+
+
+   .. method:: uv_select_vert_set(select)
+   
+      Set the UV vertex selection state.
+   
+      :param select: Select or de-select.
+      :type select: bool
+   
+      .. note::
+   
+         This does not flush selection, so selecting a vertex won't select the edges & faces that use it. Before finishing with a mesh, flushing with :meth:`bmesh.types.BMesh.uv_select_flush_mode` is still needed.
 
 
    .. attribute:: edge
 
       The loop's edge (between this loop and the next), (read-only).
       
-      :type: :class:`BMEdge`
+      :type: :class:`bmesh.types.BMEdge`
 
 
    .. attribute:: face
 
-      The face this loop makes (read-only).
+      The face this loop belongs to (read-only).
       
-      :type: :class:`BMFace`
+      :type: :class:`bmesh.types.BMFace`
 
 
    .. attribute:: index
@@ -872,7 +1124,7 @@ Mesh Elements
       
          It's also possible to assign any number to this attribute for a scripts internal logic.
       
-         To ensure the value is up to date - see :class:`BMElemSeq.index_update`.
+         To ensure the value is up to date - see :meth:`bmesh.types.BMElemSeq.index_update`.
 
 
    .. attribute:: is_convex
@@ -884,7 +1136,7 @@ Mesh Elements
 
    .. attribute:: is_valid
 
-      True when this element is valid (hasn't been removed).
+      True when this element is valid (hasn't been freed or removed).
       
       :type: bool
 
@@ -893,35 +1145,35 @@ Mesh Elements
 
       The next face corner (read-only).
       
-      :type: :class:`BMLoop`
+      :type: :class:`bmesh.types.BMLoop`
 
 
    .. attribute:: link_loop_prev
 
       The previous face corner (read-only).
       
-      :type: :class:`BMLoop`
+      :type: :class:`bmesh.types.BMLoop`
 
 
    .. attribute:: link_loop_radial_next
 
       The next loop around the edge (read-only).
       
-      :type: :class:`BMLoop`
+      :type: :class:`bmesh.types.BMLoop`
 
 
    .. attribute:: link_loop_radial_prev
 
       The previous loop around the edge (read-only).
       
-      :type: :class:`BMLoop`
+      :type: :class:`bmesh.types.BMLoop`
 
 
    .. attribute:: link_loops
 
       Loops connected to this loop, (read-only).
       
-      :type: :class:`BMElemSeq` of :class:`BMLoop`
+      :type: :class:`bmesh.types.BMElemSeq`\ [:class:`bmesh.types.BMLoop`]
 
 
    .. attribute:: tag
@@ -931,24 +1183,61 @@ Mesh Elements
       :type: bool
 
 
+   .. attribute:: uv_select_edge
+
+      UV edge selected state of this loop.
+      
+      :type: bool
+
+
+   .. attribute:: uv_select_vert
+
+      UV vertex selected state of this loop.
+      
+      :type: bool
+
+
    .. attribute:: vert
 
       The loop's vertex (read-only).
       
-      :type: :class:`BMVert`
+      :type: :class:`bmesh.types.BMVert`
 
+
+   .. details:: Special Methods
+
+      .. method:: __getitem__(key)
+
+         :param key: Index or key.
+         :type key: int
+         :rtype: float
+
+      .. method:: __hash__()
+
+         :rtype: int
+
+      .. method:: __repr__()
+
+         :rtype: str
+
+      .. method:: __setitem__(key, value)
+
+         :param key: Index or key.
+         :type key: int
+         :param value: Value to assign.
+         :type value: object
 
 
 
 Sequence Accessors
 ------------------
 
-.. class:: bmesh.types.BMElemSeq
+.. class:: BMElemSeq
 
    General sequence type used for accessing any sequence of
-   :class:`BMVert`, :class:`BMEdge`, :class:`BMFace`, :class:`BMLoop`.
+   :class:`bmesh.types.BMVert`, :class:`bmesh.types.BMEdge`, :class:`bmesh.types.BMFace`, :class:`bmesh.types.BMLoop`.
    
-   When accessed via :class:`BMesh.verts`, :class:`BMesh.edges`, :class:`BMesh.faces`
+   When accessed via :class:`bmesh.types.BMesh.verts`, :class:`bmesh.types.BMesh.edges`, :class:`bmesh.types.BMesh.faces`
    there are also functions to create/remove items.
 
    .. method:: index_update()
@@ -964,18 +1253,40 @@ Sequence Accessors
    
       .. note::
    
-         Running this on sequences besides :class:`BMesh.verts`, :class:`BMesh.edges`, :class:`BMesh.faces`
+         Running this on sequences besides :class:`bmesh.types.BMesh.verts`, :class:`bmesh.types.BMesh.edges`, :class:`bmesh.types.BMesh.faces`
          works but won't result in each element having a valid index, instead its order in the sequence will be set.
 
 
+   .. details:: Special Methods
+
+      .. method:: __contains__(item)
+
+         :param item: Item to test for membership.
+         :type item: object
+         :rtype: bool
+
+      .. method:: __getitem__(key)
+
+         :param key: Index or key.
+         :type key: int
+         :rtype: :class:`BMVert` | :class:`BMEdge` | :class:`BMFace`
+
+      .. method:: __iter__()
+
+         :rtype: :class:`BMElemSeq`
+
+      .. method:: __len__()
+
+         :rtype: int
 
 
-.. class:: bmesh.types.BMVertSeq
+
+.. class:: BMVertSeq
 
 
    .. method:: ensure_lookup_table()
    
-      Ensure internal data needed for int subscription is initialized with verts/edges/faces, eg ``bm.verts[index]``.
+      Ensure internal data needed for int subscript access is initialized with verts/edges/faces, eg ``bm.verts[index]``.
    
       This needs to be called again after adding/removing data in this sequence.
 
@@ -993,37 +1304,38 @@ Sequence Accessors
    
       .. note::
    
-         Running this on sequences besides :class:`BMesh.verts`, :class:`BMesh.edges`, :class:`BMesh.faces`
+         Running this on sequences besides :class:`bmesh.types.BMesh.verts`, :class:`bmesh.types.BMesh.edges`, :class:`bmesh.types.BMesh.faces`
          works but won't result in each element having a valid index, instead its order in the sequence will be set.
 
 
-   .. method:: new(co=(0.0, 0.0, 0.0), example=None)
+   .. method:: new(co=(0.0, 0.0, 0.0), source=None)
    
       Create a new vertex.
    
-      :arg co: The initial location of the vertex (optional argument).
-      :type co: float triplet
-      :arg example: Existing vert to initialize settings.
-      :type example: :class:`BMVert`
+      :param co: The initial location of the vertex (optional argument).
+      :type co: tuple[float, float, float] | Sequence[float]
+      :param source: Existing vert to initialize settings.
+      :type source: :class:`bmesh.types.BMVert` | None
       :return: The newly created vertex.
-      :rtype: :class:`BMVert`
+      :rtype: :class:`bmesh.types.BMVert`
 
 
    .. method:: remove(vert)
    
       Remove a vert.
    
-      :type vert: :class:`BMVert`
+      :param vert: The vert to remove.
+      :type vert: :class:`bmesh.types.BMVert`
 
 
-   .. method:: sort(key=None, reverse=False)
+   .. method:: sort(*, key=None, reverse=False)
    
       Sort the elements of this sequence, using an optional custom sort key.
-      Indices of elements are not changed, :class:`BMElemSeq.index_update` can be used for that.
+      Indices of elements are not changed, :meth:`bmesh.types.BMElemSeq.index_update` can be used for that.
    
-      :arg key: The key that sets the ordering of the elements.
-      :type key: Callable[[:class:`BMVert` | :class:`BMEdge` | :class:`BMFace`], int] | None
-      :arg reverse: Reverse the order of the elements
+      :param key: The key that sets the ordering of the elements.
+      :type key: Callable[[:class:`bmesh.types.BMVert` | :class:`bmesh.types.BMEdge` | :class:`bmesh.types.BMFace`], int] | None
+      :param reverse: Reverse the order of the elements
       :type reverse: bool
    
       .. note::
@@ -1040,17 +1352,39 @@ Sequence Accessors
 
       custom-data layers (read-only).
       
-      :type: :class:`BMLayerAccessVert`
+      :type: :class:`bmesh.types.BMLayerAccessVert`
+
+
+   .. details:: Special Methods
+
+      .. method:: __contains__(item)
+
+         :param item: Item to test for membership.
+         :type item: object
+         :rtype: bool
+
+      .. method:: __getitem__(key)
+
+         :param key: Index or key.
+         :type key: int
+         :rtype: :class:`BMVert`
+
+      .. method:: __iter__()
+
+         :rtype: :class:`BMVertSeq`
+
+      .. method:: __len__()
+
+         :rtype: int
 
 
 
-
-.. class:: bmesh.types.BMEdgeSeq
+.. class:: BMEdgeSeq
 
 
    .. method:: ensure_lookup_table()
    
-      Ensure internal data needed for int subscription is initialized with verts/edges/faces, eg ``bm.verts[index]``.
+      Ensure internal data needed for int subscript access is initialized with verts/edges/faces, eg ``bm.verts[index]``.
    
       This needs to be called again after adding/removing data in this sequence.
 
@@ -1059,11 +1393,12 @@ Sequence Accessors
    
       Return an edge which uses the **verts** passed.
    
-      :arg verts: Sequence of verts.
-      :type verts: Sequence[:class:`BMVert`]
-      :arg fallback: Return this value if nothing is found.
-      :return: The edge found or None
-      :rtype: :class:`BMEdge`
+      :param verts: Pair of verts (exactly 2).
+      :type verts: Sequence[:class:`bmesh.types.BMVert`]
+      :param fallback: Return this value if nothing is found.
+      :type fallback: Any
+      :return: The edge found or the fallback value.
+      :rtype: :class:`bmesh.types.BMEdge` | None
 
 
    .. method:: index_update()
@@ -1079,37 +1414,38 @@ Sequence Accessors
    
       .. note::
    
-         Running this on sequences besides :class:`BMesh.verts`, :class:`BMesh.edges`, :class:`BMesh.faces`
+         Running this on sequences besides :class:`bmesh.types.BMesh.verts`, :class:`bmesh.types.BMesh.edges`, :class:`bmesh.types.BMesh.faces`
          works but won't result in each element having a valid index, instead its order in the sequence will be set.
 
 
-   .. method:: new(verts, example=None)
+   .. method:: new(verts, source=None)
    
       Create a new edge from a given pair of verts.
    
-      :arg verts: Vertex pair.
-      :type verts: Sequence[:class:`BMVert`]
-      :arg example: Existing edge to initialize settings (optional argument).
-      :type example: :class:`BMEdge`
+      :param verts: Vertex pair.
+      :type verts: Sequence[:class:`bmesh.types.BMVert`]
+      :param source: Existing edge to initialize settings (optional argument).
+      :type source: :class:`bmesh.types.BMEdge` | None
       :return: The newly created edge.
-      :rtype: :class:`BMEdge`
+      :rtype: :class:`bmesh.types.BMEdge`
 
 
    .. method:: remove(edge)
    
       Remove an edge.
    
-      :type edge: :class:`BMEdge`
+      :param edge: The edge to remove.
+      :type edge: :class:`bmesh.types.BMEdge`
 
 
-   .. method:: sort(key=None, reverse=False)
+   .. method:: sort(*, key=None, reverse=False)
    
       Sort the elements of this sequence, using an optional custom sort key.
-      Indices of elements are not changed, :class:`BMElemSeq.index_update` can be used for that.
+      Indices of elements are not changed, :meth:`bmesh.types.BMElemSeq.index_update` can be used for that.
    
-      :arg key: The key that sets the ordering of the elements.
-      :type key: Callable[[:class:`BMVert` | :class:`BMEdge` | :class:`BMFace`], int] | None
-      :arg reverse: Reverse the order of the elements
+      :param key: The key that sets the ordering of the elements.
+      :type key: Callable[[:class:`bmesh.types.BMVert` | :class:`bmesh.types.BMEdge` | :class:`bmesh.types.BMFace`], int] | None
+      :param reverse: Reverse the order of the elements
       :type reverse: bool
    
       .. note::
@@ -1126,17 +1462,39 @@ Sequence Accessors
 
       custom-data layers (read-only).
       
-      :type: :class:`BMLayerAccessEdge`
+      :type: :class:`bmesh.types.BMLayerAccessEdge`
+
+
+   .. details:: Special Methods
+
+      .. method:: __contains__(item)
+
+         :param item: Item to test for membership.
+         :type item: object
+         :rtype: bool
+
+      .. method:: __getitem__(key)
+
+         :param key: Index or key.
+         :type key: int
+         :rtype: :class:`BMEdge`
+
+      .. method:: __iter__()
+
+         :rtype: :class:`BMEdgeSeq`
+
+      .. method:: __len__()
+
+         :rtype: int
 
 
 
-
-.. class:: bmesh.types.BMFaceSeq
+.. class:: BMFaceSeq
 
 
    .. method:: ensure_lookup_table()
    
-      Ensure internal data needed for int subscription is initialized with verts/edges/faces, eg ``bm.verts[index]``.
+      Ensure internal data needed for int subscript access is initialized with verts/edges/faces, eg ``bm.verts[index]``.
    
       This needs to be called again after adding/removing data in this sequence.
 
@@ -1145,11 +1503,12 @@ Sequence Accessors
    
       Return a face which uses the **verts** passed.
    
-      :arg verts: Sequence of verts.
-      :type verts: Sequence[:class:`BMVert`]
-      :arg fallback: Return this value if nothing is found.
-      :return: The face found or None
-      :rtype: :class:`BMFace`
+      :param verts: Sequence of verts.
+      :type verts: Sequence[:class:`bmesh.types.BMVert`]
+      :param fallback: Return this value if nothing is found.
+      :type fallback: Any
+      :return: The face found or the fallback value.
+      :rtype: :class:`bmesh.types.BMFace` | None
 
 
    .. method:: index_update()
@@ -1165,37 +1524,38 @@ Sequence Accessors
    
       .. note::
    
-         Running this on sequences besides :class:`BMesh.verts`, :class:`BMesh.edges`, :class:`BMesh.faces`
+         Running this on sequences besides :class:`bmesh.types.BMesh.verts`, :class:`bmesh.types.BMesh.edges`, :class:`bmesh.types.BMesh.faces`
          works but won't result in each element having a valid index, instead its order in the sequence will be set.
 
 
-   .. method:: new(verts, example=None)
+   .. method:: new(verts, source=None)
    
       Create a new face from a given set of verts.
    
-      :arg verts: Sequence of 3 or more verts.
-      :type verts: Sequence[:class:`BMVert`]
-      :arg example: Existing face to initialize settings (optional argument).
-      :type example: :class:`BMFace`
+      :param verts: Sequence of 3 or more verts.
+      :type verts: Sequence[:class:`bmesh.types.BMVert`]
+      :param source: Existing face to initialize settings (optional argument).
+      :type source: :class:`bmesh.types.BMFace` | None
       :return: The newly created face.
-      :rtype: :class:`BMFace`
+      :rtype: :class:`bmesh.types.BMFace`
 
 
    .. method:: remove(face)
    
       Remove a face.
    
-      :type face: :class:`BMFace`
+      :param face: The face to remove.
+      :type face: :class:`bmesh.types.BMFace`
 
 
-   .. method:: sort(key=None, reverse=False)
+   .. method:: sort(*, key=None, reverse=False)
    
       Sort the elements of this sequence, using an optional custom sort key.
-      Indices of elements are not changed, :class:`BMElemSeq.index_update` can be used for that.
+      Indices of elements are not changed, :meth:`bmesh.types.BMElemSeq.index_update` can be used for that.
    
-      :arg key: The key that sets the ordering of the elements.
-      :type key: Callable[[:class:`BMVert` | :class:`BMEdge` | :class:`BMFace`], int] | None
-      :arg reverse: Reverse the order of the elements
+      :param key: The key that sets the ordering of the elements.
+      :type key: Callable[[:class:`bmesh.types.BMVert` | :class:`bmesh.types.BMEdge` | :class:`bmesh.types.BMFace`], int] | None
+      :param reverse: Reverse the order of the elements
       :type reverse: bool
    
       .. note::
@@ -1212,46 +1572,81 @@ Sequence Accessors
 
       active face.
       
-      :type: :class:`BMFace` or None
+      :type: :class:`bmesh.types.BMFace` | None
 
 
    .. attribute:: layers
 
       custom-data layers (read-only).
       
-      :type: :class:`BMLayerAccessFace`
+      :type: :class:`bmesh.types.BMLayerAccessFace`
+
+
+   .. details:: Special Methods
+
+      .. method:: __contains__(item)
+
+         :param item: Item to test for membership.
+         :type item: object
+         :rtype: bool
+
+      .. method:: __getitem__(key)
+
+         :param key: Index or key.
+         :type key: int
+         :rtype: :class:`BMFace`
+
+      .. method:: __iter__()
+
+         :rtype: :class:`BMFaceSeq`
+
+      .. method:: __len__()
+
+         :rtype: int
 
 
 
-
-.. class:: bmesh.types.BMLoopSeq
+.. class:: BMLoopSeq
 
 
    .. attribute:: layers
 
       custom-data layers (read-only).
       
-      :type: :class:`BMLayerAccessLoop`
+      :type: :class:`bmesh.types.BMLayerAccessLoop`
 
 
 
 
-.. class:: bmesh.types.BMIter
+.. class:: BMIter
 
    Internal BMesh type for looping over verts/faces/edges,
-   used for iterating over :class:`BMElemSeq` types.
+   used for iterating over :class:`bmesh.types.BMElemSeq` types.
+
+   .. details:: Special Methods
+
+      .. method:: __iter__()
+
+         :rtype: :class:`BMIter`
+
+      .. method:: __next__()
+
+         :rtype: Any
 
 
 
 Selection History
 -----------------
 
-.. class:: bmesh.types.BMEditSelSeq
+.. class:: BMEditSelSeq
 
 
    .. method:: add(element)
    
       Add an element to the selection history (no action taken if its already added).
+   
+      :param element: The element to add.
+      :type element: :class:`BMVert` | :class:`BMEdge` | :class:`BMFace`
 
 
    .. method:: clear()
@@ -1263,12 +1658,18 @@ Selection History
    
       Discard an element from the selection history.
    
-      Like remove but doesn't raise an error when the elements not in the selection list.
+      Like remove but doesn't raise an error when the element is not in the selection list.
+   
+      :param element: The element to discard.
+      :type element: :class:`BMVert` | :class:`BMEdge` | :class:`BMFace`
 
 
    .. method:: remove(element)
    
       Remove an element from the selection history.
+   
+      :param element: The element to remove.
+      :type element: :class:`BMVert` | :class:`BMEdge` | :class:`BMFace`
 
 
    .. method:: validate()
@@ -1280,20 +1681,52 @@ Selection History
 
       The last selected element or None (read-only).
       
-      :type: :class:`BMVert`, :class:`BMEdge` or :class:`BMFace`
+      :type: :class:`bmesh.types.BMVert` | :class:`bmesh.types.BMEdge` | :class:`bmesh.types.BMFace` | None
+
+
+   .. details:: Special Methods
+
+      .. method:: __contains__(item)
+
+         :param item: Item to test for membership.
+         :type item: object
+         :rtype: bool
+
+      .. method:: __getitem__(key)
+
+         :param key: Index or key.
+         :type key: int
+         :rtype: :class:`BMVert` | :class:`BMEdge` | :class:`BMFace`
+
+      .. method:: __iter__()
+
+         :rtype: :class:`BMEditSelSeq`
+
+      .. method:: __len__()
+
+         :rtype: int
 
 
 
+.. class:: BMEditSelIter
 
-.. class:: bmesh.types.BMEditSelIter
 
+   .. details:: Special Methods
+
+      .. method:: __iter__()
+
+         :rtype: :class:`BMEditSelIter`
+
+      .. method:: __next__()
+
+         :rtype: Any
 
 
 
 Custom-Data Layer Access
 ------------------------
 
-.. class:: bmesh.types.BMLayerAccessVert
+.. class:: BMLayerAccessVert
 
    Exposes custom-data layer attributes.
 
@@ -1301,75 +1734,75 @@ Custom-Data Layer Access
 
       Generic boolean custom-data layer.
       
-      :type: :class:`BMLayerCollection` of boolean
+      :type: :class:`bmesh.types.BMLayerCollection`\ [bool]
 
 
    .. attribute:: color
 
       Generic RGBA color with 8-bit precision custom-data layer.
       
-      :type: :class:`BMLayerCollection` of :class:`mathutils.Vector`
+      :type: :class:`bmesh.types.BMLayerCollection`\ [:class:`mathutils.Vector`]
 
 
    .. attribute:: deform
 
-      Vertex deform weight :class:`BMDeformVert` (TODO).
+      Vertex deform weight :class:`bmesh.types.BMDeformVert` (TODO).
       
-      :type: :class:`BMLayerCollection` of :class:`bmesh.types.BMDeformVert`
+      :type: :class:`bmesh.types.BMLayerCollection`\ [:class:`bmesh.types.BMDeformVert`]
 
 
    .. attribute:: float
 
       Generic float custom-data layer.
       
-      :type: :class:`BMLayerCollection` of float
+      :type: :class:`bmesh.types.BMLayerCollection`\ [float]
 
 
    .. attribute:: float_color
 
       Generic RGBA color with float precision custom-data layer.
       
-      :type: :class:`BMLayerCollection` of :class:`mathutils.Vector`
+      :type: :class:`bmesh.types.BMLayerCollection`\ [:class:`mathutils.Vector`]
 
 
    .. attribute:: float_vector
 
       Generic 3D vector with float precision custom-data layer.
       
-      :type: :class:`BMLayerCollection` of :class:`mathutils.Vector`
+      :type: :class:`bmesh.types.BMLayerCollection`\ [:class:`mathutils.Vector`]
 
 
    .. attribute:: int
 
       Generic int custom-data layer.
       
-      :type: :class:`BMLayerCollection` of int
+      :type: :class:`bmesh.types.BMLayerCollection`\ [int]
 
 
    .. attribute:: shape
 
-      Vertex shapekey absolute location (as a 3D Vector).
+      Vertex shape-key absolute location (as a 3D Vector).
       
-      :type: :class:`BMLayerCollection` of :class:`mathutils.Vector`
+      :type: :class:`bmesh.types.BMLayerCollection`\ [:class:`mathutils.Vector`]
 
 
    .. attribute:: skin
 
       Accessor for skin layer.
       
-      :type: :class:`BMLayerCollection` of :class:`bmesh.types.BMVertSkin`
+      :type: :class:`bmesh.types.BMLayerCollection`\ [:class:`bmesh.types.BMVertSkin`]
 
 
    .. attribute:: string
 
       Generic string custom-data layer (exposed as bytes, 255 max length).
       
-      :type: :class:`BMLayerCollection` of bytes
+      :type: :class:`bmesh.types.BMLayerCollection`\ [bytes]
 
 
 
 
-.. class:: bmesh.types.BMLayerAccessEdge
+.. class:: BMLayerAccessEdge
 
    Exposes custom-data layer attributes.
 
@@ -1377,61 +1810,54 @@ Custom-Data Layer Access
 
       Generic boolean custom-data layer.
       
-      :type: :class:`BMLayerCollection` of boolean
+      :type: :class:`bmesh.types.BMLayerCollection`\ [bool]
 
 
    .. attribute:: color
 
       Generic RGBA color with 8-bit precision custom-data layer.
       
-      :type: :class:`BMLayerCollection` of :class:`mathutils.Vector`
+      :type: :class:`bmesh.types.BMLayerCollection`\ [:class:`mathutils.Vector`]
 
 
    .. attribute:: float
 
       Generic float custom-data layer.
       
-      :type: :class:`BMLayerCollection` of float
+      :type: :class:`bmesh.types.BMLayerCollection`\ [float]
 
 
    .. attribute:: float_color
 
       Generic RGBA color with float precision custom-data layer.
       
-      :type: :class:`BMLayerCollection` of :class:`mathutils.Vector`
+      :type: :class:`bmesh.types.BMLayerCollection`\ [:class:`mathutils.Vector`]
 
 
    .. attribute:: float_vector
 
       Generic 3D vector with float precision custom-data layer.
       
-      :type: :class:`BMLayerCollection` of :class:`mathutils.Vector`
-
-
-   .. attribute:: freestyle
-
-      Accessor for Freestyle edge layer.
-      
-      :type: :class:`BMLayerCollection`
+      :type: :class:`bmesh.types.BMLayerCollection`\ [:class:`mathutils.Vector`]
 
 
    .. attribute:: int
 
       Generic int custom-data layer.
       
-      :type: :class:`BMLayerCollection` of int
+      :type: :class:`bmesh.types.BMLayerCollection`\ [int]
 
 
    .. attribute:: string
 
       Generic string custom-data layer (exposed as bytes, 255 max length).
       
-      :type: :class:`BMLayerCollection` of bytes
+      :type: :class:`bmesh.types.BMLayerCollection`\ [bytes]
 
 
 
 
-.. class:: bmesh.types.BMLayerAccessFace
+.. class:: BMLayerAccessFace
 
    Exposes custom-data layer attributes.
 
@@ -1439,61 +1865,54 @@ Custom-Data Layer Access
 
       Generic boolean custom-data layer.
       
-      :type: :class:`BMLayerCollection` of boolean
+      :type: :class:`bmesh.types.BMLayerCollection`\ [bool]
 
 
    .. attribute:: color
 
       Generic RGBA color with 8-bit precision custom-data layer.
       
-      :type: :class:`BMLayerCollection` of :class:`mathutils.Vector`
+      :type: :class:`bmesh.types.BMLayerCollection`\ [:class:`mathutils.Vector`]
 
 
    .. attribute:: float
 
       Generic float custom-data layer.
       
-      :type: :class:`BMLayerCollection` of float
+      :type: :class:`bmesh.types.BMLayerCollection`\ [float]
 
 
    .. attribute:: float_color
 
       Generic RGBA color with float precision custom-data layer.
       
-      :type: :class:`BMLayerCollection` of :class:`mathutils.Vector`
+      :type: :class:`bmesh.types.BMLayerCollection`\ [:class:`mathutils.Vector`]
 
 
    .. attribute:: float_vector
 
       Generic 3D vector with float precision custom-data layer.
       
-      :type: :class:`BMLayerCollection` of :class:`mathutils.Vector`
-
-
-   .. attribute:: freestyle
-
-      Accessor for Freestyle face layer.
-      
-      :type: :class:`BMLayerCollection`
+      :type: :class:`bmesh.types.BMLayerCollection`\ [:class:`mathutils.Vector`]
 
 
    .. attribute:: int
 
       Generic int custom-data layer.
       
-      :type: :class:`BMLayerCollection` of int
+      :type: :class:`bmesh.types.BMLayerCollection`\ [int]
 
 
    .. attribute:: string
 
       Generic string custom-data layer (exposed as bytes, 255 max length).
       
-      :type: :class:`BMLayerCollection` of bytes
+      :type: :class:`bmesh.types.BMLayerCollection`\ [bytes]
 
 
 
 
-.. class:: bmesh.types.BMLayerAccessLoop
+.. class:: BMLayerAccessLoop
 
    Exposes custom-data layer attributes.
 
@@ -1501,61 +1920,61 @@ Custom-Data Layer Access
 
       Generic boolean custom-data layer.
       
-      :type: :class:`BMLayerCollection` of boolean
+      :type: :class:`bmesh.types.BMLayerCollection`\ [bool]
 
 
    .. attribute:: color
 
       Generic RGBA color with 8-bit precision custom-data layer.
       
-      :type: :class:`BMLayerCollection` of :class:`mathutils.Vector`
+      :type: :class:`bmesh.types.BMLayerCollection`\ [:class:`mathutils.Vector`]
 
 
    .. attribute:: float
 
       Generic float custom-data layer.
       
-      :type: :class:`BMLayerCollection` of float
+      :type: :class:`bmesh.types.BMLayerCollection`\ [float]
 
 
    .. attribute:: float_color
 
       Generic RGBA color with float precision custom-data layer.
       
-      :type: :class:`BMLayerCollection` of :class:`mathutils.Vector`
+      :type: :class:`bmesh.types.BMLayerCollection`\ [:class:`mathutils.Vector`]
 
 
    .. attribute:: float_vector
 
       Generic 3D vector with float precision custom-data layer.
       
-      :type: :class:`BMLayerCollection` of :class:`mathutils.Vector`
+      :type: :class:`bmesh.types.BMLayerCollection`\ [:class:`mathutils.Vector`]
 
 
    .. attribute:: int
 
       Generic int custom-data layer.
       
-      :type: :class:`BMLayerCollection` of int
+      :type: :class:`bmesh.types.BMLayerCollection`\ [int]
 
 
    .. attribute:: string
 
       Generic string custom-data layer (exposed as bytes, 255 max length).
       
-      :type: :class:`BMLayerCollection` of bytes
+      :type: :class:`bmesh.types.BMLayerCollection`\ [bytes]
 
 
    .. attribute:: uv
 
-      Accessor for :class:`BMLoopUV` UV (as a 2D Vector).
+      Accessor for :class:`bmesh.types.BMLoopUV` UV (as a 2D Vector).
       
-      :type: :class:`BMLayerCollection` of :class:`bmesh.types.BMLoopUV`
+      :type: :class:`bmesh.types.BMLayerCollection`\ [:class:`bmesh.types.BMLoopUV`]
 
 
 
 
-.. class:: bmesh.types.BMLayerCollection
+.. class:: BMLayerCollection
 
    Gives access to a collection of custom-data layers of the same type and behaves like Python dictionaries, except for the ability to do list like index access.
 
@@ -1564,20 +1983,22 @@ Custom-Data Layer Access
       Returns the value of the layer matching the key or default
       when not found (matches Python's dictionary function of the same name).
    
-      :arg key: The key associated with the layer.
+      :param key: The key associated with the layer.
       :type key: str
-      :arg default: Optional argument for the value to return if
+      :param default: Optional argument for the value to return if
          *key* is not found.
       :type default: Any
+      :return: The layer matching the key or the default value.
+      :rtype: :class:`bmesh.types.BMLayerItem` | Any
 
 
    .. method:: items()
    
-      Return the identifiers of collection members
+      Return the (key, value) pairs of collection members
       (matching Python's dict.items() functionality).
    
       :return: (key, value) pairs for each member of this collection.
-      :rtype: list[tuple[str, :class:`BMLayerItem`]]
+      :rtype: list[tuple[str, :class:`bmesh.types.BMLayerItem`]]
 
 
    .. method:: keys()
@@ -1589,22 +2010,22 @@ Custom-Data Layer Access
       :rtype: list[str]
 
 
-   .. method:: new(name)
+   .. method:: new(name="")
    
       Create a new layer
    
-      :arg name: Optional name argument (will be made unique).
+      :param name: Optional name argument (will be made unique).
       :type name: str
       :return: The newly created layer.
-      :rtype: :class:`BMLayerItem`
+      :rtype: :class:`bmesh.types.BMLayerItem`
 
 
    .. method:: remove(layer)
    
       Remove a layer
    
-      :arg layer: The layer to remove.
-      :type layer: :class:`BMLayerItem`
+      :param layer: The layer to remove.
+      :type layer: :class:`bmesh.types.BMLayerItem`
 
 
    .. method:: values()
@@ -1613,48 +2034,70 @@ Custom-Data Layer Access
       (matching Python's dict.values() functionality).
    
       :return: the members of this collection.
-      :rtype: list[:class:`BMLayerItem`]
+      :rtype: list[:class:`bmesh.types.BMLayerItem`]
 
 
    .. method:: verify()
    
       Create a new layer or return an existing active layer
    
-      :return: The newly verified layer.
-      :rtype: :class:`BMLayerItem`
+      :return: The newly created layer, or the existing active layer.
+      :rtype: :class:`bmesh.types.BMLayerItem`
 
 
    .. attribute:: active
 
       The active layer of this type (read-only).
       
-      :type: :class:`BMLayerItem`
+      :type: :class:`bmesh.types.BMLayerItem` | None
 
 
    .. attribute:: is_singleton
 
-      True if there can exists only one layer of this type (read-only).
+      True if there can exist only one layer of this type (read-only).
       
       :type: bool
 
 
+   .. details:: Special Methods
+
+      .. method:: __contains__(item)
+
+         :param item: Item to test for membership.
+         :type item: object
+         :rtype: bool
+
+      .. method:: __getitem__(key)
+
+         :param key: Index or key.
+         :type key: int
+         :rtype: :class:`BMLayerItem`
+
+      .. method:: __iter__()
+
+         :rtype: :class:`BMLayerCollection`
+
+      .. method:: __len__()
+
+         :rtype: int
 
 
-.. class:: bmesh.types.BMLayerItem
 
-   Exposes a single custom data layer, their main purpose is for use as item accessors to custom-data when used with vert/edge/face/loop data.
+.. class:: BMLayerItem
+
+   Exposes a single custom data layer, its main purpose is for use as an item accessor to custom-data when used with vert/edge/face/loop data.
 
    .. method:: copy_from(other)
    
-      Return a copy of the layer
+      Copy data from another layer.
    
-      :arg other: Another layer to copy from.
-      :type other: :class:`BMLayerItem`
+      :param other: Another layer to copy from.
+      :type other: :class:`bmesh.types.BMLayerItem`
 
 
    .. attribute:: name
 
-      The layers unique name (read-only).
+      The layer's unique name (read-only).
       
       :type: str
 
@@ -1664,7 +2107,7 @@ Custom-Data Layer Access
 Custom-Data Layer Types
 -----------------------
 
-.. class:: bmesh.types.BMLoopUV
+.. class:: BMLoopUV
 
 
    .. attribute:: pin_uv
@@ -1674,30 +2117,16 @@ Custom-Data Layer Types
       :type: bool
 
 
-   .. attribute:: select
-
-      UV select state.
-      
-      :type: bool
-
-
-   .. attribute:: select_edge
-
-      UV edge select state.
-      
-      :type: bool
-
-
    .. attribute:: uv
 
-      Loops UV (as a 2D Vector).
+      Loop UV (as a 2D Vector).
       
       :type: :class:`mathutils.Vector`
 
 
 
 
-.. class:: bmesh.types.BMDeformVert
+.. class:: BMDeformVert
 
 
    .. method:: clear()
@@ -1710,11 +2139,13 @@ Custom-Data Layer Types
       Returns the deform weight matching the key or default
       when not found (matches Python's dictionary function of the same name).
    
-      :arg key: The key associated with deform weight.
+      :param key: The vertex group index.
       :type key: int
-      :arg default: Optional argument for the value to return if
+      :param default: Optional argument for the value to return if
          *key* is not found.
       :type default: Any
+      :return: The deform weight or the default when not found.
+      :rtype: float | Any
 
 
    .. method:: items()
@@ -1731,7 +2162,7 @@ Custom-Data Layer Types
       Return the group indices used by this vertex
       (matching Python's dict.keys() functionality).
    
-      :return: the deform group this vertex uses
+      :return: The deform group indices this vertex uses.
       :rtype: list[int]
 
 
@@ -1743,6 +2174,31 @@ Custom-Data Layer Types
       :return: The weights that influence this vertex
       :rtype: list[float]
 
+
+   .. details:: Special Methods
+
+      .. method:: __contains__(item)
+
+         :param item: Item to test for membership.
+         :type item: object
+         :rtype: bool
+
+      .. method:: __getitem__(key)
+
+         :param key: Index or key.
+         :type key: int
+         :rtype: float
+
+      .. method:: __len__()
+
+         :rtype: int
+
+      .. method:: __setitem__(key, value)
+
+         :param key: Index or key.
+         :type key: int
+         :param value: Value to assign.
+         :type value: object
 
 
 

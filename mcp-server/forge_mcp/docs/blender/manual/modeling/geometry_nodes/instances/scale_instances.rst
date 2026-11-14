@@ -38,12 +38,6 @@ Local Space
    the local space of the modifier object.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

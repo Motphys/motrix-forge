@@ -116,8 +116,8 @@ Soft Falloff
    Apply falloff to avoid sharp edges when the light geometry intersects with other objects.
 
 
-Beam/Spot Shape
----------------
+Beam Shape
+----------
 
 .. figure:: /images/render_lights_light-object_terms.png
    :width: 610px
@@ -126,19 +126,25 @@ Beam/Spot Shape
 
 .. _bpy.types.SpotLight.spot_size:
 
-Size
-   The size of the outer cone of a spot,
-   which largely controls the circular area a spot light covers.
-   This slider in fact controls the angle at the top of the lighting cone,
-   and can be between (1.0 to 180.0).
+Angle
+   The size of the outer cone of a spot light, which determines how wide the light spreads.
+   A smaller angle produces a narrow, focused beam, while a larger angle results in a wider,
+   softer illumination area.
 
-   .. list-table:: Changing the spot *Size* option.
+   This value represents the angle at the top of the light cone in degrees,
+   and can range from **1.0°** (narrow beam) to **180.0°** (very wide beam).
+
+   .. list-table:: Changing the spot *Angle* option
 
       * - .. figure:: /images/render_lights_light-object_size45.png
              :width: 320px
 
+             Angle: 45°
+
         - .. figure:: /images/render_lights_light-object_size60.png
              :width: 320px
+
+             Angle: 60°
 
 .. _bpy.types.SpotLight.spot_blend:
 

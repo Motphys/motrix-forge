@@ -114,14 +114,33 @@ Lock -- Rotation
 3D Cursor
 ---------
 
+.. _bpy.types.View3DCursor.location:
+
 Location
    The location of the 3D Cursor.
+
+.. _bpy.types.View3DCursor.rotation_quaternion:
+.. _bpy.types.View3DCursor.rotation_euler:
+.. _#bpy.types.View3DCursor.rotation_axis_angle:
 
 Rotation
    The rotation of the 3D Cursor.
 
+.. _bpy.types.View3DCursor.rotation_mode:
+
 Rotation Mode
-   The rotation mode of the 3D Cursor.
+   Method for calculating rotations, additional information can be found
+   in the :doc:`manual's appendix </advanced/appendices/rotations>`.
+
+   :Euler:
+      Coordinate axes are aligned to the :term:`Euler` axis,
+      allowing you to see the discrete XYZ axis underlying the Euler rotation,
+      as well as possible :term:`Gimbal Lock`.
+   :Axis Angle:
+      The X, Y, and Z coordinates define a point relative to the object origin.
+      This point and the origin define an axis around which the W value defines the rotation.
+   :Quaternion:
+      X, Y, Z and W correspond to the :term:`Quaternion` components.
 
 
 .. _bpy.types.SpaceView3D.use_local_collections:
@@ -136,7 +155,7 @@ If a collection contains objects, there is a circle to the left of its name.
 Local Collections
    Allows setting collection visibility per viewport rather than globally.
 
-Hide in Viewport (eye icon)
+:bl-icon:`hide_off` / :bl-icon:`hide_on` Hide in Viewport
    Shows or hides the collection.
 
 You can also "isolate" a collection by clicking its name. This will show the collection
@@ -147,3 +166,14 @@ Annotations
 -----------
 
 See :doc:`Annotations </interface/annotate_tool>` for more information.
+
+:doc:`Animation <animation/index>`
+==================================
+
+:doc:`Global Transform <animation/copy_global_transform>`
+---------------------------------------------------------
+
+.. toctree::
+   :hidden:
+
+   animation/index.rst

@@ -96,7 +96,12 @@ Reshape
 .. _bpy.ops.object.multires_base_apply:
 
 Apply Base
-   Modifies the original unsubdivided mesh to match the form of the subdivided mesh.
+   Modifies the original unsubdivided mesh to match the form of the subdivided mesh. This operation applies
+   a heuristic to the base mesh vertices that assumes that a Subdivision Surface modifier will be added to the mesh.
+
+Conform Base
+   Modifies the original unsubdivided mesh to match the form of the subdivided mesh. The resulting positions of the
+   base mesh vertices will match their subdivided positions.
 
 
 Generate
@@ -154,35 +159,66 @@ Usage
 Baking
 ------
 
-Baking converts high-resolution geometry details such
-as sculpted displacement or surface normals into a 2D texture map.
-These textures can then be used on a lower-resolution version of the mesh to simulate
-high-detail geometry without the performance cost of actually subdividing the mesh at runtime.
+Baking converts high-resolution geometry details, such as sculpted displacement or surface normals,
+into 2D texture maps. These maps can then be applied to a lower-resolution mesh to reproduce
+the appearance of fine surface detail without the performance cost of dense geometry.
 
-This is an essential step in workflows where high-resolution details are baked
-into textures for use on a lower-resolution base mesh, such as in real-time rendering or game engines.
+This process is essential for workflows where high-resolution sculpting data is transferred to
+low-resolution meshes for rendering or game engines.
 
-To generate a displacement or normal map, use the
-:ref:`Bake from Multires <bpy.types.RenderSettings.use_bake_multires>` render feature.
-This feature compares two resolution levels of the modifier:
+To generate a normal or displacement map, use the
+:ref:`Bake from Multires <bpy.types.RenderSettings.use_bake_multires>` option in the Render panel.
+This feature compares two resolution levels of the Multiresolution modifier:
 
-- Viewport Level is treated as the low-resolution base mesh.
-- Render Level is treated as the high-resolution detail mesh.
+- **Viewport Levels:** Used as the *low-resolution* base mesh.
+- **Render Levels:** Used as the *high-resolution* detail mesh.
 
-The resulting normal or displacement map represents the difference between these two levels.
+The difference between these two levels is baked into a texture map.
+
+
+.. _multrires-bake-types:
+
+Bake Types
+^^^^^^^^^^
+
+The *Bake Type* determines what kind of surface information is extracted from the Multiresolution modifier.
+
+- **Normals:**
+  Bakes surface normal direction differences between the base and detailed levels.
+  The resulting normal map encodes lighting information that reproduces fine sculpted detail
+  in shading without modifying the actual geometry.
+  Ideal for use with normal-mapped materials in Cycles, Eevee, and real-time engines.
+
+- **Displacement:**
+  Bakes height differences between the base and high-resolution mesh as a grayscale image.
+  Lighter areas represent raised regions and darker areas represent recessed areas.
+  This map can be used for *true* displacement in render engines or for parallax/height-based shading.
+
+- **Vector Displacement:**
+  Bakes 3D displacement vectors representing the full spatial offset from the base to the detailed surface.
+  Unlike regular displacement, this method can capture overhangs and non-vertical displacements,
+  providing a more accurate representation of complex sculpted details.
+
+  The resulting texture encodes XYZ displacement in the RGB color channels.
 
 .. important::
 
-   To bake correctly, the Viewport Levels of the Multiresolution modifier must be set to 0.
-   This ensures the bake uses the original base mesh as the low-resolution target.
-   Sculpted details are taken from the Render Levels.
+   To ensure a correct bake:
 
-   If the Viewport Level is higher than 0, the bake may not produce correct results,
-   as the low-resolution geometry will already include some displacement.
+   - Set the **Viewport Levels** of the Multiresolution modifier to **0**, so the base mesh is truly low-resolution.
+   - Set the **Render Levels** to the highest sculpt level that contains the desired detail.
+   - The object must have proper **UV unwrapping** and a selected **Image Texture** node in the Shader Editor
+     to receive the baked map.
+
+   If the Viewport Level is higher than 0, part of the sculpted displacement will already be applied,
+   resulting in incorrect bakes.
 
 .. tip::
 
-   Make sure the object has proper UV unwrapping before baking,
-   and that the correct image node is selected in the Shader Editor.
+   - Use 16-bit or 32-bit image formats (e.g., OpenEXR or TIFF) for displacement or vector displacement maps
+     to preserve precision.
+   - Always verify that the image's color space is set to *Non-Color* in the Image Editor or Shader Editor.
 
-For more details on the general baking process, see: :doc:`/render/cycles/baking`.
+.. seealso::
+
+   For more details on general baking settings and workflow, see :doc:`/render/cycles/baking`.

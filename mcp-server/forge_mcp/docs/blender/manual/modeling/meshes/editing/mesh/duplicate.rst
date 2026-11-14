@@ -10,18 +10,8 @@ Duplicate
    :Menu:      :menuselection:`Mesh --> Duplicate`
    :Shortcut:  :kbd:`Shift-D`
 
-This tool simply duplicates the selected elements,
-without creating any connections with the rest of the mesh (unlike extrude, for example),
-and places the duplicate at the location of the original. Once the duplication is done,
-only the *new* duplicated elements are selected,
-and you are automatically placed in move mode, so you can move your copy elsewhere...
-
-In the *Toolbar* are settings for *Vector* offset, *Proportional Editing*,
-*Duplication Mode*, and *Axis Constraints*.
-
-.. todo: Duplication Mode non-functional?
-
-Note that duplicated elements belong to the same
-:doc:`vertex groups </modeling/meshes/properties/vertex_groups/index>` as the "original" ones.
-The same goes for the :ref:`material indices <bi-multiple-materials>`,
-the edge's *Sharp* and *Seam* marks, and probably for the other vertex/edge/face properties...
+Creates a copy of the selection. After clicking the menu item or pressing the keyboard
+shortcut, move the mouse to move the copy to the desired location and press :kbd:`LMB` or :kbd:`Return`
+to confirm. Alternatively, press :kbd:`RMB` or :kbd:`Esc` to leave the copy at the same
+location as the original. (The copy will still be selected, so it can still be easily moved out
+of the way afterwards.)

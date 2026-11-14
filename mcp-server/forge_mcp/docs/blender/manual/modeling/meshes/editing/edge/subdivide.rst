@@ -66,7 +66,7 @@ Smoothness
         - .. figure:: /images/modeling_meshes_editing_edge_subdivide_smooth-after.png
              :width: 200px
 
-             Subdivided with smoothing of 1.
+             Subdivided with Smoothness set to 1.
 
 Create N-Gons
    When unchecked, forces the subdivision to create triangles or quads instead of n-gons
@@ -144,6 +144,10 @@ Random Seed
 
       Same mesh with a different seed value.
 
+.. seealso::
+
+   :doc:`/modeling/meshes/editing/mesh/transform/randomize` randomly displaces vertices without
+   subdividing first.
 
 Examples
 ========

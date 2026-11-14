@@ -4,10 +4,22 @@
   Line Style
 ##############
 
-.. toctree::
-   :maxdepth: 2
+In Freestyle, the line style settings define the appearance of a line set using five main aspects:
+Stroke, Color, Alpha, Thickness, Geometry, and Texture with each on a separate tab.
+These allow you to get many different styles of renders
+(technical draw, rough sketch, cartoon, calligraphy, etc.).
 
-   introduction.rst
+You can create as many line styles as you wish, and reuse a given line style for several line
+sets by selecting it from the select menu next to its name.
+
+.. note::
+
+   Unless otherwise specified, all lengths in line style settings are in pixels
+   (either relative or absolute, as specified in the :doc:`core options </render/freestyle/render>`).
+
+.. figure:: /images/render_freestyle_parameter-editor_line-style_introduction_line-style-example.png
+
+   Line Style Example (`blend-file <https://archive.blender.org/wiki/2015/index.php/File:LineStyles.zip>`__).
 
 
 Properties
@@ -23,14 +35,7 @@ Properties
    geometry.rst
    texture.rst
 
-
-Modifiers
-=========
-
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
-   Color <modifiers/color/index.rst>
-   Alpha <modifiers/alpha/index.rst>
-   Thickness <modifiers/thickness/index.rst>
-   Geometry <modifiers/geometry/index.rst>
+   modifiers/index.rst

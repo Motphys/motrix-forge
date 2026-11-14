@@ -131,9 +131,6 @@ Randomize Colors
 Generates a new set of random colors to render the face sets in the 3D Viewport.
 
 
-.. _bpy.types.Sculpt.show_face_sets:
-.. _bpy.types.View3DOverlay.sculpt_mode_face_sets_opacity:
-
 Display Settings
 ================
 

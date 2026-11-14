@@ -37,7 +37,7 @@ to that shown in the first image below.
           :width: 200px
 
 Keep Sharp Edges
-   Do not clear sharp edges (which are redundant with objects shaded as flat or smooth).
+   Do not clear :ref:`Sharp <bpy.ops.mesh.mark_sharp>` edges (which are redundant with objects shaded as flat).
    This option is useful to not destroy data in case you want to revert changes later.
 
 
@@ -78,5 +78,5 @@ This is usually desirable for objects with flat surfaces.
 This operator will also remove any :doc:`Smooth By Angle Modifiers </modeling/modifiers/normals/smooth_by_angle>`
 
 Keep Sharp Edges
-   Do not clear sharp edges (which are redundant with objects shaded as flat or smooth).
+   Do not clear :ref:`Sharp <bpy.ops.mesh.mark_sharp>` edges (which are redundant with objects shaded as flat).
    This option is useful to not destroy data in case you want to revert changes later.

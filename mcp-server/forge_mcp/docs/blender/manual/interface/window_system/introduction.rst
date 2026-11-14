@@ -6,7 +6,7 @@ Window System Introduction
 After starting Blender and closing the :ref:`Splash Screen <splash>`,
 the Blender window should look similar to the image below.
 
-.. figure:: /images/interface_window-system_introduction_default-startup.png
+.. figure:: /images/interface_window-system_introduction_default-startup.webp
    :align: center
 
    The default startup Blender window.

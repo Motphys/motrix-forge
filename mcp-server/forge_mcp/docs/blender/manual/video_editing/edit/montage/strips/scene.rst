@@ -1,4 +1,4 @@
-.. _bpy.types.SceneSequence:
+.. _bpy.types.SceneStrip:
 
 ***********
 Scene Strip
@@ -17,8 +17,13 @@ The strip length will be determined based on the animation settings in that scen
 Adding Scene Strips
 ===================
 
-Existing scenes strips can be added from the :menuselection:`Add --> Scene --> "Scene Name"`.
-New scenes can also be created directly from the add menu with :menuselection:`Add --> Scene --> New Scene`.
+Existing scenes can be added from the :menuselection:`Add --> Scene --> "Scene Name"`.
+Additionally, any scene asset in the current file or in an :doc:`Asset Library </files/asset_libraries/introduction>`
+will also show up in the :menuselection:`Add --> Scene`. If a scene asset is assigned to a :doc:`Catalog
+</files/asset_libraries/catalogs>`, the catalog hierarchy will show up as a sub-menu. When adding a scene asset as a
+strip, the scene is always appended/duplicated.
+
+New scenes can also be created directly from the add menu with :menuselection:`Add --> Scene --> Empty Scene`.
 
 .. rubric:: Options
 
@@ -45,6 +50,9 @@ Options
 
 Scene
    A :ref:`ui-data-block` to select or create the scene to render from.
+
+View Layer
+   :ref:`View Layer <bpy.types.ViewLayer>` from the selected scene used for rendering.
 
 Input
    Input type to use for the Scene strip.
@@ -76,7 +84,7 @@ Show
 Sound
 -----
 
-.. _bpy.types.SceneSequence.volume:
+.. _bpy.types.SceneStrip.volume:
 
 Strip Volume
    Volume of the audio taken from the chosen scene.

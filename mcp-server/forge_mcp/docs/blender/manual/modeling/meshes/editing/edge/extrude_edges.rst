@@ -11,16 +11,16 @@ Extrude Edges
                :menuselection:`Mesh --> Extrude --> Extrude Edges`
    :Shortcut:  :kbd:`E`
 
-Extrude edges as individual edges.
+Extrudes the selected edges, disregarding any neighboring faces.
 
 .. list-table::
 
    * - .. figure:: /images/modeling_meshes_editing_edge_extrude-edges_before.png
           :width: 320px
 
-          Edge selected.
+          Edges selected.
 
      - .. figure:: /images/modeling_meshes_editing_edge_extrude-edges_after.png
           :width: 320px
 
-          Edge extruded.
+          Edges extruded.

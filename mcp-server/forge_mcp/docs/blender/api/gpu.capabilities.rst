@@ -18,12 +18,12 @@ This module provides access to the GPU capabilities.
    Get supported extensions in the current context.
 
    :return: Extensions.
-   :rtype: tuple[str]
+   :rtype: tuple[str, ...]
 
 
 .. function:: hdr_support_get()
 
-  Return whether GPU backend supports High Dynamic range for viewport.
+   Return whether GPU backend supports High Dynamic range for viewport.
 
    :return: HDR support available.
    :rtype: bool
@@ -146,7 +146,7 @@ This module provides access to the GPU capabilities.
 
    Get maximum number of work groups that may be dispatched to a compute shader.
 
-   :arg index: Index of the dimension.
+   :param index: Index of the dimension.
    :type index: int
    :return: Maximum number of work groups for the queried dimension.
    :rtype: int
@@ -156,7 +156,7 @@ This module provides access to the GPU capabilities.
 
    Get maximum size of a work group that may be dispatched to a compute shader.
 
-   :arg index: Index of the dimension.
+   :param index: Index of the dimension.
    :type index: int
    :return: Maximum size of a work group for the queried dimension.
    :rtype: int

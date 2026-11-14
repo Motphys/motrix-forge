@@ -57,11 +57,9 @@ They are called *Halos* because you can see them, but they do not have any subst
 Path
 ----
 
-.. todo:: Update image
+.. figure:: /images/physics_particles_emitter_render_path.png
 
-   .. figure:: /images/physics_particles_emitter_render_path.png
-
-      The Visualization panel for Path visualization.
+   The Visualization panel for Path visualization.
 
 The *Path* visualization needs a :doc:`Hair </physics/particles/hair/index>` particle system or
 :doc:`Keyed </physics/particles/emitter/physics/keyed>` particles.
@@ -69,7 +67,7 @@ The *Path* visualization needs a :doc:`Hair </physics/particles/hair/index>` par
 B-Spline
    Interpolate hair using B-splines.
    This may be an option for you if you want to use low *Render* values.
-   You loose a bit of control but gain smoother paths.
+   You lose a bit of control but gain smoother paths.
 Steps
    Set the number of subdivisions of the rendered paths (the value is a power of 2).
    You should set this value carefully,

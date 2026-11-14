@@ -20,7 +20,7 @@ that no undo step will created (see next example for more info about undo).
 
    Operator subclasses must be registered before accessing them from Blender.
 
-.. literalinclude:: ..\examples\bpy.types.Operator.py
+.. literalinclude:: ../examples/bpy.types.Operator.0.py
    :lines: 19-
 
 
@@ -59,7 +59,7 @@ fully undo the changes before returning.
    function. Be careful though, this is considered an advanced feature and
    requires some understanding of the actual undo system in Blender code.
 
-.. literalinclude:: ..\examples\bpy.types.Operator.1.py
+.. literalinclude:: ../examples/bpy.types.Operator.1.py
    :lines: 38-
 
 
@@ -89,7 +89,7 @@ to typical class properties because Blender registers them with the
 operator, to use as arguments when called, saved for operator undo/redo and
 automatically added into the user interface.
 
-.. literalinclude:: ..\examples\bpy.types.Operator.2.py
+.. literalinclude:: ../examples/bpy.types.Operator.2.py
    :lines: 28-
 
 
@@ -107,7 +107,7 @@ user confirms.
 The :class:`Operator.poll` function is optional, used to check if the operator
 can run.
 
-.. literalinclude:: ..\examples\bpy.types.Operator.3.py
+.. literalinclude:: ../examples/bpy.types.Operator.3.py
    :lines: 16-
 
 
@@ -116,7 +116,7 @@ Dialog Box
 
 This operator uses its :class:`Operator.invoke` function to call a popup.
 
-.. literalinclude:: ..\examples\bpy.types.Operator.4.py
+.. literalinclude:: ../examples/bpy.types.Operator.4.py
    :lines: 7-
 
 
@@ -130,7 +130,7 @@ If you need more control you can create your own layout with a
 This works like the :class:`Panel` and :class:`Menu` draw functions, its used
 for dialogs and file selectors.
 
-.. literalinclude:: ..\examples\bpy.types.Operator.5.py
+.. literalinclude:: ../examples/bpy.types.Operator.5.py
    :lines: 12-
 
 
@@ -157,7 +157,7 @@ be called before the :class:`Operator.invoke` and after the operator finishes.
 Also see the
 :ref:`class construction and destruction section <info_overview_class_construction_destruction>`.
 
-.. literalinclude:: ..\examples\bpy.types.Operator.6.py
+.. literalinclude:: ../examples/bpy.types.Operator.6.py
    :lines: 25-
 
 
@@ -167,10 +167,11 @@ Enum Search Popup
 You may want to have an operator prompt the user to select an item
 from a search field, this can be done using :class:`bpy.types.Operator.invoke_search_popup`.
 
-.. literalinclude:: ..\examples\bpy.types.Operator.7.py
+.. literalinclude:: ../examples/bpy.types.Operator.7.py
    :lines: 8-
 
 base class --- :class:`bpy_struct`
+
 
 .. class:: Operator(bpy_struct)
 
@@ -178,63 +179,81 @@ base class --- :class:`bpy_struct`
 
    .. attribute:: bl_cursor_pending
 
-      Cursor to use when waiting for the user to select a location to activate the operator (when ``bl_options`` has ``DEPENDS_ON_CURSOR`` set)
+      Cursor to use when waiting for the user to select a location to activate the operator (when ``bl_options`` has ``DEPENDS_ON_CURSOR`` set) (default ``'DEFAULT'``)
 
-      :type: enum in :ref:`rna_enum_window_cursor_items`, default ``'DEFAULT'``
+      :type: Literal[:ref:`rna_enum_window_cursor_items`]
 
    .. attribute:: bl_description
 
-      :type: string, default "", (never None)
+      (default "", never None)
+
+      :type: str
 
    .. attribute:: bl_idname
 
-      :type: string, default "", (never None)
+      (default "", never None)
+
+      :type: str
 
    .. attribute:: bl_label
 
-      :type: string, default "", (never None)
+      (default "", never None)
+
+      :type: str
 
    .. attribute:: bl_options
 
-      Options for this operator type
+      Options for this operator type (default set())
 
-      :type: enum set in :ref:`rna_enum_operator_type_flag_items`, default {``'REGISTER'``}
+      :type: set[Literal[:ref:`rna_enum_operator_type_flag_items`]]
 
    .. attribute:: bl_translation_context
 
-      :type: string, default "Operator", (never None)
+      (default "Operator", never None)
+
+      :type: str
 
    .. attribute:: bl_undo_group
 
-      :type: string, default "", (never None)
+      (default "", never None)
+
+      :type: str
 
    .. data:: has_reports
 
-      Operator has a set of reports (warnings and errors) from last execution
+      Operator has a set of reports (warnings and errors) from last execution (default False, readonly)
 
-      :type: boolean, default False, (readonly)
+      :type: bool
 
    .. data:: layout
 
-      :type: :class:`UILayout`, (readonly)
+      (readonly)
+
+      :type: :class:`UILayout` | None
 
    .. data:: macros
 
-      :type: :class:`bpy_prop_collection` of :class:`Macro`, (readonly)
+      (default None, readonly)
+
+      :type: :class:`bpy_prop_collection`\ [:class:`Macro`]
 
    .. data:: name
 
-      :type: string, default "", (readonly, never None)
+      (default "", readonly, never None)
+
+      :type: str
 
    .. data:: options
 
-      Runtime options
+      Runtime options (readonly, never None)
 
-      :type: :class:`OperatorOptions`, (readonly, never None)
+      :type: :class:`OperatorOptions`
 
    .. data:: properties
 
-      :type: :class:`OperatorProperties`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`OperatorProperties`
 
    .. attribute:: bl_property
 
@@ -248,96 +267,114 @@ base class --- :class:`bpy_struct`
 
       report
 
-      :arg type: Type
-      :type type: enum set in :ref:`rna_enum_wm_report_items`
-      :arg message: Report Message
-      :type message: string, (never None)
+      :param type: Type
+      :type type: set[Literal[:ref:`rna_enum_wm_report_items`]]
+      :param message: Report Message, (never None)
+      :type message: str
 
    .. method:: is_repeat()
 
       is_repeat
 
       :return: result
-      :rtype: boolean
+      :rtype: bool
 
    .. classmethod:: poll(context)
 
       Test if the operator can be called or not
 
-      :type context: :class:`Context`, (never None)
-      :rtype: boolean
+      :param context: (never None)
+      :type context: :class:`Context` | None
+      :rtype: bool
 
    .. method:: execute(context)
 
       Execute the operator
 
-      :type context: :class:`Context`, (never None)
+      :param context: (never None)
+      :type context: :class:`Context` | None
       :return: result
-      :rtype: enum set in :ref:`rna_enum_operator_return_items`
+      :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
    .. method:: check(context)
 
       Check the operator settings, return True to signal a change to redraw
 
-      :type context: :class:`Context`, (never None)
+      :param context: (never None)
+      :type context: :class:`Context` | None
       :return: result
-      :rtype: boolean
+      :rtype: bool
 
    .. method:: invoke(context, event)
 
       Invoke the operator
 
-      :type context: :class:`Context`, (never None)
-      :type event: :class:`Event`, (never None)
+      :param context: (never None)
+      :type context: :class:`Context` | None
+      :param event: (never None)
+      :type event: :class:`Event` | None
       :return: result
-      :rtype: enum set in :ref:`rna_enum_operator_return_items`
+      :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
    .. method:: modal(context, event)
 
       Modal operator function
 
-      :type context: :class:`Context`, (never None)
-      :type event: :class:`Event`, (never None)
+      :param context: (never None)
+      :type context: :class:`Context` | None
+      :param event: (never None)
+      :type event: :class:`Event` | None
       :return: result
-      :rtype: enum set in :ref:`rna_enum_operator_return_items`
+      :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
    .. method:: draw(context)
 
       Draw function for the operator
 
-      :type context: :class:`Context`, (never None)
+      :param context: (never None)
+      :type context: :class:`Context` | None
 
    .. method:: cancel(context)
 
       Called when the operator is canceled
 
-      :type context: :class:`Context`, (never None)
+      :param context: (never None)
+      :type context: :class:`Context` | None
 
    .. classmethod:: description(context, properties)
 
       Compute a description string that depends on parameters
 
-      :type context: :class:`Context`, (never None)
-      :type properties: :class:`OperatorProperties`, (never None)
+      :param context: (never None)
+      :type context: :class:`Context` | None
+      :param properties: (never None)
+      :type properties: :class:`OperatorProperties` | None
       :return: result
-      :rtype: string
+      :rtype: str
 
    .. method:: as_keywords(*, ignore=())
 
-      Return a copy of the properties as a dictionary
+      :param ignore: Property names to omit from the result.
+      :type ignore: Iterable[str]
+      :return: A copy of the properties as a dictionary.
+      :rtype: dict[str, Any]
 
    .. classmethod:: bl_rna_get_subclass(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: :class:`bpy.types.Struct` | None
       :return: The RNA type or default when not found.
-      :rtype: :class:`bpy.types.Struct` subclass
+      :rtype: :class:`bpy.types.Struct`
 
 
    .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: type | None
       :return: The class or default when not found.
       :rtype: type
 
@@ -348,9 +385,9 @@ base class --- :class:`bpy_struct`
    
       When message is callable, additional user defined positional arguments are passed to the message function.
    
-      :arg message: The message or a function that returns the message.
+      :param message: The message or a function that returns the message.
       :type message: str | Callable[..., str | None]
-      :arg args: A sequence of arguments to pass to ``message``, if it's a callable, otherwise argument is not available.
+      :param args: A sequence of arguments to pass to ``message``, if it's a callable, otherwise argument is not available.
       :type args: Any
 
 
@@ -360,7 +397,7 @@ Inherited Properties
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.id_data`
+   - :class:`bpy_struct.id_data`
 
 Inherited Functions
 -------------------
@@ -368,29 +405,30 @@ Inherited Functions
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.as_pointer`
-   * :class:`bpy_struct.driver_add`
-   * :class:`bpy_struct.driver_remove`
-   * :class:`bpy_struct.get`
-   * :class:`bpy_struct.id_properties_clear`
-   * :class:`bpy_struct.id_properties_ensure`
-   * :class:`bpy_struct.id_properties_ui`
-   * :class:`bpy_struct.is_property_hidden`
-   * :class:`bpy_struct.is_property_overridable_library`
-   * :class:`bpy_struct.is_property_readonly`
-   * :class:`bpy_struct.is_property_set`
-   * :class:`bpy_struct.items`
-   * :class:`bpy_struct.keyframe_delete`
-   * :class:`bpy_struct.keyframe_insert`
-   * :class:`bpy_struct.keys`
-   * :class:`bpy_struct.path_from_id`
-   * :class:`bpy_struct.path_resolve`
-   * :class:`bpy_struct.pop`
-   * :class:`bpy_struct.property_overridable_library_set`
-   * :class:`bpy_struct.property_unset`
-   * :class:`bpy_struct.rna_ancestors`
-   * :class:`bpy_struct.type_recast`
-   * :class:`bpy_struct.values`
+   - :class:`bpy_struct.as_pointer`
+   - :class:`bpy_struct.driver_add`
+   - :class:`bpy_struct.driver_remove`
+   - :class:`bpy_struct.get`
+   - :class:`bpy_struct.id_properties_clear`
+   - :class:`bpy_struct.id_properties_ensure`
+   - :class:`bpy_struct.id_properties_ui`
+   - :class:`bpy_struct.is_property_hidden`
+   - :class:`bpy_struct.is_property_overridable_library`
+   - :class:`bpy_struct.is_property_readonly`
+   - :class:`bpy_struct.is_property_set`
+   - :class:`bpy_struct.items`
+   - :class:`bpy_struct.keyframe_delete`
+   - :class:`bpy_struct.keyframe_insert`
+   - :class:`bpy_struct.keys`
+   - :class:`bpy_struct.path_from_id`
+   - :class:`bpy_struct.path_from_module`
+   - :class:`bpy_struct.path_resolve`
+   - :class:`bpy_struct.pop`
+   - :class:`bpy_struct.property_overridable_library_set`
+   - :class:`bpy_struct.property_unset`
+   - :class:`bpy_struct.rna_ancestors`
+   - :class:`bpy_struct.type_recast`
+   - :class:`bpy_struct.values`
 
 References
 ----------
@@ -398,16 +436,16 @@ References
 .. hlist::
    :columns: 2
 
-   * :mod:`bpy.context.active_operator`
-   * :class:`SpaceFileBrowser.active_operator`
-   * :class:`SpaceFileBrowser.operator`
-   * :class:`Window.modal_operators`
-   * :class:`WindowManager.fileselect_add`
-   * :class:`WindowManager.invoke_confirm`
-   * :class:`WindowManager.invoke_popup`
-   * :class:`WindowManager.invoke_props_dialog`
-   * :class:`WindowManager.invoke_props_popup`
-   * :class:`WindowManager.invoke_search_popup`
-   * :class:`WindowManager.modal_handler_add`
-   * :class:`WindowManager.operators`
+   - :mod:`bpy.context.active_operator`
+   - :class:`SpaceFileBrowser.active_operator`
+   - :class:`SpaceFileBrowser.operator`
+   - :class:`Window.modal_operators`
+   - :class:`WindowManager.fileselect_add`
+   - :class:`WindowManager.invoke_confirm`
+   - :class:`WindowManager.invoke_popup`
+   - :class:`WindowManager.invoke_props_dialog`
+   - :class:`WindowManager.invoke_props_popup`
+   - :class:`WindowManager.invoke_search_popup`
+   - :class:`WindowManager.modal_handler_add`
+   - :class:`WindowManager.operators`
 

@@ -24,12 +24,6 @@ Scale
    The scale vector.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

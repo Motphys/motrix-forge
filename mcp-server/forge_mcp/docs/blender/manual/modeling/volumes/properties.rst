@@ -148,12 +148,6 @@ Space
    :World:
       Specify *Step Size* and *Density* in world space.
 
-.. _bpy.types.VolumeRender.step_size:
-
-Step Size :guilabel:`Cycles Only`
-   Distance between volume samples. Lower values render more detail at the cost of performance.
-   If set to zero, the step size is automatically determined based on voxel size.
-
 .. _bpy.types.VolumeRender.clipping:
 
 Clipping :guilabel:`Cycles Only`
@@ -168,7 +162,7 @@ Precision :guilabel:`Cycles Only`
    :Half: Half float (Use 16 bit for all data).
    :Variable: Automatically use less precision for less noticeable areas.
 
-.. _bpy.types.VolumeRender.velocity_grid:
+.. _bpy.types.Volume.velocity_grid:
 
 Velocity Grid :guilabel:`Cycles Only`
    The name of the grid that contains voxel velocities, for calculating motion blur.
@@ -177,12 +171,12 @@ Velocity Grid :guilabel:`Cycles Only`
    In the latter case, the X grid should have a name suffix of ``x``, ``.x`` or ``_x``,
    with similar conventions for the Y and Z grids.
 
-.. _bpy.types.VolumeRender.velocity_unit:
+.. _bpy.types.Volume.velocity_unit:
 
 Velocity Unit :guilabel:`Cycles Only`
    Whether the velocity grid(s) specify distances per frame or per second.
 
-.. _bpy.types.VolumeRender.velocity_scale:
+.. _bpy.types.Volume.velocity_scale:
 
 Velocity Scale :guilabel:`Cycles Only`
    A custom multiplier to apply to the velocities in the VDB.

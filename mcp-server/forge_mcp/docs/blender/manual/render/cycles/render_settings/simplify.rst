@@ -1,3 +1,4 @@
+.. _bpy.types.RenderSettings.use_simplify:
 
 ********
 Simplify
@@ -20,9 +21,18 @@ Max Subdivision
 Child Particles
    Show only a subset of all child hairs and particles.
 
+.. _bpy.types.CyclesRenderSettings.texture_resolution:
+
+Texture Resolution
+   Scale down image textures to reduce memory usage.
+
+   With the :ref:`Texture Cache <bpy.types.RenderSettings.use_texture_cache>`
+   and viewport rendering of complex scenes, a lower resolution can help ensure
+   all textures fit in memory for interactive updates.
+
 .. _bpy.types.CyclesRenderSettings.texture_limit:
 
-Texture Limit
+Texture Size Limit
    Automatically scales textures down so that they are no larger than the values chosen.
    This can help reduce computer memory resources when rendering large scenes with huge textures.
 
@@ -73,27 +83,27 @@ Distance Cull
 Grease Pencil
 =============
 
-.. _bpy.types.RenderSettings_simplify_gpencil_onplay:
+.. _bpy.types.RenderSettings.simplify_gpencil_onplay:
 
 Playback Only
    Activates the simplification process only during animation playback.
 
-.. _bpy.types.RenderSettings_simplify_gpencil_view_fill:
+.. _bpy.types.RenderSettings.simplify_gpencil_view_fill:
 
 Fill
    Shows the fill component in Grease Pencil materials.
 
-.. _bpy.types.RenderSettings_simplify_gpencil_view_modifier:
+.. _bpy.types.RenderSettings.simplify_gpencil_modifier:
 
 Modifiers
    Shows Grease Pencil :doc:`modifiers </grease_pencil/modifiers/index>`.
 
-.. _bpy.types.RenderSettings_simplify_gpencil_shader_fx:
+.. _bpy.types.RenderSettings.simplify_gpencil_shader_fx:
 
 Shader Effects
    Shows Grease Pencil :doc:`visual effects </grease_pencil/modifiers/index>`.
 
-.. _bpy.types.RenderSettings_simplify_gpencil_tint:
+.. _bpy.types.RenderSettings.simplify_gpencil_tint:
 
 Layer Tinting
    Shows layers tint overrides.

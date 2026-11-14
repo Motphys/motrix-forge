@@ -74,10 +74,30 @@ Fill Mode
 
              Curves with a fill of Full.
 
-.. _bpy.types.Curve.use_fill_deform:
+.. _bpy.types.Curve.fill_solver:
 
-Fill Deformed
-   Fills the curve after applying all modifications that might deform the curve (i.e. shape keys and modifiers).
+Fill Solver
+   Triangulation solver used when filling 2D curves.
+
+   :Sweep Line:
+      Fast triangulation method intended for well-behaved outlines.
+      Does not support self-intersecting curves.
+   :Delaunay:
+      Uses Constrained Delaunay Triangulation (CDT).
+      More robust and supports self-intersecting curves, at the cost of being slower.
+
+.. _bpy.types.Curve.fill_rule:
+
+Fill Rule
+   Fill rule used by the *Delaunay* *Fill Solver* to determine which regions are considered inside.
+
+   :Even-Odd:
+      Alternates inside/outside based on the number of boundary crossings.
+      Overlapping regions may cancel out depending on the crossing count.
+   :Non-Zero:
+      Determines inside/outside based on winding direction.
+      Overlapping curves with the same winding direction are filled as a union,
+      while opposite winding directions can create holes.
 
 .. _curve-shape-path-curve-deform:
 

@@ -67,7 +67,7 @@ Select
    Select the newly added objects.
 Active Collection
    When enabled, objects and collections will be added to the active collection of the active
-   :doc:`view layer </scene_layout/view_layers/introduction>`.
+   :doc:`view layer </render/layers/introduction>`.
    Otherwise, they will be added to a new "Linked Data" collection in the active view layer.
 Instance Collections
    When enabled, each linked collection will be added to the scene as an
@@ -120,7 +120,7 @@ Select
    Select the newly added objects.
 Active Collection
    When enabled, objects and collections will be added to the active collection of the active
-   :doc:`view layer </scene_layout/view_layers/introduction>`.
+   :doc:`view layer </render/layers/introduction>`.
    Otherwise, they will be added to a new "Appended Data" collection in the active view layer.
 Instance Collections
    When enabled, each appended collection will be added to the scene as an

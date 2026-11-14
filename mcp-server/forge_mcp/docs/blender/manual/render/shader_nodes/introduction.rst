@@ -66,16 +66,12 @@ More
 Nodes for geometric data, texture coordinates,
 layering shaders and non-physically-based tricks can be found in:
 
-- :doc:`Vector Nodes </render/shader_nodes/vector/index>`
+- :doc:`Vector Nodes </render/shader_nodes/utilities/vector/index>`
 - :doc:`Color Nodes </render/shader_nodes/color/index>`
-- :doc:`Converter Nodes </render/shader_nodes/converter/index>`
+- :doc:`Utilities Nodes </render/shader_nodes/utilities/index>`
 
 
 Open Shading Language
 =====================
 
-In Cycles, custom nodes can be written using the Open Shading Language.
-
-.. seealso::
-
-   :doc:`Open Shading Language </render/cycles/osl/index>`
+In Cycles, custom nodes can be written using the :doc:`Open Shading Language </render/cycles/osl/index>`

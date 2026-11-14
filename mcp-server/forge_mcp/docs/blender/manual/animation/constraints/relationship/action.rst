@@ -5,29 +5,29 @@
 Action Constraint
 *****************
 
-The *Action* constraint is powerful.
-It allows you control
-an :doc:`Action </editors/dope_sheet/modes/action>` using the transformations of another object.
+The *Action* constraint evaluates the location, rotation, and scale inside
+a certain :doc:`Action </animation/actions>` at a certain frame,
+then applies those to an object or bone.
 
-The underlying idea of the *Action* constraint is very similar to the one behind
-the :doc:`Drivers </animation/drivers/index>`, except that the former uses a whole action
-(i.e. multiple F-Curves of the same type), while the latter controls a single F-Curve of their "owner"...
+The frame can either be given directly, or it can be derived from a location
+coordinate, rotation angle, or scale factor of another object or bone.
+An example of the latter would be to use frame 0 of the Action if an
+:doc:`Empty </modeling/empties>` is at X = 0 and frame 100 if the Empty is at X = 10.
+If the Empty is then placed at X = 5, the constraint will interpolate this and
+evaluate frame 50.
 
-Note that even if the constraint accepts the *Mesh* action type,
-only the *Object*, *Pose* and *Constraint* types are really working,
-as constraints can only affect objects' or bones' transform properties, and not meshes' shapes.
-Also note that only the object transformation (location, rotation, scale) is affected by the action,
-if the action contains keyframes for other properties they are ignored, as constraints do not influence those.
+.. seealso::
 
-As an example, let us assume you have defined an *Object* action
-(it can be assigned to any object, or even no object at all),
-and have mapped it on your owner through an *Action* constraint,
-so that moving the target in the (0.0 to 2.0)
-range along its X axis maps the action content on the owner in the (0 to 100)
-frame range. This will mean that when the target's *X* property is 0.0
-the owner will be as if in frame 0 of the linked action;
-with the target's *X* property at 1.0
-the owner will be as if in frame 50 of the linked action, etc.
+   The :doc:`/animation/constraints/transform/copy_transforms` may be a sufficient
+   replacement if the Action is very simple.
+
+   :doc:`Drivers </animation/drivers/index>` allow defining more complex mathematical
+   relationships, again without setting up an Action.
+
+An alternative (if obscure) way of using this constraint is to reference an Action
+that animates properties of *other* constraints. The *Action* constraint will
+then apply these properties to the constraints that come after it, as long
+as their names match the ones in the Action.
 
 
 Options
@@ -35,136 +35,103 @@ Options
 
 .. figure:: /images/animation_constraints_relationship_action_panel.png
 
-   Action panel.
+   Action constraint.
 
-Target
-   :ref:`ui-data-id` used to select the constraints target, and is not functional (red state) when it has none.
-   See :ref:`common constraint properties <rigging-constraints-interface-common-target>` for more information.
+:ref:`Target <rigging-constraints-interface-common-target>`
+   The object or bone to use for calculating the Action frame. Not needed if *Evaluation Time* is used.
 
 Evaluation Time
-   This property allows objects to be driven without a constraint target
-   by interpolating between the *Action Start* and *End* frames.
-   The relative position between the start and end frame can be controlled using the value slider.
+   Allows specifying the Action frame through a number rather than through a transform property of a *Target*.
+   A value of 0 corresponds to *Frame Start* while 1 corresponds to *Frame End* (see below).
 
-   This is very helpful for more complex rigging and mechanical rigs, as it means the Action constraint
-   can be controlled directly with a :doc:`Driver </animation/drivers/index>`
-   or :ref:`Custom Property <files-data_blocks-custom-properties>`.
+   Like other properties, the *Evaluation Time* can be fixed,
+   :doc:`keyframed </animation/keyframes/introduction>`, or controlled by a
+   :doc:`Driver </animation/drivers/introduction>`. The latter can further make use of
+   :doc:`Custom Properties </files/custom_properties>`.
 
 Mix
-   Specifies how the keyframed transformation from the action is combined with the existing transformation.
-   These modes are the same as in the :doc:`Copy Transforms </animation/constraints/transform/copy_transforms>`
-   constraint.
+   Specifies how the evaluated Action transformation is combined with the owner's original transformation
+   (from its preceding constraints).
 
-   Replace
-      Replace the original transformation with the action channels.
-   Before/After Original (Full)
-      The keyframed transformation is added before/after the existing transformation, as if it was
-      applied to an imaginary parent/child of the constraint owner. Scale is handled like in
-      the most basic :ref:`Full Inherit Scale <bpy.types.EditBone.inherit_scale>` mode of bones,
-      so combining non-uniform scale and rotation will create shear.
+   :Replace:
+      The Action's transformation replaces the owner's.
+   :Before Original (Full):
+      The Action's transformation is applied before the owner's. The result is the same as
+      the owner's transformation if it were a child of the Action and there was no constraint.
 
-   Before/After Original (Aligned)
-      The keyframed transformation is added before/after the existing transformation, as if it was
-      applied to an imaginary parent/child of the constraint owner. Scale is handled like in
-      the :ref:`Aligned Inherit Scale <bpy.types.EditBone.inherit_scale>` mode of bones to
-      avoid creating shear.
+      If the "parent" is non-uniformly scaled and the "child" was originally rotated,
+      the constraint will cause shearing, just like the default
+      :ref:`Inherit Scale Full <bpy.types.EditBone.inherit_scale>` setting for bones.
+   :Before Original (Aligned):
+      Prevents shearing by scaling the "child" along its own axes instead of the axes of
+      the "parent," just like the :ref:`Inherit Scale Aligned <bpy.types.EditBone.inherit_scale>`
+      setting for bones.
+   :Before Original (Split Channels):
+      Calculates each transform "channel" -- location, rotation, and scale -- separately
+      from the others. The difference with *Before Original (Aligned)* is that the child's
+      location is only affected by the parent's location, not by its rotation and scale.
+   :After Original (Full/Aligned/Split Channels):
+      Like *Before Original*, except the result is the transformation of the Action
+      if it were a child of the owner.
 
-      This is equivalent to using the *Split Channels* option, but replacing the location component with
-      the result of *Full*. If only uniform scale is used, the result is identical to *Full*.
+   .. seealso::
 
-   Before/After Original (Split Channels)
-      Combines location, rotation and scale components of the transformation separately, similar
-      to a sequence of three :doc:`Copy Location </animation/constraints/transform/copy_location>`,
-      :doc:`Copy Rotation </animation/constraints/transform/copy_rotation>` and
-      :doc:`Copy Scale </animation/constraints/transform/copy_scale>` (with Offset)
-      constraints bundled together in one operation; the result may be slightly different
-      in case of sheared inputs.
-
-      Unlike *Aligned*, in this mode location channels are simply added together, so rotation
-      and scale components of the input transformations cannot affect the resulting location.
+      The page of the :doc:`/animation/constraints/transform/copy_transforms` demonstrates
+      the Mix modes with screenshots.
 
    .. warning::
 
-      For technical reasons modes other than *After Original (Full)* and *After Original (Aligned)* may
-      not work as expected for constraints on *objects* (not bones) without a parent.
+      For technical reasons, modes other than *After Original (Full)* and *After Original (Aligned)* may
+      not work as expected on objects (not bones) without a parent.
 
-Influence
-   Controls the percentage of affect the constraint has on the object.
-   See :ref:`common constraint properties <bpy.types.constraint.influence>` for more information.
+:ref:`bpy.types.constraint.influence`
+   How strongly the constraint affects the owner.
 
 
 Target
 ------
 
 Channel
-   This selector controls which transform property
-   (location, rotation or scale along/around one of its axes) from the target to use as "action driver".
+   The transform property (location/rotation/scale) and axis to use for calculating the Action frame.
 
-Target
-   This constraint allows you to choose in which space to evaluate its target's transform properties.
+:ref:`Target <rigging-constraints-interface-common-space>`
+   The space in which to evaluate the above *Channel*.
 
-Range Min, Max
-   The lower and upper bounds of the driving transform property value.
+Range Min/Max
+   The values of the *Channel* that correspond to *Frame Start/End*.
+   Despite the names, *Range Max* is allowed to be less than *Range Min*.
 
    .. warning::
 
-      Unfortunately, here again we find the constraint's limitations:
+      Target rotations are "wrapped around" so they're always in the range -180° to 180°.
 
-      - When using a rotation property as "driver",
-        these values are "mapped back" to the (-180.0 to 180.0) range.
-      - When using a scale property as "driver", these values are limited to null or positive values.
+      Negative scales don't work (they are treated as positive scales instead).
 
 
 Action
 ------
 
 Action
-   Select the name of the action you want to use.
+   The Action to use.
 
-   .. warning::
+   .. hint::
 
-      Even though it might not be in red state (UI refresh problems...),
-      this constraint is obviously not functional when this field does not contain a valid action.
+      Actions can be stored as :term:`Assets <Asset>` for reuse.
+      See :doc:`/animation/armatures/posing/editing/pose_library` for details.
 
-Object Action
-   Bones **only**, when enabled,
-   this option will make the constrained bone use the "object" part of the linked action,
-   instead of the "same-named pose" part. This allows you to apply the action of an object to a bone.
+Slot
+   The Slot inside the Action to use.
 
-Frame Start, End
-   The starting and ending frames of the action to be mapped.
+Object Action :guilabel:`Bone constraint only`
+   By default, the constraint finds Action keyframes for a bone with the same name.
+   Checking *Object Action* will use the Action's object keyframes instead.
 
-   .. note::
+   The opposite -- applying a bone animation to a constrained object -- is not supported.
+   Neither is applying all bone animations in an Action to all bones in an Armature.
 
-      - These values must be strictly positive.
-      - By default, both values are set to 0, which disables the mapping
-        (i.e. the owner just gets the properties defined at frame 0 of the linked action...).
-
-
-.. (TODO rewrite) Notes section is a mess.
-
-Notes
-=====
-
-- When the object or bone already has Action constraints, the next constraint using
-  a newly keyframed action should be added before all others in order to get
-  the same final combined transformation. This fact is not affected by the Mix mode.
-- Unlike usual, you can have a *Start* value higher than the *End* one,
-  or a *Min* one higher than a *Max* one: this will reverse the mapping of the action
-  (i.e. it will be "played" reversed...), unless you have both sets reversed, obviously!
-- When using a *Constraint* action, it is the constraint *channel's names*
-  that are used to determine to which constraints of the owner apply the action.
-  E.g. if you have a constraint channel named "trackto_empt1",
-  its keyed *Influence* and/or *Head/Tail* values (the only ones you can key)
-  will be mapped to the ones of the owner's constraint named "trackto_empt1".
-- Similarly, when using a *Pose* action
-  (which is obviously only meaningful and working when constraining a bone!),
-  it is the bone's name that is used to determine which bone *channel's names* from the action to use
-  (e.g. if the constrained bone is named "arm", it will use and only use the action's bone channel named "arm"...).
-  Unfortunately, using a *Pose* action on a whole armature object
-  (to affect all the keyed bones in the action at once) will not work...
-- Actions can also be marked as :term:`Asset`, but with certain limitations.
-  For more info, see :doc:`/animation/armatures/posing/editing/pose_library`.
+Frame Start/End
+   The frames within the Action that correspond to *Range Min/Max*. *Frame End* is allowed
+   to be less than *Frame Start* -- this will play the animation in reverse.
 
 
 Example

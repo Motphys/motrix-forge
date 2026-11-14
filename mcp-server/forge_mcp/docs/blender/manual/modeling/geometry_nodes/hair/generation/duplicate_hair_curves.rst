@@ -4,48 +4,54 @@
 Duplicate Hair Curves
 *********************
 
-Duplicates hair curves a certain number of times within a radius.
+The *Duplicate Hair Curves* node creates additional copies of existing hair curves,
+distributing them around the original guide curves within a specified radius.
+This is useful for increasing hair density, creating secondary strands around guides,
+or achieving fuller grooms without manually adding more guides.
 
 .. peertube:: es5bkTNvRwrvUFdjuK1UvB
+
 
 Inputs
 ======
 
 Geometry
-   Input Geometry (only curves will be affected).
+   The input geometry containing the original hair curves to duplicate.
 
 Amount
-   Amount of duplicates per curve.
+   The number of duplicates generated for each original curve.
+   Higher values increase hair density.
 
 Viewport Amount
-   Percentage of amount used for the viewport.
+   Defines the percentage of *Amount* used for viewport display.
+   Reducing this value improves performance in the viewport while keeping render results unaffected.
 
 Radius
-   Radius in which the duplicate curves are offset from the guides.
+   The maximum distance around each guide curve within which duplicates are placed.
+   Larger values spread the duplicates further apart.
 
 Distribution Shape
-   Shape of distribution from center to the edge around the guide.
+   Controls how duplicates are distributed within the radius, from the center to the outer edge.
+   Different shapes can produce uniform, clustered, or edge-biased distributions.
 
 Tip Roundness
-   Offset of the curves to round the tip.
+   Adjusts the rounding of duplicate curves near their tips.
+   Higher values make the distribution more circular and natural toward the ends.
 
 Even Thickness
-   Keep an even thickness of the distribution of duplicates.
+   When enabled, keeps an even density across the radius of duplicates.
+   When disabled, density may vary depending on the distribution pattern.
 
 Seed
-   Random Seed for the operation.
-
-
-Properties
-==========
-
-This node has no properties.
-
+   Sets the random seed for duplicate placement.
+   Changing this value alters the random arrangement of duplicates while maintaining the same parameters.
 
 Outputs
 =======
 
-**Geometry**
+Geometry
+   The resulting geometry with duplicated hair curves.
 
 Guide Index
-   Guide index map that was used for the operation.
+   An integer attribute storing the index of the original guide curve for each duplicate.
+   This can be used for further operations such as matching colors or following guide motion.

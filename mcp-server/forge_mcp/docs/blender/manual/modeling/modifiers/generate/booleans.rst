@@ -54,7 +54,7 @@ Operand Type
 
    :Collection:
       The source is a collection of any number of mesh objects.
-      If the *Solver* is *Fast*, the *Intersect* operation is not allowed.
+      If the *Solver* is *Float*, the *Intersect* operation is not allowed.
 
 Object
    The source mesh object.
@@ -68,13 +68,12 @@ Solver
    Algorithm used to perform the Boolean operation.
 
    :Float:
-      Uses a simple solver which offers the good performance;
-      however, this solver lacks support for overlapping geometry.
+      Uses a simple solver which offers good performance but lacks support for overlapping geometry.
    :Exact:
       Uses a complex solver which offers the best results and has full
-      support for overlapping geometry; however, this solver is much slower.
+      support for overlapping geometry, but is much slower.
    :Manifold:
-      Uses a solver that is usually fastest but only works on :term:`Manifold` meshes,
+      Uses a solver that is usually fastest but only works on :term:`Manifold` meshes
       (plus the special case of Difference with a plane).
 
 
@@ -102,7 +101,7 @@ Hole Tolerant :guilabel:`Exact Solver`
    Because of the performance impact, this option should only be enabled
    when the *Exact* solver demonstrates errors with non-manifold geometry.
 
-Overlap Threshold :guilabel:`Fast Solver`
+Overlap Threshold :guilabel:`Float Solver`
    Maximum distance between two faces to consider them as overlapping.
    This helps solve the limitation of this solver.
    If the result is still not as expected, try using the *Exact* solver.

@@ -7,7 +7,7 @@ This module provides access to GPU Platform definitions.
 
 .. function:: backend_type_get()
 
-   Get actuve GPU backend.
+   Get active GPU backend.
 
    :return: Backend type ('OPENGL', 'VULKAN', 'METAL', 'NONE', 'UNKNOWN').
    :rtype: str
@@ -19,6 +19,14 @@ This module provides access to GPU Platform definitions.
 
    :return: Device type ('APPLE', 'NVIDIA', 'AMD', 'INTEL', 'SOFTWARE', 'QUALCOMM', 'UNKNOWN').
    :rtype: str
+
+
+.. function:: devices_get()
+
+   Get all available GPU devices.
+
+   :return: List of :class:`GPUDevice` objects for each device.
+   :rtype: list
 
 
 .. function:: renderer_get()

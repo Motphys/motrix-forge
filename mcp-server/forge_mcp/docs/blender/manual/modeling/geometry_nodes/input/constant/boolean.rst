@@ -1,5 +1,6 @@
 .. index:: Geometry Nodes; Boolean
 .. _bpy.types.FunctionNodeInputBool:
+.. --- copy below this line ---
 
 ************
 Boolean Node

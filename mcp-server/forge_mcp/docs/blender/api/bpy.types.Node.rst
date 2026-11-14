@@ -5,8 +5,12 @@ Node(bpy_struct)
 
 base class --- :class:`bpy_struct`
 
-subclasses --- 
-:class:`NodeCustomGroup`, :class:`NodeInternal`
+.. toctree::
+   :caption: Subclasses
+   :maxdepth: 1
+
+   bpy.types.NodeCustomGroup.rst
+   bpy.types.NodeInternal.rst
 
 .. class:: Node(bpy_struct)
 
@@ -14,237 +18,290 @@ subclasses ---
 
    .. attribute:: bl_description
 
-      :type: string, default "", (never None)
+      (default "", never None)
+
+      :type: str
 
    .. attribute:: bl_height_default
 
-      :type: float in [0, inf], default 0.0
+      Default height of the node when it is created (mostly unused, see Height) (in [0, inf], default 0.0)
+
+      :type: float
 
    .. attribute:: bl_height_max
 
-      :type: float in [0, inf], default 0.0
+      When changing the node's size, it can have at most this height (mostly unused, see Height) (in [0, inf], default 0.0)
+
+      :type: float
 
    .. attribute:: bl_height_min
 
-      :type: float in [0, inf], default 0.0
+      When changing the node's size, it has at least this height (mostly unused, see Height) (in [0, inf], default 0.0)
+
+      :type: float
 
    .. attribute:: bl_icon
 
-      The node icon
+      The node icon (default ``'NODE'``)
 
-      :type: enum in :ref:`rna_enum_icon_items`, default ``'NODE'``
+      :type: Literal[:ref:`rna_enum_icon_items`]
 
    .. attribute:: bl_idname
 
-      :type: string, default "", (never None)
+      (default "", never None)
+
+      :type: str
 
    .. attribute:: bl_label
 
-      The node label
+      The node label (default "", never None)
 
-      :type: string, default "", (never None)
+      :type: str
 
    .. data:: bl_static_type
 
-      Legacy unique node type identifier, redundant with bl_idname property
+      Legacy unique node type identifier, redundant with bl_idname property (default "", readonly, never None)
 
-      :type: string, default "", (readonly, never None)
+      :type: str
 
    .. attribute:: bl_width_default
 
-      :type: float in [0, inf], default 0.0
+      Default width of the node when it is created (in [0, inf], default 0.0)
+
+      :type: float
 
    .. attribute:: bl_width_max
 
-      :type: float in [0, inf], default 0.0
+      When changing the node's size, it can have at most this width (in [0, inf], default 0.0)
+
+      :type: float
 
    .. attribute:: bl_width_min
 
-      :type: float in [0, inf], default 0.0
+      When changing the node's size, it has at least this width (in [0, inf], default 0.0)
+
+      :type: float
 
    .. attribute:: color
 
-      Custom color of the node body
+      Custom color of the node body (array of 3 items, in [0, 1], default (0.0, 0.0, 0.0))
 
-      :type: :class:`mathutils.Color` of 3 items in [0, 1], default (0.0, 0.0, 0.0)
+      :type: :class:`mathutils.Color`
 
    .. data:: color_tag
 
-      Node header color tag
+      Node header color tag (default ``'NONE'``, readonly)
 
-      * ``NONE``
+      - ``NONE``
         None -- Default color tag for new nodes and node groups.
-      * ``ATTRIBUTE``
+      - ``ATTRIBUTE``
         Attribute.
-      * ``COLOR``
+      - ``COLOR``
         Color.
-      * ``CONVERTER``
+      - ``CONVERTER``
         Converter.
-      * ``DISTORT``
+      - ``DISTORT``
         Distort.
-      * ``FILTER``
+      - ``FILTER``
         Filter.
-      * ``GEOMETRY``
+      - ``GEOMETRY``
         Geometry.
-      * ``INPUT``
+      - ``INPUT``
         Input.
-      * ``MATTE``
+      - ``MATTE``
         Matte.
-      * ``OUTPUT``
+      - ``OUTPUT``
         Output.
-      * ``SCRIPT``
+      - ``SCRIPT``
         Script.
-      * ``SHADER``
+      - ``SHADER``
         Shader.
-      * ``TEXTURE``
+      - ``TEXTURE``
         Texture.
-      * ``VECTOR``
+      - ``VECTOR``
         Vector.
-      * ``PATTERN``
+      - ``PATTERN``
         Pattern.
-      * ``INTERFACE``
+      - ``INTERFACE``
         Interface.
-      * ``GROUP``
+      - ``GROUP``
         Group.
 
-      :type: enum in [``'NONE'``, ``'ATTRIBUTE'``, ``'COLOR'``, ``'CONVERTER'``, ``'DISTORT'``, ``'FILTER'``, ``'GEOMETRY'``, ``'INPUT'``, ``'MATTE'``, ``'OUTPUT'``, ``'SCRIPT'``, ``'SHADER'``, ``'TEXTURE'``, ``'VECTOR'``, ``'PATTERN'``, ``'INTERFACE'``, ``'GROUP'``], default ``'NONE'``, (readonly)
+      :type: Literal['NONE', 'ATTRIBUTE', 'COLOR', 'CONVERTER', 'DISTORT', 'FILTER', 'GEOMETRY', 'INPUT', 'MATTE', 'OUTPUT', 'SCRIPT', 'SHADER', 'TEXTURE', 'VECTOR', 'PATTERN', 'INTERFACE', 'GROUP']
 
    .. data:: dimensions
 
-      Absolute bounding box dimensions of the node
+      Absolute bounding box dimensions of the node after it was displayed (array of 2 items, in [-inf, inf], default (0.0, 0.0), readonly)
 
-      :type: :class:`mathutils.Vector` of 2 items in [-inf, inf], default (0.0, 0.0), (readonly)
+      :type: :class:`mathutils.Vector`
 
    .. attribute:: height
 
-      Height of the node
+      Height of the node. This property holds true data only under certain circumstances, e.g. for a Frame node after the node graph was displayed. For most types of nodes, the displayed height is based on the node's contents and not reflected in this property. (in [-inf, inf], default 0.0)
 
-      :type: float in [-inf, inf], default 0.0
+      :type: float
 
    .. attribute:: hide
 
-      :type: boolean, default False
+      Node collapsed state (default False)
+
+      :type: bool
 
    .. data:: inputs
 
-      :type: :class:`NodeInputs` :class:`bpy_prop_collection` of :class:`NodeSocket`, (readonly)
+      (default None, readonly)
+
+      :type: :class:`NodeInputs`\ [:class:`NodeSocket`]
 
    .. data:: internal_links
 
-      Internal input-to-output connections for muting
+      Internal input-to-output connections for muting (default None, readonly)
 
-      :type: :class:`bpy_prop_collection` of :class:`NodeLink`, (readonly)
+      :type: :class:`bpy_prop_collection`\ [:class:`NodeLink`]
 
    .. attribute:: label
 
-      Optional custom node label
+      Optional custom node label (default "", never None)
 
-      :type: string, default "", (never None)
+      :type: str
 
    .. attribute:: location
 
-      Location of the node within its parent frame
+      Location of the node within its parent frame (array of 2 items, in [-1e+06, 1e+06], default (0.0, 0.0))
 
-      :type: :class:`mathutils.Vector` of 2 items in [-1e+06, 1e+06], default (0.0, 0.0)
+      :type: :class:`mathutils.Vector`
 
    .. attribute:: location_absolute
 
-      Location of the node in the entire canvas
+      Location of the node in the entire canvas (array of 2 items, in [-1e+06, 1e+06], default (0.0, 0.0))
 
-      :type: :class:`mathutils.Vector` of 2 items in [-1e+06, 1e+06], default (0.0, 0.0)
+      :type: :class:`mathutils.Vector`
 
    .. attribute:: mute
 
-      :type: boolean, default False
+      (default False)
+
+      :type: bool
 
    .. attribute:: name
 
-      Unique node identifier
+      Unique node identifier (default "", never None)
 
-      :type: string, default "", (never None)
+      :type: str
 
    .. data:: outputs
 
-      :type: :class:`NodeOutputs` :class:`bpy_prop_collection` of :class:`NodeSocket`, (readonly)
+      (default None, readonly)
+
+      :type: :class:`NodeOutputs`\ [:class:`NodeSocket`]
+
+   .. data:: panel_states
+
+      Expansion state of each panel in the node (default None, readonly)
+
+      :type: :class:`bpy_prop_collection`\ [:class:`NodePanelState`]
 
    .. attribute:: parent
 
-      Parent this node is attached to
+      Parent this node is attached to, e.g. a Frame node
 
-      :type: :class:`Node`
+      :type: :class:`Node` | None
 
    .. attribute:: select
 
-      Node selection state
+      Node selection state (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: show_options
 
-      :type: boolean, default False
+      Whether the node options are visible, e.g. the selected data-block of a node group node (default False)
+
+      :type: bool
 
    .. attribute:: show_preview
 
-      :type: boolean, default False
+      (default False)
+
+      :type: bool
 
    .. attribute:: show_texture
 
-      Display node in viewport textured shading mode
+      Display node in viewport textured shading mode (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. data:: type
 
-      Legacy unique node type identifier, redundant with bl_idname property
+      Legacy unique node type identifier, redundant with bl_idname property (default "", readonly, never None)
 
-      :type: string, default "", (readonly, never None)
+      :type: str
 
    .. attribute:: use_custom_color
 
-      Use custom color for the node
+      Use custom color for the node (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: warning_propagation
 
-      The kinds of messages that should be propagated from this node to the parent group node
+      The kinds of messages that should be propagated from this node to the parent group node (default ``'ALL'``)
 
-      :type: enum in [``'ALL'``, ``'NONE'``, ``'ERRORS'``, ``'ERRORS_AND_WARNINGS'``], default ``'ALL'``
+      - ``ALL``
+        All Messages -- Propagate every info, error, and warning message upstream.
+      - ``ERRORS_AND_WARNINGS``
+        Errors and Warnings -- Propagate only error and warning messages upstream.
+      - ``ERRORS``
+        Errors -- Propagate only error messages upstream.
+      - ``NONE``
+        None -- Do not propagate any messages upstream.
+
+      :type: Literal['ALL', 'ERRORS_AND_WARNINGS', 'ERRORS', 'NONE']
 
    .. attribute:: width
 
-      Width of the node
+      Width of the node (in [-inf, inf], default 0.0)
 
-      :type: float in [-inf, inf], default 0.0
+      :type: float
+
+   .. method:: bl_system_properties_get(*, do_create=False)
+
+      DEBUG ONLY. Internal access to runtime-defined RNA data storage, intended solely for testing and debugging purposes. Do not access it in regular scripting work, and in particular, do not assume that it contains writable data
+
+      :param do_create: Ensure that system properties are created if they do not exist yet (optional)
+      :type do_create: bool
+      :return: The system properties root container, or None if there are no system properties stored in this data yet, and its creation was not requested
+      :rtype: :class:`PropertyGroup`
 
    .. method:: socket_value_update(context)
 
       Update after property changes
 
-      :type context: :class:`Context`, (never None)
+      :param context: (never None)
+      :type context: :class:`Context` | None
 
    .. classmethod:: is_registered_node_type()
 
       True if a registered node type
 
       :return: Result
-      :rtype: boolean
+      :rtype: bool
 
    .. classmethod:: poll(node_tree)
 
       If non-null output is returned, the node type can be added to the tree
 
-      :arg node_tree: Node Tree
-      :type node_tree: :class:`NodeTree`
-      :rtype: boolean
+      :param node_tree: Node Tree
+      :type node_tree: :class:`NodeTree` | None
+      :rtype: bool
 
    .. method:: poll_instance(node_tree)
 
       If non-null output is returned, the node can be added to the tree
 
-      :arg node_tree: Node Tree
-      :type node_tree: :class:`NodeTree`
-      :rtype: boolean
+      :param node_tree: Node Tree
+      :type node_tree: :class:`NodeTree` | None
+      :rtype: bool
 
    .. method:: update()
 
@@ -255,21 +312,22 @@ subclasses ---
 
       Handle creation of a link to or from the node
 
-      :arg link: Link, Node link that will be inserted
-      :type link: :class:`NodeLink`, (never None)
+      :param link: Link, Node link that will be inserted (never None)
+      :type link: :class:`NodeLink` | None
 
    .. method:: init(context)
 
       Initialize a new instance of this node
 
-      :type context: :class:`Context`, (never None)
+      :param context: (never None)
+      :type context: :class:`Context` | None
 
    .. method:: copy(node)
 
       Initialize a new instance of this node from an existing node
 
-      :arg node: Node, Existing node to copy
-      :type node: :class:`Node`, (never None)
+      :param node: Node, Existing node to copy (never None)
+      :type node: :class:`Node` | None
 
    .. method:: free()
 
@@ -280,51 +338,57 @@ subclasses ---
 
       Draw node buttons
 
-      :type context: :class:`Context`, (never None)
-      :arg layout: Layout, Layout in the UI
-      :type layout: :class:`UILayout`, (never None)
+      :param context: (never None)
+      :type context: :class:`Context` | None
+      :param layout: Layout, Layout in the UI (never None)
+      :type layout: :class:`UILayout` | None
 
    .. method:: draw_buttons_ext(context, layout)
 
       Draw node buttons in the sidebar
 
-      :type context: :class:`Context`, (never None)
-      :arg layout: Layout, Layout in the UI
-      :type layout: :class:`UILayout`, (never None)
+      :param context: (never None)
+      :type context: :class:`Context` | None
+      :param layout: Layout, Layout in the UI (never None)
+      :type layout: :class:`UILayout` | None
 
    .. method:: draw_label()
 
       Returns a dynamic label string
 
-      :return: Label
-      :rtype: string, (never None)
+      :return: Label, (never None)
+      :rtype: str
 
    .. method:: debug_zone_body_lazy_function_graph()
 
       Get the internal lazy-function graph for the body of this zone
 
       :return: Dot Graph, Graph in dot format
-      :rtype: string
+      :rtype: str
 
    .. method:: debug_zone_lazy_function_graph()
 
       Get the internal lazy-function graph for this zone
 
       :return: Dot Graph, Graph in dot format
-      :rtype: string
+      :rtype: str
 
    .. classmethod:: bl_rna_get_subclass(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: :class:`bpy.types.Struct` | None
       :return: The RNA type or default when not found.
-      :rtype: :class:`bpy.types.Struct` subclass
+      :rtype: :class:`bpy.types.Struct`
 
 
    .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: type | None
       :return: The class or default when not found.
       :rtype: type
 
@@ -335,7 +399,7 @@ Inherited Properties
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.id_data`
+   - :class:`bpy_struct.id_data`
 
 Inherited Functions
 -------------------
@@ -343,29 +407,30 @@ Inherited Functions
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.as_pointer`
-   * :class:`bpy_struct.driver_add`
-   * :class:`bpy_struct.driver_remove`
-   * :class:`bpy_struct.get`
-   * :class:`bpy_struct.id_properties_clear`
-   * :class:`bpy_struct.id_properties_ensure`
-   * :class:`bpy_struct.id_properties_ui`
-   * :class:`bpy_struct.is_property_hidden`
-   * :class:`bpy_struct.is_property_overridable_library`
-   * :class:`bpy_struct.is_property_readonly`
-   * :class:`bpy_struct.is_property_set`
-   * :class:`bpy_struct.items`
-   * :class:`bpy_struct.keyframe_delete`
-   * :class:`bpy_struct.keyframe_insert`
-   * :class:`bpy_struct.keys`
-   * :class:`bpy_struct.path_from_id`
-   * :class:`bpy_struct.path_resolve`
-   * :class:`bpy_struct.pop`
-   * :class:`bpy_struct.property_overridable_library_set`
-   * :class:`bpy_struct.property_unset`
-   * :class:`bpy_struct.rna_ancestors`
-   * :class:`bpy_struct.type_recast`
-   * :class:`bpy_struct.values`
+   - :class:`bpy_struct.as_pointer`
+   - :class:`bpy_struct.driver_add`
+   - :class:`bpy_struct.driver_remove`
+   - :class:`bpy_struct.get`
+   - :class:`bpy_struct.id_properties_clear`
+   - :class:`bpy_struct.id_properties_ensure`
+   - :class:`bpy_struct.id_properties_ui`
+   - :class:`bpy_struct.is_property_hidden`
+   - :class:`bpy_struct.is_property_overridable_library`
+   - :class:`bpy_struct.is_property_readonly`
+   - :class:`bpy_struct.is_property_set`
+   - :class:`bpy_struct.items`
+   - :class:`bpy_struct.keyframe_delete`
+   - :class:`bpy_struct.keyframe_insert`
+   - :class:`bpy_struct.keys`
+   - :class:`bpy_struct.path_from_id`
+   - :class:`bpy_struct.path_from_module`
+   - :class:`bpy_struct.path_resolve`
+   - :class:`bpy_struct.pop`
+   - :class:`bpy_struct.property_overridable_library_set`
+   - :class:`bpy_struct.property_unset`
+   - :class:`bpy_struct.rna_ancestors`
+   - :class:`bpy_struct.type_recast`
+   - :class:`bpy_struct.values`
 
 References
 ----------
@@ -373,149 +438,181 @@ References
 .. hlist::
    :columns: 2
 
-   * :mod:`bpy.context.active_node`
-   * :mod:`bpy.context.selected_nodes`
-   * :mod:`bpy.context.texture_node`
-   * :class:`GeometryNodeClosureInput.paired_output`
-   * :class:`GeometryNodeForeachGeometryElementInput.paired_output`
-   * :class:`GeometryNodeMenuSwitch.enum_definition`
-   * :class:`GeometryNodeRepeatInput.paired_output`
-   * :class:`GeometryNodeSimulationInput.paired_output`
-   * :class:`Node.copy`
-   * :class:`Node.parent`
-   * :class:`NodeLink.from_node`
-   * :class:`NodeLink.to_node`
-   * :class:`NodeSocket.draw`
-   * :class:`NodeSocket.draw_color`
-   * :class:`NodeSocket.node`
-   * :class:`NodeSocketStandard.draw`
-   * :class:`NodeSocketStandard.draw_color`
-   * :class:`NodeTree.nodes`
-   * :class:`NodeTreeInterfaceSocket.from_socket`
-   * :class:`NodeTreeInterfaceSocket.init_socket`
-   * :class:`NodeTreeInterfaceSocketBool.from_socket`
-   * :class:`NodeTreeInterfaceSocketBool.init_socket`
-   * :class:`NodeTreeInterfaceSocketBundle.from_socket`
-   * :class:`NodeTreeInterfaceSocketBundle.init_socket`
-   * :class:`NodeTreeInterfaceSocketClosure.from_socket`
-   * :class:`NodeTreeInterfaceSocketClosure.init_socket`
-   * :class:`NodeTreeInterfaceSocketCollection.from_socket`
-   * :class:`NodeTreeInterfaceSocketCollection.init_socket`
-   * :class:`NodeTreeInterfaceSocketColor.from_socket`
-   * :class:`NodeTreeInterfaceSocketColor.init_socket`
-   * :class:`NodeTreeInterfaceSocketFloat.from_socket`
-   * :class:`NodeTreeInterfaceSocketFloat.init_socket`
-   * :class:`NodeTreeInterfaceSocketFloatAngle.from_socket`
-   * :class:`NodeTreeInterfaceSocketFloatAngle.init_socket`
-   * :class:`NodeTreeInterfaceSocketFloatColorTemperature.from_socket`
-   * :class:`NodeTreeInterfaceSocketFloatColorTemperature.init_socket`
-   * :class:`NodeTreeInterfaceSocketFloatDistance.from_socket`
-   * :class:`NodeTreeInterfaceSocketFloatDistance.init_socket`
-   * :class:`NodeTreeInterfaceSocketFloatFactor.from_socket`
-   * :class:`NodeTreeInterfaceSocketFloatFactor.init_socket`
-   * :class:`NodeTreeInterfaceSocketFloatFrequency.from_socket`
-   * :class:`NodeTreeInterfaceSocketFloatFrequency.init_socket`
-   * :class:`NodeTreeInterfaceSocketFloatPercentage.from_socket`
-   * :class:`NodeTreeInterfaceSocketFloatPercentage.init_socket`
-   * :class:`NodeTreeInterfaceSocketFloatTime.from_socket`
-   * :class:`NodeTreeInterfaceSocketFloatTime.init_socket`
-   * :class:`NodeTreeInterfaceSocketFloatTimeAbsolute.from_socket`
-   * :class:`NodeTreeInterfaceSocketFloatTimeAbsolute.init_socket`
-   * :class:`NodeTreeInterfaceSocketFloatUnsigned.from_socket`
-   * :class:`NodeTreeInterfaceSocketFloatUnsigned.init_socket`
-   * :class:`NodeTreeInterfaceSocketFloatWavelength.from_socket`
-   * :class:`NodeTreeInterfaceSocketFloatWavelength.init_socket`
-   * :class:`NodeTreeInterfaceSocketGeometry.from_socket`
-   * :class:`NodeTreeInterfaceSocketGeometry.init_socket`
-   * :class:`NodeTreeInterfaceSocketImage.from_socket`
-   * :class:`NodeTreeInterfaceSocketImage.init_socket`
-   * :class:`NodeTreeInterfaceSocketInt.from_socket`
-   * :class:`NodeTreeInterfaceSocketInt.init_socket`
-   * :class:`NodeTreeInterfaceSocketIntFactor.from_socket`
-   * :class:`NodeTreeInterfaceSocketIntFactor.init_socket`
-   * :class:`NodeTreeInterfaceSocketIntPercentage.from_socket`
-   * :class:`NodeTreeInterfaceSocketIntPercentage.init_socket`
-   * :class:`NodeTreeInterfaceSocketIntUnsigned.from_socket`
-   * :class:`NodeTreeInterfaceSocketIntUnsigned.init_socket`
-   * :class:`NodeTreeInterfaceSocketMaterial.from_socket`
-   * :class:`NodeTreeInterfaceSocketMaterial.init_socket`
-   * :class:`NodeTreeInterfaceSocketMatrix.from_socket`
-   * :class:`NodeTreeInterfaceSocketMatrix.init_socket`
-   * :class:`NodeTreeInterfaceSocketMenu.from_socket`
-   * :class:`NodeTreeInterfaceSocketMenu.init_socket`
-   * :class:`NodeTreeInterfaceSocketObject.from_socket`
-   * :class:`NodeTreeInterfaceSocketObject.init_socket`
-   * :class:`NodeTreeInterfaceSocketRotation.from_socket`
-   * :class:`NodeTreeInterfaceSocketRotation.init_socket`
-   * :class:`NodeTreeInterfaceSocketShader.from_socket`
-   * :class:`NodeTreeInterfaceSocketShader.init_socket`
-   * :class:`NodeTreeInterfaceSocketString.from_socket`
-   * :class:`NodeTreeInterfaceSocketString.init_socket`
-   * :class:`NodeTreeInterfaceSocketStringFilePath.from_socket`
-   * :class:`NodeTreeInterfaceSocketStringFilePath.init_socket`
-   * :class:`NodeTreeInterfaceSocketTexture.from_socket`
-   * :class:`NodeTreeInterfaceSocketTexture.init_socket`
-   * :class:`NodeTreeInterfaceSocketVector.from_socket`
-   * :class:`NodeTreeInterfaceSocketVector.init_socket`
-   * :class:`NodeTreeInterfaceSocketVector2D.from_socket`
-   * :class:`NodeTreeInterfaceSocketVector2D.init_socket`
-   * :class:`NodeTreeInterfaceSocketVector4D.from_socket`
-   * :class:`NodeTreeInterfaceSocketVector4D.init_socket`
-   * :class:`NodeTreeInterfaceSocketVectorAcceleration.from_socket`
-   * :class:`NodeTreeInterfaceSocketVectorAcceleration.init_socket`
-   * :class:`NodeTreeInterfaceSocketVectorAcceleration2D.from_socket`
-   * :class:`NodeTreeInterfaceSocketVectorAcceleration2D.init_socket`
-   * :class:`NodeTreeInterfaceSocketVectorAcceleration4D.from_socket`
-   * :class:`NodeTreeInterfaceSocketVectorAcceleration4D.init_socket`
-   * :class:`NodeTreeInterfaceSocketVectorDirection.from_socket`
-   * :class:`NodeTreeInterfaceSocketVectorDirection.init_socket`
-   * :class:`NodeTreeInterfaceSocketVectorDirection2D.from_socket`
-   * :class:`NodeTreeInterfaceSocketVectorDirection2D.init_socket`
-   * :class:`NodeTreeInterfaceSocketVectorDirection4D.from_socket`
-   * :class:`NodeTreeInterfaceSocketVectorDirection4D.init_socket`
-   * :class:`NodeTreeInterfaceSocketVectorEuler.from_socket`
-   * :class:`NodeTreeInterfaceSocketVectorEuler.init_socket`
-   * :class:`NodeTreeInterfaceSocketVectorEuler2D.from_socket`
-   * :class:`NodeTreeInterfaceSocketVectorEuler2D.init_socket`
-   * :class:`NodeTreeInterfaceSocketVectorEuler4D.from_socket`
-   * :class:`NodeTreeInterfaceSocketVectorEuler4D.init_socket`
-   * :class:`NodeTreeInterfaceSocketVectorFactor.from_socket`
-   * :class:`NodeTreeInterfaceSocketVectorFactor.init_socket`
-   * :class:`NodeTreeInterfaceSocketVectorFactor2D.from_socket`
-   * :class:`NodeTreeInterfaceSocketVectorFactor2D.init_socket`
-   * :class:`NodeTreeInterfaceSocketVectorFactor4D.from_socket`
-   * :class:`NodeTreeInterfaceSocketVectorFactor4D.init_socket`
-   * :class:`NodeTreeInterfaceSocketVectorPercentage.from_socket`
-   * :class:`NodeTreeInterfaceSocketVectorPercentage.init_socket`
-   * :class:`NodeTreeInterfaceSocketVectorPercentage2D.from_socket`
-   * :class:`NodeTreeInterfaceSocketVectorPercentage2D.init_socket`
-   * :class:`NodeTreeInterfaceSocketVectorPercentage4D.from_socket`
-   * :class:`NodeTreeInterfaceSocketVectorPercentage4D.init_socket`
-   * :class:`NodeTreeInterfaceSocketVectorTranslation.from_socket`
-   * :class:`NodeTreeInterfaceSocketVectorTranslation.init_socket`
-   * :class:`NodeTreeInterfaceSocketVectorTranslation2D.from_socket`
-   * :class:`NodeTreeInterfaceSocketVectorTranslation2D.init_socket`
-   * :class:`NodeTreeInterfaceSocketVectorTranslation4D.from_socket`
-   * :class:`NodeTreeInterfaceSocketVectorTranslation4D.init_socket`
-   * :class:`NodeTreeInterfaceSocketVectorVelocity.from_socket`
-   * :class:`NodeTreeInterfaceSocketVectorVelocity.init_socket`
-   * :class:`NodeTreeInterfaceSocketVectorVelocity2D.from_socket`
-   * :class:`NodeTreeInterfaceSocketVectorVelocity2D.init_socket`
-   * :class:`NodeTreeInterfaceSocketVectorVelocity4D.from_socket`
-   * :class:`NodeTreeInterfaceSocketVectorVelocity4D.init_socket`
-   * :class:`NodeTreeInterfaceSocketVectorXYZ.from_socket`
-   * :class:`NodeTreeInterfaceSocketVectorXYZ.init_socket`
-   * :class:`NodeTreeInterfaceSocketVectorXYZ2D.from_socket`
-   * :class:`NodeTreeInterfaceSocketVectorXYZ2D.init_socket`
-   * :class:`NodeTreeInterfaceSocketVectorXYZ4D.from_socket`
-   * :class:`NodeTreeInterfaceSocketVectorXYZ4D.init_socket`
-   * :class:`Nodes.active`
-   * :class:`Nodes.new`
-   * :class:`Nodes.remove`
-   * :class:`NodesModifierBake.node`
-   * :class:`RenderEngine.update_script_node`
-   * :class:`SpaceNodeEditorPath.append`
-   * :class:`UILayout.template_node_inputs`
-   * :class:`UILayout.template_node_link`
-   * :class:`UILayout.template_node_view`
+   - :mod:`bpy.context.active_node`
+   - :mod:`bpy.context.selected_nodes`
+   - :mod:`bpy.context.texture_node`
+   - :class:`GeometryNodeForeachGeometryElementInput.paired_output`
+   - :class:`GeometryNodeMenuSwitch.enum_definition`
+   - :class:`GeometryNodeRepeatInput.paired_output`
+   - :class:`GeometryNodeSimulationInput.paired_output`
+   - :class:`Node.copy`
+   - :class:`Node.parent`
+   - :class:`NodeClosureInput.paired_output`
+   - :class:`NodeLink.from_node`
+   - :class:`NodeLink.to_node`
+   - :class:`NodeSocket.draw`
+   - :class:`NodeSocket.draw_color`
+   - :class:`NodeSocket.node`
+   - :class:`NodeSocketStandard.draw`
+   - :class:`NodeSocketStandard.draw_color`
+   - :class:`NodeTree.nodes`
+   - :class:`NodeTreeInterfaceSocket.from_socket`
+   - :class:`NodeTreeInterfaceSocket.init_socket`
+   - :class:`NodeTreeInterfaceSocketBool.from_socket`
+   - :class:`NodeTreeInterfaceSocketBool.init_socket`
+   - :class:`NodeTreeInterfaceSocketBundle.from_socket`
+   - :class:`NodeTreeInterfaceSocketBundle.init_socket`
+   - :class:`NodeTreeInterfaceSocketClosure.from_socket`
+   - :class:`NodeTreeInterfaceSocketClosure.init_socket`
+   - :class:`NodeTreeInterfaceSocketCollection.from_socket`
+   - :class:`NodeTreeInterfaceSocketCollection.init_socket`
+   - :class:`NodeTreeInterfaceSocketColor.from_socket`
+   - :class:`NodeTreeInterfaceSocketColor.init_socket`
+   - :class:`NodeTreeInterfaceSocketFloat.from_socket`
+   - :class:`NodeTreeInterfaceSocketFloat.init_socket`
+   - :class:`NodeTreeInterfaceSocketFloatAngle.from_socket`
+   - :class:`NodeTreeInterfaceSocketFloatAngle.init_socket`
+   - :class:`NodeTreeInterfaceSocketFloatColorTemperature.from_socket`
+   - :class:`NodeTreeInterfaceSocketFloatColorTemperature.init_socket`
+   - :class:`NodeTreeInterfaceSocketFloatDistance.from_socket`
+   - :class:`NodeTreeInterfaceSocketFloatDistance.init_socket`
+   - :class:`NodeTreeInterfaceSocketFloatFactor.from_socket`
+   - :class:`NodeTreeInterfaceSocketFloatFactor.init_socket`
+   - :class:`NodeTreeInterfaceSocketFloatFrequency.from_socket`
+   - :class:`NodeTreeInterfaceSocketFloatFrequency.init_socket`
+   - :class:`NodeTreeInterfaceSocketFloatMass.from_socket`
+   - :class:`NodeTreeInterfaceSocketFloatMass.init_socket`
+   - :class:`NodeTreeInterfaceSocketFloatPercentage.from_socket`
+   - :class:`NodeTreeInterfaceSocketFloatPercentage.init_socket`
+   - :class:`NodeTreeInterfaceSocketFloatPixel.from_socket`
+   - :class:`NodeTreeInterfaceSocketFloatPixel.init_socket`
+   - :class:`NodeTreeInterfaceSocketFloatTime.from_socket`
+   - :class:`NodeTreeInterfaceSocketFloatTime.init_socket`
+   - :class:`NodeTreeInterfaceSocketFloatTimeAbsolute.from_socket`
+   - :class:`NodeTreeInterfaceSocketFloatTimeAbsolute.init_socket`
+   - :class:`NodeTreeInterfaceSocketFloatUnsigned.from_socket`
+   - :class:`NodeTreeInterfaceSocketFloatUnsigned.init_socket`
+   - :class:`NodeTreeInterfaceSocketFloatWavelength.from_socket`
+   - :class:`NodeTreeInterfaceSocketFloatWavelength.init_socket`
+   - :class:`NodeTreeInterfaceSocketGeometry.from_socket`
+   - :class:`NodeTreeInterfaceSocketGeometry.init_socket`
+   - :class:`NodeTreeInterfaceSocketImage.from_socket`
+   - :class:`NodeTreeInterfaceSocketImage.init_socket`
+   - :class:`NodeTreeInterfaceSocketInt.from_socket`
+   - :class:`NodeTreeInterfaceSocketInt.init_socket`
+   - :class:`NodeTreeInterfaceSocketIntFactor.from_socket`
+   - :class:`NodeTreeInterfaceSocketIntFactor.init_socket`
+   - :class:`NodeTreeInterfaceSocketIntPercentage.from_socket`
+   - :class:`NodeTreeInterfaceSocketIntPercentage.init_socket`
+   - :class:`NodeTreeInterfaceSocketIntPixel.from_socket`
+   - :class:`NodeTreeInterfaceSocketIntPixel.init_socket`
+   - :class:`NodeTreeInterfaceSocketIntUnsigned.from_socket`
+   - :class:`NodeTreeInterfaceSocketIntUnsigned.init_socket`
+   - :class:`NodeTreeInterfaceSocketIntVector2D.from_socket`
+   - :class:`NodeTreeInterfaceSocketIntVector2D.init_socket`
+   - :class:`NodeTreeInterfaceSocketIntVector3D.from_socket`
+   - :class:`NodeTreeInterfaceSocketIntVector3D.init_socket`
+   - :class:`NodeTreeInterfaceSocketIntVectorFactor2D.from_socket`
+   - :class:`NodeTreeInterfaceSocketIntVectorFactor2D.init_socket`
+   - :class:`NodeTreeInterfaceSocketIntVectorFactor3D.from_socket`
+   - :class:`NodeTreeInterfaceSocketIntVectorFactor3D.init_socket`
+   - :class:`NodeTreeInterfaceSocketIntVectorPercentage2D.from_socket`
+   - :class:`NodeTreeInterfaceSocketIntVectorPercentage2D.init_socket`
+   - :class:`NodeTreeInterfaceSocketIntVectorPercentage3D.from_socket`
+   - :class:`NodeTreeInterfaceSocketIntVectorPercentage3D.init_socket`
+   - :class:`NodeTreeInterfaceSocketIntVectorPixel2D.from_socket`
+   - :class:`NodeTreeInterfaceSocketIntVectorPixel2D.init_socket`
+   - :class:`NodeTreeInterfaceSocketIntVectorPixel3D.from_socket`
+   - :class:`NodeTreeInterfaceSocketIntVectorPixel3D.init_socket`
+   - :class:`NodeTreeInterfaceSocketIntVectorUnsigned2D.from_socket`
+   - :class:`NodeTreeInterfaceSocketIntVectorUnsigned2D.init_socket`
+   - :class:`NodeTreeInterfaceSocketIntVectorUnsigned3D.from_socket`
+   - :class:`NodeTreeInterfaceSocketIntVectorUnsigned3D.init_socket`
+   - :class:`NodeTreeInterfaceSocketMaterial.from_socket`
+   - :class:`NodeTreeInterfaceSocketMaterial.init_socket`
+   - :class:`NodeTreeInterfaceSocketMatrix.from_socket`
+   - :class:`NodeTreeInterfaceSocketMatrix.init_socket`
+   - :class:`NodeTreeInterfaceSocketMenu.from_socket`
+   - :class:`NodeTreeInterfaceSocketMenu.init_socket`
+   - :class:`NodeTreeInterfaceSocketObject.from_socket`
+   - :class:`NodeTreeInterfaceSocketObject.init_socket`
+   - :class:`NodeTreeInterfaceSocketRotation.from_socket`
+   - :class:`NodeTreeInterfaceSocketRotation.init_socket`
+   - :class:`NodeTreeInterfaceSocketShader.from_socket`
+   - :class:`NodeTreeInterfaceSocketShader.init_socket`
+   - :class:`NodeTreeInterfaceSocketString.from_socket`
+   - :class:`NodeTreeInterfaceSocketString.init_socket`
+   - :class:`NodeTreeInterfaceSocketStringFilePath.from_socket`
+   - :class:`NodeTreeInterfaceSocketStringFilePath.init_socket`
+   - :class:`NodeTreeInterfaceSocketTexture.from_socket`
+   - :class:`NodeTreeInterfaceSocketTexture.init_socket`
+   - :class:`NodeTreeInterfaceSocketVector.from_socket`
+   - :class:`NodeTreeInterfaceSocketVector.init_socket`
+   - :class:`NodeTreeInterfaceSocketVector2D.from_socket`
+   - :class:`NodeTreeInterfaceSocketVector2D.init_socket`
+   - :class:`NodeTreeInterfaceSocketVector4D.from_socket`
+   - :class:`NodeTreeInterfaceSocketVector4D.init_socket`
+   - :class:`NodeTreeInterfaceSocketVectorAcceleration.from_socket`
+   - :class:`NodeTreeInterfaceSocketVectorAcceleration.init_socket`
+   - :class:`NodeTreeInterfaceSocketVectorAcceleration2D.from_socket`
+   - :class:`NodeTreeInterfaceSocketVectorAcceleration2D.init_socket`
+   - :class:`NodeTreeInterfaceSocketVectorAcceleration4D.from_socket`
+   - :class:`NodeTreeInterfaceSocketVectorAcceleration4D.init_socket`
+   - :class:`NodeTreeInterfaceSocketVectorDirection.from_socket`
+   - :class:`NodeTreeInterfaceSocketVectorDirection.init_socket`
+   - :class:`NodeTreeInterfaceSocketVectorDirection2D.from_socket`
+   - :class:`NodeTreeInterfaceSocketVectorDirection2D.init_socket`
+   - :class:`NodeTreeInterfaceSocketVectorDirection4D.from_socket`
+   - :class:`NodeTreeInterfaceSocketVectorDirection4D.init_socket`
+   - :class:`NodeTreeInterfaceSocketVectorEuler.from_socket`
+   - :class:`NodeTreeInterfaceSocketVectorEuler.init_socket`
+   - :class:`NodeTreeInterfaceSocketVectorEuler2D.from_socket`
+   - :class:`NodeTreeInterfaceSocketVectorEuler2D.init_socket`
+   - :class:`NodeTreeInterfaceSocketVectorEuler4D.from_socket`
+   - :class:`NodeTreeInterfaceSocketVectorEuler4D.init_socket`
+   - :class:`NodeTreeInterfaceSocketVectorFactor.from_socket`
+   - :class:`NodeTreeInterfaceSocketVectorFactor.init_socket`
+   - :class:`NodeTreeInterfaceSocketVectorFactor2D.from_socket`
+   - :class:`NodeTreeInterfaceSocketVectorFactor2D.init_socket`
+   - :class:`NodeTreeInterfaceSocketVectorFactor4D.from_socket`
+   - :class:`NodeTreeInterfaceSocketVectorFactor4D.init_socket`
+   - :class:`NodeTreeInterfaceSocketVectorPercentage.from_socket`
+   - :class:`NodeTreeInterfaceSocketVectorPercentage.init_socket`
+   - :class:`NodeTreeInterfaceSocketVectorPercentage2D.from_socket`
+   - :class:`NodeTreeInterfaceSocketVectorPercentage2D.init_socket`
+   - :class:`NodeTreeInterfaceSocketVectorPercentage4D.from_socket`
+   - :class:`NodeTreeInterfaceSocketVectorPercentage4D.init_socket`
+   - :class:`NodeTreeInterfaceSocketVectorPixel.from_socket`
+   - :class:`NodeTreeInterfaceSocketVectorPixel.init_socket`
+   - :class:`NodeTreeInterfaceSocketVectorPixel2D.from_socket`
+   - :class:`NodeTreeInterfaceSocketVectorPixel2D.init_socket`
+   - :class:`NodeTreeInterfaceSocketVectorPixel4D.from_socket`
+   - :class:`NodeTreeInterfaceSocketVectorPixel4D.init_socket`
+   - :class:`NodeTreeInterfaceSocketVectorTranslation.from_socket`
+   - :class:`NodeTreeInterfaceSocketVectorTranslation.init_socket`
+   - :class:`NodeTreeInterfaceSocketVectorTranslation2D.from_socket`
+   - :class:`NodeTreeInterfaceSocketVectorTranslation2D.init_socket`
+   - :class:`NodeTreeInterfaceSocketVectorTranslation4D.from_socket`
+   - :class:`NodeTreeInterfaceSocketVectorTranslation4D.init_socket`
+   - :class:`NodeTreeInterfaceSocketVectorVelocity.from_socket`
+   - :class:`NodeTreeInterfaceSocketVectorVelocity.init_socket`
+   - :class:`NodeTreeInterfaceSocketVectorVelocity2D.from_socket`
+   - :class:`NodeTreeInterfaceSocketVectorVelocity2D.init_socket`
+   - :class:`NodeTreeInterfaceSocketVectorVelocity4D.from_socket`
+   - :class:`NodeTreeInterfaceSocketVectorVelocity4D.init_socket`
+   - :class:`NodeTreeInterfaceSocketVectorXYZ.from_socket`
+   - :class:`NodeTreeInterfaceSocketVectorXYZ.init_socket`
+   - :class:`NodeTreeInterfaceSocketVectorXYZ2D.from_socket`
+   - :class:`NodeTreeInterfaceSocketVectorXYZ2D.init_socket`
+   - :class:`NodeTreeInterfaceSocketVectorXYZ4D.from_socket`
+   - :class:`NodeTreeInterfaceSocketVectorXYZ4D.init_socket`
+   - :class:`Nodes.active`
+   - :class:`Nodes.new`
+   - :class:`Nodes.remove`
+   - :class:`NodesModifierBake.node`
+   - :class:`RenderEngine.update_script_node`
+   - :class:`SpaceNodeEditorPath.append`
+   - :class:`UILayout.template_node_inputs`
+   - :class:`UILayout.template_node_link`
+   - :class:`UILayout.template_node_view`
 

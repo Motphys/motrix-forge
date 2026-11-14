@@ -134,7 +134,24 @@ Scale X, Y, Z
    Additional scaling factor to apply to the custom shape.
 
 Override Transform
-   Bone that defines the display transform of the custom shape.
+   A bone that defines the display transform of the custom shape. 
+   The shape defined in *Custom Object* will be placed at the location and orientation of that bone.
+   This is only visual and does not affect the transform values of this bone.
+
+Affect Gizmo
+   The location and orientation of the *Override Transform* bone will be used for transform
+   gizmos and for other transform operators in the 3D Viewport.
+
+Use As Pivot
+   Transform the bone as if it was a child of the *Override Transform* bone.
+   This is useful in special cases, where the mesh is deformed away from the bind pose by
+   a separate mechanism, for example :ref:`Shape Keys <animation-shape_keys-index>`.
+
+   .. note::
+
+      While this affects gizmo interaction, it does not change the transform values
+      of the bone, or how they are interpolated. As such the interpolation may not
+      work as expected.
 
 .. _bpy.types.PoseBone.use_custom_shape_bone_size:
 

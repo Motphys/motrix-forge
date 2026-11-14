@@ -30,7 +30,7 @@ value type:
 - :class:`freestyle.types.UnaryFunction1DVectorViewShape`
 - :class:`freestyle.types.UnaryFunction1DVoid`
 
-.. class:: freestyle.functions.ChainingTimeStampF1D
+.. class:: ChainingTimeStampF1D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction1D` > :class:`freestyle.types.UnaryFunction1DVoid` > :class:`ChainingTimeStampF1D`
    
@@ -42,12 +42,12 @@ value type:
    
       Sets the chaining time stamp of the Interface1D.
    
-      :arg inter: An Interface1D object.
+      :param inter: An Interface1D object.
       :type inter: :class:`freestyle.types.Interface1D`
 
 
 
-.. class:: freestyle.functions.Curvature2DAngleF0D
+.. class:: Curvature2DAngleF0D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction0D` > :class:`freestyle.types.UnaryFunction0DDouble` > :class:`Curvature2DAngleF0D`
    
@@ -62,7 +62,7 @@ value type:
       the Interface0DIterator belongs. The 2D curvature is evaluated at the
       Interface0D.
    
-      :arg it: An Interface0DIterator object.
+      :param it: An Interface0DIterator object.
       :type it: :class:`freestyle.types.Interface0DIterator`
       :return: The 2D curvature of the 1D element evaluated at the
          pointed Interface0D.
@@ -70,7 +70,7 @@ value type:
 
 
 
-.. class:: freestyle.functions.Curvature2DAngleF1D
+.. class:: Curvature2DAngleF1D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction1D` > :class:`freestyle.types.UnaryFunction1DDouble` > :class:`Curvature2DAngleF1D`
    
@@ -78,7 +78,7 @@ value type:
    
       Builds a Curvature2DAngleF1D object.
    
-      :arg integration_type: The integration method used to compute a single value
+      :param integration_type: The integration method used to compute a single value
          from a set of values.
       :type integration_type: :class:`freestyle.types.IntegrationType`
    
@@ -86,14 +86,14 @@ value type:
    
       Returns the 2D curvature as an angle for an Interface1D.
    
-      :arg inter: An Interface1D object.
+      :param inter: An Interface1D object.
       :type inter: :class:`freestyle.types.Interface1D`
       :return: The 2D curvature as an angle.
       :rtype: float
 
 
 
-.. class:: freestyle.functions.CurveMaterialF0D
+.. class:: CurveMaterialF0D
 
    A replacement of the built-in MaterialF0D for stroke creation.
    MaterialF0D does not work with Curves and Strokes.  Line color
@@ -105,7 +105,7 @@ value type:
 
 
 
-.. class:: freestyle.functions.CurveNatureF0D
+.. class:: CurveNatureF0D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction0D` > :class:`freestyle.types.UnaryFunction0DEdgeNature` > :class:`CurveNatureF0D`
    
@@ -118,7 +118,7 @@ value type:
       Returns the :class:`freestyle.types.Nature` of the 1D element the
       Interface0D pointed by the Interface0DIterator belongs to.
    
-      :arg it: An Interface0DIterator object.
+      :param it: An Interface0DIterator object.
       :type it: :class:`freestyle.types.Interface0DIterator`
       :return: The nature of the 1D element to which the pointed Interface0D
          belongs.
@@ -126,7 +126,7 @@ value type:
 
 
 
-.. class:: freestyle.functions.CurveNatureF1D
+.. class:: CurveNatureF1D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction1D` > :class:`freestyle.types.UnaryFunction1DEdgeNature` > :class:`CurveNatureF1D`
    
@@ -134,7 +134,7 @@ value type:
    
       Builds a CurveNatureF1D object.
    
-      :arg integration_type: The integration method used to compute a single value
+      :param integration_type: The integration method used to compute a single value
          from a set of values.
       :type integration_type: :class:`freestyle.types.IntegrationType`
    
@@ -148,14 +148,14 @@ value type:
       method, such as the MEAN, might give, in this case, irrelevant
       results.
    
-      :arg inter: An Interface1D object.
+      :param inter: An Interface1D object.
       :type inter: :class:`freestyle.types.Interface1D`
       :return: The nature of the Interface1D.
       :rtype: :class:`freestyle.types.Nature`
 
 
 
-.. class:: freestyle.functions.DensityF0D
+.. class:: DensityF0D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction0D` > :class:`freestyle.types.UnaryFunction0DDouble` > :class:`DensityF0D`
    
@@ -163,7 +163,7 @@ value type:
    
       Builds a DensityF0D object.
    
-      :arg sigma: The gaussian sigma value indicating the X value for
+      :param sigma: The gaussian sigma value indicating the X value for
          which the gaussian function is 0.5. It leads to the window size
          value (the larger, the smoother).
       :type sigma: float
@@ -176,7 +176,7 @@ value type:
       window around the evaluation point and integrating these values using
       a gaussian.
    
-      :arg it: An Interface0DIterator object.
+      :param it: An Interface0DIterator object.
       :type it: :class:`freestyle.types.Interface0DIterator`
       :return: The density of the image evaluated at the pointed
          Interface0D.
@@ -184,7 +184,7 @@ value type:
 
 
 
-.. class:: freestyle.functions.DensityF1D
+.. class:: DensityF1D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction1D` > :class:`freestyle.types.UnaryFunction1DDouble` > :class:`DensityF1D`
    
@@ -192,13 +192,13 @@ value type:
    
       Builds a DensityF1D object.
    
-      :arg sigma: The sigma used in DensityF0D and determining the window size
+      :param sigma: The sigma used in DensityF0D and determining the window size
          used in each density query.
       :type sigma: float
-      :arg integration_type: The integration method used to compute a single value
+      :param integration_type: The integration method used to compute a single value
          from a set of values.
       :type integration_type: :class:`freestyle.types.IntegrationType`
-      :arg sampling: The resolution used to sample the chain: the
+      :param sampling: The resolution used to sample the chain: the
          corresponding 0D function is evaluated at each sample point and
          the result is obtained by combining the resulting values into a
          single one, following the method specified by integration_type.
@@ -212,14 +212,14 @@ value type:
       sampling and then integrated into a single value using a user-defined
       integration method.
    
-      :arg inter: An Interface1D object.
+      :param inter: An Interface1D object.
       :type inter: :class:`freestyle.types.Interface1D`
       :return: The density evaluated for an Interface1D.
       :rtype: float
 
 
 
-.. class:: freestyle.functions.GetCompleteViewMapDensityF1D
+.. class:: GetCompleteViewMapDensityF1D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction1D` > :class:`freestyle.types.UnaryFunction1DDouble` > :class:`GetCompleteViewMapDensityF1D`
    
@@ -227,13 +227,13 @@ value type:
    
       Builds a GetCompleteViewMapDensityF1D object.
    
-      :arg level: The level of the pyramid from which the pixel must be
+      :param level: The level of the pyramid from which the pixel must be
          read.
       :type level: int
-      :arg integration_type: The integration method used to compute a single value
+      :param integration_type: The integration method used to compute a single value
          from a set of values.
       :type integration_type: :class:`freestyle.types.IntegrationType`
-      :arg sampling: The resolution used to sample the chain: the
+      :param sampling: The resolution used to sample the chain: the
          corresponding 0D function is evaluated at each sample point and
          the result is obtained by combining the resulting values into a
          single one, following the method specified by integration_type.
@@ -248,7 +248,7 @@ value type:
       then integrated into a single value using a user-defined integration
       method.
    
-      :arg inter: An Interface1D object.
+      :param inter: An Interface1D object.
       :type inter: :class:`freestyle.types.Interface1D`
       :return: The density evaluated for the Interface1D in the complete
          viewmap image.
@@ -256,7 +256,7 @@ value type:
 
 
 
-.. class:: freestyle.functions.GetCurvilinearAbscissaF0D
+.. class:: GetCurvilinearAbscissaF0D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction0D` > :class:`freestyle.types.UnaryFunction0DFloat` > :class:`GetCurvilinearAbscissaF0D`
    
@@ -270,14 +270,14 @@ value type:
       :class:`freestyle.types.Interface0D` pointed by the
       Interface0DIterator in the context of its 1D element.
    
-      :arg it: An Interface0DIterator object.
+      :param it: An Interface0DIterator object.
       :type it: :class:`freestyle.types.Interface0DIterator`
       :return: The curvilinear abscissa of the pointed Interface0D.
       :rtype: float
 
 
 
-.. class:: freestyle.functions.GetDirectionalViewMapDensityF1D
+.. class:: GetDirectionalViewMapDensityF1D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction1D` > :class:`freestyle.types.UnaryFunction1DDouble` > :class:`GetDirectionalViewMapDensityF1D`
    
@@ -285,16 +285,16 @@ value type:
    
       Builds a GetDirectionalViewMapDensityF1D object.
    
-      :arg orientation: The number of the directional map we must work
+      :param orientation: The number of the directional map we must work
          with.
       :type orientation: int
-      :arg level: The level of the pyramid from which the pixel must be
+      :param level: The level of the pyramid from which the pixel must be
          read.
       :type level: int
-      :arg integration_type: The integration method used to compute a single value
+      :param integration_type: The integration method used to compute a single value
          from a set of values.
       :type integration_type: :class:`freestyle.types.IntegrationType`
-      :arg sampling: The resolution used to sample the chain: the
+      :param sampling: The resolution used to sample the chain: the
          corresponding 0D function is evaluated at each sample point and
          the result is obtained by combining the resulting values into a
          single one, following the method specified by integration_type.
@@ -310,7 +310,7 @@ value type:
       then integrated into a single value using a user-defined integration
       method.
    
-      :arg inter: An Interface1D object.
+      :param inter: An Interface1D object.
       :type inter: :class:`freestyle.types.Interface1D`
       :return: the density evaluated for an Interface1D in of the
          steerable viewmaps image.
@@ -318,7 +318,7 @@ value type:
 
 
 
-.. class:: freestyle.functions.GetOccludeeF0D
+.. class:: GetOccludeeF0D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction0D` > :class:`freestyle.types.UnaryFunction0DViewShape` > :class:`GetOccludeeF0D`
    
@@ -331,14 +331,14 @@ value type:
       Returns the :class:`freestyle.types.ViewShape` that the Interface0D
       pointed by the Interface0DIterator occludes.
    
-      :arg it: An Interface0DIterator object.
+      :param it: An Interface0DIterator object.
       :type it: :class:`freestyle.types.Interface0DIterator`
       :return: The ViewShape occluded by the pointed Interface0D.
       :rtype: :class:`freestyle.types.ViewShape`
 
 
 
-.. class:: freestyle.functions.GetOccludeeF1D
+.. class:: GetOccludeeF1D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction1D` > :class:`freestyle.types.UnaryFunction1DVectorViewShape` > :class:`GetOccludeeF1D`
    
@@ -350,14 +350,14 @@ value type:
    
       Returns a list of occluded shapes covered by this Interface1D.
    
-      :arg inter: An Interface1D object.
+      :param inter: An Interface1D object.
       :type inter: :class:`freestyle.types.Interface1D`
       :return: A list of occluded shapes covered by the Interface1D.
       :rtype: list[:class:`freestyle.types.ViewShape`]
 
 
 
-.. class:: freestyle.functions.GetOccludersF0D
+.. class:: GetOccludersF0D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction0D` > :class:`freestyle.types.UnaryFunction0DVectorViewShape` > :class:`GetOccludersF0D`
    
@@ -370,7 +370,7 @@ value type:
       Returns a list of :class:`freestyle.types.ViewShape` occluding the
       :class:`freestyle.types.Interface0D` pointed by the Interface0DIterator.
    
-      :arg it: An Interface0DIterator object.
+      :param it: An Interface0DIterator object.
       :type it: :class:`freestyle.types.Interface0DIterator`
       :return: A list of ViewShape objects occluding the pointed
          Interface0D.
@@ -378,7 +378,7 @@ value type:
 
 
 
-.. class:: freestyle.functions.GetOccludersF1D
+.. class:: GetOccludersF1D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction1D` > :class:`freestyle.types.UnaryFunction1DVectorViewShape` > :class:`GetOccludersF1D`
    
@@ -390,14 +390,14 @@ value type:
    
       Returns a list of occluding shapes that cover this Interface1D.
    
-      :arg inter: An Interface1D object.
+      :param inter: An Interface1D object.
       :type inter: :class:`freestyle.types.Interface1D`
       :return: A list of occluding shapes that cover the Interface1D.
       :rtype: list[:class:`freestyle.types.ViewShape`]
 
 
 
-.. class:: freestyle.functions.GetParameterF0D
+.. class:: GetParameterF0D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction0D` > :class:`freestyle.types.UnaryFunction0DFloat` > :class:`GetParameterF0D`
    
@@ -410,14 +410,14 @@ value type:
       Returns the parameter of the :class:`freestyle.types.Interface0D`
       pointed by the Interface0DIterator in the context of its 1D element.
    
-      :arg it: An Interface0DIterator object.
+      :param it: An Interface0DIterator object.
       :type it: :class:`freestyle.types.Interface0DIterator`
       :return: The parameter of an Interface0D.
       :rtype: float
 
 
 
-.. class:: freestyle.functions.GetProjectedXF0D
+.. class:: GetProjectedXF0D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction0D` > :class:`freestyle.types.UnaryFunction0DDouble` > :class:`GetProjectedXF0D`
    
@@ -430,14 +430,14 @@ value type:
       Returns the X 3D projected coordinate of the :class:`freestyle.types.Interface0D`
       pointed by the Interface0DIterator.
    
-      :arg it: An Interface0DIterator object.
+      :param it: An Interface0DIterator object.
       :type it: :class:`freestyle.types.Interface0DIterator`
       :return: The X 3D projected coordinate of the pointed Interface0D.
       :rtype: float
 
 
 
-.. class:: freestyle.functions.GetProjectedXF1D
+.. class:: GetProjectedXF1D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction1D` > :class:`freestyle.types.UnaryFunction1DDouble` > :class:`GetProjectedXF1D`
    
@@ -445,7 +445,7 @@ value type:
    
       Builds a GetProjectedXF1D object.
    
-      :arg integration_type: The integration method used to compute a single value
+      :param integration_type: The integration method used to compute a single value
          from a set of values. 
       :type integration_type: :class:`freestyle.types.IntegrationType`
    
@@ -453,14 +453,14 @@ value type:
    
       Returns the projected X 3D coordinate of an Interface1D.
    
-      :arg inter: An Interface1D object.
+      :param inter: An Interface1D object.
       :type inter: :class:`freestyle.types.Interface1D`
       :return: The projected X 3D coordinate of an Interface1D.
       :rtype: float
 
 
 
-.. class:: freestyle.functions.GetProjectedYF0D
+.. class:: GetProjectedYF0D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction0D` > :class:`freestyle.types.UnaryFunction0DDouble` > :class:`GetProjectedYF0D`
    
@@ -473,14 +473,14 @@ value type:
       Returns the Y 3D projected coordinate of the :class:`freestyle.types.Interface0D`
       pointed by the Interface0DIterator.
    
-      :arg it: An Interface0DIterator object.
+      :param it: An Interface0DIterator object.
       :type it: :class:`freestyle.types.Interface0DIterator`
       :return: The Y 3D projected coordinate of the pointed Interface0D.
       :rtype: float
 
 
 
-.. class:: freestyle.functions.GetProjectedYF1D
+.. class:: GetProjectedYF1D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction1D` > :class:`freestyle.types.UnaryFunction1DDouble` > :class:`GetProjectedYF1D`
    
@@ -488,7 +488,7 @@ value type:
    
       Builds a GetProjectedYF1D object.
    
-      :arg integration_type: The integration method used to compute a single value
+      :param integration_type: The integration method used to compute a single value
          from a set of values. 
       :type integration_type: :class:`freestyle.types.IntegrationType`
    
@@ -496,14 +496,14 @@ value type:
    
       Returns the projected Y 3D coordinate of an Interface1D.
    
-      :arg inter: An Interface1D object.
+      :param inter: An Interface1D object.
       :type inter: :class:`freestyle.types.Interface1D`
       :return: The projected Y 3D coordinate of an Interface1D.
       :rtype: float
 
 
 
-.. class:: freestyle.functions.GetProjectedZF0D
+.. class:: GetProjectedZF0D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction0D` > :class:`freestyle.types.UnaryFunction0DDouble` > :class:`GetProjectedZF0D`
    
@@ -516,14 +516,14 @@ value type:
       Returns the Z 3D projected coordinate of the :class:`freestyle.types.Interface0D`
       pointed by the Interface0DIterator.
    
-      :arg it: An Interface0DIterator object.
+      :param it: An Interface0DIterator object.
       :type it: :class:`freestyle.types.Interface0DIterator`
       :return: The Z 3D projected coordinate of the pointed Interface0D.
       :rtype: float
 
 
 
-.. class:: freestyle.functions.GetProjectedZF1D
+.. class:: GetProjectedZF1D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction1D` > :class:`freestyle.types.UnaryFunction1DDouble` > :class:`GetProjectedZF1D`
    
@@ -531,7 +531,7 @@ value type:
    
       Builds a GetProjectedZF1D object.
    
-      :arg integration_type: The integration method used to compute a single value
+      :param integration_type: The integration method used to compute a single value
          from a set of values. 
       :type integration_type: :class:`freestyle.types.IntegrationType`
    
@@ -539,14 +539,14 @@ value type:
    
       Returns the projected Z 3D coordinate of an Interface1D.
    
-      :arg inter: An Interface1D object.
+      :param inter: An Interface1D object.
       :type inter: :class:`freestyle.types.Interface1D`
       :return: The projected Z 3D coordinate of an Interface1D.
       :rtype: float
 
 
 
-.. class:: freestyle.functions.GetShapeF0D
+.. class:: GetShapeF0D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction0D` > :class:`freestyle.types.UnaryFunction0DViewShape` > :class:`GetShapeF0D`
    
@@ -559,14 +559,14 @@ value type:
       Returns the :class:`freestyle.types.ViewShape` containing the
       Interface0D pointed by the Interface0DIterator.
    
-      :arg it: An Interface0DIterator object.
+      :param it: An Interface0DIterator object.
       :type it: :class:`freestyle.types.Interface0DIterator`
       :return: The ViewShape containing the pointed Interface0D.
       :rtype: :class:`freestyle.types.ViewShape`
 
 
 
-.. class:: freestyle.functions.GetShapeF1D
+.. class:: GetShapeF1D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction1D` > :class:`freestyle.types.UnaryFunction1DVectorViewShape` > :class:`GetShapeF1D`
    
@@ -578,14 +578,14 @@ value type:
    
       Returns a list of shapes covered by this Interface1D.
    
-      :arg inter: An Interface1D object.
+      :param inter: An Interface1D object.
       :type inter: :class:`freestyle.types.Interface1D`
       :return: A list of shapes covered by the Interface1D.
       :rtype: list[:class:`freestyle.types.ViewShape`]
 
 
 
-.. class:: freestyle.functions.GetSteerableViewMapDensityF1D
+.. class:: GetSteerableViewMapDensityF1D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction1D` > :class:`freestyle.types.UnaryFunction1DDouble` > :class:`GetSteerableViewMapDensityF1D`
    
@@ -593,13 +593,13 @@ value type:
    
       Builds a GetSteerableViewMapDensityF1D object.
    
-      :arg level: The level of the pyramid from which the pixel must be
+      :param level: The level of the pyramid from which the pixel must be
          read.
       :type level: int
-      :arg integration_type: The integration method used to compute a single value
+      :param integration_type: The integration method used to compute a single value
          from a set of values.
       :type integration_type: :class:`freestyle.types.IntegrationType`
-      :arg sampling: The resolution used to sample the chain: the
+      :param sampling: The resolution used to sample the chain: the
          corresponding 0D function is evaluated at each sample point and
          the result is obtained by combining the resulting values into a
          single one, following the method specified by integration_type.
@@ -612,14 +612,14 @@ value type:
       proper steerable :class:`freestyle.types.ViewMap` depending on its
       orientation.
    
-      :arg inter: An Interface1D object.
+      :param inter: An Interface1D object.
       :type inter: :class:`freestyle.types.Interface1D`
       :return: The density of the ViewMap for a given Interface1D.
       :rtype: float
 
 
 
-.. class:: freestyle.functions.GetViewMapGradientNormF0D
+.. class:: GetViewMapGradientNormF0D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction0D` > :class:`freestyle.types.UnaryFunction0DFloat` > :class:`GetViewMapGradientNormF0D`
    
@@ -627,7 +627,7 @@ value type:
    
       Builds a GetViewMapGradientNormF0D object.
    
-      :arg level: The level of the pyramid from which the pixel must be
+      :param level: The level of the pyramid from which the pixel must be
          read.
       :type level: int
    
@@ -636,7 +636,7 @@ value type:
       Returns the norm of the gradient of the global viewmap density
       image.
    
-      :arg it: An Interface0DIterator object.
+      :param it: An Interface0DIterator object.
       :type it: :class:`freestyle.types.Interface0DIterator`
       :return: The norm of the gradient of the global viewmap density
          image.
@@ -644,7 +644,7 @@ value type:
 
 
 
-.. class:: freestyle.functions.GetViewMapGradientNormF1D
+.. class:: GetViewMapGradientNormF1D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction1D` > :class:`freestyle.types.UnaryFunction1DDouble` > :class:`GetViewMapGradientNormF1D`
    
@@ -652,13 +652,13 @@ value type:
    
       Builds a GetViewMapGradientNormF1D object.
    
-      :arg level: The level of the pyramid from which the pixel must be
+      :param level: The level of the pyramid from which the pixel must be
          read.
       :type level: int
-      :arg integration_type: The integration method used to compute a single value
+      :param integration_type: The integration method used to compute a single value
          from a set of values.
       :type integration_type: :class:`freestyle.types.IntegrationType`
-      :arg sampling: The resolution used to sample the chain: the
+      :param sampling: The resolution used to sample the chain: the
          corresponding 0D function is evaluated at each sample point and
          the result is obtained by combining the resulting values into a
          single one, following the method specified by integration_type.
@@ -671,14 +671,14 @@ value type:
       proper steerable :class:`freestyle.types.ViewMap` depending on its
       orientation.
    
-      :arg inter: An Interface1D object.
+      :param inter: An Interface1D object.
       :type inter: :class:`freestyle.types.Interface1D`
       :return: The density of the ViewMap for a given Interface1D.
       :rtype: float
 
 
 
-.. class:: freestyle.functions.GetXF0D
+.. class:: GetXF0D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction0D` > :class:`freestyle.types.UnaryFunction0DDouble` > :class:`GetXF0D`
    
@@ -691,14 +691,14 @@ value type:
       Returns the X 3D coordinate of the :class:`freestyle.types.Interface0D` pointed by
       the Interface0DIterator.
    
-      :arg it: An Interface0DIterator object.
+      :param it: An Interface0DIterator object.
       :type it: :class:`freestyle.types.Interface0DIterator`
       :return: The X 3D coordinate of the pointed Interface0D.
       :rtype: float
 
 
 
-.. class:: freestyle.functions.GetXF1D
+.. class:: GetXF1D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction1D` > :class:`freestyle.types.UnaryFunction1DDouble` > :class:`GetXF1D`
    
@@ -706,7 +706,7 @@ value type:
    
       Builds a GetXF1D object.
    
-      :arg integration_type: The integration method used to compute a single value
+      :param integration_type: The integration method used to compute a single value
          from a set of values.
       :type integration_type: :class:`freestyle.types.IntegrationType`
    
@@ -714,14 +714,14 @@ value type:
    
       Returns the X 3D coordinate of an Interface1D.
    
-      :arg inter: An Interface1D object.
+      :param inter: An Interface1D object.
       :type inter: :class:`freestyle.types.Interface1D`
       :return: The X 3D coordinate of the Interface1D.
       :rtype: float
 
 
 
-.. class:: freestyle.functions.GetYF0D
+.. class:: GetYF0D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction0D` > :class:`freestyle.types.UnaryFunction0DDouble` > :class:`GetYF0D`
    
@@ -734,14 +734,14 @@ value type:
       Returns the Y 3D coordinate of the :class:`freestyle.types.Interface0D` pointed by
       the Interface0DIterator.
    
-      :arg it: An Interface0DIterator object.
+      :param it: An Interface0DIterator object.
       :type it: :class:`freestyle.types.Interface0DIterator`
       :return: The Y 3D coordinate of the pointed Interface0D.
       :rtype: float
 
 
 
-.. class:: freestyle.functions.GetYF1D
+.. class:: GetYF1D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction1D` > :class:`freestyle.types.UnaryFunction1DDouble` > :class:`GetYF1D`
    
@@ -749,7 +749,7 @@ value type:
    
       Builds a GetYF1D object.
    
-      :arg integration_type: The integration method used to compute a single value
+      :param integration_type: The integration method used to compute a single value
          from a set of values.
       :type integration_type: :class:`freestyle.types.IntegrationType`
    
@@ -757,14 +757,14 @@ value type:
    
       Returns the Y 3D coordinate of an Interface1D.
    
-      :arg inter: An Interface1D object.
+      :param inter: An Interface1D object.
       :type inter: :class:`freestyle.types.Interface1D`
       :return: The Y 3D coordinate of the Interface1D.
       :rtype: float
 
 
 
-.. class:: freestyle.functions.GetZF0D
+.. class:: GetZF0D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction0D` > :class:`freestyle.types.UnaryFunction0DDouble` > :class:`GetZF0D`
    
@@ -777,14 +777,14 @@ value type:
       Returns the Z 3D coordinate of the :class:`freestyle.types.Interface0D` pointed by
       the Interface0DIterator.
    
-      :arg it: An Interface0DIterator object.
+      :param it: An Interface0DIterator object.
       :type it: :class:`freestyle.types.Interface0DIterator`
       :return: The Z 3D coordinate of the pointed Interface0D.
       :rtype: float
 
 
 
-.. class:: freestyle.functions.GetZF1D
+.. class:: GetZF1D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction1D` > :class:`freestyle.types.UnaryFunction1DDouble` > :class:`GetZF1D`
    
@@ -792,7 +792,7 @@ value type:
    
       Builds a GetZF1D object.
    
-      :arg integration_type: The integration method used to compute a single value
+      :param integration_type: The integration method used to compute a single value
          from a set of values.
       :type integration_type: :class:`freestyle.types.IntegrationType`
    
@@ -800,14 +800,14 @@ value type:
    
       Returns the Z 3D coordinate of an Interface1D.
    
-      :arg inter: An Interface1D object.
+      :param inter: An Interface1D object.
       :type inter: :class:`freestyle.types.Interface1D`
       :return: The Z 3D coordinate of the Interface1D.
       :rtype: float
 
 
 
-.. class:: freestyle.functions.IncrementChainingTimeStampF1D
+.. class:: IncrementChainingTimeStampF1D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction1D` > :class:`freestyle.types.UnaryFunction1DVoid` > :class:`IncrementChainingTimeStampF1D`
    
@@ -819,12 +819,12 @@ value type:
    
       Increments the chaining time stamp of the Interface1D.
    
-      :arg inter: An Interface1D object.
+      :param inter: An Interface1D object.
       :type inter: :class:`freestyle.types.Interface1D`
 
 
 
-.. class:: freestyle.functions.LocalAverageDepthF0D
+.. class:: LocalAverageDepthF0D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction0D` > :class:`freestyle.types.UnaryFunction0DDouble` > :class:`LocalAverageDepthF0D`
    
@@ -832,7 +832,7 @@ value type:
    
       Builds a LocalAverageDepthF0D object.
    
-      :arg mask_size: The size of the mask.
+      :param mask_size: The size of the mask.
       :type mask_size: float
    
    .. method:: __call__(it)
@@ -842,14 +842,14 @@ value type:
       Interface0DIterator. The result is obtained by querying the depth
       buffer on a window around that point.
    
-      :arg it: An Interface0DIterator object.
+      :param it: An Interface0DIterator object.
       :type it: :class:`freestyle.types.Interface0DIterator`
       :return: The average depth around the pointed Interface0D.
       :rtype: float
 
 
 
-.. class:: freestyle.functions.LocalAverageDepthF1D
+.. class:: LocalAverageDepthF1D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction1D` > :class:`freestyle.types.UnaryFunction1DDouble` > :class:`LocalAverageDepthF1D`
    
@@ -857,10 +857,10 @@ value type:
    
       Builds a LocalAverageDepthF1D object.
    
-      :arg sigma: The sigma used in DensityF0D and determining the window
+      :param sigma: The sigma used in DensityF0D and determining the window
          size used in each density query.
       :type sigma: float
-      :arg integration_type: The integration method used to compute a single value
+      :param integration_type: The integration method used to compute a single value
          from a set of values.
       :type integration_type: :class:`freestyle.types.IntegrationType`
    
@@ -872,14 +872,14 @@ value type:
       user-defined sampling and then integrated into a single value using a
       user-defined integration method.
    
-      :arg inter: An Interface1D object.
+      :param inter: An Interface1D object.
       :type inter: :class:`freestyle.types.Interface1D`
       :return: The average depth evaluated for the Interface1D.
       :rtype: float
 
 
 
-.. class:: freestyle.functions.MaterialF0D
+.. class:: MaterialF0D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction0D` > :class:`freestyle.types.UnaryFunction0DMaterial` > :class:`MaterialF0D`
    
@@ -901,7 +901,7 @@ value type:
       willing to deal with this cases in a specific way should implement its
       own getMaterial functor.
    
-      :arg it: An Interface0DIterator object.
+      :param it: An Interface0DIterator object.
       :type it: :class:`freestyle.types.Interface0DIterator`
       :return: The material of the object evaluated at the pointed
          Interface0D.
@@ -909,7 +909,7 @@ value type:
 
 
 
-.. class:: freestyle.functions.Normal2DF0D
+.. class:: Normal2DF0D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction0D` > :class:`freestyle.types.UnaryFunction0DVec2f` > :class:`Normal2DF0D`
    
@@ -924,7 +924,7 @@ value type:
       pointed by the Interface0DIterator belongs. The normal is evaluated
       at the pointed Interface0D.
    
-      :arg it: An Interface0DIterator object.
+      :param it: An Interface0DIterator object.
       :type it: :class:`freestyle.types.Interface0DIterator`
       :return: The 2D normal of the 1D element evaluated at the pointed
          Interface0D.
@@ -932,7 +932,7 @@ value type:
 
 
 
-.. class:: freestyle.functions.Normal2DF1D
+.. class:: Normal2DF1D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction1D` > :class:`freestyle.types.UnaryFunction1DVec2f` > :class:`Normal2DF1D`
    
@@ -940,7 +940,7 @@ value type:
    
       Builds a Normal2DF1D object.
    
-      :arg integration_type: The integration method used to compute a single value
+      :param integration_type: The integration method used to compute a single value
          from a set of values.
       :type integration_type: :class:`freestyle.types.IntegrationType`
    
@@ -948,14 +948,14 @@ value type:
    
       Returns the 2D normal for the Interface1D.
    
-      :arg inter: An Interface1D object.
+      :param inter: An Interface1D object.
       :type inter: :class:`freestyle.types.Interface1D`
       :return: The 2D normal for the Interface1D.
       :rtype: :class:`mathutils.Vector`
 
 
 
-.. class:: freestyle.functions.Orientation2DF1D
+.. class:: Orientation2DF1D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction1D` > :class:`freestyle.types.UnaryFunction1DVec2f` > :class:`Orientation2DF1D`
    
@@ -963,7 +963,7 @@ value type:
    
       Builds an Orientation2DF1D object.
    
-      :arg integration_type: The integration method used to compute a single value
+      :param integration_type: The integration method used to compute a single value
          from a set of values.
       :type integration_type: :class:`freestyle.types.IntegrationType`
    
@@ -971,14 +971,14 @@ value type:
    
       Returns the 2D orientation of the Interface1D.
    
-      :arg inter: An Interface1D object.
+      :param inter: An Interface1D object.
       :type inter: :class:`freestyle.types.Interface1D`
       :return: The 2D orientation of the Interface1D.
       :rtype: :class:`mathutils.Vector`
 
 
 
-.. class:: freestyle.functions.Orientation3DF1D
+.. class:: Orientation3DF1D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction1D` > :class:`freestyle.types.UnaryFunction1DVec3f` > :class:`Orientation3DF1D`
    
@@ -986,7 +986,7 @@ value type:
    
       Builds an Orientation3DF1D object.
    
-      :arg integration_type: The integration method used to compute a single value
+      :param integration_type: The integration method used to compute a single value
          from a set of values.
       :type integration_type: :class:`freestyle.types.IntegrationType`
    
@@ -994,14 +994,14 @@ value type:
    
       Returns the 3D orientation of the Interface1D.
    
-      :arg inter: An Interface1D object.
+      :param inter: An Interface1D object.
       :type inter: :class:`freestyle.types.Interface1D`
       :return: The 3D orientation of the Interface1D.
       :rtype: :class:`mathutils.Vector`
 
 
 
-.. class:: freestyle.functions.QuantitativeInvisibilityF0D
+.. class:: QuantitativeInvisibilityF0D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction0D` > :class:`freestyle.types.UnaryFunction0DUnsigned` > :class:`QuantitativeInvisibilityF0D`
    
@@ -1020,14 +1020,14 @@ value type:
       problematic cases, and the user willing to deal with this cases in a
       specific way should implement its own getQIF0D functor.
    
-      :arg it: An Interface0DIterator object.
+      :param it: An Interface0DIterator object.
       :type it: :class:`freestyle.types.Interface0DIterator`
       :return: The quantitative invisibility of the pointed Interface0D.
       :rtype: int
 
 
 
-.. class:: freestyle.functions.QuantitativeInvisibilityF1D
+.. class:: QuantitativeInvisibilityF1D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction1D` > :class:`freestyle.types.UnaryFunction1DUnsigned` > :class:`QuantitativeInvisibilityF1D`
    
@@ -1035,7 +1035,7 @@ value type:
    
       Builds a QuantitativeInvisibilityF1D object.
    
-      :arg integration_type: The integration method used to compute a single value
+      :param integration_type: The integration method used to compute a single value
          from a set of values.
       :type integration_type: :class:`freestyle.types.IntegrationType`
    
@@ -1047,14 +1047,14 @@ value type:
       of a chaining (chain, stroke), then it might be made of several 1D
       elements of different Quantitative Invisibilities.
    
-      :arg inter: An Interface1D object.
+      :param inter: An Interface1D object.
       :type inter: :class:`freestyle.types.Interface1D`
       :return: The Quantitative Invisibility of the Interface1D.
       :rtype: int
 
 
 
-.. class:: freestyle.functions.ReadCompleteViewMapPixelF0D
+.. class:: ReadCompleteViewMapPixelF0D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction0D` > :class:`freestyle.types.UnaryFunction0DFloat` > :class:`ReadCompleteViewMapPixelF0D`
    
@@ -1062,7 +1062,7 @@ value type:
    
       Builds a ReadCompleteViewMapPixelF0D object.
    
-      :arg level: The level of the pyramid from which the pixel must be
+      :param level: The level of the pyramid from which the pixel must be
          read.
       :type level: int
    
@@ -1070,14 +1070,14 @@ value type:
    
       Reads a pixel in one of the level of the complete viewmap.
    
-      :arg it: An Interface0DIterator object.
+      :param it: An Interface0DIterator object.
       :type it: :class:`freestyle.types.Interface0DIterator`
       :return: A pixel in one of the level of the complete viewmap.
       :rtype: float
 
 
 
-.. class:: freestyle.functions.ReadMapPixelF0D
+.. class:: ReadMapPixelF0D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction0D` > :class:`freestyle.types.UnaryFunction0DFloat` > :class:`ReadMapPixelF0D`
    
@@ -1085,9 +1085,9 @@ value type:
    
       Builds a ReadMapPixelF0D object.
    
-      :arg map_name: The name of the map to be read.
+      :param map_name: The name of the map to be read.
       :type map_name: str
-      :arg level: The level of the pyramid from which the pixel must be
+      :param level: The level of the pyramid from which the pixel must be
          read.
       :type level: int
    
@@ -1095,14 +1095,14 @@ value type:
    
       Reads a pixel in a map.
    
-      :arg it: An Interface0DIterator object.
+      :param it: An Interface0DIterator object.
       :type it: :class:`freestyle.types.Interface0DIterator`
       :return: A pixel in a map.
       :rtype: float
 
 
 
-.. class:: freestyle.functions.ReadSteerableViewMapPixelF0D
+.. class:: ReadSteerableViewMapPixelF0D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction0D` > :class:`freestyle.types.UnaryFunction0DFloat` > :class:`ReadSteerableViewMapPixelF0D`
    
@@ -1110,10 +1110,10 @@ value type:
    
       Builds a ReadSteerableViewMapPixelF0D object.
    
-      :arg orientation: The integer belonging to [0, 4] indicating the
+      :param orientation: The integer belonging to [0, 4] indicating the
          orientation (E, NE, N, NW) we are interested in.
       :type orientation: int
-      :arg level: The level of the pyramid from which the pixel must be
+      :param level: The level of the pyramid from which the pixel must be
          read.
       :type level: int
    
@@ -1121,14 +1121,14 @@ value type:
    
       Reads a pixel in one of the level of one of the steerable viewmaps.
    
-      :arg it: An Interface0DIterator object.
+      :param it: An Interface0DIterator object.
       :type it: :class:`freestyle.types.Interface0DIterator`
       :return: A pixel in one of the level of one of the steerable viewmaps.
       :rtype: float
 
 
 
-.. class:: freestyle.functions.ShapeIdF0D
+.. class:: ShapeIdF0D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction0D` > :class:`freestyle.types.UnaryFunction0DId` > :class:`ShapeIdF0D`
    
@@ -1148,14 +1148,14 @@ value type:
       with this cases in a specific way should implement its own
       getShapeIdF0D functor.
    
-      :arg it: An Interface0DIterator object.
+      :param it: An Interface0DIterator object.
       :type it: :class:`freestyle.types.Interface0DIterator`
       :return: The Id of the Shape the pointed Interface0D belongs to.
       :rtype: :class:`freestyle.types.Id`
 
 
 
-.. class:: freestyle.functions.TimeStampF1D
+.. class:: TimeStampF1D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction1D` > :class:`freestyle.types.UnaryFunction1DVoid` > :class:`TimeStampF1D`
    
@@ -1167,12 +1167,12 @@ value type:
    
       Returns the time stamp of the Interface1D.
    
-      :arg inter: An Interface1D object.
+      :param inter: An Interface1D object.
       :type inter: :class:`freestyle.types.Interface1D`
 
 
 
-.. class:: freestyle.functions.VertexOrientation2DF0D
+.. class:: VertexOrientation2DF0D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction0D` > :class:`freestyle.types.UnaryFunction0DVec2f` > :class:`VertexOrientation2DF0D`
    
@@ -1187,7 +1187,7 @@ value type:
       by the Interface0DIterator belongs. The 2D oriented tangent is
       evaluated at the pointed Interface0D.
    
-      :arg it: An Interface0DIterator object.
+      :param it: An Interface0DIterator object.
       :type it: :class:`freestyle.types.Interface0DIterator`
       :return: The 2D oriented tangent to the 1D element evaluated at the
          pointed Interface0D.
@@ -1195,7 +1195,7 @@ value type:
 
 
 
-.. class:: freestyle.functions.VertexOrientation3DF0D
+.. class:: VertexOrientation3DF0D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction0D` > :class:`freestyle.types.UnaryFunction0DVec3f` > :class:`VertexOrientation3DF0D`
    
@@ -1210,7 +1210,7 @@ value type:
       pointed by the Interface0DIterator belongs. The 3D oriented tangent
       is evaluated at the pointed Interface0D.
    
-      :arg it: An Interface0DIterator object.
+      :param it: An Interface0DIterator object.
       :type it: :class:`freestyle.types.Interface0DIterator`
       :return: The 3D oriented tangent to the 1D element evaluated at the
          pointed Interface0D.
@@ -1218,7 +1218,7 @@ value type:
 
 
 
-.. class:: freestyle.functions.ZDiscontinuityF0D
+.. class:: ZDiscontinuityF0D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction0D` > :class:`freestyle.types.UnaryFunction0DDouble` > :class:`ZDiscontinuityF0D`
    
@@ -1235,7 +1235,7 @@ value type:
       1. Therefore, if no object is occluded by the shape to which the
       Interface0D belongs to, 1 is returned.
    
-      :arg it: An Interface0DIterator object.
+      :param it: An Interface0DIterator object.
       :type it: :class:`freestyle.types.Interface0DIterator`
       :return: The normalized distance between the pointed Interface0D
          and the occludee.
@@ -1243,7 +1243,7 @@ value type:
 
 
 
-.. class:: freestyle.functions.ZDiscontinuityF1D
+.. class:: ZDiscontinuityF1D
 
    Class hierarchy: :class:`freestyle.types.UnaryFunction1D` > :class:`freestyle.types.UnaryFunction1DDouble` > :class:`ZDiscontinuityF1D`
    
@@ -1251,7 +1251,7 @@ value type:
    
       Builds a ZDiscontinuityF1D object.
    
-      :arg integration_type: The integration method used to compute a single value
+      :param integration_type: The integration method used to compute a single value
          from a set of values.
       :type integration_type: :class:`freestyle.types.IntegrationType`
    
@@ -1263,63 +1263,63 @@ value type:
       Therefore, if no object is occluded by the shape to which the
       Interface1D belongs to, 1 is returned.
    
-      :arg inter: An Interface1D object.
+      :param inter: An Interface1D object.
       :type inter: :class:`freestyle.types.Interface1D`
       :return: The normalized distance between the Interface1D and the occludee.
       :rtype: float
 
 
 
-.. class:: freestyle.functions.pyCurvilinearLengthF0D
+.. class:: pyCurvilinearLengthF0D
 
 
 
 
-.. class:: freestyle.functions.pyDensityAnisotropyF0D
+.. class:: pyDensityAnisotropyF0D
 
    Estimates the anisotropy of density.
 
 
 
-.. class:: freestyle.functions.pyDensityAnisotropyF1D
+.. class:: pyDensityAnisotropyF1D
 
 
 
 
-.. class:: freestyle.functions.pyGetInverseProjectedZF1D
+.. class:: pyGetInverseProjectedZF1D
 
 
 
 
-.. class:: freestyle.functions.pyGetSquareInverseProjectedZF1D
+.. class:: pyGetSquareInverseProjectedZF1D
 
 
 
 
-.. class:: freestyle.functions.pyInverseCurvature2DAngleF0D
+.. class:: pyInverseCurvature2DAngleF0D
 
 
 
 
-.. class:: freestyle.functions.pyViewMapGradientNormF0D
+.. class:: pyViewMapGradientNormF0D
 
 
 
 
-.. class:: freestyle.functions.pyViewMapGradientNormF1D
+.. class:: pyViewMapGradientNormF1D
 
 
 
 
-.. class:: freestyle.functions.pyViewMapGradientVectorF0D
+.. class:: pyViewMapGradientVectorF0D
 
    Returns the gradient vector for a pixel.
    
-   .. method:: __init__(self, level)
+   .. method:: __init__(level)
    
       Builds a pyViewMapGradientVectorF0D object.
    
-      :arg level: the level at which to compute the gradient
+      :param level: the level at which to compute the gradient
       :type level: int
 
 

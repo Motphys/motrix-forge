@@ -17,14 +17,17 @@ Clouds, Fire, Smoke. Well-suited to be used as a Bump map, giving an overall irr
 Options
 =======
 
-Grayscale
-   The standard noise, gives an intensity.
-Color
-   The noise gives an RGB value.
-Noise
+Type
    *Soft* or *Hard*, changes contrast and sharpness.
+Color
+   :Grayscale: The standard noise, gives a floating-point intensity value.
+   :Color: The noise gives an RGB value.
 Size
    The dimension of the Noise table.
 Depth
    The depth of the *Clouds* calculation.
    A higher number results in a long calculation time, but also in finer details.
+Nabla 
+   Size of the derivative offset used for calculating surface normals.
+   Smaller values give more precision, larger values are smoother/faster.
+   This is mostly relevant when the texture is used in displacement or bump channels.

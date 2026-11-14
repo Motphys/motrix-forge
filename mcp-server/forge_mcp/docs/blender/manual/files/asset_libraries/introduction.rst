@@ -2,8 +2,7 @@
 Introduction
 ************
 
-This section describes Blender's asset library system. It was introduced in Blender 3.0,
-and will be improved and expanded over multiple upcoming releases.
+This section describes Blender's asset library system.
 
 .. seealso::
 
@@ -14,6 +13,8 @@ and will be improved and expanded over multiple upcoming releases.
    :doc:`/animation/armatures/posing/editing/pose_library`
       Built on top of the Asset Browser.
 
+
+.. _what-is-asset:
 
 What is an Asset?
 =================
@@ -37,9 +38,13 @@ etc. When planning to re-use or share these, the data needs a meaning. What is t
 What is an Asset Library?
 =========================
 
-An asset library is a directory on your drive that is registered in the Preferences as an asset library.
+An asset library is a collection of Blender assets that is registered in the Preferences as an asset library.
+
+Asset libraries may be stored locally as directories containing blend-files
+or hosted online and downloaded on demand.
+
 Registering it means that you give the library a name (like "Sprite Fright")
-and the location on drive (like ``/home/sybren/projects/sprite-fright/assets``).
+and the location on drive (like ``/home/user/projects/sprite-fright/assets``).
 
 .. figure:: /images/asset_browser-asset_library_preferences.png
 
@@ -59,6 +64,55 @@ The blend-files can be directly in the top-level directory of the asset library,
 The on-drive organization of asset libraries is all up to you. Regardless of which blend-file contains the assets,
 each asset can be assigned a **catalog**. For more info about how to organize your assets
 this way, see :doc:`/files/asset_libraries/catalogs`.
+
+
+Online Asset Libraries
+======================
+
+In addition to directories stored on a local drive, Blender also supports
+online asset libraries.
+
+Online asset libraries provide assets that are downloaded on demand and
+cached locally. Once downloaded, assets behave the same as assets from a
+local library, subject to the selected :ref:`Import Method
+<bpy.types.UserAssetLibrary.import_method>`.
+
+Unlike local asset libraries, online libraries are identified by a URL
+instead of a directory path and do not require manually managing asset files on disk.
+
+.. note::
+
+   Downloading assets from online libraries requires
+   :ref:`Online Access <bpy.types.PreferencesSystem.use_online_access>`
+   to be enabled in the Preferences.
+
+
+Caching
+-------
+
+Downloaded assets are stored in Blender's local cache so they only need
+to be downloaded once.
+
+If an asset has already been downloaded, Blender will reuse the cached
+copy instead of downloading it again.
+
+See :ref:`local-cache-dir` for more information about the cache location.
+
+.. tip::
+
+   Downloading can be canceled by clicking the *Downloading Asset(s)*
+   button in the :doc:`/interface/window_system/status_bar`.
+
+
+Limitations
+-----------
+
+Online asset libraries have a few differences compared to local libraries:
+
+- Assets cannot be :ref:`linked <bpy.ops.wm.link>` directly and must instead
+  be appended or packed.
+- The library contents depend on the availability of the remote server.
+- An internet connection is required to download assets that are not already cached locally.
 
 
 .. _asset-types:
@@ -81,6 +135,65 @@ but don't get saved in the file.
 
 In the future, the asset type definition will be expanded;
 see :ref:`asset-libraries-future-development` for more info.
+
+
+Supported Assets
+----------------
+
+.. list-table::
+   :header-rows: 1
+   :class: valign
+   :widths: 15 15 70
+
+   * - Asset
+     - Type
+     - Description
+
+   * - Material
+     - Primitive
+     - A :doc:`Material </render/materials/index>` data-block that can be applied to objects.
+       When dragged onto an object, it replaces the material slot.
+
+   * - Collection
+     - Primitive
+     - A :doc:`Collection </scene_layout/collections/index>` is a group of objects that
+       can be linked or appended into a scene. Collections maintain their internal hierarchy
+       and can be instanced or used for modular scene composition.
+
+   * - Object
+     - Primitive
+     - A standard :doc:`Object </scene_layout/object/index>` asset that can be dragged into the scene.
+       It may contain mesh, curve, light, or other data.
+
+   * - Brush
+     - Preset
+     - A :doc:`Brush </sculpt_paint/brush/index>` asset used for sculpting, texture painting, or vertex painting.
+       When activated, it becomes the current brush but is not stored permanently in the file.
+
+   * - Node Group
+     - Primitive
+     - A :doc:`Node Group </interface/controls/nodes/groups>` asset that can be dragged into compatible node editors
+       such as Geometry Nodes, Shader Editor, or Compositor. Acts as a reusable building block of node logic.
+
+   * - World
+     - Primitive
+     - A :doc:`World </render/lights/world>` asset defining ambient lighting and background.
+       When dragged into the viewport, it replaces the current world. It can also be appended as a data-block.
+
+   * - Scene
+     - Primitive
+     - A full :doc:`Scene </scene_layout/scene/index>` asset, including its cameras, lights, and linked objects.
+
+       * Scenes generate previews by rendering the active camera view in Solid mode.
+         This requires the scene to have an active camera.
+       * Dragging a scene asset into a window (except the Asset Browser itself)
+         imports or links the scene and makes it the active scene in that window.
+
+   * - Pose Action
+     - Preset
+     - A :doc:`Pose Asset </animation/armatures/posing/editing/pose_library>` based on an Action data-block.
+       Applying it loads the pose data and applies it to the selected or active armature, updating bone transforms
+       without permanently modifying the source action.
 
 
 .. _asset-library-current-file:
@@ -215,7 +328,7 @@ Included in this library are:
 
 .. _asset-system-files:
 
-Asset System Files (`.asset.blend` Extention)
+Asset System Files (`.asset.blend` Extension)
 =============================================
 
 Some types of assets can be edited without having to open a blend-file inside of an asset library.

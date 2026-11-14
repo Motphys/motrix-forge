@@ -1,47 +1,70 @@
 .. index:: Geometry Nodes; Repeat
 .. _bpy.types.GeometryNodeRepeatInput:
 .. _bpy.types.GeometryNodeRepeatOutput:
+.. --- copy below this line ---
 
 ***********
 Repeat Zone
 ***********
 
-Repeat zones allow running nodes many times in a loop. Compared with simply duplicating
-a node, they support executing a node an arbitrary number of times, possibly determined
-when the node group is evaluated. For example, the nodes could be repeated based on the
-number of stories in a building generator.
+A *Repeat Zone* executes a set of nodes multiple times.
 
-.. figure:: /images/modeling_geometry-nodes_repeat_zone.png
+.. figure:: /images/modeling_geometry-nodes_repeat-zone.png
    :align: center
 
-   Repeat zone used to repeat a node group a few times
+The zone consists of an input node on the left, an output node on the right,
+and an orange area in the middle for placing the nodes to repeat. When the zone executes
+for the first time, it evaluates its inputs and forwards them to its inner nodes.
+These inner nodes can then write to the output node for providing inputs to the next
+iteration, and for providing the result of the zone after the last iteration.
 
-When adding a repeat zone, two nodes are added, with the "zone" defined between them.
-The inputs connected to the *Repeat Input* node are read at the beginning, before starting
-the repetitions. Then they are passed to the inside of the zone where they can be changed,
-and passed to the next iteration. This process is repeated the specified number of times.
-
-Other nodes can be connected as inputs to the inside of the repeat zone from the outside.
-Those are constant throughout every iteration based on their value at the current frame.
-However, outputs of the zone must be connected through the *Repeat Output* node.
+The nodes inside the zone can also take inputs from nodes outside the zone -- these
+inputs are then the same in every iteration. However, nodes inside the zone can't
+send their outputs to nodes outside the zone.
 
 
 Inputs
 ======
 
 Iterations
-   Number of times to repeat the execution of the zone. The current iteration is available with the
-   *Iteration* input on the inside of the zone.
+   Number of times to execute the zone. The *Iteration* socket gives the index of
+   the current iteration, starting from 0.
 
 Geometry
-   Standard geometry input, which is available by default to input geometry into the repeat zone.
-   More bake items can be added by dragging sockets into the blank socket or in the *Bake Items* panel.
-   Items can be renamed by :kbd:`Ctrl-LMB` on the socket name or in the nodes *Properties* panel.
+   Default geometry input. Further inputs can be added by connecting a node's output
+   to the zone's blank input, or by using the *Repeat Items* list in the node's
+   *Properties* panel.
+
+   The inputs can be renamed by clicking them with :kbd:`Ctrl-LMB` in the zone
+   itself or in the *Repeat Items* list. The latter also accepts double clicking.
 
 
 Properties
 ==========
 
+.. reference::
+
+   :Menu: :menuselection:`Sidebar --> Node --> Properties`
+
+Repeat Items
+   :ref:`ui-list-view` for adding, removing, reordering, and renaming the inputs of the zone.
+
+   Socket Type
+      The :ref:`data type <attribute-data-types>` of the selected input.
+
 Inspection Index
-   Iteration number that is used by inspection features like the :doc:`/modeling/geometry_nodes/output/viewer`
-   or :doc:`socket inspection </modeling/geometry_nodes/inspection>`.
+   The number of the iteration to show in :ref:`socket inspection <socket-inspection>`
+   and in the :doc:`/modeling/geometry_nodes/output/viewer`.
+
+.. --- copy until this line ---
+
+Example
+=======
+
+.. figure:: /images/modeling_geometry-nodes_repeat-zone_example.png
+   :align: center
+
+The above example generates a pyramid with a configurable number of levels.
+Each iteration creates a cube, brings it into position, and
+:doc:`joins </modeling/geometry_nodes/geometry/join_geometry>` it with the result of
+the previous iteration.

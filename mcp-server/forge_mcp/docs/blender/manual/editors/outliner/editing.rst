@@ -75,55 +75,90 @@ Instance to Scene
    Creates a new :doc:`collection instance </scene_layout/object/properties/instancing/collection>`.
 
 Visibility
-   Controls the collection's visibility in the 3D Viewport and the final render.
+^^^^^^^^^^
 
-   .. _bpy.ops.outliner.collection_isolate:
+Controls the collection's visibility in the 3D Viewport and the final render.
 
-   Isolate
-      Shows the selected collection (as well as its child and parent collections)
-      and hides all the others.
+.. _bpy.ops.outliner.collection_isolate:
 
-   .. _bpy.ops.outliner.collection_show:
-   .. _bpy.ops.outliner.collection_hide:
+Isolate
+   Shows the selected collection (as well as its child and parent collections)
+   and hides all the others.
 
-   Show/Hide
-      Changes the :ref:`Hide in Viewports <bpy.types.LayerCollection.hide_viewport>` setting
-      for the selected collections.
+.. _bpy.ops.outliner.collection_show:
+.. _bpy.ops.outliner.collection_hide:
 
-   .. _bpy.ops.outliner.collection_show_inside:
-   .. _bpy.ops.outliner.collection_hide_inside:
+Show/Hide
+   Changes the :ref:`Hide in Viewports <bpy.types.LayerCollection.hide_viewport>` setting
+   for the selected collections.
 
-   Show/Hide Inside
-      Changes the :ref:`Hide in Viewports <bpy.types.LayerCollection.hide_viewport>` setting
-      for the selected collections and all their children.
+.. _bpy.ops.outliner.collection_show_inside:
+.. _bpy.ops.outliner.collection_hide_inside:
 
-   .. _bpy.ops.outliner.collection_enable:
-   .. _bpy.ops.outliner.collection_disable:
+Show/Hide Inside
+   Changes the :ref:`Hide in Viewports <bpy.types.LayerCollection.hide_viewport>` setting
+   for the selected collections and all their children.
 
-   Enable/Disable in Viewports
-      Changes the :ref:`Disable in Viewports <bpy.types.Collection.hide_viewport>` setting
-      for the selected collections.
+.. _bpy.ops.outliner.collection_enable:
+.. _bpy.ops.outliner.collection_disable:
 
-   .. _bpy.ops.outliner.collection_enable_render:
-   .. _bpy.ops.outliner.collection_disable_render:
+Enable/Disable in Viewports
+   Changes the :ref:`Disable in Viewports <bpy.types.Collection.hide_viewport>` setting
+   for the selected collections.
 
-   Enable/Disable in Renders
-      Changes the :ref:`Disable in Renders <bpy.types.Collection.hide_render>` setting
-      for the selected collections.
+.. _bpy.ops.outliner.collection_enable_render:
+.. _bpy.ops.outliner.collection_disable_render:
+
+Enable/Disable in Renders
+   Changes the :ref:`Disable in Renders <bpy.types.Collection.hide_render>` setting
+   for the selected collections.
+
 
 View Layer
-   Controls the collection's interactions with the :doc:`View Layer </render/layers/introduction>`.
+^^^^^^^^^^
 
-   .. _bpy.ops.outliner.collection_exclude_clear:
-   .. _bpy.ops.outliner.collection_exclude_set:
+Controls the collection's interactions with the :doc:`View Layer </render/layers/introduction>`.
 
-   Disable/Enable in View Layer
-      Changes the :ref:`Exclude from View Layer <bpy.types.LayerCollection.exclude>` setting
-      for the selected collections.
+.. figure:: /images/render_layers_introduction_viewlayer-collection.png
 
-   Set/Clear Holdout
-      Changes the :ref:`Holdout <bpy.types.LayerCollection.holdout>` setting
-      for the selected collections.
+   Collection/View layer settings.
+
+.. _bpy.ops.outliner.collection_exclude_clear:
+
+Disable from View Layer
+   Remove this collection from the active view layer.
+   Objects that are only in this collection will not be rendered for the active view layer.
+   This is useful to sometimes leave out some object influence for a particular view layer.
+
+.. _bpy.ops.outliner.collection_exclude_set:
+
+Enable in View Layer
+   Add this collection to the active view layer.
+   Objects inside the collection will be rendered with the active view layer.
+
+.. _bpy.ops.outliner.collection_holdout_set:
+
+Set Holdout
+   Enables the :ref:`Holdout <bpy.types.LayerCollection.holdout>` property for the selected collections.
+   Objects inside this collection will generate a holdout/mask in the active view layer.
+
+.. _bpy.ops.outliner.collection_holdout_clear:
+
+Clear Holdout
+   Disables the *Holdout* property for the selected collections.
+
+.. _bpy.ops.outliner.collection_indirect_only_set:
+
+Set Indirect Only :guilabel:`Cycles Only`
+   Enables the :ref:`Indirect Only <bpy.types.LayerCollection.indirect_only>` property for the selected collections.
+   Objects inside this collection will only contribute to the final image indirectly through shadows and reflections.
+
+.. _bpy.ops.outliner.collection_indirect_only_clear:
+
+Clear Indirect Only :guilabel:`Cycles Only`
+   Disables the *Indirect Only* property for the selected collections.
+
+-----
 
 .. _bpy.ops.outliner.collection_color_tag_set:
 
@@ -192,7 +227,7 @@ View
 .. _bpy.ops.outliner.show_active:
 
 Show Active :kbd:`Period`
-   Centers the tree view to the active item.
+   Centers the tree to the active item.
 
 .. _bpy.ops.outliner.expanded_toggle:
 

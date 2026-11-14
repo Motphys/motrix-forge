@@ -5,15 +5,7 @@
 Copy Scale Constraint
 *********************
 
-The *Copy Scale* constraint forces its owner to have the same scale as its target.
-
-.. note::
-
-   Here we talk of *scale*, not of *size*! Indeed, you can have two objects,
-   one much bigger than the other, and yet both of them have the same scale.
-   This is also true with bones: in *Pose Mode*,
-   they all have a unitary scale when they are in rest position,
-   represented by their visible length.
+The *Copy Scale* constraint forces an object or bone to match the scale of a target.
 
 
 Options
@@ -21,48 +13,45 @@ Options
 
 .. figure:: /images/animation_constraints_transform_copy-scale_panel.png
 
-   Copy Scale panel.
+   Copy Scale constraint.
 
-Target
-   :ref:`ui-data-id` used to select the constraints target, and is not functional (red state) when it has none.
-   See :ref:`common constraint properties <rigging-constraints-interface-common-target>` for more information.
+:ref:`Target <rigging-constraints-interface-common-target>`
+   The object or bone whose scale to copy.
 
 Axis
-   These buttons control which axes of the target scale are copied.
+   The axes for which to copy scale factors.
 
 Power
-   Allows raising the copied scale to the specified arbitrary power.
+   Raises the target's scales to the specified power. This is done before applying
+   the *Offset*.
 
 Make Uniform
-   Instead of copying scale for individual axes, apply a uniform scaling factor
-   to all axes of the owner that achieves the same overall change in volume.
+   Instead of applying the scale for each individual axis, apply a uniform scale
+   to all axes that achieves the same overall change in volume.
 
 Offset
-   When enabled, the constraint combines the copied scale with the owner's scale,
-   instead of overwriting it.
+   When enabled, the target's current scale (from all its constraints) is not
+   copied over, but multiplied with the owner's original scale
+   (from its preceding constraints).
 
 Additive
-   Uses addition instead of multiplication in the implementation of the *Offset* option.
+   When *Offset* is enabled, don't use multiplication, but add the owner's scales minus 1.
+   This option is kept for backwards compatibility, but generally makes no sense and should not be used.
 
-Target/Owner
-   Standard conversion between spaces.
-   See :ref:`common constraint properties <rigging-constraints-interface-common-space>` for more information.
+:ref:`Target/Owner <rigging-constraints-interface-common-space>`
+   The spaces for retrieving the scales from the target and for applying them to the owner.
 
-Influence
-   Controls the percentage of affect the constraint has on the object.
-   See :ref:`common constraint properties <bpy.types.constraint.influence>` for more information.
-
-.. note::
-
-   Since scale is a multiplicative quantity, it should be combined using multiplication,
-   and split into fractions or inverted via power. Thus the use of *Power* is
-   more mathematically correct than *Influence*, which uses linear interpolation.
-   The use of the *Additive* option is also not recommended.
+:ref:`bpy.types.constraint.influence`
+   How strongly the constraint affects the owner.
 
 .. tip::
 
-   To copy scale from one axis of the target to all axes of the owner,
-   disable other axes, enable *Make Uniform*, and set *Power* to 3.
+   Depending on the settings, *Power* can be used instead of *Influence* to get a better-looking result.
+
+.. tip::
+
+   To copy the scale from one axis of the target to all axes of the owner,
+   disable the other axes, enable *Make Uniform*, and set *Power* to 3.
 
 
 Example

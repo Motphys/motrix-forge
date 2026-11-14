@@ -25,12 +25,6 @@ Threshold
     considered planar.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 
@@ -44,5 +38,5 @@ Examples
 .. figure:: /images/modeling_geometry-nodes_input_face-is-planar_simple.png
    :align: center
 
-Combined with the :doc:`/modeling/geometry_nodes/material/set_material`,
+Combined with the :doc:`/modeling/geometry_nodes/geometry/material/set_material`,
 this node is used to visualize all non-planar faces in a mesh.

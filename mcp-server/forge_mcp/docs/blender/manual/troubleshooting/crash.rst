@@ -54,8 +54,8 @@ system info text files:
 - ``blender_debug_gpu.cmd`` and ``blender_debug_gpu_workaround.cmd`` log GPU-related errors.
 - ``blender_factory_startup.cmd`` starts Blender with default settings which is recommended for debugging.
 
-If the crash happens in Blender module, stack trace is also written to a file named ``blender.crash.txt``. The path to
-that file can be found at the end of ``blender_debug_log.txt`` file.
+If the crash happens in Blender module, stack trace is also written to a file named ``blender.crash.txt``.
+The path to that file can be found at the end of ``blender_debug_out.txt`` file.
 
 
 macOS

@@ -13,10 +13,6 @@ UV Maps
    :Mode:      All Modes
    :Panel:     :menuselection:`Properties --> Data --> UV Maps`
 
-.. figure:: /images/modeling_meshes_uv_uv-texture-spaces_uv-maps.png
-
-   The UV Maps panel in the Data tab.
-
 If you have a mesh object selected, you'll find its UV maps in the Data tab of the
 :doc:`Properties editor </editors/properties_editor>`. After selecting a map,
 you can view and edit it in the :doc:`UV editor </editors/uv/introduction>`.
@@ -24,15 +20,18 @@ you can view and edit it in the :doc:`UV editor </editors/uv/introduction>`.
 One mesh can have multiple UV maps (e.g. one map per texture), although it's
 also possible to reuse a UV map for multiple textures.
 
+.. figure:: /images/modeling_meshes_uv_uv-texture-spaces_uv-maps.png
+
+   The UV Maps panel in the Data tab.
+
 .. _bpy.types.MeshUVLoopLayer.active_render:
 
-Active Render
-   Click the camera icon to make a certain UV map the default one for rendering.
-   This will be the map that's output by the
-   :ref:`UV Pass <bpy.types.ViewLayer.use_pass_uv>` for compositing
-   and the :doc:`/render/shader_nodes/input/texture_coordinate` for material shading.
-   Use the :doc:`/render/shader_nodes/input/uv_map` to access any other UV
-   maps in shaders.
+:bl-icon:`restrict_render_off`/:bl-icon:`restrict_render_on` Active Render
+   Marks the UV map as the default one for rendering. The *Active Render* UV map is used for:
+
+   - The :ref:`UV Pass <bpy.types.ViewLayer.use_pass_uv>` for compositing
+   - The :doc:`/render/shader_nodes/input/texture_coordinate` for material shading.
+   - The :doc:`/render/shader_nodes/input/uv_map` for material shading when no UV map is specified.
 
 :bl-icon:`add` Add UV Map
    Duplicates the selected UV map, or creates a new one if the list is empty.
@@ -90,7 +89,7 @@ Editing
 
 .. reference::
 
-   :Mode:      Object Mode and Edit Mode
+   :Mode:      Object Mode
    :Menu:      :menuselection:`Object --> Transform --> Move/Scale Texture Space`
 
 Click one of these menu items, then move the mouse to adjust the texture space
@@ -109,5 +108,5 @@ node.
 .. tip::
 
    Texture spaces do not have rotation support. You can use a
-   :doc:`/render/shader_nodes/vector/mapping` to manually rotate the coordinate
+   :doc:`/render/shader_nodes/utilities/vector/mapping` to manually rotate the coordinate
    in the material shader instead.

@@ -7,7 +7,7 @@ Input
 In the Input preferences, you can customize how Blender reacts to the mouse and keyboard
 as well as define your own keymap.
 
-.. figure:: /images/editors_preferences_section_input.png
+.. figure:: /images/editors_preferences_section_input.webp
 
 
 Keyboard
@@ -194,9 +194,14 @@ Navigation Mode
 
    :Object:
       Feels like holding the object in your hand. Moving the 3D mouse moves the object in that direction.
-   :Fly/Helicopter:
+   :Fly:
       Moves the camera through the scene, like flying or piloting a helicopter.
       For example, pushing the 3D mouse up moves the camera up.
+   :Drone:
+      Enables a Fly Mode navigation but pushing the cap forward
+      while looking down will not change the altitude of the camera.
+
+      "Lock Horizon" is always used in this mode.
 
 .. _bpy.types.PreferencesInput.ndof_lock_horizon:
 
@@ -228,12 +233,12 @@ Show -- Orbit Center
 Advanced
 --------
 
-.. _bpy.types.PreferencesInput.ndof_sensitivity:
+.. _bpy.types.PreferencesInput.ndof_translation_sensitivity:
 
 Pan Sensitivity
    Controls how quickly the view pans in response to NDOF input.
 
-.. _bpy.types.PreferencesInput.ndof_orbit_sensitivity:
+.. _bpy.types.PreferencesInput.ndof_rotation_sensitivity:
 
 Orbit Sensitivity
    Controls how quickly the view orbits in response to NDOF input.

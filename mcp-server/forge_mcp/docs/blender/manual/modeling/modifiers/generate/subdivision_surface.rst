@@ -30,7 +30,7 @@ You can see the difference between the two in the grid image below.
 .. note::
 
    This modifier uses
-   the `OpenSubdiv library <https://graphics.pixar.com/opensubdiv/docs/intro.html>`__ as a backend.
+   the `OpenSubdiv library <https://opensubdiv.org/docs/intro.html>`__ as a backend.
 
 
 Options
@@ -124,6 +124,39 @@ Use Creases
 Use Custom Normals
    Interpolates existing :ref:`modeling_meshes_normals_custom` of the resulting mesh.
    Otherwise, new faces will have the overall normal orientation of that original face.
+
+
+.. _modifiers-generate-subsurf-adaptive-subdivision:
+
+Adaptive Subdivision
+====================
+
+:guilabel:`Cycles Only`
+
+Adaptive Subdivision
+   Subdivide objects based on their distance to the camera, automatically adding more or less
+   detail. Particularly useful for fine displacement detail.
+
+Adaptive Space
+   :Pixel:
+      Subdivide polygons to reach a specified pixel size on screen.
+   :Object:
+      Subdivide to reach a specified edge length in object space. This is required to use
+      adaptive subdivision for instanced meshes.
+
+Pixel Size
+   Target polygon pixel size for adaptive subdivision.
+
+Edge Length
+   Target object space edge length.
+
+Limitations
+-----------
+
+- Multi-view renders can have some inconsistencies between views.
+- Instancing does not work well with Pixel space subdivision. Subdivision will be
+  based on the original object position relative to the camera, and it is recommended
+  to use Object space instead.
 
 
 Keyboard Shortcuts

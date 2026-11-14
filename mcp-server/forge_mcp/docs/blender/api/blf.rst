@@ -5,6 +5,12 @@ Font Drawing (blf)
 
 This module provides access to Blender's text drawing functions.
 
+.. toctree::
+   :maxdepth: 1
+   :caption: Submodules
+
+   blf.types.rst
+
 
 Hello World Text Example
 ++++++++++++++++++++++++
@@ -12,56 +18,56 @@ Hello World Text Example
 Example of using the blf module. For this module to work we
 need to use the GPU module :mod:`gpu` as well.
 
-.. literalinclude:: ..\examples\blf.py
+.. literalinclude:: ../examples/blf.0.py
    :lines: 8-
 
 
 Drawing Text to an Image
 ++++++++++++++++++++++++
 
-Example showing how text can be draw into an image.
+Example showing how text can be drawn into an image.
 This can be done by binding an image buffer (:mod:`imbuf`) to the font's ID.
 
-.. literalinclude:: ..\examples\blf.1.py
+.. literalinclude:: ../examples/blf.1.py
    :lines: 9-
 
 .. function:: aspect(fontid, aspect)
 
    Set the aspect for drawing text.
 
-   :arg fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
+   :param fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
    :type fontid: int
-   :arg aspect: The aspect ratio for text drawing to use.
+   :param aspect: The aspect ratio for non-uniform scaling of text.
    :type aspect: float
 
 
-.. method:: bind_imbuf(fontid, image, display_name=None)
+.. function:: bind_imbuf(fontid, imbuf, *, display_name=None)
 
    Context manager to draw text into an image buffer instead of the GPU's context.
 
-   :arg fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
+   :param fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
    :type fontid: int
-   :arg imbuf: The image to draw into.
+   :param imbuf: The image to draw into.
    :type imbuf: :class:`imbuf.types.ImBuf`
-   :arg display_name: The color management display name to use or None.
+   :param display_name: Ignored (formerly a color-space transform name), kept for backwards compatibility.
    :type display_name: str | None
    :return: The BLF ImBuf context manager.
-   :rtype: BLFImBufContext
+   :rtype: :class:`blf.types.BLFImBufContext`
 
 
 .. function:: clipping(fontid, xmin, ymin, xmax, ymax)
 
-   Set the clipping, enable/disable using CLIPPING.
+   Set the clipping, enable/disable using :data:`CLIPPING`.
 
-   :arg fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
+   :param fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
    :type fontid: int
-   :arg xmin: Clip the drawing area by these bounds.
+   :param xmin: Left edge of the clipping rectangle.
    :type xmin: float
-   :arg ymin: Clip the drawing area by these bounds.
+   :param ymin: Bottom edge of the clipping rectangle.
    :type ymin: float
-   :arg xmax: Clip the drawing area by these bounds.
+   :param xmax: Right edge of the clipping rectangle.
    :type xmax: float
-   :arg ymax: Clip the drawing area by these bounds.
+   :param ymax: Top edge of the clipping rectangle.
    :type ymax: float
 
 
@@ -69,15 +75,15 @@ This can be done by binding an image buffer (:mod:`imbuf`) to the font's ID.
 
    Set the color for drawing text.
 
-   :arg fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
+   :param fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
    :type fontid: int
-   :arg r: red channel 0.0 - 1.0.
+   :param r: Red channel 0.0 - 1.0.
    :type r: float
-   :arg g: green channel 0.0 - 1.0.
+   :param g: Green channel 0.0 - 1.0.
    :type g: float
-   :arg b: blue channel 0.0 - 1.0.
+   :param b: Blue channel 0.0 - 1.0.
    :type b: float
-   :arg a: alpha channel 0.0 - 1.0.
+   :param a: Alpha channel 0.0 - 1.0.
    :type a: float
 
 
@@ -85,21 +91,21 @@ This can be done by binding an image buffer (:mod:`imbuf`) to the font's ID.
 
    Return the width and height of the text.
 
-   :arg fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
+   :param fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
    :type fontid: int
-   :arg text: the text to draw.
+   :param text: The text to measure.
    :type text: str
-   :return: the width and height of the text.
+   :return: The width and height of the text.
    :rtype: tuple[float, float]
 
 
 .. function:: disable(fontid, option)
 
-   Disable option.
+   Disable a font drawing option.
 
-   :arg fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
+   :param fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
    :type fontid: int
-   :arg option: One of ROTATION, CLIPPING, SHADOW or KERNING_DEFAULT.
+   :param option: One of :data:`ROTATION`, :data:`CLIPPING`, :data:`SHADOW`, :data:`MONOCHROME` or :data:`WORD_WRAP`.
    :type option: int
 
 
@@ -107,29 +113,29 @@ This can be done by binding an image buffer (:mod:`imbuf`) to the font's ID.
 
    Draw text in the current context.
 
-   :arg fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
+   :param fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
    :type fontid: int
-   :arg text: the text to draw.
+   :param text: The text to draw.
    :type text: str
 
 
 .. function:: draw_buffer(fontid, text)
 
-   Draw text into the buffer bound to the fontid.
+   Draw text into the image buffer bound via :func:`blf.bind_imbuf`.
 
-   :arg fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
+   :param fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
    :type fontid: int
-   :arg text: the text to draw.
+   :param text: The text to draw into the bound image buffer.
    :type text: str
 
 
 .. function:: enable(fontid, option)
 
-   Enable option.
+   Enable a font drawing option.
 
-   :arg fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
+   :param fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
    :type fontid: int
-   :arg option: One of ROTATION, CLIPPING, SHADOW or KERNING_DEFAULT.
+   :param option: One of :data:`ROTATION`, :data:`CLIPPING`, :data:`SHADOW`, :data:`MONOCHROME` or :data:`WORD_WRAP`.
    :type option: int
 
 
@@ -137,9 +143,9 @@ This can be done by binding an image buffer (:mod:`imbuf`) to the font's ID.
 
    Load a new font.
 
-   :arg filepath: the filepath of the font.
+   :param filepath: The filepath of the font.
    :type filepath: str | bytes
-   :return: the new font's fontid or -1 if there was an error.
+   :return: The new font's fontid or -1 if there was an error.
    :rtype: int
 
 
@@ -147,63 +153,63 @@ This can be done by binding an image buffer (:mod:`imbuf`) to the font's ID.
 
    Set the position for drawing text.
 
-   :arg fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
+   :param fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
    :type fontid: int
-   :arg x: X axis position to draw the text.
+   :param x: X axis position to draw the text.
    :type x: float
-   :arg y: Y axis position to draw the text.
+   :param y: Y axis position to draw the text.
    :type y: float
-   :arg z: Z axis position to draw the text.
+   :param z: Z axis position to draw the text (typically 0).
    :type z: float
 
 
 .. function:: rotation(fontid, angle)
 
-   Set the text rotation angle, enable/disable using ROTATION.
+   Set the text rotation angle, enable/disable using :data:`ROTATION`.
 
-   :arg fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
+   :param fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
    :type fontid: int
-   :arg angle: The angle for text drawing to use.
+   :param angle: The angle for text drawing to use (in radians).
    :type angle: float
 
 
 .. function:: shadow(fontid, level, r, g, b, a)
 
-   Shadow options, enable/disable using SHADOW .
+   Shadow options, enable/disable using :data:`SHADOW`.
 
-   :arg fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
+   :param fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
    :type fontid: int
-   :arg level: The blur level (0, 3, 5) or outline (6).
+   :param level: The shadow type: 0 for none, 3 for 3x3 blur, 5 for 5x5 blur or 6 for outline. Other values raise a :exc:`TypeError`.
    :type level: int
-   :arg r: Shadow color (red channel 0.0 - 1.0).
+   :param r: Shadow color (red channel 0.0 - 1.0).
    :type r: float
-   :arg g: Shadow color (green channel 0.0 - 1.0).
+   :param g: Shadow color (green channel 0.0 - 1.0).
    :type g: float
-   :arg b: Shadow color (blue channel 0.0 - 1.0).
+   :param b: Shadow color (blue channel 0.0 - 1.0).
    :type b: float
-   :arg a: Shadow color (alpha channel 0.0 - 1.0).
+   :param a: Shadow color (alpha channel 0.0 - 1.0).
    :type a: float
 
 
 .. function:: shadow_offset(fontid, x, y)
 
-   Set the offset for shadow text.
+   Set the offset for shadow text, enable/disable using :data:`SHADOW`.
 
-   :arg fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
+   :param fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
    :type fontid: int
-   :arg x: Vertical shadow offset value in pixels.
-   :type x: float
-   :arg y: Horizontal shadow offset value in pixels.
-   :type y: float
+   :param x: Horizontal shadow offset value in pixels.
+   :type x: int
+   :param y: Vertical shadow offset value in pixels.
+   :type y: int
 
 
 .. function:: size(fontid, size)
 
    Set the size for drawing text.
 
-   :arg fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
+   :param fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
    :type fontid: int
-   :arg size: Point size of the font.
+   :param size: Point size of the font.
    :type size: float
 
 
@@ -211,17 +217,17 @@ This can be done by binding an image buffer (:mod:`imbuf`) to the font's ID.
 
    Unload an existing font.
 
-   :arg filepath: the filepath of the font.
+   :param filepath: The filepath of the font.
    :type filepath: str | bytes
 
 
 .. function:: word_wrap(fontid, wrap_width)
 
-   Set the wrap width, enable/disable using WORD_WRAP.
+   Set the wrap width, enable/disable using :data:`WORD_WRAP`.
 
-   :arg fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
+   :param fontid: The id of the typeface as returned by :func:`blf.load`, for default font use 0.
    :type fontid: int
-   :arg wrap_width: The width (in pixels) to wrap words at.
+   :param wrap_width: The width (in pixels) to wrap words at.
    :type wrap_width: int
 
 
@@ -229,19 +235,35 @@ This can be done by binding an image buffer (:mod:`imbuf`) to the font's ID.
 
    Constant value 2
 
+   :type: int
+
 .. data:: MONOCHROME
 
    Constant value 128
+
+   :type: int
+
+.. data:: NO_FALLBACK
+
+   Constant value 524288
+
+   :type: int
 
 .. data:: ROTATION
 
    Constant value 1
 
+   :type: int
+
 .. data:: SHADOW
 
    Constant value 4
 
+   :type: int
+
 .. data:: WORD_WRAP
 
    Constant value 64
+
+   :type: int
 

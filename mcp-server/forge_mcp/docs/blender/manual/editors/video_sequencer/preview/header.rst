@@ -19,6 +19,8 @@ Sidebar :kbd:`N`
    Show or hide the :ref:`Sidebar <ui-region-sidebar>`.
 Tool Settings
    Show or hide the settings for the currently selected tool.
+Footer
+   Show or hide the :ref:`Sidebar <ui-region-footer>`.
 
 ----------
 
@@ -74,6 +76,11 @@ Proxy
 
 ----------
 
+Use Timecode :kbd:`Ctrl-T`
+   Shows seconds instead of frames on the time axis.
+
+----------
+
 Sequence Render Image
    Show the current frame preview as a Render Result where you can save it as an image file.
 Sequence Render Animation
@@ -119,38 +126,65 @@ Strip Menu
 
 See :doc:`/video_editing/edit/montage/editing` for more information.
 
+Mirror
+   Interactive Mirror :kbd:`Ctrl-M`
+      Starts mirror operation based on mouse cursor position
+   X Global
+      Mirrors the image in global X coordinates
+   Y Global
+      Mirrors the image in global Y coordinates
+   X Local
+      Mirrors the image in local X coordinates
+   Y Local
+      Mirrors the image in local Y coordinates
 
 .. _bpy.ops.sequencer.preview_duplicate_move:
 
-Duplicate
----------
+Duplicate :kbd:`Shift-D`
+   The *Duplicate* operator creates a copy of the selected strip(s)
+   and places them in the nearest available channel above the original.
 
-.. reference::
-
-   :View Type:   Preview
-   :Menu:        :menuselection:`Strip --> Duplicate`
-   :Shortcut:    :kbd:`Shift-D`
-
-The *Duplicate* operator creates a copy of the selected strip(s)
-and places them in the nearest available channel above the original.
-
-The duplicated content remain selected, allowing immediate repositioning.
+   The duplicated content remains selected, allowing immediate repositioning.
 
 .. seealso::
 
    :ref:`bpy.ops.sequencer.duplicate_move`
 
+Copy :kbd:`Ctrl-C`
+   Adds selected strips to copy-paste buffer.
+
+Paste :kbd:`Ctrl-V`
+   Paste strips from copy-paste buffer.
+
+Animation
+   Insert Keyframe :kbd:`I`
+      See :ref:`Insert Keyframe <bpy.ops.anim.keyframe_insert>`.
+
+   Insert Keyframe with Keying Set :kbd:`K`
+      See :ref:`Insert Keyframe with Keying Set <bpy.ops.anim.keyframe_insert_menu>`.
+
+   Change Keying Set :kbd:`Shift-K`
+      See :ref:`Set Active Keying Set <bpy.ops.anim.keying_set_active_set>`.
+
+   Delete Keyframes :kbd:`Alt-I`
+      See :ref:`Delete Keyframes <bpy.ops.anim.keyframe_delete>`.
+
+   Clear Keyframes :kbd:`Shift-Alt-I`
+      See :ref:`Clear Keyframes <bpy.ops.anim.keyframe_clear>`.
+
+.. seealso::
+   :doc:`Editing Keyframes </animation/keyframes/editing>`
 
 Show/Hide
----------
+   Show Hidden Strips :kbd:`Alt-H`
+      Reveals all hidden/muted strips.
+   Hide Selected :kbd:`H`
+      Mutes the selected strips.
+   Hide Unselected :kbd:`Shift-H`
+      Mutes all strips except for the currently selected strips.
 
-Show Hidden Strips :kbd:`Alt-H`
-   Reveals all hidden/muted strips.
-Hide Selected :kbd:`H`
-   Mutes the selected strips.
-Hide Unselected :kbd:`Shift-H`
-   Mutes all strips except for the currently selected strips.
-
+Delete
+   Delete selected strips
 
 Image Menu
 ==========
@@ -159,9 +193,9 @@ Transform
    Move Origin :kbd:`Ctrl-Period`
       Moves the origin of the image strip without changing the strip's content position.
 
-      This is useful for adjusting the reference point for transformations like rotation, scaling, or further positioning.
-      For example, shifting the origin to a corner of the image allows rotations to pivot around that corner,
-      rather than the default center.
+      This is useful for adjusting the reference point for transformations like rotation, scaling, or further
+      positioning. For example, shifting the origin to a corner of the image allows rotations to pivot around that
+      corner, rather than the default center.
 
 Clear
    Resets the position, rotation, or scale of the selected images.

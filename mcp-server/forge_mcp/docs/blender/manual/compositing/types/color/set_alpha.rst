@@ -21,13 +21,9 @@ Alpha
    The amount of Alpha can be set for the whole image by using the input field or
    per pixel by connecting to the socket.
 
-
-Properties
-==========
-
 .. _bpy.types.CompositorNodeSetAlpha.mode:
 
-Mode
+Type
    Method to mix the alpha with the input *Image*.
 
    :Apply Mask:

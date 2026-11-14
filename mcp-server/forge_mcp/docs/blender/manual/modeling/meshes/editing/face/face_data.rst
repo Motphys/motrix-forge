@@ -13,7 +13,9 @@ Rotate Colors
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Face --> Face Data --> Rotate Colors`
 
-Rotates the Color Attribute's colors inside faces either clockwise or counterclockwise.
+Rotates the colors for the active
+:ref:`Color Attribute <modeling-meshes-properties-object_data-color-attributes>`
+inside each selected face either clockwise or counterclockwise.
 
 
 .. _bpy.ops.mesh.colors_reverse:
@@ -26,7 +28,7 @@ Reverse Colors
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Face --> Face Data --> Reverse Colors`
 
-Flips the direction of Color Attribute's colors inside the selected faces.
+Mirrors the colors for the active Color Attribute inside each selected face.
 
 
 Rotate UVs
@@ -61,14 +63,17 @@ Flip Quad Tessellation
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Face --> Face Data --> Flip Quad Tessellation`
 
-Internally, all :term:`quads <Quad>` are :term:`Tessellated <Tessellation>` into 2 triangles,
-this operator swaps which way the quad is split into triangles.
+Internally, every :term:`quad` is :term:`tessellated <Tessellation>` into two triangles.
+This operator swaps the tessellation direction of the selected quads.
 
 .. list-table::
 
-   * - .. figure:: /images/modeling_meshes_editing_face_flip-tesselation_before.png
-     - .. figure:: /images/modeling_meshes_editing_face_flip-tesselation_after.png
+   * - .. figure:: /images/modeling_meshes_editing_face_flip-tessellation_before.png
+     - .. figure:: /images/modeling_meshes_editing_face_flip-tessellation_after.png
 
+.. seealso::
+
+   :doc:`/modeling/meshes/editing/edge/rotate_edge`
 
 .. _bpy.ops.mesh.mark_freestyle_face:
 

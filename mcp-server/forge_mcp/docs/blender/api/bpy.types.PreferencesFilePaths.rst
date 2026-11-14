@@ -5,148 +5,168 @@ PreferencesFilePaths(bpy_struct)
 
 base class --- :class:`bpy_struct`
 
+
 .. class:: PreferencesFilePaths(bpy_struct)
 
    Default paths for external files
 
    .. attribute:: active_asset_library
 
-      Index of the asset library being edited in the Preferences UI
+      Index of the asset library being edited in the Preferences UI (in [-32768, 32767], default 0)
 
-      :type: int in [-32768, 32767], default 0
+      :type: int
 
    .. attribute:: animation_player
 
-      Path to a custom animation/frame sequence player
+      Path to a custom animation/frame sequence player (default "", never None)
 
-      :type: string, default "", (never None)
+      :type: str
 
    .. attribute:: animation_player_preset
 
-      Preset configs for external animation players
+      Preset configs for external animation players (default ``'INTERNAL'``)
 
-      * ``INTERNAL``
+      - ``INTERNAL``
         Internal -- Built-in animation player.
-      * ``DJV``
+      - ``DJV``
         DJV -- Open source frame player.
-      * ``FRAMECYCLER``
+      - ``FRAMECYCLER``
         FrameCycler -- Frame player from IRIDAS.
-      * ``RV``
+      - ``RV``
         RV -- Frame player from Tweak Software.
-      * ``MPLAYER``
+      - ``MPLAYER``
         MPlayer -- Media player for video and PNG/JPEG/SGI image sequences.
-      * ``CUSTOM``
+      - ``CUSTOM``
         Custom -- Custom animation player executable path.
 
-      :type: enum in [``'INTERNAL'``, ``'DJV'``, ``'FRAMECYCLER'``, ``'RV'``, ``'MPLAYER'``, ``'CUSTOM'``], default ``'INTERNAL'``
+      :type: Literal['INTERNAL', 'DJV', 'FRAMECYCLER', 'RV', 'MPLAYER', 'CUSTOM']
 
    .. data:: asset_libraries
 
-      :type: :class:`AssetLibraryCollection` :class:`bpy_prop_collection` of :class:`UserAssetLibrary`, (readonly)
+      (default None, readonly)
+
+      :type: :class:`AssetLibraryCollection`\ [:class:`UserAssetLibrary`]
 
    .. attribute:: auto_save_time
 
-      The time (in minutes) to wait between automatic temporary saves
+      The time (in minutes) to wait between automatic temporary saves (in [1, 60], default 2)
 
-      :type: int in [1, 60], default 2
+      :type: int
 
    .. attribute:: file_preview_type
 
-      What type of blend preview to create
+      What type of blend preview to create (default ``'AUTO'``)
 
-      * ``NONE``
+      - ``NONE``
         None -- Do not create blend previews.
-      * ``AUTO``
+      - ``AUTO``
         Auto -- Automatically select best preview type.
-      * ``SCREENSHOT``
+      - ``SCREENSHOT``
         Screenshot -- Capture the entire window.
-      * ``CAMERA``
+      - ``CAMERA``
         Camera View -- Workbench render of scene.
 
-      :type: enum in [``'NONE'``, ``'AUTO'``, ``'SCREENSHOT'``, ``'CAMERA'``], default ``'AUTO'``
+      :type: Literal['NONE', 'AUTO', 'SCREENSHOT', 'CAMERA']
 
    .. attribute:: font_directory
 
-      The default directory to search for loading fonts
+      The default directory to search for loading fonts (default "//", never None, blend relative ``//`` prefix supported)
 
-      :type: string, default "", (never None, blend relative ``//`` prefix supported)
+      :type: str
 
    .. attribute:: i18n_branches_directory
 
-      The path to the '/branches' directory of your local svn-translation copy, to allow translating from the UI
+      The path to the '/branches' directory of your local svn-translation copy, to allow translating from the UI (default "", never None)
 
-      :type: string, default "", (never None)
+      :type: str
 
    .. attribute:: image_editor
 
-      Path to an image editor
+      Path to an image editor (default "", never None)
 
-      :type: string, default "", (never None)
+      :type: str
 
    .. attribute:: recent_files
 
-      Maximum number of recently opened files to remember
+      Maximum number of recently opened files to remember (in [0, 1000], default 200)
 
-      :type: int in [0, 30], default 20
+      :type: int
 
    .. attribute:: render_cache_directory
 
-      Where to cache raw render results
+      Where to cache raw render results (default "", never None, blend relative ``//`` prefix supported)
 
-      :type: string, default "", (never None, blend relative ``//`` prefix supported)
+      :type: str
 
    .. attribute:: render_output_directory
 
-      The default directory for rendering output, for new scenes
+      The default directory for rendering output, for new scenes (default "//", never None, blend relative ``//`` prefix supported)
 
-      :type: string, default "", (never None, blend relative ``//`` prefix supported)
+      :type: str
+
+   .. attribute:: save_modified_images
+
+      How modified images should be handled when saving the .blend file (default ``'ASK'``)
+
+      - ``ASK``
+        Ask Every Time -- Show dialog to save modified images when saving the .blend file.
+      - ``ALWAYS_SAVE``
+        Always Save -- Always save modified images when saving the .blend file.
+      - ``NEVER_SAVE``
+        Never Save -- Never save modified images when saving the .blend file.
+
+      :type: Literal['ASK', 'ALWAYS_SAVE', 'NEVER_SAVE']
 
    .. attribute:: save_version
 
-      The number of old versions to maintain in the current directory, when manually saving
+      The number of old versions to maintain in the current directory, when manually saving (in [0, 32], default 1)
 
-      :type: int in [0, 32], default 1
+      :type: int
 
    .. data:: script_directories
 
-      :type: :class:`ScriptDirectoryCollection` :class:`bpy_prop_collection` of :class:`ScriptDirectory`, (readonly)
+      (default None, readonly)
+
+      :type: :class:`ScriptDirectoryCollection`\ [:class:`ScriptDirectory`]
 
    .. attribute:: show_hidden_files_datablocks
 
-      Show files and data-blocks that are normally hidden
+      Show files and data-blocks that are normally hidden (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_recent_locations
 
-      Show Recent locations list in the File Browser
+      Show Recent locations list in the File Browser (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_system_bookmarks
 
-      Show System locations list in the File Browser
+      Show System locations list in the File Browser (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: sound_directory
 
-      The default directory to search for sounds
+      The default directory to search for sounds (default "//", never None, blend relative ``//`` prefix supported)
 
-      :type: string, default "", (never None, blend relative ``//`` prefix supported)
+      :type: str
 
    .. attribute:: temporary_directory
 
-      The directory for storing temporary save files. The path must reference an existing directory or it will be ignored
+      The directory for storing temporary save files. The path must reference an existing directory or it will be ignored (default "", never None)
 
-      :type: string, default "", (never None)
+      :type: str
 
    .. attribute:: text_editor
 
       Command to launch the text editor, either a full path or a command in $PATH.
       Use the internal editor when left blank
+      
+      (default "", never None)
 
-      :type: string, default "", (never None)
+      :type: str
 
    .. attribute:: text_editor_args
 
@@ -157,76 +177,90 @@ base class --- :class:`bpy_struct`
       $column The column to open from the beginning of the line (Optional).
       $line0 & column0 start at zero.
       Example: -f $filepath -l $line -c $column
+      
+      (default "", never None)
 
-      :type: string, default "", (never None)
+      :type: str
+
+   .. attribute:: texture_cache_directory
+
+      The directory for storing tx files generated from image files, for more efficient rendering. Paths may be absolute, or relative to the image file. Leave blank to store tx files in the same directory as image files (default "", never None, blend relative ``//`` prefix supported)
+
+      :type: str
 
    .. attribute:: texture_directory
 
-      The default directory to search for textures
+      The default directory to search for textures (default "//", never None, blend relative ``//`` prefix supported)
 
-      :type: string, default "", (never None, blend relative ``//`` prefix supported)
+      :type: str
 
    .. attribute:: use_auto_save_temporary_files
 
       Automatic saving of temporary files in temp directory, uses process ID.
       Warning: Sculpt and edit mode data won't be saved
+      
+      (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: use_extension_online_access_handled
 
-      The user has been shown the "Online Access" prompt and made a choice
+      The user has been shown the "Online Access" prompt and made a choice (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_file_compression
 
-      Enable file compression when saving .blend files
+      Enable file compression when saving .blend files (default True)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_filter_files
 
-      Enable filtering of files in the File Browser
+      Enable filtering of files in the File Browser (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: use_load_ui
 
-      Load user interface setup when loading .blend files
+      Load user interface setup when loading .blend files (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: use_relative_paths
 
-      Default relative path option for the file selector, when no path is defined yet
+      Default relative path option for the file selector, when no path is defined yet (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: use_scripts_auto_execute
 
-      Allow any .blend file to run scripts automatically (unsafe with blend files from an untrusted source)
+      Allow any .blend file to run scripts automatically (unsafe with blend files from an untrusted source) (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_tabs_as_spaces
 
-      Automatically convert all new tabs into spaces for new and loaded text files
+      Automatically convert all new tabs into spaces for new and loaded text files (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. classmethod:: bl_rna_get_subclass(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: :class:`bpy.types.Struct` | None
       :return: The RNA type or default when not found.
-      :rtype: :class:`bpy.types.Struct` subclass
+      :rtype: :class:`bpy.types.Struct`
 
 
    .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: type | None
       :return: The class or default when not found.
       :rtype: type
 
@@ -237,7 +271,7 @@ Inherited Properties
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.id_data`
+   - :class:`bpy_struct.id_data`
 
 Inherited Functions
 -------------------
@@ -245,29 +279,30 @@ Inherited Functions
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.as_pointer`
-   * :class:`bpy_struct.driver_add`
-   * :class:`bpy_struct.driver_remove`
-   * :class:`bpy_struct.get`
-   * :class:`bpy_struct.id_properties_clear`
-   * :class:`bpy_struct.id_properties_ensure`
-   * :class:`bpy_struct.id_properties_ui`
-   * :class:`bpy_struct.is_property_hidden`
-   * :class:`bpy_struct.is_property_overridable_library`
-   * :class:`bpy_struct.is_property_readonly`
-   * :class:`bpy_struct.is_property_set`
-   * :class:`bpy_struct.items`
-   * :class:`bpy_struct.keyframe_delete`
-   * :class:`bpy_struct.keyframe_insert`
-   * :class:`bpy_struct.keys`
-   * :class:`bpy_struct.path_from_id`
-   * :class:`bpy_struct.path_resolve`
-   * :class:`bpy_struct.pop`
-   * :class:`bpy_struct.property_overridable_library_set`
-   * :class:`bpy_struct.property_unset`
-   * :class:`bpy_struct.rna_ancestors`
-   * :class:`bpy_struct.type_recast`
-   * :class:`bpy_struct.values`
+   - :class:`bpy_struct.as_pointer`
+   - :class:`bpy_struct.driver_add`
+   - :class:`bpy_struct.driver_remove`
+   - :class:`bpy_struct.get`
+   - :class:`bpy_struct.id_properties_clear`
+   - :class:`bpy_struct.id_properties_ensure`
+   - :class:`bpy_struct.id_properties_ui`
+   - :class:`bpy_struct.is_property_hidden`
+   - :class:`bpy_struct.is_property_overridable_library`
+   - :class:`bpy_struct.is_property_readonly`
+   - :class:`bpy_struct.is_property_set`
+   - :class:`bpy_struct.items`
+   - :class:`bpy_struct.keyframe_delete`
+   - :class:`bpy_struct.keyframe_insert`
+   - :class:`bpy_struct.keys`
+   - :class:`bpy_struct.path_from_id`
+   - :class:`bpy_struct.path_from_module`
+   - :class:`bpy_struct.path_resolve`
+   - :class:`bpy_struct.pop`
+   - :class:`bpy_struct.property_overridable_library_set`
+   - :class:`bpy_struct.property_unset`
+   - :class:`bpy_struct.rna_ancestors`
+   - :class:`bpy_struct.type_recast`
+   - :class:`bpy_struct.values`
 
 References
 ----------
@@ -275,5 +310,5 @@ References
 .. hlist::
    :columns: 2
 
-   * :class:`Preferences.filepaths`
+   - :class:`Preferences.filepaths`
 

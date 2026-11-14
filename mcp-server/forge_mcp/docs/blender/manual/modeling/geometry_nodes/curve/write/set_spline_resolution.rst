@@ -36,12 +36,6 @@ Resolution
    Higher resolutions are more accurate, but slower.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

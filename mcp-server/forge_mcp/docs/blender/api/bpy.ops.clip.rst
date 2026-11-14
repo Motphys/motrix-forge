@@ -7,63 +7,79 @@ Clip Operators
 
    Place new marker at specified location
 
-   :arg location: Location, Location of marker on frame
-   :type location: :class:`mathutils.Vector` of 2 items in [-inf, inf], (optional)
+   :param location: Location, Location of marker on frame (array of 2 items, in [-inf, inf], optional)
+   :type location: :class:`mathutils.Vector` | Sequence[float]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: add_marker_at_click()
 
    Place new marker at the desired (clicked) position
 
-.. function:: add_marker_move(*, CLIP_OT_add_marker=None, TRANSFORM_OT_translate=None)
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
+.. function:: add_marker_move(*, CLIP_OT_add_marker={}, TRANSFORM_OT_translate={})
 
    Add new marker and move it on movie
 
-   :arg CLIP_OT_add_marker: Add Marker, Place new marker at specified location
-   :type CLIP_OT_add_marker: :class:`CLIP_OT_add_marker`, (optional)
-   :arg TRANSFORM_OT_translate: Move, Move selected items
-   :type TRANSFORM_OT_translate: :class:`TRANSFORM_OT_translate`, (optional)
+   :param CLIP_OT_add_marker: Add Marker, Place new marker at specified location (optional, :func:`bpy.ops.clip.add_marker` keyword arguments)
+   :type CLIP_OT_add_marker: dict[str, Any]
+   :param TRANSFORM_OT_translate: Move, Move selected items (optional, :func:`bpy.ops.transform.translate` keyword arguments)
+   :type TRANSFORM_OT_translate: dict[str, Any]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
-.. function:: add_marker_slide(*, CLIP_OT_add_marker=None, TRANSFORM_OT_translate=None)
+.. function:: add_marker_slide(*, CLIP_OT_add_marker={}, TRANSFORM_OT_translate={})
 
    Add new marker and slide it with mouse until mouse button release
 
-   :arg CLIP_OT_add_marker: Add Marker, Place new marker at specified location
-   :type CLIP_OT_add_marker: :class:`CLIP_OT_add_marker`, (optional)
-   :arg TRANSFORM_OT_translate: Move, Move selected items
-   :type TRANSFORM_OT_translate: :class:`TRANSFORM_OT_translate`, (optional)
+   :param CLIP_OT_add_marker: Add Marker, Place new marker at specified location (optional, :func:`bpy.ops.clip.add_marker` keyword arguments)
+   :type CLIP_OT_add_marker: dict[str, Any]
+   :param TRANSFORM_OT_translate: Move, Move selected items (optional, :func:`bpy.ops.transform.translate` keyword arguments)
+   :type TRANSFORM_OT_translate: dict[str, Any]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: apply_solution_scale(*, distance=0.0)
 
    Apply scale on solution itself to make distance between selected tracks equals to desired
 
-   :arg distance: Distance, Distance between selected tracks
-   :type distance: float in [-inf, inf], (optional)
+   :param distance: Distance, Distance between selected tracks (in [-inf, inf], optional)
+   :type distance: float
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: average_tracks(*, keep_original=True)
 
    Average selected tracks into active
 
-   :arg keep_original: Keep Original, Keep original tracks
-   :type keep_original: boolean, (optional)
+   :param keep_original: Keep Original, Keep original tracks (optional)
+   :type keep_original: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: bundles_to_mesh()
 
    Create vertex cloud using coordinates of reconstructed tracks
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
    :File: `startup\bl_operators\clip.py\:292 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\clip.py#L292>`__
 
 .. function:: camera_preset_add(*, name="", remove_name=False, remove_active=False, use_focal_length=True)
 
    Add or remove a Tracking Camera Intrinsics Preset
 
-   :arg name: Name, Name of the preset, used to make the path name
-   :type name: string, (optional, never None)
-   :arg remove_name: remove_name
-   :type remove_name: boolean, (optional)
-   :arg remove_active: remove_active
-   :type remove_active: boolean, (optional)
-   :arg use_focal_length: Include Focal Length, Include focal length into the preset
-   :type use_focal_length: boolean, (optional)
+   :param name: Name, Name of the preset, used to make the path name (optional, never None)
+   :type name: str
+   :param remove_name: remove_name, (optional)
+   :type remove_name: bool
+   :param remove_active: remove_active, (optional)
+   :type remove_active: bool
+   :param use_focal_length: Include Focal Length, Include focal length into the preset (optional)
+   :type use_focal_length: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
    :File: `startup\bl_operators\presets.py\:119 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\presets.py#L119>`__
 
 
@@ -71,141 +87,173 @@ Clip Operators
 
    Interactively change the current frame number
 
-   :arg frame: Frame
-   :type frame: int in [-1048574, 1048574], (optional)
+   :param frame: Frame, (in [-1048574, 1048574], optional)
+   :type frame: int
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: clean_tracks(*, frames=0, error=0.0, action='SELECT')
 
    Clean tracks with high error values or few frames
 
-   :arg frames: Tracked Frames, Affect tracks which are tracked less than the specified number of frames
-   :type frames: int in [0, inf], (optional)
-   :arg error: Reprojection Error, Affect tracks which have a larger reprojection error
-   :type error: float in [0, inf], (optional)
-   :arg action: Action, Cleanup action to execute
+   :param frames: Tracked Frames, Affect tracks which are tracked less than the specified number of frames (in [0, inf], optional)
+   :type frames: int
+   :param error: Reprojection Error, Affect tracks which have a larger reprojection error (in [0, inf], optional)
+   :type error: float
+   :param action: Action, Cleanup action to execute (optional)
 
-      * ``SELECT``
+      - ``SELECT``
         Select -- Select unclean tracks.
-      * ``DELETE_TRACK``
+      - ``DELETE_TRACK``
         Delete Track -- Delete unclean tracks.
-      * ``DELETE_SEGMENTS``
+      - ``DELETE_SEGMENTS``
         Delete Segments -- Delete unclean segments of tracks.
-   :type action: enum in [``'SELECT'``, ``'DELETE_TRACK'``, ``'DELETE_SEGMENTS'``], (optional)
+   :type action: Literal['SELECT', 'DELETE_TRACK', 'DELETE_SEGMENTS']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: clear_solution()
 
    Clear all calculated data
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: clear_track_path(*, action='REMAINED', clear_active=False)
 
    Clear tracks after/before current position or clear the whole track
 
-   :arg action: Action, Clear action to execute
+   :param action: Action, Clear action to execute (optional)
 
-      * ``UPTO``
+      - ``UPTO``
         Clear Up To -- Clear path up to current frame.
-      * ``REMAINED``
+      - ``REMAINED``
         Clear Remained -- Clear path at remaining frames (after current).
-      * ``ALL``
+      - ``ALL``
         Clear All -- Clear the whole path.
-   :type action: enum in [``'UPTO'``, ``'REMAINED'``, ``'ALL'``], (optional)
-   :arg clear_active: Clear Active, Clear active track only instead of all selected tracks
-   :type clear_active: boolean, (optional)
+   :type action: Literal['UPTO', 'REMAINED', 'ALL']
+   :param clear_active: Clear Active, Clear active track only instead of all selected tracks (optional)
+   :type clear_active: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: constraint_to_fcurve()
 
    Create F-Curves for object which will copy object's movement caused by this constraint
 
-   :File: `startup\bl_operators\clip.py\:530 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\clip.py#L530>`__
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
+   :File: `startup\bl_operators\clip.py\:520 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\clip.py#L520>`__
 
 .. function:: copy_tracks()
 
    Copy the selected tracks to the internal clipboard
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: create_plane_track()
 
    Create new plane track out of selected point tracks
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: cursor_set(*, location=(0.0, 0.0))
 
    Set 2D cursor location
 
-   :arg location: Location, Cursor location in normalized clip coordinates
-   :type location: :class:`mathutils.Vector` of 2 items in [-inf, inf], (optional)
+   :param location: Location, Cursor location in normalized clip coordinates (array of 2 items, in [-inf, inf], optional)
+   :type location: :class:`mathutils.Vector` | Sequence[float]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: delete_marker(*, confirm=True)
 
    Delete marker for current frame from selected tracks
 
-   :arg confirm: Confirm, Prompt for confirmation
-   :type confirm: boolean, (optional)
+   :param confirm: Confirm, Prompt for confirmation (optional)
+   :type confirm: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: delete_proxy()
 
    Delete movie clip proxy files from the hard drive
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
    :File: `startup\bl_operators\clip.py\:359 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\clip.py#L359>`__
 
 .. function:: delete_track(*, confirm=True)
 
    Delete selected tracks
 
-   :arg confirm: Confirm, Prompt for confirmation
-   :type confirm: boolean, (optional)
+   :param confirm: Confirm, Prompt for confirmation (optional)
+   :type confirm: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: detect_features(*, placement='FRAME', margin=16, threshold=0.5, min_distance=120)
 
    Automatically detect features and place markers to track
 
-   :arg placement: Placement, Placement for detected features
+   :param placement: Placement, Placement for detected features (optional)
 
-      * ``FRAME``
+      - ``FRAME``
         Whole Frame -- Place markers across the whole frame.
-      * ``INSIDE_GPENCIL``
+      - ``INSIDE_GPENCIL``
         Inside Annotated Area -- Place markers only inside areas outlined with the Annotation tool.
-      * ``OUTSIDE_GPENCIL``
+      - ``OUTSIDE_GPENCIL``
         Outside Annotated Area -- Place markers only outside areas outlined with the Annotation tool.
-   :type placement: enum in [``'FRAME'``, ``'INSIDE_GPENCIL'``, ``'OUTSIDE_GPENCIL'``], (optional)
-   :arg margin: Margin, Only features further than margin pixels from the image edges are considered
-   :type margin: int in [0, inf], (optional)
-   :arg threshold: Threshold, Threshold level to consider feature good enough for tracking
-   :type threshold: float in [0.0001, inf], (optional)
-   :arg min_distance: Distance, Minimal distance accepted between two features
-   :type min_distance: int in [0, inf], (optional)
+   :type placement: Literal['FRAME', 'INSIDE_GPENCIL', 'OUTSIDE_GPENCIL']
+   :param margin: Margin, Only features further than margin pixels from the image edges are considered (in [0, inf], optional)
+   :type margin: int
+   :param threshold: Threshold, Threshold level to consider feature good enough for tracking (in [0.0001, inf], optional)
+   :type threshold: float
+   :param min_distance: Distance, Minimal distance accepted between two features (in [0, inf], optional)
+   :type min_distance: int
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: disable_markers(*, action='DISABLE')
 
    Disable/enable selected markers
 
-   :arg action: Action, Disable action to execute
+   :param action: Action, Disable action to execute (optional)
 
-      * ``DISABLE``
+      - ``DISABLE``
         Disable -- Disable selected markers.
-      * ``ENABLE``
+      - ``ENABLE``
         Enable -- Enable selected markers.
-      * ``TOGGLE``
+      - ``TOGGLE``
         Toggle -- Toggle disabled flag for selected markers.
-   :type action: enum in [``'DISABLE'``, ``'ENABLE'``, ``'TOGGLE'``], (optional)
+   :type action: Literal['DISABLE', 'ENABLE', 'TOGGLE']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: dopesheet_select_channel(*, location=(0.0, 0.0), extend=False)
 
    Select movie tracking channel
 
-   :arg location: Location, Mouse location to select channel
-   :type location: :class:`mathutils.Vector` of 2 items in [-inf, inf], (optional)
-   :arg extend: Extend, Extend selection rather than clearing the existing selection
-   :type extend: boolean, (optional)
+   :param location: Location, Mouse location to select channel (array of 2 items, in [-inf, inf], optional)
+   :type location: :class:`mathutils.Vector` | Sequence[float]
+   :param extend: Extend, Extend selection rather than clearing the existing selection (optional)
+   :type extend: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: dopesheet_view_all()
 
    Reset viewable area to show full keyframe range
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: filter_tracks(*, track_threshold=5.0)
 
    Filter tracks which has weirdly looking spikes in motion curves
 
-   :arg track_threshold: Track Threshold, Filter Threshold to select problematic tracks
-   :type track_threshold: float in [-inf, inf], (optional)
+   :param track_threshold: Track Threshold, Filter Threshold to select problematic tracks (in [-inf, inf], optional)
+   :type track_threshold: float
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
    :File: `startup\bl_operators\clip.py\:206 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\clip.py#L206>`__
 
 
@@ -213,491 +261,589 @@ Clip Operators
 
    Jump to special frame
 
-   :arg position: Position, Position to jump to
+   :param position: Position, Position to jump to (optional)
 
-      * ``PATHSTART``
+      - ``PATHSTART``
         Path Start -- Jump to start of current path.
-      * ``PATHEND``
+      - ``PATHEND``
         Path End -- Jump to end of current path.
-      * ``FAILEDPREV``
+      - ``FAILEDPREV``
         Previous Failed -- Jump to previous failed frame.
-      * ``FAILNEXT``
+      - ``FAILNEXT``
         Next Failed -- Jump to next failed frame.
-   :type position: enum in [``'PATHSTART'``, ``'PATHEND'``, ``'FAILEDPREV'``, ``'FAILNEXT'``], (optional)
+   :type position: Literal['PATHSTART', 'PATHEND', 'FAILEDPREV', 'FAILNEXT']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: graph_center_current_frame()
 
    Scroll view so current frame would be centered
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: graph_delete_curve(*, confirm=True)
 
    Delete track corresponding to the selected curve
 
-   :arg confirm: Confirm, Prompt for confirmation
-   :type confirm: boolean, (optional)
+   :param confirm: Confirm, Prompt for confirmation (optional)
+   :type confirm: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: graph_delete_knot()
 
    Delete curve knots
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: graph_disable_markers(*, action='DISABLE')
 
    Disable/enable selected markers
 
-   :arg action: Action, Disable action to execute
+   :param action: Action, Disable action to execute (optional)
 
-      * ``DISABLE``
+      - ``DISABLE``
         Disable -- Disable selected markers.
-      * ``ENABLE``
+      - ``ENABLE``
         Enable -- Enable selected markers.
-      * ``TOGGLE``
+      - ``TOGGLE``
         Toggle -- Toggle disabled flag for selected markers.
-   :type action: enum in [``'DISABLE'``, ``'ENABLE'``, ``'TOGGLE'``], (optional)
+   :type action: Literal['DISABLE', 'ENABLE', 'TOGGLE']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: graph_select(*, location=(0.0, 0.0), extend=False)
 
    Select graph curves
 
-   :arg location: Location, Mouse location to select nearest entity
-   :type location: :class:`mathutils.Vector` of 2 items in [-inf, inf], (optional)
-   :arg extend: Extend, Extend selection rather than clearing the existing selection
-   :type extend: boolean, (optional)
+   :param location: Location, Mouse location to select nearest entity (array of 2 items, in [-inf, inf], optional)
+   :type location: :class:`mathutils.Vector` | Sequence[float]
+   :param extend: Extend, Extend selection rather than clearing the existing selection (optional)
+   :type extend: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: graph_select_all_markers(*, action='TOGGLE')
 
    Change selection of all markers of active track
 
-   :arg action: Action, Selection action to execute
+   :param action: Action, Selection action to execute (optional)
 
-      * ``TOGGLE``
+      - ``TOGGLE``
         Toggle -- Toggle selection for all elements.
-      * ``SELECT``
+      - ``SELECT``
         Select -- Select all elements.
-      * ``DESELECT``
+      - ``DESELECT``
         Deselect -- Deselect all elements.
-      * ``INVERT``
+      - ``INVERT``
         Invert -- Invert selection of all elements.
-   :type action: enum in [``'TOGGLE'``, ``'SELECT'``, ``'DESELECT'``, ``'INVERT'``], (optional)
+   :type action: Literal['TOGGLE', 'SELECT', 'DESELECT', 'INVERT']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: graph_select_box(*, xmin=0, xmax=0, ymin=0, ymax=0, wait_for_input=True, deselect=False, extend=True)
 
    Select curve points using box selection
 
-   :arg xmin: X Min
-   :type xmin: int in [-inf, inf], (optional)
-   :arg xmax: X Max
-   :type xmax: int in [-inf, inf], (optional)
-   :arg ymin: Y Min
-   :type ymin: int in [-inf, inf], (optional)
-   :arg ymax: Y Max
-   :type ymax: int in [-inf, inf], (optional)
-   :arg wait_for_input: Wait for Input
-   :type wait_for_input: boolean, (optional)
-   :arg deselect: Deselect, Deselect rather than select items
-   :type deselect: boolean, (optional)
-   :arg extend: Extend, Extend selection instead of deselecting everything first
-   :type extend: boolean, (optional)
+   :param xmin: X Min, (in [-inf, inf], optional)
+   :type xmin: int
+   :param xmax: X Max, (in [-inf, inf], optional)
+   :type xmax: int
+   :param ymin: Y Min, (in [-inf, inf], optional)
+   :type ymin: int
+   :param ymax: Y Max, (in [-inf, inf], optional)
+   :type ymax: int
+   :param wait_for_input: Wait for Input, (optional)
+   :type wait_for_input: bool
+   :param deselect: Deselect, Deselect rather than select items (optional)
+   :type deselect: bool
+   :param extend: Extend, Extend selection instead of deselecting everything first (optional)
+   :type extend: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: graph_view_all()
 
    View all curves in editor
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: hide_tracks(*, unselected=False)
 
    Hide selected tracks
 
-   :arg unselected: Unselected, Hide unselected tracks
-   :type unselected: boolean, (optional)
+   :param unselected: Unselected, Hide unselected tracks (optional)
+   :type unselected: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: hide_tracks_clear()
 
    Clear hide selected tracks
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: join_tracks()
 
    Join selected tracks
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: keyframe_delete()
 
    Delete a keyframe from selected tracks at current frame
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: keyframe_insert()
 
    Insert a keyframe to selected tracks at current frame
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: lock_selection_toggle()
 
    Toggle Lock Selection option of the current clip editor
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: lock_tracks(*, action='LOCK')
 
    Lock/unlock selected tracks
 
-   :arg action: Action, Lock action to execute
+   :param action: Action, Lock action to execute (optional)
 
-      * ``LOCK``
+      - ``LOCK``
         Lock -- Lock selected tracks.
-      * ``UNLOCK``
+      - ``UNLOCK``
         Unlock -- Unlock selected tracks.
-      * ``TOGGLE``
+      - ``TOGGLE``
         Toggle -- Toggle locked flag for selected tracks.
-   :type action: enum in [``'LOCK'``, ``'UNLOCK'``, ``'TOGGLE'``], (optional)
+   :type action: Literal['LOCK', 'UNLOCK', 'TOGGLE']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: mode_set(*, mode='TRACKING')
 
    Set the clip interaction mode
 
-   :arg mode: Mode
-   :type mode: enum in :ref:`rna_enum_clip_editor_mode_items`, (optional)
+   :param mode: Mode, (optional)
+   :type mode: Literal[:ref:`rna_enum_clip_editor_mode_items`]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: new_image_from_plane_marker()
 
    Create new image from the content of the plane marker
 
-.. function:: open(*, directory="", files=None, hide_props_region=True, check_existing=False, filter_blender=False, filter_backup=False, filter_image=True, filter_movie=True, filter_python=False, filter_font=False, filter_sound=False, filter_text=False, filter_archive=False, filter_btx=False, filter_collada=False, filter_alembic=False, filter_usd=False, filter_obj=False, filter_volume=False, filter_folder=True, filter_blenlib=False, filemode=9, relative_path=True, show_multiview=False, use_multiview=False, display_type='DEFAULT', sort_method='')
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
+.. function:: open(*, directory="", files=None, hide_props_region=True, check_existing=False, filter_blender=False, filter_backup=False, filter_image=True, filter_movie=True, filter_python=False, filter_font=False, filter_sound=False, filter_text=False, filter_archive=False, filter_btx=False, filter_alembic=False, filter_usd=False, filter_obj=False, filter_volume=False, filter_folder=True, filter_blenlib=False, filemode=9, relative_path=True, show_multiview=False, use_multiview=False, display_type='DEFAULT', sort_method='')
 
    Load a sequence of frames or a movie file
 
-   :arg directory: Directory, Directory of the file
-   :type directory: string, (optional, never None)
-   :arg files: Files
-   :type files: :class:`bpy_prop_collection` of :class:`OperatorFileListElement`, (optional)
-   :arg hide_props_region: Hide Operator Properties, Collapse the region displaying the operator settings
-   :type hide_props_region: boolean, (optional)
-   :arg check_existing: Check Existing, Check and warn on overwriting existing files
-   :type check_existing: boolean, (optional)
-   :arg filter_blender: Filter .blend files
-   :type filter_blender: boolean, (optional)
-   :arg filter_backup: Filter .blend files
-   :type filter_backup: boolean, (optional)
-   :arg filter_image: Filter image files
-   :type filter_image: boolean, (optional)
-   :arg filter_movie: Filter movie files
-   :type filter_movie: boolean, (optional)
-   :arg filter_python: Filter Python files
-   :type filter_python: boolean, (optional)
-   :arg filter_font: Filter font files
-   :type filter_font: boolean, (optional)
-   :arg filter_sound: Filter sound files
-   :type filter_sound: boolean, (optional)
-   :arg filter_text: Filter text files
-   :type filter_text: boolean, (optional)
-   :arg filter_archive: Filter archive files
-   :type filter_archive: boolean, (optional)
-   :arg filter_btx: Filter btx files
-   :type filter_btx: boolean, (optional)
-   :arg filter_collada: Filter COLLADA files
-   :type filter_collada: boolean, (optional)
-   :arg filter_alembic: Filter Alembic files
-   :type filter_alembic: boolean, (optional)
-   :arg filter_usd: Filter USD files
-   :type filter_usd: boolean, (optional)
-   :arg filter_obj: Filter OBJ files
-   :type filter_obj: boolean, (optional)
-   :arg filter_volume: Filter OpenVDB volume files
-   :type filter_volume: boolean, (optional)
-   :arg filter_folder: Filter folders
-   :type filter_folder: boolean, (optional)
-   :arg filter_blenlib: Filter Blender IDs
-   :type filter_blenlib: boolean, (optional)
-   :arg filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file
-   :type filemode: int in [1, 9], (optional)
-   :arg relative_path: Relative Path, Select the file relative to the blend file
-   :type relative_path: boolean, (optional)
-   :arg show_multiview: Enable Multi-View
-   :type show_multiview: boolean, (optional)
-   :arg use_multiview: Use Multi-View
-   :type use_multiview: boolean, (optional)
-   :arg display_type: Display Type
+   :param directory: Directory, Directory of the file (optional, never None)
+   :type directory: str
+   :param files: Files, (optional)
+   :type files: :class:`bpy_prop_collection`\ [:class:`OperatorFileListElement`] | None
+   :param hide_props_region: Hide Operator Properties, Collapse the region displaying the operator settings (optional)
+   :type hide_props_region: bool
+   :param check_existing: Check Existing, Check and warn on overwriting existing files (optional)
+   :type check_existing: bool
+   :param filter_blender: Filter .blend files, (optional)
+   :type filter_blender: bool
+   :param filter_backup: Filter backup .blend files, (optional)
+   :type filter_backup: bool
+   :param filter_image: Filter image files, (optional)
+   :type filter_image: bool
+   :param filter_movie: Filter movie files, (optional)
+   :type filter_movie: bool
+   :param filter_python: Filter Python files, (optional)
+   :type filter_python: bool
+   :param filter_font: Filter font files, (optional)
+   :type filter_font: bool
+   :param filter_sound: Filter sound files, (optional)
+   :type filter_sound: bool
+   :param filter_text: Filter text files, (optional)
+   :type filter_text: bool
+   :param filter_archive: Filter archive files, (optional)
+   :type filter_archive: bool
+   :param filter_btx: Filter btx files, (optional)
+   :type filter_btx: bool
+   :param filter_alembic: Filter Alembic files, (optional)
+   :type filter_alembic: bool
+   :param filter_usd: Filter USD files, (optional)
+   :type filter_usd: bool
+   :param filter_obj: Filter OBJ files, (optional)
+   :type filter_obj: bool
+   :param filter_volume: Filter OpenVDB volume files, (optional)
+   :type filter_volume: bool
+   :param filter_folder: Filter folders, (optional)
+   :type filter_folder: bool
+   :param filter_blenlib: Filter Blender IDs, (optional)
+   :type filter_blenlib: bool
+   :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file (in [1, 9], optional)
+   :type filemode: int
+   :param relative_path: Relative Path, Select the file relative to the blend file (optional)
+   :type relative_path: bool
+   :param show_multiview: Enable Multi-View, (optional)
+   :type show_multiview: bool
+   :param use_multiview: Use Multi-View, (optional)
+   :type use_multiview: bool
+   :param display_type: Display Type, (optional)
 
-      * ``DEFAULT``
+      - ``DEFAULT``
         Default -- Automatically determine display type for files.
-      * ``LIST_VERTICAL``
+      - ``LIST_VERTICAL``
         Short List -- Display files as short list.
-      * ``LIST_HORIZONTAL``
+      - ``LIST_HORIZONTAL``
         Long List -- Display files as a detailed list.
-      * ``THUMBNAIL``
+      - ``THUMBNAIL``
         Thumbnails -- Display files as thumbnails.
-   :type display_type: enum in [``'DEFAULT'``, ``'LIST_VERTICAL'``, ``'LIST_HORIZONTAL'``, ``'THUMBNAIL'``], (optional)
-   :arg sort_method: File sorting mode
+   :type display_type: Literal['DEFAULT', 'LIST_VERTICAL', 'LIST_HORIZONTAL', 'THUMBNAIL']
+   :param sort_method: File sorting mode, (optional)
 
-      * ``DEFAULT``
+      - ``DEFAULT``
         Default -- Automatically determine sort method for files.
-      * ``FILE_SORT_ALPHA``
+      - ``FILE_SORT_ALPHA``
         Name -- Sort the file list alphabetically.
-      * ``FILE_SORT_EXTENSION``
+      - ``FILE_SORT_EXTENSION``
         Extension -- Sort the file list by extension/type.
-      * ``FILE_SORT_TIME``
+      - ``FILE_SORT_TIME``
         Modified Date -- Sort files by modification time.
-      * ``FILE_SORT_SIZE``
+      - ``FILE_SORT_SIZE``
         Size -- Sort files by size.
-      * ``ASSET_CATALOG``
+      - ``ASSET_CATALOG``
         Asset Catalog -- Sort the asset list so that assets in the same catalog are kept together. Within a single catalog, assets are ordered by name. The catalogs are in order of the flattened catalog hierarchy..
-   :type sort_method: enum in [``'DEFAULT'``, ``'FILE_SORT_ALPHA'``, ``'FILE_SORT_EXTENSION'``, ``'FILE_SORT_TIME'``, ``'FILE_SORT_SIZE'``, ``'ASSET_CATALOG'``], (optional)
+   :type sort_method: Literal['', 'DEFAULT', 'FILE_SORT_ALPHA', 'FILE_SORT_EXTENSION', 'FILE_SORT_TIME', 'FILE_SORT_SIZE', 'ASSET_CATALOG']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: paste_tracks()
 
    Paste tracks from the internal clipboard
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: prefetch()
 
    Prefetch frames from disk for faster playback/tracking
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: rebuild_proxy()
 
-   Rebuild all selected proxies and timecode indices in the background
+   Rebuild all selected proxies in the background
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: refine_markers(*, backwards=False)
 
    Refine selected markers positions by running the tracker from track's reference to current frame
 
-   :arg backwards: Backwards, Do backwards tracking
-   :type backwards: boolean, (optional)
+   :param backwards: Backwards, Do backwards tracking (optional)
+   :type backwards: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: reload()
 
    Reload clip
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: select(*, extend=False, deselect_all=False, location=(0.0, 0.0))
 
    Select tracking markers
 
-   :arg extend: Extend, Extend selection rather than clearing the existing selection
-   :type extend: boolean, (optional)
-   :arg deselect_all: Deselect On Nothing, Deselect all when nothing under the cursor
-   :type deselect_all: boolean, (optional)
-   :arg location: Location, Mouse location in normalized coordinates, 0.0 to 1.0 is within the image bounds
-   :type location: :class:`mathutils.Vector` of 2 items in [-inf, inf], (optional)
+   :param extend: Extend, Extend selection rather than clearing the existing selection (optional)
+   :type extend: bool
+   :param deselect_all: Deselect On Nothing, Deselect all when nothing under the cursor (optional)
+   :type deselect_all: bool
+   :param location: Location, Mouse location in normalized coordinates, 0.0 to 1.0 is within the image bounds (array of 2 items, in [-inf, inf], optional)
+   :type location: :class:`mathutils.Vector` | Sequence[float]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: select_all(*, action='TOGGLE')
 
    Change selection of all tracking markers
 
-   :arg action: Action, Selection action to execute
+   :param action: Action, Selection action to execute (optional)
 
-      * ``TOGGLE``
+      - ``TOGGLE``
         Toggle -- Toggle selection for all elements.
-      * ``SELECT``
+      - ``SELECT``
         Select -- Select all elements.
-      * ``DESELECT``
+      - ``DESELECT``
         Deselect -- Deselect all elements.
-      * ``INVERT``
+      - ``INVERT``
         Invert -- Invert selection of all elements.
-   :type action: enum in [``'TOGGLE'``, ``'SELECT'``, ``'DESELECT'``, ``'INVERT'``], (optional)
+   :type action: Literal['TOGGLE', 'SELECT', 'DESELECT', 'INVERT']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: select_box(*, xmin=0, xmax=0, ymin=0, ymax=0, wait_for_input=True, mode='SET')
 
    Select markers using box selection
 
-   :arg xmin: X Min
-   :type xmin: int in [-inf, inf], (optional)
-   :arg xmax: X Max
-   :type xmax: int in [-inf, inf], (optional)
-   :arg ymin: Y Min
-   :type ymin: int in [-inf, inf], (optional)
-   :arg ymax: Y Max
-   :type ymax: int in [-inf, inf], (optional)
-   :arg wait_for_input: Wait for Input
-   :type wait_for_input: boolean, (optional)
-   :arg mode: Mode
+   :param xmin: X Min, (in [-inf, inf], optional)
+   :type xmin: int
+   :param xmax: X Max, (in [-inf, inf], optional)
+   :type xmax: int
+   :param ymin: Y Min, (in [-inf, inf], optional)
+   :type ymin: int
+   :param ymax: Y Max, (in [-inf, inf], optional)
+   :type ymax: int
+   :param wait_for_input: Wait for Input, (optional)
+   :type wait_for_input: bool
+   :param mode: Mode, (optional)
 
-      * ``SET``
+      - ``SET``
         Set -- Set a new selection.
-      * ``ADD``
+      - ``ADD``
         Extend -- Extend existing selection.
-      * ``SUB``
+      - ``SUB``
         Subtract -- Subtract existing selection.
-   :type mode: enum in [``'SET'``, ``'ADD'``, ``'SUB'``], (optional)
+   :type mode: Literal['SET', 'ADD', 'SUB']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: select_circle(*, x=0, y=0, radius=25, wait_for_input=True, mode='SET')
 
    Select markers using circle selection
 
-   :arg x: X
-   :type x: int in [-inf, inf], (optional)
-   :arg y: Y
-   :type y: int in [-inf, inf], (optional)
-   :arg radius: Radius
-   :type radius: int in [1, inf], (optional)
-   :arg wait_for_input: Wait for Input
-   :type wait_for_input: boolean, (optional)
-   :arg mode: Mode
+   :param x: X, (in [-inf, inf], optional)
+   :type x: int
+   :param y: Y, (in [-inf, inf], optional)
+   :type y: int
+   :param radius: Radius, (in [1, inf], optional)
+   :type radius: int
+   :param wait_for_input: Wait for Input, (optional)
+   :type wait_for_input: bool
+   :param mode: Mode, (optional)
 
-      * ``SET``
+      - ``SET``
         Set -- Set a new selection.
-      * ``ADD``
+      - ``ADD``
         Extend -- Extend existing selection.
-      * ``SUB``
+      - ``SUB``
         Subtract -- Subtract existing selection.
-   :type mode: enum in [``'SET'``, ``'ADD'``, ``'SUB'``], (optional)
+   :type mode: Literal['SET', 'ADD', 'SUB']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: select_grouped(*, group='ESTIMATED')
 
    Select all tracks from specified group
 
-   :arg group: Action, Clear action to execute
+   :param group: Group, Select tracks by group (optional)
 
-      * ``KEYFRAMED``
+      - ``KEYFRAMED``
         Keyframed Tracks -- Select all keyframed tracks.
-      * ``ESTIMATED``
+      - ``ESTIMATED``
         Estimated Tracks -- Select all estimated tracks.
-      * ``TRACKED``
+      - ``TRACKED``
         Tracked Tracks -- Select all tracked tracks.
-      * ``LOCKED``
+      - ``LOCKED``
         Locked Tracks -- Select all locked tracks.
-      * ``DISABLED``
+      - ``DISABLED``
         Disabled Tracks -- Select all disabled tracks.
-      * ``COLOR``
+      - ``COLOR``
         Tracks with Same Color -- Select all tracks with same color as active track.
-      * ``FAILED``
+      - ``FAILED``
         Failed Tracks -- Select all tracks which failed to be reconstructed.
-   :type group: enum in [``'KEYFRAMED'``, ``'ESTIMATED'``, ``'TRACKED'``, ``'LOCKED'``, ``'DISABLED'``, ``'COLOR'``, ``'FAILED'``], (optional)
+   :type group: Literal['KEYFRAMED', 'ESTIMATED', 'TRACKED', 'LOCKED', 'DISABLED', 'COLOR', 'FAILED']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: select_lasso(*, path=None, use_smooth_stroke=False, smooth_stroke_factor=0.75, smooth_stroke_radius=35, mode='SET')
 
    Select markers using lasso selection
 
-   :arg path: Path
-   :type path: :class:`bpy_prop_collection` of :class:`OperatorMousePath`, (optional)
-   :arg use_smooth_stroke: Stabilize Stroke, Selection lags behind mouse and follows a smoother path
-   :type use_smooth_stroke: boolean, (optional)
-   :arg smooth_stroke_factor: Smooth Stroke Factor, Higher values gives a smoother stroke
-   :type smooth_stroke_factor: float in [0.5, 0.99], (optional)
-   :arg smooth_stroke_radius: Smooth Stroke Radius, Minimum distance from last point before selection continues
-   :type smooth_stroke_radius: int in [10, 200], (optional)
-   :arg mode: Mode
+   :param path: Path, (optional)
+   :type path: :class:`bpy_prop_collection`\ [:class:`OperatorMousePath`] | None
+   :param use_smooth_stroke: Stabilize Stroke, Selection lags behind mouse and follows a smoother path (optional)
+   :type use_smooth_stroke: bool
+   :param smooth_stroke_factor: Smooth Stroke Factor, Higher values give a smoother stroke (in [0.5, 0.99], optional)
+   :type smooth_stroke_factor: float
+   :param smooth_stroke_radius: Smooth Stroke Radius, Minimum distance from last point before selection continues (in [10, 200], optional)
+   :type smooth_stroke_radius: int
+   :param mode: Mode, (optional)
 
-      * ``SET``
+      - ``SET``
         Set -- Set a new selection.
-      * ``ADD``
+      - ``ADD``
         Extend -- Extend existing selection.
-      * ``SUB``
+      - ``SUB``
         Subtract -- Subtract existing selection.
-   :type mode: enum in [``'SET'``, ``'ADD'``, ``'SUB'``], (optional)
+   :type mode: Literal['SET', 'ADD', 'SUB']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: set_active_clip()
 
    Undocumented, consider `contributing <https://developer.blender.org/>`__.
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
    :File: `startup\bl_operators\clip.py\:221 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\clip.py#L221>`__
 
 .. function:: set_axis(*, axis='X')
 
    Set the direction of a scene axis by rotating the camera (or its parent if present). This assumes that the selected track lies on a real axis connecting it to the origin
 
-   :arg axis: Axis, Axis to use to align bundle along
+   :param axis: Axis, Axis to use to align bundle along (optional)
 
-      * ``X``
-        X -- Align bundle align X axis.
-      * ``Y``
-        Y -- Align bundle align Y axis.
-   :type axis: enum in [``'X'``, ``'Y'``], (optional)
+      - ``X``
+        X -- Align bundle to X axis.
+      - ``Y``
+        Y -- Align bundle to Y axis.
+   :type axis: Literal['X', 'Y']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: set_origin(*, use_median=False)
 
    Set active marker as origin by moving camera (or its parent if present) in 3D space
 
-   :arg use_median: Use Median, Set origin to median point of selected bundles
-   :type use_median: boolean, (optional)
+   :param use_median: Use Median, Set origin to median point of selected bundles (optional)
+   :type use_median: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: set_plane(*, plane='FLOOR')
 
    Set plane based on 3 selected bundles by moving camera (or its parent if present) in 3D space
 
-   :arg plane: Plane, Plane to be used for orientation
+   :param plane: Plane, Plane to be used for orientation (optional)
 
-      * ``FLOOR``
+      - ``FLOOR``
         Floor -- Set floor plane.
-      * ``WALL``
+      - ``WALL``
         Wall -- Set wall plane.
-   :type plane: enum in [``'FLOOR'``, ``'WALL'``], (optional)
+   :type plane: Literal['FLOOR', 'WALL']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: set_scale(*, distance=0.0)
 
    Set scale of scene by scaling camera (or its parent if present)
 
-   :arg distance: Distance, Distance between selected tracks
-   :type distance: float in [-inf, inf], (optional)
+   :param distance: Distance, Distance between selected tracks (in [-inf, inf], optional)
+   :type distance: float
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: set_scene_frames()
 
    Set scene's start and end frame to match clip's start frame and length
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: set_solution_scale(*, distance=0.0)
 
    Set object solution scale using distance between two selected tracks
 
-   :arg distance: Distance, Distance between selected tracks
-   :type distance: float in [-inf, inf], (optional)
+   :param distance: Distance, Distance between selected tracks (in [-inf, inf], optional)
+   :type distance: float
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: set_solver_keyframe(*, keyframe='KEYFRAME_A')
 
    Set keyframe used by solver
 
-   :arg keyframe: Keyframe, Keyframe to set
-   :type keyframe: enum in [``'KEYFRAME_A'``, ``'KEYFRAME_B'``], (optional)
+   :param keyframe: Keyframe, Keyframe to set (optional)
+   :type keyframe: Literal['KEYFRAME_A', 'KEYFRAME_B']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: set_viewport_background()
 
    Set current movie clip as a camera background in 3D Viewport (works only when a 3D Viewport is visible)
 
-   :File: `startup\bl_operators\clip.py\:420 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\clip.py#L420>`__
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
+   :File: `startup\bl_operators\clip.py\:410 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\clip.py#L410>`__
 
 .. function:: setup_tracking_scene()
 
    Prepare scene for compositing 3D objects into this footage
 
-   :File: `startup\bl_operators\clip.py\:991 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\clip.py#L991>`__
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
+   :File: `startup\bl_operators\clip.py\:926 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\clip.py#L926>`__
 
 .. function:: slide_marker(*, offset=(0.0, 0.0))
 
    Slide marker areas
 
-   :arg offset: Offset, Offset in floating-point units, 1.0 is the width and height of the image
-   :type offset: :class:`mathutils.Vector` of 2 items in [-inf, inf], (optional)
+   :param offset: Offset, Offset in floating-point units, 1.0 is the width and height of the image (array of 2 items, in [-inf, inf], optional)
+   :type offset: :class:`mathutils.Vector` | Sequence[float]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: slide_plane_marker()
 
    Slide plane marker areas
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: solve_camera()
 
    Solve camera motion from tracks
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: stabilize_2d_add()
 
    Add selected tracks to 2D translation stabilization
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: stabilize_2d_remove()
 
    Remove selected track from translation stabilization
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: stabilize_2d_rotation_add()
 
    Add selected tracks to 2D rotation stabilization
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: stabilize_2d_rotation_remove()
 
    Remove selected track from rotation stabilization
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: stabilize_2d_rotation_select()
 
    Select tracks which are used for rotation stabilization
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: stabilize_2d_select()
 
    Select tracks which are used for translation stabilization
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: track_color_preset_add(*, name="", remove_name=False, remove_active=False)
 
    Add or remove a Clip Track Color Preset
 
-   :arg name: Name, Name of the preset, used to make the path name
-   :type name: string, (optional, never None)
-   :arg remove_name: remove_name
-   :type remove_name: boolean, (optional)
-   :arg remove_active: remove_active
-   :type remove_active: boolean, (optional)
+   :param name: Name, Name of the preset, used to make the path name (optional, never None)
+   :type name: str
+   :param remove_name: remove_name, (optional)
+   :type remove_name: bool
+   :param remove_active: remove_active, (optional)
+   :type remove_active: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
    :File: `startup\bl_operators\presets.py\:119 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\presets.py#L119>`__
 
 
@@ -705,51 +851,67 @@ Clip Operators
 
    Copy color to all selected tracks
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: track_markers(*, backwards=False, sequence=False)
 
    Track selected markers
 
-   :arg backwards: Backwards, Do backwards tracking
-   :type backwards: boolean, (optional)
-   :arg sequence: Track Sequence, Track marker during image sequence rather than single image
-   :type sequence: boolean, (optional)
+   :param backwards: Backwards, Do backwards tracking (optional)
+   :type backwards: bool
+   :param sequence: Track Sequence, Track marker during image sequence rather than single image (optional)
+   :type sequence: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: track_settings_as_default()
 
    Copy tracking settings from active track to default settings
 
-   :File: `startup\bl_operators\clip.py\:1020 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\clip.py#L1020>`__
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
+   :File: `startup\bl_operators\clip.py\:955 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\clip.py#L955>`__
 
 .. function:: track_settings_to_track()
 
    Copy tracking settings from active track to selected tracks
 
-   :File: `startup\bl_operators\clip.py\:1069 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\clip.py#L1069>`__
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
+   :File: `startup\bl_operators\clip.py\:1004 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\clip.py#L1004>`__
 
 .. function:: track_to_empty()
 
    Create an Empty object which will be copying movement of active track
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
    :File: `startup\bl_operators\clip.py\:268 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\clip.py#L268>`__
 
 .. function:: tracking_object_new()
 
    Add new object for tracking
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: tracking_object_remove()
 
    Remove object for tracking
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: tracking_settings_preset_add(*, name="", remove_name=False, remove_active=False)
 
    Add or remove a motion tracking settings preset
 
-   :arg name: Name, Name of the preset, used to make the path name
-   :type name: string, (optional, never None)
-   :arg remove_name: remove_name
-   :type remove_name: boolean, (optional)
-   :arg remove_active: remove_active
-   :type remove_active: boolean, (optional)
+   :param name: Name, Name of the preset, used to make the path name (optional, never None)
+   :type name: str
+   :param remove_name: remove_name, (optional)
+   :type remove_name: bool
+   :param remove_active: remove_active, (optional)
+   :type remove_active: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
    :File: `startup\bl_operators\presets.py\:119 <https://projects.blender.org/blender/blender/src/branch/main/scripts/startup\bl_operators\presets.py#L119>`__
 
 
@@ -757,59 +919,79 @@ Clip Operators
 
    Update current image used by plane marker from the content of the plane marker
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: view_all(*, fit_view=False)
 
    View whole image with markers
 
-   :arg fit_view: Fit View, Fit frame to the viewport
-   :type fit_view: boolean, (optional)
+   :param fit_view: Fit View, Fit frame to the viewport (optional)
+   :type fit_view: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: view_center_cursor()
 
    Center the view so that the cursor is in the middle of the view
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: view_ndof()
 
    Use a 3D mouse device to pan/zoom the view
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: view_pan(*, offset=(0.0, 0.0))
 
    Pan the view
 
-   :arg offset: Offset, Offset in floating-point units, 1.0 is the width and height of the image
-   :type offset: :class:`mathutils.Vector` of 2 items in [-inf, inf], (optional)
+   :param offset: Offset, Offset in floating-point units, 1.0 is the width and height of the image (array of 2 items, in [-inf, inf], optional)
+   :type offset: :class:`mathutils.Vector` | Sequence[float]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: view_selected()
 
    View all selected elements
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: view_zoom(*, factor=0.0, use_cursor_init=True)
 
    Zoom in/out the view
 
-   :arg factor: Factor, Zoom factor, values higher than 1.0 zoom in, lower values zoom out
-   :type factor: float in [-inf, inf], (optional)
-   :arg use_cursor_init: Use Mouse Position, Allow the initial mouse position to be used
-   :type use_cursor_init: boolean, (optional)
+   :param factor: Factor, Zoom factor, values higher than 1.0 zoom in, lower values zoom out (in [-inf, inf], optional)
+   :type factor: float
+   :param use_cursor_init: Use Mouse Position, Allow the initial mouse position to be used (optional)
+   :type use_cursor_init: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: view_zoom_in(*, location=(0.0, 0.0))
 
    Zoom in the view
 
-   :arg location: Location, Cursor location in screen coordinates
-   :type location: :class:`mathutils.Vector` of 2 items in [-inf, inf], (optional)
+   :param location: Location, Cursor location in screen coordinates (array of 2 items, in [-inf, inf], optional)
+   :type location: :class:`mathutils.Vector` | Sequence[float]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: view_zoom_out(*, location=(0.0, 0.0))
 
    Zoom out the view
 
-   :arg location: Location, Cursor location in normalized (0.0 to 1.0) coordinates
-   :type location: :class:`mathutils.Vector` of 2 items in [-inf, inf], (optional)
+   :param location: Location, Cursor location in normalized (0.0 to 1.0) coordinates (array of 2 items, in [-inf, inf], optional)
+   :type location: :class:`mathutils.Vector` | Sequence[float]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: view_zoom_ratio(*, ratio=0.0)
 
    Set the zoom ratio (based on clip size)
 
-   :arg ratio: Ratio, Zoom ratio, 1.0 is 1:1, higher is zoomed in, lower is zoomed out
-   :type ratio: float in [-inf, inf], (optional)
+   :param ratio: Ratio, Zoom ratio, 1.0 is 1:1, higher is zoomed in, lower is zoomed out (in [-inf, inf], optional)
+   :type ratio: float
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 

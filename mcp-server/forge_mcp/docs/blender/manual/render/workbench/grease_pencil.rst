@@ -28,3 +28,8 @@ SMAA Threshold
 SSAA Samples
    Number of samples used for super-sampling anti-aliasing in the final render.
    Higher values produce smoother lines but increase render time.
+
+Motion Blur Steps
+   Controls accuracy of :term:`motion blur <Motion Blur>`, more steps result in longer render time.
+   Only used when :ref:`Motion Blur <bpy.types.RenderSettings.use_motion_blur>` is enabled.
+   Set to 0 to disable motion blur for Grease Pencil objects.

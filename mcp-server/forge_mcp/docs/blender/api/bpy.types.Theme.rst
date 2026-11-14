@@ -5,126 +5,189 @@ Theme(bpy_struct)
 
 base class --- :class:`bpy_struct`
 
+
 .. class:: Theme(bpy_struct)
 
    User interface styling and color settings
 
    .. data:: bone_color_sets
 
-      :type: :class:`bpy_prop_collection` of :class:`ThemeBoneColorSet`, (readonly, never None)
+      (default None, readonly, never None)
+
+      :type: :class:`bpy_prop_collection`\ [:class:`ThemeBoneColorSet`]
 
    .. data:: clip_editor
 
-      :type: :class:`ThemeClipEditor`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeClipEditor`
 
    .. data:: collection_color
 
-      :type: :class:`bpy_prop_collection` of :class:`ThemeCollectionColor`, (readonly, never None)
+      (default None, readonly, never None)
+
+      :type: :class:`bpy_prop_collection`\ [:class:`ThemeCollectionColor`]
+
+   .. data:: common
+
+      Theme properties shared by different editors (readonly, never None)
+
+      :type: :class:`ThemeCommon`
 
    .. data:: console
 
-      :type: :class:`ThemeConsole`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeConsole`
 
    .. data:: dopesheet_editor
 
-      :type: :class:`ThemeDopeSheet`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeDopeSheet`
 
    .. data:: file_browser
 
-      :type: :class:`ThemeFileBrowser`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeFileBrowser`
 
    .. attribute:: filepath
 
-      The path to the preset loaded into this theme (if any)
+      The path to the preset loaded into this theme (if any) (default "", never None)
 
-      :type: string, default "", (never None)
+      :type: str
 
    .. data:: graph_editor
 
-      :type: :class:`ThemeGraphEditor`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeGraphEditor`
 
    .. data:: image_editor
 
-      :type: :class:`ThemeImageEditor`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeImageEditor`
 
    .. data:: info
 
-      :type: :class:`ThemeInfo`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeInfo`
 
    .. attribute:: name
 
-      Name of the theme
+      Name of the theme (default "Default", never None)
 
-      :type: string, default "", (never None)
+      :type: str
 
    .. data:: nla_editor
 
-      :type: :class:`ThemeNLAEditor`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeNLAEditor`
 
    .. data:: node_editor
 
-      :type: :class:`ThemeNodeEditor`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeNodeEditor`
 
    .. data:: outliner
 
-      :type: :class:`ThemeOutliner`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeOutliner`
 
    .. data:: preferences
 
-      :type: :class:`ThemePreferences`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemePreferences`
 
    .. data:: properties
 
-      :type: :class:`ThemeProperties`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeProperties`
+
+   .. data:: regions
+
+      Theme properties for common editor regions (readonly, never None)
+
+      :type: :class:`ThemeRegions`
 
    .. data:: sequence_editor
 
-      :type: :class:`ThemeSequenceEditor`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeSequenceEditor`
 
    .. data:: spreadsheet
 
-      :type: :class:`ThemeSpreadsheet`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeSpreadsheet`
 
    .. data:: statusbar
 
-      :type: :class:`ThemeStatusBar`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeStatusBar`
 
    .. data:: strip_color
 
-      :type: :class:`bpy_prop_collection` of :class:`ThemeStripColor`, (readonly, never None)
+      (default None, readonly, never None)
+
+      :type: :class:`bpy_prop_collection`\ [:class:`ThemeStripColor`]
 
    .. data:: text_editor
 
-      :type: :class:`ThemeTextEditor`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeTextEditor`
 
    .. attribute:: theme_area
 
-      :type: enum in [``'USER_INTERFACE'``, ``'STYLE'``, ``'VIEW_3D'``, ``'DOPESHEET_EDITOR'``, ``'FILE_BROWSER'``, ``'GRAPH_EDITOR'``, ``'IMAGE_EDITOR'``, ``'INFO'``, ``'CLIP_EDITOR'``, ``'NODE_EDITOR'``, ``'NLA_EDITOR'``, ``'OUTLINER'``, ``'PREFERENCES'``, ``'PROPERTIES'``, ``'CONSOLE'``, ``'SPREADSHEET'``, ``'STATUSBAR'``, ``'TEXT_EDITOR'``, ``'TOPBAR'``, ``'SEQUENCE_EDITOR'``, ``'BONE_COLOR_SETS'``], default ``'USER_INTERFACE'``
+      (default ``'USER_INTERFACE'``)
+
+      :type: Literal['USER_INTERFACE', 'STYLE', 'REGIONS', 'COMMON', 'VIEW_3D', 'DOPESHEET_EDITOR', 'FILE_BROWSER', 'GRAPH_EDITOR', 'IMAGE_EDITOR', 'INFO', 'CLIP_EDITOR', 'NODE_EDITOR', 'NLA_EDITOR', 'OUTLINER', 'PREFERENCES', 'PROPERTIES', 'CONSOLE', 'SPREADSHEET', 'STATUSBAR', 'TEXT_EDITOR', 'TOPBAR', 'SEQUENCE_EDITOR', 'BONE_COLOR_SETS']
 
    .. data:: topbar
 
-      :type: :class:`ThemeTopBar`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeTopBar`
 
    .. data:: user_interface
 
-      :type: :class:`ThemeUserInterface`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeUserInterface`
 
    .. data:: view_3d
 
-      :type: :class:`ThemeView3D`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ThemeView3D`
 
    .. classmethod:: bl_rna_get_subclass(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: :class:`bpy.types.Struct` | None
       :return: The RNA type or default when not found.
-      :rtype: :class:`bpy.types.Struct` subclass
+      :rtype: :class:`bpy.types.Struct`
 
 
    .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: type | None
       :return: The class or default when not found.
       :rtype: type
 
@@ -135,7 +198,7 @@ Inherited Properties
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.id_data`
+   - :class:`bpy_struct.id_data`
 
 Inherited Functions
 -------------------
@@ -143,29 +206,30 @@ Inherited Functions
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.as_pointer`
-   * :class:`bpy_struct.driver_add`
-   * :class:`bpy_struct.driver_remove`
-   * :class:`bpy_struct.get`
-   * :class:`bpy_struct.id_properties_clear`
-   * :class:`bpy_struct.id_properties_ensure`
-   * :class:`bpy_struct.id_properties_ui`
-   * :class:`bpy_struct.is_property_hidden`
-   * :class:`bpy_struct.is_property_overridable_library`
-   * :class:`bpy_struct.is_property_readonly`
-   * :class:`bpy_struct.is_property_set`
-   * :class:`bpy_struct.items`
-   * :class:`bpy_struct.keyframe_delete`
-   * :class:`bpy_struct.keyframe_insert`
-   * :class:`bpy_struct.keys`
-   * :class:`bpy_struct.path_from_id`
-   * :class:`bpy_struct.path_resolve`
-   * :class:`bpy_struct.pop`
-   * :class:`bpy_struct.property_overridable_library_set`
-   * :class:`bpy_struct.property_unset`
-   * :class:`bpy_struct.rna_ancestors`
-   * :class:`bpy_struct.type_recast`
-   * :class:`bpy_struct.values`
+   - :class:`bpy_struct.as_pointer`
+   - :class:`bpy_struct.driver_add`
+   - :class:`bpy_struct.driver_remove`
+   - :class:`bpy_struct.get`
+   - :class:`bpy_struct.id_properties_clear`
+   - :class:`bpy_struct.id_properties_ensure`
+   - :class:`bpy_struct.id_properties_ui`
+   - :class:`bpy_struct.is_property_hidden`
+   - :class:`bpy_struct.is_property_overridable_library`
+   - :class:`bpy_struct.is_property_readonly`
+   - :class:`bpy_struct.is_property_set`
+   - :class:`bpy_struct.items`
+   - :class:`bpy_struct.keyframe_delete`
+   - :class:`bpy_struct.keyframe_insert`
+   - :class:`bpy_struct.keys`
+   - :class:`bpy_struct.path_from_id`
+   - :class:`bpy_struct.path_from_module`
+   - :class:`bpy_struct.path_resolve`
+   - :class:`bpy_struct.pop`
+   - :class:`bpy_struct.property_overridable_library_set`
+   - :class:`bpy_struct.property_unset`
+   - :class:`bpy_struct.rna_ancestors`
+   - :class:`bpy_struct.type_recast`
+   - :class:`bpy_struct.values`
 
 References
 ----------
@@ -173,5 +237,5 @@ References
 .. hlist::
    :columns: 2
 
-   * :class:`Preferences.themes`
+   - :class:`Preferences.themes`
 

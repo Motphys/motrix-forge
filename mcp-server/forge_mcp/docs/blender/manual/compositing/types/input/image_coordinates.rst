@@ -24,12 +24,6 @@ Image
    The input image used to determine dimensions and placement for the coordinate outputs.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

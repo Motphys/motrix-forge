@@ -4,15 +4,38 @@
 Shading
 *******
 
+Smooth/Flat Faces
+=================
+
 .. reference::
 
    :Mode:      Edit Mode
-   :Menu:      :menuselection:`Mesh --> Shading`
+   :Menu:      :menuselection:`Mesh --> Shading --> Smooth/Flat Faces`
 
-Alternatively, you can choose which faces to smooth by entering *Edit Mode*,
-then selecting some faces and picking *Shade Smooth* from the *Face Menu*.
+Applies :ref:`smooth <bpy.ops.mesh.faces_shade_smooth>` or
+:ref:`flat <bpy.ops.mesh.faces_shade_flat>` shading to the selected faces.
 
-When the mesh is in *Edit Mode*,
-only the selected faces will receive the "smoothing" attribute.
-You can set faces as flat (removing the "smoothing" attribute)
-in the same way by selecting edges and picking the *Shade Flat* from the *Face Menu*.
+
+Smooth/Sharp Edges
+==================
+
+.. reference::
+
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Mesh --> Shading --> Smooth/Sharp Edges`
+
+Clears or applies the :ref:`Sharp <bpy.ops.mesh.mark_sharp>` mark for
+the selected edges.
+
+
+Smooth/Sharp Vertices
+=====================
+
+.. reference::
+
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Mesh --> Shading --> Smooth/Sharp Vertices`
+
+Clears or applies the :ref:`Sharp <bpy.ops.mesh.mark_sharp>` mark for
+all edges that have at least one selected vertex.
+

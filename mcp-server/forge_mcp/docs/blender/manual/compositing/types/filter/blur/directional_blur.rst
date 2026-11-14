@@ -40,12 +40,6 @@ Direction
    The angle that defines the direction of the translation.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

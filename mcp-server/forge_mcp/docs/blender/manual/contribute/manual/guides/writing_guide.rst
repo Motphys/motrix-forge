@@ -36,8 +36,8 @@ it when you have a good reason to do so. If in doubt, check with the documentati
 Rules of thumb:
 
 - Spell checking is *strongly* recommended.
-- Use American English (e.g: modeling and not modelling, color and not colour) also for formatting numbers (e.g:
-  2,718.28 and not 2 718,28).
+- Use American English (e.g: modeling and not :abbr:`modelling`, color and not :abbr:`colour`) also for formatting
+  numbers (e.g: 2,718.28 and not 2 718,28).
 - Take care about grammar, appropriate wording and use simple English.
 - Keep sentences short and clear.
 - Including why or how an option might be useful is a good idea.

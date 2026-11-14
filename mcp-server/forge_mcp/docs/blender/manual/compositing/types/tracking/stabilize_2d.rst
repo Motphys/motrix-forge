@@ -20,24 +20,45 @@ Inputs
 
 Image
    Standard color input.
+Frame
+   Frame from which to evaluate the stabilization data.
+
+   By default, this uses the current scene frame, but it can be driven
+   independently when the image is time-remapped, offset in time, or
+   otherwise evaluated at a different frame than the scene.
 Invert
    Invert the stabilization. If the stabilization calculated is to move the movie clip up by 5 units,
    this will move the movie clip down by 5 units.
+
+
+Sampling
+--------
+
+Filter
+   Determines how pixel values are interpolated when scaling or transforming images.
+
+   :Nearest:
+      Uses the value of the closest pixel with no smoothing.
+      This is the fastest method and is well-suited for pixel art or low-resolution images
+      where sharp, blocky edges are desirable.
+      In animations, motion appears in single-pixel steps, which can cause visible jittering.
+   :Bilinear:
+      Averages the values of surrounding pixels to create a smoother result than *Nearest*.
+      Provides a good balance between performance and visual quality.
+   :Bicubic:
+      Computes a weighted average of a larger neighborhood of pixels for even smoother results.
+      Ideal for photographic images or gradients where preserving fine detail is important.
+   :Anisotropic:
+      Adjusts interpolation based on the direction and scale of the transformation.
+      Helps reduce blurring or aliasing when scaling at steep angles or uneven resolutions,
+      especially useful in textures viewed at oblique angles or in detailed 3D projections.
 
 
 Properties
 ==========
 
 Movie Clip
-   The movie clip whose stabilization to use.
-
-Interpolation
-   Various methods for the stabilization.
-   Usually, the same as used in
-   :menuselection:`Movie Clip Editor --> Properties --> Stabilization --> 2D Stabilization --> Interpolate`.
-   For technical details on their difference,
-   `see this <https://www.mathworks.com/help/curvefit/interpolation-methods.html>`__.
-   But for most purposes, default of Bilinear should suffice.
+   The :ref:`movie clip <bpy.types.MovieClip>` whose stabilization to use.
 
 
 Outputs

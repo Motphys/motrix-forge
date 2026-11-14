@@ -64,11 +64,9 @@ Surface
    :Type:      Canvas
    :Panel:     :menuselection:`Physics --> Dynamic Paint --> Surface`
 
-.. todo:: Update image
+.. figure:: /images/physics_dynamic-paint_canvas_advanced-panel.png
 
-   .. figure:: /images/physics_dynamic-paint_canvas_advanced-panel.png
-
-      Canvas advanced panel.
+   Canvas advanced panel.
 
 From *Surface* panel you can adjust surface type and related settings.
 
@@ -203,11 +201,9 @@ Cache
    :Type:      Canvas
    :Panel:     :menuselection:`Physics --> Dynamic Paint --> Cache`
 
-.. todo:: Update image
+.. figure:: /images/physics_dynamic-paint_canvas_cache-panel.png
 
-   .. figure:: /images/physics_dynamic-paint_canvas_cache-panel.png
-
-      Canvas cache panel.
+   Canvas cache panel.
 
 This panel is currently only visible for *Vertex* format surfaces.
 You can use it to adjust and bake point cache.
@@ -221,11 +217,9 @@ Effects
    :Type:      Canvas
    :Panel:     :menuselection:`Physics --> Dynamic Paint --> Effects`
 
-.. todo:: Update image
+.. figure:: /images/physics_dynamic-paint_canvas_effects-panel.png
 
-   .. figure:: /images/physics_dynamic-paint_canvas_effects-panel.png
-
-      Effects panel.
+   Effects panel.
 
 This is a special feature for "Paint" type surface.
 It generates animated movement on canvas surface.
@@ -239,7 +233,7 @@ Effects
       Paint moves in specific direction specified by Blender force fields,
       gravity and velocity with user-defined influences.
    Shrink
-      Painted area slowly shrinks until disappears completely.
+      Painted area slowly shrinks until it disappears completely.
 
 For spread and drip effects, only "wet paint" is affected, so as the paint dries,
 movement becomes slower until it stops.
@@ -269,11 +263,9 @@ Output
    :Type:      Canvas
    :Panel:     :menuselection:`Physics --> Dynamic Paint --> Output`
 
-.. todo:: Update image
+.. figure:: /images/physics_dynamic-paint_canvas_output-panel.png
 
-   .. figure:: /images/physics_dynamic-paint_canvas_output-panel.png
-
-      Canvas Output panel.
+   Canvas Output panel.
 
 From Output panel you can adjust how surface outputs its results.
 

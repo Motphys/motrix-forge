@@ -45,7 +45,7 @@ Factor
 
 .. hint::
 
-   The :doc:`/compositing/types/utilities/map_range`
+   The :doc:`/compositing/types/utilities/math/map_range`
    can be used to map the output to a more appropriate value.
    With some curves, it is possible that the Time Curve node
    may output a number larger than one or less than zero.

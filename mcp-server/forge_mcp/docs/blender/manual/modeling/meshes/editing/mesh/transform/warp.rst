@@ -8,22 +8,20 @@ Warp
    :Mode:      Edit Modes
    :Menu:      :menuselection:`Object/Mesh/Curve/Surface --> Transform --> Warp`
 
-.. figure:: /images/modeling_meshes_editing_mesh_transform_warp_operator-panel.png
-   :align: right
-
-   Warp options.
-
-The *Warp* transformation takes selected elements and
-warps them around the 3D cursor by a certain angle.
-Note that this transformation is always dependent on the location of the 3D cursor.
-The Pivot Point is not taken into account.
-The results of the *Warp* transformation are also view dependent.
-
+This transformation bends part of the selection into a circle segment.
+It's similar to :doc:`/modeling/meshes/editing/mesh/transform/bend`,
+except that here, the 3D Cursor is at the center instead of on the circle.
 
 Usage
 =====
 
-.. list-table:: In this example, a plane is warped around the 3D cursor by the indicated number of degrees.
+#. Align the 3D Viewport's :doc:`viewpoint </editors/3dview/navigate/viewpoint>` to the plane
+   in which the warp should happen.
+#. Place the :doc:`/editors/3dview/3d_cursor` at the center point for the warp.
+#. Click *Warp* in the menu.
+#. Adjust the options in the :ref:`bpy.ops.screen.redo_last` panel.
+
+.. list-table::
 
    * - .. figure:: /images/modeling_meshes_editing_mesh_transform_warp_mesh.png
 
@@ -31,70 +29,41 @@ Usage
 
      - .. figure:: /images/modeling_meshes_editing_mesh_transform_warp_mesh-90.png
 
-          Warp Angle 90.
+          Warp Angle 90°.
 
    * - .. figure:: /images/modeling_meshes_editing_mesh_transform_warp_mesh-180.png
 
-          Warp Angle 180.
+          Warp Angle 180°.
 
      - .. figure:: /images/modeling_meshes_editing_mesh_transform_warp_mesh-360.png
 
-          Warp Angle 360.
+          Warp Angle 360°.
+
+.. note::
+
+   Unlike most other transform tools, *Warp* does not take into account the
+   :doc:`transform orientation </editors/3dview/controls/orientation>` or the
+   :doc:`pivot point </editors/3dview/controls/pivot_point/index>`, instead always
+   using the view plane and the 3D Cursor.
 
 
-Cursor Position & View
-----------------------
+Options
+=======
 
-The location of the 3D cursor can be used to alter the results of the *Warp* transformation.
-As can be seen from the example in this section, the *Warp* radius
-is dependent on the distance of the cursor from the selected elements.
-The greater the distance, the greater the radius.
+Warp Angle
+   The size of the circle segment along which to bend the selection.
+Offset Angle
+   Direction angle for the line going from the 3D Cursor to the center of the selection.
+   A value of 0° means straight up, and higher values go clockwise.
+Min/Max
+   Distance from the above centerline to the leftmost/rightmost part of geometry that will
+   be included in the circle segment. The geometry that "sticks out of" these limits
+   will be rotated but not bent.
 
-The result of the *Warp* transform is also influenced by your current view.
-The example in this section shows the results of a 180 degree *Warp* transform applied
-to the same Plane mesh when in different views.
+.. figure:: /images/modeling_meshes_editing_mesh_transform_warp_properties.png
 
-.. list-table:: This image shows how the Warp transform is influenced by the location of the cursor.
-
-   * - .. figure:: /images/modeling_meshes_editing_mesh_transform_warp_mesh.png
-
-          Before.
-
-     - .. figure:: /images/modeling_meshes_editing_mesh_transform_warp_mesh-180.png
-
-          Warp Angle 180.
-
-   * - .. figure:: /images/modeling_meshes_editing_mesh_transform_warp_mesh-cursor.png
-
-          Before.
-
-     - .. figure:: /images/modeling_meshes_editing_mesh_transform_warp_mesh-cursor-180.png
-
-          Warp Angle 180.
-
-.. list-table:: This image shows the influence of the current view.
-
-   * - .. figure:: /images/modeling_meshes_editing_mesh_transform_warp_view-1.png
-
-          Before.
-
-     - .. figure:: /images/modeling_meshes_editing_mesh_transform_warp_view-2.png
-
-          Warp Angle 180 in XZ view.
-
-   * - .. figure:: /images/modeling_meshes_editing_mesh_transform_warp_view-3.png
-
-          Warp Angle 180 in YZ view.
-
-     - .. figure:: /images/modeling_meshes_editing_mesh_transform_warp_view-4.png
-
-          Warp Angle 180 in User view.
-
-.. note:: Warping text
-
-   If you want to warp text, you will need to convert it from a text object to mesh
-   using :ref:`object-convert-to`.
-
+   Warping with an Offset Angle of 45°, a Min and Max of -0.5 and 0.5,
+   and a Warp Angle of 90°.
 
 Example
 =======
@@ -104,4 +73,5 @@ Example
    Text wrapped around logo.
 
 This was made by creating the Blender logo and text as separate objects.
-The text was converted to a mesh and then warped around the Blender logo.
+The text was :doc:`converted </scene_layout/object/editing/convert>`
+to a mesh and then warped around the logo.

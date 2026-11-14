@@ -18,6 +18,7 @@
    slide_vertices.rst
    smooth_vertices.rst
    laplacian_smooth.rst
+   vertex_crease.rst
    blend_shape.rst
    propagate_shapes.rst
    vertex_groups.rst

@@ -29,12 +29,6 @@ Cuts
    the value of the field when evaluated at the previous point.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

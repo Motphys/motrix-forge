@@ -46,9 +46,9 @@ first-ever crowdfunding campaign: Free Blender. Thanks to Blender's community of
 was able to raise one hundred and ten thousand euros in just seven weeks — sufficient to regain Blender from its
 investors.
 
-On Sunday, October 13th, 2002, Blender was released under the terms of the `GNU General Public License
-<https://www.gnu.org/licenses/gpl.html>`__, the strictest possible open-source contract. Not only would Blender be
-free, but its source code would remain free, forever, to be used for any purpose whatsoever.
+On Sunday, October 13th, 2002, Blender was released under the terms of the `GNU General Public V2 License
+<https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html>`__, the strictest possible open-source contract.
+Not only would Blender be free, but its source code would remain free, forever, to be used for any purpose whatsoever.
 
 The success of Free Blender cleared the way for a style of development that has become Blender's defining strength.
 While Blender's evolution is partly driven by grant-funded developers and guided by a core team at the Blender
@@ -239,8 +239,8 @@ Version/Revision Milestones
    fixes.
 `2.64 <https://archive.blender.org/wiki/2015/index.php/Dev:Ref/Release_Notes/2.64>`__ -- October 2012:
    A mask editor was added, along with an improved motion tracker, OpenColorIO, Cycles improvements, Sequencer
-   improvements, better mesh tools (Inset and Bevel were improved), new keying nodes, sculpt masking, Collada
-   improvements, a new Skin modifier, a new compositing nodes backend, and the fixing of many bugs.
+   improvements, better mesh tools (Inset and Bevel were improved), new keying nodes, sculpt masking,
+   COLLADA improvements, a new Skin modifier, a new compositing nodes backend, and the fixing of many bugs.
 `2.65 <https://archive.blender.org/wiki/2015/index.php/Dev:Ref/Release_Notes/2.65>`__ -- December 2012:
    Fire and smoke improvements, anisotropic shader for Cycles, modifier improvements, the Bevel tool now includes
    rounding, new add-ons, and over 200 bug fixes.

@@ -15,6 +15,6 @@
    unsubdivide.rst
    rotate_edge.rst
    edge_slide.rst
-   offset_edge_slide.rst
    loopcut_slide.rst
+   offset_edge_slide.rst
    edge_data.rst

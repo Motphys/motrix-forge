@@ -4,12 +4,19 @@
 Create Guide Index Map
 **********************
 
-Creates an integer attribute named ``guide_curve_index`` that stores
-the nearest guide curve for every curve to its nearest guide via index.
+The *Create Guide Index Map* node generates an integer attribute named
+``guide_curve_index`` that maps every hair curve to its nearest *guide* curve.
+Each non-guide curve is assigned the index of the guide curve it should follow.
+
+This guide map is used by other hair grooming nodes (for example,
+:doc:`/modeling/geometry_nodes/hair/guides/braid_hair_curves`,
+:doc:`/modeling/geometry_nodes/hair/guides/clump_hair_curves`)
+to organize curves into logical groups around shared guides and apply
+effects consistently.
 
 Other nodes in the :doc:`/modeling/geometry_nodes/hair/guides/index`
-category can generate guide maps themselves for convenience, but the behavior is
-always the same as this node.
+category can generate a guide map internally for convenience, but the
+resulting attribute is equivalent to what this node produces.
 
 .. peertube:: cPLeMHSnPYidQmJezdhcyL
 
@@ -17,42 +24,50 @@ always the same as this node.
 Inputs
 ======
 
-**Geometry**
+Geometry
+   The input geometry containing the hair curves to be grouped and,
+   optionally, existing guide curves.
 
 Guides
-   Guide Curves or Points used for the selection of Guide Curves.
+   The curves or points that can act as guides.
+   These are the candidates that other curves will be assigned to.
 
 Guide Distance
-   Minimum distance between two guides.
+   The minimum spacing between chosen guides.
+   This prevents guides from being selected too close together and helps control
+   how large each guide's influence region will be.
 
 Guide Mask
-   Mask for which curve are eligible to be selected as guides.
+   A mask that restricts which curves are allowed to become guides.
+   Curves with a mask value of 0 cannot be selected as guides.
 
 Group ID
-   ID to group together curves for guide map creation.
-   Curves will only choose a guide with the same ID value.
-
-
-Properties
-==========
-
-This node has no properties.
+   An ID used to divide the curves into independent groups for guide assignment.
+   A curve will only select a guide that has the same *Group ID* value.
+   This is useful for ensuring that different regions (for example, left vs. right side of a groom)
+   do not mix.
 
 
 Outputs
 =======
 
 Geometry
-   Output geometry including the new map attribute and the guide selection
-   :ref:`anonymous attribute <anonymous-attributes>` as well. This geometry
-   includes the guide curves, they are not separated.
+   The input geometry with two additions:
+
+   - A ``guide_curve_index`` attribute that stores, for every curve,
+     the index of its assigned guide curve.
+   - A :ref:`anonymous attribute <anonymous-attributes>` representing the guide
+     selection.
+     The resulting geometry still contains both normal curves and the chosen guide curves.
 
 Guide Curves
-   Output geometry including only the selected guide curves.
+   A geometry output that includes only the curves selected as guides.
 
 Guide Index
-   The index of the closest curve with the same *Group ID* value.
+   An integer attribute giving, for each curve, the index of the closest guide curve
+   with the same *Group ID*.
 
 Guide Selection
-   A selection in the *Geometry* output set to true for only the curves
-   that were chosen as guides.
+   A boolean selection attribute that is true only for curves that were chosen
+   as guides.
+   This can be used to isolate, visualize, or further process the guide curves.

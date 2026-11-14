@@ -22,7 +22,8 @@ Pixel Aspect
    but can also be guessed. For example, you know that the footage should be 1920×1080,
    but the images themselves are 1280×1080. In this case, the pixel aspect is: 1920 / 1280 = 1.5.
 
-.. _bpy.types.MovieTrackingCamera.lens:
+
+.. _motion_tracking-camera-lens:
 
 Lens
 ====
@@ -30,19 +31,17 @@ Lens
 .. _bpy.types.MovieTrackingCamera.focal_length:
 
 Focal Length
-   Is self-explanatory; it is the focal length with which the movie was shot.
+   The focal length with which the movie was shot.
    It can be set in millimeters or pixels.
 
-.. _bpy.types.MovieTrackingCamera.principal:
+.. _bpy.types.MovieTrackingCamera.principal_point:
 
 Optical Center
-   Is the optical center of the lens used in the camera. In most cases it is equal to the image center,
-   but it can be different in some special cases. Check camera/lens specifications in such cases.
+   Defines the optical center (also known as the *principal point*) of the lens used by the camera.
+   In most cases this coincides with the center of the image, but certain lenses may have
+   an offset optical center. Refer to the specifications of camera or lens used if needed.
 
-   .. tip:: Optical Center also know as the principal point in photogrammetry.
-
-Set Center
-   See :ref:`bpy.ops.clip.set_center_principal`.
+   The values are given in normalized image coordinates.
 
 .. _bpy.types.MovieTrackingCamera.distortion_model:
 
@@ -84,6 +83,7 @@ Coefficients
          Example of radial distortion for positive and negative K coefficients.
 
    .. _bpy.types.MovieTrackingCamera.brown_p:
+   .. _bpy.types.MovieTrackingCamera.nuke_p:
 
    Tangential Distortion Coefficients (P1, P2)
       Works independent and allow to compensate for situations when the sensor is not

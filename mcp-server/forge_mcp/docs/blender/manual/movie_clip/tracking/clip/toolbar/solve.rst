@@ -55,7 +55,7 @@ Refine
    .. _bpy.types.MovieTrackingSettings.refine_intrinsics_principal_point:
 
    Optical Center
-      Refine the camera's :ref:`Optical Center <bpy.types.MovieTrackingCamera.principal>`.
+      Refine the camera's :ref:`Optical Center <bpy.types.MovieTrackingCamera.principal_point>`.
 
    .. _bpy.types.MovieTrackingSettings.refine_intrinsics_radial_distortion:
 
@@ -83,17 +83,14 @@ Frames
    Tracks or tracked segments shorter than this number of frames will be removed.
 
 Error
-   Tracks which has reprojection error higher than this value will be removed.
+   Tracks which have reprojection error higher than this value will be removed.
 
 Type
    Several actions can be performed for bad tracks:
 
-   Select
-      They can simply be selected.
-   Delete Track
-      The whole track can be deleted.
-   Delete Segments
-      Bad segments of tracked sequence can be removed.
+   :Select: They can simply be selected.
+   :Delete Track: The whole track can be deleted.
+   :Delete Segments: Bad segments of tracked sequence can be removed.
 
 Clean Tracks
    See :ref:`bpy.ops.clip.clean_tracks`.

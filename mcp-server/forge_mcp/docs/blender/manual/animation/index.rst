@@ -9,6 +9,7 @@
    :maxdepth: 2
 
    introduction.rst
+   animation_editors.rst
    keyframes/index.rst
    armatures/index.rst
    lattice.rst
@@ -18,3 +19,4 @@
    markers.rst
    shape_keys/index.rst
    motion_paths.rst
+   in_betweens.rst

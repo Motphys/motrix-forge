@@ -34,12 +34,6 @@ Offset
    circling back to the first corner if necessary.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

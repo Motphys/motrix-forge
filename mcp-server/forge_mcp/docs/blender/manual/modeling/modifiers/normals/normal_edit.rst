@@ -57,7 +57,7 @@ Max Angle
    This is useful to prevent extreme changes, that can even lead to inverting the front/back sides of a face,
    and consequently to shading artifacts.
 
-   Lock Polygon Normals (padlock icon)
+   :bl-icon:`unlock` / :bl-icon:`locked` Lock Polygon Normals
       Prevents flipping (reversing front/back sides) of polygons which normal does not match anymore
       the side to which point its corners' custom normals. Can also help to avoid shading issues.
 

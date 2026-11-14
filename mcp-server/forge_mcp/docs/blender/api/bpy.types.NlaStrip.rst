@@ -5,6 +5,7 @@ NlaStrip(bpy_struct)
 
 base class --- :class:`bpy_struct`
 
+
 .. class:: NlaStrip(bpy_struct)
 
    A container referencing an existing Action
@@ -13,243 +14,255 @@ base class --- :class:`bpy_struct`
 
       Action referenced by this strip
 
-      :type: :class:`Action`
+      :type: :class:`Action` | None
 
    .. attribute:: action_frame_end
 
-      Last frame from action to use
+      Last frame from action to use (in [-inf, inf], default 0.0)
 
-      :type: float in [-inf, inf], default 0.0
+      :type: float
 
    .. attribute:: action_frame_start
 
-      First frame from action to use
+      First frame from action to use (in [-inf, inf], default 0.0)
 
-      :type: float in [-inf, inf], default 0.0
+      :type: float
 
    .. attribute:: action_slot
 
       The slot identifies which sub-set of the Action is considered to be for this strip, and its name is used to find the right slot when assigning another Action
 
-      :type: :class:`ActionSlot`
+      :type: :class:`ActionSlot` | None
 
    .. attribute:: action_slot_handle
 
-      A number that identifies which sub-set of the Action is considered to be for this NLA strip
+      A number that identifies which sub-set of the Action is considered to be for this NLA strip (in [-inf, inf], default 0)
 
-      :type: int in [-inf, inf], default 0
+      :type: int
 
    .. data:: action_suitable_slots
 
-      The list of action slots suitable for this NLA strip
+      The list of action slots suitable for this NLA strip (default None, readonly)
 
-      :type: :class:`bpy_prop_collection` of :class:`ActionSlot`, (readonly)
+      :type: :class:`bpy_prop_collection`\ [:class:`ActionSlot`]
 
    .. data:: active
 
-      NLA Strip is active
+      NLA Strip is active (default False, readonly)
 
-      :type: boolean, default False, (readonly)
+      :type: bool
 
    .. attribute:: blend_in
 
-      Number of frames at start of strip to fade in influence
+      Number of frames at start of strip to fade in influence (in [-inf, inf], default 0.0)
 
-      :type: float in [-inf, inf], default 0.0
+      :type: float
 
    .. attribute:: blend_out
 
-      :type: float in [-inf, inf], default 0.0
+      (in [-inf, inf], default 0.0)
+
+      :type: float
 
    .. attribute:: blend_type
 
-      Method used for combining strip's result with accumulated result
+      Method used for combining strip's result with accumulated result (default ``'REPLACE'``)
 
-      * ``REPLACE``
+      - ``REPLACE``
         Replace -- The strip values replace the accumulated results by amount specified by influence.
-      * ``COMBINE``
+      - ``COMBINE``
         Combine -- The strip values are combined with accumulated results by appropriately using addition, multiplication, or quaternion math, based on channel type.
-      * ``ADD``
+      - ``ADD``
         Add -- Weighted result of strip is added to the accumulated results.
-      * ``SUBTRACT``
+      - ``SUBTRACT``
         Subtract -- Weighted result of strip is removed from the accumulated results.
-      * ``MULTIPLY``
+      - ``MULTIPLY``
         Multiply -- Weighted result of strip is multiplied with the accumulated results.
 
-      :type: enum in [``'REPLACE'``, ``'COMBINE'``, ``'ADD'``, ``'SUBTRACT'``, ``'MULTIPLY'``], default ``'REPLACE'``
+      :type: Literal['REPLACE', 'COMBINE', 'ADD', 'SUBTRACT', 'MULTIPLY']
 
    .. attribute:: extrapolation
 
-      Action to take for gaps past the strip extents
+      Action to take for gaps past the strip extents (default ``'HOLD'``)
 
-      * ``NOTHING``
+      - ``NOTHING``
         Nothing -- Strip has no influence past its extents.
-      * ``HOLD``
+      - ``HOLD``
         Hold -- Hold the first frame if no previous strips in track, and always hold last frame.
-      * ``HOLD_FORWARD``
+      - ``HOLD_FORWARD``
         Hold Forward -- Only hold last frame.
 
-      :type: enum in [``'NOTHING'``, ``'HOLD'``, ``'HOLD_FORWARD'``], default ``'HOLD'``
+      :type: Literal['NOTHING', 'HOLD', 'HOLD_FORWARD']
 
    .. data:: fcurves
 
-      F-Curves for controlling the strip's influence and timing
+      F-Curves for controlling the strip's influence and timing (default None, readonly)
 
-      :type: :class:`NlaStripFCurves` :class:`bpy_prop_collection` of :class:`FCurve`, (readonly)
+      :type: :class:`NlaStripFCurves`\ [:class:`FCurve`]
 
    .. attribute:: frame_end
 
-      :type: float in [-inf, inf], default 0.0
+      (in [-inf, inf], default 0.0)
+
+      :type: float
 
    .. attribute:: frame_end_raw
 
-      Same as frame_end, except that any value can be set, including ones that create an invalid state
+      Same as frame_end, except that any value can be set, including ones that create an invalid state (in [-inf, inf], default 0.0)
 
-      :type: float in [-inf, inf], default 0.0
+      :type: float
 
    .. attribute:: frame_end_ui
 
-      End frame of the NLA strip. Note: changing this value also updates the value of the strip's repeats or its action's end frame. If only the end frame should be changed, see the "frame_end" property instead.
+      End frame of the NLA strip. Note: changing this value also updates the value of the strip's repeats or its action's end frame. If only the end frame should be changed, see the "frame_end" property instead. (in [-inf, inf], default 0.0)
 
-      :type: float in [-inf, inf], default 0.0
+      :type: float
 
    .. attribute:: frame_start
 
-      :type: float in [-inf, inf], default 0.0
+      (in [-inf, inf], default 0.0)
+
+      :type: float
 
    .. attribute:: frame_start_raw
 
-      Same as frame_start, except that any value can be set, including ones that create an invalid state
+      Same as frame_start, except that any value can be set, including ones that create an invalid state (in [-inf, inf], default 0.0)
 
-      :type: float in [-inf, inf], default 0.0
+      :type: float
 
    .. attribute:: frame_start_ui
 
-      Start frame of the NLA strip. Note: changing this value also updates the value of the strip's end frame. If only the start frame should be changed, see the "frame_start" property instead.
+      Start frame of the NLA strip. Note: changing this value also updates the value of the strip's end frame. If only the start frame should be changed, see the "frame_start" property instead. (in [-inf, inf], default 0.0)
 
-      :type: float in [-inf, inf], default 0.0
+      :type: float
 
    .. attribute:: influence
 
-      Amount the strip contributes to the current result
+      Amount the strip contributes to the current result (in [0, 1], default 0.0)
 
-      :type: float in [0, 1], default 0.0
+      :type: float
 
    .. attribute:: last_slot_identifier
 
-      The identifier of the most recently assigned action slot. The slot identifies which sub-set of the Action is considered to be for this strip, and its identifier is used to find the right slot when assigning an Action.
+      The identifier of the most recently assigned action slot. The slot identifies which sub-set of the Action is considered to be for this strip, and its identifier is used to find the right slot when assigning an Action. (default "", never None)
 
-      :type: string, default "", (never None)
+      :type: str
 
    .. data:: modifiers
 
-      Modifiers affecting all the F-Curves in the referenced Action
+      Modifiers affecting all the F-Curves in the referenced Action (default None, readonly)
 
-      :type: :class:`bpy_prop_collection` of :class:`FModifier`, (readonly)
+      :type: :class:`bpy_prop_collection`\ [:class:`FModifier`]
 
    .. attribute:: mute
 
-      Disable NLA Strip evaluation
+      Disable NLA Strip evaluation (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: name
 
-      :type: string, default "", (never None)
+      (default "", never None)
+
+      :type: str
 
    .. attribute:: repeat
 
-      Number of times to repeat the action range
+      Number of times to repeat the action range (in [0.1, 1000], default 1.0)
 
-      :type: float in [0.1, 1000], default 1.0
+      :type: float
 
    .. attribute:: scale
 
-      Scaling factor for action
+      Scaling factor for action (in [0.0001, 1000], default 1.0)
 
-      :type: float in [0.0001, 1000], default 1.0
+      :type: float
 
    .. attribute:: select
 
-      NLA Strip is selected
+      NLA Strip is selected (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: strip_time
 
-      Frame of referenced Action to evaluate
+      Frame of referenced Action to evaluate (in [-inf, inf], default 0.0)
 
-      :type: float in [-inf, inf], default 0.0
+      :type: float
 
    .. data:: strips
 
-      NLA Strips that this strip acts as a container for (if it is of type Meta)
+      NLA Strips that this strip acts as a container for (if it is of type Meta) (default None, readonly)
 
-      :type: :class:`bpy_prop_collection` of :class:`NlaStrip`, (readonly)
+      :type: :class:`bpy_prop_collection`\ [:class:`NlaStrip`]
 
    .. data:: type
 
-      Type of NLA Strip
+      Type of NLA Strip (default ``'CLIP'``, readonly)
 
-      * ``CLIP``
+      - ``CLIP``
         Action Clip -- NLA Strip references some Action.
-      * ``TRANSITION``
+      - ``TRANSITION``
         Transition -- NLA Strip 'transitions' between adjacent strips.
-      * ``META``
+      - ``META``
         Meta -- NLA Strip acts as a container for adjacent strips.
-      * ``SOUND``
+      - ``SOUND``
         Sound Clip -- NLA Strip representing a sound event for speakers.
 
-      :type: enum in [``'CLIP'``, ``'TRANSITION'``, ``'META'``, ``'SOUND'``], default ``'CLIP'``, (readonly)
+      :type: Literal['CLIP', 'TRANSITION', 'META', 'SOUND']
 
    .. attribute:: use_animated_influence
 
-      Influence setting is controlled by an F-Curve rather than automatically determined
+      Influence setting is controlled by an F-Curve rather than automatically determined (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_animated_time
 
-      Strip time is controlled by an F-Curve rather than automatically determined
+      Strip time is controlled by an F-Curve rather than automatically determined (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_animated_time_cyclic
 
-      Cycle the animated time within the action start and end
+      Cycle the animated time within the action start and end (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_auto_blend
 
-      Number of frames for Blending In/Out is automatically determined from overlapping strips
+      Number of frames for Blending In/Out is automatically determined from overlapping strips (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_reverse
 
-      NLA Strip is played back in reverse order (only when timing is automatically determined)
+      NLA Strip is played back in reverse order (only when timing is automatically determined) (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_sync_length
 
-      Update range of frames referenced from action after tweaking strip and its keyframes
+      Update range of frames referenced from action after tweaking strip and its keyframes (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. classmethod:: bl_rna_get_subclass(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: :class:`bpy.types.Struct` | None
       :return: The RNA type or default when not found.
-      :rtype: :class:`bpy.types.Struct` subclass
+      :rtype: :class:`bpy.types.Struct`
 
 
    .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: type | None
       :return: The class or default when not found.
       :rtype: type
 
@@ -260,7 +273,7 @@ Inherited Properties
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.id_data`
+   - :class:`bpy_struct.id_data`
 
 Inherited Functions
 -------------------
@@ -268,29 +281,30 @@ Inherited Functions
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.as_pointer`
-   * :class:`bpy_struct.driver_add`
-   * :class:`bpy_struct.driver_remove`
-   * :class:`bpy_struct.get`
-   * :class:`bpy_struct.id_properties_clear`
-   * :class:`bpy_struct.id_properties_ensure`
-   * :class:`bpy_struct.id_properties_ui`
-   * :class:`bpy_struct.is_property_hidden`
-   * :class:`bpy_struct.is_property_overridable_library`
-   * :class:`bpy_struct.is_property_readonly`
-   * :class:`bpy_struct.is_property_set`
-   * :class:`bpy_struct.items`
-   * :class:`bpy_struct.keyframe_delete`
-   * :class:`bpy_struct.keyframe_insert`
-   * :class:`bpy_struct.keys`
-   * :class:`bpy_struct.path_from_id`
-   * :class:`bpy_struct.path_resolve`
-   * :class:`bpy_struct.pop`
-   * :class:`bpy_struct.property_overridable_library_set`
-   * :class:`bpy_struct.property_unset`
-   * :class:`bpy_struct.rna_ancestors`
-   * :class:`bpy_struct.type_recast`
-   * :class:`bpy_struct.values`
+   - :class:`bpy_struct.as_pointer`
+   - :class:`bpy_struct.driver_add`
+   - :class:`bpy_struct.driver_remove`
+   - :class:`bpy_struct.get`
+   - :class:`bpy_struct.id_properties_clear`
+   - :class:`bpy_struct.id_properties_ensure`
+   - :class:`bpy_struct.id_properties_ui`
+   - :class:`bpy_struct.is_property_hidden`
+   - :class:`bpy_struct.is_property_overridable_library`
+   - :class:`bpy_struct.is_property_readonly`
+   - :class:`bpy_struct.is_property_set`
+   - :class:`bpy_struct.items`
+   - :class:`bpy_struct.keyframe_delete`
+   - :class:`bpy_struct.keyframe_insert`
+   - :class:`bpy_struct.keys`
+   - :class:`bpy_struct.path_from_id`
+   - :class:`bpy_struct.path_from_module`
+   - :class:`bpy_struct.path_resolve`
+   - :class:`bpy_struct.pop`
+   - :class:`bpy_struct.property_overridable_library_set`
+   - :class:`bpy_struct.property_unset`
+   - :class:`bpy_struct.rna_ancestors`
+   - :class:`bpy_struct.type_recast`
+   - :class:`bpy_struct.values`
 
 References
 ----------
@@ -298,10 +312,10 @@ References
 .. hlist::
    :columns: 2
 
-   * :mod:`bpy.context.active_nla_strip`
-   * :mod:`bpy.context.selected_nla_strips`
-   * :class:`NlaStrip.strips`
-   * :class:`NlaStrips.new`
-   * :class:`NlaStrips.remove`
-   * :class:`NlaTrack.strips`
+   - :mod:`bpy.context.active_nla_strip`
+   - :mod:`bpy.context.selected_nla_strips`
+   - :class:`NlaStrip.strips`
+   - :class:`NlaStrips.new`
+   - :class:`NlaStrips.remove`
+   - :class:`NlaTrack.strips`
 

@@ -52,9 +52,9 @@ Creating a Pose Library
 =======================
 
 A pose library is a bunch of actions that exist in blend-files of an
-:ref:`Asset Library<what-is-asset-library>`. Such blend-files can either be
+:ref:`Asset Library <what-is-asset-library>`. Such blend-files can either be
 created manually, or by exporting poses to a library.
-If a pose asset is created by exporting to a library, a :ref:`.asset.blend<asset-system-files>`
+If a pose asset is created by exporting to a library, a :ref:`.asset.blend <asset-system-files>`
 file will be created for it which will contain just that one asset, and which cannot be opened
 as a normal blend file to modify it.
 Otherwise there is no restriction on how many pose assets can be contained
@@ -88,7 +88,7 @@ but with separate :ref:`slots <animation-actions-slots>` for each armature.
 
 If the "Current File" library is chosen, the action is created in the current blend file
 and marked as an Asset. If another library is chosen, the pose is extracted
-and a new :ref:`.asset.blend<asset-system-files>` file is created containing the action.
+and a new :ref:`.asset.blend <asset-system-files>` file is created containing the action.
 
 In case the pose asset has been created in the current file, it can be renamed in the *Asset Browser*.
 There you can also right click on the thumbnail, then choose
@@ -107,7 +107,7 @@ Pose Creation by Copying from Other File
 ----------------------------------------
 
 As described in :ref:`asset-libraries-design-limitations`, Blender only writes
-data to the currently open blend-file or to an :ref:`.asset.blend<asset-system-files>` file.
+data to the currently open blend-file or to an :ref:`.asset.blend <asset-system-files>` file.
 To copy a pose from some other file into a pose library file, see the following steps:
 
 - Pose the character and select the relevant bones.
@@ -257,36 +257,3 @@ to directly see the result on the active character.
 
 **Drag the pose thumbnail left to right to blend it** into the character's current pose.
 Just release the mouse button to confirm.
-
-
-.. _pose-library-old:
-
-Old Pose Library
-================
-
-In Blender 3.0, the Asset Browser based pose library, described above, replaced
-its predecessor pose library system. This section describes how to convert poses
-from the old pose library to the current system.
-
-.. _pose-library-convert-old:
-.. _bpy.ops.poselib.convert_old_poselib:
-
-Converting Old Pose Libraries
------------------------------
-
-Old-style pose libraries can be converted to pose assets in the following way:
-
-- In the Action Editor, select the action containing the pose library you want to convert.
-- Make sure the scene camera is set up correctly for rendering preview images.
-- In the Action Editor's Pose Library panel, click the "Convert Old-Style Pose Library" button.
-- Open the Asset Browser, and see the poses have been converted.
-- If you're happy with the result, remove the old pose library action.
-- Save the blend-file.
-
-As usual, the blend-file should be saved to a directory marked as asset library
-in order to use the pose assets from other blend-files.
-
-.. note::
-
-   This conversion does not assign the poses to any catalog, and so they will
-   appear in the "Unassigned" section of the "Current File" asset library.

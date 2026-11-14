@@ -23,6 +23,8 @@ Figure 1 shows the combined *Sequencer & Preview* view type:
 Header
    Contains menus and buttons for interacting with the editor.
    The header changes slightly depending on the selected view type (see below).
+Footer
+   Contains menus and buttons for interacting with animation playback.
 Preview
    Shows the output of the Sequencer at the time of the Playhead.
 Sequencer

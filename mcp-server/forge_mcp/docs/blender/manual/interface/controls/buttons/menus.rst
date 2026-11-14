@@ -178,7 +178,7 @@ Assign Shortcut
 
    .. seealso::
 
-      :doc:`/interface/keymap/introduction`.
+      :doc:`/interface/keymap/index`.
 
 Change Shortcut
    Lets you redefine the shortcut.

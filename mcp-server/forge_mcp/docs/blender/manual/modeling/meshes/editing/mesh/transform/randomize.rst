@@ -9,20 +9,24 @@ Randomize
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Mesh --> Transform --> Randomize`
 
-The *Randomize* tool in Edit Mode allows you to displace the vertices of a mesh
-along their normal.
+Moves the selected vertices in random directions.
+
+Options
+=======
 
 Amount
-   Distance of the displacement.
+   Maximum displacement distance for each vertex.
 Uniform
-   Adds a random offset of the amount.
+   How uniform the displacement distance should be. When 0, each vertex moves by a
+   random distance between 0 and *Amount*. When 1, all vertices move by a distance
+   of exactly *Amount*. The displacement direction stays random, however.
 Normal
-   Adds a random offset to the displacement normal.
+   How close the displacement direction should be to each vertex normal.
+   When 0, the direction is completely random. When 1, the direction is always
+   equal to the normal or its opposite.
 Random Seed
-   The random seed is an offset to the random transformation.
-   A different seed will produce a new result.
-
+   Different seeds will produce different random displacements.
 
 .. seealso::
 
-   Object Mode :doc:`Randomize Transform </scene_layout/object/editing/transform/randomize>`
+   :doc:`/scene_layout/object/editing/transform/randomize` in Object Mode

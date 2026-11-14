@@ -18,15 +18,27 @@ A list of all :doc:`shader nodes </render/shader_nodes/index>` is available in t
 Header
 ======
 
-Use Nodes
-   The Use Nodes setting is mostly a legacy setting and should always be checked for materials.
+.. _bpy.types.SpaceNodeEditor.shader_type:
+
+Shader Type
+   The type of data whose shader nodes are being edited:
+
+   :Object:
+      Edit shader nodes for the active object's :doc:`Material </render/materials/index>`.
+   :World:
+      Edit shader nodes for the :doc:`World background </render/lights/world>`.
+   :Line Style:
+      Edit shader nodes for Freestyle :doc:`Line Styles </render/freestyle/view_layer/line_style/index>`
+
+Use Nodes :guilabel:`Line Style`
+   Use shader nodes to define the texture for the freestyle line style.
+
 Slot
    The *Slot* menu can be used to select
    the active :ref:`material slot <bpy.types.MaterialSlot>` on the active object.
    The material selector to the right of it can change the material that is in the selected slot.
-Pin (pin icon)
-   The pin button will keep the current material selection fixed.
-   When a material is pinned, it will remain visible in the Shader editor
+:bl-icon:`unpinned` / :bl-icon:`pinned` Pinned
+   Keeps the current material selection visible in the Shader editor
    even when another object or material is selected elsewhere.
 
 

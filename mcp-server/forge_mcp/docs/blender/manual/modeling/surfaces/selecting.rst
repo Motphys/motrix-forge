@@ -3,64 +3,84 @@
 Selecting Surface Elements
 **************************
 
-This page discusses specific selecting tools for surface objects in Edit Mode.
-The Surface Edit also uses the general select tools used which are described
-in the :doc:`interface section </interface/selecting>`.
+When editing a Surface object, it's only possible to select control points.
+There are no edges, faces, or Bézier handles.
 
-Surface selection in *Edit Mode* is very similar to
-:doc:`NURBS curve selection </modeling/curves/selecting>`.
-The basic tools are the same as with :doc:`meshes </modeling/meshes/selecting/index>`,
-so you can select a simple control point with an :kbd:`LMB`-click,
-add to current selection with :kbd:`Shift-LMB` clicks, Border Select, and so on.
+.. seealso::
+
+   :doc:`/interface/selecting` for general information about selecting items in Blender.
 
 
-Select Menu
+Select All
+==========
+
+.. reference::
+
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Select --> All`
+   :Shortcut:  :kbd:`A`
+
+Select all control points.
+
+
+Select None
 ===========
 
-The *Select* menu (in the 3D Viewport header) is even simpler than for curves...
+.. reference::
 
-All these options have the same meaning and behavior as in :doc:`Object Mode </scene_layout/object/selecting>`
-and mesh :doc:`Edit Mode </modeling/meshes/selecting/index>`.
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Select --> None`
+   :Shortcut:  :kbd:`Alt-A`
 
-All :kbd:`A`
-   Select all.
-None :kbd:`Alt-A`
-   Select none.
-Invert :kbd:`Ctrl-I`
-   Selects all the geometry that is not selected, and deselect currently selected components.
+Deselect all control points.
 
-----
 
-:ref:`Box Select <tool-select-box>` :kbd:`B`
-   Interactive box selection.
-:ref:`Circle Select <tool-select-circle>` :kbd:`C`
-   Interactive circle selection.
-:ref:`Lasso Select <tool-select-lasso>`
-   Interactive free-form selection.
+Select Invert
+=============
 
-----
+.. reference::
 
-`Select Random`_
-   Select random control points.
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Select --> Invert`
+   :Shortcut:  :kbd:`Ctrl-I`
 
-`Checker Deselect`_
-   Select every Nth control point.
+Select all the unselected control points and deselect the selected ones.
 
-`Select Linked`_ :kbd:`Ctrl-L`
-   Select control points that are connected to the current selection.
 
-`Select Similar`_ :kbd:`Shift-G`
-   Select control points that have similar properties to the current selection.
+Box Select
+==========
 
-----
+.. reference::
 
-`Select Control Point Row`_
-   Select a whole :ref:`row <modeling-surfaces-rows-grids>` of control points.
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Select --> Box Select`
+   :Shortcut:  :kbd:`B`
 
-----
+See :ref:`bpy.ops.*.select_box`.
 
-`Select More/Less`_
-   Select/Deselect control points at the boundary of each selection region.
+
+Circle Select
+=============
+
+.. reference::
+
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Select --> Circle Select`
+   :Shortcut:  :kbd:`C`
+
+See :ref:`bpy.ops.*.select_circle`.
+
+
+Lasso Select
+============
+
+.. reference::
+
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Select --> Lasso Select`
+   :Shortcut:  :kbd:`Ctrl-RMB`
+
+See :ref:`bpy.ops.*.select_lasso`.
 
 
 Select Random
@@ -71,14 +91,21 @@ Select Random
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Select --> Select Random`
 
-Select random control points.
+Adds random control points to the selection. The :ref:`bpy.ops.screen.redo_last`
+panel offers the following options:
 
-Percent
-   Selects the defined percentage of control points.
+Ratio
+   The ratio of control points that should end up selected, e.g. 0.5 to select half of all points
+   (that are not :doc:`hidden </scene_layout/object/editing/show_hide>`).
+
+   Note that the existing selection is ignored: if half of the control points are already selected,
+   setting *Ratio* to 0.1 won't deselect anything, nor will it select 10% of the unselected
+   points. Instead, it always picks 10% of *all* visible points and adds them to the selection.
 Random Seed
-   :term:`Seed` used by the pseudo-random number generator.
+   A number that influences which specific control points get picked.
 Action
-   Controls whether the operator *Selects* or *Deselects* control points.
+   :Select: Add random control points to the selection.
+   :Deselect: Remove random control points from the selection.
 
 
 Checker Deselect
@@ -89,84 +116,18 @@ Checker Deselect
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Select --> Checker Deselect`
 
-This tool applies an alternating selected/deselected checker pattern.
-This only works if you already have more than one control point selected.
-
-It works by changing the current selection so that only every Nth
-control points will remain selected, starting from the active one.
+Deselects control points according to a repeating pattern, starting at the active point.
+For example, if *Deselected* is set to 2 and *Selected* to 3, the operator will
+deselect the first two consecutive points, leave the next three unchanged, deselect
+the two that come after those, and so on. This is done in both the "horizontal" and
+"vertical" direction of the grid.
 
 Deselected
-   The number of deselected elements in each pattern repetition.
+   The number of control points to deselect in each pattern repetition.
 Selected
-   The number of selected elements in each pattern repetition.
+   The number of control points to leave unchanged in each pattern repetition.
 Offset
    Offset from the starting point.
-
-
-Select Linked
-=============
-
-.. reference::
-
-   :Mode:      Edit Mode
-   :Menu:      :menuselection:`Select --> Select Linked`
-   :Shortcut:  :kbd:`L`, :kbd:`Ctrl-L`
-
-*Select Linked* will add to the selection the mouse cursor's nearest control point,
-and all the linked ones, i.e. all points belonging to the same surface.
-
-
-Select Similar
-==============
-
-.. reference::
-
-   :Mode:      Edit Mode
-   :Menu:      :menuselection:`Select --> Select Similar`
-   :Shortcut:  :kbd:`Shift-G`
-
-Selects control points that have certain similar properties to the active one.
-The :ref:`bpy.ops.screen.redo_last` panel provides several selection options:
-
-Type
-   Type
-      Selects splines that have the same spline Type i.e. Bézier, NURBS or Poly.
-   Radius
-      Selects control points that have a similar Radius value.
-   Weight
-      Selects all points that have a similar Weight value.
-   Direction
-      Selects control points that have a similar handles direction.
-
-Compare
-   For quantitative properties, this property selects the type of comparison to between the two numerical values.
-
-   :Equal: Select items with the same value as the active item's chosen property.
-   :Greater: Select items with a larger value as the active item's chosen property.
-   :Less: Select items with a smaller value as the active item's chosen property.
-Threshold
-   For quantitative properties, this property controls how
-   close the property's values have to be in the comparison.
-
-
-.. _bpy.ops.curve.select_row:
-
-Select Control Point Row
-========================
-
-.. reference::
-
-   :Mode:      Edit Mode
-   :Menu:      :menuselection:`Select --> Control Point Row`
-   :Shortcut:  :kbd:`Shift-R`
-
-This option works a bit like
-:ref:`edge loop selection <bpy.ops.mesh.loop_multi_select>` for meshes,
-inasmuch it selects a whole :ref:`row <modeling-surfaces-rows-grids>` of control points,
-based on the active (the last selected) one. The first time you press :kbd:`Shift-R`,
-the V row passing through (containing) the active point will be added to the *current* selection.
-If you use again this shortcut, you will toggle between the U and V row of this point,
-removing *everything else* from the selection.
 
 
 Select More/Less
@@ -178,18 +139,84 @@ Select More/Less
    :Menu:      :menuselection:`Select --> More/Less`
    :Shortcut:  :kbd:`Ctrl-NumpadPlus` / :kbd:`Ctrl-NumpadMinus`
 
-Expand or contract the selection based on current selected control points.
+Expands or contracts the selection based on the currently selected control points.
 
 More
-   For each selected control point, select **all** its linked points (i.e. two, three or four).
+   Adds the neighbors of the selected control points to the selection.
 Less
-   For each selected control point, if **all** points linked to this point are selected, keep it selected.
-   For all other selected control points, deselect them.
+   Removes the control points with at least one unselected neighbor from the selection.
 
-This implies two points:
 
-#. First, when **all** control points of a surface are selected, nothing will happen
-   (as for *Less*, all linked points are always selected, and of course, *More* cannot add any).
-   Conversely, the same goes when no control point is selected.
-#. Second, these tools will never "go outside" of a surface
-   (they will never "jump" to another surface in the same object).
+Select Linked
+=============
+
+.. reference::
+
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Select --> Select Linked`
+   :Shortcut:  :kbd:`Ctrl-L`, :kbd:`L`
+
+Press :kbd:`Ctrl-L` to select all control points that are "linked to" (belong to the same
+surface as) a control point that's already selected.
+
+Alternatively, press :kbd:`L` to select the control point under the mouse cursor and all
+control points that are linked to it.
+
+
+Select Similar
+==============
+
+.. reference::
+
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Select --> Select Similar`
+   :Shortcut:  :kbd:`Shift-G`
+
+Selects control points that are similar in some way to a selected control point.
+The :ref:`bpy.ops.screen.redo_last` panel provides options for this:
+
+Type
+   Which property to compare for determining similarity.
+
+   :Type:
+      This option does not apply for Surfaces because, unlike Curves, they only support one handle type.
+   :Radius:
+      Selects control points that have a similar Radius value.
+      See :doc:`/modeling/surfaces/properties/transform_panel`.
+   :Weight:
+      Selects control points that have a similar Weight value.
+      See :doc:`/modeling/surfaces/properties/transform_panel`.
+   :Direction: Selects control points that have a similar normal vector.
+
+Compare
+   How to compare unselected control points to selected ones.
+
+   :Equal:
+      Select control points whose property is equal to that of a selected point.
+   :Greater:
+      Select control points whose property is greater than or equal to the smallest property
+      among the selected points.
+   :Less:
+      Select control points whose property is less than or equal to the greatest property
+      among the selected points.
+Threshold
+   Tolerance value for also including control points whose property is close to the property
+   of a selected point. For example, if a selected control point has a Weight of 0.6 and
+   the *Threshold* is set to 0.1, *Select Similar* will include all control points that have
+   a Weight between 0.5 and 0.7.
+
+
+.. _bpy.ops.curve.select_row:
+
+Select Control Point Row
+========================
+
+.. reference::
+
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Select --> Control Point Row`
+   :Shortcut:  :kbd:`Shift-Ctrl-R`
+
+Selects the control points that are on the same grid line as the active one (similar to
+:ref:`edge loop selection <bpy.ops.mesh.loop_multi_select>` for meshes).
+Invoke the operator again to use the grid line in the other direction.

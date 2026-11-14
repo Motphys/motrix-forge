@@ -33,12 +33,6 @@ End Size
    The number of points to select from the end.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

@@ -1,3 +1,4 @@
+.. _bpy.types.LightProbeSphere:
 
 ******************
 Light Probe Sphere
@@ -29,12 +30,16 @@ Properties
 
    :Panel:     :menuselection:`Object Data --> Probe`
 
+.. _bpy.types.LightProbeSphere.influence_type:
+
 Type
    Shape of the influence volume. Can be set to Sphere or Box.
 
-Radius
+Radius / Size
    A probe object only influences the lighting of nearby surfaces.
    This influence zone is defined by the size parameter and object scaling.
+
+.. _bpy.types.LightProbeSphere.falloff:
 
 Falloff
    Percentage of the influence distance in which the influence of a probe fades linearly.
@@ -48,9 +53,15 @@ Capture
    In the viewport, capture only happens if an update is detected on the light probe data or position.
    For renders, the capture happens at the start of each frame.
 
-Clipping
+.. _bpy.types.LightProbeSphere.clip_end:
+
+Clipping Start, End
    Define the near and far clip distances when capturing the scene.
 
+
+.. _bpy.types.LightProbeSphere.use_custom_parallax:
+.. _bpy.types.LightProbeSphere.parallax_type:
+.. _bpy.types.LightProbeSphere.parallax_distance:
 
 Custom Parallax
 ---------------
@@ -78,6 +89,8 @@ Clipping
 
 Influence
    Show the influence bounds in the 3D Viewport. The inner sphere is where the falloff starts.
+
+.. _bpy.types.LightProbeSphere.show_parallax:
 
 Parallax
    Show the *Custom Parallax* shape in the 3D Viewport.

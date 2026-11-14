@@ -9,75 +9,38 @@ Extrude Curve and Move
 .. reference::
 
    :Mode:      Edit Mode
-   :Menu:      :menuselection:`Surface --> Extrude Curve and Move`
+   :Menu:      :menuselection:`Control Points --> Extrude Curve and Move`
    :Shortcut:  :kbd:`E`
 
-Unlike meshes or curves, you cannot generally directly add new control points to a surface,
-as you can only extend a surface by adding a whole U or V row at once.
-The only exception is when working on a NURBS surface curve, i.e.
-a surface with only one control point on each U or V row. In this special case,
-all works exactly as with :ref:`curves <modeling-curves-extrude>`.
+Extruding is the main way of adding new control points to a surface. It's not possible
+to do this directly as would be the case with Curves.
 
-Most of the time, only extrusion is available. As usual, once the tool is activated
-the extrusion happens immediately and you are placed into *select mode*,
-ready to drag the new extruded surface to its destination.
+Start by selecting a complete border of the surface grid. Then press :kbd:`E` to duplicate
+the control points, and move the mouse to bring them to the desired position.
+Finally, click :kbd:`LMB` to confirm. (Alternatively, click :kbd:`RMB` or press :kbd:`Esc`
+to cancel the move and keep the new control points at their original position.)
 
-There are two things very important to understand:
+Example
+-------
 
-#. Surfaces are *2D* objects. So you cannot extrude anything *inside* a surface
-   (e.g. "inner" row); it would not make any sense!
-#. The control "grid" *must* remain "squarish",
-   which means that you can only extrude a whole row, not parts of rows here and there...
-
-To summarize, the *Extrude* tool will only work, when one and only one whole border
-row is selected, otherwise nothing happens.
-
-.. note::
-
-   As for curves, you cannot create a new surface in your object out of nowhere.
-   However, unlike for curves, there is no "cut" option allowing you to separate a surface into several parts,
-   so you only can create a new surface by :ref:`Duplicating <modeling_surface_editing_duplicating>`
-   an existing one, or adding a new one with the *Add* menu.
-
-
-Examples
---------
-
-Images Fig. :ref:`fig-surface-edit-select-point` to Fig. :ref:`fig-surface-edit-extruding`
-show a typical extrusion along the side of a surface.
-
-In Fig. :ref:`fig-surface-edit-select-point` and :ref:`fig-surface-edit-select-row`,
-a border row of control points were highlighted by selecting a single control point,
-and then using :ref:`bpy.ops.curve.select_row` to select the rest of the control points.
+First, we select a border control point and expand the selection to the complete row
+using :ref:`bpy.ops.curve.select_row`.
 
 .. list-table::
 
-   * - .. _fig-surface-edit-select-point:
+   * - .. figure:: /images/modeling_surfaces_editing_control-points_selecting-point.png
 
-       .. figure:: /images/modeling_surfaces_editing_control-points_selecting-point.png
+          Selecting control point
 
-          Selecting control point.
+     - .. figure:: /images/modeling_surfaces_editing_control-points_selecting-row.png
 
-     - .. _fig-surface-edit-select-row:
+          Selecting remaining control points in the row
 
-       .. figure:: /images/modeling_surfaces_editing_control-points_selecting-row.png
-
-          Select Control Point Row.
-
-The edge is then extruded as shown in Fig. :ref:`fig-surface-edit-extruding`.
-Notice how the mesh has bunched up next to the highlighted edge.
-That is because the *new* extruded surface section is bunched up there as well.
-
-.. _fig-surface-edit-extruding:
+Then, we extrude a few times:
 
 .. figure:: /images/modeling_surfaces_editing_control-points_extruding.png
 
-   Extruding.
-
-By moving the new section away from the area, the surface begins to "unbunch".
-
-You can continue this process of extruding or adding new surface sections
-until you have reached the final shape for your model.
+   Control points extruded twice
 
 
 Make Segment
@@ -86,54 +49,33 @@ Make Segment
 .. reference::
 
    :Mode:      Edit Mode
-   :Menu:      :menuselection:`Surface --> Make Segment`
+   :Menu:      :menuselection:`Control Points --> Make Segment`
    :Shortcut:  :kbd:`F`
 
-Just like :ref:`curves <modeling-curves-make-segment>`,
-merging two surfaces requires that a single edge, a border row of control points,
-from two separate surfaces is selected. This means that the surfaces must be part of the same object.
-For example, you cannot join two surfaces while in *Object Mode* -- but you can of course,
-as with any objects of the same type, :ref:`join <bpy.ops.object.join>`
-two or more *Surface* objects -- they just will not be "linked" or merged in a single one.
+While this operator sounds like it creates a single segment (grid line) between two control points,
+it's really more similar to :ref:`bpy.ops.mesh.bridge_edge_loops` for meshes: it bridges the gap
+between two disjoint surfaces by creating as many new segments as necessary. Simply select a border
+row (or column) in each surface, then press :kbd:`F` to connect those borders.
 
-This tool is equivalent to creating edges or faces for meshes (hence its shortcut).
-The selection must contain only border rows of the same resolution
-(with the same number of control points),
-else Blender will try to do its best to guess what to merge with what,
-or the merge will fail (either silently, or stating that ``Resolution does not match``
-if rows with different number of points are selected, or that there is ``Too few selections to merge``
-if you only selected points in one surface...). To select control points of different surfaces,
-in the same object, you must use either box select or circle select; :kbd:`Ctrl-LMB` will not work.
+Note that the two surfaces need to be part of the same Surface object. If you have two separate
+objects, these first need to be combined into one using :doc:`/scene_layout/object/editing/join`.
+Also, the borders to connect must have the same number of control points.
 
-So to avoid problems, you should always only select border rows with the same number of
-points... Note that you can join a border U row of one surface with a border V row of another
-one, Blender will automatically "invert" the axis of one surface for them to match correctly.
+Example
+-------
 
-NURBS surface curves are often used to create objects like hulls,
-as they define cross sections all along the object,
-and you just have to "skin" them as described above to get a nice, smooth and harmonious shape.
-
-
-Examples
---------
-
-Fig. :ref:`fig-surface-edit-join-ready` is an example of two NURBS surface curves,
-**not** NURBS curves, in *Edit Mode*, ready to be joined.
-Fig. :ref:`fig-surface-edit-join-complete` is the result of joining the two curves.
+The images below show bridging of two "surfaces" consisting of just a curve, but it's also possible to
+connect sheets.
 
 .. list-table::
 
-   * - .. _fig-surface-edit-join-ready:
+   * - .. figure:: /images/modeling_surfaces_editing_control-points_joining-ready.png
 
-       .. figure:: /images/modeling_surfaces_editing_control-points_joining-ready.png
+          Before bridging.
 
-          Joining ready.
+     - .. figure:: /images/modeling_surfaces_editing_control-points_joining-complete.png
 
-     - .. _fig-surface-edit-join-complete:
-
-       .. figure:: /images/modeling_surfaces_editing_control-points_joining-complete.png
-
-          Joining complete.
+          After bridging.
 
 
 Smooth
@@ -142,10 +84,9 @@ Smooth
 .. reference::
 
    :Mode:      Edit Mode
-   :Menu:      :menuselection:`Surface --> Control Points --> Smooth`
+   :Menu:      :menuselection:`Control Points --> Smooth`
 
-Iteratively smooths the selected control points
-by reducing the distance between neighboring control points.
+Moves the selected control points to give the surface a smoother appearance.
 
 
 Hooks
@@ -154,10 +95,11 @@ Hooks
 .. reference::
 
    :Mode:      Edit Mode
-   :Menu:      :menuselection:`Surface --> Control Points --> Hooks`
+   :Menu:      :menuselection:`Control Points --> Hooks`
    :Shortcut:  :kbd:`Ctrl-H`
 
-:doc:`Hooks </modeling/modifiers/deform/hooks>` can be added to control one or more points with other objects.
+Adds a :doc:`/modeling/modifiers/deform/hooks` that makes the selected control points
+follow a particular object or bone.
 
 
 Make Vertex Parent
@@ -166,16 +108,13 @@ Make Vertex Parent
 .. reference::
 
    :Mode:      Edit Mode
-   :Menu:      :menuselection:`Surface --> Control Points --> Make Vertex Parent`
+   :Menu:      :menuselection:`Control Points --> Make Vertex Parent`
    :Shortcut:  :kbd:`Ctrl-P`
 
-You can make other selected objects :ref:`children <object-parenting>`
-of one or three control points, as with mesh objects.
+Creates a :ref:`parent-child relationship <object-parenting>` that makes a particular object
+follow the selected control point(s).
 
-To select a mesh (that is in view) while editing a surface, :kbd:`Ctrl-P` click on it.
-Select either one or three control points,
-then :kbd:`Ctrl-LMB` the object and use :kbd:`Ctrl-P` to make a vertex parent.
-Selecting three control points will make the child follow
-the median point between the three vertices. An alternative would be to use
-a :doc:`Child Of constraint </animation/constraints/relationship/child_of>`.
-See also the :doc:`Curve modifier </modeling/modifiers/deform/curve>`.
+While in Edit Mode, select another object by either clicking it with :kbd:`Ctrl-LMB` in the
+3D Viewport or by selecting it the :doc:`Outliner </editors/outliner/introduction>`.
+Then, select one or three control points of the surface and press :kbd:`Ctrl-P`.
+Parenting an object to three control points will make it follow their averaged position.

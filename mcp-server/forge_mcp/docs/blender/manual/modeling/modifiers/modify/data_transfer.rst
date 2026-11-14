@@ -40,8 +40,8 @@ Options
 Source
    Mesh object to copy data from.
 
-   Object Transform (axes icon)
-      Whether take into account the world space transformations of the source and destination objects.
+   :bl-icon:`orientation_global` Object Transform
+      Whether to take into account the world space transformations of the source and destination objects.
       When unchecked, the modifier acts like both objects are in the same position and have
       the default rotation and scale.
 
@@ -83,7 +83,7 @@ Mix Factor
 Vertex Group
    Allows per-element control of the *Mix Factor*.
 
-   Invert (arrow icon)
+   :bl-icon:`arrow_leftright` Invert
       Invert the weights of the vertex group (change them to 1 - weight).
 
 Generate Data Layers

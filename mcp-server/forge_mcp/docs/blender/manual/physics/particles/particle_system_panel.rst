@@ -26,6 +26,11 @@ Active Particle System
          The *Duplicate Settings* option (in the :ref:`bpy.ops.screen.redo_last` panel) will duplicate
          settings as well, so the new particle system uses its own settings.
 
+      .. _bpy.ops.particle.particle_system_remove_all:
+
+      Remove All Particle Systems
+         Remove all particle system within the active object.
+
 Particle Settings
    The :ref:`Data-Block menu <ui-data-block>` for settings.
 
@@ -70,11 +75,9 @@ The process for working with standard particles is:
 Creating a Particle System
 --------------------------
 
-.. todo:: Update image
+.. figure:: /images/physics_particles_particle-system-panel_create-new.png
 
-   .. figure:: /images/physics_particles_particle-system-panel_create-new.png
-
-      Adding a particle system.
+   Adding a particle system.
 
 To add a new particle system to an object, go to the *Particles* tab of the Properties
 editor and click the :bl-icon:`add` button. An object can have many Particle Systems.
@@ -89,11 +92,9 @@ Types of Particle Systems
 
 .. _fig-particle-intro-system-type:
 
-.. todo:: Update image
+.. figure:: /images/physics_particles_particle-system-panel_select-type.png
 
-   .. figure:: /images/physics_particles_particle-system-panel_select-type.png
-
-      Particle System Types.
+   Particle System Types.
 
 After you have created a particle system,
 the Properties fills with many panels and buttons.

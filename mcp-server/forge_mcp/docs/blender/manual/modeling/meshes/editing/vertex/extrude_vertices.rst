@@ -11,16 +11,16 @@ Extrude Vertices
                :menuselection:`Mesh --> Extrude --> Extrude Vertices`
    :Shortcut:  :kbd:`E`
 
-Extrude vertices as individual vertices.
+Extrudes each selected vertex individually.
 
 .. list-table::
 
    * - .. figure:: /images/modeling_meshes_editing_vertex_extrude-vertices_before.png
           :width: 320px
 
-          Vertex selected.
+          Vertices selected.
 
      - .. figure:: /images/modeling_meshes_editing_vertex_extrude-vertices_after.png
           :width: 320px
 
-          Vertices extrude.
+          Vertices extruded.

@@ -16,6 +16,6 @@ The Sequencer view type shows a timeline and allows placing and editing strips.
    introduction.rst
    channels.rst
    navigating.rst
-   toolbar/index.rst
+   toolbar.rst
    sidebar/index.rst
    display.rst

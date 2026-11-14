@@ -2,12 +2,9 @@
 .. _bpy.ops.image:
 .. _files-media-image_formats:
 
-**************************
-Supported Graphics Formats
-**************************
-
-Image Formats
-=============
+***********************
+Supported Image Formats
+***********************
 
 This is the list of image file formats supported internally by Blender:
 
@@ -25,72 +22,90 @@ This is the list of image file formats supported internally by Blender:
      - :doc:`Metadata </render/output/properties/metadata>`
      - :term:`DPI`
      - Extensions
-   * - BMP
-     - 8bit
-     - |tick|
-     - |cross|
-     - |tick|
-     - ``.bmp``
-   * - Iris
-     - 8, 16bit
-     - |tick|
-     - |cross|
-     - |cross|
-     - ``.sgi`` ``.rgb`` ``.bw``
-   * - PNG
-     - 8, 16bit
-     - |tick|
-     - |tick|
-     - |tick|
-     - ``.png``
    * - JPEG
      - 8bit
      - |cross|
      - |tick|
      - |tick|
      - ``.jpg`` ``.jpeg``
-   * - JPEG 2000
-     - 8, 12, 16bit
-     - |tick|
-     - |cross|
-     - |cross|
-     - ``.jp2`` ``.jp2`` ``.j2c``
-   * - Targa
-     - 8bit
-     - |tick|
-     - |cross|
-     - |cross|
-     - ``.tga``
-   * - `Cineon & DPX`_
-     - 8, 10, 12, 16bit
-     - |tick|
-     - |cross|
-     - |cross|
-     - ``.cin`` ``.dpx``
    * - `OpenEXR`_
      - float 16, 32bit
      - |tick|
      - |tick|
      - |tick|
      - ``.exr``
-   * - `Radiance HDR`_
-     - float
-     - |tick|
-     - |cross|
-     - |cross|
-     - ``.hdr``
-   * - TIFF
+   * - PNG
      - 8, 16bit
      - |tick|
-     - |cross|
      - |tick|
-     - ``.tif`` ``.tiff``
+     - |tick|
+     - ``.png``
    * - WebP
      - 8bit
      - |tick|
      - |tick|
      - |cross|
      - ``.webp``
+   * - AVIF
+     - 8, 10, 12bit
+     - |tick|
+     - |cross|
+     - |cross|
+     - ``.avif``
+   * - BMP
+     - 8bit
+     - |tick|
+     - |cross|
+     - |tick|
+     - ``.bmp``
+   * - :ref:`Cineon <file-media-cineon_dpx>`
+     - 8, 10, 12, 16bit
+     - |tick|
+     - |cross|
+     - |cross|
+     - ``.cin``
+   * - :ref:`DPX <file-media-cineon_dpx>`
+     - 8, 10, 12, 16bit
+     - |tick|
+     - |cross|
+     - |cross|
+     - ``.dpx``
+   * - Iris
+     - 8, 16bit
+     - |tick|
+     - |cross|
+     - |cross|
+     - ``.sgi`` ``.rgb`` ``.bw``
+   * - JPEG 2000
+     - 8, 12, 16bit
+     - |tick|
+     - |cross|
+     - |cross|
+     - ``.jp2`` ``.jp2`` ``.j2c``
+   * - `Radiance HDR`_
+     - float
+     - |tick|
+     - |cross|
+     - |cross|
+     - ``.hdr``
+   * - Targa
+     - 8bit
+     - |tick|
+     - |cross|
+     - |cross|
+     - ``.tga``
+   * - Targa Raw
+     - 8bit
+     - |tick|
+     - |cross|
+     - |cross|
+     - ``.tga``
+   * - TIFF
+     - 8, 16bit
+     - |tick|
+     - |cross|
+     - |tick|
+     - ``.tif`` ``.tiff``
 
 .. hint::
 
@@ -155,13 +170,72 @@ All
    Press :kbd:`A` to select/deselect all files in the directory.
 
 
+.. _files-images-saving-modified:
+
+Saving Modified Images
+======================
+
+Images edited within Blender, such as painted textures, generated images,
+or compositor results, are stored separately from the blend-file itself.
+
+When closing Blender or saving a blend-file, modified images may need to be
+saved manually depending on the configured behavior in
+:ref:`Save Modified Images <bpy.types.PreferencesFilePaths.save_modified_images>`.
+
+Unsaved images are marked with an asterisk (``*``) in the Image Editor and
+other interface elements.
+
+
+Saving Blend-Files
+------------------
+
+When saving a blend-file, Blender can:
+
+- Ask whether modified images should be saved.
+- Automatically save modified images.
+- Ignore modified images.
+
+This behavior is controlled by the
+:ref:`Save Modified Images <bpy.types.PreferencesFilePaths.save_modified_images>`
+preference.
+
+
+Closing Blender
+---------------
+
+When closing Blender, modified images that have not been saved may trigger
+a confirmation dialog.
+
+If modified images are discarded without saving, all unsaved image changes
+will be permanently lost.
+
+.. tip::
+
+   To manually save images use:
+
+   - :ref:`bpy.ops.image.save`
+   - :ref:`bpy.ops.image.save_as`
+   - :ref:`bpy.ops.image.save_all_modified`
+
+.. warning::
+
+   Render Result images and Compositor Viewer node results are temporary and
+   are not automatically saved to disk when saving the blend-file or closing Blender.
+
+   These results must be manually saved if they should be preserved.
+
+   Failing to save these images before rendering again, loading a new file,
+   or closing Blender will cause the image data to be lost.
+
+
 .. _bpy.types.ImageFormatSettings:
 
-Saving Images
-=============
+Images Settings
+===============
 
 File Format
-   Choose what format to save the image as.
+   Choose the image file format to save to. Based on which format is used,
+   other options such as channels, bit depth and compression level are available.
 
 Color
    The color format to save the image or video to.
@@ -215,7 +289,7 @@ Quality
    - **0%**: Maximum compression, producing the smallest file size but the most noticeable quality loss.
    - **100%**: No compression, preserving full image quality at the cost of a larger file size.
 Save As Render
-   Save image with render :doc:`color management </render/color_management>`.
+   Save image with render :doc:`color management </render/color_management/index>`.
    For display image formats like PNG, apply view and display transform.
    For intermediate image formats like OpenEXR, use the default render output color space.
 Copy
@@ -238,6 +312,8 @@ Color Space
 Format Details
 ==============
 
+.. _file-media-cineon_dpx:
+
 Cineon & DPX
 ------------
 
@@ -249,6 +325,8 @@ DPX is currently a widely adopted standard used in the film hardware/software in
 DPX as well as Cineon only stores and converts the "visible" color range of values between 0.0
 and 1.0 (as a result of rendering or composite).
 
+
+.. _files-images-openexr:
 
 OpenEXR
 -------
@@ -295,6 +373,9 @@ Codec
       JPEG-like lossy compression on 32 row image blocks.
    :DWAB (lossy):
       JPEG-like lossy compression on 256 row image blocks.
+   :HTJ2K:
+      Lossless compression based on high throughput JPEG 2000 encoding. It produces smaller
+      files, but it is new and not widely supported by other software yet.
    :ZIPS:
       Lossless compression using Zlib, each image row compressed separately
    :RLE:
@@ -316,6 +397,12 @@ Quality :guilabel:`DWAA (lossy)` :guilabel:`DWAB (lossy)`
    - **0%**: Maximum compression, producing the smallest file size but the most noticeable quality loss.
    - **100%**: No compression, preserving full image quality at the cost of a larger file size.
 
+.. _bpy.types.ImageFormatSettings.use_exr_interleave:
+
+Interleave
+   Use legacy interleaved storage of views, layers and passes for compatibility with
+   applications that do not support more efficient multi-part OpenEXR files.
+
 .. _bpy.types.ImageFormatSettings.use_preview:
 
 Preview
@@ -332,3 +419,36 @@ this format is supported by many other software packages.
 
 Radiance ``.hdr`` files store colors still in 8 bits per component,
 but with an additional (shared) 8-bit exponent value, making it 32 bits per pixel.
+
+
+.. _files-image-metadata:
+
+Metadata
+========
+
+Metadata is additional information stored inside an image file
+that describes how the image was created or how it should be interpreted.
+
+Blender can write metadata into supported image formats
+when enabled in the :doc:`Output Properties </render/output/properties/metadata>`.
+
+
+Limitations
+-----------
+
+Not all formats support metadata,
+and some may only support a limited subset of fields.
+
+When using formats that do not support metadata,
+render information is not preserved in the saved file.
+
+
+Orientation Metadata
+^^^^^^^^^^^^^^^^^^^^
+
+EXIF orientation metadata (commonly found in JPEG images)
+is ignored when loading images into Blender.
+Images are displayed using their stored pixel data without automatic rotation.
+
+If an image appears incorrectly rotated,
+it can be adjusted manually using :ref:`bpy.ops.image.rotate_orthogonal`.

@@ -244,7 +244,7 @@ Seed
 
    .. _bpy.types.CyclesRenderSettings.use_animated_seed:
 
-   Use Animated Seed (clock icon)
+   :bl-icon:`time` Use Animated Seed
       Changes the seed for each frame. It is a good idea to enable this
       when rendering animations because a varying noise pattern is less noticeable.
 
@@ -252,7 +252,7 @@ Scrambling Distance
    A technique that reduces the randomness between pixels in an attempt to improve GPU rendering performance,
    at the cost of potential artifacts. Not compatible with the *Blue-Noise* sampling pattern.
 
-   .. _bpy.types.CyclesRenderSettings.adaptive_scrambling_distance:
+   .. _bpy.types.CyclesRenderSettings.auto_scrambling_distance:
 
    Automatic
       Adapts the scrambling distance based on the sample count.

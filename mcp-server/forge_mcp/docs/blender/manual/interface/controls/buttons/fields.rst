@@ -15,10 +15,67 @@ Text & Search Fields
    A text and a search field.
 
 Text fields show a rounded rectangular border, and optionally an icon and/or text inside the border.
-Text fields store text strings, and provide the means to edit text
-by :doc:`standard text editing shortcuts </interface/keymap/introduction>`.
+Text fields store text strings, and provide the means to edit text by standard text editing shortcuts:
+
+.. list-table::
+   :align: left
+   :width: 95%
+   :widths: 20 80
+
+   * - :kbd:`Home`
+     - Go to the start of the line.
+   * - :kbd:`End`
+     - Go to the end of the line.
+   * - :kbd:`Left`, :kbd:`Right`
+     - Move the cursor a single character.
+   * - :kbd:`Ctrl-Left`, :kbd:`Ctrl-Right`
+     - Move the cursor an entire word.
+   * - :kbd:`Backspace`, :kbd:`Delete`
+     - Delete characters.
+   * - :kbd:`Ctrl-Backspace`, :kbd:`Ctrl-Delete`
+     - Delete words.
+   * - :kbd:`Shift`
+     - Select while holding the key and moving the cursor.
+   * - :kbd:`Ctrl-A`
+     - Select all text.
+   * - :kbd:`Ctrl-C`
+     - Copy the selected text.
+   * - :kbd:`Ctrl-X`
+     - Cut the selected text.
+   * - :kbd:`Ctrl-V`
+     - Paste text at the cursor position.
 
 For text fields with an icon and pop-ups, see :ref:`ui-data-id`.
+
+
+Text Boxes
+----------
+
+.. figure:: /images/interface_controls_buttons_fields_text-box.png
+   :align: center
+
+   A text and a search field.
+
+Text boxes allow the input of multi-line text.
+Unlike single-line text fields, they support line breaks and paragraph-style editing.
+
+Text boxes can be resized by dragging the handle in the bottom-right corner of the field.
+This allows more text to be visible without scrolling.
+
+Text boxes use the same editing shortcuts as regular text fields, with additional shortcuts
+for navigating and editing across multiple lines.
+
+.. list-table::
+   :width: 100%
+   :widths: 20 80
+
+   * - :kbd:`Shift-Enter`
+     - Insert a new line.
+   * - :kbd:`Up`, :kbd:`Down`
+     - Move the cursor between lines.
+
+Text boxes are commonly used for descriptions, notes, scripts,
+and other longer text content throughout Blender's interface.
 
 
 Number Fields

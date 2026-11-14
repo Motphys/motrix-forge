@@ -46,5 +46,5 @@ On the right of the list view are list modification buttons:
    Removes the selected item.
 :bl-icon:`downarrow_hlt` (Specials)
    A menu with operators to edit list entries.
-Move (up/down arrow icon)
+:bl-icon:`tria_up` / :bl-icon:`tria_down` Move
    Moves the selected item up/down one position.

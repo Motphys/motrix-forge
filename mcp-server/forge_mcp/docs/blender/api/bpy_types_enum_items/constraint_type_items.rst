@@ -94,6 +94,9 @@ Constraint Type Items
 :FOLLOW_PATH: Follow Path.
 
    Use to animate an object/bone following a path.
+:GEOMETRY_ATTRIBUTE: Geometry Attribute.
+
+   Retrieve transform from target geometry attribute data.
 :PIVOT: Pivot.
 
    Change pivot point for transforms (buggy).

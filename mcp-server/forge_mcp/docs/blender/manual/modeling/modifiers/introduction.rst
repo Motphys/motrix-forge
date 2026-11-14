@@ -77,7 +77,7 @@ Each modifier's interface shares the same basic components, see Fig. :ref:`fig-m
 At the top is the panel header.
 The icons each represent different settings for the modifier (left to right):
 
-Expand (down/right arrow icon)
+:bl-icon:`rightarrow` / :bl-icon:`downarrow_hlt` Expand
    Collapse modifier to show only the header and not its options.
 
 Type
@@ -91,46 +91,52 @@ Name
 
 .. _bpy.types.Modifier.show_on_cage:
 
-Show on Cage (vertices triangle icon) -- Meshes only
+:bl-icon:`mesh_data` On Cage :guilabel:`Meshes`
    Depends on the previous setting, if enabled, the modified geometry can also be edited directly,
    instead of the original one.
 
    .. warning::
 
-      While it shows edited items in their final, modified positions, you are still actually editing original data.
-      This can lead to strong and unpredictable effects with some tools,
-      and should be disabled whenever you need to perform complex or precise editing on the mesh.
+      While it shows edited items in their final, modified positions, you are still editing original data.
 
-.. _bpy.types.Modifier.show_in_editmode:
+      In situations where the positions diverge it can lead to confusing behavior,
+      so you may wish to disable it in those cases.
 
-Show in Edit Mode (vertices square icon)
-   Display the modified geometry in Edit Mode, as well as the original geometry which you can edit.
+      It's also worth noting that some features don't use the cage positions including:
 
-.. _bpy.types.Modifier.show_viewport:
-
-Show in Viewport (screen icon)
-   Toggle visibility of the modifier's effect in the 3D Viewport.
-
-.. _bpy.types.Modifier.show_render:
-
-Render (camera icon)
-   Toggle visibility of the modifier's effect in the render.
-
-   .. note::
-
-      The *Square*, *Triangle* and *Surface* icons may not be available,
-      depending on the type of object and modifier.
+      - Snap targets, such as snapping to vertex.
+      - The transform gizmo uses the original positions.
 
 .. _bpy.types.Modifier.use_apply_on_spline:
 
-Apply On Spline Points (point surface icon) -- Curves, surfaces and texts only
+:bl-icon:`surface_data` Apply On Spline :guilabel:`Curves` :guilabel:`Surfaces` :guilabel:`Text`
    Apply the whole modifier stack up to and including that one on the curve or surface control points,
    instead of their tessellated geometry.
 
    .. note::
 
       By default, curves, texts and surfaces are always converted to mesh-like geometry
-      before that the modifier stack is evaluated on them.
+      before the modifier stack is evaluated on them.
+
+.. _bpy.types.Modifier.show_in_editmode:
+
+:bl-icon:`editmode_hlt` Edit Mode
+   Display the modified geometry in Edit Mode, as well as the original geometry which you can edit.
+
+.. _bpy.types.Modifier.show_viewport:
+
+:bl-icon:`restrict_view_off` / :bl-icon:`restrict_view_on` Realtime
+   Toggle visibility of the modifier's effect in the 3D Viewport.
+
+.. _bpy.types.Modifier.show_render:
+
+:bl-icon:`restrict_render_off` / :bl-icon:`restrict_render_on` Render
+   Toggle visibility of the modifier's effect in the render.
+
+   .. note::
+
+      The *Square*, *Triangle* and *Surface* icons may not be available,
+      depending on the type of object and modifier.
 
 .. _bpy.ops.object.modifier_apply:
 
@@ -142,6 +148,9 @@ Extras
       When applying a modifier to an object that shares Object Data between multiple objects,
       the object must first be made a :ref:`Single User <data-system-datablock-make-single-user>`
       which can be performed by confirming the pop-up message.
+
+      Note, modifiers cannot be applied to :doc:`Empty </modeling/empties>` object types,
+      use :ref:`objects-apply-visual_geometry_as_mesh` instead.
 
       .. warning::
 
@@ -186,7 +195,7 @@ Extras
       Keeps the modifier at the end of the modifier stack.
       When a modifier is pinned, a pin icon will be displayed on the right side of the panel's header.
    Move to Nodes
-      Converts the existing :doc:`/modeling/modifiers/generate/geometry_nodes`
+      Converts the existing :doc:`/modeling/modifiers/geometry_nodes`
       node tree to a group node to be reused in other node trees.
       See :ref:`bpy.ops.object.geometry_nodes_move_to_nodes` for more information.
 
@@ -219,7 +228,7 @@ The Modifier Stack
 ------------------
 
 Modifiers are a series of non-destructive operations which can be applied on top of an object's geometry.
-You can be apply them in almost any order.
+You can apply them in almost any order.
 This kind of functionality is often referred to as a "modifier stack"
 and is also found in several other 3D applications.
 
@@ -253,7 +262,7 @@ and then calculating the subdivision surface.
 Active Modifier
 ^^^^^^^^^^^^^^^
 
-A modifier in the stack can be selected to mark in as :term:`Active`,
+A modifier in the stack can be selected to mark it as :term:`Active`,
 the active modifier displays an outline around the modifier's panel.
 To set an active modifier, select an area of the modifier's panel background,
 the modifier's icon, or, select a modifier in the :doc:`/editors/outliner/index`.

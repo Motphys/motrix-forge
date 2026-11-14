@@ -8,7 +8,9 @@
 
    3d_cursor.rst
    active_camera.rst
+   bone_info.rst
    camera_info.rst
+   collection_children.rst
    collection_info.rst
    image_info.rst
    is_viewport.rst

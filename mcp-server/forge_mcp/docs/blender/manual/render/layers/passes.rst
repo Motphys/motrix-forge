@@ -29,7 +29,7 @@ Include
 
    .. _bpy.types.ViewLayer.use_pass_z:
 
-   Z :guilabel:`Cycles`, :guilabel:`EEVEE`, :guilabel:`Workbench`
+   Depth :guilabel:`Cycles`, :guilabel:`EEVEE`, :guilabel:`Workbench`
       Distance to the nearest visible surface.
       Can be used with the :doc:`/compositing/types/filter/blur/defocus`
       for a fake :term:`Depth of Field` effect.
@@ -94,10 +94,28 @@ Include
          However, some blending modes in Grease Pencil can modify the chromaticity of the alpha channel.
          In these cases, compositing the *Grease Pencil* pass separately can produce different results.
 
+   .. _bpy.types.CyclesRenderLayerSettings.denoising_store_passes:
+
    Denoising Data :guilabel:`Cycles`
-      Includes *Denoising Albedo*, *Denoising Normal*, and the combined image
-      before denoising. Can be used with the :doc:`/compositing/types/filter/denoise`
-      as a replacement for :ref:`automatic denoising <render-cycles-settings-viewport-denoising>`.
+      Includes auxiliary passes used for denoising, along with the combined image before denoising.
+      These passes can be used with the :doc:`/compositing/types/filter/denoise`
+      as an alternative to :ref:`automatic denoising <render-cycles-settings-viewport-denoising>`.
+
+      - *Noisy Image* -- The combined render result before any denoising is applied.
+      - *Denoising Albedo* -- The diffuse base color of surfaces without lighting or shading.
+      - *Denoising Specular Albedo* -- The specular base color,
+        representing reflective surface color without lighting.
+      - *Denoising Normal* -- Surface normals used to preserve edges and fine detail during denoising.
+      - *Denoising Roughness* -- Surface roughness values used to improve denoising of glossy reflections.
+      - *Denoising Depth* -- Distance from the camera, used to help preserve depth-based detail.
+
+      These passes provide additional information to the denoiser,
+      resulting in higher-quality output compared to using the noisy image alone.
+
+      .. note::
+
+         These passes increase memory usage and render time.
+         Enable them only when denoising in the Compositor is required.
 
 Indexes
    .. _bpy.types.ViewLayer.use_pass_object_index:
@@ -114,9 +132,12 @@ Indexes
       This map can be converted into a mask for a particular material using the
       ID Mask Node.
 
-.. note:: The Z, Position, Object Index, and Material Index passes are not anti-aliased.
+.. note:: The Depth, Position, Object Index, and Material Index passes are not anti-aliased.
 
 Debug
+   Render Time :guilabel:`Cycles`
+      An estimate for how long in milliseconds each pixel took to render.
+      Note, this pass is not supported on GPU rendering.
    Sample Count :guilabel:`Cycles`
       Number of samples calculated for each pixel, divided by the maximum number of samples.
       Used to analyze :ref:`adaptive sampling <bpy.types.CyclesRenderSettings.use_adaptive_sampling>`.
@@ -124,7 +145,7 @@ Debug
 .. _bpy.types.ViewLayer.pass_alpha_threshold:
 
 Alpha Threshold :guilabel:`Cycles`
-   The Z, Position, Normal, Vector, UV, and Index passes are only affected by surfaces with an opacity
+   The Depth, Position, Normal, Vector, UV, and Index passes are only affected by surfaces with an opacity
    equal to or higher than this threshold. With value 0.0, the first surface hit will always write to these passes
    regardless of opacity. With higher values, surfaces that are mostly transparent will be skipped until
    an opaque surface is encountered.
@@ -203,7 +224,7 @@ Other
    Ambient Occlusion
       Ambient occlusion from directly visible surfaces. This is a grayscale pass with values that go
       from 0 (fully occluded) to 1 (fully exposed), making it suitable for multiplying with a color
-      image in the Compositor (see :doc:`/compositing/types/color/mix/mix_color`).
+      image in the Compositor (see :doc:`/compositing/types/color/mix_color`).
 
       As an alternative to this pass, it's also possible to use the
       :doc:`/render/shader_nodes/input/ao` in materials.
@@ -255,7 +276,7 @@ Other
    Ambient Occlusion
       Ambient occlusion from directly visible surfaces. This is a grayscale pass with values that go
       from 0 (fully occluded) to 1 (fully exposed), making it suitable for multiplying with a color
-      image in the Compositor (see :doc:`/compositing/types/color/mix/mix_color`).
+      image in the Compositor (see :doc:`/compositing/types/color/mix_color`).
 
       As an alternative to this pass, it's also possible to use the
       :doc:`/render/shader_nodes/input/ao` in materials.
@@ -269,9 +290,9 @@ Other
       This pass only supports grayscale opacity.
       Colored opacity will show differently than in the Combined pass.
 
-.. _bpy.types.SceneEEVEE.gtao_distance:
+.. _bpy.types.ViewLayerEEVEE.ambient_occlusion_distance:
 
-Occlusions Distance
+Occlusion Distance
    Maximum distance for objects to contribute to the Ambient Occlusion pass.
 
 .. _render_layers_passes_cryptomatte:
@@ -359,7 +380,7 @@ Light Groups
 A Light Group provides a limited *Combined* render pass where the scene is only illuminated by
 certain lights. Multiple such passes can then be combined in compositing to construct a full render
 with all the lights. The most straightforward way is to simply *Add* them together using
-the :doc:`/compositing/types/color/mix/mix_color`, but by making more complex combinations,
+the :doc:`/compositing/types/color/mix_color`, but by making more complex combinations,
 it's possible to change the color and intensity of individual lights without having to re-render.
 
 To assign a Light object to a new or existing Light Group, use the panel
@@ -420,6 +441,6 @@ EEVEE Limitations
 - Transparent materials that have their :ref:`bpy.types.Material.surface_render_method`
   set to *Blended* are not rendered in passes other than *Combined* and *Transparent*.
   Use the *Dithered* method instead.
-- The :doc:`/render/shader_nodes/converter/shader_to_rgb` only works correctly
+- The :doc:`/render/shader_nodes/color/shader_to_rgb` only works correctly
   in the *Combined* pass as EEVEE excludes parts of the BSDF equation.
 - There is a maximum of 16 *Color* and 16 *Value* AOVs (custom render passes).

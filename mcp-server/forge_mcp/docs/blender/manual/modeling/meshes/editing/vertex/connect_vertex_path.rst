@@ -10,22 +10,8 @@ Connect Vertex Path
    :Menu:      :menuselection:`Vertex --> Connect Vertex Path`
    :Shortcut:  :kbd:`J`
 
-This tool connects vertices in the order they are selected, splitting the faces between them.
-When there are only two vertices selected, a cut will be made across unselected faces,
-a bit like the Knife tool; but this is limited to straight cuts across connected faces.
-
-.. list-table::
-
-   * - .. figure:: /images/modeling_meshes_editing_vertex_connect-vertex-path_pair-before.png
-
-          Two disconnected vertices.
-
-     - .. figure:: /images/modeling_meshes_editing_vertex_connect-vertex-path_pair-after.png
-
-          Result of connecting.
-
-Running a second time will connect the first/last endpoints.
-When many vertices are selected, faces will be split by their selected vertices.
+Creates edges between vertices in the order they are selected, splitting faces along the way.
+Running the operator a second time closes the loop.
 
 .. list-table::
 
@@ -35,7 +21,17 @@ When many vertices are selected, faces will be split by their selected vertices.
 
      - .. figure:: /images/modeling_meshes_editing_vertex_connect-vertex-path_multi-after.png
 
-          After.
+          First execution.
 
-Vertices not connected to any faces will create edges,
-so this can be used as a way to quickly connect isolated vertices too.
+     - .. figure:: /images/modeling_meshes_editing_vertex_connect-vertex-path_multi-loop.png
+
+          Second execution.
+
+It's also possible to create a path of edges along vertices that are isolated (not part of
+any edges or faces).
+
+.. seealso::
+
+   The :doc:`/modeling/meshes/editing/mesh/knife_topology_tool` offers a more interactive
+   way of splitting faces. Unlike *Connect Vertex Path*, however, it makes cuts that are
+   perfectly straight as seen from the current viewpoint.

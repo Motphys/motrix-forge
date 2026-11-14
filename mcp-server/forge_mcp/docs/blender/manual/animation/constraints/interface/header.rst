@@ -4,58 +4,55 @@
 Header
 ******
 
-Every constraint has a header.
-The interface elements of the header are explained below using a Copy Location constraint as an example.
+Every constraint has a header at the top:
 
 .. figure:: /images/animation_constraints_interface_header_example.png
 
-   A Header sits at the top of every constraint.
+   Constraint header
 
-Expand (down/right arrow icon)
-   Show or Hide the settings of the constraint.
-   Tidy up the :doc:`constraint stack </animation/constraints/interface/stack>`
-   by hiding constraints that do not currently need attention.
-   Constraints will continue to affect the scene even when hidden.
+:bl-icon:`rightarrow` / :bl-icon:`downarrow_hlt` Expand/Collapse
+   Show or hide the settings of the constraint. Collapsed constraints remain active.
 
 Icon
-   The constraint type icon.
+   Icon representing the constraint's type. If this icon is red, one or more settings are not
+   correctly filled in and the constraint has no effect.
 
 .. _bpy.types.Constraint.name:
 
 Name
-   Give the constraint a meaningful name in this text field, which describes its purpose.
-   Meaningful names help you and your team members understand what each constraint is supposed to do.
-
-   The *red* background is a warning that the constraint is not yet functional.
-   The background will turn *gray* when the constraint is functioning.
-   When this Copy Location constraint has a valid target in the *target field*
-   it will turn gray and begin to function.
+   Initially this is simply the constraint type, but it can be customized to something
+   more specific.
 
 .. _bpy.types.Constraint.enabled:
 
-Mute (eye icon)
-   Enable or Disable the constraint. Disabling a constraint will stop its affect on the scene.
+:bl-icon:`hide_off` Enabled
+   Enable or disable the constraint. Disabling a constraint turns off its effects while keeping
+   its settings around for the future.
 
-   Disabling a constraint is useful for turning off a constraint without losing all of its settings.
-   Disabling means you can enable the constraint at a later time with the settings intact.
-   Disabling is similar to setting the :ref:`Influence <bpy.types.constraint.influence>` to 0.0.
+   Another way of disabling a constraint is to set its :ref:`Influence <bpy.types.constraint.influence>`
+   to zero. Unlike the *Enabled* setting, this can be animated.
 
-.. _bpy.ops.constraint.apply:
+:bl-icon:`downarrow_hlt` Extras
+   .. _bpy.ops.constraint.apply:
 
-Extras
    Apply :kbd:`Ctrl-A`
-      Makes the constraint "real" by applying any transformations caused by the constraint
-      to make the original object to match the results of the constraint and deletes the constraint.
+      Applies the constraint's result to the object's/bone's own transformation,
+      then deletes the constraint.
 
       .. warning::
 
-         Applying a constraint that is not first in the stack will ignore the stack order
-         (it will be applied as if it was the first one), and may produce undesired results.
+         Applying a constraint that is not first in the stack will ignore the constraints before it,
+         which may produce undesired results.
+
+      .. seealso::
+
+         :ref:`Apply Visual Transform <bpy.ops.object.visual_transform_apply>` to apply the combined
+         result of all constraints without deleting them.
 
    .. _bpy.ops.constraint.copy:
 
    Duplicate :kbd:`Shift-D`
-      Creates a duplicate of the constraint just below current one in the stack.
+      Creates a copy of the constraint just below current one.
 
    .. _bpy.ops.constraint.copy_to_selected:
 
@@ -65,20 +62,15 @@ Extras
    .. _bpy.ops.constraint.move_to_index:
 
    Move to First/Last
-      Moves the constraint to the first or last position in the constraint stack.
+      Moves the constraint to the first or last position in the stack.
 
 .. _bpy.ops.constraint.delete:
 
-:bl-icon:`x` (Delete) :kbd:`X`, :kbd:`Delete`
+:bl-icon:`x` Delete :kbd:`X`, :kbd:`Delete`
    Delete the constraint from the stack.
-   The settings will be lost.
-   The constraint will no longer affect the final outcome of the stack.
+   Its settings will be lost and it will no longer affect the object/bone.
 
-:bl-icon:`grip` (Move)
-   Move a constraint up or down in the :doc:`constraint stack </animation/constraints/interface/stack>`.
+:bl-icon:`grip` Move
+   Drag to move the constraint up or down in the :doc:`stack </animation/constraints/interface/stack>`.
    Since the stack is evaluated from top to bottom,
-   moving a constraint in the stack can significantly affect the final outcome of the stack.
-
-   - If there is only one constraint in the stack, the arrows will not be displayed.
-   - If the constraint is at the top of the stack, only the down arrow will be displayed.
-   - If the constraint is at the bottom of the stack, only the up arrow will be displayed.
+   moving a constraint can significantly affect the final outcome.

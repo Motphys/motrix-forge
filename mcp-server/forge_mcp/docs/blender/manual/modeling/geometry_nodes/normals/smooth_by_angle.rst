@@ -21,12 +21,6 @@ Ignore Sharpness
    Smooth all edges, even if they have been marked as sharp.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

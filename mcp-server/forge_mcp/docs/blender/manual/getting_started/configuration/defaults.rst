@@ -73,8 +73,8 @@ Spacebar Action
    These and other shortcuts can be modified in the :doc:`keymap preferences </editors/preferences/keymap>`.
 
    :Play:
-      Starts playing through the :doc:`Timeline </editors/timeline>`. This option is good for animation or video
-      editing.
+      Starts/stops :doc:`animation playback </animation/index>`.
+      This option is good for animation or video editing work.
    :Tools:
       Opens the Toolbar underneath the cursor to quickly change the active tool. This option is good if doing a lot of
       modeling or rigging.

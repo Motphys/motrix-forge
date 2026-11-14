@@ -9,15 +9,33 @@ Symmetrize
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Mesh --> Symmetrize`
 
-The *Symmetrize* tool is a quick way to make a mesh symmetrical.
-*Symmetrize* works by cutting the mesh at the pivot point of the object,
-and mirroring over the geometry in the specified axis, and merges the two halves together
-(if they are connected). Also the mesh data is copied from one side to the other:
-e.g. UVs, colors attributes, vertex weights.
+The *Symmetrize* operator is a quick way to make a mesh symmetrical.
+It does the following:
+
+#. Cuts the selected geometry at the :doc:`origin </scene_layout/object/origin>`
+   of the object using an infinite plane, much like
+   :doc:`/modeling/meshes/editing/mesh/bisect`.
+#. Deletes the geometry on one side of the plane.
+#. Copies the geometry on the other side of the plane and mirrors it.
+#. Merges the vertices that lie on the plane.
+
+.. seealso::
+
+   - :ref:`Mesh Symmetry <modeling_meshes_tools-settings_mirror>` continuously
+     maintains symmetry while editing the mesh.
+   - The :doc:`/modeling/modifiers/generate/mirror` symmetrizes the mesh
+     non-destructively.
+   - The :doc:`/modeling/meshes/editing/mesh/mirror` operator simply flips the
+     mesh without cutting or copying.
+
+Options
+=======
 
 Direction
-   Specify the axis and direction of the effect. Can be any of the three axes,
-   and either positive to negative, or negative to positive.
+   The axis and direction of the effect, in the object's :term:`local space`.
+   For example, *-X to +X* deletes the geometry that's to the right of the
+   object origin (positive X coordinate) and replaces it by a mirrored copy
+   of the geometry on the left (negative X coordinate).
 Threshold
    The vertices in this range will be snapped to the plane of symmetry.
 
@@ -32,8 +50,3 @@ Threshold
           :width: 320px
 
           Mesh after Symmetrize.
-
-.. seealso::
-
-   See :doc:`Mirror </modeling/meshes/editing/mesh/mirror>`
-   for information on mirroring, which allows you to flip geometry across an axis.

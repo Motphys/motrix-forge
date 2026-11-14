@@ -46,8 +46,8 @@ Threshold
    they will get equal weights.
 
 Keep Sharp
-   Preserve :ref:`sharp edges <geometry-nodes_builtin-attributes>`,
-   though smoothing will still happen if there are multiple faces between any two sharp edges.
+   Preserve :ref:`Sharp edges <bpy.ops.mesh.mark_sharp>`,
+   though smoothing will still happen if there are multiple faces between any two Sharp edges.
 
 Face Influence
    Use face weights (weak, medium, or strong) as assigned by

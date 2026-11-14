@@ -5,8 +5,18 @@
 Follow Track Constraint
 ***********************
 
-By default the Follow Track constraint is making objects have the same position at a frame as the track has.
-The motion of this object happens on a single plane defined by the camera and the original position of the object.
+The *Follow Track* constraint makes an object imitate the movement of a
+:doc:`motion tracking marker </movie_clip/tracking/clip/marker>`. This makes the object appear at the
+same position in the render as where the marker appears in the motion-tracked video.
+
+By default, the object follows the 2D motion of the marker in the video on a plane in the 3D world.
+However, it's also possible to make the object follow the reconstructed 3D position of the marker.
+The latter requires setting up at least eight markers and clicking :ref:`bpy.ops.clip.solve_camera`.
+
+.. seealso::
+
+   The :ref:`bpy.ops.clip.track_to_empty` button in the Movie Clip Editor creates an
+   :doc:`Empty </modeling/empties>` and assigns it this constraint in one click.
 
 
 Options
@@ -14,34 +24,62 @@ Options
 
 .. figure:: /images/animation_constraints_motion-tracking_follow-track_panel.png
 
-   Follow Track Constraint panel.
+   Follow Track constraint.
 
 Active Clip
-   Receive tracking data from the scene's :ref:`Active Clip <bpy.types.Scene.active_clip>`.
-   If unchecked, an option appears to choose from the other clips.
+   Whether the tracking marker is in the scene's :ref:`Active Clip <bpy.types.Scene.active_clip>`.
+   If unchecked, a selector appears for choosing another clip.
 
 3D Position
-   Use the 3D position of the track to parent to.
+   Whether to use the tracking marker's reconstructed world position (instead of its position
+   in the flat video).
 
 Undistort
-   Parent to the undistorted position of the 2D track.
+   Whether to use the tracking marker's video position after compensating for lens distortion
+   (see :ref:`Lens settings <motion_tracking-camera-lens>`).
+   Not available when *3D Position* is checked.
 
 Frame Method
-   Defines how the footage is fitted in the camera frame.
+   How to handle a difference in aspect ratio between the tracked video footage and the rendered image.
+
+   :Stretch:
+      The object is positioned as though the video were stretched to exactly match the size of the
+      rendered image.
+   :Fit:
+      The object is positioned as though the video were made as large as possible while still keeping
+      its original aspect ratio and fitting inside the rendered image along both axes.
+   :Crop:
+      The object is positioned as though the video were made as large as possible while still keeping
+      its original aspect ratio and fitting inside the rendered image along one axis.
+
+   .. seealso::
+
+      The :ref:`bpy.ops.clip.set_viewport_background` button in the Movie Clip Editor sets the video
+      as the background for the camera. This background can then be resized by setting the same
+      *Frame Method* in the :ref:`bpy.types.CameraBackgroundImage` panel of the camera's properties.
+
+Object
+   The physical object containing the tracking marker to follow. See the
+   :doc:`/movie_clip/tracking/clip/sidebar/track/objects` in the Movie Clip Editor.
+   If left empty, *Track* will list the markers used to reconstruct the physical camera.
+
+Track
+   The tracking marker to follow.
 
 Camera
-   Select the camera to which the motion is parented to (if empty, the active scene camera is used).
+   The Blender camera in whose field of view the constrained object should appear.
+   If left empty, the scene's :ref:`active camera <bpy.types.Scene.camera>` is used.
 
 Depth Object
-   If this object is set, constrained objects will be projected onto the surface
-   of this depth object which can be used to create facial makeup visual effects.
+   If this object is set, the constrained object will be projected onto its surface.
+   This can be used to create a facial makeup effect, for example.
+   Not available when *3D Position* is checked.
 
 Constraint to F-Curve
-   Creates F-Curves for the object that copies the movement caused by the constraint.
+   Replaces the constraint by a set of equivalent :doc:`keyframes </animation/keyframes/introduction>`.
 
-Influence
-   Controls the percentage of affect the constraint has on the object.
-   See :ref:`common constraint properties <bpy.types.constraint.influence>` for more information.
+:ref:`bpy.types.constraint.influence`
+   How strongly the constraint affects its owner.
 
 
 Example

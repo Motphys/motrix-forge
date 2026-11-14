@@ -26,12 +26,6 @@ Flip Y
    Flips the image vertically (top to bottom).
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

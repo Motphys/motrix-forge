@@ -13,7 +13,7 @@ Brush Settings
 Direction
    Determines whether to grow or shrink the curves. It can be toggled holding :kbd:`Ctrl` while sculpting.
 
-.. _bpy.types.BrushCurvesSculptSettings.scale_uniform:
+.. _bpy.types.BrushCurvesSculptSettings.use_uniform_scale:
 
 Scale Uniform
    Grow or shrink curves by changing their size uniformly instead of using trimming or extrapolation.

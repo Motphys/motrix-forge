@@ -27,12 +27,6 @@ Selection
    Because of mesh topology requirements, sometimes more or fewer edges than are selected will be split.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

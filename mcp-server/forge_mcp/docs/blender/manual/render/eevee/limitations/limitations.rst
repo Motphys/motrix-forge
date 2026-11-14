@@ -13,7 +13,6 @@ Attributes and Properties
 =========================
 
 - Only 14 attributes from Geometry Nodes are supported in a material
-- Only 8 custom object properties are supported in a material
 
 
 Cameras
@@ -39,10 +38,12 @@ Light Probes
 - Active light probe volumes must fit inside the
   :ref:`Light Probes Volume Memory Pool <bpy.types.SceneEEVEE.gi_irradiance_pool_size>`.
 
+
 Indirect Lighting
 =================
 
 - Light probe capture does not support specular reflections. Specular energy is treated as diffuse.
+
 
 .. _eevee-limitations-shadows:
 
@@ -56,6 +57,7 @@ Shadows
   This can be mitigated by making the object have some thickness or lowering
   :ref:`Resolution Limit<bpy.types.Light.shadow_maximum_resolution>`.
 
+
 .. _eevee-limitations-volumetrics:
 
 Volumetrics
@@ -64,7 +66,7 @@ Volumetrics
 - Only single scattering is supported.
 - Volumetrics are rendered only for the camera "rays". They don't appear in reflections/refractions and probes.
 - Volumetric shadowing only work in volumetrics. They won't cast shadows onto solid objects in the scene.
-- Volumetric shadowing only work for volumes inside the view frustum.
+- Volumetric shadowing only works for volumes inside the view frustum.
 
 
 .. _eevee-limitations-dof:
@@ -75,6 +77,7 @@ Depth of Field
 - Blended materials cannot be correctly handled by the post-processing blur,
   but will be correctly handled by the sample-based method. For this, you need to
   disable the post-process depth of field by setting the *Max Size* to 0.
+
 
 .. _eevee-limitations-screenspace:
 
@@ -87,7 +90,7 @@ This reduces the complexity of scene scale effects and enables a higher performa
 However, only what is in inside the view can be considered when computing these effects.
 Also, since it only uses one layer of depth, only the front-most pixel distance is known.
 
-These limitations creates a few problems:
+These limitations create a few problems:
 
 - The screen space effects disappear when reaching the screen border.
   This can be partially fixed by using the *overscan* feature.
@@ -124,11 +127,21 @@ Shader Nodes
 - Certain combinations of BSDF's will result in more noise than others.
   This is the case when mixing Diffuse BSDF and Refraction BSDF.
 - Displacement of flat shaded surfaces will split the mesh into triangles.
-  See :ref:`Displacement <bpy.types.Material.displacement>` for a workaround.
+  See :ref:`Displacement <bpy.types.Material.displacement_method>` for a workaround.
 
 .. seealso::
 
    For a full list of unsupported nodes see :doc:`Nodes Support </render/eevee/limitations/nodes_support>`.
+
+
+Numerical Limitations
+=====================
+
+- EEVEE generally performs all calculations using half-precision (16-bit) floating point numbers.
+  The only exception to that is the evaluation of the shader node tree which is performed with
+  single-precision (32-bit) floating point numbers.
+- The render output subsequently also only has the precision of half-precision (16-bit) floating point numbers.
+- The Combined and Light data passes clamp negative output values to zero.
 
 
 Memory Management

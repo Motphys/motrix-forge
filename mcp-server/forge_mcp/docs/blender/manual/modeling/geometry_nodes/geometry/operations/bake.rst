@@ -73,13 +73,13 @@ Bake Mode
    :Still: Bakes the geometry data of the current frame.
 
 Bake
-   Preforms all necessary geometry calculations and saves the data on disk or packed into the .blend file.
+   Performs all necessary geometry calculations and saves the data on disk or packed into the .blend file.
 
    Pack/Unpack
       Packs or unpacks already baked data. When unpacking, there are different options to control where the data will
       be stored. The options are the same as for the :ref:`Unpack Resources <bpy.ops.file.unpack_all>` operator.
 
-   Delete (Trash Icon)
+   :bl-icon:`trash` Delete Geometry Node Bake
       Deletes the bake data.
 
 Bake Target

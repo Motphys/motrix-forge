@@ -138,6 +138,8 @@ You can also use the hotkeys :kbd:`X` or :kbd:`Y`,
 or hold the :kbd:`MMB` and drag in the mirror direction.
 
 
+.. _bpy.ops.uv.copy_mirrored_faces:
+
 Copy Mirrored UV Coordinates
 ----------------------------
 
@@ -147,13 +149,34 @@ Copy Mirrored UV Coordinates
    :Mode:      Edit Mode
    :Menu:      :menuselection:`UV --> Copy Mirrored UV Coordinates`
 
-Copies UVs from one side of the mirrored mesh to the other.
-Affects only selected vertices (on both sides).
+Copies UV coordinates from one side of a symmetrical mesh to the mirrored side.
 
-Axis Direction
-   Positive/Negative
+The operator searches for mirrored vertices across the chosen mesh axis and copies
+their UV coordinates to the corresponding selected vertices. This is useful when
+working with symmetrical models where UVs only need to be edited on one side.
+
+Only selected vertices are affected.
+
+Mesh Axis
+   Defines the axis used to find mirrored vertices in the mesh.
+
+   :-X to +X: Copy UVs from the negative X side to the positive X side.
+   :-Y to +Y: Copy UVs from the negative Y side to the positive Y side.
+   :-Z to +Z: Copy UVs from the negative Z side to the positive Z side.
+   :+X to -X: Copy UVs from the positive X side to the negative X side.
+   :+Y to -Y: Copy UVs from the positive Y side to the negative Y side.
+   :+Z to -Z: Copy UVs from the positive Z side to the negative Z side.
+
+UV Axis
+   Defines the UV axis used when mirroring UV coordinates.
+
+   :X: Mirror UV coordinates across the horizontal UV axis.
+   :Y: Mirror UV coordinates across the vertical UV axis.
+
 Precision
-   Tolerance for finding vertex duplicates.
+   Tolerance used when searching for mirrored vertex pairs.
+
+   Higher values allow matching vertices that are slightly offset from perfect symmetry.
 
 
 .. _bpy.ops.uv.snap_selected:
@@ -251,17 +274,17 @@ Selection :kbd:`Y`
 
 .. _bpy.ops.uv.rip_move:
 
-UV Rip Move
+Rip Move UV
 ===========
 
 .. reference::
 
    :Editor:    UV Editor
    :Mode:      Edit Mode
-   :Menu:      :menuselection:`UV --> UV Rip Move`
+   :Menu:      :menuselection:`UV --> Rip Move UV`
    :Shortcut:  :kbd:`V`
 
-The *UV Rip Move* operator separates selected UV elements (vertices, edges, or faces) from connected components,
+The *Rip Move UV* operator separates selected UV elements (vertices, edges, or faces) from connected components,
 creating a "rip" in the UV map. After the separation, the selection enters move mode,
 allowing precise control over where and how the UV elements are pulled apart.
 
@@ -280,13 +303,13 @@ without affecting surrounding geometry.
 
 .. note::
 
-   The *UV Rip Move* operator is not compatible with
+   The *Rip Move UV* operator is not compatible with
    :ref:`Sync Selection <bpy.types.ToolSettings.use_uv_select_sync>`.
    To use this tool, make sure Sync Selection is disabled in the UV Editor.
 
 .. seealso::
 
-   - :doc:`UV Rip Tool </modeling/meshes/uv/tools/rip>` -- Modal version of the rip operator.
+   - :doc:`Rip Region Tool </modeling/meshes/uv/tools/rip>` -- Modal version of the rip operator.
    - Mesh editing :ref:`Rip <bpy.ops.mesh.rip_move>` -- Similar functionality for mesh editing in the 3D Viewport.
 
 
@@ -457,6 +480,12 @@ Pack To
        the UDIM grid tile where the 2D cursor is located.
    :Original bounding box: Find the original bounding box of the selection,
      packs the islands, and then moves them back inside the original box.
+   :Custom Region:
+      Packs islands into a user-defined custom region set with
+      :ref:`bpy.ops.uv.custom_region_set`.
+      This allows packing islands into arbitrary UV areas, such as reserved atlas regions,
+      trim sheet zones, or layout-specific texture slots.
+      Requires :ref:`bpy.types.ToolSettings.use_uv_custom_region` to be enabled.
 
 .. note::
 
@@ -495,6 +524,98 @@ Shear
    Reduces average texture shearing within islands by shearing the U axis.
 
 
+.. _bpy.ops.uv.arrange_islands:
+
+Arrange/Align Islands
+=====================
+
+.. reference::
+
+   :Editor:    UV Editor
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`UV --> Arrange/Align Islands`
+
+Arranges the selected UV islands along a straight line on the UV grid.
+This operator can align islands horizontally or vertically, with customizable
+starting positions, alignment reference, sorting order, and spacing.
+
+This is useful for organizing UV layouts, aligning modular texture pieces, or
+arranging UDIM tiles consistently.
+
+Initial Position
+   Determines the reference point used to calculate the initial alignment.
+
+   :Bounding Box: Uses the bounding boxes of the selected islands.
+   :UV Grid: Aligns islands relative to the UV grid origin (0-1 UV tile).
+   :Active UDIM: Aligns islands based on the active UDIM tile.
+   :2D Cursor: Uses the current position of the 2D cursor as the origin.
+
+Axis
+   The axis along which to arrange UV islands.
+
+   :X: Align UV islands horizontally.
+   :Y: Align UV islands vertically.
+
+Align
+   Determines how the islands are aligned relative to each other.
+
+   :Min: Aligns islands by their minimum boundary.
+   :Max: Aligns islands by their maximum boundary.
+   :Center: Aligns islands by the center of the largest island.
+   :None: Keeps each island's original offset and alignment.
+
+Order
+   Specifies how to order the islands along the chosen axis.
+
+   :Largest to Smallest: Sorts islands by area, from largest to smallest.
+   :Smallest to Largest: Sorts islands by area, from smallest to largest.
+   :Fixed: Keeps the current selection order.
+
+Margin
+   Defines the space between arranged islands, measured in UV units.
+
+
+.. _bpy.ops.uv.custom_region_set:
+
+Set User Region
+===============
+
+.. reference::
+
+   :Editor:    UV Editor
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`UV --> Set User Region`
+   :Shortcut:  :kbd:`Ctrl-B`
+
+Defines a rectangular region in the UV Editor to be used as a *Custom Region*
+
+Once defined, this region can be selected as the *Pack To* target in the *Pack Islands* operator
+by choosing **Custom Region** and enabling :ref:`bpy.types.ToolSettings.use_uv_custom_region`.
+
+
+.. _bpy.types.ToolSettings.use_uv_custom_region:
+
+Custom Region
+=============
+
+.. reference::
+
+   :Editor:    UV Editor
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`UV --> Custom Region`
+   :Shortcut:  :kbd:`Ctrl-Alt-B`
+
+Enables or disables the use of a *Custom Region* for UV operations such as
+:ref:`Pack Islands <bpy.ops.uv.pack_islands>`.
+
+When enabled, the previously defined user region (created using
+:ref:`bpy.ops.uv.custom_region_set`) becomes active and visible in the UV Editor.
+This region defines the boundaries where UV islands are packed or manipulated.
+
+Disabling this option restores the default behavior, where UV operations apply to the
+standard unit square or the active UDIM tile.
+
+
 .. _bpy.ops.uv.minimize_stretch:
 
 Minimize Stretch
@@ -509,8 +630,7 @@ Minimize Stretch
 The *Minimize Stretch* tool, reduces UV stretch by minimizing the difference between
 the angles in 3D and the angles in UV space.
 This operation is similar to the :doc:`/modeling/meshes/uv/tools/relax`
-tool with the *Geometry* :ref:`Relaxation Method <bpy.types.ToolSettings.uv_relax_method>`,
-but uses a different algorithm.
+tool with the *Geometry* *Method*, but uses a different algorithm.
 
 Fill Holes
    Just during *minimize stretch*, internal holes will be filled with temporary polygons
@@ -562,6 +682,13 @@ Axis
    :Align Vertically: Positions UV vertices vertically along the line defined by the midpoint of the selection.
    :Align Horizontally: Positions UV vertices horizontally along the line defined by the midpoint of the selection.
 
+Position Mode :guilabel:`Align Vertically:` / :guilabel:`Align Horizontally:`
+   Determines how the final alignment line position is calculated.
+
+   :Mean: Aligns UVs along the average (mean) position of the selection.
+   :Minimum: Aligns UVs along the smallest coordinate value.
+   :Maximum: Aligns UVs along the largest coordinate value.
+
 
 .. _bpy.ops.uv.align_rotation:
 
@@ -606,6 +733,51 @@ By comparison, in the *Geometry* method, the alignment will always be pointing u
 ignoring any previous orientation.
 
 
+.. _bpy.ops.uv.move_on_axis:
+
+Move on Axis
+============
+
+.. reference::
+
+   :Editor:    UV Editor
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`UV --> Move on Axis`
+
+Moves selected UV coordinates along a chosen axis by a specified distance.
+This operator is designed for precise UV adjustments and supports multiple
+movement modes. It is especially useful when combined with the number pad keys
+for quick directional nudging.
+
+Use the following shortcuts to move UVs directly from the keyboard:
+
+- :kbd:`Numpad8` / :kbd:`Numpad2`: Move up or down.
+- :kbd:`Numpad4` / :kbd:`Numpad6`: Move left or right.
+
+Type
+   The movement unit type.
+
+   :Dynamic:
+      Move using the active grid size.
+      Holding :kbd:`Ctrl` while pressing a number pad key activates this mode.
+   :Pixel:
+      Move by pixel increments.
+      Holding :kbd:`Shift` while pressing a number pad key activates this mode.
+   :UDIM:
+      Move by full UV tiles (1.0 UV unit).
+      Using the number pad keys with no modifying keys uses this mode.
+
+Axis
+   The axis along which to move the UVs.
+
+   :X Axis: Move vertices horizontally.
+   :Y Axis: Move vertices vertically.
+
+Distance
+   The distance to move the UVs, measured in the selected unit type.
+
+
+
 .. _bpy.ops.uv.copy:
 
 Copy UVs
@@ -618,7 +790,7 @@ Copy UVs
    :Menu:      :menuselection:`UV --> Copy UVs`
    :Shortcut:  :kbd:`Ctrl-C`
 
-For each selected UV island, the *Copy UVs* tool will copy it's topology and UV coordinates into a temporary clipboard
+For each selected UV island, the *Copy UVs* tool will copy its topology and UV coordinates into a temporary clipboard
 for later use with the *Paste UVs* tool.
 
 .. note::
@@ -666,6 +838,8 @@ Show/Hide Faces
 - Hide Unselected :kbd:`Shift-H`
 
 
+.. _bpy.ops.uv.export_layout:
+
 Export UV Layout
 ================
 
@@ -675,11 +849,66 @@ Export UV Layout
    :Mode:      Edit Mode
    :Menu:      :menuselection:`UV --> Export UV Layout`
 
-If you are using an external application, you need to know where on the mesh you are painting.
+When painting textures in an external application, it is often useful to have
+a reference image showing the UV layout of the mesh.
+The *Export UV Layout* operator saves the current UV map as an image that can
+be used as a guide while painting textures.
 
-.. note::
+The exported image contains lines representing the UV edges within the
+standard UV Editor grid (the ``0-1`` UV space).
+Edges outside this range will not appear in the exported image.
 
-   This is an :doc:`add-on </addons/import_export/mesh_uv_layout>` activated by default.
+By default, only UV faces selected in the *3D Viewport* are exported.
+Selections made only in the UV Editor are ignored.
+
+The exported image can be opened in a painting application and used as a
+transparent overlay while creating textures. Once the texture is finished,
+it can be imported back into Blender and used in a material.
+
+For more information on using images as textures, see
+:doc:`Image Textures </render/materials/legacy_textures/types/image_movie>`.
+
+.. list-table::
+
+   * - .. figure:: /images/addons_import-export_mesh-uv-layout_uv-editor.png
+          :width: 320px
+
+          A UV layout in the UV Editor.
+
+     - .. figure:: /images/addons_import-export_mesh-uv-layout_export.png
+          :width: 320px
+
+          The exported layout used as a guide in a painting application.
+
+
+Properties
+----------
+
+.. figure:: /images/addons_import-export_mesh-uv-layout_export-panel.png
+
+   Export options.
+
+All UVs
+   Export all UVs instead of only the faces selected in the 3D Viewport.
+
+Export Tiles
+   Controls which UV tiles are exported.
+
+   :None: Export only UVs in the [0, 1] range.
+   :UDIM: Export tiles in the UDIM numbering scheme: ``1001 + u_tile + 10*v_tile``.
+   :UVTILE: Export tiles in the UVTILE numbering scheme: ``u(u_tile + 1)_v(v_tile + 1)``.
+
+Modified
+   Export the UVs from the evaluated mesh with modifiers applied.
+
+Format
+   The file format used for the export: ``PNG``, ``EPS``, or ``SVG``.
+
+Size
+   The resolution of the exported image in pixels.
+
+Fill Opacity
+   Sets the opacity of the face fill in the exported image.
 
 
 Proportional Editing

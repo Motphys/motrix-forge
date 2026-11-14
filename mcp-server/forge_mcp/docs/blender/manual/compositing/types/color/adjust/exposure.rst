@@ -25,12 +25,6 @@ Exposure
    Scalar factor to adjust the exposure of the image.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

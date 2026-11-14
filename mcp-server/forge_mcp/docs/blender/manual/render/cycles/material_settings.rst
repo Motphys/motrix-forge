@@ -12,8 +12,6 @@ Material Settings
 Surface
 =======
 
-.. _bpy.types.Material.displacement_method:
-
 Displacement
    Method used to perform :doc:`Displacement </render/materials/components/displacement>` on materials.
 
@@ -49,8 +47,6 @@ Emission Sampling
    :Front and Back:
       Treat surface as a light for sampling, emitting from both the front and back side.
 
-.. _bpy.types.CyclesMaterialSettings.use_transparent_shadow:
-
 Transparent Shadows
    Use transparent shadows if it contains a :doc:`Transparent BSDF </render/shader_nodes/shader/transparent>`,
    disabling will render faster but will not give accurate shadows.
@@ -79,19 +75,11 @@ Interpolation
    :Linear: Simple interpolation which gives good results for thin volumes.
    :Cubic: Smoothed high-quality interpolation needed for more dense volumes, but slower.
 
-.. _bpy.types.CyclesMaterialSettings.homogeneous_volume:
-
-Homogeneous
-   Assume volume has the same density everywhere (not using any textures), for faster rendering.
-   For example absorption in a glass object would typically not have any textures,
-   and so the renderer can be set to avoid taking small steps to sample the volume shader.
-   Usually this is automatically determined by the renderer.
-   This setting provides a manual control for cases where it is not detected.
-
 .. _bpy.types.CyclesMaterialSettings.volume_step_rate:
 
-Step Rate
+Step Rate :guilabel:`Biased`
    Adjust distance between volume shader samples for volume shaders.
    This is typically used to reduce the step size for procedural shaders that add more detail
    with procedural textures, when it is not captured by the default step size.
+   Only enabled when :menuselection:`Render --> Volumes --> Biased` is enabled.
    See :doc:`Volume Render Settings </render/cycles/render_settings/volumes>` for more information.

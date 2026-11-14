@@ -74,7 +74,7 @@ Playhead & 2D Cursor
    Graph Editor 2D Cursor.
 
 The current frame is represented by a vertical blue line called the *Playhead*.
-As in the :doc:`Timeline </editors/timeline>`,
+Like other :doc:`/animation/animation_editors`,
 you can move it by clicking or dragging with :kbd:`LMB` in the scrubbing area at the top.
 
 Combined with the horizontal blue line, the Playhead forms the *2D Cursor*
@@ -101,6 +101,8 @@ Adjust Last Operation
    completed operation. See :ref:`bpy.ops.screen.redo_last`.
 Channels
    Shows or hides the :ref:`Channels Region <editors-graph_editor-channels_region>`.
+Playback Controls
+   Show or hide the :ref:`Playback Controls <animation-editors-footer>`.
 
 ----------
 
@@ -108,6 +110,17 @@ Frame Selected :kbd:`NumpadPeriod`
    Pans and zooms the view to focus on the selected keyframes.
 Frame All :kbd:`Home`
    Pans and zooms the view to show all keyframes.
+
+.. _bpy.ops.graph.local_view:
+
+Local View :kbd:`NumpadSlash`, :kbd:`Slash`
+   Isolates the selected F-Curves in the Graph Editor view.
+
+   While Local View is enabled, only the isolated F-Curves are visible
+   and editable in the Graph Editor.
+
+   Use the operator again to restore the normal view and show all F-Curves.
+
 Frame Scene/Preview Range
    Reset the horizontal view to the current scene frame range,
    taking the preview range into account if it is active.
@@ -143,9 +156,12 @@ Show Markers
    and marker operators are not available in this editor.
 Show Cursor
    Toggles the visibility of the horizontal blue line (see `Playhead & 2D Cursor`_).
-Show Seconds :kbd:`Ctrl-T`
-   Show timing in seconds instead of frames. As an example, the timestamp ``01:03+02``
-   means "1 minute, 3 seconds, 2 frames."
+
+.. _bpy.types.SpaceGraphEditor.show_seconds:
+
+Use Timecode :kbd:`Ctrl-T`
+   Show timing in seconds instead of frames.
+   As an example, the timestamp ``01:03+02`` means "1 minute, 3 seconds, 2 frames."
 Sync Visible Range
    Synchronizes the horizontal panning and scale of the editor
    with other time-based editors that also have this option enabled.
@@ -166,6 +182,7 @@ Only Selected Keyframes Handles
 ----------
 
 .. _graph-preview-range:
+.. _bpy.ops.anim.previewrange_set:
 
 Set Preview Range :kbd:`P`
    Lets you drag a box to define a time range for previewing. As long as this range is active,
@@ -173,7 +190,7 @@ Set Preview Range :kbd:`P`
    having to manually rewind each time.
 
    You can change the start or end frame using the corresponding button in the
-   Timeline editor's :ref:`Playback <timeline-playback>` popover.
+   Timeline editor's :ref:`Playback <animation-editors-playback>` popover.
    Alternatively, you can simply run *Set Preview Range* again.
 Clear Preview Range :kbd:`Alt-P`
    Clears the preview range.
@@ -350,6 +367,7 @@ Filter (funnel icon)
       (should only really be an issue when working with lots of objects),
       you can turn it off.
 
+
 Transform Controls
 ------------------
 
@@ -377,12 +395,9 @@ Snap
    Snap To
       Type of element to snap to.
 
-      Frame
-         Snap to full frames.
-      Second
-         Snap to seconds.
-      Nearest Marker
-         Snap to the nearest :doc:`Marker </animation/markers>`.
+      :Frame: Snap to full frames.
+      :Second: Snap to seconds.
+      :Nearest Marker: Snap to the nearest :doc:`Marker </animation/markers>`.
 
    .. _bpy.types.ToolSettings.use_snap_time_absolute:
 
@@ -396,15 +411,27 @@ Snap
       Taking the above example, the keyframe would snap to 0:07+0,
       removing the subsecond offset.
 
-
-Playhead
-   Options for playhead snapping which helps you position the playhead precisely when scrubbing
-   by snapping it to specific elements like frames, markers, or keyframes.
-
-   See :ref:`Playhead Snapping <playhead-snapping>` for more information.
-
 Proportional Editing :kbd:`O`
    See :doc:`Proportional Editing </editors/3dview/controls/proportional_editing>`.
+
+
+Playback Controls
+=================
+
+The Playback Controls region contains controls and options
+related to playback, keying, auto keyframing, and transport.
+
+These settings allow you to:
+
+- Control how animations are previewed and synchronized with audio.
+- Insert and manage keyframes through keying sets and auto keying.
+- Navigate the timeline using playback and transport controls.
+- Adjust frame ranges and preview specific segments of the animation.
+
+.. seealso::
+
+   For a detailed description of all properties and controls commonly found in the footer,
+   see the :ref:`Playback Controls <animation-editors-footer>` documentation.
 
 
 Sidebar Region

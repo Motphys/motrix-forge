@@ -78,10 +78,10 @@ Pans the 3D Viewport by moving the view left, right, up, or down without rotatin
 This is useful for repositioning your view without changing orientation.
 
 - :kbd:`Shift-MMB` -- Pan the view freely by dragging the mouse.
-- :kbd:`Shift-Wheel` -- Pan the view vertically.
-- :kbd:`Shift-HorizontalWheel` -- Pan the view horizontally.
-- :kbd:`Ctrl-Numpad8`/:kbd:`Ctrl-Numpad2` -- Pan the view up/down in fixed steps.
-- :kbd:`Ctrl-Numpad4`/:kbd:`Ctrl-Numpad6` -- Pan the view left/right in fixed steps.
+- :kbd:`Shift-WheelUp` / :kbd:`Shift-WheelDown` -- Pan the view vertically.
+- :kbd:`Shift-WheelLeft` / :kbd:`Shift-WheelRight` -- Pan the view horizontally.
+- :kbd:`Ctrl-Numpad8` / :kbd:`Ctrl-Numpad2` -- Pan the view up/down in fixed steps.
+- :kbd:`Ctrl-Numpad4` / :kbd:`Ctrl-Numpad6` -- Pan the view left/right in fixed steps.
 
 
 .. _bpy.ops.view3d.zoom:

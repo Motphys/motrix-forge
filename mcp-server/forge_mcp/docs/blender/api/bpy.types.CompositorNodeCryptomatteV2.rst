@@ -5,127 +5,134 @@ CompositorNodeCryptomatteV2(CompositorNode)
 
 base classes --- :class:`bpy_struct`, :class:`Node`, :class:`NodeInternal`, :class:`CompositorNode`
 
+
 .. class:: CompositorNodeCryptomatteV2(CompositorNode)
 
    Generate matte for individual objects and materials using Cryptomatte render passes
 
    .. attribute:: add
 
-      Add object or material to matte, by picking a color from the Pick output
+      Add object or material to matte, by picking a color from the Pick output (array of 3 items, in [-inf, inf], default (1.0, 1.0, 1.0))
 
-      :type: :class:`mathutils.Color` of 3 items in [-inf, inf], default (1.0, 1.0, 1.0)
+      :type: :class:`mathutils.Color`
 
    .. data:: entries
 
-      :type: :class:`bpy_prop_collection` of :class:`CryptomatteEntry`, (readonly)
+      (default None, readonly)
+
+      :type: :class:`bpy_prop_collection`\ [:class:`CryptomatteEntry`]
 
    .. attribute:: frame_duration
 
-      Number of images of a movie to use
+      Number of images of a movie to use (in [0, 1048574], default 0)
 
-      :type: int in [0, 1048574], default 0
+      :type: int
 
    .. attribute:: frame_offset
 
-      Offset the number of the frame to use in the animation
+      Offset the number of the frame to use in the animation (in [-1048574, 1048574], default 0)
 
-      :type: int in [-1048574, 1048574], default 0
+      :type: int
 
    .. attribute:: frame_start
 
-      Global starting frame of the movie/sequence, assuming first picture has a #1
+      Global starting frame of the movie/sequence, assuming first picture has a #1 (in [-1048574, 1048574], default 0)
 
-      :type: int in [-1048574, 1048574], default 0
+      :type: int
 
    .. data:: has_layers
 
-      True if this image has any named layer
+      True if this image has any named layer (default False, readonly)
 
-      :type: boolean, default False, (readonly)
+      :type: bool
 
    .. data:: has_views
 
-      True if this image has multiple views
+      True if this image has multiple views (default False, readonly)
 
-      :type: boolean, default False, (readonly)
+      :type: bool
 
    .. attribute:: image
 
-      :type: :class:`Image`
+      :type: :class:`Image` | None
 
    .. attribute:: layer
 
-      :type: enum in [``'PLACEHOLDER'``], default ``'PLACEHOLDER'``
+      (default ``'PLACEHOLDER'``)
+
+      :type: Literal['PLACEHOLDER']
 
    .. attribute:: layer_name
 
-      What Cryptomatte layer is used
+      What Cryptomatte layer is used (default ``'CryptoObject'``)
 
-      * ``CryptoObject``
+      - ``CryptoObject``
         Object -- Use Object layer.
-      * ``CryptoMaterial``
+      - ``CryptoMaterial``
         Material -- Use Material layer.
-      * ``CryptoAsset``
+      - ``CryptoAsset``
         Asset -- Use Asset layer.
 
-      :type: enum in [``'CryptoObject'``, ``'CryptoMaterial'``, ``'CryptoAsset'``], default ``'CryptoObject'``
+      :type: Literal['CryptoObject', 'CryptoMaterial', 'CryptoAsset']
 
    .. attribute:: matte_id
 
-      List of object and material crypto IDs to include in matte
+      List of object and material crypto IDs to include in matte (default "", never None)
 
-      :type: string, default "", (never None)
+      :type: str
 
    .. attribute:: remove
 
-      Remove object or material from matte, by picking a color from the Pick output
+      Remove object or material from matte, by picking a color from the Pick output (array of 3 items, in [-inf, inf], default (1.0, 1.0, 1.0))
 
-      :type: :class:`mathutils.Color` of 3 items in [-inf, inf], default (1.0, 1.0, 1.0)
+      :type: :class:`mathutils.Color`
 
    .. attribute:: scene
 
-      :type: :class:`Scene`
+      :type: :class:`Scene` | None
 
    .. attribute:: source
 
-      Where the Cryptomatte passes are loaded from
+      Where the Cryptomatte passes are loaded from (default ``'RENDER'``)
 
-      * ``RENDER``
+      - ``RENDER``
         Render -- Use Cryptomatte passes from a render.
-      * ``IMAGE``
+      - ``IMAGE``
         Image -- Use Cryptomatte passes from an image.
 
-      :type: enum in [``'RENDER'``, ``'IMAGE'``], default ``'RENDER'``
+      :type: Literal['RENDER', 'IMAGE']
 
    .. attribute:: use_auto_refresh
 
-      Always refresh image on frame changes
+      Always refresh image on frame changes (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_cyclic
 
-      Cycle the images in the movie
+      Cycle the images in the movie (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: view
 
-      :type: enum in [``'ALL'``], default ``'ALL'``
+      (default ``'ALL'``)
+
+      :type: Literal['ALL']
 
    .. classmethod:: is_registered_node_type()
 
       True if a registered node type
 
       :return: Result
-      :rtype: boolean
+      :rtype: bool
 
    .. classmethod:: input_template(index)
 
       Input socket template
 
-      :arg index: Index
-      :type index: int in [0, inf]
+      :param index: Index, (in [0, inf])
+      :type index: int
       :return: result
       :rtype: :class:`NodeInternalSocketTemplate`
 
@@ -133,25 +140,27 @@ base classes --- :class:`bpy_struct`, :class:`Node`, :class:`NodeInternal`, :cla
 
       Output socket template
 
-      :arg index: Index
-      :type index: int in [0, inf]
+      :param index: Index, (in [0, inf])
+      :type index: int
       :return: result
       :rtype: :class:`NodeInternalSocketTemplate`
 
-   .. method:: update()
-
    .. classmethod:: bl_rna_get_subclass(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: :class:`bpy.types.Struct` | None
       :return: The RNA type or default when not found.
-      :rtype: :class:`bpy.types.Struct` subclass
+      :rtype: :class:`bpy.types.Struct`
 
 
    .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: type | None
       :return: The class or default when not found.
       :rtype: type
 
@@ -162,40 +171,41 @@ Inherited Properties
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.id_data`
-   * :class:`Node.type`
-   * :class:`Node.location`
-   * :class:`Node.location_absolute`
-   * :class:`Node.width`
-   * :class:`Node.height`
-   * :class:`Node.dimensions`
-   * :class:`Node.name`
-   * :class:`Node.label`
-   * :class:`Node.inputs`
-   * :class:`Node.outputs`
-   * :class:`Node.internal_links`
-   * :class:`Node.parent`
-   * :class:`Node.warning_propagation`
-   * :class:`Node.use_custom_color`
-   * :class:`Node.color`
-   * :class:`Node.color_tag`
-   * :class:`Node.select`
-   * :class:`Node.show_options`
-   * :class:`Node.show_preview`
-   * :class:`Node.hide`
-   * :class:`Node.mute`
-   * :class:`Node.show_texture`
-   * :class:`Node.bl_idname`
-   * :class:`Node.bl_label`
-   * :class:`Node.bl_description`
-   * :class:`Node.bl_icon`
-   * :class:`Node.bl_static_type`
-   * :class:`Node.bl_width_default`
-   * :class:`Node.bl_width_min`
-   * :class:`Node.bl_width_max`
-   * :class:`Node.bl_height_default`
-   * :class:`Node.bl_height_min`
-   * :class:`Node.bl_height_max`
+   - :class:`bpy_struct.id_data`
+   - :class:`Node.type`
+   - :class:`Node.location`
+   - :class:`Node.location_absolute`
+   - :class:`Node.width`
+   - :class:`Node.height`
+   - :class:`Node.dimensions`
+   - :class:`Node.name`
+   - :class:`Node.label`
+   - :class:`Node.inputs`
+   - :class:`Node.outputs`
+   - :class:`Node.panel_states`
+   - :class:`Node.internal_links`
+   - :class:`Node.parent`
+   - :class:`Node.warning_propagation`
+   - :class:`Node.use_custom_color`
+   - :class:`Node.color`
+   - :class:`Node.color_tag`
+   - :class:`Node.select`
+   - :class:`Node.show_options`
+   - :class:`Node.show_preview`
+   - :class:`Node.hide`
+   - :class:`Node.mute`
+   - :class:`Node.show_texture`
+   - :class:`Node.bl_idname`
+   - :class:`Node.bl_label`
+   - :class:`Node.bl_description`
+   - :class:`Node.bl_icon`
+   - :class:`Node.bl_static_type`
+   - :class:`Node.bl_width_default`
+   - :class:`Node.bl_width_min`
+   - :class:`Node.bl_width_max`
+   - :class:`Node.bl_height_default`
+   - :class:`Node.bl_height_min`
+   - :class:`Node.bl_height_max`
 
 Inherited Functions
 -------------------
@@ -203,56 +213,56 @@ Inherited Functions
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.as_pointer`
-   * :class:`bpy_struct.driver_add`
-   * :class:`bpy_struct.driver_remove`
-   * :class:`bpy_struct.get`
-   * :class:`bpy_struct.id_properties_clear`
-   * :class:`bpy_struct.id_properties_ensure`
-   * :class:`bpy_struct.id_properties_ui`
-   * :class:`bpy_struct.is_property_hidden`
-   * :class:`bpy_struct.is_property_overridable_library`
-   * :class:`bpy_struct.is_property_readonly`
-   * :class:`bpy_struct.is_property_set`
-   * :class:`bpy_struct.items`
-   * :class:`bpy_struct.keyframe_delete`
-   * :class:`bpy_struct.keyframe_insert`
-   * :class:`bpy_struct.keys`
-   * :class:`bpy_struct.path_from_id`
-   * :class:`bpy_struct.path_resolve`
-   * :class:`bpy_struct.pop`
-   * :class:`bpy_struct.property_overridable_library_set`
-   * :class:`bpy_struct.property_unset`
-   * :class:`bpy_struct.rna_ancestors`
-   * :class:`bpy_struct.type_recast`
-   * :class:`bpy_struct.values`
-   * :class:`Node.socket_value_update`
-   * :class:`Node.is_registered_node_type`
-   * :class:`Node.poll`
-   * :class:`Node.poll_instance`
-   * :class:`Node.update`
-   * :class:`Node.insert_link`
-   * :class:`Node.init`
-   * :class:`Node.copy`
-   * :class:`Node.free`
-   * :class:`Node.draw_buttons`
-   * :class:`Node.draw_buttons_ext`
-   * :class:`Node.draw_label`
-   * :class:`Node.debug_zone_body_lazy_function_graph`
-   * :class:`Node.debug_zone_lazy_function_graph`
-   * :class:`Node.poll`
-   * :class:`Node.bl_rna_get_subclass`
-   * :class:`Node.bl_rna_get_subclass_py`
-   * :class:`NodeInternal.poll`
-   * :class:`NodeInternal.poll_instance`
-   * :class:`NodeInternal.update`
-   * :class:`NodeInternal.draw_buttons`
-   * :class:`NodeInternal.draw_buttons_ext`
-   * :class:`NodeInternal.bl_rna_get_subclass`
-   * :class:`NodeInternal.bl_rna_get_subclass_py`
-   * :class:`CompositorNode.tag_need_exec`
-   * :class:`CompositorNode.poll`
-   * :class:`CompositorNode.update`
-   * :class:`CompositorNode.bl_rna_get_subclass`
-   * :class:`CompositorNode.bl_rna_get_subclass_py`
+   - :class:`bpy_struct.as_pointer`
+   - :class:`bpy_struct.driver_add`
+   - :class:`bpy_struct.driver_remove`
+   - :class:`bpy_struct.get`
+   - :class:`bpy_struct.id_properties_clear`
+   - :class:`bpy_struct.id_properties_ensure`
+   - :class:`bpy_struct.id_properties_ui`
+   - :class:`bpy_struct.is_property_hidden`
+   - :class:`bpy_struct.is_property_overridable_library`
+   - :class:`bpy_struct.is_property_readonly`
+   - :class:`bpy_struct.is_property_set`
+   - :class:`bpy_struct.items`
+   - :class:`bpy_struct.keyframe_delete`
+   - :class:`bpy_struct.keyframe_insert`
+   - :class:`bpy_struct.keys`
+   - :class:`bpy_struct.path_from_id`
+   - :class:`bpy_struct.path_from_module`
+   - :class:`bpy_struct.path_resolve`
+   - :class:`bpy_struct.pop`
+   - :class:`bpy_struct.property_overridable_library_set`
+   - :class:`bpy_struct.property_unset`
+   - :class:`bpy_struct.rna_ancestors`
+   - :class:`bpy_struct.type_recast`
+   - :class:`bpy_struct.values`
+   - :class:`Node.bl_system_properties_get`
+   - :class:`Node.socket_value_update`
+   - :class:`Node.is_registered_node_type`
+   - :class:`Node.poll`
+   - :class:`Node.poll_instance`
+   - :class:`Node.update`
+   - :class:`Node.insert_link`
+   - :class:`Node.init`
+   - :class:`Node.copy`
+   - :class:`Node.free`
+   - :class:`Node.draw_buttons`
+   - :class:`Node.draw_buttons_ext`
+   - :class:`Node.draw_label`
+   - :class:`Node.debug_zone_body_lazy_function_graph`
+   - :class:`Node.debug_zone_lazy_function_graph`
+   - :class:`Node.poll`
+   - :class:`Node.bl_rna_get_subclass`
+   - :class:`Node.bl_rna_get_subclass_py`
+   - :class:`NodeInternal.poll`
+   - :class:`NodeInternal.poll_instance`
+   - :class:`NodeInternal.update`
+   - :class:`NodeInternal.draw_buttons`
+   - :class:`NodeInternal.draw_buttons_ext`
+   - :class:`NodeInternal.bl_rna_get_subclass`
+   - :class:`NodeInternal.bl_rna_get_subclass_py`
+   - :class:`CompositorNode.poll`
+   - :class:`CompositorNode.bl_rna_get_subclass`
+   - :class:`CompositorNode.bl_rna_get_subclass_py`
 

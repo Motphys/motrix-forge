@@ -50,7 +50,7 @@ There are 2 optional positional arguments (documented in detail below).
 
 Each of these arguments is optional, but must be given in the order above.
 
-.. literalinclude:: ..\examples\bpy.ops.py
+.. literalinclude:: ../examples/bpy.ops.0.py
    :lines: 48-
 
 
@@ -76,7 +76,7 @@ you would pass ``active_object=object`` to :class:`bpy.types.Context.temp_overri
    Context members are names which Blender uses for data access,
    overrides do not extend to overriding methods or any Python specific functionality.
 
-.. literalinclude:: ..\examples\bpy.ops.1.py
+.. literalinclude:: ../examples/bpy.ops.1.py
    :lines: 25-
 
 
@@ -109,14 +109,14 @@ The execution context is one of:
 - ``EXEC_AREA``
 - ``EXEC_SCREEN``
 
-.. literalinclude:: ..\examples\bpy.ops.2.py
+.. literalinclude:: ../examples/bpy.ops.2.py
    :lines: 32-
 
 
 It is also possible to run an operator in a particular part of the user
 interface. For this we need to pass the window, area and sometimes a region.
 
-.. literalinclude:: ..\examples\bpy.ops.3.py
+.. literalinclude:: ../examples/bpy.ops.3.py
    :lines: 6-
 
 .. toctree::

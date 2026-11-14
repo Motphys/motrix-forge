@@ -4,7 +4,7 @@ Introduction
 ************
 
 Geometry Nodes is a system for modifying the geometry of an object with node-based operations.
-It can be accessed by adding a :doc:`Geometry Nodes Modifier </modeling/modifiers/generate/geometry_nodes>`
+It can be accessed by adding a :doc:`Geometry Nodes Modifier </modeling/modifiers/geometry_nodes>`
 and setting up the nodes in the :doc:`/editors/geometry_node`.
 
 .. figure:: /images/modeling_geometry-nodes_introduction_properties.png
@@ -18,6 +18,7 @@ and pass an output to the *Group Output* node, where it will be passed to the ne
 
 Geometry nodes can modify different types of geometry:
 
+- :doc:`Empties </modeling/empties>`
 - :doc:`Meshes </modeling/meshes/introduction>`
 - :doc:`Curves </modeling/curves/introduction>`
 - :doc:`Point Clouds </modeling/point_cloud/index>`
@@ -25,6 +26,6 @@ Geometry nodes can modify different types of geometry:
 - :doc:`Instances </modeling/geometry_nodes/instances>`
 
 The interface of the modifier is described in the
-:doc:`Modifier </modeling/modifiers/generate/geometry_nodes>` page.
+:doc:`Modifier </modeling/modifiers/geometry_nodes>` page.
 
 To expand Blender with node-group operators, see the :doc:`/modeling/geometry_nodes/tools` page.

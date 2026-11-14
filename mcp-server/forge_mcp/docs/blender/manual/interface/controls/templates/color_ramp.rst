@@ -33,7 +33,7 @@ Controls
       This is mostly useful when used with Constant interpolation mode.
    Distribute Stops Evenly
       Distribute the stops so that all neighbors have the same space between them.
-   Eyedropper (pipette icon) :kbd:`E`
+   Eyedropper :kbd:`E`
       An :ref:`ui-eyedropper` to sample a color or gradient from the interface to be used in the color ramp.
    Reset Color Ramp
       Resets the color ramp to its default state.

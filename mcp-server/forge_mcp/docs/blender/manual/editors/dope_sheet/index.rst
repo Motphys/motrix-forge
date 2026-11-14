@@ -11,6 +11,7 @@
 
    introduction.rst
    navigating.rst
+   display/index.rst
    Editing <editing.rst>
    modes/index.rst
    sidebar.rst

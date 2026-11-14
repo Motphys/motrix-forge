@@ -30,19 +30,6 @@ Set Scene Frames
 Sets end scene frame to match current clip duration.
 
 
-.. _bpy.ops.clip.set_center_principal:
-
-Set Principal to Center
-=======================
-
-.. reference::
-
-   :Mode:      Tracking
-   :Menu:      :menuselection:`Clip --> Set Principal to Center`
-
-Changes the :ref:`Optical Center <bpy.types.MovieTrackingCamera.principal>` values to the center of image.
-
-
 .. _bpy.ops.clip.prefetch:
 
 Prefetch
@@ -54,7 +41,7 @@ Prefetch
    :Menu:      :menuselection:`Clip --> Prefetch`
    :Shortcut:  :kbd:`P`
 
-Fills cache with frames. As many frames as fits into cache are load form the drive.
+Fills cache with frames. As many frames as fits into cache are loaded from the drive.
 This allows to fill in the cache as fast as possible when you really need to track something,
 but this keeps CPU and drive bandwidth idle if you've got a Clip editor opened but not actually interacting with it.
 
@@ -102,7 +89,23 @@ Setup Tracking Scene
    :Mode:      Tracking
    :Menu:      :menuselection:`Clip --> Setup Tracking Scene`
 
-Performs all usual steps to set up a VFX scene:
+Automatically performs the common steps needed to prepare a scene for match moving and compositing.
 
-- Create reference objects for floor and test object.
-- Create node set up for combining CG with an actual clip.
+This operator sets up a basic VFX workflow by:
+
+- Creating reference objects for the floor and a test object (a cube) to verify the track.
+- Creating and configuring a camera object that matches the tracked motion.
+- Setting up a compositor node tree that combines the rendered 3D scene with the background footage.
+
+The resulting setup provides a starting point for integrating 3D objects into real footage.
+
+.. tip::
+
+   - Use the generated floor reference to align 3D objects to the ground plane of the footage.
+   - The test cube can be replaced or used to check that tracked motion matches correctly.
+   - The compositor setup can be customized further to include masks, color grading, or additional effects.
+
+.. note::
+
+   This operator is intended as a convenience feature.
+   More complex VFX work may require building a custom compositor node setup or manually adjusting the scene.

@@ -98,7 +98,7 @@ Stroke Method :kbd:`Alt-E`
       Draw Curve :kbd:`Return`
          To confirm and execute the curved stroke,
          press :kbd:`Return` or use the Draw Curve button.
-         Alternativey, :kbd:`Ctrl-LMB` can be used to execute the stroke (In right click select with :kbd:`LMB`).
+         Alternatively, :kbd:`Ctrl-LMB` can be used to execute the stroke (In right click select with :kbd:`LMB`).
 
 .. _bpy.types.Brush.use_scene_spacing:
 
@@ -141,6 +141,14 @@ Jitter
    :bl-icon:`stylus_pressure` (Jitter Pressure)
       Brush *Jitter* can be affected by enabling the pressure sensitivity icon,
       if you are using a :ref:`Graphics Tablet <hardware-tablet>`.
+   :bl-icon:`rightarrow` / :bl-icon:`downarrow_hlt` (Expand/Collapse)
+      Show or hide the customizable pressure curve.
+
+      Custom Curve
+         By default this is a straight line with positive slope such that
+         increased pressure results in more jitter of the brush positions.
+
+         For the curve controls see: :ref:`Curve widget <ui-curve-widget>`.
 
 .. _bpy.types.Brush.jitter_unit:
 
@@ -153,7 +161,7 @@ Jitter Unit
       The *Jitter* is measured relative to all three dimensions of the scene.
       The unit type and scaling can be configured in the :ref:`Scene Units <bpy.types.UnitSettings>`.
 
-.. _bpy.types.Paint.input_samples:
+.. _bpy.types.Brush.input_samples:
 
 Input Samples
    Recent mouse locations (input samples) are averaged together to smooth brush strokes.

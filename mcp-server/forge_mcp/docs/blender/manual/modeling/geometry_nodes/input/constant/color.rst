@@ -23,14 +23,16 @@ Inputs
 This node has no inputs.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 
 Color
    Color value indicated by the color picker widget.
+
+
+Example
+=======
+
+.. figure:: /images/modeling_geometry-nodes_color_node_example.png
+
+   Color converted into a vector by interpreting RGB as XYZ values.

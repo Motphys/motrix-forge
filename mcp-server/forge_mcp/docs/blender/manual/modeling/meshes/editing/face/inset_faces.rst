@@ -12,26 +12,32 @@ Inset Faces
    :Menu:      :menuselection:`Face --> Inset Faces`
    :Shortcut:  :kbd:`I`
 
-This tool takes the currently selected faces and creates an inset of them,
-with adjustable thickness and depth. Think of it as like creating an edge loop,
-but relative to the selected edges, even in complex meshes.
+This tool creates a border of faces around the selected faces, then allows adjusting
+the thickness of that border by moving the mouse. As the border becomes thicker, the
+outermost selected faces become thinner (while the inner ones stay the same).
 
-The tool is modal, such that when you activate it,
-you may adjust the thickness with your mouse position.
-You may also adjust the depth of the inset during the modal operation by holding :kbd:`Ctrl`.
+While insetting, it's also possible to adjust the depth of the inset by holding
+:kbd:`Ctrl`. Just like :doc:`/modeling/meshes/editing/face/extrude_faces_normal`,
+this moves each selected vertex along its normal and can result in *all* faces changing their size.
+
+Once the inset looks good, press :kbd:`LMB` or :kbd:`Return` to confirm.
+Alternatively, press :kbd:`RMB` or :kbd:`Esc` to cancel.
 
 .. list-table::
 
    * - .. figure:: /images/modeling_meshes_editing_face_inset-faces_before.png
-          :width: 320px
 
-          Selection to inset.
+          Faces selected.
 
      - .. figure:: /images/modeling_meshes_editing_face_inset-faces_after.png
-          :width: 320px
 
-          Result of inset with *Select Outer* enabled.
+          First inset using only Thickness.
 
+     - .. figure:: /images/modeling_meshes_editing_face_inset-faces_after-2.png
+
+          Second inset using only Depth.
+
+It's also possible to inset multiple disjoint "patches" of faces in one go.
 
 Options
 =======
@@ -41,25 +47,52 @@ Options
 
    Inset operator options.
 
+The keyboard shortcuts listed below can be used while insetting and are also shown in the status bar.
+
 Boundary :kbd:`B`
-   Determines whether open edges will be inset or not.
+   Also create border faces at boundary edges (that is, edges that are only part of one face instead of two).
+
 Offset Even
-   Scale the offset to give a more even thickness.
+   Maintain an even border width along the edges. When disabled, the border width will be
+   even at the corners instead.
+
+.. list-table::
+
+   * - .. figure:: /images/modeling_meshes_editing_face_inset-faces_offset-even-on.png
+
+          Offset Even enabled (default).
+
+     - .. figure:: /images/modeling_meshes_editing_face_inset-faces_offset-even-off.png
+
+          Offset Even disabled.
+
 Offset Relative
-   Scale the offset by lengths of surrounding geometry.
+   Scale the Thickness and Depth offset of each border vertex by the average length of its two
+   neighboring border edges.
+
 Edge Rail
-   Created vertices slide along the original edges of the inner geometry, instead of the normals.
+   Align the new edges between the border faces to the existing edges between the inset faces.
+
+.. list-table::
+
+   * - .. figure:: /images/modeling_meshes_editing_face_inset-faces_edge-rail-off.png
+
+          Edge Rail disabled.
+
+     - .. figure:: /images/modeling_meshes_editing_face_inset-faces_edge-rail-on.png
+
+          Edge Rail enabled.
+
 Thickness
-   Set the size of the offset.
+   The thickness of the newly created border faces.
 Depth :kbd:`Ctrl`
-   Raise or lower the newly inset faces to add depth.
+   The distance to raise or lower the inset faces.
 Outset :kbd:`O`
-   Create an outset rather than an inset.
-   Causes the geometry to be created surrounding selection (instead of within).
+   Make the newly created border grow outward instead of inward.
 Select Outer
-   Toggle which side of the inset is selected after the operation.
+   Switch the selection to the newly created border faces.
 Individual :kbd:`I`
-   By default the Inset tool operates on the region around selected faces,
-   but with this option each selected face can be inset on its own.
+   Inset each face individually (instead of insetting each patch of faces as a connected whole).
 Interpolate
-   Interpolate mesh data: e.g. UVs, Color Attribute's colors, weights, etc.
+   Interpolate mesh data for the newly created border vertices: UVs, Color Attributes,
+   vertex group weights, etc.

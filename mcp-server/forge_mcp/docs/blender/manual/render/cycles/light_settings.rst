@@ -43,8 +43,6 @@ Max Bounces
    Maximum number of times light from the light is allowed to :term:`Bounce <Light Bounces>`.
    Limited by :ref:`scene-wide bounce settings <bpy.types.CyclesRenderSettings.max_bounces>`.
 
-.. _bpy.types.CyclesLightSettings.cast_shadow:
-
 Cast Shadow
    By disabling this option, light from lights will not be blocked by objects in between.
    This can speed up rendering by not having to trace rays to the light source.
@@ -80,3 +78,73 @@ Portals :guilabel:`Area Lights`
    .. figure:: /images/render_cycles_light-settings_portals.jpg
 
       White Room model by Jay Hardy.
+
+
+.. _cycles-light-nodes:
+
+Nodes
+=====
+
+In Cycles, lights can be fully defined using shader nodes.
+This allows creating complex, physically based light behavior that goes beyond
+the basic light settings.
+
+.. note::
+
+   The basic :doc:`Light settings </render/lights/light_object>`
+   are applied on top of the light output node.
+
+Light shader nodes are edited in the :doc:`Shader Editor </render/shader_nodes/index>`
+when the editor is set to *Light* context and a light object is selected.
+
+
+Emission Shader
+---------------
+
+Light objects use an :doc:`Emission </render/shader_nodes/shader/emission>` shader
+to define their output.
+
+The *Emission* shader controls:
+
+- **Color**: The spectral color of the emitted light.
+- **Strength**: The intensity of the emitted light.
+
+The output of the *Emission* shader must be connected to the
+:doc:`Light Output </render/shader_nodes/output/light>` node.
+
+
+Using Shader Nodes
+------------------
+
+By default, lights use a simple node setup consisting of an *Emission* shader
+connected directly to the *Light Output*.
+
+More advanced setups can be created using additional shader and utility nodes, for example:
+
+- Mixing multiple *Emission* shaders to create layered light colors.
+- Using :doc:`Texture </render/shader_nodes/textures/index>` nodes to vary light color
+  or intensity across the light surface.
+- Driving light intensity or color using math nodes or animation.
+
+This makes it possible to create effects such as patterned lights, animated flicker,
+or lights that change color based on time or other inputs.
+
+
+Light Output
+------------
+
+The :doc:`Light Output </render/shader_nodes/output/light>` node defines the final
+shader used by the light object.
+Only shader nodes connected to this output affect the light's appearance in Cycles.
+
+
+Limitations
+-----------
+
+- Shader-based light definitions are only supported in **Cycles**.
+  EEVEE uses simplified light models and ignores light shader node trees.
+- Only *Emission*-based shading contributes to lighting.
+  Other shader types (such as *BSDF* shaders) have no effect when used on lights.
+
+Using shader nodes for lights provides fine-grained control and enables procedural
+lighting workflows that are not possible with standard light settings alone.

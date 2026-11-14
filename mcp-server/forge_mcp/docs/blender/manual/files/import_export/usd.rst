@@ -7,7 +7,7 @@ Universal Scene Description
 Importing USD Files
 ===================
 
-`USD <https://graphics.pixar.com/usd/release/index.html>`__ files typically represent the scene as
+`USD <https://openusd.org/release/index.html>`__ files typically represent the scene as
 a hierarchy of primitives, or `prims <https://graphics.pixar.com/usd/release/glossary.html#USDGlossary-Prim>`__.
 Individual prims contain data to describe scene entities, such as geometry, lights, cameras and transform hierarchies.
 Blender's USD importer converts USD prims to a hierarchy of Blender objects. Like the USD exporter,
@@ -56,7 +56,7 @@ USD provides a ``UsdGeomPointInstancer`` prim type,
 containing instances that are scattered on a primitive's points.
 
 These are imported into Blender as Point Clouds using a
-:doc:`/modeling/modifiers/generate/geometry_nodes`
+:doc:`/modeling/modifiers/geometry_nodes`
 and the :doc:`/modeling/geometry_nodes/instances/instance_on_points`.
 
 
@@ -339,7 +339,7 @@ This means that the following meshes can be exported:
 
 .. figure:: /images/files_import-export_usd_example.png
 
-   Shot from `Spring <https://studio.blender.org/films/spring/>`__ exported to USD and opened in USDView.
+   Shot from `Spring <https://studio.blender.org/projects/spring/>`__ exported to USD and opened in USDView.
 
 
 .. _bpy.ops.wm.usd_export:
@@ -361,12 +361,14 @@ Include
       When checked, only selected objects are exported.
       Instanced objects, for example collections that are instanced in the scene,
       are considered 'selected' when their instancer is selected.
-   Visible Only
-      Only exports objects that are not :doc:`hidden </scene_layout/object/editing/show_hide>`.
-      Invisible parents of exported objects are exported as empty transforms.
    Animation
       When checked, the entire scene frame range is exported.
       When unchecked, only the current scene frame is exported.
+
+Incremental Save :guilabel:`Animation`
+   Incrementally save after the specified number of frames to reduce peak memory usage.
+   Incremental saves can result in longer export times and potential issues with some
+   file synchronization services. Zero disables incremental save.
 
 Blender Data
    Custom Properties
@@ -394,7 +396,7 @@ File References
 Convert Orientation
    Convert orientation axis to a different convention to match other applications.
    Blender uses Y Forward, Z Up (since the front view looks along the +Y direction).
-   For example, its common for applications to use Y as the up axis, in that case -Z Forward, Y Up is needed.
+   For example, it's common for applications to use Y as the up axis, in that case -Z Forward, Y Up is needed.
 
    Forward / Up Axis
       By mapping these to different axes you can convert rotations between applications default up and forward axes.
@@ -444,7 +446,7 @@ Hair
 
 .. note::
 
-   The corresponding USD schema type used during Export is analagous to the type read during
+   The corresponding USD schema type used during Export is analogous to the type read during
    Import. See the Import section for details.
 
 
@@ -577,6 +579,18 @@ USDZ Texture Downsampling
          The size in pixels of the *Custom* downsampling.
 
 
+Accessibility
+-------------
+
+Label
+   The accessibility label to use for the exported stage's default prim.
+
+Description
+   The accessibility description to use for the exported stage's default prim.
+
+See :ref:`USD UI Accessibility <usd-accessibility>` for further details.
+
+
 Experimental
 ------------
 
@@ -627,7 +641,8 @@ Geometry Node Modifiers
    that only the components you want are exported.
 
 Instancing/Referencing
-   Exporting instanced objects and collections is supported through an experimental option available during USD export.
+   Exporting instanced objects and collections is supported through an experimental option available during USD
+   export.
 
    Point instances, created with Geometry Nodes, are partially supported and will be exported using the
    ``UsdGeomPointInstancer`` prim type. Simple instancing scenarios using either the
@@ -643,7 +658,7 @@ Instancing/Referencing
 USDZ
    Due to a current limitation in the USD library, UDIM textures cannot be include in the USDZ archive.
    This limitation will likely be addressed in a future version of USD.
-   (See `USD pull request #2133 <https://github.com/PixarAnimationStudios/USD/pull/2133>`__.)
+   (See `USD pull request #2133 <https://github.com/PixarAnimationStudios/OpenUSD/pull/2133>`__.)
 
 
 USD Primvar data types
@@ -713,3 +728,33 @@ Only the types natively supported by Blender's
 .. note::
    The USD ``float4`` data type has no direct Blender equivalent and will not be treated as a Blender ``Color`` or
    ``Quaternion``.
+
+
+.. _usd-accessibility:
+
+USD UI Accessibility
+====================
+
+Blender supports authoring and loading the `UsdUIAccessibilityAPI schema <https://openusd.org/release/api/class_usd_u_i_accessibility_a_p_i.html#details>`__
+on all supported data-block types that allow :doc:`/files/custom_properties`.
+This API describes accessibility information for a USD primitive that may be surfaced to a given runtime's
+accessibility frameworks (if present).
+
+In addition to the accessibility export option described above that covers the root prim, per-object accessibility
+information can be set by following these steps:
+
+- Add the following new String Properties to the object data-block:
+
+  - Required: ``accessibility:<namespace>:label`` and ``accessibility:<namespace>:description``
+  - Optional: ``accessibility:<namespace>:priority``
+
+The ``<namespace>`` may be any valid USD primvar identifier including ``default``, which is the recommended namespace
+to use as a convention. The value of ``priority`` may be one of ``low, standard, high``.
+
+It is highly encouraged to set the root prim's accessibility fields for any long-lived USD document that might
+be served to a broad set of software and people. For example, when uploading to an asset marketplace etc.
+
+.. admonition:: Implementation Caveats
+   :class: important
+
+   Blender does not support time-varying accessibility schemas since custom String properties are non-animatable.

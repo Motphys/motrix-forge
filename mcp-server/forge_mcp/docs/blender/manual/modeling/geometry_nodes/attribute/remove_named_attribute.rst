@@ -26,14 +26,14 @@ Inputs
 Geometry
    Standard geometry input.
 
+Pattern Mode
+   How the attributes to remove are chosen.
+
+   :Exact: Remove the one attribute with the given name.
+   :Wildcard: Remove all attributes that match the pattern which is allowed to contain a single wildcard (*).
+
 Name
    The name of the attribute to remove.
-
-
-Properties
-==========
-
-This node has no properties.
 
 
 Outputs

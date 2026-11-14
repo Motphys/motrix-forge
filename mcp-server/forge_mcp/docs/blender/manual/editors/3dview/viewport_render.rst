@@ -70,17 +70,17 @@ As with a normal render, you can abort it with :kbd:`Esc`.
 .. _bpy.ops.render.opengl:
 
 Render a Still Image
-   To render a still image, use :menuselection:`3D Viewport --> View --> Viewport Render Image`.
+   To render a still image, use :menuselection:`3D Viewport --> View --> Render Viewport Preview`.
 Render an Animation
-   To render an animation, use :menuselection:`3D Viewport --> View --> Viewport Render Animation`.
+   To render an animation, use :menuselection:`3D Viewport --> View --> Render Playblast`.
 Render Keyframes
-   To render an animation, but only those frames that have a keyframe,
-   use :menuselection:`3D Viewport --> View --> Viewport Render Keyframes`.
-   This only renders those frames for which the selected objects have an animation key.
-   The other frames are still written to the output, but will simply repeat the last-rendered frame.
+   To render an animation, but only those frames that have a keyframe, use 
+   :menuselection:`3D Viewport --> View --> Render Playblast on Keyframes`. This only renders those frames for which
+   the selected objects have an animation key. The other frames are still written to the output, but will simply
+   repeat the last-rendered frame.
 
-   For example, when a six-frame animation is rendered, and the selected objects
-   have a key on frames 3 and 5, the following frames will be output:
+   For example, when a six-frame animation is rendered, and the selected objects have a key on frames 3 and 5, the
+   following frames will be output:
 
    #. The 1st frame is always rendered.
    #. The 1st frame is repeated because there is no key on this frame.

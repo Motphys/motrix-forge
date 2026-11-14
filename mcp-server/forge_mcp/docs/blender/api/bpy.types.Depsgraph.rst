@@ -12,7 +12,7 @@ an original ID.
 This is needed every time one needs to access state with animation, constraints, and modifiers
 taken into account.
 
-.. literalinclude:: ..\examples\bpy.types.Depsgraph.1.py
+.. literalinclude:: ../examples/bpy.types.Depsgraph.1.py
    :lines: 10-
 
 
@@ -22,7 +22,7 @@ Dependency graph: Original object example
 This example demonstrates access to the original ID.
 Such access is needed to check whether object is selected, or to compare pointers.
 
-.. literalinclude:: ..\examples\bpy.types.Depsgraph.2.py
+.. literalinclude:: ../examples/bpy.types.Depsgraph.2.py
    :lines: 8-
 
 
@@ -33,7 +33,7 @@ Sometimes it is needed to know all the instances with their matrices (for exampl
 exporter or a custom render engine).
 This example shows how to access all objects and instances in the scene.
 
-.. literalinclude:: ..\examples\bpy.types.Depsgraph.3.py
+.. literalinclude:: ../examples/bpy.types.Depsgraph.3.py
    :lines: 9-
 
 
@@ -62,7 +62,7 @@ When is used on evaluated object all modifiers are taken into account.
    instead.
 .. note:: If object does not have geometry (i.e. camera) the functions returns None.
 
-.. literalinclude:: ..\examples\bpy.types.Depsgraph.4.py
+.. literalinclude:: ../examples/bpy.types.Depsgraph.4.py
    :lines: 27-
 
 
@@ -87,7 +87,7 @@ consistency of the main database.
 
 .. note:: If object does not have geometry (i.e. camera) the functions returns None.
 
-.. literalinclude:: ..\examples\bpy.types.Depsgraph.5.py
+.. literalinclude:: ../examples/bpy.types.Depsgraph.5.py
    :lines: 23-
 
 
@@ -97,7 +97,7 @@ Dependency graph: Simple exporter
 This example is a combination of all previous ones, and shows how to write a simple exporter
 script.
 
-.. literalinclude:: ..\examples\bpy.types.Depsgraph.6.py
+.. literalinclude:: ../examples/bpy.types.Depsgraph.6.py
    :lines: 8-
 
 
@@ -122,90 +122,91 @@ a text object, an error will be reported.
    The resulting curve must be treated as temporary, and cannot be referenced from objects in the main
    database.
 
-.. literalinclude:: ..\examples\bpy.types.Depsgraph.7.py
+.. literalinclude:: ../examples/bpy.types.Depsgraph.7.py
    :lines: 23-
 
 base class --- :class:`bpy_struct`
+
 
 .. class:: Depsgraph(bpy_struct)
 
 
    .. data:: ids
 
-      All evaluated data-blocks
+      All evaluated data-blocks (default None, readonly)
 
-      :type: :class:`bpy_prop_collection` of :class:`ID`, (readonly)
+      :type: :class:`bpy_prop_collection`\ [:class:`ID`]
 
    .. data:: mode
 
-      Evaluation mode
+      Evaluation mode (default ``'VIEWPORT'``, readonly)
 
-      * ``VIEWPORT``
+      - ``VIEWPORT``
         Viewport -- Viewport non-rendered mode.
-      * ``RENDER``
+      - ``RENDER``
         Render -- Render.
 
-      :type: enum in [``'VIEWPORT'``, ``'RENDER'``], default ``'VIEWPORT'``, (readonly)
+      :type: Literal['VIEWPORT', 'RENDER']
 
    .. data:: object_instances
 
-      All object instances to display or render (Warning: Only use this as an iterator, never as a sequence, and do not keep any references to its items)
+      All object instances to display or render (Warning: Only use this as an iterator, never as a sequence, and do not keep any references to its items) (default None, readonly)
 
-      :type: :class:`bpy_prop_collection` of :class:`DepsgraphObjectInstance`, (readonly)
+      :type: :class:`bpy_prop_collection`\ [:class:`DepsgraphObjectInstance`]
 
    .. data:: objects
 
-      Evaluated objects in the dependency graph
+      Evaluated objects in the dependency graph (default None, readonly)
 
-      :type: :class:`bpy_prop_collection` of :class:`Object`, (readonly)
+      :type: :class:`bpy_prop_collection`\ [:class:`Object`]
 
    .. data:: scene
 
-      Original scene dependency graph is built for
+      Original scene dependency graph is built for (readonly)
 
-      :type: :class:`Scene`, (readonly)
+      :type: :class:`Scene` | None
 
    .. data:: scene_eval
 
-      Scene at its evaluated state
+      Scene at its evaluated state (readonly)
 
-      :type: :class:`Scene`, (readonly)
+      :type: :class:`Scene` | None
 
    .. data:: updates
 
-      Updates to data-blocks
+      Updates to data-blocks (default None, readonly)
 
-      :type: :class:`bpy_prop_collection` of :class:`DepsgraphUpdate`, (readonly)
+      :type: :class:`bpy_prop_collection`\ [:class:`DepsgraphUpdate`]
 
    .. data:: view_layer
 
-      Original view layer dependency graph is built for
+      Original view layer dependency graph is built for (readonly)
 
-      :type: :class:`ViewLayer`, (readonly)
+      :type: :class:`ViewLayer` | None
 
    .. data:: view_layer_eval
 
-      View layer at its evaluated state
+      View layer at its evaluated state (readonly)
 
-      :type: :class:`ViewLayer`, (readonly)
+      :type: :class:`ViewLayer` | None
 
    .. method:: debug_relations_graphviz(*, filepath="")
 
       debug_relations_graphviz
 
-      :arg filepath: File Name, Optional output path for the graphviz debug file
-      :type filepath: string, (optional, never None)
+      :param filepath: File Name, Optional output path for the graphviz debug file (optional, never None)
+      :type filepath: str
       :return: Dot Graph, Graph in dot format
-      :rtype: string
+      :rtype: str
 
    .. method:: debug_stats_gnuplot(filepath, output_filepath)
 
       debug_stats_gnuplot
 
-      :arg filepath: File Name, Output path for the gnuplot debug file
-      :type filepath: string, (never None)
-      :arg output_filepath: Output File Name, File name where gnuplot script will save the result
-      :type output_filepath: string, (never None)
+      :param filepath: File Name, Output path for the gnuplot debug file (never None)
+      :type filepath: str
+      :param output_filepath: Output File Name, File name where gnuplot script will save the result (never None)
+      :type output_filepath: str
 
    .. method:: debug_tag_update()
 
@@ -216,8 +217,8 @@ base class --- :class:`bpy_struct`
 
       Report the number of elements in the Dependency Graph
 
-      :return: result
-      :rtype: string, (never None)
+      :return: result, (never None)
+      :rtype: str
 
    .. method:: update()
 
@@ -228,8 +229,8 @@ base class --- :class:`bpy_struct`
 
       id_eval_get
 
-      :arg id: Original ID to get evaluated complementary part for
-      :type id: :class:`ID`
+      :param id: Original ID to get evaluated complementary part for
+      :type id: :class:`ID` | None
       :return: Evaluated ID for the given original one
       :rtype: :class:`ID`
 
@@ -237,23 +238,27 @@ base class --- :class:`bpy_struct`
 
       id_type_updated
 
-      :arg id_type: ID Type
-      :type id_type: enum in :ref:`rna_enum_id_type_items`
-      :return: Updated, True if any datablock with this type was added, updated or removed
-      :rtype: boolean
+      :param id_type: ID Type
+      :type id_type: Literal[:ref:`rna_enum_id_type_items`]
+      :return: Updated, True if any data-block with this type was added, updated or removed
+      :rtype: bool
 
    .. classmethod:: bl_rna_get_subclass(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: :class:`bpy.types.Struct` | None
       :return: The RNA type or default when not found.
-      :rtype: :class:`bpy.types.Struct` subclass
+      :rtype: :class:`bpy.types.Struct`
 
 
    .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: type | None
       :return: The class or default when not found.
       :rtype: type
 
@@ -264,7 +269,7 @@ Inherited Properties
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.id_data`
+   - :class:`bpy_struct.id_data`
 
 Inherited Functions
 -------------------
@@ -272,29 +277,30 @@ Inherited Functions
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.as_pointer`
-   * :class:`bpy_struct.driver_add`
-   * :class:`bpy_struct.driver_remove`
-   * :class:`bpy_struct.get`
-   * :class:`bpy_struct.id_properties_clear`
-   * :class:`bpy_struct.id_properties_ensure`
-   * :class:`bpy_struct.id_properties_ui`
-   * :class:`bpy_struct.is_property_hidden`
-   * :class:`bpy_struct.is_property_overridable_library`
-   * :class:`bpy_struct.is_property_readonly`
-   * :class:`bpy_struct.is_property_set`
-   * :class:`bpy_struct.items`
-   * :class:`bpy_struct.keyframe_delete`
-   * :class:`bpy_struct.keyframe_insert`
-   * :class:`bpy_struct.keys`
-   * :class:`bpy_struct.path_from_id`
-   * :class:`bpy_struct.path_resolve`
-   * :class:`bpy_struct.pop`
-   * :class:`bpy_struct.property_overridable_library_set`
-   * :class:`bpy_struct.property_unset`
-   * :class:`bpy_struct.rna_ancestors`
-   * :class:`bpy_struct.type_recast`
-   * :class:`bpy_struct.values`
+   - :class:`bpy_struct.as_pointer`
+   - :class:`bpy_struct.driver_add`
+   - :class:`bpy_struct.driver_remove`
+   - :class:`bpy_struct.get`
+   - :class:`bpy_struct.id_properties_clear`
+   - :class:`bpy_struct.id_properties_ensure`
+   - :class:`bpy_struct.id_properties_ui`
+   - :class:`bpy_struct.is_property_hidden`
+   - :class:`bpy_struct.is_property_overridable_library`
+   - :class:`bpy_struct.is_property_readonly`
+   - :class:`bpy_struct.is_property_set`
+   - :class:`bpy_struct.items`
+   - :class:`bpy_struct.keyframe_delete`
+   - :class:`bpy_struct.keyframe_insert`
+   - :class:`bpy_struct.keys`
+   - :class:`bpy_struct.path_from_id`
+   - :class:`bpy_struct.path_from_module`
+   - :class:`bpy_struct.path_resolve`
+   - :class:`bpy_struct.pop`
+   - :class:`bpy_struct.property_overridable_library_set`
+   - :class:`bpy_struct.property_unset`
+   - :class:`bpy_struct.rna_ancestors`
+   - :class:`bpy_struct.type_recast`
+   - :class:`bpy_struct.values`
 
 References
 ----------
@@ -302,25 +308,22 @@ References
 .. hlist::
    :columns: 2
 
-   * :class:`BlendDataMeshes.new_from_object`
-   * :class:`Context.evaluated_depsgraph_get`
-   * :class:`ID.evaluated_get`
-   * :class:`Object.calc_matrix_camera`
-   * :class:`Object.camera_fit_coords`
-   * :class:`Object.closest_point_on_mesh`
-   * :class:`Object.crazyspace_eval`
-   * :class:`Object.ray_cast`
-   * :class:`Object.to_curve`
-   * :class:`Object.to_mesh`
-   * :class:`RenderEngine.bake`
-   * :class:`RenderEngine.draw`
-   * :class:`RenderEngine.render`
-   * :class:`RenderEngine.update`
-   * :class:`RenderEngine.view_draw`
-   * :class:`RenderEngine.view_update`
-   * :class:`Scene.ray_cast`
-   * :class:`ShaderNodeTexPointDensity.cache_point_density`
-   * :class:`ShaderNodeTexPointDensity.calc_point_density`
-   * :class:`ShaderNodeTexPointDensity.calc_point_density_minmax`
-   * :class:`ViewLayer.depsgraph`
+   - :class:`BlendDataMeshes.new_from_object`
+   - :class:`Context.evaluated_depsgraph_get`
+   - :class:`ID.evaluated_get`
+   - :class:`Object.calc_matrix_camera`
+   - :class:`Object.camera_fit_coords`
+   - :class:`Object.closest_point_on_mesh`
+   - :class:`Object.crazyspace_eval`
+   - :class:`Object.ray_cast`
+   - :class:`Object.to_curve`
+   - :class:`Object.to_mesh`
+   - :class:`RenderEngine.bake`
+   - :class:`RenderEngine.draw`
+   - :class:`RenderEngine.render`
+   - :class:`RenderEngine.update`
+   - :class:`RenderEngine.view_draw`
+   - :class:`RenderEngine.view_update`
+   - :class:`Scene.ray_cast`
+   - :class:`ViewLayer.depsgraph`
 

@@ -12,256 +12,487 @@ Basic Sound Playback
 This script shows how to use the classes: :class:`Device`, :class:`Sound` and
 :class:`Handle`.
 
-.. literalinclude:: ..\examples\aud.py
+.. literalinclude:: ../examples/aud.0.py
    :lines: 8-
 
 .. data:: AP_LOCATION
 
    Constant value 3
 
+   :type: int
+
 .. data:: AP_ORIENTATION
 
    Constant value 4
+
+   :type: int
 
 .. data:: AP_PANNING
 
    Constant value 1
 
+   :type: int
+
 .. data:: AP_PITCH
 
    Constant value 2
+
+   :type: int
+
+.. data:: AP_PITCH_SCALE
+
+   Constant value 6
+
+   :type: int
+
+.. data:: AP_TIME_STRETCH
+
+   Constant value 5
+
+   :type: int
 
 .. data:: AP_VOLUME
 
    Constant value 0
 
+   :type: int
+
 .. data:: CHANNELS_INVALID
 
    Constant value 0
+
+   :type: int
 
 .. data:: CHANNELS_MONO
 
    Constant value 1
 
+   :type: int
+
 .. data:: CHANNELS_STEREO
 
    Constant value 2
+
+   :type: int
 
 .. data:: CHANNELS_STEREO_LFE
 
    Constant value 3
 
+   :type: int
+
 .. data:: CHANNELS_SURROUND4
 
    Constant value 4
+
+   :type: int
 
 .. data:: CHANNELS_SURROUND5
 
    Constant value 5
 
+   :type: int
+
 .. data:: CHANNELS_SURROUND51
 
    Constant value 6
+
+   :type: int
 
 .. data:: CHANNELS_SURROUND61
 
    Constant value 7
 
+   :type: int
+
 .. data:: CHANNELS_SURROUND71
 
    Constant value 8
+
+   :type: int
 
 .. data:: CODEC_AAC
 
    Constant value 1
 
+   :type: int
+
 .. data:: CODEC_AC3
 
    Constant value 2
+
+   :type: int
 
 .. data:: CODEC_FLAC
 
    Constant value 3
 
+   :type: int
+
 .. data:: CODEC_INVALID
 
    Constant value 0
+
+   :type: int
 
 .. data:: CODEC_MP2
 
    Constant value 4
 
+   :type: int
+
 .. data:: CODEC_MP3
 
    Constant value 5
+
+   :type: int
 
 .. data:: CODEC_OPUS
 
    Constant value 8
 
+   :type: int
+
 .. data:: CODEC_PCM
 
    Constant value 6
+
+   :type: int
 
 .. data:: CODEC_VORBIS
 
    Constant value 7
 
+   :type: int
+
 .. data:: CONTAINER_AAC
 
    Constant value 8
+
+   :type: int
 
 .. data:: CONTAINER_AC3
 
    Constant value 1
 
+   :type: int
+
 .. data:: CONTAINER_FLAC
 
    Constant value 2
+
+   :type: int
 
 .. data:: CONTAINER_INVALID
 
    Constant value 0
 
+   :type: int
+
 .. data:: CONTAINER_MATROSKA
 
    Constant value 3
+
+   :type: int
 
 .. data:: CONTAINER_MP2
 
    Constant value 4
 
+   :type: int
+
 .. data:: CONTAINER_MP3
 
    Constant value 5
+
+   :type: int
 
 .. data:: CONTAINER_OGG
 
    Constant value 6
 
+   :type: int
+
 .. data:: CONTAINER_WAV
 
    Constant value 7
+
+   :type: int
 
 .. data:: DISTANCE_MODEL_EXPONENT
 
    Constant value 5
 
+   :type: int
+
 .. data:: DISTANCE_MODEL_EXPONENT_CLAMPED
 
    Constant value 6
+
+   :type: int
 
 .. data:: DISTANCE_MODEL_INVALID
 
    Constant value 0
 
+   :type: int
+
 .. data:: DISTANCE_MODEL_INVERSE
 
    Constant value 1
+
+   :type: int
 
 .. data:: DISTANCE_MODEL_INVERSE_CLAMPED
 
    Constant value 2
 
+   :type: int
+
 .. data:: DISTANCE_MODEL_LINEAR
 
    Constant value 3
+
+   :type: int
 
 .. data:: DISTANCE_MODEL_LINEAR_CLAMPED
 
    Constant value 4
 
+   :type: int
+
 .. data:: FORMAT_FLOAT32
 
    Constant value 36
+
+   :type: int
 
 .. data:: FORMAT_FLOAT64
 
    Constant value 40
 
+   :type: int
+
 .. data:: FORMAT_INVALID
 
    Constant value 0
+
+   :type: int
 
 .. data:: FORMAT_S16
 
    Constant value 18
 
+   :type: int
+
 .. data:: FORMAT_S24
 
    Constant value 19
+
+   :type: int
 
 .. data:: FORMAT_S32
 
    Constant value 20
 
+   :type: int
+
 .. data:: FORMAT_U8
 
    Constant value 1
+
+   :type: int
 
 .. data:: RATE_11025
 
    Constant value 11025
 
+   :type: int
+
 .. data:: RATE_16000
 
    Constant value 16000
+
+   :type: int
 
 .. data:: RATE_192000
 
    Constant value 192000
 
+   :type: int
+
 .. data:: RATE_22050
 
    Constant value 22050
+
+   :type: int
 
 .. data:: RATE_32000
 
    Constant value 32000
 
+   :type: int
+
 .. data:: RATE_44100
 
    Constant value 44100
+
+   :type: int
 
 .. data:: RATE_48000
 
    Constant value 48000
 
+   :type: int
+
 .. data:: RATE_8000
 
    Constant value 8000
+
+   :type: int
 
 .. data:: RATE_88200
 
    Constant value 88200
 
+   :type: int
+
 .. data:: RATE_96000
 
    Constant value 96000
+
+   :type: int
 
 .. data:: RATE_INVALID
 
    Constant value 0
 
+   :type: int
+
 .. data:: STATUS_INVALID
 
    Constant value 0
+
+   :type: int
 
 .. data:: STATUS_PAUSED
 
    Constant value 2
 
+   :type: int
+
 .. data:: STATUS_PLAYING
 
    Constant value 1
+
+   :type: int
 
 .. data:: STATUS_STOPPED
 
    Constant value 3
 
-.. class:: aud.Device
+   :type: int
+
+.. data:: STRETCHER_QUALITY_CONSISTENT
+
+   Constant value 2
+
+   :type: int
+
+.. data:: STRETCHER_QUALITY_FAST
+
+   Constant value 1
+
+   :type: int
+
+.. data:: STRETCHER_QUALITY_HIGH
+
+   Constant value 0
+
+   :type: int
+
+.. class:: AnimateableProperty(count, value=0.0, /)
+
+   An AnimateableProperty object stores an array of float values for animating sound properties (e.g. pan, volume, pitch-scale).
+
+   :arg count: The number of float values to store per frame.
+   :type count: int
+   :arg value: The initial value for all elements.
+   :type value: float
+
+   .. method:: read(position)
+   
+      Reads the properties value at the given position.
+   
+      :param position: The position in the animation in frames.
+      :type position: float
+      :return: A numpy array of values representing the properties value.
+      :rtype: :class:`numpy.ndarray`
+
+
+   .. method:: readSingle(position)
+   
+      Reads the properties value at the given position, assuming there is exactly one value.
+   
+      :param position: The position in the animation in frames.
+      :type position: float
+      :return: The value at that position.
+      :rtype: float
+
+
+   .. method:: write(data[, position])
+   
+      Writes the properties value.
+   
+      If `position` is also given, the property is marked animated and
+      the values are written starting at `position`.
+   
+      :param data: numpy array of float32 values.
+      :type data: numpy.ndarray
+      :param position: The starting position in frames.
+      :type position: int
+
+
+   .. method:: writeConstantRange(data, position_start, position_end)
+   
+      Fills the properties frame range with a constant value and marks it animated.
+   
+      :param data: numpy array of float values representing the constant value.
+      :type data: numpy.ndarray
+      :param position_start: The start position in frames.
+      :type position_start: int
+      :param position_end: The end position in frames.
+      :type position_end: int
+
+
+   .. attribute:: animated
+
+      Whether the property is animated.
+
+
+   .. attribute:: count
+
+      The count of floats for a property.
+
+
+
+
+.. class:: Device(type='', rate=48000.0, channels=2, format=36, buffer_size=1024, name='')
 
    Device objects represent an audio output backend like OpenAL or SDL, but might also represent a file output or RAM buffer output.
+
+   :arg type: The device type. An empty string means the default device.
+   :type type: string
+   :arg rate: The sample rate in Hz.
+   :type rate: double
+   :arg channels: The number of channels.
+   :type channels: int
+   :arg format: The sample format.
+   :type format: int
+   :arg buffer_size: The size of the audio buffer in samples.
+   :type buffer_size: int
+   :arg name: The name of the device.
+   :type name: string
 
    .. method:: lock()
    
@@ -361,10 +592,13 @@ This script shows how to use the classes: :class:`Device`, :class:`Sound` and
 
 
 
-.. class:: aud.DynamicMusic
+.. class:: DynamicMusic(device, /)
 
    The DynamicMusic object allows to play music depending on a current scene, scene changes are managed by the class, with the possibility of custom transitions.
-   The default transition is a crossfade effect, and the default scene is silent and has id 0
+   The default transition is a crossfade effect, and the default scene is silent and has id 0.
+
+   :arg device: The device that will be used to play sounds.
+   :type device: :class:`Device`
 
    .. method:: addScene(scene)
    
@@ -386,7 +620,7 @@ This script shows how to use the classes: :class:`Device`, :class:`Sound` and
       :type end: int
       :arg transition: The transition sound.
       :type transition: :class:`Sound`
-      :return: false if the ini or end scenes don't exist, true othrwise.
+      :return: false if the ini or end scenes don't exist, true otherwise.
       :rtype: bool
 
 
@@ -441,9 +675,9 @@ This script shows how to use the classes: :class:`Device`, :class:`Sound` and
 
 
 
-.. class:: aud.HRTF
+.. class:: HRTF()
 
-   An HRTF object represents a set of head related transfer functions as impulse responses. It's used for binaural sound
+   An HRTF object represents a set of head related transfer functions as impulse responses. It's used for binaural sound.
 
    .. method:: loadLeftHrtfSet(extension, directory)
    
@@ -485,7 +719,7 @@ This script shows how to use the classes: :class:`Device`, :class:`Sound` and
 
 
 
-.. class:: aud.Handle
+.. class:: Handle
 
    Handle objects are playback handles that can be used to control playback of a sound. If a sound is played back multiple times then there are as many handles.
 
@@ -627,15 +861,21 @@ This script shows how to use the classes: :class:`Device`, :class:`Sound` and
 
 
 
-.. class:: aud.ImpulseResponse
+.. class:: ImpulseResponse(sound, /)
 
    An ImpulseResponse object represents a filter with which to convolve a sound.
 
+   :arg sound: The sound to use as the impulse response.
+   :type sound: :class:`Sound`
 
 
-.. class:: aud.PlaybackManager
 
-   A PlabackManager object allows to easily control groups os sounds organized in categories.
+.. class:: PlaybackManager(device, /)
+
+   A PlaybackManager object allows to easily control groups of sounds organized in categories.
+
+   :arg device: The device that will be used to play sounds.
+   :type device: :class:`Device`
 
    .. method:: addCategory(volume)
    
@@ -658,7 +898,7 @@ This script shows how to use the classes: :class:`Device`, :class:`Sound` and
    
       :arg catKey: the key of the category.
       :type catKey: int
-      :return: The volume of the cateogry.
+      :return: The volume of the category.
       :rtype: float
 
 
@@ -719,9 +959,18 @@ This script shows how to use the classes: :class:`Device`, :class:`Sound` and
 
 
 
-.. class:: aud.Sequence
+.. class:: Sequence(channels=2, rate=48000.0, fps=30.0, muted=False)
 
    This sound represents sequenced entries to play a sound sequence.
+
+   :arg channels: The number of channels.
+   :type channels: int
+   :arg rate: The sample rate in Hz.
+   :type rate: double
+   :arg fps: The frames per second of the sequence.
+   :type fps: float
+   :arg muted: Whether the sequence is muted.
+   :type muted: bool
 
    .. method:: add()
    
@@ -802,7 +1051,7 @@ This script shows how to use the classes: :class:`Device`, :class:`Sound` and
 
 
 
-.. class:: aud.SequenceEntry
+.. class:: SequenceEntry
 
    SequenceEntry objects represent an entry of a sequenced sound.
 
@@ -906,9 +1155,15 @@ This script shows how to use the classes: :class:`Device`, :class:`Sound` and
 
 
 
-.. class:: aud.Sound
+.. class:: Sound(filename, stream=0)
 
    Sound objects are immutable and represent a sound that can be played simultaneously multiple times. They are called factories because they create reader objects internally that are used for playback.
+
+   :arg filename: Path of the file.
+   :type filename: string
+   :arg stream: The index of the audio stream within the file if it
+      contains multiple audio streams, 0 by default.
+   :type stream: int
 
    .. classmethod:: buffer(data, rate)
    
@@ -955,7 +1210,7 @@ This script shows how to use the classes: :class:`Device`, :class:`Sound` and
       :arg frequency: The frequency of the sawtooth wave in Hz.
       :type frequency: float
       :arg rate: The sampling rate in Hz. It's recommended to set this
-         value to the playback device's samling rate to avoid resamping.
+         value to the playback device's sampling rate to avoid resampling.
       :type rate: int
       :return: The created :class:`Sound` object.
       :rtype: :class:`Sound`
@@ -966,7 +1221,7 @@ This script shows how to use the classes: :class:`Device`, :class:`Sound` and
       Creates a silence sound which plays simple silence.
    
       :arg rate: The sampling rate in Hz. It's recommended to set this
-         value to the playback device's samling rate to avoid resamping.
+         value to the playback device's sampling rate to avoid resampling.
       :type rate: int
       :return: The created :class:`Sound` object.
       :rtype: :class:`Sound`
@@ -979,7 +1234,7 @@ This script shows how to use the classes: :class:`Device`, :class:`Sound` and
       :arg frequency: The frequency of the sine wave in Hz.
       :type frequency: float
       :arg rate: The sampling rate in Hz. It's recommended to set this
-         value to the playback device's samling rate to avoid resamping.
+         value to the playback device's sampling rate to avoid resampling.
       :type rate: int
       :return: The created :class:`Sound` object.
       :rtype: :class:`Sound`
@@ -992,7 +1247,7 @@ This script shows how to use the classes: :class:`Device`, :class:`Sound` and
       :arg frequency: The frequency of the square wave in Hz.
       :type frequency: float
       :arg rate: The sampling rate in Hz. It's recommended to set this
-         value to the playback device's samling rate to avoid resamping.
+         value to the playback device's sampling rate to avoid resampling.
       :type rate: int
       :return: The created :class:`Sound` object.
       :rtype: :class:`Sound`
@@ -1005,7 +1260,7 @@ This script shows how to use the classes: :class:`Device`, :class:`Sound` and
       :arg frequency: The frequency of the triangle wave in Hz.
       :type frequency: float
       :arg rate: The sampling rate in Hz. It's recommended to set this
-         value to the playback device's samling rate to avoid resamping.
+         value to the playback device's sampling rate to avoid resampling.
       :type rate: int
       :return: The created :class:`Sound` object.
       :rtype: :class:`Sound`
@@ -1051,6 +1306,24 @@ This script shows how to use the classes: :class:`Device`, :class:`Sound` and
       :type sound: :class:`Sound`
    
       .. note:: You can only add a sound to a sound list.
+
+
+   .. method:: animateableTimeStretchPitchScale(fps[, time_stretch, pitch_scale, quality, preserve_formant])
+   
+      Applies time-stretching and pitch-scaling to the sound.
+   
+      :arg fps: The FPS of the animation system.
+      :type fps: float
+      :arg time_stretch: The factor by which to stretch or compress time.
+      :type time_stretch: float or :class:`AnimateablePropertyP`
+      :arg pitch_scale: The factor by which to adjust the pitch.
+      :type pitch_scale: float or :class:`AnimateablePropertyP`
+       :arg quality: Rubberband stretcher quality (STRETCHER_QUALITY_*).
+      :type quality: int
+      :arg preserve_formant: Whether to preserve the vocal formants during pitch-shifting.
+      :type preserve_formant: bool
+      :return: The created :class:`Sound` object.
+      :rtype: :class:`Sound`
 
 
    .. method:: binaural()
@@ -1114,6 +1387,22 @@ This script shows how to use the classes: :class:`Device`, :class:`Sound` and
    
       :arg time: How many seconds of silence should be added before the sound.
       :type time: float
+      :return: The created :class:`Sound` object.
+      :rtype: :class:`Sound`
+
+
+   .. method:: Echo(delay, feedback, mix)
+   
+      Adds Echo effect to the sound.
+   
+      :arg delay: The delay time in seconds.
+      :type delay: float
+      :arg feedback: The feedback amount (0.0 to 1.0).
+      :type feedback: float
+      :arg mix: The wet/dry mix (0.0 to 1.0).
+      :type mix: float
+      :arg reset_buffer: Whether to reset the delay buffer on seek.
+      :type reset_buffer: bool
       :return: The created :class:`Sound` object.
       :rtype: :class:`Sound`
 
@@ -1388,6 +1677,22 @@ This script shows how to use the classes: :class:`Device`, :class:`Sound` and
       :rtype: :class:`Sound`
 
 
+   .. method:: timeStretchPitchScale(time_stretch, pitch_scale, quality, preserve_formant)
+   
+      Applies time-stretching and pitch-scaling to the sound.
+   
+      :arg time_stretch: The factor by which to stretch or compress time.
+      :type time_stretch: float
+      :arg pitch_scale: The factor by which to adjust the pitch.
+      :type pitch_scale: float
+      :arg quality: Rubberband stretcher quality (STRETCHER_QUALITY_*).
+      :type quality: int
+      :arg preserve_formant: Whether to preserve the vocal formants during pitch-shifting.
+      :type preserve_formant: bool
+      :return: The created :class:`Sound` object.
+      :rtype: :class:`Sound`
+
+
    .. method:: volume(volume)
    
       Changes the volume of a sound.
@@ -1431,7 +1736,7 @@ This script shows how to use the classes: :class:`Device`, :class:`Sound` and
 
    .. attribute:: length
 
-      The length attribute returns the duration of the sound in seconds.
+      The sample specification of the sound as a tuple with rate and channel count.
 
 
    .. attribute:: specs
@@ -1441,9 +1746,16 @@ This script shows how to use the classes: :class:`Device`, :class:`Sound` and
 
 
 
-.. class:: aud.Source
+.. class:: Source(azimuth, elevation, distance, /)
 
    The source object represents the source position of a binaural sound.
+
+   :arg azimuth: The azimuth angle in degrees.
+   :type azimuth: float
+   :arg elevation: The elevation angle in degrees.
+   :type elevation: float
+   :arg distance: The distance of the source.
+   :type distance: float
 
    .. attribute:: azimuth
 
@@ -1462,13 +1774,16 @@ This script shows how to use the classes: :class:`Device`, :class:`Sound` and
 
 
 
-.. class:: aud.ThreadPool
+.. class:: ThreadPool(nThreads, /)
 
    A ThreadPool is used to parallelize convolution efficiently.
 
+   :arg nThreads: The number of threads in the pool.
+   :type nThreads: int
 
 
-.. class:: aud.error
+
+.. class:: error
 
 
 

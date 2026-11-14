@@ -15,24 +15,7 @@ The *Ellipse Mask* node creates an image suitable for use as a simple matte or v
 Inputs
 ======
 
-Mask
-   An optional mask to use as the base for mask operations.
-Value
-   Intensity of the generated mask.
-Position
-   Position of the center of the ellipse as a fraction of the total width or height.
-   (0.5, 0.5 creates a centered ellipse; 0.0, 0.0 creates an ellipse with its center in the lower left.)
-Size
-   Width/Height of the ellipse as a fraction of the total image *width*, not height.
-   Equal *Width* and *Height* values with produce a circle.
-Rotation
-   Rotation of the ellipse around its center point.
-
-
-Properties
-==========
-
-Mask Type
+Operation
    Operation to use against the input mask.
 
    :Add:
@@ -49,6 +32,18 @@ Mask Type
       Any area covered by both the input mask and the generated mask becomes black.
       Areas covered by the generated mask that are black on the input mask become the specified *Value*.
       Areas uncovered by the generated mask remain unchanged.
+Mask
+   An optional mask to use as the base for mask operations.
+Value
+   Intensity of the generated mask.
+Position
+   Position of the center of the ellipse as a fraction of the total width or height.
+   (0.5, 0.5 creates a centered ellipse; 0.0, 0.0 creates an ellipse with its center in the lower left.)
+Size
+   Width/Height of the ellipse as a fraction of the total image *width*, not height.
+   Equal *Width* and *Height* values with produce a circle.
+Rotation
+   Rotation of the ellipse around its center point.
 
 
 Outputs
@@ -77,4 +72,4 @@ The gizmo allows direct manipulation of the mask shape:
 - Drag corners to adjust width and height simultaneously.
 - Drag the center cross (X) to move the mask's position.
 - Drag the center dot to rotate the mask.
-- Hold :kbd:Shift while dragging edges or corners to preserve the current aspect ratio.
+- Hold :kbd:`Shift` while dragging edges or corners to preserve the current aspect ratio.

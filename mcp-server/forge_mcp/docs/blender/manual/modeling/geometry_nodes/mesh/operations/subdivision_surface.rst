@@ -32,10 +32,6 @@ Limit Surface
    Places vertices at the surface that would be produced with infinite
    levels of subdivision (smoothest possible shape).
 
-
-Properties
-==========
-
 UV Smooth
    Controls how subdivision smoothing is applied to UVs.
 

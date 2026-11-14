@@ -5,58 +5,61 @@
 Follow Path Constraint
 **********************
 
-The *Follow Path* constraint moves an object along a curve and, if enabled,
-adjusts its rotation to align with the curve's direction. This constraint is commonly used for:
+The *Follow Path* constraint positions an object or bone on a :doc:`Curve </modeling/curves/introduction>`.
+The desired position can be specified in two ways:
 
-- Animating objects along a predefined path, such as vehicles on a track or a camera following a scene.
-- Simulating mechanical systems like conveyor belts or bicycle chains.
-- Controlling motion smoothly without keyframing each movement manually.
+- Using a frame number, namely the :ref:`bpy.types.Curve.eval_time` of the Curve with an optional
+  *Offset* in the constraint.
+- Using a number between 0 and 1, namely the *Offset Factor* in the constraint.
+
+By animating these properties, the object or bone can be made to move along the Curve.
+It's also possible to make it rotate to match the Curve's direction.
+Use cases include cameras on rails, vehicles on roads, boxes on conveyor belts, and so on.
+
+To set up the constraint more quickly, select the object, add the Curve to the selection,
+press :kbd:`Ctrl-P`, and click *Path Constraint*.
 
 .. tip::
 
-   The *Follow Path* constraint works well in combination with the
-   :doc:`Locked Track Constraint </animation/constraints/tracking/locked_track>`.
-   For example, when animating a camera along a path, a *Locked Track* constraint
-   can help control its roll angle by locking it to a secondary target.
+   The *Follow Path* constraint can be combined with a
+   :doc:`tracking constraint </animation/constraints/tracking/index>` to, for example,
+   keep a moving camera pointed at an object.
 
-.. admonition:: Follow Path vs. Clamp To
-   :class: note
+.. seealso::
 
-   While both constraints move objects along a curve,
-   *Follow Path* is **time-based** (movement is determined by the current frame),
-   whereas the :doc:`Clamp To Constraint </animation/constraints/tracking/clamp_to>`
-   sets an object's position based on a **location property**.
+   The :doc:`/animation/constraints/tracking/clamp_to` snaps an object or bone to
+   a Curve based on its location.
 
 
-Object Space Evaluation
-=======================
+Position Offsetting
+===================
 
-Note, the object's position and rotation are evaluated in :term:`World Space`:
+The constraint uses its owner's position and rotation in :term:`World Space`
+as offsets to the position and rotation on the Curve. If *Follow Curve*
+is disabled, the offsets are added in the Curve's :term:`Local Space`.
+If it's enabled, the offsets are added in the space of the current curve point,
+with the global Y axis corresponding to the tangent direction.
 
-- **Position Offset**: The object's location acts as an offset from its normal position on the curve.
-  For example, an object with a location of *(1.0, 1.0, 0.0)* will be displaced
-  by one unit along the X and Y axes from its default path position.
-  To place the object exactly on the curve, reset its location with :kbd:`Alt-G`.
-- **Scale Influence**: The object's offset is affected by the curve's scale.
-  If the curve has a scale of *(2.0, 1.0, 1.0)*, the same *(1.0, 1.0, 0.0)*
-  offset will be doubled along the X-axis but remain unchanged along Y.
-- **Rotation Alignment**: When *Follow Curve* is enabled, the object's rotation follows the curve's direction.
-  To ensure correct alignment, the object's axis should be properly oriented before applying the constraint.
-  Resetting rotation with :kbd:`Alt-R` may help.
+In both cases, the Curve's scale acts as a multiplier for the position offset.
 
+.. list-table::
+   :widths: 1 1 1
 
-Controlling Movement Along the Path
-===================================
+   * - .. figure:: /images/animation_constraints_relationship_follow-path_offset-no-constraint.png
 
-The object's motion along the curve can be controlled in different ways:
+          Before adding the constraint, the cone is offset along the world Y axis.
 
-#. **Path Animation Timing**:
-   The movement is determined by the curve's *Path Animation* settings in the object properties.
-   The *Frames* value defines the duration, and the constraint's *Offset* shifts the start frame.
-#. **Custom Animation via F-Curves**: For precise control, an *Evaluation Time*
-   F-Curve can be added in the *Graph Editor* to control movement dynamically.
-#. **Stationary Object on the Path**: If an object should remain fixed at a point on the curve,
-   a flat *Speed* F-Curve can be used, where the curve's value determines the position along the path.
+     - .. figure:: /images/animation_constraints_relationship_follow-path_offset-no-follow-curve.png
+
+          After adding the constraint, the cone is offset along the Curve's local Y axis.
+
+     - .. figure:: /images/animation_constraints_relationship_follow-path_offset-follow-curve.png
+
+          When enabling Follow Curve, the cone is offset along the curve point's tangent.
+
+To have the owner perfectly positioned and aligned on the Curve, ensure its
+world position and rotation are both zero. This can be done by pressing :kbd:`Alt-G`
+and :kbd:`Alt-R` respectively.
 
 
 Options
@@ -64,56 +67,59 @@ Options
 
 .. figure:: /images/animation_constraints_relationship_follow-path_panel.png
 
-   Follow Path panel.
+   Follow Path constraint.
 
-Target
-   :ref:`ui-data-id` used to select the constraint's target, which *must* be a curve object,
-   and is not functional (red state) when it has none.
-   See :ref:`common constraint properties <rigging-constraints-interface-common-target>` for more information.
+:ref:`Target <rigging-constraints-interface-common-target>`
+   The Curve object to follow.
 
-Offset
-   Offsets the object's position along the curve in frames (relative to the animation settings).
+Offset :guilabel:`Fixed Position disabled`
+   The number of frames to subtract from the Curve's *Evaluation Time*. A positive value will
+   move the owner to an earlier point on the Curve, while a negative value will move it to
+   a later point.
+
+Offset Factor :guilabel:`Fixed Position enabled`
+   Relative position along the Curve, independent of its *Evaluation Time*. A value of 0 corresponds
+   to the start of the Curve while a value of 1 corresponds to the end.
 
 Forward Axis
-   The axis of the object that has to be aligned with the forward direction of the path
-   (i.e. tangent to the curve at the owner's position). It is affected if Follow Curve option activated.
+   The local axis of the owner that should be aligned to the Curve's tangent direction.
+   Requires that *Follow Curve* is enabled.
+
+   A negative axis will make the owner point in the opposite direction.
 
 Up Axis
-   The axis of the object that has to be aligned (as much as possible) with the world Z axis.
-   In fact, with this option activated, the behavior of the owner shares some properties with
-   the one caused by a :doc:`Locked Track constraint </animation/constraints/tracking/locked_track>`,
-   with the path as "axle", and the world Z axis as "magnet". It is affected if Follow Curve option activated.
+   The local axis of the owner that should be aligned (as much as possible) to the global Z axis.
+   Requires that *Follow Curve* is enabled.
+
+.. important::
+
+   The *Forward Axis* and the *Up Axis* must be different. If they are the same,
+   the constraint will stop working and its icon will turn red.
 
 Fixed Position
-   Locks the object to a specific position along the curve, regardless of animation.
+   Ignore the Curve's *Evaluation Time* and position the owner using only the *Offset Factor*.
+
+   Despite the name of this property, the owner can still be moved over time by animating
+   the *Offset Factor*.
 
 Curve Radius
-   Scales the object based on the curve's radius. See :doc:`Curve Editing </modeling/curves/properties/geometry>`.
+   Scale the owner based on the :ref:`radii <modeling-curve-radius>` of the Curve's
+   control points.
 
 Follow Curve
-   If this option is not activated, the owner's rotation is not modified by the curve; otherwise,
-   it is affected depending on the Forward and Up Axes.
+   Rotate the owner according to the *Forward Axis* and the *Up Axis*.
 
 .. _bpy.ops.constraint.followpath_path_animate:
 
 Animate Path
-   Automatically creates an F-Curve to control the object's motion along the path.
+   By default, the Curve's *Evaluation Time* is static and the constraint owner doesn't move.
+   Clicking this button will animate the *Evaluation Time* so that it's always equal to the
+   current scene frame.
 
-   .. admonition:: Keyframing Evaluation Time
-      :class: tip
+   Of course, it's also possible to skip this button and animate the *Evaluation Time* by hand.
 
-      To animate movement along a path manually, keyframe the curve's *Evaluation Time*:
-
-      #. Select the curve and go to the *Path Animation* panel in the curve properties.
-      #. At the first frame (e.g., frame 1), set *Evaluation Time* to the start value (e.g., 1).
-      #. Right-click *Evaluation Time* and select *Insert Keyframe*.
-      #. Move to the final frame (e.g., frame 100), set *Evaluation Time* to the end value (e.g., 100).
-      #. Insert another keyframe.
-
-      This allows full control over the object's movement along the curve.
-Influence
-   Controls the percentage of affect the constraint has on the object.
-   See :ref:`common constraint properties <bpy.types.constraint.influence>` for more information.
+:ref:`bpy.types.constraint.influence`
+   How strongly the constraint affects the owner.
 
 
 Example

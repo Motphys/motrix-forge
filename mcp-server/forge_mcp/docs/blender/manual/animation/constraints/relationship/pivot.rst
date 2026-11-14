@@ -5,9 +5,9 @@
 Pivot Constraint
 ****************
 
-The *Pivot* constraint allows the owner to rotate around a target object.
-It was originally intended for pivot joints found in humans
-e.g. fingers, feet, elbows, etc.
+The *Pivot* constraint makes an object or bone rotate around a point other than
+its :doc:`origin </scene_layout/object/origin>`. This can be a point that's relative
+to the same or another object/bone, or a point that's fixed in space.
 
 
 Options
@@ -15,29 +15,32 @@ Options
 
 .. figure:: /images/animation_constraints_relationship_pivot_panel.png
 
-   Pivot panel.
+   Pivot constraint.
 
-Target
-   :ref:`ui-data-id` for the selection of the object to be used as a pivot point.
-   See :ref:`common constraint properties <rigging-constraints-interface-common-target>` for more information.
+:ref:`Target <rigging-constraints-interface-common-target>`
+   The object or bone to use as the pivot point. Can be left empty,
+   in which case the pivot point is either relative to the constraint owner itself
+   or not relative to anything (fixed in space).
 
-Use Relative Offset
-   Offset will be an absolute point in space instead of relative to the target.
+Use Relative Offset :guilabel:`No Target set`
+   Whether the *Pivot Point* coordinates are relative to the constraint owner
+   or absolute in the world. If a *Target* is set, the coordinates are always relative.
 
 Pivot Point X, Y, Z
-   Offset of pivot from target.
+   The coordinates of the pivot point.
 
 Rotation Range
-   Rotation range on which pivoting should occur.
+   Euler axis and direction for which the constraint should be active.
 
-   Always
-      Use the pivot point in every rotation.
-   -X/-Y/-Z/X/Y/Z Rotation
-      Use the pivot point in the corresponding direction around the corresponding axis.
+   :Always:
+      Apply pivoting for every possible owner rotation.
+   :-X/-Y/-Z Rotation:
+      Only apply pivoting if the owner's X/Y/Z rotation is negative or zero.
+   :X/Y/Z Rotation:
+      Only apply pivoting if the owner's X/Y/Z rotation is positive or zero.
 
-Influence
-   Controls the percentage of affect the constraint has on the object.
-   See :ref:`common constraint properties <bpy.types.constraint.influence>` for more information.
+:ref:`bpy.types.constraint.influence`
+   How strongly the constraint affects the owner.
 
 
 Example

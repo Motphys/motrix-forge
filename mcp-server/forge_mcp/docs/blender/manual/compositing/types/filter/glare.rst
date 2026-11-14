@@ -19,6 +19,40 @@ Inputs
 Image
    Standard color input.
 
+Glare Type
+   Defines the type of glare effect applied to the image.
+
+   :Bloom:
+      Simulates the soft glow around bright areas due to light scattering in eyes and camera lenses.
+   :Ghosts:
+      Creates multiple overlapping glare artifacts resembling lens reflections or a hazy glow.
+   :Streaks:
+      Produces bright streaks radiating from highlights, commonly used to simulate lens flares.
+   :Fog Glow:
+      Simulates the soft glow around bright areas due to light scattering in eyes and camera lenses.
+      This glare is a more physically accurate version of *Bloom*, creating a softer,
+      more realistic glow at the cost of increased computation time.
+   :Simple Star:
+      Similar to *Streaks*, but produces a simpler star-shaped glare effect.
+   :Sun Beams:
+      Simulates the effect of bright light getting scattered in a medium
+      `(Crepuscular Rays) <https://en.wikipedia.org/wiki/Crepuscular_rays>`__.
+      This phenomenon can be created by renderers, but full volumetric lighting is
+      a rather arduous approach and takes a long time to render.
+   :Kernel:
+      Applies a custom convolution filter using a :doc:`kernel </compositing/image_kernels>`
+      defined either numerically or from an image.
+      This mode allows the creation of user-defined glare or diffusion effects
+      by specifying the shape and intensity distribution of the kernel.
+
+Quality
+   Controls the resolution at which the glare effect is processed.
+   This can be helpful to save render times while only doing preview renders.
+
+   :High: Full-resolution processing for best quality.
+   :Medium: Uses a lower resolution to reduce computation time.
+   :Low: Fastest processing but with lower detail.
+
 
 Highlights
 ----------
@@ -49,7 +83,7 @@ Adjust
 Strength
    Adjusts the overall intensity of the glare effect.
    Values greater than 1 boost the luminance of the glare,
-   while values less than 1 blends the glare with the original image.
+   while values less than 1 blend the glare with the original image.
 
 Saturation
    Modifies the color saturation of the glare effect.
@@ -61,9 +95,9 @@ Tint
 Glare
 -----
 
-Size :guilabel:`Bloom` :guilabel:`Fog Glow`
-   Defines the relative spread of the glare across the image.
-   A value of 1 makes the glare cover the full image, while 0.5 restricts it to half, and so on.
+Size :guilabel:`Bloom` :guilabel:`Fog Glow` :guilabel:`Sun Beams`
+   Defines the relative spread of the effect across the image.
+   A value of 1 makes the effect cover the full image, while 0.5 restricts it to half, and so on.
 
 Streaks :guilabel:`Streaks`
    The number of streaks radiating from highlights.
@@ -84,33 +118,24 @@ Fade :guilabel:`Streaks` :guilabel:`Simple Star`
 Diagonal :guilabel:`Simple Star`
    Rotates the *Simple Star* streaks by 45° for an alternate pattern.
 
+Sun Position :guilabel:`Sun Beams`
+   Source point of the rays as a factor of the image dimensions.
 
-Properties
-==========
+Jitter :guilabel:`Sun Beams`
+   The amount of jitter to introduce while computing rays,
+   higher jitter can be faster but can produce grainy or noisy results.
 
-Glare Type
-   Defines the type of glare effect applied to the image.
+Kernel Data Type :guilabel:`Kernel`
+   Determines how the kernel is defined:
 
-   :Bloom:
-      Simulates the soft glow around bright areas due to light scattering in eyes and camera lenses.
-   :Ghosts:
-      Creates multiple overlapping glare artifacts resembling lens reflections or a hazy glow.
-   :Streaks:
-      Produces bright streaks radiating from highlights, commonly used to simulate lens flares.
-   :Fog Glow:
-      Simulates the soft glow around bright areas due to light scattering in eyes and camera lenses.
-      This glare is a more physically accurate version of *Bloom*, creating a softer,
-      more realistic glow at the cost of increased computation time.
-   :Simple Star:
-      Similar to *Streaks*, but produces a simpler star-shaped glare effect.
+   :Float: A numeric kernel defined by the *Kernel* input socket.
+   :Color: A full color image used as the kernel, allowing for more complex filtering patterns
 
-Quality
-   Controls the resolution at which the glare effect is processed.
-   This can be helpful to save render times while only doing preview renders.
-
-   :High: Full-resolution processing for best quality.
-   :Medium: Uses a lower resolution to reduce computation time.
-   :Low: Fastest processing but with lower detail.
+Kernel :guilabel:`Kernel`
+   When the *Float* type is selected, this input defines the numeric
+   :doc:`kernel </compositing/image_kernels>` values.
+   When the *Color* type is selected, an image input can be connected
+   to provide a grayscale or color-based convolution kernel.
 
 
 Outputs
@@ -126,3 +151,37 @@ Glare
 Highlights
    The extracted bright areas used to generate the glare effect.
    Can be used to fine-tune the glare or as a base for custom effects.
+
+
+Gizmos
+======
+
+The *Glare* node provides an interactive gizmo in the Node Editor.
+To use it, enable :ref:`Active Node Gizmo <bpy.types.SpaceNodeEditor.show_gizmo_active_node>` and
+select the *Glare* node.
+
+For the *Sun Beams* type, a cross-shaped gizmo appears in the image preview to set the *Sun Position*.
+
+
+Examples
+========
+
+Sun Beams
+---------
+
+Usually, the first step is to define the area from which rays are cast.
+Any diffuse reflected light from surfaces is not going to contribute to such scattering in the real world,
+so should be excluded from the input data.
+Possible ways to achieve this are:
+
+- Entirely separate image as a light source.
+- Brightness/contrast tweaking to leave only the brightest areas.
+- Muting shadow and midtone colors, which is a bit more flexible.
+- Masking for ultimate control.
+
+After generating the sun beams from such a light source image they can then be overlaid on the original image.
+Usually, a simple "Add" Mix node is sufficient,
+and physically correct because the scattered light adds to the final result.
+
+.. figure:: /images/compositing_types_filter_sun-beams_example.jpg
+   :width: 400px

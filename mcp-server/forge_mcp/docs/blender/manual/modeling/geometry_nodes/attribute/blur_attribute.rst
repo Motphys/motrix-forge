@@ -68,7 +68,7 @@ Examples
 
 Input is Mesh Plane. First :doc:`/modeling/geometry_nodes/mesh/operations/subdivide_mesh` add some
 faces for capture color with :doc:`/modeling/geometry_nodes/utilities/random_value`
-used as hue in :doc:`/modeling/geometry_nodes/utilities/color/combine_color` on this.
+used as hue in :doc:`/modeling/geometry_nodes/color/combine_color` on this.
 Now second :doc:`/modeling/geometry_nodes/mesh/operations/subdivide_mesh` split each face on a lot of new.
 Each one new duplicates original attribute.
 Blur Attribute node mixes all attributes for each face. Due to this, the result is smoothed.

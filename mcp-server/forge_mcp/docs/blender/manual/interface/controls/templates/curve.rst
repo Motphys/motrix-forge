@@ -9,52 +9,59 @@ Curve Widget
 
    Curve widget.
 
-The *Curve Widget* allows to intuitively map a range of input values to a set of output values
-by adjusting a curve, where the X axis represents the input and the Y axis the output.
+This widget is used to edit two types of curves:
 
+- *Profile* curves that simply describe a two-dimensional shape.
+- *Mapping* curves that map an input value on the X axis to an output value on the Y axis.
+
+The available options are slightly different depending on this type. Also, unlike profile curves,
+mapping curves can't have overhang: each X value must correspond to exactly one Y value.
 
 Control Points
 ==============
 
-Like all curves in Blender, the curve of the *Curve Widget* is controlled using *control points*.
+Like all curves in Blender, the curve in this widget is defined using *control points*.
 
-By default, there are two control points: one at (0.0, 0.0) and one at (1.0, 1.0),
-meaning the input is mapped directly to the output (unchanged).
-
-Move
-   Simply click and drag it around.
 Add
-   Click anywhere on the curve where there is not already a control point.
+   Click :kbd:`LMB` anywhere on the curve where there is not already a control point.
+Move
+   Drag the point with :kbd:`LMB`.
 Remove
-   Select it and click the :bl-icon:`x` button at the bottom right.
-
+   Select the point and click the :bl-icon:`x` button at the bottom right.
+   Alternatively, press :kbd:`X`.
 
 Controls
 ========
 
-Above the curve graph is a row of controls. These are:
-
 :bl-icon:`zoom_in` Zoom In
-   Zoom into the center of the graph to show more details and provide more accurate control.
-   To navigate around the curve while zoomed in, click and drag in an empty part of the graph.
+   Zoom in to show more details and provide more accurate control.
+   To navigate around the curve while zoomed in, click and drag with :kbd:`LMB` in an empty area.
+
 :bl-icon:`zoom_out` Zoom Out
-   Zoom out of the graph to show fewer details and view the graph as a whole.
+   Zoom out to show fewer details and view the curve as a whole.
    You cannot zoom out further than the clipping region (see *Clipping* below).
 
+:bl-icon:`arrow_leftright` Reverse Path :guilabel:`Profile Curves`
+   Mirror the curve around the diagonal.
+
+:bl-icon:`clipuv_hlt` Clipping Options :guilabel:`Mapping Curves`
+   Use Clipping
+      Force curve points to stay between the specified values.
+   Min X/Y and Max X/Y
+      Set the minimum and maximum bounds of the curve points.
+
 :bl-icon:`downarrow_hlt` Specials
-   A menu with operators to edit control points or to set properties.
-
    Reset View
-      Resets the view of the curve.
+      Zoom the view all the way out.
 
-   Extend Options
-      Controls how the curve is extended before the first control point and after the last control point.
+   Extend Options :guilabel:`Mapping Curves`
+      Controls how the curve is extended before the first point and after the last point.
 
       Extend Horizontal
-         Causes the curve to stay horizontal before the first point and after the last point.
+         Causes the curve to "go flat."
+
       Extend Extrapolated
-         Causes the curve to extrapolate before the first point and after the last point,
-         based on the shape of the curve.
+         Causes the curve to maintain its direction.
 
       .. list-table::
 
@@ -67,32 +74,26 @@ Above the curve graph is a row of controls. These are:
                 Extend Extrapolated.
 
    Reset Curve
-      Resets the curve to default (removes all points added to the curve).
-:bl-icon:`clipuv_hlt` Clipping Options
-   Use Clipping
-      Forces curve points to stay between specified values.
-   Min X/Y and Max X/Y
-      Set the minimum and maximum bounds of the curve points.
-
-Below the curve are options for the selected control point:
+      Resets the curve to the default (removes all added points).
 
 .. _ui-curve-widget-handle-type:
 
 Handle Type
-   Controls how the control points affect the curve shape.
-   It determines the interpolation of the curve segment at the selected control point.
+   The handle type of the selected control point.
+   This determines the shape of the curve segments around it.
 
-   :Vector Handle:
-      Vector handles create straight lines and sharp corners.
-   :Auto Handle:
-      Automatic handles that create smooth curves.
-   :Auto-Clamped Handle:
-      Automatic handles that create smooth curves while also preventing overshoot.
-   :Free Handle:
-      The handles can be moved completely independently, and thus can result in a sharp change of direction.
-   :Aligned Free Handles:
-      The two handles of the curve point are locked together to always point in exactly opposite directions.
-      This results in a curve that is always smooth at the control point.
+   :bl-icon:`handle_auto` Auto Handle
+      Results in a smooth curve without the need to manually set up handles.
+   :bl-icon:`handle_vector` Vector Handle
+      Results in straight lines and a sharp corner.
+   :bl-icon:`handle_free` Free Handle :guilabel:`Profile Curves`
+      Shows freely movable Bézier handles that are independent of each other.
+      This can result in a sharp corner at the control point.
+   :bl-icon:`handle_aligned` Aligned Free Handles :guilabel:`Profile Curves`
+      Shows freely movable Bézier handles that are locked together to always point in opposite directions.
+      This ensures the curve is always smooth at the control point.
+   :bl-icon:`handle_autoclamped` Auto Clamped Handle :guilabel:`Mapping Curves`
+      Like *Auto Handle*, but also prevents overshoot.
 
    .. list-table::
 
@@ -107,10 +108,68 @@ Handle Type
         - .. figure:: /images/interface_controls_templates_curve_handle-auto-clamped.png
 
              Auto Clamped Handles.
+
 X, Y
    The coordinates of the selected control point.
-Delete :bl-icon:`x`
+:bl-icon:`x` Delete :kbd:`X`
    Remove the selected control point. The first and last points cannot be deleted.
 Copy/Paste :kbd:`Ctrl-C`, :kbd:`Ctrl-V`
    The whole curve can be copied from one Curve Widget to another by hovering over
-   the curve graph and pressing :kbd:`Ctrl-C`, :kbd:`Ctrl-V`.
+   it and pressing :kbd:`Ctrl-C`, :kbd:`Ctrl-V`.
+
+Presets :guilabel:`Brush Curve Widgets Only`
+   A number of preset curves that the curve can be set to.
+   The exact shape depends on whether the default curve for the property has a positive
+   or negative slope.
+
+   .. list-table:: Custom Preset Types with Positive Slope.
+
+      * - .. figure:: /images/curve_smooth_positive_preset.png
+
+               Smooth
+
+        - .. figure:: /images/curve_round_positive_preset.png
+
+               Round
+
+        - .. figure:: /images/curve_root_positive_preset.png
+
+               Root
+
+      * - .. figure:: /images/curve_sharp_positive_preset.png
+
+               Sharp
+
+        - .. figure:: /images/curve_linear_positive_preset.png
+
+               Linear
+
+        - .. figure:: /images/curve_constant_preset.png
+
+               Constant
+
+   .. list-table:: Custom Preset Types with Negative Slope.
+
+      * - .. figure:: /images/curve_smooth_negative_preset.png
+
+               Smooth
+
+        - .. figure:: /images/curve_round_negative_preset.png
+
+               Round
+
+        - .. figure:: /images/curve_root_negative_preset.png
+
+               Root
+
+      * - .. figure:: /images/curve_sharp_negative_preset.png
+
+               Sharp
+
+        - .. figure:: /images/curve_linear_negative_preset.png
+
+               Linear
+
+        - .. figure:: /images/curve_constant_preset.png
+
+               Constant

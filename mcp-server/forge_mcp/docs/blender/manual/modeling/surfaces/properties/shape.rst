@@ -3,6 +3,12 @@
 Shape
 *****
 
+.. reference::
+
+   :Editor:    Properties
+   :Mode:      Object Mode, Edit Mode
+   :Panel:     :menuselection:`Object Data --> Shape`
+
 .. figure:: /images/modeling_surfaces_properties_shape_resolution-panel.png
    :align: center
 
@@ -11,15 +17,11 @@ Shape
 .. _bpy.types.Curve.resolution_v:
 
 Resolution Preview U/V
-   Resolution to use in the 3D Viewport.
+   The density of the generated surface mesh in the 3D Viewport. The higher this number, the more vertices
+   there will be and the smoother the surface will look.
 Render U/V
-   Just like :ref:`NURBS curves <curve-nurbs>`, *Resolution* controls the detail of the surface.
-   The higher the *Resolution* the more detailed and smoother the surface is.
-   The lower the *Resolution* the rougher the surface. However, here you have two resolution settings,
-   one for each interpolation axis (U and V).
-
-   You can adjust the resolution separately for both preview and render,
-   to not slow things down in the viewport, but still get good render results.
+   The density of the generated surface mesh in the render. If a number is 0, the corresponding number
+   from *Resolution Preview* will be used instead.
 
    .. list-table::
 
@@ -31,15 +33,7 @@ Render U/V
 
              Resolution 3×3.
 
-      * - .. figure:: /images/modeling_surfaces_properties_shape_resolution-1x1.png
-
-             Resolution of 1 for both U and V.
-
-        - .. figure:: /images/modeling_surfaces_properties_shape_resolution-3x3.png
-
-             Resolution of 3 for both U and V.
-
 .. seealso::
 
-   The panels of the *Curve and Surface* tab are the same as for
-   :doc:`curves </modeling/curves/introduction>`, just with fewer options...
+   The preview resolution can also be configured for each individual surface within a Surface object.
+   See the :doc:`/modeling/surfaces/properties/active_spline` panel in the Sidebar.

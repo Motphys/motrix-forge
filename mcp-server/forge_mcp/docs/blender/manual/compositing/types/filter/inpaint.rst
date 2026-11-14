@@ -22,12 +22,6 @@ Size
    The number of times to extend the image.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

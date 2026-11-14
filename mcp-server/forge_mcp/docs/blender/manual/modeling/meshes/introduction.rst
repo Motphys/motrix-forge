@@ -3,25 +3,18 @@
 Introduction
 ************
 
-Mesh Modeling typically begins with
-a :doc:`Mesh Primitive </modeling/meshes/primitives>` shape (e.g. circle, cube, cylinder...).
-From there you might begin editing to create a larger, more complex shape.
+Mesh modeling typically consists of roughly blocking out the shape using
+:doc:`primitives </modeling/meshes/primitives>`, then using various tools
+to add detail and create more intricate parts.
 
-
-Modeling Modes
-==============
-
-The 3D Viewport has three principal modes that allow for the creation,
-editing and manipulation of the mesh models.
-Each of the three modes has a variety of tools. Some tools may be found in one or more of the modes.
-
-Modes that used for modeling:
+The 3D Viewport has three principal :doc:`modes </editors/3dview/modes>` for this:
 
 Object Mode
-   Supports basic operations such as object creation,
-   joining objects, managing shape keys, UV/color layers.
+   Supports basic operations such as creating objects,
+   joining objects, and managing shape keys and UV/color layers.
 Edit Mode
-   Used for the majority of mesh editing operations.
+   Used for the majority of polygon-based mesh editing.
+   This chapter mainly deals with this mode.
 Sculpt Mode
-   Instead of dealing with individual mesh elements,
-   supports sculpting with brushes *(not covered in this chapter)*.
+   An alternative editing mode which uses brushes to deform the mesh as though it were a piece of clay.
+   See the :doc:`Sculpting & Painting </sculpt_paint/sculpting/index>` section.

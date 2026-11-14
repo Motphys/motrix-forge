@@ -17,7 +17,7 @@ It provides access to a wide range of context-sensitive properties used througho
 Navigation Bar
 ==============
 
-Properties are grouped into tabs, shown as a vertical list of icons in the Navigation Bar region the editor.
+Properties are grouped into tabs, shown as a vertical list of icons in the Navigation Bar region of the editor.
 
 The Navigation Bar can be flipped to the left or right of the editor by :kbd:`RMB` on the region and selecting
 :menuselection:`Navigation Bar --> Flip to Left/Right`.
@@ -46,7 +46,7 @@ Tabs related to the active scene:
   :doc:`Cycles </render/cycles/render_settings/index>`, or
   :doc:`Workbench </render/workbench/index>` settings.
 - :doc:`Output </render/output/index>`
-- :doc:`View Layer </scene_layout/view_layers/index>`
+- :doc:`View Layer </render/layers/index>`
 - :doc:`Scene </scene_layout/scene/properties>`
 - :doc:`World </render/lights/world>`
 
@@ -113,6 +113,29 @@ Tabs related to an object's visual appearance. Shown only when relevant.
 - :doc:`Texture </render/materials/legacy_textures/index>`
 
 
+Strips
+------
+
+Tabs related to video editing strips. Shown only when relevant.
+
+- :doc:`Strip Modifiers </video_editing/edit/montage/modifiers/index>`
+- :doc:`Strip Properties </video_editing/edit/montage/strips/strip_properties>`
+
+
+.. _bpy.types.SpaceProperties.show_properties:
+
+Visible Tabs
+------------
+
+Allows hiding specific tabs in the Properties editor.
+
+This is especially useful for tailoring the editor to specific workflows. For example:
+- In the *Video Editing* workspace, you may hide object and shading tabs to reduce clutter.
+- In the *Modeling* workspace, you may hide strip-related tabs that are not relevant.
+
+Hidden tabs can be restored at any time using this filter list.
+
+
 Header
 ======
 
@@ -123,21 +146,21 @@ Header
 .. _bpy.types.SpaceProperties.search_filter:
 
 Display Filter :kbd:`Ctrl-F`
-   Use this to search for properties by name. Matching properties remain visible; others are greyed out.
+   Use this to search for properties by name. Matching properties remain visible; others are grayed out.
    The editor also highlights the first match and switches to the relevant tab automatically.
 
    Start a search with :kbd:`Ctrl-F`, and clear it with :kbd:`Alt-F`.
 
 Data Context Path
-   Displays the name and icon of the current data-block (e.g. Object, Material, Scene),
-   along with its hierarchical path within the data structure.
+   Displays the name and icon of the current data-block (e.g. Object, Material, Scene), along with its hierarchical
+   path within the data structure.
    Example: *Cube* (Object) --> *Mesh* --> *Material*
 
 .. _bpy.ops.buttons.toggle_pin:
 
 Toggle Pin ID
-   Click the pin icon to lock the editor to the current data-block, preventing it from changing when the selection updates.
-   Click again to unlock and return to context-based display.
+   Click the pin icon to lock the editor to the current data-block, preventing it from changing when the selection
+   updates. Click again to unlock and return to context-based display.
 
 
 Options
@@ -153,14 +176,3 @@ Sync with Outliner
    :Always: Always follow the clicked Outliner icon.
    :Never: Ignore Outliner interaction.
    :Auto: Only follow when the Properties editor shares a border with the Outliner.
-
-.. _bpy.types.SpaceProperties.show_properties:
-
-Visible Tabs
-   Allows hiding specific tabs in the Properties editor.
-
-   This is especially useful for tailoring the editor to specific workflows. For example:
-   - In the *Video Editing* workspace, you may hide object and shading tabs to reduce clutter.
-   - In the *Modeling* workspace, you may hide strip-related tabs that are not relevant.
-
-   Hidden tabs can be restored at any time using this filter list.

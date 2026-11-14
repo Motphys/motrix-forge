@@ -161,7 +161,7 @@ Make Meta
 .. reference::
 
    :Editor:    Nonlinear Animation
-   :Menu:      :menuselection:`Add --> Make Meta`
+   :Menu:      :menuselection:`Strip --> Make Meta`
    :Shortcut:  :kbd:`Ctrl-G`
 
 Groups the selected NLA-strips into a meta strip.

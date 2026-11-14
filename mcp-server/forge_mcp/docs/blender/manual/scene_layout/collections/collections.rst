@@ -32,32 +32,64 @@ Collection properties tab allows convenient access to properties for the active 
 Visibility
 ----------
 
+.. _bpy.types.Collection.hide_select:
+
 Selectable
-   Toggles the ability to select the objects from the 3D Viewport.
+   Toggles the ability to select the objects of this collection in the 3D Viewport.
+
    This is useful for if you have placed something in the scene and
-   do not want to accidentally select it when working on something else.
+   do not want to accidentally select it when working on something else for example references images.
+
+.. _bpy.types.Collection.hide_render:
 
 Show In -- Renders
    Enables/disables visibility of the collection in renders.
 
 
+.. _bpy.types.LayerCollection:
+
 View Layer
 ^^^^^^^^^^
 
+Each collection in a scene can be configured per :doc:`View Layer </render/layers/index>`
+to control how its contents appear in the render.
+These settings allow for flexible render setups by including or excluding specific collections,
+masking objects, or limiting their contribution to indirect effects.
+
+.. _bpy.types.LayerCollection.exclude:
+
 Include
-   Uncheck to disable the collection for the current :doc:`View Layer </scene_layout/view_layers/index>`.
-   Its contents will be hidden in the 3D Viewport, the render, and even the Outliner.
+   Includes this collection in the active View Layer.
+   When disabled, all objects in the collection will be excluded from the render, the 3D Viewport, and the Outliner
+   for the current view layer.
+
+   This is useful for rendering alternate versions of a scene or isolating elements for compositing.
+
+.. _bpy.types.LayerCollection.holdout:
 
 Holdout
-   Objects inside this collection will generate a holdout/mask in the active view layer.
+   Marks all objects in this collection as holdouts in the active view layer.
 
-Indirect Only
-   Objects inside this collection will only contribute to the final image
-   indirectly through shadows and reflections.
+   Holdouts render as transparent regions in the final image, effectively masking out anything behind them. This is
+   typically used in compositing workflows to create cutouts or to separate foreground and background elements.
+
+   .. seealso::
+
+      :doc:`Holdout Shader Node </render/shader_nodes/shader/holdout>`
+
+.. _bpy.types.LayerCollection.indirect_only:
+
+Indirect Only :guilabel:`Cycles Only`
+   Objects in this collection will not appear directly in the rendered image,
+   but they will still contribute indirectly through lighting, shadows, and reflections.
+
+   This is useful for rendering clean product shots while preserving realistic environmental lighting or reflections.
 
 
 Instancing
 ----------
+
+.. _bpy.types.Collection.instance_offset:
 
 Instance Offset X, Y Z
    Applies a spatial offset of the instanced collections from the original object's origin.
@@ -80,8 +112,8 @@ The following file formats are supported, see each for the documentation of expo
 - :doc:`/files/import_export/usd`
 - :doc:`/files/import_export/obj`
 - :doc:`/files/import_export/ply`
-- :doc:`/addons/import_export/scene_fbx`
-- :doc:`/addons/import_export/scene_gltf2`
+- :doc:`/files/import_export/fbx_legacy`
+- :doc:`/addons/scene_gltf2`
 
 .. _bpy.types.Collection.active_exporter_index:
 
@@ -96,7 +128,7 @@ Exporter List
 
 .. _bpy.ops.collection.exporter_remove:
 
-:bl-icon:`Remove` (Remove Exporter)
+:bl-icon:`remove` (Remove Exporter)
    Removes the selected exporter.
 
 .. _bpy.ops.collection.export_all:
@@ -167,14 +199,27 @@ Collections Menu
 
    :Mode:      Object Mode
    :Menu:      :menuselection:`Object --> Collection`
-   :Shortcut:  :kbd:`M`, :kbd:`Shift-M`, :kbd:`Ctrl-G`, etc.
+
+The *Collections* menu provides tools for organizing and managing objects within collections.
+Collections are used to group objects for easier scene organization,
+visibility control, and rendering management.
+Objects can belong to one or multiple collections, allowing flexible structuring of complex scenes.
+
+.. _bpy.ops.object.move_to_collection:
 
 Move to Collection :kbd:`M`
-   Move selected objects to an existing or new collection.
+   Moves the selected objects to a different collection.
+   The menu allows choosing an existing collection, creating a new one,
+   or moving the objects to the *Scene Collection* (the root level of the scene).
+   Once moved, the objects are removed from their previous collection unless they are also linked elsewhere.
+
+.. _bpy.ops.object.link_to_collection:
+
 Link to Collection :kbd:`Shift-M`
-   Add selected objects to a collection, while keeping them in their current collection.
-   This way objects can appear in multiple collections.
-   A new collection can be created in the pop-up.
+   Links the selected objects to an additional collection without removing them from their existing collections.
+   This allows the same object to appear in multiple collections simultaneously,
+   useful for managing shared elements across different scene layers or views.
+   A new collection can also be created from the menu.
 Create New Collection :kbd:`Ctrl-G`
    Creates a new collection and adds the selected object(s) to it.
    The name of the new collection can be specified in
@@ -222,7 +267,7 @@ Name
 :bl-icon:`x` (Remove Collection)
    Removes the object from the specified collection.
 :bl-icon:`downarrow_hlt` (Collection Specials)
-   Unlink Collection, Select Collection, Set Offset from Cursor
+   Unlink Collection, Select Objects in Collection, Set Offset from Cursor
 X, Y, Z
    Applies a spatial offset of the instanced collections from the original object's origin.
 

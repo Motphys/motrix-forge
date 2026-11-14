@@ -5,6 +5,7 @@ Scene(ID)
 
 base classes --- :class:`bpy_struct`, :class:`ID`
 
+
 .. class:: Scene(ID)
 
    Scene data-block, consisting in objects and defining time and render related settings
@@ -13,349 +14,415 @@ base classes --- :class:`bpy_struct`, :class:`ID`
 
       Active Movie Clip that can be used by motion tracking constraints or as a camera's background image
 
-      :type: :class:`MovieClip`
+      :type: :class:`MovieClip` | None
+
+   .. attribute:: allow_preroll
+
+      Allows playing back frames before the playback start frame (default False)
+
+      :type: bool
 
    .. data:: animation_data
 
-      Animation data for this data-block
+      Animation data for this data-block (readonly)
 
-      :type: :class:`AnimData`, (readonly)
+      :type: :class:`AnimData` | None
+
+   .. attribute:: annotation
+
+      Data-block used for annotations in the 3D view
+
+      :type: :class:`Annotation` | None
 
    .. attribute:: audio_distance_model
 
-      Distance model for distance attenuation calculation
+      Distance model for distance attenuation calculation (default ``'INVERSE_CLAMPED'``)
 
-      * ``NONE``
+      - ``NONE``
         None -- No distance attenuation.
-      * ``INVERSE``
+      - ``INVERSE``
         Inverse -- Inverse distance model.
-      * ``INVERSE_CLAMPED``
+      - ``INVERSE_CLAMPED``
         Inverse Clamped -- Inverse distance model with clamping.
-      * ``LINEAR``
+      - ``LINEAR``
         Linear -- Linear distance model.
-      * ``LINEAR_CLAMPED``
+      - ``LINEAR_CLAMPED``
         Linear Clamped -- Linear distance model with clamping.
-      * ``EXPONENT``
+      - ``EXPONENT``
         Exponential -- Exponential distance model.
-      * ``EXPONENT_CLAMPED``
+      - ``EXPONENT_CLAMPED``
         Exponential Clamped -- Exponential distance model with clamping.
 
-      :type: enum in [``'NONE'``, ``'INVERSE'``, ``'INVERSE_CLAMPED'``, ``'LINEAR'``, ``'LINEAR_CLAMPED'``, ``'EXPONENT'``, ``'EXPONENT_CLAMPED'``], default ``'NONE'``
+      :type: Literal['NONE', 'INVERSE', 'INVERSE_CLAMPED', 'LINEAR', 'LINEAR_CLAMPED', 'EXPONENT', 'EXPONENT_CLAMPED']
 
    .. attribute:: audio_doppler_factor
 
-      Pitch factor for Doppler effect calculation
+      Pitch factor for Doppler effect calculation (in [0, inf], default 1.0)
 
-      :type: float in [0, inf], default 1.0
+      :type: float
 
    .. attribute:: audio_doppler_speed
 
-      Speed of sound for Doppler effect calculation
+      Speed of sound for Doppler effect calculation (in [0.01, inf], default 343.3)
 
-      :type: float in [0.01, inf], default 343.3
+      :type: float
 
    .. attribute:: audio_volume
 
-      Audio volume
+      Audio volume (in [0, 100], default 1.0)
 
-      :type: float in [0, 100], default 1.0
+      :type: float
 
    .. attribute:: background_set
 
       Background set scene
 
-      :type: :class:`Scene`
+      :type: :class:`Scene` | None
 
    .. attribute:: camera
 
       Active camera, used for rendering the scene
 
-      :type: :class:`Object`
+      :type: :class:`Object` | None
 
    .. data:: collection
 
-      Scene root collection that owns all the objects and other collections instantiated in the scene
+      Scene root collection that owns all the objects and other collections instantiated in the scene (readonly, never None)
 
-      :type: :class:`Collection`, (readonly, never None)
+      :type: :class:`Collection`
+
+   .. attribute:: compositing_node_group
+
+      Compositor Nodes
+
+      :type: :class:`NodeTree` | None
 
    .. data:: cursor
 
-      :type: :class:`View3DCursor`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`View3DCursor`
 
    .. data:: cycles
 
-      Cycles render settings
+      Cycles render settings (readonly)
 
-      :type: :class:`CyclesRenderSettings`, (readonly)
+      :type: :class:`CyclesRenderSettings` | None
 
    .. data:: cycles_curves
 
-      Cycles curves rendering settings
+      Cycles curves rendering settings (readonly)
 
-      :type: :class:`CyclesCurveRenderSettings`, (readonly)
+      :type: :class:`CyclesCurveRenderSettings` | None
 
    .. data:: display
 
-      Scene display settings for 3D viewport
+      Scene display settings for 3D viewport (readonly)
 
-      :type: :class:`SceneDisplay`, (readonly)
+      :type: :class:`SceneDisplay` | None
 
    .. data:: display_settings
 
-      Settings of device saved image would be displayed on
+      Settings of device saved image would be displayed on (readonly)
 
-      :type: :class:`ColorManagedDisplaySettings`, (readonly)
+      :type: :class:`ColorManagedDisplaySettings` | None
 
    .. data:: eevee
 
-      EEVEE settings for the scene
+      EEVEE settings for the scene (readonly)
 
-      :type: :class:`SceneEEVEE`, (readonly)
+      :type: :class:`SceneEEVEE` | None
 
    .. attribute:: frame_current
 
-      Current frame, to update animation data from Python frame_set() instead
+      Current frame, to update animation data from Python frame_set() instead (in [-1048574, 1048574], default 1)
 
-      :type: int in [-1048574, 1048574], default 1
+      :type: int
 
    .. data:: frame_current_final
 
-      Current frame with subframe and time remapping applied
+      Current frame with subframe and time remapping applied (in [-1.04857e+06, 1.04857e+06], default 0.0, readonly)
 
-      :type: float in [-1.04857e+06, 1.04857e+06], default 0.0, (readonly)
+      :type: float
 
    .. attribute:: frame_end
 
-      Final frame of the playback/rendering range
+      Final frame of the playback/rendering range (in [0, 1048574], default 250)
 
-      :type: int in [0, 1048574], default 250
+      :type: int
 
    .. attribute:: frame_float
 
-      :type: float in [-1.04857e+06, 1.04857e+06], default 0.0
+      (in [-1.04857e+06, 1.04857e+06], default 0.0)
+
+      :type: float
 
    .. attribute:: frame_preview_end
 
-      Alternative end frame for UI playback
+      Alternative end frame for UI playback (in [-inf, inf], default 0)
 
-      :type: int in [-inf, inf], default 0
+      :type: int
 
    .. attribute:: frame_preview_start
 
-      Alternative start frame for UI playback
+      Alternative start frame for UI playback (in [-inf, inf], default 0)
 
-      :type: int in [-inf, inf], default 0
+      :type: int
 
    .. attribute:: frame_start
 
-      First frame of the playback/rendering range
+      First frame of the playback/rendering range (in [0, 1048574], default 1)
 
-      :type: int in [0, 1048574], default 1
+      :type: int
 
    .. attribute:: frame_step
 
-      Number of frames to skip forward while rendering/playing back each frame
+      Number of frames to skip forward while rendering/playing back each frame (in [0, 1048574], default 1)
 
-      :type: int in [0, 1048574], default 1
+      :type: int
 
    .. attribute:: frame_subframe
 
-      :type: float in [0, 1], default 0.0
+      (in [0, 1], default 0.0)
+
+      :type: float
 
    .. attribute:: gravity
 
-      Constant acceleration in a given direction
+      Constant acceleration in a given direction (array of 3 items, in [-inf, inf], default (0.0, 0.0, -9.81))
 
-      :type: :class:`mathutils.Vector` of 3 items in [-inf, inf], default (0.0, 0.0, -9.81)
-
-   .. attribute:: grease_pencil
-
-      Grease Pencil data-block used for annotations in the 3D view
-
-      :type: :class:`GreasePencil`
+      :type: :class:`mathutils.Vector`
 
    .. data:: grease_pencil_settings
 
-      Grease Pencil settings for the scene
+      Grease Pencil settings for the scene (readonly)
 
-      :type: :class:`SceneGpencil`, (readonly)
+      :type: :class:`SceneGpencil` | None
 
    .. data:: hydra
 
-      Hydra settings for the scene
+      Hydra settings for the scene (readonly)
 
-      :type: :class:`SceneHydra`, (readonly)
+      :type: :class:`SceneHydra` | None
 
    .. data:: is_nla_tweakmode
 
-      Whether there is any action referenced by NLA being edited (strictly read-only)
+      Whether there is any action referenced by NLA being edited (strictly read-only) (default False, readonly)
 
-      :type: boolean, default False, (readonly)
+      :type: bool
 
    .. data:: keying_sets
 
-      Absolute Keying Sets for this Scene
+      Absolute Keying Sets for this Scene (default None, readonly)
 
-      :type: :class:`KeyingSets` :class:`bpy_prop_collection` of :class:`KeyingSet`, (readonly)
+      :type: :class:`KeyingSets`\ [:class:`KeyingSet`]
 
    .. data:: keying_sets_all
 
-      All Keying Sets available for use (Builtins and Absolute Keying Sets for this Scene)
+      All Keying Sets available for use (Builtins and Absolute Keying Sets for this Scene) (default None, readonly)
 
-      :type: :class:`KeyingSetsAll` :class:`bpy_prop_collection` of :class:`KeyingSet`, (readonly)
+      :type: :class:`KeyingSetsAll`\ [:class:`KeyingSet`]
 
    .. attribute:: lock_frame_selection_to_range
 
-      Don't allow frame to be selected with mouse outside of frame range
+      Don't allow frame to be selected with mouse outside of frame range (default False)
 
-      :type: boolean, default False
-
-   .. data:: node_tree
-
-      Compositing node tree
-
-      :type: :class:`NodeTree`, (readonly)
+      :type: bool
 
    .. data:: objects
 
-      :type: :class:`SceneObjects` :class:`bpy_prop_collection` of :class:`Object`, (readonly)
+      (default None, readonly)
+
+      :type: :class:`SceneObjects`\ [:class:`Object`]
+
+   .. attribute:: playback_loop_mode
+
+      What to do when playback reaches the last frame (default ``'INFINITE'``)
+
+      - ``INFINITE``
+        Infinite -- After the last frame, jump back to the first and keep playing, infinitely.
+      - ``STOP_END_FRAME``
+        Stop at End Frame -- Stop playback at the last frame, without looping.
+      - ``STOP_START_FRAME``
+        Stop at Start Frame -- After the last frame, jump back to the first and stop playback.
+      - ``RESTORE``
+        Restore Frame -- After the last frame, stop at the frame the playback started from.
+      - ``BOUNCE``
+        Bounce -- At the last frame, reverse playback.
+
+      :type: Literal['INFINITE', 'STOP_END_FRAME', 'STOP_START_FRAME', 'RESTORE', 'BOUNCE']
 
    .. data:: render
 
-      :type: :class:`RenderSettings`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`RenderSettings`
 
    .. data:: rigidbody_world
 
-      :type: :class:`RigidBodyWorld`, (readonly)
+      (readonly)
+
+      :type: :class:`RigidBodyWorld` | None
 
    .. data:: safe_areas
 
-      :type: :class:`DisplaySafeAreas`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`DisplaySafeAreas`
 
    .. data:: sequence_editor
 
-      :type: :class:`SequenceEditor`, (readonly)
+      (readonly)
+
+      :type: :class:`SequenceEditor` | None
 
    .. data:: sequencer_colorspace_settings
 
-      Settings of color space sequencer is working in
+      Settings of color space sequencer is working in (readonly)
 
-      :type: :class:`ColorManagedSequencerColorspaceSettings`, (readonly)
+      :type: :class:`ColorManagedSequencerColorspaceSettings` | None
 
    .. attribute:: show_keys_from_selected_only
 
-      Only include channels relating to selected objects and data
+      Only include channels relating to selected objects and data (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_subframe
 
-      Display and allow setting fractional frame values for the current frame
+      Display and allow setting fractional frame values for the current frame (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: simulation_frame_end
 
-      Frame at which simulations end
+      Frame at which simulations end (in [-inf, inf], default 250)
 
-      :type: int in [-inf, inf], default 250
+      :type: int
 
    .. attribute:: simulation_frame_start
 
-      Frame at which simulations start
+      Frame at which simulations start (in [-inf, inf], default 1)
 
-      :type: int in [-inf, inf], default 1
+      :type: int
 
    .. attribute:: sync_mode
 
-      How to sync playback
+      How to sync playback (default ``'AUDIO_SYNC'``)
 
-      * ``NONE``
+      - ``NONE``
         Play Every Frame -- Do not sync, play every frame.
-      * ``FRAME_DROP``
+      - ``FRAME_DROP``
         Frame Dropping -- Drop frames if playback is too slow.
-      * ``AUDIO_SYNC``
+      - ``AUDIO_SYNC``
         Sync to Audio -- Sync to audio playback, dropping frames.
 
-      :type: enum in [``'NONE'``, ``'FRAME_DROP'``, ``'AUDIO_SYNC'``], default ``'AUDIO_SYNC'``
+      :type: Literal['NONE', 'FRAME_DROP', 'AUDIO_SYNC']
+
+   .. attribute:: time_jump_delta
+
+      Number of frames or seconds to jump forward or backward (in [0.1, inf], default 1.0)
+
+      :type: float
+
+   .. attribute:: time_jump_unit
+
+      Which unit to use for time jumps in the timeline (default ``'SECOND'``)
+
+      - ``FRAME``
+        Frame -- Jump by frames.
+      - ``SECOND``
+        Second -- Jump by seconds.
+
+      :type: Literal['FRAME', 'SECOND']
 
    .. data:: timeline_markers
 
-      Markers used in all timelines for the current scene
+      Markers used in all timelines for the current scene (default None, readonly)
 
-      :type: :class:`TimelineMarkers` :class:`bpy_prop_collection` of :class:`TimelineMarker`, (readonly)
+      :type: :class:`TimelineMarkers`\ [:class:`TimelineMarker`]
 
    .. data:: tool_settings
 
-      :type: :class:`ToolSettings`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`ToolSettings`
 
    .. data:: transform_orientation_slots
 
-      :type: :class:`bpy_prop_collection` of :class:`TransformOrientationSlot`, (readonly)
+      (default None, readonly)
+
+      :type: :class:`bpy_prop_collection`\ [:class:`TransformOrientationSlot`]
 
    .. data:: unit_settings
 
-      Unit editing settings
+      Unit editing settings (readonly, never None)
 
-      :type: :class:`UnitSettings`, (readonly, never None)
+      :type: :class:`UnitSettings`
 
    .. attribute:: use_audio
 
-      Play back of audio from Sequence Editor, otherwise mute audio
+      Play back of audio from Sequence Editor, otherwise mute audio (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_audio_scrub
 
-      Play audio from Sequence Editor while scrubbing
+      Play audio from Sequence Editor while scrubbing (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_custom_simulation_range
 
-      Use a simulation range that is different from the scene range for simulation nodes that don't override the frame range themselves
+      Use a simulation range that is different from the scene range for simulation nodes that don't override the frame range themselves (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_gravity
 
-      Use global gravity for all dynamics
+      Use global gravity for all dynamics (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: use_nodes
 
-      Enable the compositing node tree
+      Enable the compositing node group. (default False)
 
-      :type: boolean, default False
+      .. deprecated:: 5.0 removal planned in version 6.0
+
+         Unused but kept for compatibility reasons. Setting the property has no effect, and getting it always returns True. Use #scene.render.use_compositing to turn compositing to enable or disable compositing.
+
+      :type: bool
 
    .. attribute:: use_preview_range
 
-      Use an alternative start/end frame range for animation playback and view renders
+      Use an alternative start/end frame range for animation playback and view renders (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_stamp_note
 
-      User defined note for the render stamping
+      User defined note for the render stamping (default "", never None)
 
-      :type: string, default "", (never None)
+      :type: str
 
    .. data:: view_layers
 
-      :type: :class:`ViewLayers` :class:`bpy_prop_collection` of :class:`ViewLayer`, (readonly)
+      (default None, readonly)
+
+      :type: :class:`ViewLayers`\ [:class:`ViewLayer`]
 
    .. data:: view_settings
 
-      Color management settings applied on image before saving
+      Color management settings applied on image before saving (readonly)
 
-      :type: :class:`ColorManagedViewSettings`, (readonly)
+      :type: :class:`ColorManagedViewSettings` | None
 
    .. attribute:: world
 
       World used for rendering the scene
 
-      :type: :class:`World`
+      :type: :class:`World` | None
 
    .. classmethod:: update_render_engine()
 
@@ -366,59 +433,61 @@ base classes --- :class:`bpy_struct`, :class:`ID`
 
       statistics
 
-      :arg view_layer: View Layer
-      :type view_layer: :class:`ViewLayer`, (never None)
-      :return: Statistics
-      :rtype: string, (never None)
+      :param view_layer: View Layer, (never None)
+      :type view_layer: :class:`ViewLayer` | None
+      :return: Statistics, (never None)
+      :rtype: str
 
    .. method:: frame_set(frame, *, subframe=0.0)
 
       Set scene frame updating all objects and view layers immediately
 
-      :arg frame: Frame number to set
-      :type frame: int in [-1048574, 1048574]
-      :arg subframe: Subframe time, between 0.0 and 1.0
-      :type subframe: float in [0, 1], (optional)
+      :param frame: Frame number to set (in [-1048574, 1048574])
+      :type frame: int
+      :param subframe: Subframe time, between 0.0 and 1.0 (in [0, 1], optional)
+      :type subframe: float
 
    .. method:: uvedit_aspect(object)
 
       Get uv aspect for current object
 
-      :arg object: Object
-      :type object: :class:`Object`, (never None)
-      :return: aspect
-      :rtype: :class:`mathutils.Vector` of 2 items in [0, inf]
+      :param object: Object (never None)
+      :type object: :class:`Object` | None
+      :return: aspect (array of 2 items, in [0, inf])
+      :rtype: :class:`mathutils.Vector`
 
    .. method:: ray_cast(depsgraph, origin, direction, *, distance=1.70141e+38)
 
       Cast a ray onto evaluated geometry in world-space
 
-      :arg depsgraph: The current dependency graph
-      :type depsgraph: :class:`Depsgraph`, (never None)
-      :type origin: :class:`mathutils.Vector` of 3 items in [-inf, inf]
-      :type direction: :class:`mathutils.Vector` of 3 items in [-inf, inf]
-      :arg distance: Maximum distance
-      :type distance: float in [0, inf], (optional)
+      :param depsgraph: The current dependency graph (never None)
+      :type depsgraph: :class:`Depsgraph` | None
+      :param origin: (array of 3 items, in [-inf, inf])
+      :type origin: :class:`mathutils.Vector` | Sequence[float]
+      :param direction: (array of 3 items, in [-inf, inf])
+      :type direction: :class:`mathutils.Vector` | Sequence[float]
+      :param distance: Maximum distance (in [0, inf], optional)
+      :type distance: float
       :return:
-         `result`, boolean
+         ``result``, bool
 
-         `location`, The hit location of this ray cast, :class:`mathutils.Vector` of 3 items in [-inf, inf]
+         ``location``, The hit location of this ray cast, :class:`mathutils.Vector`
 
-         `normal`, The face normal at the ray cast hit location, :class:`mathutils.Vector` of 3 items in [-inf, inf]
+         ``normal``, The face normal at the ray cast hit location, :class:`mathutils.Vector`
 
-         `index`, The face index, -1 when original data isn't available, int in [-inf, inf]
+         ``index``, The face index, -1 when original data isn't available, int
 
-         `object`, Ray cast object, :class:`Object`
+         ``object``, The original (un-evaluated) object that was hit. Note that ``location``, ``normal``, and ``index`` correspond to the evaluated object's mesh., :class:`Object`
 
-         `matrix`, Matrix, :class:`mathutils.Matrix` of 4 * 4 items in [-inf, inf]
+         ``matrix``, Matrix, :class:`mathutils.Matrix`
 
-      :rtype: (boolean, :class:`mathutils.Vector` of 3 items in [-inf, inf], :class:`mathutils.Vector` of 3 items in [-inf, inf], int in [-inf, inf], :class:`Object`, :class:`mathutils.Matrix` of 4 * 4 items in [-inf, inf])
+      :rtype: tuple[bool, :class:`mathutils.Vector`, :class:`mathutils.Vector`, int, :class:`Object`, :class:`mathutils.Matrix`]
 
    .. method:: sequence_editor_create()
 
       Ensure sequence editor is valid in this scene
 
-      :return: New sequence editor data or nullptr
+      :return: New sequence editor data or None
       :rtype: :class:`SequenceEditor`
 
    .. method:: sequence_editor_clear()
@@ -426,69 +495,22 @@ base classes --- :class:`bpy_struct`, :class:`ID`
       Clear sequence editor in this scene
 
 
-   .. method:: alembic_export(filepath, *, frame_start=1, frame_end=1, xform_samples=1, geom_samples=1, shutter_open=0.0, shutter_close=1.0, selected_only=False, uvs=True, normals=True, vcolors=False, apply_subdiv=True, flatten=False, visible_objects_only=False, face_sets=False, subdiv_schema=False, export_hair=True, export_particles=True, packuv=False, scale=1.0, triangulate=False, quad_method='BEAUTY', ngon_method='BEAUTY')
-
-      Export to Alembic file (deprecated, use the Alembic export operator)
-
-      :arg filepath: File Path, File path to write Alembic file
-      :type filepath: string, (never None)
-      :arg frame_start: Start, Start Frame
-      :type frame_start: int in [-inf, inf], (optional)
-      :arg frame_end: End, End Frame
-      :type frame_end: int in [-inf, inf], (optional)
-      :arg xform_samples: Xform samples, Transform samples per frame
-      :type xform_samples: int in [1, 128], (optional)
-      :arg geom_samples: Geom samples, Geometry samples per frame
-      :type geom_samples: int in [1, 128], (optional)
-      :arg shutter_open: Shutter open
-      :type shutter_open: float in [-1, 1], (optional)
-      :arg shutter_close: Shutter close
-      :type shutter_close: float in [-1, 1], (optional)
-      :arg selected_only: Selected only, Export only selected objects
-      :type selected_only: boolean, (optional)
-      :arg uvs: UVs, Export UVs
-      :type uvs: boolean, (optional)
-      :arg normals: Normals, Export normals
-      :type normals: boolean, (optional)
-      :arg vcolors: Color Attributes, Export color attributes
-      :type vcolors: boolean, (optional)
-      :arg apply_subdiv: Subsurfs as meshes, Export subdivision surfaces as meshes
-      :type apply_subdiv: boolean, (optional)
-      :arg flatten: Flatten hierarchy, Flatten hierarchy
-      :type flatten: boolean, (optional)
-      :arg visible_objects_only: Visible layers only, Export only objects in visible layers
-      :type visible_objects_only: boolean, (optional)
-      :arg face_sets: Facesets, Export face sets
-      :type face_sets: boolean, (optional)
-      :arg subdiv_schema: Use Alembic subdivision Schema, Use Alembic subdivision Schema
-      :type subdiv_schema: boolean, (optional)
-      :arg export_hair: Export Hair, Exports hair particle systems as animated curves
-      :type export_hair: boolean, (optional)
-      :arg export_particles: Export Particles, Exports non-hair particle systems
-      :type export_particles: boolean, (optional)
-      :arg packuv: Export with packed UV islands, Export with packed UV islands
-      :type packuv: boolean, (optional)
-      :arg scale: Scale, Value by which to enlarge or shrink the objects with respect to the world's origin
-      :type scale: float in [0.0001, 1000], (optional)
-      :arg triangulate: Triangulate, Export polygons (quads and n-gons) as triangles
-      :type triangulate: boolean, (optional)
-      :arg quad_method: Quad Method, Method for splitting the quads into triangles
-      :type quad_method: enum in :ref:`rna_enum_modifier_triangulate_quad_method_items`, (optional)
-      :arg ngon_method: N-gon Method, Method for splitting the n-gons into triangles
-      :type ngon_method: enum in :ref:`rna_enum_modifier_triangulate_ngon_method_items`, (optional)
-
    .. classmethod:: bl_rna_get_subclass(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: :class:`bpy.types.Struct` | None
       :return: The RNA type or default when not found.
-      :rtype: :class:`bpy.types.Struct` subclass
+      :rtype: :class:`bpy.types.Struct`
 
 
    .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: type | None
       :return: The class or default when not found.
       :rtype: type
 
@@ -499,27 +521,28 @@ Inherited Properties
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.id_data`
-   * :class:`ID.name`
-   * :class:`ID.name_full`
-   * :class:`ID.id_type`
-   * :class:`ID.session_uid`
-   * :class:`ID.is_evaluated`
-   * :class:`ID.original`
-   * :class:`ID.users`
-   * :class:`ID.use_fake_user`
-   * :class:`ID.use_extra_user`
-   * :class:`ID.is_embedded_data`
-   * :class:`ID.is_missing`
-   * :class:`ID.is_runtime_data`
-   * :class:`ID.is_editable`
-   * :class:`ID.tag`
-   * :class:`ID.is_library_indirect`
-   * :class:`ID.library`
-   * :class:`ID.library_weak_reference`
-   * :class:`ID.asset_data`
-   * :class:`ID.override_library`
-   * :class:`ID.preview`
+   - :class:`bpy_struct.id_data`
+   - :class:`ID.name`
+   - :class:`ID.name_full`
+   - :class:`ID.id_type`
+   - :class:`ID.session_uid`
+   - :class:`ID.is_evaluated`
+   - :class:`ID.original`
+   - :class:`ID.users`
+   - :class:`ID.use_fake_user`
+   - :class:`ID.use_extra_user`
+   - :class:`ID.is_embedded_data`
+   - :class:`ID.is_linked_packed`
+   - :class:`ID.is_missing`
+   - :class:`ID.is_runtime_data`
+   - :class:`ID.is_editable`
+   - :class:`ID.tag`
+   - :class:`ID.is_library_indirect`
+   - :class:`ID.library`
+   - :class:`ID.library_weak_reference`
+   - :class:`ID.asset_data`
+   - :class:`ID.override_library`
+   - :class:`ID.preview`
 
 Inherited Functions
 -------------------
@@ -527,47 +550,49 @@ Inherited Functions
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.as_pointer`
-   * :class:`bpy_struct.driver_add`
-   * :class:`bpy_struct.driver_remove`
-   * :class:`bpy_struct.get`
-   * :class:`bpy_struct.id_properties_clear`
-   * :class:`bpy_struct.id_properties_ensure`
-   * :class:`bpy_struct.id_properties_ui`
-   * :class:`bpy_struct.is_property_hidden`
-   * :class:`bpy_struct.is_property_overridable_library`
-   * :class:`bpy_struct.is_property_readonly`
-   * :class:`bpy_struct.is_property_set`
-   * :class:`bpy_struct.items`
-   * :class:`bpy_struct.keyframe_delete`
-   * :class:`bpy_struct.keyframe_insert`
-   * :class:`bpy_struct.keys`
-   * :class:`bpy_struct.path_from_id`
-   * :class:`bpy_struct.path_resolve`
-   * :class:`bpy_struct.pop`
-   * :class:`bpy_struct.property_overridable_library_set`
-   * :class:`bpy_struct.property_unset`
-   * :class:`bpy_struct.rna_ancestors`
-   * :class:`bpy_struct.type_recast`
-   * :class:`bpy_struct.values`
-   * :class:`ID.rename`
-   * :class:`ID.evaluated_get`
-   * :class:`ID.copy`
-   * :class:`ID.asset_mark`
-   * :class:`ID.asset_clear`
-   * :class:`ID.asset_generate_preview`
-   * :class:`ID.override_create`
-   * :class:`ID.override_hierarchy_create`
-   * :class:`ID.user_clear`
-   * :class:`ID.user_remap`
-   * :class:`ID.make_local`
-   * :class:`ID.user_of_id`
-   * :class:`ID.animation_data_create`
-   * :class:`ID.animation_data_clear`
-   * :class:`ID.update_tag`
-   * :class:`ID.preview_ensure`
-   * :class:`ID.bl_rna_get_subclass`
-   * :class:`ID.bl_rna_get_subclass_py`
+   - :class:`bpy_struct.as_pointer`
+   - :class:`bpy_struct.driver_add`
+   - :class:`bpy_struct.driver_remove`
+   - :class:`bpy_struct.get`
+   - :class:`bpy_struct.id_properties_clear`
+   - :class:`bpy_struct.id_properties_ensure`
+   - :class:`bpy_struct.id_properties_ui`
+   - :class:`bpy_struct.is_property_hidden`
+   - :class:`bpy_struct.is_property_overridable_library`
+   - :class:`bpy_struct.is_property_readonly`
+   - :class:`bpy_struct.is_property_set`
+   - :class:`bpy_struct.items`
+   - :class:`bpy_struct.keyframe_delete`
+   - :class:`bpy_struct.keyframe_insert`
+   - :class:`bpy_struct.keys`
+   - :class:`bpy_struct.path_from_id`
+   - :class:`bpy_struct.path_from_module`
+   - :class:`bpy_struct.path_resolve`
+   - :class:`bpy_struct.pop`
+   - :class:`bpy_struct.property_overridable_library_set`
+   - :class:`bpy_struct.property_unset`
+   - :class:`bpy_struct.rna_ancestors`
+   - :class:`bpy_struct.type_recast`
+   - :class:`bpy_struct.values`
+   - :class:`ID.bl_system_properties_get`
+   - :class:`ID.rename`
+   - :class:`ID.evaluated_get`
+   - :class:`ID.copy`
+   - :class:`ID.asset_mark`
+   - :class:`ID.asset_clear`
+   - :class:`ID.asset_generate_preview`
+   - :class:`ID.override_create`
+   - :class:`ID.override_hierarchy_create`
+   - :class:`ID.user_clear`
+   - :class:`ID.user_remap`
+   - :class:`ID.make_local`
+   - :class:`ID.user_of_id`
+   - :class:`ID.animation_data_create`
+   - :class:`ID.animation_data_clear`
+   - :class:`ID.update_tag`
+   - :class:`ID.preview_ensure`
+   - :class:`ID.bl_rna_get_subclass`
+   - :class:`ID.bl_rna_get_subclass_py`
 
 References
 ----------
@@ -575,31 +600,36 @@ References
 .. hlist::
    :columns: 2
 
-   * :mod:`bpy.context.scene`
-   * :class:`BlendData.scenes`
-   * :class:`BlendDataScenes.new`
-   * :class:`BlendDataScenes.remove`
-   * :class:`Camera.view_frame`
-   * :class:`CompositorNodeCryptomatteV2.scene`
-   * :class:`CompositorNodeDefocus.scene`
-   * :class:`CompositorNodeRLayers.scene`
-   * :class:`Context.scene`
-   * :class:`Depsgraph.scene`
-   * :class:`Depsgraph.scene_eval`
-   * :class:`ID.override_hierarchy_create`
-   * :class:`IDOverrideLibrary.resync`
-   * :class:`Image.save_render`
-   * :class:`Object.crazyspace_eval`
-   * :class:`Object.is_deform_modified`
-   * :class:`Object.is_modified`
-   * :class:`RenderEngine.bind_display_space_shader`
-   * :class:`RenderEngine.get_preview_pixel_size`
-   * :class:`RenderEngine.register_pass`
-   * :class:`RenderEngine.support_display_space_shader`
-   * :class:`RenderEngine.update_render_passes`
-   * :class:`Scene.background_set`
-   * :class:`SceneStrip.scene`
-   * :class:`StripsMeta.new_scene`
-   * :class:`StripsTopLevel.new_scene`
-   * :class:`Window.scene`
+   - :mod:`bpy.context.scene`
+   - :mod:`bpy.context.sequencer_scene`
+   - :class:`BlendData.scenes`
+   - :class:`BlendDataScenes.new`
+   - :class:`BlendDataScenes.remove`
+   - :class:`Camera.view_frame`
+   - :class:`CompositorNodeCryptomatteV2.scene`
+   - :class:`CompositorNodeDefocus.scene`
+   - :class:`CompositorNodeRLayers.scene`
+   - :class:`Context.scene`
+   - :class:`Depsgraph.scene`
+   - :class:`Depsgraph.scene_eval`
+   - :class:`ID.override_hierarchy_create`
+   - :class:`IDOverrideLibrary.resync`
+   - :class:`Image.save_render`
+   - :class:`NodeSocketScene.default_value`
+   - :class:`NodeTreeInterfaceSocketScene.default_value`
+   - :class:`Object.crazyspace_eval`
+   - :class:`Object.is_deform_modified`
+   - :class:`Object.is_modified`
+   - :class:`RenderEngine.bind_display_space_shader`
+   - :class:`RenderEngine.get_preview_pixel_size`
+   - :class:`RenderEngine.register_pass`
+   - :class:`RenderEngine.support_display_space_shader`
+   - :class:`RenderEngine.update_render_passes`
+   - :class:`Scene.background_set`
+   - :class:`SceneStrip.scene`
+   - :class:`StripsMeta.new_scene`
+   - :class:`StripsTopLevel.new_scene`
+   - :class:`Window.find_playing_scene`
+   - :class:`Window.scene`
+   - :class:`WorkSpace.sequencer_scene`
 

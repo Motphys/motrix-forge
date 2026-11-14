@@ -7,11 +7,9 @@ Settings
 
    :Panel:     :menuselection:`Physics --> Rigid Body --> Settings`
 
-.. todo:: Update image
+.. figure:: /images/physics_rigid-body_properties_settings_panel.png
 
-   .. figure:: /images/physics_rigid-body_properties_settings_panel.png
-
-      Default rigid body panel.
+   Default rigid body panel.
 
 .. _bpy.types.RigidBodyObject.mass:
 
