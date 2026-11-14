@@ -1,5 +1,5 @@
 .. index:: Grease Pencil Visual Effects; Pixelate Visual Effect
-.. _bpy.types.ShaderFxPixelate:
+.. _bpy.types.ShaderFxPixel:
 
 **********************
 Pixelate Visual Effect

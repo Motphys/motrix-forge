@@ -9,24 +9,11 @@ Grid Fill
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Face --> Grid Fill`
 
-*Grid Fill* fills a selected region with a quad grid, using either edge loops or selected faces
-as input to determine the boundary.
+Generates a grid of quads. Two types of input are supported:
 
-It supports two main use cases:
-
-- **Edge Loops**: A pair of open edge loops, or a single closed edge loop.
-- **Selected Faces**: A connected selection of faces with a clear outer boundary.
-
-The operator attempts to fit a grid of quads within the defined boundary using a predictable and structured pattern.
-
-Span
-   Specifies the number of columns in the grid.
-Offset
-   Defines the vertex that is considered to be the corner of the grid.
-   By default, this is the active vertex. Use this to rotate the grid layout.
-Simple Blending
-   Use a simpler interpolation algorithm for generating grid geometry from boundary loops.
-   This method is better suited for flat surfaces or cases where preserving curvature gives undesirable results.
+- If a (roughly) rectangular loop of edges is selected -- or just two opposing sides of such a loop --
+  it generates a grid inside those edges.
+- If a (roughly) rectangular patch of faces is selected, it generates a grid replacing those faces.
 
 .. list-table::
 
@@ -40,29 +27,28 @@ Simple Blending
 
           Grid Fill result.
 
-.. note::
+The operator gives the best results if each pair of opposing sides has the same number of vertices.
+However, this is not required.
 
-   - If the boundary conditions are not met (e.g., more than one exterior loop or mismatched edge counts),
-     the operation will cancel with an error.
-   - Selection order and active vertex can influence grid orientation and layout.
+Options
+=======
 
+Span
+   The number of columns in the grid. (The number of rows is calculated automatically based on this.)
+Offset
+   Determines which vertex is the first corner of the grid.
+   By default, this is the active vertex. Use this to rotate the grid layout.
+Simple Blending
+   Use a simpler interpolation algorithm for generating grid geometry.
+   This method is better suited for flat surfaces or cases where preserving curvature gives undesirable results.
 
-Usage
-=====
+.. tip::
 
-Edge Loop Input
----------------
+   Blender may give an error such as "Loops are not connected by wire/boundary edges." The "loops" here
+   can be confusing as it is Blender terminology for "chains," not "closed loops." As such, this error
+   really means "The selected *edge chains* are not connected to each other; please create more edges
+   to form a closed loop."
 
-When using edge loops as input, the most predictable results occur when two opposite loops
-have an equal number of vertices. For a single, closed loop, Blender tries to detect two
-opposite edges and build a grid accordingly.
+.. seealso::
 
-
-Face Input
-----------
-
-If a region of faces is selected, Grid Fill replaces the selected faces with a new quad grid.
-This works if the selected faces form a continuous region with a clear boundary (i.e., a single exterior loop).
-
-This method preserves UVs and custom data (e.g., face sets, edge creases, and vertex groups) across the new geometry.
-UV islands and seams are respected where possible, and data from selected elements will be transferred to the result.
+   :doc:`/modeling/meshes/editing/edge/bridge_edge_loops`

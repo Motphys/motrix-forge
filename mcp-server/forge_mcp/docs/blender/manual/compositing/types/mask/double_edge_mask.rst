@@ -15,51 +15,38 @@ The *Double Edge Mask* node creates a gradient between two masks.
 Inputs
 ======
 
-Inner Mask
-   A mask representing the inside shape, which will be fully white.
 Outer Mask
    A mask representing the outside shape, which will fade from black at its edges
    to white at the *Inner Mask*.
-
-
-Properties
-==========
-
-Inner Edge
-   :All:
-      All shapes in the *Inner Mask* contribute to the gradient, even ones that do
-      not touch the *Outer Mask* shape.
-   :Adjacent Only:
-      Only shapes in the *Inner Mask* that overlap with the *Outer Mask* contribute
-      to the gradient.
-
-   .. list-table::
-
-      * - .. figure:: /images/compositing_types_matte_double-edge-mask_all.png
-
-             All.
-
-        - .. figure:: /images/compositing_types_matte_double-edge-mask_adjacent.png
-
-             Adjacent Only.
-
-Buffer Edge
-   :Keep In:
-      Parts of the *Outer Mask* that touch the edge of the image are treated as if
-      they stop at the edge.
-   :Bleed Out:
-      Parts of the *Outer Mask* that touch the edge of the image are extended
-      beyond the boundary of the image.
+Inner Mask
+   A mask representing the inside shape, which will be fully white.
+Images Edges
+   The edges of the image that intersects the outer mask will be considered edges
+   of the outer mask. Otherwise, the outer mask will be considered open-ended.
 
    .. list-table::
 
       * - .. figure:: /images/compositing_types_matte_double-edge-mask_in.png
 
-             Keep In.
+             Disabled.
 
         - .. figure:: /images/compositing_types_matte_double-edge-mask_bleed.png
 
-             Bleed Out.
+             Enabled.
+
+Only Inside Outer
+   Only edges of the inner mask that lie inside the outer mask will be considered.
+   Otherwise, all edges of the inner mask will be considered.
+
+   .. list-table::
+
+      * - .. figure:: /images/compositing_types_matte_double-edge-mask_all.png
+
+             Disabled.
+
+        - .. figure:: /images/compositing_types_matte_double-edge-mask_adjacent.png
+
+             Enabled.
 
 
 Outputs

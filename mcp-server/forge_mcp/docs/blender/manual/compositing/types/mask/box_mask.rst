@@ -15,22 +15,6 @@ The *Box Mask* node creates an image suitable for use as a simple matte.
 Inputs
 ======
 
-Mask
-   An optional mask to use as the base for mask operations.
-Value
-   Intensity of the generated mask.
-Position
-   Position of the center of the box as a fraction of the total width or height.
-   (0.5, 0.5 creates a centered box; 0.0, 0.0 creates a box in the lower left.)
-Size
-   Width/height of the box as a fraction of the total image width.
-Rotation
-   Rotation of the box around its center point.
-
-
-Properties
-==========
-
 Mask Type
    Operation to use against the input mask.
 
@@ -48,6 +32,17 @@ Mask Type
       Any area covered by both the input mask and the generated mask becomes black.
       Areas covered by the generated mask that are black on the input mask become the specified *Value*.
       Areas uncovered by the generated mask remain unchanged.
+Mask
+   An optional mask to use as the base for mask operations.
+Value
+   Intensity of the generated mask.
+Position
+   Position of the center of the box as a fraction of the total width or height.
+   (0.5, 0.5 creates a centered box; 0.0, 0.0 creates a box in the lower left.)
+Size
+   Width/height of the box as a fraction of the total image width.
+Rotation
+   Rotation of the box around its center point.
 
 
 Outputs

@@ -6,20 +6,13 @@ Animation
 The *Animation* section lets you manage settings related to :doc:`Animation </animation/index>`.
 This includes how editors look and also some different tools properties.
 
-.. figure:: /images/editors_preferences_section_animation.png
+.. figure:: /images/editors_preferences_section_animation.webp
 
    Blender Preferences Animation section.
 
 
 Timeline
 ========
-
-These settings control things in the :doc:`Timeline </editors/timeline>`.
-
-.. _bpy.types.PreferencesEdit.use_negative_frames:
-
-Allow Negative Frame
-   Playback and animations can occur during negative frame ranges.
 
 .. _bpy.types.PreferencesView.view2d_grid_spacing_min:
 
@@ -56,6 +49,19 @@ Zoom to Frame Type
       The number of animation keyframes defined in the *Zoom Keyframes* field will be shown around the cursor.
 
 
+Advanced
+--------
+
+.. _bpy.types.PreferencesEdit.use_negative_frames:
+
+Allow Negative Frame
+   Playback and animations can occur during negative frame ranges.
+
+   .. warning::
+
+      Negative frames can cause issues with audio playback and exporters.
+
+
 Keyframes
 =========
 
@@ -67,11 +73,11 @@ which are the building blocks for animations.
 Default Key Channels
    Which channels to insert keys at when no keying set is active.
 
-   :Location: Inset keyframes for an object's :ref:`Location <bpy.types.Object.location>`.
-   :Rotation: Inset keyframes for an object's :ref:`Rotation <bpy.types.Object.rotation>`.
-   :Scale: Inset keyframes for an object's :ref:`Scale <bpy.types.Object.scale>`.
-   :Rotation Mode: Inset keyframes for an object's :ref:`Rotation Mode <bpy.types.Object.rotation_mode>`.
-   :Custom Properties: Inset keyframes for :doc:`/files/custom_properties`.
+   :Location: Insert keyframes for an object's :ref:`Location <bpy.types.Object.location>`.
+   :Rotation: Insert keyframes for an object's :ref:`Rotation <bpy.types.Object.rotation>`.
+   :Scale: Insert keyframes for an object's :ref:`Scale <bpy.types.Object.scale>`.
+   :Rotation Mode: Insert keyframes for an object's :ref:`Rotation Mode <bpy.types.Object.rotation_mode>`.
+   :Custom Properties: Insert keyframes for :doc:`/files/custom_properties`.
 
 .. _bpy.types.PreferencesEdit.use_keyframe_insert_needed:
 .. _bpy.types.PreferencesEdit.use_auto_keyframe_insert_needed:
@@ -157,5 +163,5 @@ Only Show Selected F-Curve Keyframes
 
 .. _bpy.types.PreferencesEdit.use_fcurve_high_quality_drawing:
 
-Use High Quality Display
+F-Curve High Quality Drawing
    Display F-Curves using :term:`Anti-Aliasing` and other effects (disable for a better performance).

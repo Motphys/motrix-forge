@@ -1,4 +1,4 @@
-.. _bpy.types.MaskSequence:
+.. _bpy.types.MaskStrip:
 
 **********
 Mask Strip

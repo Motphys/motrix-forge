@@ -3,12 +3,17 @@
   Toolbar
 ###########
 
-Tweak :kbd:`W`
-   Lets you select images by clicking, and move them by dragging.
-   Press :kbd:`W` to cycle between this tool and *Select Box*.
-
+Selection tools
+   :ref:`Tweak <tool-select-tweak>`
+      Select or move.
    :ref:`Select Box <tool-select-box>`
-      Lets you select one image by clicking, or multiple images by dragging a rectangle.
+      Select images by dragging a box.
+      All images that intersect the box will be selected.
+   :ref:`Select Circle <tool-select-circle>`
+      Select images by dragging a circle. All images that intersect the path of
+      the circle will be selected.
+   :ref:`Select Lasso <tool-select-lasso>`
+      Select images by drawing a lasso.
 
 Cursor
    Lets you move the :ref:`editors_sequencer_preview_2d-cursor` by clicking or dragging with :kbd:`LMB`.
@@ -121,7 +126,7 @@ Sample
 
    - The X and Y coordinates, in pixels relative to the top left corner.
    - The red, green, blue, and alpha components of the pixel, as decimal values between 0 and 1.
-   - The red, green, and blue components of the pixel with :doc:`/render/color_management` applied.
+   - The red, green, and blue components of the pixel with :doc:`/render/color_management/index` applied.
    - The hue, saturation, value, and luminance components of the pixel with Color Management applied.
 
    .. figure:: /images/editors_vse_preview_sample-tool.png

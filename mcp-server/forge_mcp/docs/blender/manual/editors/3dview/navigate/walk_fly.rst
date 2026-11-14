@@ -29,7 +29,7 @@ Positioning a camera
    the camera will move along with you.
 Recording camera movement
    You can record the path you take by entering a camera view, enabling
-   Auto Keying in the :doc:`Timeline </editors/timeline>`,
+   :ref:`bpy.types.ToolSettings.use_keyframe_insert_auto`,
    starting animation playback, and finally activating Fly/Walk navigation.
    The path will be recorded as camera keyframes which can then be
    used for rendering.

@@ -19,7 +19,6 @@ Vertex groups are maintained within the *Object Data* Properties, in the *Vertex
 .. _bpy.ops.object.vertex_group_sort:
 .. _bpy.ops.object.vertex_group_copy:
 .. _bpy.ops.object.vertex_group_copy_to_selected:
-.. _bpy.ops.object.vertex_group_remove_from:
 .. _bpy.ops.object.vertex_group_remove:
 .. _bpy.ops.object.vertex_group_move:
 .. _bpy.types.VertexGroups.active_index:
@@ -95,8 +94,13 @@ When you switch either to Edit Mode or to Weight Paint Mode, vertex weights can 
 The same operations are available in the 3D Viewport's
 :menuselection:`Vertex --> Vertex Groups` menu or :kbd:`Ctrl-G`.
 
+.. _bpy.ops.object.vertex_group_assign:
+
 Assign
    To assign the selected vertices to the active group with the weight as defined in the *Weight* (see below).
+
+.. _bpy.ops.object.vertex_group_remove_from:
+
 Remove
    To remove the selected vertices from the active group (and thus also delete their weight values).
 Select

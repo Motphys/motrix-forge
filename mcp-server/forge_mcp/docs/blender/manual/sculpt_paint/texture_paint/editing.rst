@@ -9,11 +9,16 @@ Sample Color
 .. reference::
 
    :Mode:      Texture Paint Mode
-   :Shortcut:  :kbd:`Shift-X`
+   :Shortcut:  :kbd:`Shift-X`, :kbd:`Shift-Ctrl-X`
 
-Copies the color from any part of the user interfaces and sets it as the active
-:ref:`Brush Color <bpy.types.Brush.color>`.
+Samples a color from the viewport and assigns it to the active
+:doc:`Paint </sculpt_paint/sculpting/brushes/paint>` brush.
 
-- Press :kbd:`Shift-X` to sample a color from the image and set it as the primary brush color.
-- In **Texture Paint**, :kbd:`Shift-Ctrl-X` samples the **merged viewport color**, while :kbd:`Shift-X`
-   samples only the currently active texture.
+This allows quickly matching the brush color to existing painted details
+directly on the model.
+
+- Press :kbd:`Shift-X` to sample a color at the mouse cursor position.
+- Press :kbd:`Shift-Ctrl-X` to sample the **merged viewport color**,
+  including lighting, shading, and all visible layers.
+
+The sampled color becomes the primary color of the active Paint brush.

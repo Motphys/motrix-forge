@@ -82,7 +82,7 @@ Backface Culling
       Use back face culling when baking :doc:`Light Probe Volumes </render/eevee/light_probes/volume>`.
       Additionally helps rejecting capture point inside the object to avoid light leaking
 
-.. _bpy.types.Material.displacement:
+.. _bpy.types.Material.displacement_method:
 
 Displacement
    Controls how the displacement output from the shader node tree is used.
@@ -129,7 +129,7 @@ Render Method
 
    :Dithered:
       Allows for grayscale hashed transparency, and compatible with render passes and raytracing.
-      Also know as deferred rendering.
+      Also known as deferred rendering.
 
       When using *Dithered* render method, the materials are rendered in layers.
       Each layer can only transmit (e.g. refract) light emitted from previous layers.
@@ -212,3 +212,16 @@ Intersection
       Faces are considered as medium interface only when they have different consecutive facing.
       Gives correct results as long as the max ray depth is not exceeded. Has significant memory
       overhead compared to the fast method.
+
+
+Alpha Clip Setup
+================
+
+When using raytracing with material set to dithered render mode, this can lead to noisy renders around transparent
+areas. To make edges clean, it is necessary to quantize alpha value to either 0 or 1. This can be done using greater
+than math node.
+
+.. figure:: /images/render_eevee_alpha_clip.png
+   :align: center
+
+   Alpha clip setup

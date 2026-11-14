@@ -30,34 +30,3 @@ Mask Data-block
 Mask data-block containing multiple mask layers and splines.
 They are the most high-level entities used for masking purposes.
 Masks can be reused in different places, and hold global parameters for all the entities they consist of.
-
-
-Header
-======
-
-.. figure:: /images/movie-clip_masking_introduction_header.png
-
-   The Movie Clip Editor header in Mask mode.
-
-
-Menus
------
-
-View
-   Center View to Cursor
-      Move the view so that the 2D cursor is at the center of the editor.
-Add
-   Use to add primitive shapes.
-Mask
-   Operators used to :doc:`Edit </movie_clip/masking/editing>` masks.
-
-
-Controls
---------
-
-Mask
-   Once set to Mask mode, a mask data-block can be added with a :ref:`data-block menu <ui-data-block>`.
-   Any image, movie clip, render or compositing result can be used as a backdrop to display masks over.
-
-Mask Display
-   See :doc:`/editors/clip/display/mask_display`.

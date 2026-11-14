@@ -23,12 +23,6 @@ Vertices X, Y, Z
    The number of vertices should be at least 1.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

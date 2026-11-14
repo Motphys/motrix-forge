@@ -13,7 +13,7 @@ Event Value Items
 
 :DOUBLE_CLICK: Double Click.
 
-:CLICK_DRAG: Click Drag.
+:CLICK_DRAG: Drag.
 
 :NOTHING: Nothing.
 

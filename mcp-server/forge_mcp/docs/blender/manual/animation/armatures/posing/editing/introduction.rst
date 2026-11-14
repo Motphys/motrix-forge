@@ -3,13 +3,6 @@
 Introduction
 ************
 
-.. todo:: Update image
-
-   .. figure:: /images/animation_armatures_posing_editing_introduction_tools.png
-      :align: right
-
-      Pose Tools.
-
 In *Pose Mode*, bones behave like objects. So the transform actions
 (move, rotate, scale, etc.) are very similar to the same ones in Object Mode
 (all available ones are regrouped in the :menuselection:`Pose --> Transform` submenu). However,
@@ -30,8 +23,6 @@ As previously noted, bones' transformations are performed based on the *Rest Pos
 the armature, which is its state as defined in *Edit Mode*. This means that in
 rest position, in *Pose Mode*, each bone has a scale of 1.0, and null rotation
 and position (as you can see it in the *Transform* panel, in the 3D Viewport's Sidebar).
-
-.. todo:: Maybe update the images (color & style)
 
 .. figure:: /images/animation_armatures_posing_editing_introduction_local-rotation.png
 

@@ -1,3 +1,4 @@
+.. _bpy.types.RenderSettings.save_output:
 
 ******
 Output
@@ -7,8 +8,29 @@ Output
 
    Output panel.
 
-This panel provides options for setting the location of rendered frames for animations,
-and the quality of the saved images.
+This panel defines where rendered images and animations are saved, along with
+their output format and quality settings.
+
+By default, animation renders are saved automatically, while still renders are
+not. Still images must be saved manually from the :doc:`/editors/image/index`
+or written using a :doc:`/compositing/types/output/file_output`.
+
+The automatic saving of renders can be toggled using the checkbox in the panel header.
+
+When enabled, Blender behaves in the standard way: still renders (:kbd:`F12`)
+are not saved automatically, while animation renders (:kbd:`Ctrl-F12`) are
+written to the configured output path.
+
+When disabled, Blender does not write render output from this panel and instead
+relies on other systems. For animation renders, if the
+:doc:`/editors/video_sequencer/index` is active and no alternative output is
+available, an error is raised. Otherwise, if compositing is enabled, active
+:doc:`/compositing/types/output/file_output` nodes are used to save the result.
+If no such nodes exist, an error is reported.
+
+Playblast operations also require an active output method. Both *Render
+Playblast* and *Render Playblast on Keyframes* will raise an error when render
+output is disabled in this panel.
 
 .. _bpy.types.RenderSettings.filepath:
 
@@ -23,15 +45,14 @@ File Path
    This setting expands :ref:`files-blend-relative_paths`
    where a ``//`` prefix represents the directory of the current blend-file.
 
-Saving
-   .. _bpy.types.RenderSettings.use_file_extension:
+.. _bpy.types.RenderSettings.use_file_extension:
 
-   File Extensions
+Saving -- File Extensions
       Adds the correct file extensions per file type to the output files.
 
-   .. _bpy.types.RenderSettings.use_render_cache:
+.. _bpy.types.RenderSettings.use_render_cache:
 
-   Cache Result
+Saving -- Cache Result
       Saves the rendered view layers and their :doc:`passes </render/layers/passes>` to a multi-layer OpenEXR image.
       The Compositor can then use this file to improve performance, especially for heavy compositing.
 
@@ -40,18 +61,30 @@ Saving
       You can also load it back into the Image Editor's Render Result, even after closing
       and reopening Blender; see :ref:`Open Cached Render <bpy.ops.image.read_viewlayers>`.
 
+.. _bpy.types.ImageFormatSettings.media_type:
+
+Media Type
+   The type of media to save.
+
+   :Image:
+      Saves each input as a separate image file.
+      Each input can use its own image format settings.
+   :Multi-Layer EXR:
+      Saves all inputs together in a single multi-layer OpenEXR file.
+   :Video:
+      Encodes each frame into a video container.
+      Encoding options can be found in the `Encoding`_ panel.
+
 .. _bpy.types.ImageFormatSettings.file_format:
 
-File Format
-   Choose the file format to save to. Based on which format is used,
+File Format :guilabel:`Image`
+   Choose the image file format to save to. Based on which format is used,
    other options such as channels, bit depth and compression level are available.
-
-   For rendering out to images see: :ref:`saving images <bpy.types.ImageFormatSettings>`,
-   for rendering to videos see the `Encoding`_ panel.
+   See :ref:`saving images <bpy.types.ImageFormatSettings>` for list of image encoding options.
 
 .. _bpy.types.ImageFormatSettings.color_mode:
 
-Color
+Color :guilabel:`Image` :guilabel:`Multi-Layer EXR`
    The color format to save the image or video to.
    This setting is used by some formats to optimize how much data is written to the file.
    Note, *RGBA* is not available for all image formats, check the list above for details.
@@ -60,16 +93,15 @@ Color
    :RGB: Saves red, green and blue channels
    :RGBA: Saves red, green, blue and alpha channels.
 
-Image Sequence
-   .. _bpy.types.RenderSettings.use_overwrite:
+.. _bpy.types.RenderSettings.use_overwrite:
 
-   Overwrite
-      Overwrite existing files when rendering.
+Image Sequence -- Overwrite :guilabel:`Image` :guilabel:`Multi-Layer EXR`
+   Overwrite existing files when rendering.
 
-   .. _bpy.types.RenderSettings.use_placeholder:
+.. _bpy.types.RenderSettings.use_placeholder:
 
-   Placeholders
-      Create empty placeholder frames while rendering.
+Image Sequence -- Overwrite :guilabel:`Image` :guilabel:`Multi-Layer EXR`
+   Create empty placeholder frames while rendering.
 
 .. hint:: Primitive Render Farm
 
@@ -85,7 +117,7 @@ Image Sequence
 Color Management
 ================
 
-This panel controls how :doc:`/render/color_management` is applied when saving images.
+This panel controls how :doc:`/render/color_management/index` is applied when saving images.
 
 .. _bpy.types.ImageFormatSettings.color_management:
 
@@ -223,6 +255,15 @@ Profile :guilabel:`ProRes`
 Output Quality
    These are preset `Rate`_.
 
+.. _bpy.types.FFmpegSettings.custom_constant_rate_factor:
+
+CRF :guilabel:`Custom Quality`
+   Constant Rate Factor (CRF). A smaller CRF results in better video quality but larger file size.
+   The range of allowed CRF values is dependent on the codec.
+   They are: 0-51 for AV1, H.264 and H.265/HEVC; 0-63 for WebP/VP9 and 1-31 for MPEG-4/DivX.
+   CRF values outside the allowed range are clamped to the nearest allowed value.
+   A CRF value of 0 results in lossless encoding.
+
 .. _bpy.types.FFmpegSettings.ffmpeg_preset:
 
 Encoding Speed
@@ -238,12 +279,12 @@ Keyframe Interval
 .. _bpy.types.FFmpegSettings.use_max_b_frames:
 
 Max B-frames
-   Enables the use of :term:`B‑frames <Frame Types>`.
+   Enables the use of :term:`B-frames <Frame Types>`.
 
    .. _bpy.types.FFmpegSettings.max_b_frames:
 
    Interval
-      The maximum number of :term:`B‑frames <Frame Types>` between non-B-frames.
+      The maximum number of :term:`B-frames <Frame Types>` between non-B-frames.
 
 
 Rate

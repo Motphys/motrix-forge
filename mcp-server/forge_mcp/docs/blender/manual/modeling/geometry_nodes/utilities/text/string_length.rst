@@ -1,5 +1,6 @@
 .. index:: Geometry Nodes; String Length
 .. _bpy.types.FunctionNodeStringLength:
+.. --- copy below this line ---
 
 ******************
 String Length Node
@@ -17,12 +18,6 @@ Inputs
 
 String
    String value to be evaluated.
-
-
-Properties
-==========
-
-This node has no properties.
 
 
 Outputs

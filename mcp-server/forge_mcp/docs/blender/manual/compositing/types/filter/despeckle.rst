@@ -9,7 +9,7 @@ Despeckle Node
    :align: right
    :alt: Despeckle Node.
 
-The *Despeckle node* is used to smooth areas of an image in which noise is noticeable,
+The *Despeckle* node is used to smooth areas of an image in which noise is noticeable,
 while leaving complex areas untouched.
 
 This works by the standard deviation of each pixel and its neighbors is calculated to determine
@@ -20,20 +20,14 @@ If the complexity is lower than the threshold then the area is smoothed using a 
 Inputs
 ======
 
-Fac
-   Controls the amount the filter effects the image.
 Image
    Standard color input.
+Factor
+   Controls the amount the filter affects the image.
 Color Threshold
    The threshold to control high/low complexity.
 Neighbor Threshold
    The threshold to control the number of pixels that must match.
-
-
-Properties
-==========
-
-This node has no properties.
 
 
 Outputs

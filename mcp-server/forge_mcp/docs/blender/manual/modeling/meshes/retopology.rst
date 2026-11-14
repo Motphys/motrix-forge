@@ -22,7 +22,7 @@ Remeshing
 
 Remeshing automatically rebuilds the mesh with a uniform topology.
 You can run it with a high resolution to make a simple mesh denser, making it
-more suitable for :doc:`sculpting </sculpt_paint/sculpting/introduction/general>`.
+more suitable for :doc:`sculpting </sculpt_paint/sculpting/index>`.
 Alternatively, you can run it with a low resolution to simplify and clean up
 overly dense or messy geometry, such as from a sculpt or a 3D scan.
 
@@ -155,6 +155,7 @@ Seed
    Random :term:`Seed` to use with the solver;
    different seeds will cause the remesher to generate different quad layouts on the mesh.
 
+.. _modeling-meshes-remesh-retopology:
 
 Retopology
 ==========

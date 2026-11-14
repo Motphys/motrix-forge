@@ -17,6 +17,7 @@ post-processing effect on the image.
    :maxdepth: 1
 
    anti_aliasing.rst
+   convolve.rst
    denoise.rst
    despeckle.rst
 
@@ -26,6 +27,7 @@ post-processing effect on the image.
    :maxdepth: 1
 
    dilate_erode.rst
+   mask_to_sdf.rst
    inpaint.rst
 
 ----------
@@ -35,7 +37,3 @@ post-processing effect on the image.
 
    filter.rst
    glare.rst
-   kuwahara.rst
-   pixelate.rst
-   posterize.rst
-   sun_beams.rst

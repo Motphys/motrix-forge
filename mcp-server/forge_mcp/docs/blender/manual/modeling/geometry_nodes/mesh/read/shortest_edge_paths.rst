@@ -45,12 +45,6 @@ Edge Cost
    The weight for each edge, used to determine the meaning of "shortest."
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 
@@ -60,3 +54,22 @@ Next Vertex Index
 
 Total Cost
    The remaining cost before an end vertex is reached.
+
+
+Examples
+========
+
+.. figure:: /images/modeling_geometry-nodes_shortest_edge_paths_example-1.jpg
+   :align: center
+
+   Shortest Edge Paths on a deformed Ico Sphere.
+
+.. figure:: /images/modeling_geometry-nodes_shortest_edge_paths_example-2.jpg
+   :width: 320px
+
+   Gradient-colored maze showing shortest paths to a target sphere.
+
+.. figure:: /images/modeling_geometry-nodes_shortest_edge_paths_example-3.png
+   :width: 320px
+
+   Organic branching structure on Suzanne.

@@ -17,18 +17,35 @@ overlaying another image, etc.
 .. toctree::
    :maxdepth: 1
 
-   mix/index.rst
+   alpha_convert.rst
+   alpha_over.rst
+   set_alpha.rst
 
 ----------
 
 .. toctree::
    :maxdepth: 1
 
-   alpha_convert.rst
+   combine_color.rst
+   separate_color.rst
+
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   depth_combine.rst
+   Mix Color <mix_color.rst>
+
+----------
+
+.. toctree::
+   :maxdepth: 1
+
    blackbody.rst
    color_ramp.rst
    convert_colorspace.rst
-   set_alpha.rst
+   convert_to_display.rst
 
 ----------
 

@@ -3,105 +3,92 @@
 Falloff
 *******
 
-The Falloff allows you to control the *Strength* falloff of the brush.
-The falloff is mapped from the center of the brush (left part of the curve)
-towards its borders (right part of the curve).
-Changing the shape of the curve will make the brush softer or harder.
-Read more about using the :ref:`ui-curve-widget`.
+The *Falloff* is a curve that determines how the strength of the brush decreases
+with increasing distance from the center. You can set up a custom curve or choose
+a predefined one.
 
 .. figure:: /images/sculpt-paint_brush_falloff_brush-curve.png
 
-   Brush curve example.
+   Brush falloff example.
 
-.. _bpy.ops.brush.curve_preset:
+.. _bpy.ops.brush.curve_distance_falloff_preset:
 .. _bpy.types.Brush.curve:
 
 Curve Preset
-   :Custom:
-      You can choose how the strength of the falloff is determined from the center of the brush
-      to the borders by manually manipulating the control points within the curve widget.
-      There are also a couple of preset custom curves displayed at the bottom of the curve widget
-      that can be used on their own or as a starting point for tweaking.
+   Custom
+      Shows a :doc:`/interface/controls/templates/curve` for configuring a custom falloff.
+      The left side of the curve corresponds to the center of the brush while the right side
+      corresponds to the edge.
 
-      .. list-table:: Custom Preset types.
 
-         * - .. figure:: /images/sculpt-paint_brush_falloff_custom-smooth.png
+   Predefined
+      The predefined falloff curves look as follows:
 
-                Smooth.
+      .. list-table:: Built-in falloff curves
 
-           - .. figure:: /images/sculpt-paint_brush_falloff_custom-sphere.png
+         * - .. figure:: /images/sculpt-paint_brush_falloff_smooth.png
 
-                Sphere.
+                Smooth
 
-           - .. figure:: /images/sculpt-paint_brush_falloff_custom-root.png
+           - .. figure:: /images/sculpt-paint_brush_falloff_smoother.png
 
-                Root.
+                Smoother
 
-         * - .. figure:: /images/sculpt-paint_brush_falloff_custom-sharp.png
+           - .. figure:: /images/sculpt-paint_brush_falloff_sphere.png
 
-                Sharp.
+                Sphere
 
-           - .. figure:: /images/sculpt-paint_brush_falloff_custom-linear.png
+         * - .. figure:: /images/sculpt-paint_brush_falloff_root.png
 
-                Linear.
+                Root
 
-           - .. figure:: /images/sculpt-paint_brush_falloff_custom-constant.png
+           - .. figure:: /images/sculpt-paint_brush_falloff_sharp.png
 
-                Constant.
+                Sharp
 
-   :Smooth:
-      The center strength, the border strength, and the falloff transition between them are evenly distributed.
-   :Smoother:
-      Similar to *Smooth* but produces a wider center point of the brush before tapering off.
-   :Sphere:
-      The strength of the brush is predominately at its strongest point
-      with a steep falloff near the border of the brush.
-   :Root:
-      Similar to a Sphere but the center is a more concentrated point.
-   :Sharp:
-      The center of the brush is the strongest point
-      then exponentially tapers off to a lower strength, creating a fine point.
-   :Linear:
-      With the center being the strongest,
-      the strength will consistently weaken as it reaches the border of the brush.
-   :Sharper:
-      Similar to *Sharp* but the center point is more condensed.
-   :Inverse Square:
-      A hybrid between *Smooth* and *Sphere*.
-   :Constant:
-      The strength of the brush remains unified across the entire brush.
-      This will create a sharp edge at the border of the brush.
+           - .. figure:: /images/sculpt-paint_brush_falloff_linear.png
 
-   .. figure:: /images/sculpt-paint_brush_falloff_demo.png
+                Linear
 
-      (From Left to Right) Smooth, Smoother, Sphere, Root,
-      Sharp, Linear, Sharper, Inverse square, Constant.
+         * - .. figure:: /images/sculpt-paint_brush_falloff_sharper.png
+
+                Sharper
+
+           - .. figure:: /images/sculpt-paint_brush_falloff_invsquare.png
+
+                Inverse Square
+
+           - .. figure:: /images/sculpt-paint_brush_falloff_constant.png
+
+                Constant
 
 .. _bpy.types.Brush.falloff_shape:
 
 Falloff Shape
-   Use projected or spherical falloff.
-   Note, this is not supported in Texture Paint Mode.
+   Determines how the falloff distance is calculated.
 
    :Sphere:
-      Applies brushes influence in a sphere, outwards from the center.
+      The falloff is calculated using a sphere in three-dimensional world space.
+      If two points on the mesh appear near each other in the 3D Viewport but are
+      far away in the world, painting one will not affect the other.
    :Projected:
-      This turns the brush influence into a cylinder (the depth along the view is ignored) instead of a sphere.
-      It can be used along the outline of a mesh to adjust its silhouette.
+      The falloff is calculated using a circle in two-dimensional screen space.
+      If two points on the mesh appear near each other in the 3D Viewport, painting
+      one will also affect the other, no matter their distance in the world.
 
-
-Front-Face Falloff
-==================
-
-As faces point away from the view the brush strokes fade away to prevent harsh edges.
+   Texture Paint Mode does not have this option -- it always uses *Projected*.
 
 .. _bpy.types.ImagePaint.use_normal_falloff:
 .. _bpy.types.Brush.use_frontface_falloff:
 
 Normal Falloff / Front-Face Falloff
-   If disabled, the normal of the surface has no effect on the falloff.
+   Weakens the brush strength for faces whose normal points towards the screen edges
+   instead of the camera.
 
-.. _bpy.types.ImagePaint.normal_angle:
+   This feature is not available in Sculpt Mode.
 
-Angle
-   The angle at which the falloff begins.
+   .. _bpy.types.ImagePaint.normal_angle:
+
+   Angle
+      The minimum angle between the face normal and the viewing direction for the
+      falloff to start.

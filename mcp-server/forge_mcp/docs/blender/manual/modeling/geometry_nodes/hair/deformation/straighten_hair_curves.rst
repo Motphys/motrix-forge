@@ -4,7 +4,10 @@
 Straighten Hair Curves
 **********************
 
-Straightens hair curves between root and tip.
+The *Straighten Hair Curves* node aligns the points of each hair curve along a straight line
+between its root and tip.
+This can be used to relax curly or noisy hair, create stylized grooms, or prepare curves
+for further deformation or simulation.
 
 .. peertube:: grmo32udHpGWz2TwdEp9GD
 
@@ -13,25 +16,24 @@ Inputs
 ======
 
 Geometry
-   Input Geometry (only curves will be affected).
+   The input geometry containing the hair curves to straighten.
 
 Amount
-   Amount of straightening. Negative values will result in crumpling the curves.
+   Controls how much each curve is straightened.
+   A value of 0.0 leaves the hair unchanged, while 1.0 fully aligns points along a straight line.
+   Negative values exaggerate curve irregularities, causing crumpling or distortion.
 
 Shape
-   Shape of the influence along curves (0=constant, 0.5=linear).
+   Defines how the straightening influence changes along the length of each curve.
+   A value of 0.0 applies a constant effect, while 0.5 produces a linear falloff from root to tip.
 
 Preserve Length
-   Preserve each curve's length during deformation.
-
-
-Properties
-==========
-
-This node has no properties.
+   When enabled, keeps the original length of each curve during deformation.
+   When disabled, curves may shorten or stretch slightly as they are straightened.
 
 
 Outputs
 =======
 
-**Geometry**
+Geometry
+   The resulting geometry with straightened hair curves.

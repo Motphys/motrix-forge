@@ -33,14 +33,14 @@ Header
 
    Sort order of the channels.
 
-Show Only Selected (mouse cursor icon)
+:bl-icon:`restrict_select_off` Only Show Selected
    Limits Dope Sheet channels to only information about selected tracks.
-Hidden (ghost icon)
+:bl-icon:`ghost_enabled` Display Hidden
    Includes information from hidden tracks.
 
 .. _bpy.types.MovieTrackingDopesheet.sort_method:
 
-Sort Method
+Dopesheet Sort Field
    Sort order of the tracks.
 
    :Name: Sort selected tracks in alphabetical order based on their names.

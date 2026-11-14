@@ -14,11 +14,11 @@ Blends two images together, much like how an image editing program blends two la
 Inputs
 ======
 
-Fac
+Factor
    The opacity of the foreground image.
-Image
+A
    The background image. Determines the dimensions of the output.
-Image
+B
    The foreground image.
 
 Keep in mind that, unlike image editing programs where the foreground layer is on top,
@@ -55,7 +55,7 @@ Blending Mode
    `Soft Light <https://docs.krita.org/en/reference_manual/blending_modes/lighten.html#bm-soft-light>`__
       Like Overlay, but more subtle.
    `Linear Light <https://docs.krita.org/en/reference_manual/blending_modes/lighten.html#bm-linear-light>`__
-      Applies Linear Burn blending (background + foregound - 1) if the foreground color's lightness
+      Applies Linear Burn blending (background + foreground - 1) if the foreground color's lightness
       is below 0.5, or Linear Dodge (background + foreground) if it's above.
    `Difference <https://docs.krita.org/en/reference_manual/blending_modes/negative.html#bm-difference>`__
       For each component, subtracts the lower value from the higher value.
@@ -113,7 +113,7 @@ darkening it and increasing contrast.
 The top :doc:`/compositing/types/color/adjust/rgb_curves` darkens the image by linearly scaling each
 color value to a smaller one.
 
-The bottom curve node increases constract by making small values smaller and large values larger.
+The bottom curve node increases contrast by making small values smaller and large values larger.
 
 Finally, the Mix node blends the two together.
 
@@ -167,7 +167,7 @@ Decoding an Image for your Watermark
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 When you see an image that you think might be yours,
-use the node tree below to compare it to your stock image (pre-watermarked original).
+use the node tree below to compare it to your stock image (non-watermarked original).
 In this tree, the *Mix* node is set to Difference,
 and the *Map Value* node amplifies any difference.
 You can see how the original mark clearly stands out.

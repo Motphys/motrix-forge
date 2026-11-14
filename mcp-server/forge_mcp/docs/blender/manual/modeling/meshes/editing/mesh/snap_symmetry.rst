@@ -9,24 +9,32 @@ Snap to Symmetry
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Mesh --> Snap to Symmetry`
 
-The Snap to Symmetry tool lets you snap a mesh vertices to their mirrored neighbors.
+The *Snap to Symmetry* operator gives perfect symmetry to a mesh that was only approximately
+symmetrical before. Unlike :doc:`/modeling/meshes/editing/mesh/symmetrize`, which deletes
+one half of the mesh and mirrors the other, *Snap to Symmetry* matches up pairs of vertices
+based on their position, then repositions them.
 
-Useful when dealing with meshes which are mostly symmetrical,
-but have vertices which have been moved enough that Blender
-does not detect them as mirrored (when X Mirror option is enabled for example).
+This is useful after, for example, moving a few vertices while accidentally having
+:ref:`Mesh Symmetry <modeling_meshes_tools-settings_mirror>` disabled.
 
-This can be caused by accident when editing without X Mirror enabled. Sometimes models
-imported from other applications are asymmetrical enough that mirror fails too.
+Options
+=======
 
 Direction
-   Specify the axis and direction to snap. Can be any of the three axes,
-   and either positive to negative, or negative to positive.
+   The axis and direction of the effect, in the object's :term:`local space`.
+   For example, *-X to +X* goes over vertices to the left of the
+   :doc:`object origin </scene_layout/object/origin>` (negative X coordinate)
+   and matches them up with vertices on the right (positive X coordinate).
 Threshold
-   Specify the search radius to use when finding matching vertices.
+   The search radius for finding matching vertices.
 Factor
-   Support for blending mirrored locations from one side to the other (0.5 is an equal mix of both).
+   When set to 1, both vertices in each matching pair receive the position of the vertex on the "from"
+   side of the *Direction*. When set to 0, both receive the position of the vertex on the "to" side.
+   Other values result in interpolation: with a value of 0.5, for example, both vertices are
+   moved to their averaged position.
 Center
-   Snap vertices along the center axis to zero.
+   Move vertices that are near the symmetry plane so they're exactly on that plane (by setting their
+   coordinate for the *Direction* axis to zero).
 
 .. list-table::
 

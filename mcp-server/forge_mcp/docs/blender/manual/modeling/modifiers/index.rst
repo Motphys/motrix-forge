@@ -22,3 +22,8 @@ Built-In Modifiers
    deform/index.rst
    normals/index.rst
    physics/index.rst
+
+.. toctree::
+   :maxdepth: 1
+
+   geometry_nodes.rst

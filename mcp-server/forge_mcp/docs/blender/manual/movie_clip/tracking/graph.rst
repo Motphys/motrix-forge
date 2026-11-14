@@ -3,14 +3,6 @@
 Graph View
 **********
 
-.. figure:: /images/movie-clip_tracking_graph_example.png
-
-   Graph View.
-
-
-Introduction
-============
-
 The graph or curves view has numerous purposes based on the color of the lines.
 The red and green lines on the graph show you the speed of the trackers at a given frame.
 Green is vertical movement, Red is horizontal. Therefore the first frames will always be at zero.
@@ -22,24 +14,24 @@ The high points will show you where in your shot you are having inaccurate track
 
 Frames outside of scene frame range are darkened.
 
+.. figure:: /images/movie-clip_tracking_graph_example.png
+
+   Graph View.
+
 
 Header
 ======
 
-Show Selected (mouse cursor icon)
+:bl-icon:`restrict_select_off` Only Show Selected
    Displays the graph for only selected trackers.
-
-Display Hidden (ghost icon)
+:bl-icon:`ghost_enabled` Display Hidden
    Displays channels from objects that are hidden.
-Filter
-   Display options, defines what curves are visible.
-
-   Frames
-      Visualizes per-frame average reprojection error of all tracks in the active tracking object.
-   Motion
-      Shows curves for X and Y speed of tracks.
-   Error
-      Per-frame reprojection error of tracks.
+:bl-icon:`sequence` Show Frames
+   Visualizes per-frame average reprojection error of all tracks in the active tracking object.
+:bl-icon:`graph` Show Tracks Motion
+   Shows curves for X and Y speed of tracks.
+:bl-icon:`anim` Show Tracks Error
+   Per-frame reprojection error of tracks.
 
 
 Usage

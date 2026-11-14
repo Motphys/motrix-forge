@@ -106,7 +106,7 @@ Style Start, End
    This can be used for example to create arrows to point out specific details in a scene.
 
 
-.. _bpy.types.GPencilLayer:
+.. _bpy.types.AnnotationLayer:
 
 Annotation Layers
 =================
@@ -114,7 +114,7 @@ Annotation Layers
 When the annotation tool is enabled, the settings for managing multiple layers
 can be found in the :menuselection:`Sidebar --> View --> Annotations` panel.
 
-.. _bpy.types.GPencilLayer.annotation_opacity:
+.. _bpy.types.AnnotationLayer.annotation_opacity:
 
 Opacity
    Adjusts the opacity of existing and new strokes.
@@ -123,7 +123,7 @@ Thickness
    Adjusts the thickness of existing and new strokes.
 
 
-.. _bpy.types.GPencilLayer.use_annotation_onion_skinning:
+.. _bpy.types.AnnotationLayer.use_annotation_onion_skinning:
 
 Onion Skin
 ----------
@@ -133,10 +133,10 @@ Onion skinning only works in the 3D Viewport and Sequencer.
 See the Grease Pencil documentation for an explanation of
 :doc:`Onion Skinning </grease_pencil/properties/onion_skinning>`.
 
-.. _bpy.types.GPencilLayer.annotation_onion_before_color:
-.. _bpy.types.GPencilLayer.annotation_onion_before_range:
-.. _bpy.types.GPencilLayer.annotation_onion_after_color:
-.. _bpy.types.GPencilLayer.annotation_onion_after_range:
+.. _bpy.types.AnnotationLayer.annotation_onion_before_color:
+.. _bpy.types.AnnotationLayer.annotation_onion_before_range:
+.. _bpy.types.AnnotationLayer.annotation_onion_after_color:
+.. _bpy.types.AnnotationLayer.annotation_onion_after_range:
 
 Before/After
    Color to use before and after the current frame on ghost frames.

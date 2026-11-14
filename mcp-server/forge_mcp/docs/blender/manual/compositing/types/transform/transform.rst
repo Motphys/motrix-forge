@@ -29,8 +29,8 @@ Scale
    gives half the size and a value of 2.0 gives twice the size of the original image.
 
 
-Properties
-==========
+Sampling
+--------
 
 Filter
    Determines how pixel values are interpolated when scaling or transforming images.
@@ -46,6 +46,17 @@ Filter
    :Bicubic:
       Computes a weighted average of a larger neighborhood of pixels for even smoother results.
       Ideal for photographic images or gradients where preserving fine detail is important.
+   :Anisotropic:
+      Adjusts interpolation based on the direction and scale of the transformation.
+      Helps reduce blurring or aliasing when scaling at steep angles or uneven resolutions,
+      especially useful in textures viewed at oblique angles or in detailed 3D projections.
+
+Extension X/Y
+   The extension mode applied to the X axis.
+
+   :Clip: Areas outside of the image are filled with transparency.
+   :Extend: Areas outside of the image are filled with the closest boundary pixel in the image.
+   :Repeat: Areas outside of the image are filled with repetitions of the image.
 
 
 Outputs

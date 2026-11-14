@@ -236,7 +236,7 @@ Use the figure directive for embedding images with captions:
 
 .. code-block:: rst
 
-   .. figure:: /images/interface_splash_current.png
+   .. figure:: /images/interface_splash_current.webp
 
       Splash screen of Blender.
 

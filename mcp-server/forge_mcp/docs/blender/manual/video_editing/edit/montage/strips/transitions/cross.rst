@@ -1,4 +1,4 @@
-.. _bpy.types.CrossSequence:
+.. _bpy.types.CrossStrip:
 
 ***********
 Cross Strip

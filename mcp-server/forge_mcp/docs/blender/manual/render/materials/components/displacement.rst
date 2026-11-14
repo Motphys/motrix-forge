@@ -4,8 +4,8 @@ Displacement
 
 Detail can be added to the shape of a surface with displacement shaders.
 
-To create displacement, connect a :doc:`Displacement </render/shader_nodes/vector/displacement>`
-or :doc:`Vector Displacement </render/shader_nodes/vector/vector_displacement>` node
+To create displacement, connect a :doc:`Displacement </render/shader_nodes/displacement/displacement>`
+or :doc:`Vector Displacement </render/shader_nodes/displacement/vector_displacement>` node
 to the displacement input of the Material Output node. Procedural, painted or baked textures can
 then be connected to these nodes.
 
@@ -48,7 +48,7 @@ The most accurate and memory intensive displacement method is to apply true disp
 the mesh surface.
 
 It requires the mesh to be finely subdivided, which can be memory intensive.
-:doc:`Adaptive Subdivision </render/cycles/object_settings/adaptive_subdiv>` is the best way
+:ref:`Adaptive Subdivision <modifiers-generate-subsurf-adaptive-subdivision>` is the best way
 to subdivide the mesh, so that exactly the right amount of subdivision is used depending on
 the distance of the object to the camera.
 

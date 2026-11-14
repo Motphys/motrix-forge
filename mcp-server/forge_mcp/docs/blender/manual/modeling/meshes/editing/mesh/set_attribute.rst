@@ -9,7 +9,7 @@ Set Attribute
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Mesh --> Set Attribute`
 
-Opens a pop-up window showing the name of the :term:`active` :term:`attribute`
+Opens a pop-up window showing the name of the active :term:`attribute`
 as well as the value of that attribute for the active element (vertex/edge/face).
 From there, you can change the value to apply it to all selected elements.
 

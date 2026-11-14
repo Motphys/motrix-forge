@@ -7,11 +7,9 @@ Emission
 
    :Panel:     :menuselection:`Particle System --> Emission`
 
-.. todo:: Update image
+.. figure:: /images/physics_particles_hair_emission_settings.png
 
-   .. figure:: /images/physics_particles_hair_emission_settings.png
-
-      Hair particle system settings.
+   Hair particle system settings.
 
 Number
    Sets the amount of hair strands. Use as few particles as possible

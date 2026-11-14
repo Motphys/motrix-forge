@@ -27,6 +27,9 @@ Snap Element Items
 :EDGE_PERPENDICULAR: Edge Perpendicular.
 
    Snap to the nearest point on an edge.
+:FACE_MIDPOINT: Face Center.
+
+   Snap to the middle of faces.
 :FACE_PROJECT: Face Project.
 
    Snap by projecting onto faces.

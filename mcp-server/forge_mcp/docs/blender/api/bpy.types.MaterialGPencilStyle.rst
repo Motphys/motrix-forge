@@ -5,226 +5,320 @@ MaterialGPencilStyle(bpy_struct)
 
 base class --- :class:`bpy_struct`
 
+
 .. class:: MaterialGPencilStyle(bpy_struct)
 
 
    .. attribute:: alignment_mode
 
-      Defines how align Dots and Boxes with drawing path and object rotation
+      Defines how align Dots and Boxes with drawing path and object rotation (default ``'PATH'``)
 
-      * ``PATH``
+      - ``PATH``
         Path -- Follow stroke drawing path and object rotation.
-      * ``OBJECT``
+      - ``OBJECT``
         Object -- Follow object rotation only.
-      * ``FIXED``
+      - ``FIXED``
         Fixed -- Do not follow drawing path or object rotation and keeps aligned with viewport.
 
-      :type: enum in [``'PATH'``, ``'OBJECT'``, ``'FIXED'``], default ``'PATH'``
+      :type: Literal['PATH', 'OBJECT', 'FIXED']
 
    .. attribute:: alignment_rotation
 
-      Additional rotation applied to dots and square texture of strokes. Only applies in texture shading mode.
+      Additional rotation applied to dots and square texture of strokes (in [-1.5708, 1.5708], default 0.0)
 
-      :type: float in [-1.5708, 1.5708], default 0.0
+      :type: float
 
    .. attribute:: color
 
-      :type: float array of 4 items in [0, 1], default (0.0, 0.0, 0.0, 0.0)
+      (array of 4 items, in [0, inf], default (0.0, 0.0, 0.0, 0.0))
+
+      :type: :class:`bpy_prop_array`\ [float]
 
    .. attribute:: fill_color
 
-      Color for filling region bounded by each stroke
+      Color for filling region bounded by each stroke (array of 4 items, in [0, inf], default (0.0, 0.0, 0.0, 0.0))
 
-      :type: float array of 4 items in [0, 1], default (0.0, 0.0, 0.0, 0.0)
+      :type: :class:`bpy_prop_array`\ [float]
 
    .. attribute:: fill_image
 
-      :type: :class:`Image`
+      :type: :class:`Image` | None
 
    .. attribute:: fill_style
 
-      Select style used to fill strokes
+      Select style used to fill strokes (default ``'SOLID'``)
 
-      * ``SOLID``
+      - ``SOLID``
         Solid -- Fill area with solid color.
-      * ``GRADIENT``
+      - ``GRADIENT``
         Gradient -- Fill area with gradient color.
-      * ``TEXTURE``
+      - ``TEXTURE``
         Texture -- Fill area with image texture.
 
-      :type: enum in [``'SOLID'``, ``'GRADIENT'``, ``'TEXTURE'``], default ``'SOLID'``
+      :type: Literal['SOLID', 'GRADIENT', 'TEXTURE']
 
    .. attribute:: flip
 
-      Flip filling colors
+      Flip filling colors (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: ghost
 
-      Display strokes using this color when showing onion skins
+      Display strokes using this color when showing onion skins (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: gradient_type
 
-      Select type of gradient used to fill strokes
+      Select type of gradient used to fill strokes (default ``'LINEAR'``)
 
-      * ``LINEAR``
+      - ``LINEAR``
         Linear -- Fill area with gradient color.
-      * ``RADIAL``
+      - ``RADIAL``
         Radial -- Fill area with radial gradient.
 
-      :type: enum in [``'LINEAR'``, ``'RADIAL'``], default ``'LINEAR'``
+      :type: Literal['LINEAR', 'RADIAL']
 
    .. attribute:: hide
 
-      Set color Visibility
+      Set color Visibility (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. data:: is_fill_visible
 
-      True when opacity of fill is set high enough to be visible
+      True when opacity of fill is set high enough to be visible (default False, readonly)
 
-      :type: boolean, default False, (readonly)
+      :type: bool
 
    .. data:: is_stroke_visible
 
-      True when opacity of stroke is set high enough to be visible
+      True when opacity of stroke is set high enough to be visible (default False, readonly)
 
-      :type: boolean, default False, (readonly)
+      :type: bool
 
    .. attribute:: lock
 
-      Protect color from further editing and/or frame changes
+      Protect color from further editing and/or frame changes (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: mix_color
 
-      Color for mixing with primary filling color
+      Color for mixing with primary filling color (array of 4 items, in [0, inf], default (0.0, 0.0, 0.0, 0.0))
 
-      :type: float array of 4 items in [0, 1], default (0.0, 0.0, 0.0, 0.0)
+      :type: :class:`bpy_prop_array`\ [float]
 
    .. attribute:: mix_factor
 
-      Mix Factor
+      Mix Factor (in [0, 1], default 0.0)
 
-      :type: float in [0, 1], default 0.0
+      :type: float
 
    .. attribute:: mix_stroke_factor
 
-      Mix Stroke Factor
+      Mix Stroke Factor (in [0, 1], default 0.0)
 
-      :type: float in [0, 1], default 0.0
+      :type: float
 
    .. attribute:: mode
 
-      Select line type for strokes
+      Select line type for strokes (default ``'LINE'``)
 
-      * ``LINE``
+      - ``LINE``
         Line -- Draw strokes using a continuous line.
-      * ``DOTS``
+      - ``DOTS``
         Dots -- Draw strokes using separated dots.
-      * ``BOX``
+      - ``BOX``
         Squares -- Draw strokes using separated squares.
 
-      :type: enum in [``'LINE'``, ``'DOTS'``, ``'BOX'``], default ``'LINE'``
+      :type: Literal['LINE', 'DOTS', 'BOX']
 
    .. attribute:: pass_index
 
-      Index number for the "Color Index" pass
+      Index number for the "Color Index" pass (in [0, 32767], default 0)
 
-      :type: int in [0, 32767], default 0
+      :type: int
 
    .. attribute:: pixel_size
 
-      Texture Pixel Size factor along the stroke
+      Texture Pixel Size factor along the stroke (in [1, 5000], default 0.0)
 
-      :type: float in [1, 5000], default 0.0
+      :type: float
+
+   .. attribute:: placement_count
+
+      Number of dots placed per segment (in [1, inf], default 0)
+
+      :type: int
+
+   .. attribute:: placement_density
+
+      Density of dots along the stroke (in [0, inf], default 10.0)
+
+      :type: float
+
+   .. attribute:: placement_mode
+
+      Defines how Dots or Squares are placed along strokes (default ``'RADIUS'``)
+
+      - ``COUNT``
+        Count -- Place dots evenly along each segment of the stroke.
+      - ``RADIUS``
+        Radius -- Place dots evenly with respect to radius.
+      - ``DENSITY``
+        Density -- Place dots evenly along the length of the stroke.
+
+      :type: Literal['COUNT', 'RADIUS', 'DENSITY']
+
+   .. attribute:: placement_radius_spacing
+
+      Spacing between dots as a percentage of the diameter (in [0, inf], default 100.0)
+
+      :type: float
+
+   .. attribute:: random_hue_factor
+
+      Randomize color hue (in [0, 1], default 0.0)
+
+      :type: float
+
+   .. attribute:: random_noise_scale
+
+      Scale the noise frequency (in [0, inf], default 1.0)
+
+      :type: float
+
+   .. attribute:: random_rotation_factor
+
+      Randomize texture rotation (in [0, 1], default 0.0)
+
+      :type: float
+
+   .. attribute:: random_saturation_factor
+
+      Randomize color saturation (in [0, 1], default 0.0)
+
+      :type: float
+
+   .. attribute:: random_size_factor
+
+      Randomize the size (in [0, 1], default 0.0)
+
+      :type: float
+
+   .. attribute:: random_strength_factor
+
+      Randomize strength (in [0, 1], default 0.0)
+
+      :type: float
+
+   .. attribute:: random_value_factor
+
+      Randomize color value (in [0, 1], default 0.0)
+
+      :type: float
 
    .. attribute:: show_fill
 
-      Show stroke fills of this material
+      Show stroke fills of this material (default False)
 
-      :type: boolean, default False
+      .. deprecated:: 5.10 removal planned in version 6.0
+
+         Unused but kept for compatibility with older versions of Blender.
+
+      :type: bool
 
    .. attribute:: show_stroke
 
-      Show stroke lines of this material
+      Show stroke lines of this material (default False)
 
-      :type: boolean, default False
+      .. deprecated:: 5.10 removal planned in version 6.0
+
+         Unused but kept for compatibility with older versions of Blender.
+
+      :type: bool
 
    .. attribute:: stroke_image
 
-      :type: :class:`Image`
+      :type: :class:`Image` | None
 
    .. attribute:: stroke_style
 
-      Select style used to draw strokes
+      Select style used to draw strokes (default ``'SOLID'``)
 
-      * ``SOLID``
+      - ``SOLID``
         Solid -- Draw strokes with solid color.
-      * ``TEXTURE``
+      - ``TEXTURE``
         Texture -- Draw strokes using texture.
 
-      :type: enum in [``'SOLID'``, ``'TEXTURE'``], default ``'SOLID'``
+      :type: Literal['SOLID', 'TEXTURE']
 
    .. attribute:: texture_angle
 
-      Texture Orientation Angle
+      Texture Orientation Angle (in [-inf, inf], default 0.0)
 
-      :type: float in [-inf, inf], default 0.0
+      :type: float
 
    .. attribute:: texture_clamp
 
-      Do not repeat texture and clamp to one instance only
+      Do not repeat texture and clamp to one instance only (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: texture_offset
 
-      Shift Texture in 2d Space
+      Shift Texture in 2d Space (array of 2 items, in [-inf, inf], default (0.0, 0.0))
 
-      :type: :class:`mathutils.Vector` of 2 items in [-inf, inf], default (0.0, 0.0)
+      :type: :class:`mathutils.Vector`
 
    .. attribute:: texture_scale
 
-      Scale Factor for Texture
+      Scale Factor for Texture (array of 2 items, in [-inf, inf], default (0.0, 0.0))
 
-      :type: :class:`mathutils.Vector` of 2 items in [-inf, inf], default (0.0, 0.0)
+      :type: :class:`mathutils.Vector`
 
    .. attribute:: use_fill_holdout
 
-      Remove the color from underneath this stroke by using it as a mask
+      Remove the color from underneath this stroke by using it as a mask (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_overlap_strokes
 
-      Disable stencil and overlap self intersections with alpha materials
+      Disable stencil and overlap self intersections with alpha materials (default False)
 
-      :type: boolean, default False
+      :type: bool
+
+   .. attribute:: use_randomization
+
+      Use material randomization (default False)
+
+      :type: bool
 
    .. attribute:: use_stroke_holdout
 
-      Remove the color from underneath this stroke by using it as a mask
+      Remove the color from underneath this stroke by using it as a mask (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. classmethod:: bl_rna_get_subclass(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: :class:`bpy.types.Struct` | None
       :return: The RNA type or default when not found.
-      :rtype: :class:`bpy.types.Struct` subclass
+      :rtype: :class:`bpy.types.Struct`
 
 
    .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: type | None
       :return: The class or default when not found.
       :rtype: type
 
@@ -235,7 +329,7 @@ Inherited Properties
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.id_data`
+   - :class:`bpy_struct.id_data`
 
 Inherited Functions
 -------------------
@@ -243,29 +337,30 @@ Inherited Functions
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.as_pointer`
-   * :class:`bpy_struct.driver_add`
-   * :class:`bpy_struct.driver_remove`
-   * :class:`bpy_struct.get`
-   * :class:`bpy_struct.id_properties_clear`
-   * :class:`bpy_struct.id_properties_ensure`
-   * :class:`bpy_struct.id_properties_ui`
-   * :class:`bpy_struct.is_property_hidden`
-   * :class:`bpy_struct.is_property_overridable_library`
-   * :class:`bpy_struct.is_property_readonly`
-   * :class:`bpy_struct.is_property_set`
-   * :class:`bpy_struct.items`
-   * :class:`bpy_struct.keyframe_delete`
-   * :class:`bpy_struct.keyframe_insert`
-   * :class:`bpy_struct.keys`
-   * :class:`bpy_struct.path_from_id`
-   * :class:`bpy_struct.path_resolve`
-   * :class:`bpy_struct.pop`
-   * :class:`bpy_struct.property_overridable_library_set`
-   * :class:`bpy_struct.property_unset`
-   * :class:`bpy_struct.rna_ancestors`
-   * :class:`bpy_struct.type_recast`
-   * :class:`bpy_struct.values`
+   - :class:`bpy_struct.as_pointer`
+   - :class:`bpy_struct.driver_add`
+   - :class:`bpy_struct.driver_remove`
+   - :class:`bpy_struct.get`
+   - :class:`bpy_struct.id_properties_clear`
+   - :class:`bpy_struct.id_properties_ensure`
+   - :class:`bpy_struct.id_properties_ui`
+   - :class:`bpy_struct.is_property_hidden`
+   - :class:`bpy_struct.is_property_overridable_library`
+   - :class:`bpy_struct.is_property_readonly`
+   - :class:`bpy_struct.is_property_set`
+   - :class:`bpy_struct.items`
+   - :class:`bpy_struct.keyframe_delete`
+   - :class:`bpy_struct.keyframe_insert`
+   - :class:`bpy_struct.keys`
+   - :class:`bpy_struct.path_from_id`
+   - :class:`bpy_struct.path_from_module`
+   - :class:`bpy_struct.path_resolve`
+   - :class:`bpy_struct.pop`
+   - :class:`bpy_struct.property_overridable_library_set`
+   - :class:`bpy_struct.property_unset`
+   - :class:`bpy_struct.rna_ancestors`
+   - :class:`bpy_struct.type_recast`
+   - :class:`bpy_struct.values`
 
 References
 ----------
@@ -273,5 +368,5 @@ References
 .. hlist::
    :columns: 2
 
-   * :class:`Material.grease_pencil`
+   - :class:`Material.grease_pencil`
 

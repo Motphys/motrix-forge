@@ -20,5 +20,5 @@ In the case that Face Sets were already used, joining objects or creating new ge
 automatically assign new Face Sets. This makes it immediately possible to target each new geometry, for example via
 auto-masking. If no Face Sets are created, use the :ref:`bpy.ops.sculpt.face_sets_init` operator to create them.
 
-Face Sets and Masked geometry can also be extracted via :ref:`bpy.ops.mesh.paint_mask_extract`
-or sliced into a new object via :ref:`bpy.ops.mesh.paint_mask_slice`.
+Face Sets and Masked geometry can also be extracted via :ref:`bpy.ops.sculpt.paint_mask_extract`
+or sliced into a new object via :ref:`bpy.ops.sculpt.paint_mask_slice`.

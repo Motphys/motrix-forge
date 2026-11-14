@@ -9,7 +9,7 @@ Rotate Node
    :align: right
    :alt: Rotate Node.
 
-This node rotates an image.
+The *Rotate* node rotates the input image around its center based on the specified angle.
 
 
 Inputs
@@ -17,14 +17,14 @@ Inputs
 
 Image
    Standard color input.
-Degr
-   Rotation angle in degree. Positive values rotate clockwise and negative ones counterclockwise.
+Angle
+   The amount of rotation. Positive values rotate clockwise and negative ones counterclockwise.
 
 
-Properties
-==========
+Sampling
+========
 
-Filter
+Interpolation
    Determines how pixel values are interpolated when scaling or transforming images.
 
    :Nearest:
@@ -38,6 +38,17 @@ Filter
    :Bicubic:
       Computes a weighted average of a larger neighborhood of pixels for even smoother results.
       Ideal for photographic images or gradients where preserving fine detail is important.
+   :Anisotropic:
+      Adjusts interpolation based on the direction and scale of the transformation.
+      Helps reduce blurring or aliasing when scaling at steep angles or uneven resolutions,
+      especially useful in textures viewed at oblique angles or in detailed 3D projections.
+
+Extension X/Y
+   The extension mode applied to the X axis.
+
+   :Clip: Areas outside of the image are filled with transparency.
+   :Extend: Areas outside of the image are filled with the closest boundary pixel in the image.
+   :Repeat: Areas outside of the image are filled with repetitions of the image.
 
 
 Outputs

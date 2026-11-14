@@ -1,9 +1,9 @@
 .. index:: Geometry Nodes; Set Mesh Normal
 .. _bpy.types.GeometryNodeSetMeshNormal:
 
-*********************
+********************
 Set Mesh Normal Node
-*********************
+********************
 
 .. figure:: /images/node-types_GeometryNodeSetMeshNormal.webp
    :align: right

@@ -25,12 +25,6 @@ Name
    The name of the Grease Pencil layer to match.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

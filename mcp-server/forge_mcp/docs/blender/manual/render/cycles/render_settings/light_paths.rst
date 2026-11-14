@@ -103,7 +103,7 @@ Transmission
 Volume
    Maximum number of volume scattering bounces.
 
-.. _bpy.types.CyclesRenderSettings.max_transparent_bounces:
+.. _bpy.types.CyclesRenderSettings.transparent_max_bounces:
 
 Transparent
    Maximum number of transparency bounces.

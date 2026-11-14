@@ -142,7 +142,7 @@ Outputs
 
 Color
    RGB color from image. If the image has transparency, the color is premultiplied if the Alpha output is used,
-   and unpremultiplied (straight) otherwise.
+   and non-premultiplied (straight) otherwise.
 Alpha
    Alpha channel from image.
 
@@ -152,4 +152,4 @@ Examples
 
 .. figure:: /images/render_shader-nodes_textures_image_example.jpg
 
-   Image texture from `GoodTextures.com <https://www.goodtextures.com/>`__.
+   Image texture from `GoodTextures.com <https://goodtextures.com/>`__.

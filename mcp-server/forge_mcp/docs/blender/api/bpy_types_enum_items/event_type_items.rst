@@ -543,6 +543,9 @@ Event Type Items
 :ACTIONZONE_REGION: ActionZone Region.
 
    AZone Region.
+:ACTIONZONE_REGION_QUAD: ActionZone Quad.
+
+   AZone Quad.
 :ACTIONZONE_FULLSCREEN: ActionZone Fullscreen.
 
    AZone FullScr.

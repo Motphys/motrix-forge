@@ -28,12 +28,6 @@ Transform
    The transformation matrix to translate, rotate, and scale individual instances.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

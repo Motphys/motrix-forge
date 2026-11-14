@@ -66,8 +66,8 @@ Texture
 
    .. tip::
 
-      By clicking on the right-most button of this field (with the settings icon),
-      you can go directly to the selected texture's settings in the *Texture Properties* tab.
+      Clicking on :bl-icon:`properties` (properties icon) takes you directly
+      to the selected texture's settings in the *Texture Properties* tab.
 
 Texture Coordinates
    The texture's coordinates to get each vertex' value:
@@ -120,7 +120,7 @@ Use Channel
       One of the color channels' values.
    Hue
       The hue from the HSV color model
-      (i.e; the color in the standard wheel, e.g. blue has a higher hue value than yellow).
+      (i.e. the color in the standard wheel, e.g. blue has a higher hue value than yellow).
    Saturation
       The saturation from the HSV color model (e.g. the value for pure red is 1.0, for gray is 0.0).
    Value

@@ -18,21 +18,15 @@ Inputs
 
 Image
    Image input, to be linked to the "Combined" render pass.
-Z
-   Z depth, to be linked to the "Depth" render pass.
 Speed
    Input for the "Vector" render pass.
    See :doc:`Cycles render passes </render/layers/passes>`.
+Z
+   Z depth, to be linked to the "Depth" render pass.
 Samples
    Quality factor.
 Shutter
    Duration of the motion blur in seconds, corresponding to the exposure time simulated for each frame.
-
-
-Properties
-==========
-
-This node has no properties.
 
 
 Outputs
@@ -46,7 +40,7 @@ Usage
 =====
 
 Even with a correct compositing setup with Image, Z and Speed nodes all linked to the appropriate passes,
-there may still be artifacts. The 2D render passes does not contain 3D information,
+there may still be artifacts. The 2D render passes do not contain 3D information,
 and so the information what is behind a moving object or outside the camera view is lost.
 
 Better results can be achieved by rendering the scene into multiple render layers,

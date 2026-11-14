@@ -40,8 +40,7 @@ Solver
    Algorithm used to perform the Boolean operation.
 
    :Float:
-      Uses a simple solver which offers the good performance;
-      however, this solver lacks support for overlapping geometry.
+      Uses a simple solver which offers good performance but lacks support for overlapping geometry.
 
       Merge Threshold
          Tolerance for close faces to be considered touching.
@@ -55,7 +54,7 @@ Solver
 
    :Exact:
       Uses a complex solver which offers the best results and has full
-      support for overlapping geometry; however, this solver is much slower.
+      support for overlapping geometry, but is much slower.
 
 Swap
    When using *Difference*, cut the unselected geometry out of the selected geometry instead

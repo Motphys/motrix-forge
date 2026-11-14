@@ -1,4 +1,4 @@
-.. _bpy.types.GaussianBlurSequence:
+.. _bpy.types.GaussianBlurStrip:
 
 *******************
 Gaussian Blur Strip

@@ -39,7 +39,7 @@ Inputs
 Radius
    Width of the bevel effect on edges.
 Normal
-   Normal to apply bevel on top of, to be combined with a :doc:`/render/shader_nodes/vector/bump`
+   Normal to apply bevel on top of, to be combined with a :doc:`/render/shader_nodes/displacement/bump`
    for example. When not connected, uses the surface normal.
 
 

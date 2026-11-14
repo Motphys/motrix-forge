@@ -5,13 +5,13 @@ Space Image Mode All Items
 
 :VIEW: View.
 
-   View the image.
+   Inspect images or render results.
 :UV: UV Editor.
 
-   UV edit in mesh editmode.
+   View and edit UVs.
 :PAINT: Paint.
 
-   2D image painting mode.
+   Paint images in 2D.
 :MASK: Mask.
 
-   Mask editing.
+   View and edit masks.

@@ -52,7 +52,7 @@ Open
       Best suited for short, frequently played sound effects but not for long audio tracks.
    Mono
       Forces the sound to be single-channel.
-      Required for 3D audio and panning effects since multi-channel files assume pre-mixed spatialization.
+      Required for 3D audio and panning effects since multi-channel files assume premixed spatialization.
 
 Mute
    Disables the speaker's audio output.

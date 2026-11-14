@@ -1,4 +1,3 @@
-
 ************
 Introduction
 ************
@@ -78,9 +77,9 @@ Rigging often involves using one or more of the following features:
    So your rig can control many different values at once,
    as well as making some properties automatically update based on changes elsewhere.
 
-Rigging can be as advanced as your project requires,
-rigs are effectively defining own user interface for the animator to use,
-without having to be concerned the underlying mechanisms.
+Rigging can be as advanced as your project requires. 
+Rigs effectively define a user interface for the animator to use, 
+without being concerned with the underlying mechanisms
 
 .. TODO nice images of rigged objects.
 

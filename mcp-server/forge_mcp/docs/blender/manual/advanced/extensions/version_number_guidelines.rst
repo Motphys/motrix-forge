@@ -50,7 +50,7 @@ add-ons in the following way:
 
 These guidelines won't cover every possible situation, but hopefully they give a
 good sense of how to approach the common cases. Extension developers should use
-their best judgement when dealing with situations not covered well by these
+their best judgment when dealing with situations not covered well by these
 guidelines.
 
 Theme Extensions

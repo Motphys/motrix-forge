@@ -11,27 +11,22 @@ Fill
    :Menu:      :menuselection:`Face --> Fill`
    :Shortcut:  :kbd:`Alt-F`
 
-The *Fill* option will create *triangular* faces from any group of selected edges
-or vertices, as long as they form one or more complete perimeters.
-
-Beauty
-   Arrange the new triangles nicely.
-
-.. figure:: /images/modeling_meshes_editing_face_fill_example.png
-   :width: 300px
-
-   Filled using fill.
-
-Note, unlike creating n-gons, *Fill* supports holes.
+Fills a closed loop of selected edges with triangular faces.
+This also supports holes:
 
 .. list-table::
 
    * - .. figure:: /images/modeling_meshes_editing_face_fill_holes.png
           :width: 320px
 
-          A closed perimeter of edges with holes.
+          Before filling.
 
      - .. figure:: /images/modeling_meshes_editing_face_fill_holes-filled.png
           :width: 320px
 
-          Filled using fill.
+          After filling.
+
+.. seealso::
+
+   :doc:`/modeling/meshes/editing/vertex/make_face_edge` fills a set of edges
+   (or vertices) with a single :term:`n-gon`.

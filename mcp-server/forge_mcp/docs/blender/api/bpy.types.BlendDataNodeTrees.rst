@@ -1,11 +1,12 @@
-BlendDataNodeTrees(bpy_struct)
-==============================
+BlendDataNodeTrees(bpy_prop_collection)
+=======================================
 
 .. currentmodule:: bpy.types
 
-base class --- :class:`bpy_struct`
+base class --- :class:`bpy_prop_collection`
 
-.. class:: BlendDataNodeTrees(bpy_struct)
+
+.. class:: BlendDataNodeTrees(bpy_prop_collection)
 
    Collection of node trees
 
@@ -13,19 +14,19 @@ base class --- :class:`bpy_struct`
 
       Add a new node tree to the main database
 
-      :arg name: New name for the data-block
-      :type name: string, (never None)
-      :arg type: Type, The type of node_group to add
+      :param name: New name for the data-block (never None)
+      :type name: str
+      :param type: Type, The type of node_group to add
 
-         * ``GeometryNodeTree``
-           Geometry Node Editor -- Geometry nodes.
-         * ``CompositorNodeTree``
-           Compositor -- Compositing nodes.
-         * ``ShaderNodeTree``
-           Shader Editor -- Shader nodes.
-         * ``TextureNodeTree``
-           Texture Node Editor -- Texture nodes.
-      :type type: enum in [``'GeometryNodeTree'``, ``'CompositorNodeTree'``, ``'ShaderNodeTree'``, ``'TextureNodeTree'``]
+         - ``GeometryNodeTree``
+           Geometry Node Editor -- Advanced geometry editing and tools creation using nodes.
+         - ``CompositorNodeTree``
+           Compositor -- Create effects and post-process renders, images, and the 3D Viewport.
+         - ``ShaderNodeTree``
+           Shader Editor -- Edit materials, lights, and world shading using nodes.
+         - ``TextureNodeTree``
+           Texture Node Editor -- Edit textures using nodes.
+      :type type: Literal['GeometryNodeTree', 'CompositorNodeTree', 'ShaderNodeTree', 'TextureNodeTree']
       :return: New node tree data-block
       :rtype: :class:`NodeTree`
 
@@ -33,34 +34,38 @@ base class --- :class:`bpy_struct`
 
       Remove a node tree from the current blendfile
 
-      :arg tree: Node tree to remove
-      :type tree: :class:`NodeTree`, (never None)
-      :arg do_unlink: Unlink all usages of this node tree before deleting it
-      :type do_unlink: boolean, (optional)
-      :arg do_id_user: Decrement user counter of all datablocks used by this node tree
-      :type do_id_user: boolean, (optional)
-      :arg do_ui_user: Make sure interface does not reference this node tree
-      :type do_ui_user: boolean, (optional)
+      :param tree: Node tree to remove (never None)
+      :type tree: :class:`NodeTree` | None
+      :param do_unlink: Unlink all usages of this node tree before deleting it (optional)
+      :type do_unlink: bool
+      :param do_id_user: Decrement user counter of all data-blocks used by this node tree (optional)
+      :type do_id_user: bool
+      :param do_ui_user: Make sure interface does not reference this node tree (optional)
+      :type do_ui_user: bool
 
    .. method:: tag(value)
 
       tag
 
-      :arg value: Value
-      :type value: boolean
+      :param value: Value
+      :type value: bool
 
    .. classmethod:: bl_rna_get_subclass(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: :class:`bpy.types.Struct` | None
       :return: The RNA type or default when not found.
-      :rtype: :class:`bpy.types.Struct` subclass
+      :rtype: :class:`bpy.types.Struct`
 
 
    .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: type | None
       :return: The class or default when not found.
       :rtype: type
 
@@ -71,7 +76,7 @@ Inherited Properties
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.id_data`
+   - :class:`bpy_struct.id_data`
 
 Inherited Functions
 -------------------
@@ -79,29 +84,30 @@ Inherited Functions
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.as_pointer`
-   * :class:`bpy_struct.driver_add`
-   * :class:`bpy_struct.driver_remove`
-   * :class:`bpy_struct.get`
-   * :class:`bpy_struct.id_properties_clear`
-   * :class:`bpy_struct.id_properties_ensure`
-   * :class:`bpy_struct.id_properties_ui`
-   * :class:`bpy_struct.is_property_hidden`
-   * :class:`bpy_struct.is_property_overridable_library`
-   * :class:`bpy_struct.is_property_readonly`
-   * :class:`bpy_struct.is_property_set`
-   * :class:`bpy_struct.items`
-   * :class:`bpy_struct.keyframe_delete`
-   * :class:`bpy_struct.keyframe_insert`
-   * :class:`bpy_struct.keys`
-   * :class:`bpy_struct.path_from_id`
-   * :class:`bpy_struct.path_resolve`
-   * :class:`bpy_struct.pop`
-   * :class:`bpy_struct.property_overridable_library_set`
-   * :class:`bpy_struct.property_unset`
-   * :class:`bpy_struct.rna_ancestors`
-   * :class:`bpy_struct.type_recast`
-   * :class:`bpy_struct.values`
+   - :class:`bpy_struct.as_pointer`
+   - :class:`bpy_struct.driver_add`
+   - :class:`bpy_struct.driver_remove`
+   - :class:`bpy_struct.get`
+   - :class:`bpy_struct.id_properties_clear`
+   - :class:`bpy_struct.id_properties_ensure`
+   - :class:`bpy_struct.id_properties_ui`
+   - :class:`bpy_struct.is_property_hidden`
+   - :class:`bpy_struct.is_property_overridable_library`
+   - :class:`bpy_struct.is_property_readonly`
+   - :class:`bpy_struct.is_property_set`
+   - :class:`bpy_struct.items`
+   - :class:`bpy_struct.keyframe_delete`
+   - :class:`bpy_struct.keyframe_insert`
+   - :class:`bpy_struct.keys`
+   - :class:`bpy_struct.path_from_id`
+   - :class:`bpy_struct.path_from_module`
+   - :class:`bpy_struct.path_resolve`
+   - :class:`bpy_struct.pop`
+   - :class:`bpy_struct.property_overridable_library_set`
+   - :class:`bpy_struct.property_unset`
+   - :class:`bpy_struct.rna_ancestors`
+   - :class:`bpy_struct.type_recast`
+   - :class:`bpy_struct.values`
 
 References
 ----------
@@ -109,5 +115,5 @@ References
 .. hlist::
    :columns: 2
 
-   * :class:`BlendData.node_groups`
+   - :class:`BlendData.node_groups`
 

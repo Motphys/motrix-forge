@@ -58,14 +58,12 @@ Offset
 Type
    The type of the cache determines how the cache can be baked.
 
-   Replay
+   :Replay:
       The cache will be baked as the simulation is being played in the viewport.
-
-   Modular
+   :Modular:
       The cache will be baked step by step: The bake operators for this type are spread across various panels within
       the domain settings (e.g. the bake tool for the mesh can be found in the Mesh panel).
-
-   All
+   :All:
       The cache will be baked with a single tool. All selected settings will be considered during this bake.
       The bake tool for this type can be found in the Cache panel.
 
@@ -74,7 +72,7 @@ Type
       "Replay" only works when the :ref:`Playback Sync mode <bpy.types.Scene.sync_mode>` is set to "Play Every Frame".
       If you need to use "Frame Dropping" or "Sync to Audio", consider using the "Modular" or "All" options below.
 
-.. _bpy.types.FluidDomainSettings.use_resumable_cache:
+.. _bpy.types.FluidDomainSettings.cache_resumable:
 
 Resumable
    Extra data will be saved so that you can resumed baking after pausing. Since more data will be written
@@ -104,11 +102,10 @@ Volumetric Data
 Format
    File format for volume based simulation data (i.e. grids and particles).
 
-   Uni Cache
+   :Uni Cache:
       Blender's own caching format with some compression.
       Each simulation object is stored in its own ``.uni`` cache file.
-
-   OpenVDB
+   :OpenVDB:
       Advanced and efficient storage format.
       All simulation objects (i.e. grids and particles) are stored in a single ``.vdb`` file per frame.
 
@@ -117,14 +114,12 @@ Format
 Compression :guilabel:`OpenVDB Only`
    Compression method that is used when writing OpenVDB cache files.
 
-   Zip
+   :Zip:
       Cache files will be written with ``Zip`` compression. Effective but slower than ``Blosc``.
-
-   Blosc
-      Cache files will be written with ``Blosc`` compression. Multithreaded compression,
+   :Blosc:
+      Cache files will be written with ``Blosc`` compression. Multi-threaded compression,
       similar in size and quality to ``Zip`` compression.
-
-   None
+   :None:
       Cache files will be written without any compression.
 
 .. _bpy.types.FluidDomainSettings.openvdb_data_depth:
@@ -132,13 +127,11 @@ Compression :guilabel:`OpenVDB Only`
 Precision :guilabel:`OpenVDB Only`
    Precision level that is used when writing OpenVDB cache files.
 
-   Full
+   :Full:
       Volumetric data (e.g. grids, particles) will be written with full precision (32-bit).
-
-   Half
+   :Half:
       Volumetric data (e.g. grids, particles) will be written with half precision (16-bit).
-
-   Mini
+   :Mini:
       Volumetric data (e.g. grids, particles) will be written with mini float precision (8-bit) where possible.
       For cache data where this is not possible, 16-bit floats will be used instead.
 
@@ -147,11 +140,8 @@ Precision :guilabel:`OpenVDB Only`
 Meshes :guilabel:`Liquids Only`
    File format for the mesh cache files.
 
-   Binary Object
-      Mesh data files with some compression.
-
-   Object
-      Simple, standard data format for mesh data.
+   Binary Object: Mesh data files with some compression.
+   Object: Simple, standard data format for mesh data.
 
 .. _bpy.types.FluidDomainSettings.export_manta_script:
 

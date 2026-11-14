@@ -19,6 +19,9 @@ Shared Enum Items
    mesh_select_mode_items
    mesh_select_mode_uv_items
    mesh_delimit_mode_items
+   mesh_walk_delimit_edge_loop_items
+   mesh_walk_delimit_edge_ring_items
+   mesh_walk_delimit_face_loop_items
    space_graph_mode_items
    space_file_browse_mode_items
    space_sequencer_view_type_items
@@ -27,13 +30,16 @@ Shared Enum Items
    space_image_mode_all_items
    space_action_mode_items
    fileselect_params_sort_items
+   asset_access_items
    region_type_items
+   region_panel_category_items
    object_modifier_type_items
    constraint_type_items
    boidrule_type_items
    strip_modifier_type_items
    strip_video_modifier_type_items
    strip_sound_modifier_type_items
+   strip_scale_method_items
    object_shaderfx_type_items
    modifier_triangulate_quad_method_items
    modifier_triangulate_ngon_method_items
@@ -41,7 +47,7 @@ Shared Enum Items
    shrinkwrap_type_items
    shrinkwrap_face_cull_items
    node_warning_type_items
-   image_type_items
+   image_type_all_items
    image_color_mode_items
    image_color_depth_items
    image_generated_type_items
@@ -78,7 +84,7 @@ Shared Enum Items
    operator_type_flag_items
    operator_return_items
    operator_property_tag_items
-   brush_automasking_flag_items
+   shared_automasking_flag_items
    brush_sculpt_brush_type_items
    brush_vertex_brush_type_items
    brush_weight_brush_type_items
@@ -106,7 +112,7 @@ Shared Enum Items
    rigidbody_object_shape_items
    rigidbody_constraint_type_items
    object_axis_items
-   render_pass_type_items
+   object_axis_flip_items
    bake_pass_type_items
    bake_pass_filter_type_items
    keymap_propvalue_items
@@ -129,17 +135,18 @@ Shared Enum Items
    node_socket_in_out_items
    node_socket_type_items
    node_tree_interface_item_type_items
+   node_socket_structure_type_items
    node_math_items
    mapping_type_items
    node_vec_math_items
    node_boolean_math_items
-   node_float_compare_items
    node_compare_operation_items
-   node_filter_items
    node_integer_math_items
    node_float_to_int_items
    node_map_range_items
    node_clamp_items
+   node_compositor_extension_items
+   node_compositor_interpolation_items
    ramp_blend_items
    prop_dynamicpaint_type_items
    clip_editor_mode_items
@@ -160,6 +167,8 @@ Shared Enum Items
    context_mode_items
    preference_section_items
    attribute_type_items
+   attrtype_items
+   attr_storage_type_items
    color_attribute_type_items
    attribute_type_with_auto_items
    attribute_domain_items
@@ -190,6 +199,7 @@ Shared Enum Items
    curve_normal_mode_items
    geometry_nodes_gizmo_color_items
    geometry_nodes_linear_gizmo_draw_style_items
+   asset_import_method_items
    particle_edit_hair_brush_items
    particle_edit_disconnected_hair_brush_items
    keyframe_paste_offset_items
@@ -201,4 +211,5 @@ Shared Enum Items
    nla_mode_blend_items
    keyblock_type_items
    asset_library_type_items
+   file_path_foreach_flag_items
 

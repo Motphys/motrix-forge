@@ -7,66 +7,82 @@ Lattice Operators
 
    Mirror all control points without inverting the lattice deform
 
-   :arg axis: Flip Axis, Coordinates along this axis get flipped
-   :type axis: enum in [``'U'``, ``'V'``, ``'W'``], (optional)
+   :param axis: Flip Axis, Coordinates along this axis get flipped (optional)
+   :type axis: Literal['U', 'V', 'W']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: make_regular()
 
    Set UVW control points a uniform distance apart
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: select_all(*, action='TOGGLE')
 
    Change selection of all UVW control points
 
-   :arg action: Action, Selection action to execute
+   :param action: Action, Selection action to execute (optional)
 
-      * ``TOGGLE``
+      - ``TOGGLE``
         Toggle -- Toggle selection for all elements.
-      * ``SELECT``
+      - ``SELECT``
         Select -- Select all elements.
-      * ``DESELECT``
+      - ``DESELECT``
         Deselect -- Deselect all elements.
-      * ``INVERT``
+      - ``INVERT``
         Invert -- Invert selection of all elements.
-   :type action: enum in [``'TOGGLE'``, ``'SELECT'``, ``'DESELECT'``, ``'INVERT'``], (optional)
+   :type action: Literal['TOGGLE', 'SELECT', 'DESELECT', 'INVERT']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: select_less()
 
    Deselect vertices at the boundary of each selection region
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: select_mirror(*, axis={'X'}, extend=False)
 
    Select mirrored lattice points
 
-   :arg axis: Axis
-   :type axis: enum set in :ref:`rna_enum_axis_flag_xyz_items`, (optional)
-   :arg extend: Extend, Extend the selection
-   :type extend: boolean, (optional)
+   :param axis: Axis, (optional)
+   :type axis: set[Literal[:ref:`rna_enum_axis_flag_xyz_items`]]
+   :param extend: Extend, Extend the selection (optional)
+   :type extend: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: select_more()
 
-   Select vertex directly linked to already selected ones
+   Select vertices directly linked to already selected ones
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: select_random(*, ratio=0.5, seed=0, action='SELECT')
 
    Randomly select UVW control points
 
-   :arg ratio: Ratio, Portion of items to select randomly
-   :type ratio: float in [0, 1], (optional)
-   :arg seed: Random Seed, Seed for the random number generator
-   :type seed: int in [0, inf], (optional)
-   :arg action: Action, Selection action to execute
+   :param ratio: Ratio, Portion of items to select randomly (in [0, 1], optional)
+   :type ratio: float
+   :param seed: Random Seed, Seed for the random number generator (in [0, inf], optional)
+   :type seed: int
+   :param action: Action, Selection action to execute (optional)
 
-      * ``SELECT``
+      - ``SELECT``
         Select -- Select all elements.
-      * ``DESELECT``
+      - ``DESELECT``
         Deselect -- Deselect all elements.
-   :type action: enum in [``'SELECT'``, ``'DESELECT'``], (optional)
+   :type action: Literal['SELECT', 'DESELECT']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: select_ungrouped(*, extend=False)
 
    Select vertices without a group
 
-   :arg extend: Extend, Extend the selection
-   :type extend: boolean, (optional)
+   :param extend: Extend, Extend the selection (optional)
+   :type extend: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 

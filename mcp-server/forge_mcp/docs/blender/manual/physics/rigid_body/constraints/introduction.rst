@@ -7,7 +7,7 @@ Introduction
 
 :term:`Constraints <Constraint>` (also known as joints) for rigid bodies connect two rigid bodies.
 The physics constraints are meant to be attached to an :term:`Empty` object.
-The constraint then has fields which can be pointed at the two physics-enabled object
+The constraint then has fields which can be pointed at the two physics-enabled objects
 which will be bound by the constraint.
 The empty object provides a location and axis for the constraint distinct from the two constrained objects.
 The location of the entity hosting the physics constraint marks a location and
@@ -58,12 +58,12 @@ Settings
 Enabled
    Specifies whether the constraint is active during the simulation.
 
-.. _RigidBodyConstraint.disable_collisions:
+.. _bpy.types.RigidBodyConstraint.disable_collisions:
 
 Disable Collisions
    Allows constrained objects to pass through one another.
 
-.. _bpy.types.RigidBodyConstraint.RigidBodyConstraint.use_breaking:
+.. _bpy.types.RigidBodyConstraint.use_breaking:
 
 Breakable
    Allows constraint to break during simulation. Disabled for the *Motor* constraint.

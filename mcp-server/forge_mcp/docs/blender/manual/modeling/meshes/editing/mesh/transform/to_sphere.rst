@@ -11,39 +11,48 @@ To Sphere
    :Menu:      :menuselection:`Mesh --> Transform --> To Sphere`
    :Shortcut:  :kbd:`Shift-Alt-S`
 
-The *To Sphere* transformation will give the selection spherical qualities.
-The Fig. :ref:`fig-mesh-deform-to-sphere-monkey` below shows the results of applying
-the *To Sphere* transformation to the monkey mesh.
+The *To Sphere* transformation deforms the selected geometry to look more like a sphere.
 
 .. _fig-mesh-deform-to-sphere-monkey:
 
 .. figure:: /images/modeling_meshes_editing_mesh_transform_to-sphere_suzanne-spherical.png
 
-   Monkey with increasing sphericity.
-
-   The sequence above shows a monkey mesh with
-   a 0, 0.25 (25%), 0.5 (50%) and 1 (100%) To Sphere transform applied.
+   Monkey with increasing sphericity (0%, 25%, 50%, 100%).
 
 
 Usage
 =====
 
-.. figure:: /images/modeling_meshes_editing_mesh_transform_to-sphere_operator-panel.png
+Click the menu item or press the keyboard shortcut, then move the mouse right or left
+(or type a number between 0 and 1) to make the selection more or less spherical.
+Finally, press :kbd:`LMB` or :kbd:`Return` to confirm, or :kbd:`RMB` or :kbd:`Esc` to cancel.
 
-   To Sphere Factor.
 
-As can be seen in the below image, the result
-will be smoother and more spherical when there are more mesh elements available to work with.
+Options
+=======
+
+Factor
+   A value between 0 and 1 indicating how strongly the selection is spherized.
+
+Mirror Editing
+   Whether to also affect matching geometry on the other side of the mesh.
+   :ref:`Mesh Symmetry <modeling_meshes_tools-settings_mirror>`
+   needs to be enabled for this to work.
+
+Proportional Editing
+   See :doc:`/editors/3dview/controls/proportional_editing`.
+
+
+Examples
+========
+
+Meshes with higher density will give better results:
 
 .. figure:: /images/modeling_meshes_editing_mesh_transform_to-sphere_cubes-spherical.png
 
    To Sphere applied to cubes with different subdivision levels.
 
-   In this image sequence, To Sphere was applied to the entire cube
-   at levels of 0, 0.25 (25%), 0.5 (50%) and 1 (100%) respectively.
-
-The *To Sphere* transform will generate different results depending on the number
-and arrangement of elements that were selected (as shown by the below image).
+The results are also different depending on the number and arrangement of the selected elements:
 
 .. figure:: /images/modeling_meshes_editing_mesh_transform_to-sphere_other-spherical.png
 

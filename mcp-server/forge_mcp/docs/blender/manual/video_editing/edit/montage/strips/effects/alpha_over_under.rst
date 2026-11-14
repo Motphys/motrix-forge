@@ -15,7 +15,7 @@ the foreground is mixed over the background, fading in the foreground on top of 
 The colors of transparent foreground image areas are ignored and do not change the color of the background.
 
 
-.. _bpy.types.AlphaOverSequence:
+.. _bpy.types.AlphaOverStrip:
 
 Alpha Over
 ==========
@@ -41,7 +41,7 @@ will only show the background, and an *Opacity* of 1.0 will completely override 
    Alpha Over Effect.
 
 
-.. _bpy.types.AlphaUnderSequence:
+.. _bpy.types.AlphaUnderStrip:
 
 Alpha Under
 ===========

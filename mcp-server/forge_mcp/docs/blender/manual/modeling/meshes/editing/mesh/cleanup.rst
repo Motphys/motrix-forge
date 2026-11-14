@@ -66,8 +66,8 @@ Collapses any selected edges that are shorter than a certain length.
 This also results in the removal of small faces.
 
 If two vertices are near to each other but are not connected by an edge,
-they will not be merged; you can use :ref:`bpy.ops.mesh.remove_doubles`
-for that.
+they will not be merged; see :ref:`Merge By Distance <bpy.ops.mesh.remove_doubles>`
+for an alternative.
 
 Merge Distance
    Edges shorter than this length will be collapsed.
@@ -98,7 +98,7 @@ Flattens the selected faces.
 
 Factor
    The flattening strength for each iteration. Note that even a value of 1 may not be enough to
-   get faces perfectly flat; you can increase the *Iterations* in that case.
+   get faces perfectly flat -- increase the *Iterations* in that case.
 Iterations
    Number of times to repeat the operation.
 
@@ -157,8 +157,6 @@ Splits any selected :term:`concave <Concave Face>` faces so that only convex one
           Result of Split Concave Faces.
 
 
-.. _bpy.ops.mesh.remove_doubles:
-
 Merge by Distance
 =================
 
@@ -174,8 +172,10 @@ Merge Distance
 Unselected
    Allow merging selected vertices with unselected ones.
 Sharp Edges
-   Mark edges as :ref:`sharp <bpy.ops.mesh.mark_sharp>` if they have split
-   :ref:`custom normals <modeling_meshes_normals_custom>`.
+   If the mesh uses :ref:`smooth shading <bpy.ops.object.shade_smooth>` and has
+   :ref:`custom split normals <modeling_meshes_normals_custom>`, this option will add
+   :ref:`edge marks <bpy.ops.mesh.mark_sharp>` where needed so that sharp edges will
+   remain sharp after merging.
 
 .. seealso::
 
@@ -196,9 +196,10 @@ Fills each hole in the selected geometry with a face.
 
 Sides
    The maximum number of sides: if a hole has more edges than this number,
-   it will not be filled. You can set this limit to 0 to fill all holes.
+   it will not be filled. Set to 0 to fill all holes.
 
 .. seealso::
 
-   If you have a large hole with many edges, :ref:`bpy.ops.mesh.fill_grid`
-   may be a better option.
+   For filling a large hole that has many edges,
+   :doc:`Face Fill </modeling/meshes/editing/face/fill>` or
+   :doc:`/modeling/meshes/editing/face/grid_fill` may be a better option.

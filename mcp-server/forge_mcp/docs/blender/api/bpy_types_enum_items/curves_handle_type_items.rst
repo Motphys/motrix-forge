@@ -5,7 +5,7 @@ Curves Handle Type Items
 
 :FREE: Free.
 
-   The handle can be moved anywhere, and doesn't influence the point's other handle.
+   The handle can be moved anywhere, and does not influence the point's other handle.
 :AUTO: Auto.
 
    The location is automatically calculated to be smooth.

@@ -23,12 +23,6 @@ Image
    The image to retrieve information from.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

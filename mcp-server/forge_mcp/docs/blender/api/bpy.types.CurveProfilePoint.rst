@@ -5,46 +5,51 @@ CurveProfilePoint(bpy_struct)
 
 base class --- :class:`bpy_struct`
 
+
 .. class:: CurveProfilePoint(bpy_struct)
 
    Point of a path used to define a profile
 
    .. attribute:: handle_type_1
 
-      Path interpolation at this point
+      Path interpolation at this point (default ``'FREE'``)
 
-      :type: enum in [``'AUTO'``, ``'VECTOR'``, ``'FREE'``, ``'ALIGN'``], default ``'FREE'``
+      :type: Literal['AUTO', 'VECTOR', 'FREE', 'ALIGN']
 
    .. attribute:: handle_type_2
 
-      Path interpolation at this point
+      Path interpolation at this point (default ``'FREE'``)
 
-      :type: enum in [``'AUTO'``, ``'VECTOR'``, ``'FREE'``, ``'ALIGN'``], default ``'FREE'``
+      :type: Literal['AUTO', 'VECTOR', 'FREE', 'ALIGN']
 
    .. attribute:: location
 
-      X/Y coordinates of the path point
+      X/Y coordinates of the path point (array of 2 items, in [-inf, inf], default (0.0, 0.0))
 
-      :type: :class:`mathutils.Vector` of 2 items in [-inf, inf], default (0.0, 0.0)
+      :type: :class:`mathutils.Vector`
 
    .. attribute:: select
 
-      Selection state of the path point
+      Selection state of the path point (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. classmethod:: bl_rna_get_subclass(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: :class:`bpy.types.Struct` | None
       :return: The RNA type or default when not found.
-      :rtype: :class:`bpy.types.Struct` subclass
+      :rtype: :class:`bpy.types.Struct`
 
 
    .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: type | None
       :return: The class or default when not found.
       :rtype: type
 
@@ -55,7 +60,7 @@ Inherited Properties
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.id_data`
+   - :class:`bpy_struct.id_data`
 
 Inherited Functions
 -------------------
@@ -63,29 +68,30 @@ Inherited Functions
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.as_pointer`
-   * :class:`bpy_struct.driver_add`
-   * :class:`bpy_struct.driver_remove`
-   * :class:`bpy_struct.get`
-   * :class:`bpy_struct.id_properties_clear`
-   * :class:`bpy_struct.id_properties_ensure`
-   * :class:`bpy_struct.id_properties_ui`
-   * :class:`bpy_struct.is_property_hidden`
-   * :class:`bpy_struct.is_property_overridable_library`
-   * :class:`bpy_struct.is_property_readonly`
-   * :class:`bpy_struct.is_property_set`
-   * :class:`bpy_struct.items`
-   * :class:`bpy_struct.keyframe_delete`
-   * :class:`bpy_struct.keyframe_insert`
-   * :class:`bpy_struct.keys`
-   * :class:`bpy_struct.path_from_id`
-   * :class:`bpy_struct.path_resolve`
-   * :class:`bpy_struct.pop`
-   * :class:`bpy_struct.property_overridable_library_set`
-   * :class:`bpy_struct.property_unset`
-   * :class:`bpy_struct.rna_ancestors`
-   * :class:`bpy_struct.type_recast`
-   * :class:`bpy_struct.values`
+   - :class:`bpy_struct.as_pointer`
+   - :class:`bpy_struct.driver_add`
+   - :class:`bpy_struct.driver_remove`
+   - :class:`bpy_struct.get`
+   - :class:`bpy_struct.id_properties_clear`
+   - :class:`bpy_struct.id_properties_ensure`
+   - :class:`bpy_struct.id_properties_ui`
+   - :class:`bpy_struct.is_property_hidden`
+   - :class:`bpy_struct.is_property_overridable_library`
+   - :class:`bpy_struct.is_property_readonly`
+   - :class:`bpy_struct.is_property_set`
+   - :class:`bpy_struct.items`
+   - :class:`bpy_struct.keyframe_delete`
+   - :class:`bpy_struct.keyframe_insert`
+   - :class:`bpy_struct.keys`
+   - :class:`bpy_struct.path_from_id`
+   - :class:`bpy_struct.path_from_module`
+   - :class:`bpy_struct.path_resolve`
+   - :class:`bpy_struct.pop`
+   - :class:`bpy_struct.property_overridable_library_set`
+   - :class:`bpy_struct.property_unset`
+   - :class:`bpy_struct.rna_ancestors`
+   - :class:`bpy_struct.type_recast`
+   - :class:`bpy_struct.values`
 
 References
 ----------
@@ -93,8 +99,8 @@ References
 .. hlist::
    :columns: 2
 
-   * :class:`CurveProfile.points`
-   * :class:`CurveProfile.segments`
-   * :class:`CurveProfilePoints.add`
-   * :class:`CurveProfilePoints.remove`
+   - :class:`CurveProfile.points`
+   - :class:`CurveProfile.segments`
+   - :class:`CurveProfilePoints.add`
+   - :class:`CurveProfilePoints.remove`
 

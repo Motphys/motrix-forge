@@ -23,6 +23,11 @@ Resolution
 Scale
    Generated strokes scale.
 
+Scene Unit
+   Apply current scene's unit (as defined by unit scale) to imported data.
+
+Center on Bounds
+   Center the imported SVG on its bounding box.
 
 .. _bpy.ops.wm.grease_pencil_export_svg:
 
@@ -67,4 +72,5 @@ Uniform Width
 Clip Camera
    When enabled and camera view is active, export only the strokes clipped from camera view.
 
-.. note:: The export of the Grease Pencil strokes is always from the view of the largest 3D Viewport in the current workspace.
+.. note:: The export of the Grease Pencil strokes is always from the view of the largest 3D Viewport in the current 
+    workspace.

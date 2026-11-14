@@ -30,7 +30,7 @@ Node Vec Math Items
    Project A onto B.
 :REFLECT: Reflect.
 
-   Reflect A around the normal B. B doesn't need to be normalized..
+   Reflect A around the normal B. B does not need to be normalized..
 :REFRACT: Refract.
 
    For a given incident vector A, surface normal B and ratio of indices of refraction, Ior, refract returns the refraction vector, R.
@@ -75,6 +75,9 @@ Node Vec Math Items
 :MAXIMUM: Maximum.
 
    Entry-wise maximum.
+:ROUND: Round.
+
+   Entry-wise round to the nearest integer. Round upward if the fraction part is 0.5.
 :FLOOR: Floor.
 
    Entry-wise floor.

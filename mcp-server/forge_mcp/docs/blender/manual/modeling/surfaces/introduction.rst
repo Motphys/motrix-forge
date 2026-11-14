@@ -3,55 +3,19 @@
 Introduction
 ************
 
-Curves are 2D objects, and surfaces are their 3D extension.
-Note however, that in Blender, you only have NURBS surfaces,
-no Bézier (you have the *Bézier* knot type, though; see below),
-nor polygonal (but for these, you have meshes!).
-Even though curves and surfaces share the same object type (with texts also...),
-they are not the same thing; for example,
-you cannot have in the same object both curves and surfaces.
-
-.. _fig-surface-intro-surface:
+A Surface is a smooth sheet that's defined by a set of control points.
+It's an extension of a :doc:`Curve </modeling/curves/introduction>`,
+which is a smooth line.
 
 .. figure:: /images/modeling_surfaces_introduction_nurbs-surface.png
 
-   NURBS surface in Edit Mode.
+   Surface in Edit Mode.
 
-As surfaces are 2D, they have two interpolation axes, U (as for curves) and V.
-It is important to understand that you can control the interpolation rules (knot, order, resolution)
-*independently* for each of these two dimensions
-(the U and V fields for all these settings, of course).
+The control points are arranged in a grid with yellow lines indicating
+the rows (U direction) and pink lines the columns (V direction).
+The surface can be open or closed (cyclic) in either or both directions,
+which allows the creation of, say, a cylinder or a sphere.
 
-You may ask yourself "but the surface appears to be 3D, why is it only 2D?".
-In order to be 3D, the object needs to have "Volume", and a surface, even when it is closed,
-does not have volume; it is infinitely thin.
-If it had a volume the surface would have a thickness (its third dimension). Hence,
-it is only a 2D object, and has only two interpolation dimensions or axes or coordinates
-(if you know a bit of math, think of non-Euclidean geometry -- well,
-surfaces are just non-Euclidean 2D planes...). To take a more "real-world" example,
-you can roll a sheet of paper to create a cylinder; well, even if it becomes a "volume",
-the sheet itself will remain a (nearly...) 2D object!
-
-In fact, surfaces are very similar to the results you get when
-:doc:`extruding a curve </modeling/curves/properties/geometry>`.
-
-
-Visualization
-=============
-
-There is nearly no difference from NURBS curves,
-except that the U direction is indicated by yellow grid lines,
-and the V one is materialized by pink grid lines, as you can see in
-Fig. :ref:`fig-surface-intro-surface`.
-
-You can :ref:`hide and reveal <curves-show-hide>` control points just as with curves.
-
-
-Conversion
-==========
-
-As there are only NURBS surfaces, there is no "internal" conversion here.
-
-However, there is an "external" conversion available, from surface to mesh,
-that only works in Object Mode. It transforms a surface object into a mesh one,
-using the surface resolutions in both directions to create faces, edges and vertices.
+A Surface can be converted to a mesh using the menu item
+:menuselection:`Object --> Convert --> Mesh` or the context menu item
+:menuselection:`Convert To --> Mesh`.

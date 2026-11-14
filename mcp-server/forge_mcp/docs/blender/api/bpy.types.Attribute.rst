@@ -118,8 +118,24 @@ In these cases, it's possible to use ``np.ravel`` to pass the data as a flat arr
 
 base class --- :class:`bpy_struct`
 
-subclasses --- 
-:class:`BoolAttribute`, :class:`ByteColorAttribute`, :class:`ByteIntAttribute`, :class:`Float2Attribute`, :class:`Float4x4Attribute`, :class:`FloatAttribute`, :class:`FloatColorAttribute`, :class:`FloatVectorAttribute`, :class:`Int2Attribute`, :class:`IntAttribute`, :class:`QuaternionAttribute`, :class:`Short2Attribute`, :class:`StringAttribute`
+.. toctree::
+   :caption: Subclasses
+   :maxdepth: 1
+
+   bpy.types.BoolAttribute.rst
+   bpy.types.ByteColorAttribute.rst
+   bpy.types.ByteIntAttribute.rst
+   bpy.types.Float2Attribute.rst
+   bpy.types.Float4Attribute.rst
+   bpy.types.Float4x4Attribute.rst
+   bpy.types.FloatAttribute.rst
+   bpy.types.FloatColorAttribute.rst
+   bpy.types.FloatVectorAttribute.rst
+   bpy.types.Int2Attribute.rst
+   bpy.types.IntAttribute.rst
+   bpy.types.QuaternionAttribute.rst
+   bpy.types.Short2Attribute.rst
+   bpy.types.StringAttribute.rst
 
 .. class:: Attribute(bpy_struct)
 
@@ -127,46 +143,56 @@ subclasses ---
 
    .. data:: data_type
 
-      Type of data stored in attribute
+      Type of data stored in attribute (default ``'FLOAT'``, readonly)
 
-      :type: enum in :ref:`rna_enum_attribute_type_items`, default ``'FLOAT'``, (readonly)
+      :type: Literal[:ref:`rna_enum_attribute_type_items`]
 
    .. data:: domain
 
-      Domain of the Attribute
+      Domain of the Attribute (default ``'POINT'``, readonly)
 
-      :type: enum in :ref:`rna_enum_attribute_domain_items`, default ``'POINT'``, (readonly)
+      :type: Literal[:ref:`rna_enum_attribute_domain_items`]
 
    .. data:: is_internal
 
-      The attribute is meant for internal use by Blender
+      The attribute is meant for internal use by Blender (default False, readonly)
 
-      :type: boolean, default False, (readonly)
+      :type: bool
 
    .. data:: is_required
 
-      Whether the attribute can be removed or renamed
+      Whether the attribute can be removed or renamed (default False, readonly)
 
-      :type: boolean, default False, (readonly)
+      :type: bool
 
    .. attribute:: name
 
-      Name of the Attribute
+      Name of the Attribute (default "", never None)
 
-      :type: string, default "", (never None)
+      :type: str
+
+   .. data:: storage_type
+
+      Method used to store the data (default ``'ARRAY'``, readonly)
+
+      :type: Literal[:ref:`rna_enum_attr_storage_type_items`]
 
    .. classmethod:: bl_rna_get_subclass(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: :class:`bpy.types.Struct` | None
       :return: The RNA type or default when not found.
-      :rtype: :class:`bpy.types.Struct` subclass
+      :rtype: :class:`bpy.types.Struct`
 
 
    .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: type | None
       :return: The class or default when not found.
       :rtype: type
 
@@ -177,7 +203,7 @@ Inherited Properties
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.id_data`
+   - :class:`bpy_struct.id_data`
 
 Inherited Functions
 -------------------
@@ -185,29 +211,30 @@ Inherited Functions
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.as_pointer`
-   * :class:`bpy_struct.driver_add`
-   * :class:`bpy_struct.driver_remove`
-   * :class:`bpy_struct.get`
-   * :class:`bpy_struct.id_properties_clear`
-   * :class:`bpy_struct.id_properties_ensure`
-   * :class:`bpy_struct.id_properties_ui`
-   * :class:`bpy_struct.is_property_hidden`
-   * :class:`bpy_struct.is_property_overridable_library`
-   * :class:`bpy_struct.is_property_readonly`
-   * :class:`bpy_struct.is_property_set`
-   * :class:`bpy_struct.items`
-   * :class:`bpy_struct.keyframe_delete`
-   * :class:`bpy_struct.keyframe_insert`
-   * :class:`bpy_struct.keys`
-   * :class:`bpy_struct.path_from_id`
-   * :class:`bpy_struct.path_resolve`
-   * :class:`bpy_struct.pop`
-   * :class:`bpy_struct.property_overridable_library_set`
-   * :class:`bpy_struct.property_unset`
-   * :class:`bpy_struct.rna_ancestors`
-   * :class:`bpy_struct.type_recast`
-   * :class:`bpy_struct.values`
+   - :class:`bpy_struct.as_pointer`
+   - :class:`bpy_struct.driver_add`
+   - :class:`bpy_struct.driver_remove`
+   - :class:`bpy_struct.get`
+   - :class:`bpy_struct.id_properties_clear`
+   - :class:`bpy_struct.id_properties_ensure`
+   - :class:`bpy_struct.id_properties_ui`
+   - :class:`bpy_struct.is_property_hidden`
+   - :class:`bpy_struct.is_property_overridable_library`
+   - :class:`bpy_struct.is_property_readonly`
+   - :class:`bpy_struct.is_property_set`
+   - :class:`bpy_struct.items`
+   - :class:`bpy_struct.keyframe_delete`
+   - :class:`bpy_struct.keyframe_insert`
+   - :class:`bpy_struct.keys`
+   - :class:`bpy_struct.path_from_id`
+   - :class:`bpy_struct.path_from_module`
+   - :class:`bpy_struct.path_resolve`
+   - :class:`bpy_struct.pop`
+   - :class:`bpy_struct.property_overridable_library_set`
+   - :class:`bpy_struct.property_unset`
+   - :class:`bpy_struct.rna_ancestors`
+   - :class:`bpy_struct.type_recast`
+   - :class:`bpy_struct.values`
 
 References
 ----------
@@ -215,30 +242,30 @@ References
 .. hlist::
    :columns: 2
 
-   * :class:`AttributeGroupCurves.active`
-   * :class:`AttributeGroupCurves.new`
-   * :class:`AttributeGroupCurves.remove`
-   * :class:`AttributeGroupGreasePencil.active`
-   * :class:`AttributeGroupGreasePencil.new`
-   * :class:`AttributeGroupGreasePencil.remove`
-   * :class:`AttributeGroupGreasePencilDrawing.active`
-   * :class:`AttributeGroupGreasePencilDrawing.new`
-   * :class:`AttributeGroupGreasePencilDrawing.remove`
-   * :class:`AttributeGroupMesh.active`
-   * :class:`AttributeGroupMesh.active_color`
-   * :class:`AttributeGroupMesh.new`
-   * :class:`AttributeGroupMesh.remove`
-   * :class:`AttributeGroupPointCloud.active`
-   * :class:`AttributeGroupPointCloud.new`
-   * :class:`AttributeGroupPointCloud.remove`
-   * :class:`Curves.attributes`
-   * :class:`Curves.color_attributes`
-   * :class:`GreasePencilDrawing.attributes`
-   * :class:`GreasePencilDrawing.color_attributes`
-   * :class:`GreasePencilv3.attributes`
-   * :class:`GreasePencilv3.color_attributes`
-   * :class:`Mesh.attributes`
-   * :class:`Mesh.color_attributes`
-   * :class:`PointCloud.attributes`
-   * :class:`PointCloud.color_attributes`
+   - :class:`AttributeGroupCurves.active`
+   - :class:`AttributeGroupCurves.new`
+   - :class:`AttributeGroupCurves.remove`
+   - :class:`AttributeGroupGreasePencil.active`
+   - :class:`AttributeGroupGreasePencil.new`
+   - :class:`AttributeGroupGreasePencil.remove`
+   - :class:`AttributeGroupGreasePencilDrawing.active`
+   - :class:`AttributeGroupGreasePencilDrawing.new`
+   - :class:`AttributeGroupGreasePencilDrawing.remove`
+   - :class:`AttributeGroupMesh.active`
+   - :class:`AttributeGroupMesh.active_color`
+   - :class:`AttributeGroupMesh.new`
+   - :class:`AttributeGroupMesh.remove`
+   - :class:`AttributeGroupPointCloud.active`
+   - :class:`AttributeGroupPointCloud.new`
+   - :class:`AttributeGroupPointCloud.remove`
+   - :class:`Curves.attributes`
+   - :class:`Curves.color_attributes`
+   - :class:`GreasePencil.attributes`
+   - :class:`GreasePencil.color_attributes`
+   - :class:`GreasePencilDrawing.attributes`
+   - :class:`GreasePencilDrawing.color_attributes`
+   - :class:`Mesh.attributes`
+   - :class:`Mesh.color_attributes`
+   - :class:`PointCloud.attributes`
+   - :class:`PointCloud.color_attributes`
 

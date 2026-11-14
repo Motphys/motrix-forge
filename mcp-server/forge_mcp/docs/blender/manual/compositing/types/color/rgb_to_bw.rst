@@ -1,7 +1,7 @@
 .. index:: Compositor Nodes; RGB TO BW
 .. _bpy.types.CompositorNodeRGBToBW:
 .. Editor's Note: This page gets copied into:
-.. - :doc:`</render/shader_nodes/converter/rgb_to_bw>`
+.. - :doc:`</render/shader_nodes/color/rgb_to_bw>`
 .. - :doc:`</editors/texture_node/types/converter/rgb_to_bw>`
 
 .. --- copy below this line ---
@@ -27,12 +27,6 @@ Inputs
 
 Image
    Color image input.
-
-
-Properties
-==========
-
-This node has no properties.
 
 
 Outputs

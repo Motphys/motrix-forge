@@ -1,4 +1,3 @@
-
 **************
 World Settings
 **************
@@ -10,6 +9,8 @@ In EEVEE, the world lighting contribution is stored into an internal
 :doc:`Light Probe </render/eevee/light_probes/index>`.
 This makes the lighting less precise than Cycles.
 
+EEVEE considers the world lighting contribution as indirect lighting
+whereas Cycles considers it as direct lighting.
 
 .. _bpy.types.WorldMistSettings:
 

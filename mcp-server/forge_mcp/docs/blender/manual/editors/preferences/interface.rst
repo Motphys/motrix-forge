@@ -6,7 +6,7 @@ Interface
 
 Interface configuration lets you change how UI elements are displayed and how they react.
 
-.. figure:: /images/editors_preferences_section_interface.png
+.. figure:: /images/editors_preferences_section_interface.webp
 
 
 Display
@@ -37,20 +37,15 @@ Developer Extras
 
    - :ref:`Operator Search <bpy.ops.wm.search_operator>`
    - :doc:`Sequencer Cache Settings </editors/video_sequencer/sequencer/sidebar/cache>`
+   - :doc:`Preferences Developer Tools Tab </editors/preferences/developer_tools>`
+   - Shows the name of icons in the tooltip when hovering over icon buttons.
+   - Adds several option to the :kbd:`RMB` button context menu:
 
-   Button Context Menu
-      Online Python Reference
-         To open the Python reference manual.
-      Copy Python Command
-         To copy the expression used when pressing the button.
-      Edit Source
-         To edit Python source code that defines the button.
-      Edit Translation
-         The option to edit UI translations
-         (only available when the *Manage UI translations* add-on is also enabled).
-   Preferences
-      Experimental Tab
-         Work in progress features can be enabled here which are currently being tested.
+     - *Online Python Reference* -- To open the Python reference manual.
+     - *Copy Python Command* -- To copy the expression used when pressing the button.
+     - *Edit Source* -- To edit Python source code that defines the button.
+     - *Edit Translation* -- The option to edit UI translations
+       (only available when the *Manage UI translations* add-on is also enabled).
 
 .. _bpy.types.PreferencesView.show_tooltips:
 
@@ -59,6 +54,7 @@ Tooltips
       When enabled, a tooltip will appear when your mouse pointer is over a control.
       This tip explains the function of what is under the pointer,
       shows the associated hotkey (if any).
+      When disabled, you can still force the tooltip display by holding :kbd:`Alt` then hovering the control.
 
    .. _bpy.types.PreferencesView.show_tooltips_python:
 
@@ -71,6 +67,16 @@ Search -- Sort by Most Recent
    Show most recently selected items at the top of search results,
    otherwise search results are sorted alphabetically.
 
+.. _bpy.types.Preferences.show_hidden_ids:
+
+Search -- Show Hidden
+   Display data-blocks with dot-prefixed names in search menus.
+   This affects search pop-ups and data-block selectors that use filtering.
+
+   By default, dot-prefixed names are hidden to prevent accidental use
+   of internal or helper data-blocks. See :ref:`data-system-datablock-name-hidden`
+   for more information about this naming convention.
+
 
 Editors
 =======
@@ -81,9 +87,24 @@ Region Overlap
    This makes regions overlap the viewport. It means that the *Toolbar* and *Sidebar* regions,
    will be displayed overlapping the main area.
 
+.. _bpy.types.PreferencesView.show_area_handle:
+
+Show -- Corner Handles:
+   Displays small handles in the corners of each :doc:`/interface/window_system/areas`.
+   These can be used to split or join areas with a click-and-drag action.
+
+   This option is especially useful on touch-enabled devices,
+   where precise right-click or edge selection is more difficult.
+
+.. _bpy.types.PreferencesView.show_number_arrows:
+
+Show -- Numeric Input Arrows
+   - When enabled always display arrows in numeric input fields for increasing or decreasing values.
+   - When disabled, arrows are shown when hovering over the property.
+
 .. _bpy.types.PreferencesView.show_navigate_ui:
 
-Navigation Controls
+Show -- Navigation Controls
    Show navigation controls at top right of the area.
    This impacts the 3D Viewport as well as image spaces.
 
@@ -162,7 +183,7 @@ Render In
 
    :Keep User Interface: The user interface does not change and the render is computed in the background.
    :Maximize Area: A new Image editor is opened as a temporary window in full screen mode.
-   :Image Editor: The area that is the largest on screen is replaced placed by a temporary Image editor.
+   :Image Editor: The area that is the largest on screen is replaced by a temporary Image editor.
    :New Window: A new Image editor is opened as a regularly sized temporary window.
 
 .. _bpy.types.PreferencesView.filebrowser_display_type:
@@ -172,6 +193,14 @@ File Browser
 
    :Maximize Area: A new File Browser editor is opened as a temporary window in full screen mode.
    :New Window: A new File Browser editor is opened as a regularly sized temporary window.
+
+.. _bpy.types.PreferencesView.preferences_display_type:
+
+Preferences
+   Controls how the :ref:`User Preferences <bpy.ops.screen.userpref_show>` editor is displayed when opened.
+
+   :Maximize Area: Opens the Preferences as a temporary full-screen editor within the current window.
+   :New Window: Opens the Preferences in a new, separate window of regular size.
 
 
 .. _prefs-interface-status_bar:
@@ -231,6 +260,39 @@ Translate
    New Data
       Translates the names of new data-blocks.
 
+.. _bpy.types.PreferencesView.date_format:
+
+Date Format
+   Format used to display dates.
+
+   :Default: Uses the default date format for the selected language.
+   :dd/mm/yyyy: Displays dates as day/month/year, for example ``27/02/2019``.
+   :dd.mm.yyyy: Displays dates as day.month.year, for example ``27.02.2019``.
+   :dd-mm-yyyy: Displays dates as day-month-year, for example ``27-02-2019``.
+   :mm/dd/yyyy: Displays dates as month/day/year, for example ``02/27/2019``.
+   :yyyy/mm/dd: Displays dates as year/month/day, for example ``2019/02/27``.
+   :yyyy.mm.dd: Displays dates as year.month.day, for example ``2019.02.27``.
+   :yyyy-mm-dd: Displays dates as year-month-day, for example ``2019-02-27``.
+
+.. _bpy.types.PreferencesView.time_format:
+
+Time Format
+   Format used to display times.
+
+   :24-Hour (23:59): Displays times using a 24-hour clock, for example ``23:59``.
+   :12-Hour (11:59 PM): Displays times using a 12-hour clock, for example ``11:59 PM``.
+
+
+Accessibility
+=============
+
+.. _bpy.types.PreferencesView.use_reduce_motion:
+
+Reduce Motion
+   Avoids interface animations and motion effects.
+   This option helps reduce visual distractions and can improve comfort for
+   users sensitive to motion or those who prefer a more static interface.
+
 
 Text Rendering
 ==============
@@ -266,6 +328,12 @@ Mono-space Font
 
 Menus
 =====
+
+.. _bpy.types.PreferencesView.menu_close_leave:
+
+Close Menu on Leave
+   Close menus when the mouse is moved out of the region.
+
 
 .. _bpy.types.PreferencesView.use_mouse_over_open:
 

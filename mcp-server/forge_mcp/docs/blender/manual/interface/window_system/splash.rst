@@ -9,7 +9,7 @@ When starting Blender, the splash screen appears in the center of the window.
 It contains options to create new projects or open recent ones.
 A more detailed description can be found below.
 
-.. figure:: /images/interface_window-system_splash_current.png
+.. figure:: /images/interface_splash_current.webp
    :align: center
 
    Blender Splash Screen.
@@ -47,7 +47,7 @@ Recover Last Session
    Blender will try to recover the last :term:`session` based on temporary files. See
    :doc:`/troubleshooting/recover`.
 
-Donate
-   Open Blender's `Development Fund <https://fund.blender.org/>`__ website.
 What's New
    Open the latest release notes.
+Donate to Blender
+   Open Blender's `Development Fund <https://fund.blender.org/>`__ website.

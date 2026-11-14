@@ -109,7 +109,7 @@ Empty Space :guilabel:`Gas Only`
 .. _bpy.types.FluidDomainSettings.delete_in_obstacle:
 
 Delete in Obstacle
-   Remover any volume of fluid that intersects with an obstacle inside the domain.
+   Remove any volume of fluid that intersects with an obstacle inside the domain.
 
 
 .. _bpy.types.FluidDomainSettings.use_collision_border_front:
@@ -265,10 +265,11 @@ The fluid simulation will make use of all the fields without an attached particl
 Simulation Method
    Determines the liquid particle simulation method.
 
-   FLIP (FLuid Implicit Particle)
+   :FLIP:
+      (FLuid Implicit Particle)
       Produces a very splashy simulation with lots of particles dispersed in the air.
-
-   APIC (Affine Particle-In-Cell)
+   :APIC:
+      (Affine Particle-In-Cell)
       Produces a very energetic but also more stable simulation.
       Vortices within the liquid will be preserved better than with *FLIP*.
 

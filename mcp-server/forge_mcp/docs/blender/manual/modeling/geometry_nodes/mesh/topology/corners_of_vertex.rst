@@ -48,13 +48,6 @@ Sort Index
    The 0-based index of the corner to select from the vertex's sorted corners.
    If this value is outside the range of valid indices, it wraps around.
 
-
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

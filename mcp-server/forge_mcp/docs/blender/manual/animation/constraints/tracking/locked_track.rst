@@ -5,41 +5,23 @@
 Locked Track Constraint
 ***********************
 
-The *Locked Track* constraint is a bit tricky to explain, both graphically and textual.
-Basically, it is a :doc:`Track To constraint </animation/constraints/tracking/track_to>`,
-but with a locked axis, i.e.
-an axis that cannot rotate (change its orientation). Hence,
-the owner can only track its target by rotating around this axis,
-and unless the target is in the plane perpendicular to the locked axis, and crossing the owner,
-this owner cannot really point at its target.
+The *Locked Track* constraint makes an object or bone point towards a certain target.
+It's typically called "Look At" or "Aim" in other 3D software.
 
-Let us take the best real-world equivalent: a compass.
-It can rotate to point in the general direction of its target
-(the magnetic North, or a neighbor magnet), but it cannot point *directly at it*,
-because it spins like a wheel on an axle.
-If a compass is sitting on a table and there is a magnet directly above it,
-the compass cannot point to it. If we move the magnet more to one side of the compass,
-it still cannot point *at* the target,
-but it can point in the general direction of the target,
-and still obey its restrictions of the axle.
+The word "locked" means that the object or bone can only rotate around one axis.
+The orientation of this axis always stays the same, and the other two axes always
+stay in their original plane.
 
-When using a *Locked Track* constraint, you can think of the target as a magnet,
-and the owner as a compass.
-The *Lock* axis will function as the axle around which the owner spins,
-and the *To* axis will function as the compass' needle.
-Which axis does what is up to you!
+One example use case is distant tree billboards, which should turn to face the camera
+while also staying upright. Another example is a compass on a table with a nearby magnet:
+the needle spins horizontally to point at the magnet, but it can never point up or down.
 
-If you have trouble understanding the buttons of this constraint, read the tooltips,
-they are pretty good. If you do not know where your object's axes are,
-enable *Axis* in :menuselection:`Properties --> Armature --> Viewport Display`.
-Or, if you are working with bones, turn on the *Axes* in the armature's *Viewport Display* panel.
+.. tip::
 
-This constraint was designed to work cooperatively with the *Track To* constraint.
-If you set the axes buttons right for these two constraints,
-*Track To* can be used to point the axle at a primary target,
-and *Locked Track* can spin the owner around that axle to a secondary target.
-
-This constraint also works very well for 2D billboarding.
+   This constraint can be used in combination with other *Track* constraints. For example,
+   first add a :doc:`Damped Track </animation/constraints/tracking/damped_track>` constraint
+   to orient the X/Y plane based on one target, then add a *Locked Track* constraint to rotate
+   within that plane towards another target.
 
 
 Options
@@ -47,27 +29,28 @@ Options
 
 .. figure:: /images/animation_constraints_tracking_locked-track_panel.png
 
-   Locked track panel.
+   Locked Track constraint.
 
-Target
-   :ref:`ui-data-id` used to select the constraints target, and is not functional (red state) when it has none.
-   See :ref:`common constraint properties <rigging-constraints-interface-common-target>` for more information.
+:ref:`Target <rigging-constraints-interface-common-target>`
+   The object or bone to point towards.
 
 Track Axis
-   The tracking local axis, i.e. the owner's axis to point at the target.
-   The negative options force the relevant axis to point away from the target.
+   The local axis of the owner that should point at the target.
+   For bones, this should typically be Y.
+
+   A negative axis will make the owner point away from the target instead.
 
 Locked Axis
-   The locked local axis, i.e. the owner's axis which cannot be re-oriented to track the target.
+   The local axis of the owner that should keep its orientation.
+   In other words, the only axis which the owner can rotate around.
 
 .. important::
 
-   If you choose the same axis for *Tracking Axis* and *Locked Axis*,
-   the constraint will no longer be functional (red state).
+   The *Track Axis* and the *Locked Axis* must be different. If they are the same,
+   the constraint will stop working and its icon will turn red.
 
-Influence
-   Controls the percentage of affect the constraint has on the object.
-   See :ref:`common constraint properties <bpy.types.constraint.influence>` for more information.
+:ref:`bpy.types.constraint.influence`
+   How strongly the constraint affects the owner.
 
 
 Example

@@ -29,21 +29,21 @@ The :mod:`mathutils` module provides the following classes:
    mathutils.noise.rst
 
 
-.. literalinclude:: ..\examples\mathutils.py
+.. literalinclude:: ../examples/mathutils.0.py
 
-.. class:: Color(rgb)
+.. class:: Color(rgb=(0.0, 0.0, 0.0), /)
 
    This object gives access to Colors in Blender.
 
-   Most colors returned by Blender APIs are in scene linear color space, as defined by    the OpenColorIO configuration. The notable exception is user interface theming colors,    which are in sRGB color space.
+   Most colors returned by Blender APIs are in scene linear color space, as defined by the OpenColorIO configuration. The notable exception is user interface theming colors, which are in sRGB color space.
 
-   :arg rgb: (red, green, blue) color values where (0, 0, 0) is black & (1, 1, 1) is white.
+   :param rgb: (red, green, blue) color values where (0, 0, 0) is black & (1, 1, 1) is white.
    :type rgb: Sequence[float]
 
 
-   .. literalinclude:: ..\examples\mathutils.Color.py
+   .. literalinclude:: ../examples/mathutils.Color.0.py
 
-   .. function:: copy()
+   .. method:: copy()
    
       Returns a copy of this color.
    
@@ -54,16 +54,17 @@ The :mod:`mathutils` module provides the following classes:
          no reference to the original data.
 
 
-   .. function:: freeze()
+   .. method:: freeze()
    
       Make this object immutable.
    
       After this the object can be hashed, used in dictionaries & sets.
    
       :return: An instance of this object.
+      :rtype: Self
 
 
-   .. function:: from_aces_to_scene_linear()
+   .. method:: from_aces_to_scene_linear()
    
       Convert from ACES2065-1 linear to scene linear color space.
    
@@ -71,7 +72,23 @@ The :mod:`mathutils` module provides the following classes:
       :rtype: :class:`Color`
 
 
-   .. function:: from_rec709_linear_to_scene_linear()
+   .. method:: from_acescg_to_scene_linear()
+   
+      Convert from ACEScg linear to scene linear color space.
+   
+      :return: A color in scene linear color space.
+      :rtype: :class:`Color`
+
+
+   .. method:: from_rec2020_linear_to_scene_linear()
+   
+      Convert from Rec.2020 linear color space to scene linear color space.
+   
+      :return: A color in scene linear color space.
+      :rtype: :class:`Color`
+
+
+   .. method:: from_rec709_linear_to_scene_linear()
    
       Convert from Rec.709 linear color space to scene linear color space.
    
@@ -79,7 +96,7 @@ The :mod:`mathutils` module provides the following classes:
       :rtype: :class:`Color`
 
 
-   .. function:: from_scene_linear_to_aces()
+   .. method:: from_scene_linear_to_aces()
    
       Convert from scene linear to ACES2065-1 linear color space.
    
@@ -87,7 +104,23 @@ The :mod:`mathutils` module provides the following classes:
       :rtype: :class:`Color`
 
 
-   .. function:: from_scene_linear_to_rec709_linear()
+   .. method:: from_scene_linear_to_acescg()
+   
+      Convert from scene linear to ACEScg linear color space.
+   
+      :return: A color in ACEScg linear color space.
+      :rtype: :class:`Color`
+
+
+   .. method:: from_scene_linear_to_rec2020_linear()
+   
+      Convert from scene linear to Rec.2020 linear color space.
+   
+      :return: A color in Rec.2020 linear color space.
+      :rtype: :class:`Color`
+
+
+   .. method:: from_scene_linear_to_rec709_linear()
    
       Convert from scene linear to Rec.709 linear color space.
    
@@ -95,7 +128,7 @@ The :mod:`mathutils` module provides the following classes:
       :rtype: :class:`Color`
 
 
-   .. function:: from_scene_linear_to_srgb()
+   .. method:: from_scene_linear_to_srgb()
    
       Convert from scene linear to sRGB color space.
    
@@ -103,7 +136,7 @@ The :mod:`mathutils` module provides the following classes:
       :rtype: :class:`Color`
 
 
-   .. function:: from_scene_linear_to_xyz_d65()
+   .. method:: from_scene_linear_to_xyz_d65()
    
       Convert from scene linear to CIE XYZ (Illuminant D65) color space.
    
@@ -111,7 +144,7 @@ The :mod:`mathutils` module provides the following classes:
       :rtype: :class:`Color`
 
 
-   .. function:: from_srgb_to_scene_linear()
+   .. method:: from_srgb_to_scene_linear()
    
       Convert from sRGB to scene linear color space.
    
@@ -119,7 +152,7 @@ The :mod:`mathutils` module provides the following classes:
       :rtype: :class:`Color`
 
 
-   .. function:: from_xyz_d65_to_scene_linear()
+   .. method:: from_xyz_d65_to_scene_linear()
    
       Convert from CIE XYZ (Illuminant D65) to scene linear color space.
    
@@ -152,7 +185,7 @@ The :mod:`mathutils` module provides the following classes:
 
       HSV Values in [0, 1].
       
-      :type: float triplet
+      :type: tuple[float, float, float]
 
 
    .. attribute:: is_frozen
@@ -178,7 +211,9 @@ The :mod:`mathutils` module provides the following classes:
 
    .. attribute:: owner
 
-      The item this is wrapping or None  (read-only).
+      The item this is wrapping or None (read-only).
+      
+      :type: Any
 
 
    .. attribute:: r
@@ -202,23 +237,128 @@ The :mod:`mathutils` module provides the following classes:
       :type: float
 
 
+   .. details:: Special Methods
+
+      .. method:: __add__(other)
+
+         :param other: The other operand.
+         :type other: Self
+         :rtype: :class:`Color`
+
+      .. method:: __eq__(other)
+
+         :param other: The other operand.
+         :type other: object
+         :rtype: bool
+
+      .. method:: __getitem__(key)
+
+         :param key: Index or key.
+         :type key: int
+         :rtype: float
+
+      .. method:: __hash__()
+
+         :rtype: int
+
+      .. method:: __iadd__(other)
+
+         :param other: The other operand.
+         :type other: Self
+         :rtype: :class:`Color`
+
+      .. method:: __imul__(other)
+
+         :param other: Scalar.
+         :type other: float
+         :rtype: :class:`Color`
+
+      .. method:: __isub__(other)
+
+         :param other: The other operand.
+         :type other: Self
+         :rtype: :class:`Color`
+
+      .. method:: __itruediv__(other)
+
+         :param other: Scalar divisor.
+         :type other: float
+         :rtype: :class:`Color`
+
+      .. method:: __len__()
+
+         :rtype: int
+
+      .. method:: __mul__(other)
+
+         :param other: Scalar.
+         :type other: float
+         :rtype: :class:`Color`
+
+      .. method:: __ne__(other)
+
+         :param other: The other operand.
+         :type other: object
+         :rtype: bool
+
+      .. method:: __neg__()
+
+         :rtype: :class:`Color`
+
+      .. method:: __pos__()
+
+         :rtype: :class:`Color`
+
+      .. method:: __repr__()
+
+         :rtype: str
+
+      .. method:: __rmul__(other)
+
+         :param other: Scalar.
+         :type other: float
+         :rtype: :class:`Color`
+
+      .. method:: __setitem__(key, value)
+
+         :param key: Index or key.
+         :type key: int
+         :param value: Value to assign.
+         :type value: object
+
+      .. method:: __str__()
+
+         :rtype: str
+
+      .. method:: __sub__(other)
+
+         :param other: The other operand.
+         :type other: Self
+         :rtype: :class:`Color`
+
+      .. method:: __truediv__(other)
+
+         :param other: Scalar divisor.
+         :type other: float
+         :rtype: :class:`Color`
 
 
-.. class:: Euler(angles, order='XYZ')
+
+.. class:: Euler(angles=(0.0, 0.0, 0.0), order='XYZ', /)
 
    This object gives access to Eulers in Blender.
 
    .. seealso:: `Euler angles <https://en.wikipedia.org/wiki/Euler_angles>`__ on Wikipedia.
 
-   :arg angles: (X, Y, Z) angles in radians.
+   :param angles: (X, Y, Z) angles in radians.
    :type angles: Sequence[float]
-   :arg order: Optional order of the angles, a permutation of ``XYZ``.
-   :type order: str
+   :param order: Euler rotation order.
+   :type order: Literal['XYZ', 'XZY', 'YXZ', 'YZX', 'ZXY', 'ZYX']
 
 
-   .. literalinclude:: ..\examples\mathutils.Euler.py
+   .. literalinclude:: ../examples/mathutils.Euler.0.py
 
-   .. function:: copy()
+   .. method:: copy()
    
       Returns a copy of this euler.
    
@@ -229,39 +369,43 @@ The :mod:`mathutils` module provides the following classes:
          no reference to the original data.
 
 
-   .. function:: freeze()
+   .. method:: freeze()
    
       Make this object immutable.
    
       After this the object can be hashed, used in dictionaries & sets.
    
       :return: An instance of this object.
+      :rtype: Self
 
 
-   .. method:: make_compatible(other)
+   .. method:: make_compatible(other, /)
    
       Make this euler compatible with another,
       so interpolating between them works as intended.
    
+      :param other: Other euler rotation.
+      :type other: :class:`Euler`
+   
       .. note:: the rotation order is not taken into account for this function.
 
 
-   .. method:: rotate(other)
+   .. method:: rotate(other, /)
    
       Rotates the euler by another mathutils value.
    
-      :arg other: rotation component of mathutils value
+      :param other: rotation component of mathutils value
       :type other: :class:`Euler` | :class:`Quaternion` | :class:`Matrix`
 
 
-   .. method:: rotate_axis(axis, angle)
+   .. method:: rotate_axis(axis, angle, /)
    
-      Rotates the euler a certain amount and returning a unique euler rotation
-      (no 720 degree pitches).
+      Rotates the euler a certain amount, wrapping the result to produce
+      a unique euler rotation (no 720 degree pitches).
    
-      :arg axis: single character in ['X, 'Y', 'Z'].
-      :type axis: str
-      :arg angle: angle in radians.
+      :param axis: An axis string.
+      :type axis: Literal['X', 'Y', 'Z']
+      :param angle: angle in radians.
       :type angle: float
 
 
@@ -311,12 +455,14 @@ The :mod:`mathutils` module provides the following classes:
 
       Euler rotation order.
       
-      :type: str in ['XYZ', 'XZY', 'YXZ', 'YZX', 'ZXY', 'ZYX']
+      :type: Literal['XYZ', 'XZY', 'YXZ', 'YZX', 'ZXY', 'ZYX']
 
 
    .. attribute:: owner
 
-      The item this is wrapping or None  (read-only).
+      The item this is wrapping or None (read-only).
+      
+      :type: Any
 
 
    .. attribute:: x
@@ -340,123 +486,168 @@ The :mod:`mathutils` module provides the following classes:
       :type: float
 
 
+   .. details:: Special Methods
+
+      .. method:: __eq__(other)
+
+         :param other: The other operand.
+         :type other: object
+         :rtype: bool
+
+      .. method:: __getitem__(key)
+
+         :param key: Index or key.
+         :type key: int
+         :rtype: float
+
+      .. method:: __hash__()
+
+         :rtype: int
+
+      .. method:: __len__()
+
+         :rtype: int
+
+      .. method:: __ne__(other)
+
+         :param other: The other operand.
+         :type other: object
+         :rtype: bool
+
+      .. method:: __repr__()
+
+         :rtype: str
+
+      .. method:: __setitem__(key, value)
+
+         :param key: Index or key.
+         :type key: int
+         :param value: Value to assign.
+         :type value: object
+
+      .. method:: __str__()
+
+         :rtype: str
 
 
-.. class:: Matrix([rows])
+
+.. class:: Matrix(rows=((1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1)), /)
 
    This object gives access to Matrices in Blender, supporting square and rectangular
    matrices from 2x2 up to 4x4.
 
-   :arg rows: Sequence of rows. When omitted, a 4x4 identity matrix is constructed.
+   :param rows: Sequence of rows.
    :type rows: Sequence[Sequence[float]]
 
 
-   .. literalinclude:: ..\examples\mathutils.Matrix.py
+   .. literalinclude:: ../examples/mathutils.Matrix.0.py
 
-   .. classmethod:: Diagonal(vector)
+   .. classmethod:: Diagonal(vector, /)
    
       Create a diagonal (scaling) matrix using the values from the vector.
    
-      :arg vector: The vector of values for the diagonal.
-      :type vector: :class:`Vector`
+      :param vector: The vector of values for the diagonal.
+      :type vector: Sequence[float]
       :return: A diagonal matrix.
       :rtype: :class:`Matrix`
 
 
-   .. classmethod:: Identity(size)
+   .. classmethod:: Identity(size, /)
    
       Create an identity matrix.
    
-      :arg size: The size of the identity matrix to construct [2, 4].
+      :param size: The size of the identity matrix to construct [2, 4].
       :type size: int
       :return: A new identity matrix.
       :rtype: :class:`Matrix`
 
 
-   .. classmethod:: LocRotScale(location, rotation, scale)
+   .. classmethod:: LocRotScale(location, rotation, scale, /)
    
       Create a matrix combining translation, rotation and scale,
       acting as the inverse of the decompose() method.
    
       Any of the inputs may be replaced with None if not needed.
    
-      :arg location: The translation component.
-      :type location: :class:`Vector` | None
-      :arg rotation: The rotation component as a 3x3 matrix, quaternion, euler or None for no rotation.
+      :param location: The translation component.
+      :type location: Sequence[float] | None
+      :param rotation: The rotation component as a 3x3 matrix, quaternion, euler or None for no rotation.
       :type rotation: :class:`Matrix` | :class:`Quaternion` | :class:`Euler` | None
-      :arg scale: The scale component.
-      :type scale: :class:`Vector` | None
+      :param scale: The scale component.
+      :type scale: Sequence[float] | None
       :return: Combined transformation as a 4x4 matrix. 
       :rtype: :class:`Matrix`
 
 
-      .. literalinclude:: ..\examples\mathutils.Matrix.LocRotScale.py
+      .. literalinclude:: ../examples/mathutils.Matrix.LocRotScale.0.py
 
 
-   .. classmethod:: OrthoProjection(axis, size)
+   .. classmethod:: OrthoProjection(axis, size, /)
    
       Create a matrix to represent an orthographic projection.
    
-      :arg axis: Can be any of the following: ['X', 'Y', 'XY', 'XZ', 'YZ'],
+      :param axis: An axis string,
          where a single axis is for a 2D matrix.
          Or a vector for an arbitrary axis
-      :type axis: str | :class:`Vector`
-      :arg size: The size of the projection matrix to construct [2, 4].
+      :type axis: Literal['X', 'Y', 'XY', 'XZ', 'YZ'] | Sequence[float]
+      :param size: The size of the projection matrix to construct [2, 4].
       :type size: int
       :return: A new projection matrix.
       :rtype: :class:`Matrix`
 
 
-   .. classmethod:: Rotation(angle, size, axis)
+   .. classmethod:: Rotation(angle, size, axis=None, /)
    
       Create a matrix representing a rotation.
    
-      :arg angle: The angle of rotation desired, in radians.
+      :param angle: The angle of rotation desired, in radians.
       :type angle: float
-      :arg size: The size of the rotation matrix to construct [2, 4].
+      :param size: The size of the rotation matrix to construct [2, 4].
       :type size: int
-      :arg axis: a string in ['X', 'Y', 'Z'] or a 3D Vector Object
-         (optional when size is 2).
-      :type axis: str | :class:`Vector`
+      :param axis: Axis of rotation: a single-character string ('X', 'Y' or 'Z')
+         or a 3D vector. Required for ``size`` 3 or 4. Must be None (or omitted)
+         when ``size`` is 2 - 2D rotation has no axis.
+      :type axis: Literal['X', 'Y', 'Z'] | Sequence[float] | None
       :return: A new rotation matrix.
       :rtype: :class:`Matrix`
 
 
-   .. classmethod:: Scale(factor, size, axis)
+   .. classmethod:: Scale(factor, size, axis=None, /)
    
       Create a matrix representing a scaling.
    
-      :arg factor: The factor of scaling to apply.
+      :param factor: The factor of scaling to apply.
       :type factor: float
-      :arg size: The size of the scale matrix to construct [2, 4].
+      :param size: The size of the scale matrix to construct [2, 4].
       :type size: int
-      :arg axis: Direction to influence scale. (optional).
-      :type axis: :class:`Vector`
+      :param axis: Direction along which to scale. When None (or omitted),
+         ``factor`` is applied uniformly along all axes.
+      :type axis: Sequence[float] | None
       :return: A new scale matrix.
       :rtype: :class:`Matrix`
 
 
-   .. classmethod:: Shear(plane, size, factor)
+   .. classmethod:: Shear(plane, size, factor, /)
    
-      Create a matrix to represent an shear transformation.
+      Create a matrix to represent a shear transformation.
    
-      :arg plane: Can be any of the following: ['X', 'Y', 'XY', 'XZ', 'YZ'],
+      :param plane: An axis string,
          where a single axis is for a 2D matrix only.
-      :type plane: str
-      :arg size: The size of the shear matrix to construct [2, 4].
+      :type plane: Literal['X', 'Y', 'XY', 'XZ', 'YZ']
+      :param size: The size of the shear matrix to construct [2, 4].
       :type size: int
-      :arg factor: The factor of shear to apply. For a 2 *size* matrix use a single float. For a 3 or 4 *size* matrix pass a pair of floats corresponding with the *plane* axis.
+      :param factor: The factor of shear to apply. For a 2 *size* matrix use a single float. For a 3 or 4 *size* matrix pass a pair of floats corresponding with the *plane* axis.
       :type factor: float | Sequence[float]
       :return: A new shear matrix.
       :rtype: :class:`Matrix`
 
 
-   .. classmethod:: Translation(vector)
+   .. classmethod:: Translation(vector, /)
    
       Create a matrix representing a translation.
    
-      :arg vector: The translation vector.
-      :type vector: :class:`Vector`
+      :param vector: The translation vector.
+      :type vector: Sequence[float]
       :return: An identity matrix with a translation.
       :rtype: :class:`Matrix`
 
@@ -465,7 +656,7 @@ The :mod:`mathutils` module provides the following classes:
    
       Set the matrix to its adjugate.
    
-      :raises ValueError: if the matrix cannot be adjugate.
+      :raises ValueError: if the matrix cannot be adjugated.
    
       .. seealso:: `Adjugate matrix <https://en.wikipedia.org/wiki/Adjugate_matrix>`__ on Wikipedia.
 
@@ -483,13 +674,13 @@ The :mod:`mathutils` module provides the following classes:
    
       Returns a copy of this matrix.
    
-      :return: an instance of itself
+      :return: A copy of the matrix.
       :rtype: :class:`Matrix`
 
 
    .. method:: decompose()
    
-      Return the translation, rotation, and scale components of this matrix.
+      Return the translation, rotation, and scale components of this 4x4 matrix.
    
       :return: Tuple of translation, rotation, and scale.
       :rtype: tuple[:class:`Vector`, :class:`Quaternion`, :class:`Vector`]
@@ -505,13 +696,14 @@ The :mod:`mathutils` module provides the following classes:
       .. seealso:: `Determinant <https://en.wikipedia.org/wiki/Determinant>`__ on Wikipedia.
 
 
-   .. function:: freeze()
+   .. method:: freeze()
    
       Make this object immutable.
    
       After this the object can be hashed, used in dictionaries & sets.
    
       :return: An instance of this object.
+      :rtype: Self
 
 
    .. method:: identity()
@@ -524,13 +716,13 @@ The :mod:`mathutils` module provides the following classes:
       .. seealso:: `Identity matrix <https://en.wikipedia.org/wiki/Identity_matrix>`__ on Wikipedia.
 
 
-   .. method:: invert(fallback=None)
+   .. method:: invert(fallback=None, /)
    
       Set the matrix to its inverse.
    
-      :arg fallback: Set the matrix to this value when the inverse cannot be calculated
+      :param fallback: Set the matrix to this value when the inverse cannot be calculated
          (instead of raising a :exc:`ValueError` exception).
-      :type fallback: :class:`Matrix`
+      :type fallback: :class:`Matrix` | None
    
       .. seealso:: `Inverse matrix <https://en.wikipedia.org/wiki/Inverse_matrix>`__ on Wikipedia.
 
@@ -544,11 +736,11 @@ The :mod:`mathutils` module provides the following classes:
       .. seealso:: `Inverse Matrix <https://en.wikipedia.org/wiki/Inverse_matrix>`__ on Wikipedia.
 
 
-   .. method:: inverted(fallback=None)
+   .. method:: inverted(fallback=None, /)
    
       Return an inverted copy of the matrix.
    
-      :arg fallback: return this when the inverse can't be calculated
+      :param fallback: return this when the inverse can't be calculated
          (instead of raising a :exc:`ValueError`).
       :type fallback: Any
       :return: The inverted matrix or fallback when given.
@@ -565,13 +757,13 @@ The :mod:`mathutils` module provides the following classes:
       :rtype: :class:`Matrix`
 
 
-   .. function:: lerp(other, factor)
+   .. method:: lerp(other, factor, /)
    
-      Returns the interpolation of two matrices. Uses polar decomposition, see   "Matrix Animation and Polar Decomposition", Shoemake and Duff, 1992.
+      Returns the interpolation of two matrices. Uses polar decomposition, see "Matrix Animation and Polar Decomposition", Shoemake and Duff, 1992.
    
-      :arg other: value to interpolate with.
+      :param other: value to interpolate with.
       :type other: :class:`Matrix`
-      :arg factor: The interpolation value in [0.0, 1.0].
+      :param factor: The interpolation value in [0.0, 1.0].
       :type factor: float
       :return: The interpolated matrix.
       :rtype: :class:`Matrix`
@@ -579,14 +771,14 @@ The :mod:`mathutils` module provides the following classes:
 
    .. method:: normalize()
    
-      Normalize each of the matrix columns.
+      Normalize each of the matrix columns (3x3 and 4x4 only).
    
       .. note:: for 4x4 matrices, the 4th column (translation) is left untouched.
 
 
    .. method:: normalized()
    
-      Return a column normalized matrix
+      Return a column normalized matrix (3x3 and 4x4 only).
    
       :return: a column normalized matrix
       :rtype: :class:`Matrix`
@@ -599,14 +791,16 @@ The :mod:`mathutils` module provides the following classes:
       Resize the matrix to 4x4.
 
 
-   .. method:: rotate(other)
+   .. method:: rotate(other, /)
    
       Rotates the matrix by another mathutils value.
    
-      :arg other: rotation component of mathutils value
-      :type other: :class:`Euler` | :class:`Quaternion` | :class:`Matrix`
+      .. note:: The matrix must be 3x3.
    
       .. note:: If any of the columns are not unit length this may not have desired results.
+   
+      :param other: rotation component of mathutils value
+      :type other: :class:`Euler` | :class:`Quaternion` | :class:`Matrix`
 
 
    .. method:: to_2x2()
@@ -633,18 +827,17 @@ The :mod:`mathutils` module provides the following classes:
       :rtype: :class:`Matrix`
 
 
-   .. method:: to_euler(order, euler_compat)
+   .. method:: to_euler(order='XYZ', euler_compat=None, /)
    
       Return an Euler representation of the rotation matrix
       (3x3 or 4x4 matrix only).
    
-      :arg order: Optional rotation order argument in
-         ['XYZ', 'XZY', 'YXZ', 'YZX', 'ZXY', 'ZYX'].
-      :type order: str
-      :arg euler_compat: Optional euler argument the new euler will be made
+      :param order: A rotation order string.
+      :type order: Literal['XYZ', 'XZY', 'YXZ', 'YZX', 'ZXY', 'ZYX']
+      :param euler_compat: Optional euler argument the new euler will be made
          compatible with (no axis flipping between them).
          Useful for converting a series of matrices to animation curves.
-      :type euler_compat: :class:`Euler`
+      :type euler_compat: :class:`Euler` | None
       :return: Euler representation of the matrix.
       :rtype: :class:`Euler`
 
@@ -669,7 +862,7 @@ The :mod:`mathutils` module provides the following classes:
 
    .. method:: to_translation()
    
-      Return the translation part of a 4 row matrix.
+      Return the translation part of a 4x4 matrix.
    
       :return: Return the translation of a matrix.
       :rtype: :class:`Vector`
@@ -697,9 +890,9 @@ The :mod:`mathutils` module provides the following classes:
 
    .. attribute:: col
 
-      Access the matrix by columns, 3x3 and 4x4 only, (read-only).
+      Access the matrix by columns (read-only).
       
-      :type: Matrix Access
+      :type: :class:`MatrixAccess`
 
 
    .. attribute:: is_frozen
@@ -732,7 +925,7 @@ The :mod:`mathutils` module provides the following classes:
 
    .. attribute:: is_orthogonal_axis_vectors
 
-      True if this matrix has got orthogonal axis vectors, 3x3 and 4x4 only, (read-only).
+      True if this matrix has orthogonal axis vectors, 3x3 and 4x4 only, (read-only).
       
       :type: bool
 
@@ -760,14 +953,16 @@ The :mod:`mathutils` module provides the following classes:
 
    .. attribute:: owner
 
-      The item this is wrapping or None  (read-only).
+      The item this is wrapping or None (read-only).
+      
+      :type: Any
 
 
    .. attribute:: row
 
       Access the matrix by rows (default), (read-only).
       
-      :type: Matrix Access
+      :type: :class:`MatrixAccess`
 
 
    .. attribute:: translation
@@ -777,15 +972,155 @@ The :mod:`mathutils` module provides the following classes:
       :type: :class:`Vector`
 
 
+   .. details:: Special Methods
+
+      .. method:: __add__(other)
+
+         :param other: The other operand.
+         :type other: Self
+         :rtype: :class:`Matrix`
+
+      .. method:: __eq__(other)
+
+         :param other: The other operand.
+         :type other: object
+         :rtype: bool
+
+      .. method:: __getitem__(key)
+
+         :param key: Index or key.
+         :type key: int
+         :rtype: :class:`Vector`
+
+      .. method:: __hash__()
+
+         :rtype: int
+
+      .. method:: __imatmul__(other)
+
+         :param other: The other operand.
+         :type other: Self
+         :rtype: :class:`Matrix`
+
+      .. method:: __imul__(other)
+
+         :param other: The other operand.
+         :type other: :class:`Matrix`
+         :rtype: :class:`Matrix`
+
+      .. method:: __imul__(other)
+         :noindex:
+
+         :param other: The other operand.
+         :type other: float
+         :rtype: :class:`Matrix`
+
+      .. method:: __invert__()
+
+         :rtype: :class:`Matrix`
+
+      .. method:: __len__()
+
+         :rtype: int
+
+      .. method:: __matmul__(other)
+
+         :param other: The other operand.
+         :type other: :class:`Matrix`
+         :rtype: :class:`Matrix`
+
+      .. method:: __matmul__(other)
+         :noindex:
+
+         :param other: The other operand.
+         :type other: :class:`Vector`
+         :rtype: :class:`Vector`
+
+      .. method:: __mul__(other)
+
+         :param other: The other operand.
+         :type other: :class:`Matrix`
+         :rtype: :class:`Matrix`
+
+      .. method:: __mul__(other)
+         :noindex:
+
+         :param other: The other operand.
+         :type other: float
+         :rtype: :class:`Matrix`
+
+      .. method:: __ne__(other)
+
+         :param other: The other operand.
+         :type other: object
+         :rtype: bool
+
+      .. method:: __repr__()
+
+         :rtype: str
+
+      .. method:: __rmul__(other)
+
+         :param other: Scalar.
+         :type other: float
+         :rtype: :class:`Matrix`
+
+      .. method:: __setitem__(key, value)
+
+         :param key: Index or key.
+         :type key: int
+         :param value: Value to assign.
+         :type value: object
+
+      .. method:: __str__()
+
+         :rtype: str
+
+      .. method:: __sub__(other)
+
+         :param other: The other operand.
+         :type other: Self
+         :rtype: :class:`Matrix`
 
 
-.. class:: Quaternion([seq, [angle]])
+
+.. class:: MatrixAccess
+
+   An indexable type for accessing matrix rows or columns as :class:`Vector` types.
+
+   .. details:: Special Methods
+
+      .. method:: __getitem__(key)
+
+         :param key: Index or key.
+         :type key: int
+         :rtype: float
+
+      .. method:: __iter__()
+
+         :rtype: :class:`MatrixAccess`
+
+      .. method:: __len__()
+
+         :rtype: int
+
+      .. method:: __setitem__(key, value)
+
+         :param key: Index or key.
+         :type key: int
+         :param value: Value to assign.
+         :type value: object
+
+
+
+.. class:: Quaternion(seq=(1.0, 0.0, 0.0, 0.0), angle=0.0, /)
 
    This object gives access to Quaternions in Blender.
 
-   :arg seq: size 3 or 4
-   :type seq: :class:`Vector`
-   :arg angle: rotation angle, in radians
+   :param seq: A (w, x, y, z) quaternion, a 3D exponential map vector,
+      or a 3D axis vector (when *angle* is also provided).
+   :type seq: Sequence[float]
+   :param angle: rotation angle, in radians
    :type angle: float
 
    The constructor takes arguments in various forms:
@@ -804,14 +1139,14 @@ The :mod:`mathutils` module provides the following classes:
       .. seealso:: :meth:`to_axis_angle`
 
 
-   .. literalinclude:: ..\examples\mathutils.Quaternion.py
+   .. literalinclude:: ../examples/mathutils.Quaternion.0.py
 
-   .. function:: conjugate()
+   .. method:: conjugate()
    
       Set the quaternion to its conjugate (negate x, y, z).
 
 
-   .. function:: conjugated()
+   .. method:: conjugated()
    
       Return a new conjugated quaternion.
    
@@ -819,7 +1154,7 @@ The :mod:`mathutils` module provides the following classes:
       :rtype: :class:`Quaternion`
 
 
-   .. function:: copy()
+   .. method:: copy()
    
       Returns a copy of this quaternion.
    
@@ -830,46 +1165,47 @@ The :mod:`mathutils` module provides the following classes:
          no reference to the original data.
 
 
-   .. method:: cross(other)
+   .. method:: cross(other, /)
    
       Return the cross product of this quaternion and another.
    
-      :arg other: The other quaternion to perform the cross product with.
+      :param other: The other quaternion to perform the cross product with.
       :type other: :class:`Quaternion`
       :return: The cross product.
       :rtype: :class:`Quaternion`
 
 
-   .. method:: dot(other)
+   .. method:: dot(other, /)
    
       Return the dot product of this quaternion and another.
    
-      :arg other: The other quaternion to perform the dot product with.
+      :param other: The other quaternion to perform the dot product with.
       :type other: :class:`Quaternion`
       :return: The dot product.
       :rtype: float
 
 
-   .. function:: freeze()
+   .. method:: freeze()
    
       Make this object immutable.
    
       After this the object can be hashed, used in dictionaries & sets.
    
       :return: An instance of this object.
+      :rtype: Self
 
 
-   .. function:: identity()
+   .. method:: identity()
    
       Set the quaternion to an identity quaternion.
 
 
-   .. function:: invert()
+   .. method:: invert()
    
       Set the quaternion to its inverse.
 
 
-   .. function:: inverted()
+   .. method:: inverted()
    
       Return a new, inverted quaternion.
    
@@ -877,23 +1213,26 @@ The :mod:`mathutils` module provides the following classes:
       :rtype: :class:`Quaternion`
 
 
-   .. method:: make_compatible(other)
+   .. method:: make_compatible(other, /)
    
       Make this quaternion compatible with another,
       so interpolating between them works as intended.
+   
+      :param other: The reference quaternion to make this one compatible with.
+      :type other: :class:`Quaternion`
 
 
-   .. function:: negate()
+   .. method:: negate()
    
       Set the quaternion to its negative.
 
 
-   .. function:: normalize()
+   .. method:: normalize()
    
       Normalize the quaternion.
 
 
-   .. function:: normalized()
+   .. method:: normalized()
    
       Return a new normalized quaternion.
    
@@ -901,31 +1240,31 @@ The :mod:`mathutils` module provides the following classes:
       :rtype: :class:`Quaternion`
 
 
-   .. method:: rotate(other)
+   .. method:: rotate(other, /)
    
       Rotates the quaternion by another mathutils value.
    
-      :arg other: rotation component of mathutils value
+      :param other: rotation component of mathutils value
       :type other: :class:`Euler` | :class:`Quaternion` | :class:`Matrix`
 
 
-   .. function:: rotation_difference(other)
+   .. method:: rotation_difference(other, /)
    
       Returns a quaternion representing the rotational difference.
    
-      :arg other: second quaternion.
+      :param other: second quaternion.
       :type other: :class:`Quaternion`
       :return: the rotational difference between the two quat rotations.
       :rtype: :class:`Quaternion`
 
 
-   .. function:: slerp(other, factor)
+   .. method:: slerp(other, factor, /)
    
       Returns the interpolation of two quaternions.
    
-      :arg other: value to interpolate with.
+      :param other: value to interpolate with.
       :type other: :class:`Quaternion`
-      :arg factor: The interpolation value in [0.0, 1.0].
+      :param factor: The interpolation value in [0.0, 1.0].
       :type factor: float
       :return: The interpolated rotation.
       :rtype: :class:`Quaternion`
@@ -939,17 +1278,16 @@ The :mod:`mathutils` module provides the following classes:
       :rtype: tuple[:class:`Vector`, float]
 
 
-   .. method:: to_euler(order, euler_compat)
+   .. method:: to_euler(order='XYZ', euler_compat=None, /)
    
       Return Euler representation of the quaternion.
    
-      :arg order: Optional rotation order argument in
-         ['XYZ', 'XZY', 'YXZ', 'YZX', 'ZXY', 'ZYX'].
-      :type order: str
-      :arg euler_compat: Optional euler argument the new euler will be made
+      :param order: Rotation order.
+      :type order: Literal['XYZ', 'XZY', 'YXZ', 'YZX', 'ZXY', 'ZYX']
+      :param euler_compat: Optional euler argument the new euler will be made
          compatible with (no axis flipping between them).
-         Useful for converting a series of matrices to animation curves.
-      :type euler_compat: :class:`Euler`
+         Useful for converting a series of quaternions to animation curves.
+      :type euler_compat: :class:`Euler` | None
       :return: Euler representation of the quaternion.
       :rtype: :class:`Euler`
 
@@ -958,11 +1296,11 @@ The :mod:`mathutils` module provides the following classes:
    
       Return the exponential map representation of the quaternion.
    
-      This representation consist of the rotation axis multiplied by the rotation angle.
+      This representation consists of the rotation axis multiplied by the rotation angle.
       Such a representation is useful for interpolation between multiple orientations.
    
-      :return: exponential map.
-      :rtype: :class:`Vector` of size 3
+      :return: 3D exponential map.
+      :rtype: :class:`Vector`
    
       To convert back to a quaternion, pass it to the :class:`Quaternion` constructor.
 
@@ -975,13 +1313,13 @@ The :mod:`mathutils` module provides the following classes:
       :rtype: :class:`Matrix`
 
 
-   .. method:: to_swing_twist(axis)
+   .. method:: to_swing_twist(axis, /)
    
       Split the rotation into a swing quaternion with the specified
       axis fixed at zero, and the remaining twist rotation angle.
    
-      :arg axis: Twist axis as a string in ['X', 'Y', 'Z'].
-      :type axis: str
+      :param axis: Twist axis as a string.
+      :type axis: Literal['X', 'Y', 'Z']
       :return: Swing, twist angle.
       :rtype: tuple[:class:`Quaternion`, float]
 
@@ -1030,120 +1368,248 @@ The :mod:`mathutils` module provides the following classes:
 
    .. attribute:: owner
 
-      The item this is wrapping or None  (read-only).
+      The item this is wrapping or None (read-only).
+      
+      :type: Any
 
 
    .. attribute:: w
 
-      Quaternion axis value.
+      Quaternion component value.
       
       :type: float
 
 
    .. attribute:: x
 
-      Quaternion axis value.
+      Quaternion component value.
       
       :type: float
 
 
    .. attribute:: y
 
-      Quaternion axis value.
+      Quaternion component value.
       
       :type: float
 
 
    .. attribute:: z
 
-      Quaternion axis value.
+      Quaternion component value.
       
       :type: float
 
 
+   .. details:: Special Methods
+
+      .. method:: __add__(other)
+
+         :param other: The other operand.
+         :type other: Self
+         :rtype: :class:`Quaternion`
+
+      .. method:: __eq__(other)
+
+         :param other: The other operand.
+         :type other: object
+         :rtype: bool
+
+      .. method:: __getitem__(key)
+
+         :param key: Index or key.
+         :type key: int
+         :rtype: float
+
+      .. method:: __hash__()
+
+         :rtype: int
+
+      .. method:: __imatmul__(other)
+
+         :param other: The other operand.
+         :type other: Self
+         :rtype: :class:`Quaternion`
+
+      .. method:: __imul__(other)
+
+         :param other: The other operand.
+         :type other: :class:`Quaternion`
+         :rtype: :class:`Quaternion`
+
+      .. method:: __imul__(other)
+         :noindex:
+
+         :param other: The other operand.
+         :type other: float
+         :rtype: :class:`Quaternion`
+
+      .. method:: __len__()
+
+         :rtype: int
+
+      .. method:: __matmul__(other)
+
+         :param other: The other operand.
+         :type other: :class:`Quaternion`
+         :rtype: :class:`Quaternion`
+
+      .. method:: __matmul__(other)
+         :noindex:
+
+         :param other: The other operand.
+         :type other: :class:`Vector`
+         :rtype: :class:`Vector`
+
+      .. method:: __mul__(other)
+
+         :param other: The other operand.
+         :type other: :class:`Quaternion`
+         :rtype: :class:`Quaternion`
+
+      .. method:: __mul__(other)
+         :noindex:
+
+         :param other: The other operand.
+         :type other: float
+         :rtype: :class:`Quaternion`
+
+      .. method:: __ne__(other)
+
+         :param other: The other operand.
+         :type other: object
+         :rtype: bool
+
+      .. method:: __neg__()
+
+         :rtype: :class:`Quaternion`
+
+      .. method:: __pos__()
+
+         :rtype: :class:`Quaternion`
+
+      .. method:: __repr__()
+
+         :rtype: str
+
+      .. method:: __rmul__(other)
+
+         :param other: Scalar.
+         :type other: float
+         :rtype: :class:`Quaternion`
+
+      .. method:: __setitem__(key, value)
+
+         :param key: Index or key.
+         :type key: int
+         :param value: Value to assign.
+         :type value: object
+
+      .. method:: __str__()
+
+         :rtype: str
+
+      .. method:: __sub__(other)
+
+         :param other: The other operand.
+         :type other: Self
+         :rtype: :class:`Quaternion`
 
 
-.. class:: Vector(seq)
+
+.. class:: Vector(seq=(0.0, 0.0, 0.0), /)
 
    This object gives access to Vectors in Blender.
 
-   :arg seq: Components of the vector, must be a sequence of at least two.
+   :param seq: Components of the vector, must be a sequence of at least two.
    :type seq: Sequence[float]
 
 
-   .. literalinclude:: ..\examples\mathutils.Vector.py
+   .. literalinclude:: ../examples/mathutils.Vector.0.py
 
-   .. classmethod:: Fill(size, fill=0.0)
+   .. classmethod:: Fill(size, fill=0.0, /)
    
       Create a vector of length size with all values set to fill.
    
-      :arg size: The length of the vector to be created.
+      :param size: The length of the vector to be created.
       :type size: int
-      :arg fill: The value used to fill the vector.
+      :param fill: The value used to fill the vector.
       :type fill: float
+      :return: A new vector.
+      :rtype: :class:`Vector`
 
 
-   .. classmethod:: Linspace(start, stop, size)
+   .. classmethod:: Linspace(start, stop, size, /)
    
       Create a vector of the specified size which is filled with linearly spaced values between start and stop values.
    
-      :arg start: The start of the range used to fill the vector.
-      :type start: int
-      :arg stop: The end of the range used to fill the vector.
-      :type stop: int
-      :arg size: The size of the vector to be created.
+      :param start: The start of the range used to fill the vector.
+      :type start: float
+      :param stop: The end of the range used to fill the vector.
+      :type stop: float
+      :param size: The size of the vector to be created.
       :type size: int
+      :return: A new vector.
+      :rtype: :class:`Vector`
 
 
-   .. classmethod:: Range(start, stop, step=1)
+   .. classmethod:: Range(start, stop, step=1, /)
    
-      Create a filled with a range of values.
+      Create a vector filled with a range of values.
    
-      :arg start: The start of the range used to fill the vector.
+      This method can also be called with a single argument, in which case the argument is interpreted as ``stop`` and ``start`` defaults to 0.
+   
+      :param start: The start of the range used to fill the vector.
       :type start: int
-      :arg stop: The end of the range used to fill the vector.
+      :param stop: The end of the range used to fill the vector.
       :type stop: int
-      :arg step: The step between successive values in the vector.
+      :param step: The step between successive values in the vector.
       :type step: int
+      :return: A new vector.
+      :rtype: :class:`Vector`
 
 
-   .. classmethod:: Repeat(vector, size)
+   .. classmethod:: Repeat(vector, size, /)
    
       Create a vector by repeating the values in vector until the required size is reached.
    
-      :arg vector: The vector to draw values from.
-      :type vector: :class:`mathutils.Vector`
-      :arg size: The size of the vector to be created.
+      :param vector: The vector to draw values from.
+      :type vector: :class:`Vector`
+      :param size: The size of the vector to be created.
       :type size: int
+      :return: A new vector.
+      :rtype: :class:`Vector`
 
 
-   .. function:: angle(other, fallback=None)
+   .. method:: angle(other, fallback=None, /)
    
       Return the angle between two vectors.
    
-      :arg other: another vector to compare the angle with
+      .. note:: For 4D vectors, only the x, y, z components are used.
+   
+      :param other: another vector to compare the angle with
       :type other: :class:`Vector`
-      :arg fallback: return this when the angle can't be calculated (zero length vector),
+      :param fallback: return this when the angle can't be calculated (zero length vector),
          (instead of raising a :exc:`ValueError`).
       :type fallback: Any
       :return: angle in radians or fallback when given
       :rtype: float | Any
 
 
-   .. function:: angle_signed(other, fallback=None)
+   .. method:: angle_signed(other, fallback=None, /)
    
       Return the signed angle between two 2D vectors (clockwise is positive).
    
-      :arg other: another vector to compare the angle with
+      :param other: another vector to compare the angle with
       :type other: :class:`Vector`
-      :arg fallback: return this when the angle can't be calculated (zero length vector),
+      :param fallback: return this when the angle can't be calculated (zero length vector),
          (instead of raising a :exc:`ValueError`).
       :type fallback: Any
       :return: angle in radians or fallback when given
       :rtype: float | Any
 
 
-   .. function:: copy()
+   .. method:: copy()
    
       Returns a copy of this vector.
    
@@ -1154,11 +1620,11 @@ The :mod:`mathutils` module provides the following classes:
          no reference to the original data.
 
 
-   .. method:: cross(other)
+   .. method:: cross(other, /)
    
       Return the cross product of this vector and another.
    
-      :arg other: The other vector to perform the cross product with.
+      :param other: The other vector to perform the cross product with.
       :type other: :class:`Vector`
       :return: The cross product as a vector or a float when 2D vectors are used.
       :rtype: :class:`Vector` | float
@@ -1166,32 +1632,33 @@ The :mod:`mathutils` module provides the following classes:
       .. note:: both vectors must be 2D or 3D
 
 
-   .. method:: dot(other)
+   .. method:: dot(other, /)
    
       Return the dot product of this vector and another.
    
-      :arg other: The other vector to perform the dot product with.
+      :param other: The other vector to perform the dot product with.
       :type other: :class:`Vector`
       :return: The dot product.
       :rtype: float
 
 
-   .. function:: freeze()
+   .. method:: freeze()
    
       Make this object immutable.
    
       After this the object can be hashed, used in dictionaries & sets.
    
       :return: An instance of this object.
+      :rtype: Self
 
 
-   .. function:: lerp(other, factor)
+   .. method:: lerp(other, factor, /)
    
       Returns the interpolation of two vectors.
    
-      :arg other: value to interpolate with.
+      :param other: value to interpolate with.
       :type other: :class:`Vector`
-      :arg factor: The interpolation value in [0.0, 1.0].
+      :param factor: The interpolation value in [0.0, 1.0].
       :type factor: float
       :return: The interpolated vector.
       :rtype: :class:`Vector`
@@ -1208,13 +1675,18 @@ The :mod:`mathutils` module provides the following classes:
    
       .. warning:: Normalizing a vector where all values are zero has no effect.
    
-      .. note:: Normalize works for vectors of all sizes,
-         however 4D Vectors w axis is left untouched.
+      .. note:: For 4D vectors, only the x, y, z components are normalized;
+         the w component is left untouched.
+         The resulting 4D vector may not have unit length.
 
 
    .. method:: normalized()
    
       Return a new, normalized vector.
+   
+      .. note:: For 4D vectors, only the x, y, z components are normalized;
+         the w component is left untouched.
+         The resulting 4D vector may not have unit length.
    
       :return: a normalized copy of the vector
       :rtype: :class:`Vector`
@@ -1230,39 +1702,42 @@ The :mod:`mathutils` module provides the following classes:
       .. note:: the axis is undefined, only use when any orthogonal vector is acceptable.
 
 
-   .. function:: project(other)
+   .. method:: project(other, /)
    
       Return the projection of this vector onto the *other*.
    
-      :arg other: second vector.
+      :param other: second vector.
       :type other: :class:`Vector`
       :return: the parallel projection vector
       :rtype: :class:`Vector`
 
 
-   .. method:: reflect(mirror)
+   .. method:: reflect(mirror, /)
    
       Return the reflection vector from the *mirror* argument.
    
-      :arg mirror: This vector could be a normal from the reflecting surface.
+      :param mirror: This vector could be a normal from the reflecting surface.
       :type mirror: :class:`Vector`
       :return: The reflected vector matching the size of this vector.
       :rtype: :class:`Vector`
 
 
-   .. method:: resize(size=3)
+   .. method:: resize(size, /)
    
       Resize the vector to have size number of elements.
+   
+      :param size: The new size of the vector.
+      :type size: int
 
 
    .. method:: resize_2d()
    
-      Resize the vector to 2D  (x, y).
+      Resize the vector to 2D (x, y).
 
 
    .. method:: resize_3d()
    
-      Resize the vector to 3D  (x, y, z).
+      Resize the vector to 3D (x, y, z).
 
 
    .. method:: resize_4d()
@@ -1270,30 +1745,32 @@ The :mod:`mathutils` module provides the following classes:
       Resize the vector to 4D (x, y, z, w).
 
 
-   .. method:: resized(size=3)
+   .. method:: resized(size, /)
    
       Return a resized copy of the vector with size number of elements.
    
-      :return: a new vector
+      :param size: The new size of the vector.
+      :type size: int
+      :return: A new vector.
       :rtype: :class:`Vector`
 
 
-   .. function:: rotate(other)
+   .. method:: rotate(other, /)
    
       Rotate the vector by a rotation value.
    
       .. note:: 2D vectors are a special case that can only be rotated by a 2x2 matrix.
    
-      :arg other: rotation component of mathutils value
+      :param other: rotation component of mathutils value
       :type other: :class:`Euler` | :class:`Quaternion` | :class:`Matrix`
 
 
-   .. function:: rotation_difference(other)
+   .. method:: rotation_difference(other, /)
    
       Returns a quaternion representing the rotational difference between this
       vector and another.
    
-      :arg other: second vector.
+      :param other: second vector.
       :type other: :class:`Vector`
       :return: the rotational difference between the two vectors.
       :rtype: :class:`Quaternion`
@@ -1301,15 +1778,15 @@ The :mod:`mathutils` module provides the following classes:
       .. note:: 2D vectors raise an :exc:`AttributeError`.
 
 
-   .. function:: slerp(other, factor, fallback=None)
+   .. method:: slerp(other, factor, fallback=None, /)
    
       Returns the interpolation of two non-zero vectors (spherical coordinates).
    
-      :arg other: value to interpolate with.
+      :param other: value to interpolate with.
       :type other: :class:`Vector`
-      :arg factor: The interpolation value typically in [0.0, 1.0].
+      :param factor: The interpolation value typically in [0.0, 1.0].
       :type factor: float
-      :arg fallback: return this when the vector can't be calculated (zero length vector or direct opposites),
+      :param fallback: return this when the vector can't be calculated (zero length vector or direct opposites),
          (instead of raising a :exc:`ValueError`).
       :type fallback: Any
       :return: The interpolated vector.
@@ -1340,23 +1817,23 @@ The :mod:`mathutils` module provides the following classes:
       :rtype: :class:`Vector`
 
 
-   .. method:: to_track_quat(track, up)
+   .. method:: to_track_quat(track='Z', up='Y', /)
    
       Return a quaternion rotation from the vector and the track and up axis.
    
-      :arg track: Track axis in ['X', 'Y', 'Z', '-X', '-Y', '-Z'].
-      :type track: str
-      :arg up: Up axis in ['X', 'Y', 'Z'].
-      :type up: str
+      :param track: Track axis string.
+      :type track: Literal['X', 'Y', 'Z', '-X', '-Y', '-Z']
+      :param up: Up axis string.
+      :type up: Literal['X', 'Y', 'Z']
       :return: rotation from the vector and the track and up axis.
       :rtype: :class:`Quaternion`
 
 
-   .. method:: to_tuple(precision=-1)
+   .. method:: to_tuple(precision=-1, /)
    
-      Return this vector as a tuple with.
+      Return this vector as a tuple with a given precision.
    
-      :arg precision: The number to round the value to in [-1, 21].
+      :param precision: The number to round the value to in [-1, 21].
       :type precision: int
       :return: the values of the vector rounded by *precision*
       :rtype: tuple[float, ...]
@@ -1411,7 +1888,9 @@ The :mod:`mathutils` module provides the following classes:
 
    .. attribute:: owner
 
-      The item this is wrapping or None  (read-only).
+      The item this is wrapping or None (read-only).
+      
+      :type: Any
 
 
    .. attribute:: w
@@ -3121,6 +3600,162 @@ The :mod:`mathutils` module provides the following classes:
 
       :type: :class:`Vector`
 
+
+   .. details:: Special Methods
+
+      .. method:: __add__(other)
+
+         :param other: The other operand.
+         :type other: Self
+         :rtype: :class:`Vector`
+
+      .. method:: __eq__(other)
+
+         :param other: The other operand.
+         :type other: object
+         :rtype: bool
+
+      .. method:: __ge__(other)
+
+         :param other: The other operand.
+         :type other: Self
+         :rtype: bool
+
+      .. method:: __getitem__(key)
+
+         :param key: Index or key.
+         :type key: int
+         :rtype: float
+
+      .. method:: __gt__(other)
+
+         :param other: The other operand.
+         :type other: Self
+         :rtype: bool
+
+      .. method:: __hash__()
+
+         :rtype: int
+
+      .. method:: __iadd__(other)
+
+         :param other: The other operand.
+         :type other: Self
+         :rtype: :class:`Vector`
+
+      .. method:: __imul__(other)
+
+         :param other: The other operand.
+         :type other: :class:`Vector`
+         :rtype: :class:`Vector`
+
+      .. method:: __imul__(other)
+         :noindex:
+
+         :param other: The other operand.
+         :type other: float
+         :rtype: :class:`Vector`
+
+      .. method:: __isub__(other)
+
+         :param other: The other operand.
+         :type other: Self
+         :rtype: :class:`Vector`
+
+      .. method:: __itruediv__(other)
+
+         :param other: Scalar divisor.
+         :type other: float
+         :rtype: :class:`Vector`
+
+      .. method:: __le__(other)
+
+         :param other: The other operand.
+         :type other: Self
+         :rtype: bool
+
+      .. method:: __len__()
+
+         :rtype: int
+
+      .. method:: __lt__(other)
+
+         :param other: The other operand.
+         :type other: Self
+         :rtype: bool
+
+      .. method:: __matmul__(other)
+
+         :param other: The other operand.
+         :type other: :class:`Vector`
+         :rtype: float
+
+      .. method:: __matmul__(other)
+         :noindex:
+
+         :param other: The other operand.
+         :type other: :class:`Matrix`
+         :rtype: :class:`Vector`
+
+      .. method:: __mul__(other)
+
+         :param other: The other operand.
+         :type other: :class:`Vector`
+         :rtype: :class:`Vector`
+
+      .. method:: __mul__(other)
+         :noindex:
+
+         :param other: The other operand.
+         :type other: float
+         :rtype: :class:`Vector`
+
+      .. method:: __ne__(other)
+
+         :param other: The other operand.
+         :type other: object
+         :rtype: bool
+
+      .. method:: __neg__()
+
+         :rtype: :class:`Vector`
+
+      .. method:: __pos__()
+
+         :rtype: :class:`Vector`
+
+      .. method:: __repr__()
+
+         :rtype: str
+
+      .. method:: __rmul__(other)
+
+         :param other: Scalar.
+         :type other: float
+         :rtype: :class:`Vector`
+
+      .. method:: __setitem__(key, value)
+
+         :param key: Index or key.
+         :type key: int
+         :param value: Value to assign.
+         :type value: object
+
+      .. method:: __str__()
+
+         :rtype: str
+
+      .. method:: __sub__(other)
+
+         :param other: The other operand.
+         :type other: Self
+         :rtype: :class:`Vector`
+
+      .. method:: __truediv__(other)
+
+         :param other: Scalar divisor.
+         :type other: float
+         :rtype: :class:`Vector`
 
 
 

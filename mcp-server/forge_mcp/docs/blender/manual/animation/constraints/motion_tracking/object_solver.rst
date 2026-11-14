@@ -5,23 +5,17 @@
 Object Solver Constraint
 ************************
 
-The *Object Solver* constraint gives the owner of this constraint,
-the location and rotation of the "solved object motion".
+The *Object Solver* constraint makes a Blender object imitate the motion of a real-world object.
 
-The "solved object motion" is where Blender thinks the physical,
-real-world (tracked) object was, relative to the camera that filmed it.
+Usage
+=====
 
-Can be used to add a mesh to video for example.
-
-.. note::
-
-   This constraint only works after you have set up a minimum of eight markers and pressed
-   :ref:`Solve object Motion <editors-movie-clip-tracking-clip-solve-motion>`.
-   Located at :menuselection:`Movie Clip Editor --> Toolbar --> Solve --> Solve Camera Motion`.
-
-   If it says *Solve Camera Motion* instead of *Solve Object Motion* then go into
-   the :menuselection:`Movie Clip Editor --> Sidebar region --> Objects`
-   and switch it from the camera, to an object.
+Start by loading a video file into the :doc:`Movie Clip Editor </editors/clip/introduction>`,
+registering the physical object in the :doc:`/movie_clip/tracking/clip/sidebar/track/objects`,
+and using :doc:`motion tracking </movie_clip/tracking/introduction>` to track at least
+eight :doc:`markers </movie_clip/tracking/clip/marker>` on that physical object.
+Then use :ref:`bpy.ops.clip.solve_camera` to reconstruct the motion of the physical object,
+and finally add this constraint to a Blender object.
 
 
 Options
@@ -29,27 +23,51 @@ Options
 
 .. figure:: /images/animation_constraints_motion-tracking_object-solver_panel.png
 
-   Object Solver Constraint panel.
+   Object Solver constraint.
 
 Active Clip
-   Receive tracking data from the scene's :ref:`Active Clip <bpy.types.Scene.active_clip>`.
-   If unchecked, an option appears to choose from the other clips.
+   Whether the physical object is in the scene's :ref:`Active Clip <bpy.types.Scene.active_clip>`.
+   If unchecked, a selector appears for choosing another clip.
 
 Object
-   Select a tracked object to receive transform data from.
+   The physical object whose motion to imitate. See the :doc:`/movie_clip/tracking/clip/sidebar/track/objects`
+   in the Movie Clip Editor's Sidebar for setting this up.
 
 Camera
-   Select the camera to which the motion is parented to (if left empty the active scene camera is used).
+   The Blender camera matching the physical camera that recorded the object.
+   If left empty, the scene's :ref:`active camera <bpy.types.Scene.camera>` is used.
+
+   If the physical camera was in motion, the Blender camera should have a
+   :doc:`/animation/constraints/motion_tracking/camera_solver`. This constraint is useful even if
+   the physical camera was stationary, because it makes the tracking markers appear at their
+   reconstructed world positions in the 3D Viewport (if the :ref:`bpy.types.SpaceView3D.show_reconstruction`
+   overlay is enabled).
 
 Set Inverse
-   Moves the origin of the object to the origin of the camera.
+   Tell the constraint that the current Location of the Blender object (that is, its position with the constraint
+   *disabled*) is the correct position for the current frame. Once this information is saved, the object will
+   also be in the correct position for the other frames.
+
+   - When initially adding the constraint:
+
+     - Bring the object into position for the current frame.
+     - Add the constraint.
+     - Click *Set Inverse*.
+
+   - When tweaking the object's position at a later point:
+
+     - Run :ref:`Apply Visual Transform <bpy.ops.object.visual_transform_apply>`. (This may move the object
+       to a different position.)
+     - Disable the constraint. (This will bring the object back to its previous position.)
+     - Tweak the object's position as desired.
+     - Click *Set Inverse*.
+     - Enable the constraint.
+
 Clear Inverse
-   Moves the origin of the object back to the spot set
-   in the Movie Clip Editor :menuselection:`Toolbar --> Solve --> Orientation --> Set Origin`.
+   Resets the relative transformation that was stored by *Set Inverse*.
 
 Constraint to F-Curve
-   Applies the constraint, creating keyframes for the transforms.
+   Replaces the constraint by a set of equivalent keyframes.
 
-Influence
-   Controls the percentage of affect the constraint has on the object.
-   See :ref:`common constraint properties <bpy.types.constraint.influence>` for more information.
+:ref:`bpy.types.constraint.influence`
+   How strongly the constraint affects its owner.

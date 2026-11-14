@@ -24,18 +24,12 @@ Settings
 .. _bpy.types.FluidFlowSettings.flow_type:
 
 Flow Type
-   Smoke
-      Emit only smoke.
-
-   Fire + Smoke
-      Emit both fire and smoke.
-
-   Fire
-      Emit only fire. Note that the domain will automatically create some smoke to simulate smoke
-      left by burnt fuel.
-
-   Liquid
-      Emit liquid.
+   :Smoke: Emit only smoke.
+   :Fire + Smoke: Emit both fire and smoke.
+   :Fire:
+      Emit only fire.
+      Note that the domain will automatically create some smoke to simulate smoke left by burnt fuel.
+   :Liquid: Emit liquid.
 
 .. _bpy.types.FluidFlowSettings.flow_behavior:
 
@@ -43,24 +37,22 @@ Flow Behavior
    Controls if the Flow object either adds (*Inflow*), removes (*Outflow*),
    or turns the mesh itself into fluid (*Geometry*).
 
-   Inflow
+   :Inflow:
       This object will emit fluid into the simulation, like a water tap or base of a fire.
-
-   Outflow
+   :Outflow:
       Any fluid that enters the :term:`Bounding Box` of this object will be removed from
       the domain (think of a drain or a black hole). This can be useful in combination with
       an inflow to prevent the whole domain from filling up. Outflow objects can be animated
       and the area where the fluid disappears will follow the object as it moves around.
-
-   Geometry
+   :Geometry:
       All regions of this object that are inside the domain bounding box will be used as
       actual fluid in the simulation. You can place more than one fluid object inside the domain.
       Also make sure that the surface normals are pointing outwards or else they will not simulate
       properly. In contrast to domain objects, the actual mesh geometry is used for fluid objects.
 
-.. _bpy.types.FluidFlowSettings.use_flow:
+.. _bpy.types.FluidFlowSettings.use_inflow:
 
-Use Flow
+Use Flow :guilabel:`Inflow` :guilabel:`Outflow`
    Enables or disables the flow of fluid, this property is useful for animations to selectively enable and
    disable when fluid is being added to or removed from the domain.
 
@@ -79,8 +71,10 @@ Sampling Substeps
 
              Sampling sub-steps: 3.
 
-   Note that these emission sub-steps occur at every simulation step and not per frame.
-   The simulation step count is controlled by the adaptive time stepping.
+   .. note::
+
+      Sub-Steps occur at every simulation step and not per frame.
+      The simulation step count is controlled by the adaptive time stepping.
 
 .. _bpy.types.FluidFlowSettings.smoke_color:
 
@@ -138,8 +132,7 @@ Flow Source
 Flow Source
    This setting defines the method used to emit fluid.
 
-   Mesh
-      Emit fluid directly from the object's mesh.
+   :Mesh: Emit fluid directly from the object's mesh.
 
       .. _bpy.types.FluidFlowSettings.use_plane_init:
 
@@ -161,10 +154,12 @@ Flow Source
          Note that emitting fluid based on volume can have unpredictable results
          if your mesh is :term:`Non-manifold`.
 
-   .. _bpy.types.FluidFlowSettings.particle_system:
-
-   Particle System :guilabel:`Fire or Smoke Only`:
+   :Particle System:
+      :guilabel:`Fire or Smoke Only`:
       Create smoke or fire from a particle system on the flow object.
+
+      .. _bpy.types.FluidFlowSettings.particle_system:
+
       The particle system can be selected with a :ref:`ui-data-id`.
 
       Note that only *Emitter* type particle systems can add smoke.
@@ -197,7 +192,7 @@ Normal
    Note that, initial velocities will always be applied along all face normals.
    Thus with a closed flow source mesh, fluid will always be emitted in more than one direction.
    To set initial velocities along only one direction all normals need to point in the same direction.
-   This is can be achieved when using a plane as the flow object.
+   This can be achieved when using a plane as the flow object.
 
 .. _bpy.types.FluidFlowSettings.velocity_coord:
 

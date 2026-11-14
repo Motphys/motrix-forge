@@ -15,6 +15,37 @@ Most of the settings in the *Shape* panel are shared with those of
 :doc:`Curves </modeling/curves/properties/shape>`
 data-blocks, please refer to those for details.
 
+.. _bpy.types.TextCurve.fill_solver:
+
+Fill Solver
+   Triangulation solver used when filling 2D curves.
+
+   :Sweep Line:
+      Fast triangulation method intended for well-behaved outlines.
+      Does not support self-intersecting curves.
+   :Delaunay:
+      Uses Constrained Delaunay Triangulation (CDT).
+      More robust and supports self-intersecting curves, at the cost of being slower.
+
+   .. important::
+
+      Most font files contain self-intersecting curves.
+      For this reason, it is recommended to always use *Delaunay*
+      when working with text objects.
+
+.. _bpy.types.TextCurve.fill_rule:
+
+Fill Rule
+   Fill rule used by the *Delaunay* *Fill Solver* to determine which regions are considered inside.
+
+   :Even-Odd:
+      Alternates inside/outside based on the number of boundary crossings.
+      Overlapping regions may cancel out depending on the crossing count.
+   :Non-Zero:
+      Determines inside/outside based on winding direction.
+      Overlapping curves with the same winding direction are filled as a union,
+      while opposite winding directions can create holes.
+
 .. _bpy.types.TextCurve.use_fast_edit:
 
 Fast Editing

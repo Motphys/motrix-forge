@@ -53,9 +53,9 @@ Downloading Wheels
 
    .. code-block:: console
 
-      pip download pillow --dest ./wheels --only-binary=:all: --python-version=3.11 --platform=macosx_11_0_arm64
-      pip download pillow --dest ./wheels --only-binary=:all: --python-version=3.11 --platform=manylinux_2_28_x86_64
-      pip download pillow --dest ./wheels --only-binary=:all: --python-version=3.11 --platform=win_amd64
+      pip download pillow --dest ./wheels --only-binary=:all: --python-version=3.13 --platform=macosx_11_0_arm64
+      pip download pillow --dest ./wheels --only-binary=:all: --python-version=3.13 --platform=manylinux_2_28_x86_64
+      pip download pillow --dest ./wheels --only-binary=:all: --python-version=3.13 --platform=win_amd64
 
    The available platform identifiers are listed on
    `pillow's download page <https://pypi.org/project/pillow/#files>`__.
@@ -66,16 +66,16 @@ Update the Manifest
    .. code-block:: toml
 
       wheels = [
-         "./wheels/pillow-10.3.0-cp311-cp311-macosx_11_0_arm64.whl",
-         "./wheels/pillow-10.3.0-cp311-cp311-manylinux_2_28_x86_64.whl",
-         "./wheels/pillow-10.3.0-cp311-cp311-win_amd64.whl",
+         "./wheels/pillow-12.1.0-cp313-cp313-macosx_11_0_arm64.whl",
+         "./wheels/pillow-12.1.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+         "./wheels/pillow-12.1.0-cp313-cp313-win_amd64.whl",
       ]
 
    Now installing the package will extract the wheel into the extensions own ``site-packages`` directory.
 
 Running
    Once the extension has been installed you can check the module is being loaded by importing it in the
-   Python console and printing it's location:
+   Python console and printing its location:
 
    .. code-block:: python
 
@@ -108,9 +108,9 @@ Manifest file excerpt:
 
    platforms = ["windows-x64", "macos-x64"]
    wheels = [
-      "./wheels/pillow-10.3.0-cp311-cp311-macosx_11_0_arm64.whl",
-      "./wheels/pillow-10.3.0-cp311-cp311-manylinux_2_28_x86_64.whl",
-      "./wheels/pillow-10.3.0-cp311-cp311-win_amd64.whl",
+      "./wheels/pillow-12.1.0-cp313-cp313-macosx_11_0_arm64.whl",
+      "./wheels/pillow-12.1.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "./wheels/pillow-12.1.0-cp313-cp313-win_amd64.whl",
    ]
 
 Generated files from ``--split-platforms``:

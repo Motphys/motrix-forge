@@ -75,16 +75,43 @@ Sets the handle type for the points on the Bézier curve that are in the selecti
 Type
    The handle type to switch to.
 
-   :Free:
-      The handles are independent of each other.
    :Auto:
       This handle has a completely automatic length and direction
       which is set by Blender to ensure the smoothest result.
-      These handles convert to *Aligned* handles when moved.
+      These handles convert to *Align* handles when moved.
    :Vector:
       Both parts of a handle always point to the previous handle or the next handle which allows
       you to create curves or sections thereof made of straight lines or with sharp corners.
       Vector handles convert to *Free* handles when moved.
-   :Aligned:
+   :Align:
       These handles always lie in a straight line,
       and give a continuous curve without sharp angles.
+   :Free:
+      The handles are independent of each other.
+   :Toggle Free/Align:
+      Replaces Free handles with Align, and all Align with Free handles.
+
+
+.. _bpy.ops.grease_pencil.set_corner_type:
+
+Set Corner Type
+===============
+
+.. reference::
+
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Point --> Set Corner Type`
+
+Sets how corners between strokes or segments are shaped when using stroke
+thickness or fills. This affects how the stroke geometry joins at sharp angles.
+
+Corner Type
+   Defines the style of the corner for the selected points.
+
+   :Round: Smoothly rounds the corner, creating a curved transition between segments.
+   :Flat: Cuts the corner flat, creating a beveled join.
+   :Sharp: Keeps the corner pointed, preserving the original angle between segments.
+
+Miter Cut Angle
+   Specifies the angle threshold (in degrees) for flattening sharp corners.
+   Any corner sharper than this angle will be cut flat when *Corner Type* is set to *Flat* or *Round*.

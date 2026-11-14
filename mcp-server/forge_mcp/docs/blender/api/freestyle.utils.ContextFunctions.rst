@@ -5,7 +5,7 @@ freestyle.utils submodule (freestyle.utils.ContextFunctions)
 
 The Blender Freestyle.ContextFunctions submodule
 
-.. method:: get_border()
+.. function:: get_border()
 
    Returns the border.
 
@@ -13,7 +13,7 @@ The Blender Freestyle.ContextFunctions submodule
    :rtype: tuple[int, int, int, int]
 
 
-.. method:: get_canvas_height()
+.. function:: get_canvas_height()
 
    Returns the canvas height.
 
@@ -21,7 +21,7 @@ The Blender Freestyle.ContextFunctions submodule
    :rtype: int
 
 
-.. method:: get_canvas_width()
+.. function:: get_canvas_width()
 
    Returns the canvas width.
 
@@ -49,15 +49,15 @@ The Blender Freestyle.ContextFunctions submodule
 
    Loads an image map for further reading.
 
-   :arg file_name: The name of the image file.
+   :param file_name: The name of the image file.
    :type file_name: str
-   :arg map_name: The name that will be used to access this image.
+   :param map_name: The name that will be used to access this image.
    :type map_name: str
-   :arg num_levels: The number of levels in the map pyramid
+   :param num_levels: The number of levels in the map pyramid
       (default = 4). If num_levels == 0, the complete pyramid is
       built.
    :type num_levels: int
-   :arg sigma: The sigma value of the gaussian function.
+   :param sigma: The sigma value of the gaussian function.
    :type sigma: float
 
 
@@ -65,13 +65,13 @@ The Blender Freestyle.ContextFunctions submodule
 
    Reads a pixel in the complete view map.
 
-   :arg level: The level of the pyramid in which we wish to read the
+   :param level: The level of the pyramid in which we wish to read the
       pixel.
    :type level: int
-   :arg x: The x coordinate of the pixel we wish to read. The origin
+   :param x: The x coordinate of the pixel we wish to read. The origin
       is in the lower-left corner.
    :type x: int
-   :arg y: The y coordinate of the pixel we wish to read. The origin
+   :param y: The y coordinate of the pixel we wish to read. The origin
       is in the lower-left corner.
    :type y: int
    :return: The floating-point value stored for that pixel.
@@ -82,16 +82,16 @@ The Blender Freestyle.ContextFunctions submodule
 
    Reads a pixel in one of the oriented view map images.
 
-   :arg orientation: The number telling which orientation we want to
+   :param orientation: The number telling which orientation we want to
       check.
    :type orientation: int
-   :arg level: The level of the pyramid in which we wish to read the
+   :param level: The level of the pyramid in which we wish to read the
       pixel.
    :type level: int
-   :arg x: The x coordinate of the pixel we wish to read. The origin
+   :param x: The x coordinate of the pixel we wish to read. The origin
       is in the lower-left corner.
    :type x: int
-   :arg y: The y coordinate of the pixel we wish to read. The origin
+   :param y: The y coordinate of the pixel we wish to read. The origin
       is in the lower-left corner.
    :type y: int
    :return: The floating-point value stored for that pixel.
@@ -102,15 +102,15 @@ The Blender Freestyle.ContextFunctions submodule
 
    Reads a pixel in a user-defined map.
 
-   :arg map_name: The name of the map.
+   :param map_name: The name of the map.
    :type map_name: str
-   :arg level: The level of the pyramid in which we wish to read the
+   :param level: The level of the pyramid in which we wish to read the
       pixel.
    :type level: int
-   :arg x: The x coordinate of the pixel we wish to read. The origin
+   :param x: The x coordinate of the pixel we wish to read. The origin
       is in the lower-left corner.
    :type x: int
-   :arg y: The y coordinate of the pixel we wish to read. The origin
+   :param y: The y coordinate of the pixel we wish to read. The origin
       is in the lower-left corner.
    :type y: int
    :return: The floating-point value stored for that pixel.

@@ -11,18 +11,42 @@ Relations Management
 
    Linking objects to a collection.
 
-You can move an object (or collection) to a different parent collection by dragging and dropping.
+Objects and collections can be reorganized, linked, or parented directly in the *Outliner* using drag-and-drop
+operations. This provides an intuitive way to manage scene hierarchies and relationships.
 
-You can link an object (or collection) to a parent collection by dragging and then holding
-:kbd:`Ctrl` while dropping. This way, you can make the object (or child collection) part of
-multiple parent collections at the same time.
 
-You can parent an object to another by dragging and then holding :kbd:`Shift` while dropping.
+Moving and Linking
+------------------
+
+- **Move:**
+  Drag an object or collection onto another collection to move it there.
+
+- **Link:**
+  Drag an object (or collection) while holding :kbd:`Ctrl` and drop it onto a collection
+  to link it instead of moving it.
+  This allows the same object or collection to be part of multiple parent collections at once.
+
+
+Parenting
+---------
+
+- **Parent to Object:**
+  Drag an object onto another object to make it a child of that object.
+  Hold :kbd:`Alt` while dropping to *not* keep the transform relationship (i.e. the child retains its world position).
+
+- **Clear Parent:**
+  Drag the child object out of its parent hierarchy to remove the parent relationship.
+  Hold :kbd:`Alt` while dropping to clear the parent while preserving the parent's transform on the child.
+
+- **Parent Across Collections:**
+  To parent an object that resides in a different collection, hold :kbd:`Shift` while dragging.
+
+See :ref:`bpy.types.Object.parent` for more information on parenting and transformation inheritance.
 
 .. note::
 
-   Drag and drop will attempt to operate on the entire selection. Selected data-blocks
-   that are incompatible with the operation will remain unmodified.
+   Drag-and-drop operations apply to the entire current selection.
+   If some selected data-blocks are incompatible with the operation, they are left unchanged.
 
 
 Modifiers, Constraints, and Visual Effects

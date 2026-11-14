@@ -5,41 +5,43 @@
 Clamp To Constraint
 *******************
 
-The *Clamp To* constraint clamps an object to a curve. The *Clamp To* constraint is very similar
-to the :doc:`Follow Path </animation/constraints/relationship/follow_path>` constraint,
-but instead of using the evaluation time of the target curve, *Clamp To*
-will get the actual location properties of its owner
-(those shown in the *Transform* panel),
-and judge where to put it by "mapping" this location along the target curve.
+The *Clamp To* constraint snaps an object or bone to a :doc:`Curve </modeling/curves/introduction>`.
+Specifically, it works as follows:
 
-One benefit is that when you are working with *Clamp To*,
-it is easier to see what your owner will be doing; since you are working in the 3D Viewport,
-it will just be a lot more precise than sliding keys around on an F-Curve and
-playing the animation over and over.
+- If no explicit *Main Axis* is chosen, the constraint picks one automatically based on the longest
+  side of the Curve's bounding box.
+- Using this axis, it compares the original coordinate of the object or bone to the minimum and maximum
+  coordinates of the Curve, and remaps it to the range 0-1 accordingly.
+- This remapped coordinate is then used as a "curve time" to determine the position along the Curve,
+  where a value of 0 corresponds to the first control point and 1 to the last.
 
-A downside is that unlike in the :doc:`Follow Path constraint </animation/constraints/relationship/follow_path>`,
-*Clamp To* does not have any option to track your owner's rotation (pitch, roll, yaw)
-to the banking of the targeted curve, but you do not always need rotation on,
-so in cases like this it's usually a lot handier to fire up a *Clamp To*,
-and get the bits of rotation you do need some other way.
+Unless the Curve is a perfectly straight line, the object's/bone's coordinate along the *Main Axis*
+will likely change.
 
-The mapping from the object's original position to its position on the curve is not perfect,
-but uses the following simplified algorithm:
+If the object or bone moves along the Curve in the opposite direction than the expected one,
+use :ref:`bpy.ops.curve.switch_direction` to flip the order of the Curve's control points.
 
-.. Note, this may not be 100% accurate
+.. important::
 
-- A "main axis" is chosen, either by the user, or as the longest axis of the curve's bounding box (the default).
-- The position of the object is compared to the bounding box of the curve in the direction of the main axis.
-  So for example if X is the main axis, and the object is aligned with the curve bounding box's left side,
-  the result is 0; if it is aligned with the right side, the result is 1.
-- If the cyclic option is unchecked, this value is clamped in the range 0-1.
-- This number is used as the curve time, to find the final position along the curve that the object is clamped to.
+   While the object's/bone's original coordinate is evaluated in world space, the Curve's bounding box
+   is evaluated in the Curve's local space.
 
-This algorithm does not produce exactly the desired result because curve time does not map
-exactly to the main axis position. For example an object directly in the center of a curve
-will be clamped to a curve time of 0.5 regardless of the shape of the curve,
-because it is halfway along the curve's bounding box.
-However, the 0.5 curve time position can actually be anywhere within the bounding box!
+   This means that, if the Curve originally stretched from -5 to 10 on the global X axis but was then moved,
+   rotated, and scaled so that it now stretches from 20 to 90 on the global Z axis, the *Main Axis* will
+   still be chosen as X, and the object/bone still needs to move from -5 to 10 on the global X axis to be
+   successfully moved along the Curve.
+
+   For the most intuitive results, keep the Curve object at the default rotation.
+
+.. note::
+
+   :ref:`Bézier handles <curve-bezier>` and control point :ref:`radii <modeling-curve-radius>`
+   are included in the calculation of the bounding box.
+
+.. seealso::
+
+   The :doc:`/animation/constraints/relationship/follow_path` can not just position an
+   object/bone on a Curve, but also orient it along the Curve's direction.
 
 
 Options
@@ -47,33 +49,25 @@ Options
 
 .. figure:: /images/animation_constraints_tracking_clamp-to_panel.png
 
-   Clamp To panel.
+   Clamp To constraint.
 
-Target
-   The target :ref:`ui-data-id` indicates which curve object the Clamp To constraint will track along.
-   The target must be a curve object type.
-   See :ref:`common constraint properties <rigging-constraints-interface-common-target>` for more information.
+:ref:`Target <rigging-constraints-interface-common-target>`
+   The Curve object to snap to.
 
 Main Axis
-   This button group controls which global axis (X, Y or Z) is the main direction of the path.
-   When clamping the object to the target curve, it will not be moved significantly on this axis.
-   It may move a small amount on that axis because of the inexact way this constraint functions.
-
-   For example if you are animating a rocket launch,
-   it will be the Z axis because the main direction of the launch path is up.
-   The default *Auto* option chooses the axis which the curve is longest in (or X if they are equal).
-   This is usually the best option.
+   The axis for determining the constraint owner's coordinate and the Curve's minimum/maximum
+   coordinates.
 
 Cyclic
-   By default, once the object has reached one end of its target curve, it will be constrained there.
-   When the *Cyclic* option is enabled, as soon as it reaches one end of the curve,
-   it is instantaneously moved to its other end.
-   This is of course primarily designed for closed curves (e.g. circles),
-   as this allows your owner to go around it over and over.
+   When disabled, the constraint owner will stop at the start/end of the Curve when it leaves
+   the range of the Curve's bounding box. When enabled, it will jump to the opposite side
+   and begin another run along the Curve.
 
-Influence
-   Controls the percentage of affect the constraint has on the object.
-   See :ref:`common constraint properties <bpy.types.constraint.influence>` for more information.
+   This option is mainly useful for Curves that are also :ref:`cyclic <bpy.ops.curve.cyclic_toggle>`
+   (closed).
+
+:ref:`bpy.types.constraint.influence`
+   How strongly the constraint affects the object.
 
 
 Example

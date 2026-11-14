@@ -7,7 +7,7 @@ Material
    Data-block selector for the :doc:`material </grease_pencil/materials/index>`.
    Except for the *Erase* tool of course.
 
-   Pin Material (pin icon)
+   :bl-icon:`unpinned` / :bl-icon:`pinned` Pin Material
       Pin the material to the brush.
 
       The final appearance of the strokes is a combination of the brush and material used,

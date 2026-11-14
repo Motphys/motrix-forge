@@ -20,12 +20,6 @@ Transform
    The transformation matrix to separate.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

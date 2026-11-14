@@ -26,7 +26,7 @@ If the add-on needs to use internet, it must check for the (read-only) property 
 This option is controlled by Preferences, which can be overriding via command-line
 (``--offline-mode`` / ``--online-mode``).
 
-For better error messages, you can check also for ``bpy.app.online_access_overriden``,
+For better error messages, you can check also for ``bpy.app.online_access_override``,
 to determine whether users can turn :ref:`Allow Online Access <bpy.types.PreferencesSystem.use_online_access>`
 on the preferences, or not.
 

@@ -10,28 +10,26 @@ Select Mirror
    :Menu:      :menuselection:`Select --> Select Mirror`
    :Shortcut:  :kbd:`Shift-Ctrl-M`
 
-Select Mirror flips a selection to the opposite side of the mesh.
+Flips the selection to the opposite side of the mesh.
+
+Options
+=======
 
 Axis
-   Choose on which axis the selection will occur. The axis is based on the meshes origin.
-   Therefore, if the origin is not centered within the mesh, the selection will have varying results.
+   The local axis around which to mirror. The mesh's :doc:`origin </scene_layout/object/origin>`
+   is used as the centerpoint.
 
 Extend
-   The new selection will include the mirrored selection as well as the original.
+   Add to the selection instead of replacing it.
 
 .. figure:: /images/modeling_meshes_selecting_mirror_extend.png
 
-   (From left to right) initial selection, after Select Mirror on the X axis, with Extend.
+   From left to right: initial selection -- mirrored around the X axis -- with Extend.
 
-.. tip::
-
-   With *Extend* activated, hold :kbd:`Shift` while choosing an axis to include more than one axis in the selection.
-   Otherwise, with *Extend* off, the mirror will take into account two to three axes.
-
-
-Example
-=======
+It's possible to select multiple axes by holding :kbd:`Shift`. If *Extend* is disabled,
+this will mirror once across the combination of all the axes. If *Extend* is enabled,
+this will mirror across each possible combination of the axes.
 
 .. figure:: /images/modeling_meshes_selecting_mirror_axis-xz-extend.png
 
-   (From left to right) initial selection, mirrored along X and Z axes, with Extend.
+   From left to right: initial selection -- mirrored around the X and Z axes -- with Extend.

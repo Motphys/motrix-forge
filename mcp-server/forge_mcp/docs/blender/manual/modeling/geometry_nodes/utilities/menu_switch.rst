@@ -1,5 +1,6 @@
 .. index:: Geometry Nodes; Menu Switch
 .. _bpy.types.GeometryNodeMenuSwitch:
+.. --- copy below this line ---
 
 ****************
 Menu Switch Node
@@ -9,8 +10,14 @@ Menu Switch Node
    :align: right
    :alt: Menu Switch Node.
 
-The *Menu Switch* node outputs one of its inputs depending on a menu
-selection. Only the input that is passed through the node is computed.
+The *Menu Switch* node outputs one of its inputs based on a selected menu item.
+Only the active input is evaluated, allowing efficient switching between multiple options.
+
+On top of not evaluating any inactive inputs, which is something all switch nodes do, the
+*Menu Switch* has the extra functionality that it hides any socket that is connected
+to an inactive input, even if they are indirectly coupled through an *Index Switch* or
+*Switch* node. This can be used to hide irrelevant settings from the node interface or
+modifier panel.
 
 The available menu entries are defined by the user. Menu items can be
 added and removed, as well as renamed and reordered in the editor side
@@ -32,11 +39,11 @@ they contain the same menu switch node.
 
 .. list-table::
 
-   * - .. figure:: /images/node-types_GeometryNodeMenuSwitch_conflict.webp
+   * - .. figure:: /images/node-types_GeometryNodeMenuSwitch_conflict.png
 
           Conflict caused by connecting different menus.
 
-     - .. figure:: /images/node-types_GeometryNodeMenuSwitch_group_wrapper.webp
+     - .. figure:: /images/node-types_GeometryNodeMenuSwitch_group_wrapper.png
 
           Same node group can be connected without conflict.
 
@@ -51,11 +58,18 @@ Inputs
 ======
 
 Menu
-   Determines which of the input options below will be passed through.
+   Determines which input socket is passed through to the output.
 
-Item Inputs
-   One input is created for every menu entry. The input is used when the matching option is selected.
-   Items can be renamed by :kbd:`Ctrl-LMB` on the socket name or in the nodes *Properties* panel.
+One input is created for each menu entry. The input corresponding to the selected menu item
+is evaluated and passed through.
+
+Menu item labels can be renamed using :kbd:`Ctrl-LMB` on the socket name or in the node's *Properties* panel.
+
+Additional input sockets can be added by:
+- Dragging a connection onto the empty socket at the bottom of the list.
+- Clicking the :bl-icon:`add` icon in the node header.
+
+Unused inputs are not computed, improving performance in complex node networks.
 
 
 Properties
@@ -69,4 +83,9 @@ Outputs
 =======
 
 Output
-   One of the inputs without any modifications.
+   Outputs the value from the input corresponding to the selected menu item, unchanged.
+
+For each menu entry, an additional Boolean output is created.
+The output corresponding to the selected item is *true*, and all others are *false*.
+These Boolean outputs can be used to trigger different node branches, control visibility,
+or drive conditional operations elsewhere in the node tree.

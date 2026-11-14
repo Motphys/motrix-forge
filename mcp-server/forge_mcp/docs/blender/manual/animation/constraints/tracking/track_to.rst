@@ -5,26 +5,13 @@
 Track To Constraint
 *******************
 
-The *Track To* constraint applies rotations to its owner,
-so that it always points a given "To" axis towards its target,
-with another "Up" axis permanently maintained as much aligned with the global Z axis
-(by default) as possible. This tracking is similar to the "billboard tracking" in 3D
-(see note below).
+The *Track To* constraint makes an object or bone point towards a certain target,
+then roll to make a certain local axis point upwards.
+It's typically called "Look At" or "Aim" in other 3D software.
 
-This is the preferred tracking constraint,
-as it has a more easily controlled constraining mechanism.
-
-This constraint shares a close relationship to
-the :doc:`Inverse Kinematics constraint </animation/constraints/tracking/ik_solver>` in some ways.
-
-.. tip:: Billboard Tracking
-
-   The term "billboard" has a specific meaning in real-time CG programming (i.e. video games!),
-   where it is used for plane objects always facing the camera
-   (they are indeed "trackers", the camera being their "target").
-   Their main usage is as support for tree or mist textures:
-   if they were not permanently facing the camera, you would often see your trees squeezing to nothing,
-   or your mist turning into a mille-feuille paste, which would be funny but not so credible.
+If the constraint owner is almost directly above the target, the roll around
+the tracking axis will become unstable. For this scenario, it's recommended to
+use the :doc:`/animation/constraints/tracking/damped_track` instead.
 
 
 Options
@@ -32,37 +19,34 @@ Options
 
 .. figure:: /images/animation_constraints_tracking_track-to_panel.png
 
-   Track To panel.
+   Track To constraint.
 
-Target
-   :ref:`ui-data-id` used to select the constraints target, and is not functional (red state) when it has none.
-   See :ref:`common constraint properties <rigging-constraints-interface-common-target>` for more information.
+:ref:`Target <rigging-constraints-interface-common-target>`
+   The object or bone to point towards.
 
 Track Axis
-   The tracking local axis, i.e. the owner's axis to point at the target.
-   The negative options force the relevant axis to point away from the target.
+   The local axis of the owner that should point at the target.
+   For bones, this should typically be Y.
+
+   A negative axis will make the owner point away from the target instead.
 
 Up
-   The "upward-most" local axis, i.e. the owner's axis to be aligned (as much as possible)
-   with the global Z axis (or target Z axis, when the *Target* button is enabled).
+   The local axis of the owner that should point upwards in the world.
+
+.. important::
+
+   The *Track Axis* and the *Up* axis must be different. If they are the same,
+   the constraint will stop working and its icon will turn red.
 
 Target Z
-   By default, the owner's *Up* axis is (as much as possible) aligned with the global Z axis,
-   during the tracking rotations. When this button is enabled, the *Up* axis will be (as much as possible)
-   aligned with the target's local Z axis?
+   Align the owner's *Up* axis as closely as possible to the target's Z axis
+   instead of the global one.
 
-Target/Owner
-   Standard conversion between spaces.
-   See :ref:`common constraint properties <rigging-constraints-interface-common-space>` for more information.
+:ref:`Target/Owner <rigging-constraints-interface-common-space>`
+   The spaces for evaluating the target and owner transforms.
 
-Influence
-   Controls the percentage of affect the constraint has on the object.
-   See :ref:`common constraint properties <bpy.types.constraint.influence>` for more information.
-
-.. warning::
-
-   If you choose the same axis for *Tracking Axis* and *Up*,
-   the constraint will not be functional anymore (red state).
+:ref:`bpy.types.constraint.influence`
+   How strongly the constraint affects the owner.
 
 
 Example

@@ -59,7 +59,7 @@ Taper Object
    The Z coordinates of the *Taper Object* control points are ignored, but if you want,
    you can set the object's :ref:`Shape <bpy.types.Curve.dimensions>` to "2D" to force them to 0.
 
-.. _bpy.types.Curve.taper_mode:
+.. _bpy.types.Curve.taper_radius_mode:
 
 Taper Radius
    How to combine the scale graph of the *Taper Object* with the radii of the control points.

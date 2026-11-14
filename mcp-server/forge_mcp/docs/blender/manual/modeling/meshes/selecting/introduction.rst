@@ -3,10 +3,11 @@
 Introduction
 ************
 
-There are many ways to select elements, and it depends on what *Mesh Select Mode*
-you are in as to what selection tools are available.
-First we will go through these modes and after that a look is taken at basic selection tools.
+This section describes the various tools for selecting mesh elements.
 
+.. seealso::
+
+   The :doc:`/interface/selecting` page contains information about selecting in general.
 
 .. _bpy.types.ToolSettings.mesh_select_mode:
 .. _bpy.ops.mesh.select_mode:
@@ -20,137 +21,111 @@ Selection Modes
    :Menu:      :menuselection:`3D Viewport Header --> Select Mode`
    :Shortcut:  :kbd:`1`, :kbd:`2`, :kbd:`3`
                (:kbd:`Shift` `Multiple Selection Modes`_,
-               :kbd:`Ctrl` `Expand/Contract Selection`_).
+               :kbd:`Ctrl` `Expand/Contract Selection`_)
 
-In *Edit Mode* there are three different selection modes.
-You can enter the different modes by selecting one of the three buttons in the header.
+In *Edit Mode*, there are three different selection modes: Vertex, Edge, and Face.
+To switch to a different mode, click the button in the 3D Viewport's header or press
+the shortcut key.
 
 .. figure:: /images/modeling_meshes_selecting_introduction_mode-buttons.png
    :align: center
 
-   Edit Mode selection buttons from right to left: Vertex, Edge, Face.
+   Selection mode buttons
 
-Vertex
-   In this mode vertices are shown as points.
-   Selected vertices are displayed in orange, unselected vertices in black,
-   and the active or last selected vertex in white.
-Edge
-   In this mode the vertices are not shown.
-   Instead the selected edges are displayed in orange,
-   unselected edges black, and the active or last selected edge in white.
-Face
-   In this mode the faces are displayed with a selection point in the middle which is used for selecting a face.
-   Selected faces and their selection point are displayed in orange,
-   unselected faces are displayed in black, and the active or last selected face is highlighted in white.
+Vertex :kbd:`1`
+   In this mode, vertices are shown as points. Unselected vertices are shown in black,
+   selected vertices in orange, and the :term:`active` vertex in white.
+Edge :kbd:`2`
+   In this mode, the vertices are not shown. Unselected edges are shown in black,
+   selected edges in yellow, and the active edge in white.
+Face :kbd:`3`
+   In this mode, selected faces are shaded in orange, and the active face additionally has a
+   white border.
 
-When using these buttons, you can make use of modifier keys, see: `Switching Select Mode`_.
-
-Almost all tools are available in all three mesh selection modes.
-So you can *Rotate*, *Scale*, *Extrude*, etc. in all modes.
-Of course rotating and scaling a *single* vertex will not do anything useful
-(*without* setting the pivot point to another location), so some tools
-are more or less applicable in some modes.
-
-See Fig. :ref:`fig-mesh-select-intro-selection-modes` for examples of the different modes.
-
-
-Multiple Selection Modes
-------------------------
-
-By holding :kbd:`Shift-LMB` when selecting a selection mode,
-you can enable multiple *Selection Modes* at once.
-This allows you to quickly select vertices, edges, or faces,
-without first having to switch mode.
-
-.. _fig-mesh-select-intro-selection-modes:
-
-.. list-table:: Selection modes.
+.. list-table::
+   :widths: 1 1 1
 
    * - .. figure:: /images/modeling_meshes_selecting_introduction_vertex-mode-example.png
-          :width: 310px
 
           Vertex mode example.
 
      - .. figure:: /images/modeling_meshes_selecting_introduction_edge-mode-example.png
-          :width: 310px
 
           Edge mode example.
 
-   * - .. figure:: /images/modeling_meshes_selecting_introduction_face-mode-example.png
-          :width: 310px
+     - .. figure:: /images/modeling_meshes_selecting_introduction_face-mode-example.png
 
           Face mode example.
 
-     - .. figure:: /images/modeling_meshes_selecting_introduction_mixed-mode-example.png
-          :width: 310px
+Switching Selection Mode
+------------------------
 
-          Mixed mode example.
+When switching modes in an "ascending" way -- from *Vertices* to *Edges* or from
+*Edges* to *Faces* -- the selected elements from the old mode will only stay selected
+if they form a complete element in the new mode.
 
-
-Switching Select Mode
----------------------
-
-When switching modes in an "ascendant" way (i.e. from simpler to more complex),
-from *Vertices* to *Edges* and from *Edges* to *Faces*,
-the selected parts will still be selected if they form a complete element in the new mode.
-
-For example, if all four edges in a face are selected,
-switching from *Edges* mode to *Faces* mode will keep the face selected.
-All selected parts that do not form a complete set in the new mode will be unselected.
+For example, if all four edges of a face are selected, switching from *Edges* to *Faces*
+will keep the face selected. However, any edges that do not form a complete face will be
+deselected.
 
 .. list-table::
+   :widths: 1 1
 
    * - .. figure:: /images/modeling_meshes_selecting_introduction_edge-mode-example.png
-          :width: 310px
 
-          Edge mode, the initial selection.
+          Selection in Edge mode.
 
      - .. figure:: /images/modeling_meshes_selecting_introduction_face-mode-switched-from-edge.png
-          :width: 310px
 
           Switching to Face mode.
 
-Hence, switching in a "descendant" way (i.e. from more complex to simpler),
-all elements defining the "high-level" element (like a face) will be selected
-(the four vertices or edges of a quadrangle, for example).
+When switching in a "descending" way, on the other hand, all elements stay selected.
+For example, if you selected a face and switch to *Edge* mode, all four of its edges
+will be selected.
 
+Multiple Selection Modes
+------------------------
+
+It's possible to enable multiple modes at the same time by holding :kbd:`Shift`
+while switching.
+
+.. _modeling_meshes_selecting_switch-mode_expand-contract:
 
 Expand/Contract Selection
-^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------
 
-By holding :kbd:`Ctrl` when selecting a higher selection mode,
-all elements touching the current selection will be added,
-even if the selection does not form a complete higher element.
-Or contracting the selection when switching to a lower mode.
+When holding :kbd:`Ctrl` while switching to a "higher" mode, the selection will be expanded,
+fully including elements of the new mode that were only partially included before.
 
 .. list-table::
+   :widths: 1 1
 
    * - .. figure:: /images/modeling_meshes_selecting_introduction_vertex-mode-example.png
-          :width: 310px
 
-          Vertex mode, the initial selection.
+          Selection in Vertex mode.
 
      - .. figure:: /images/modeling_meshes_selecting_introduction_edge-mode-expanding-from-vertex.png
-          :width: 310px
 
-          Expanding to Edge mode.
+          Switching to Edge mode while holding Ctrl.
 
+Holding :kbd:`Ctrl` while switching to a "lower" mode does the opposite: it contracts the selection,
+deselecting elements in the new mode that have any unselected neighbors.
 
 X-Ray
 =====
 
-The :ref:`X-Ray <bpy.types.View3DShading.show_xray>` setting is not just for shading, it impacts selection too.
-When enabled, selection isn't occluded by the objects geometry (as if the object was solid).
+The :ref:`X-Ray <bpy.types.View3DShading.show_xray>` shading mode makes it possible to not just to see
+occluded geometry, but also select it. As a side effect, it's no longer possible to select faces
+by clicking anywhere on their surface; instead, click the selection dot in their center.
 
 .. list-table::
+   :widths: 1 1
 
    * - .. figure:: /images/modeling_meshes_selecting_introduction_limit-selection-to-visible-off.png
-          :width: 310px
 
           X-ray enabled.
 
      - .. figure:: /images/modeling_meshes_selecting_introduction_limit-selection-to-visible-on.png
-          :width: 310px
 
           X-ray disabled.
 
@@ -163,7 +138,7 @@ All :kbd:`A`
 None :kbd:`Alt-A`
    Select none.
 Invert :kbd:`Ctrl-I`
-   Selects all the geometry that is not selected, and deselect currently selected components.
+   Select the geometry that's not selected, and deselect the geometry that is.
 
 ----
 
@@ -176,55 +151,61 @@ Invert :kbd:`Ctrl-I`
 
 ----
 
-Select Mirror :kbd:`Shift-Ctrl-M`
-   Select mesh items at the mirrored location across the chosen axis.
-:ref:`Select Random <bpy.ops.mesh.select_random>`
+:doc:`Select Mirror </modeling/meshes/selecting/mirror>` :kbd:`Shift-Ctrl-M`
+   Flips the selection to the opposite side of the mesh.
+:doc:`Select Random </modeling/meshes/selecting/random>`
    Selects a random group of vertices, edges, or faces, based on a percentage value.
-:ref:`Checker Deselect <bpy.ops.mesh.select_nth>`
-   Deselect alternate elements relative to the active item.
+:doc:`Checker Deselect </modeling/meshes/selecting/checker_deselect>`
+   Deselects alternating elements relative to the active one.
 
 ----
 
 More/Less
-   More :kbd:`Ctrl-NumpadPlus`
-      Expands the selection to the adjacent elements of the selection type.
-   Less :kbd:`Ctrl-NumpadMinus`
-      Contracts the selection from the adjacent elements of the selection type.
-   Next Active :kbd:`Shift-Ctrl-NumpadPlus`
-      This uses selection history to select the next vertex, edge, or face based on surrounding topology.
-   Previous Active :kbd:`Shift-Ctrl-NumpadMinus`
-      Select previous just removes the last selected element.
+   :ref:`More <bpy.ops.mesh.select_more>` :kbd:`Ctrl-NumpadPlus`
+      Grows the selection to include the elements at its border.
+   :ref:`Less <bpy.ops.mesh.select_less>` :kbd:`Ctrl-NumpadMinus`
+      Shrinks the selection to exclude the elements at its border.
+   :ref:`Next Active <bpy.ops.mesh.select_next_item>` :kbd:`Shift-Ctrl-NumpadPlus`
+      Selects the element that "logically follows" the two most recently selected ones.
+   :ref:`Previous Active <bpy.ops.mesh.select_prev_item>` :kbd:`Shift-Ctrl-NumpadMinus`
+      Deselects the last selected element and makes the next-to-last one active again.
 
 ----
 
-:ref:`Select Similar <bpy.ops.mesh.select_similar>` :kbd:`Shift-G`
-   Select elements similar to the current selection.
+:doc:`Select Similar </modeling/meshes/selecting/similar>` :kbd:`Shift-G`
+   Selects elements similar to the current selection.
+
 :doc:`Select All by Trait </modeling/meshes/selecting/all_by_trait>`
-   Select geometry by querying its characteristics.
+   Selects geometry that meets certain undesirable conditions.
+
 Select Linked
-   :ref:`Select Linked <bpy.ops.mesh.select_linked>`
-      Selects all components that are connected to the current selection.
-   :ref:`Shortest Path <bpy.ops.mesh.shortest_path_select>`
-      Path between two selected elements.
-   Linked Flat Faces
-      Select connected faces based on a threshold of the angle between them.
-      This is useful for selecting faces that are planar.
+   :ref:`Linked <bpy.ops.mesh.select_linked>`
+      Selects all elements that are connected directly or indirectly to the current selection.
+   :reF:`Shortest Path <bpy.ops.mesh.shortest_path_select>`
+      Selects the elements that lie on the shortest path between the two most recently selected ones.
+   :ref:`Linked Flat Faces <bpy.ops.mesh.faces_select_linked_flat>`
+      Grows the selection to include the faces that are (approximately) coplanar with the currently
+      selected ones.
+
 Select Loops
-   :ref:`Edge Loops <bpy.ops.mesh.loop_multi_select>`
-      Select connected edges.
-   :ref:`Face Loops <modeling-meshes-selecting-face-loops>`
-      Select connected faces.
-   :ref:`Edge Rings <modeling-meshes-selecting-edge-rings>`
-      Select connected edge ring.
+   :ref:`Edge Loops <bpy.ops.mesh.loop_select>`
+      Selects the edges that lie in the same *edge loop* as the currently selected ones.
+   :ref:`Edge Rings <bpy.ops.mesh.select_edge_ring_multi>`
+      Selects the edges that lie in the same *edge ring* as the currently selected ones.
+   :ref:`Select Loop Inner-Region <bpy.ops.mesh.loop_to_region>`
+      Selects the faces that are enclosed by the currently selected boundary edges.
+   :ref:`Select Boundary Loop <bpy.ops.mesh.region_to_loop>`
+      Replaces the current face selection by an edge selection of its boundaries.
 
-Sharp Edges
-   This tool selects all edges between two faces forming an angle greater than the angle value,
-   where an increasing angle selects sharper edges.
+:doc:`Sharp Edges </modeling/meshes/selecting/sharp_edges>`
+   Selects edges at sharp corners.
 
-Side of Active
-   Selects all vertices on the mesh in a single axis relative to the active vertex.
-   In Vertex selection mode only.
+:doc:`Side of Active </modeling/meshes/selecting/side_of_active>` :guilabel:`Vertex Mode`
+   Selects all the vertices that are (for example) to the right of the active vertex.
 
+:doc:`By Attribute </modeling/meshes/selecting/by_attribute>`
+   Selects the elements for which the currently active :doc:`attribute
+   </modeling/geometry_nodes/attributes_reference>` has a value of True.
 
 Known Issues
 ============
@@ -232,11 +213,8 @@ Known Issues
 Dense Meshes
 ------------
 
-Selecting dense meshes with X-Ray disabled, has a limitation where dense meshes may not have
-all the elements selected.
-When selecting regions with Box, Circle and Lasso select, vertices may overlap each other causing
-some vertices not to be selected.
-This is a limitation with the current selection method, you may workaround this by zooming in or enabling X-Ray.
+When selecting a region with *Box/Circle/Lasso Select* in a dense mesh with X-Ray disabled, not all vertices
+in the region may get included due to overlapping. Should this happen, please zoom in or enable X-Ray as a workaround.
 
 
 N-Gons in Face Select Mode
@@ -244,9 +222,8 @@ N-Gons in Face Select Mode
 
 .. figure:: /images/modeling_meshes_selecting_introduction_face-mode-ngon-visual-problem.png
 
-   N-gon face having its center dot inside another face.
+   N-gon having its selection dot inside another face.
 
-As already noted, in X-Ray and Wireframe mode faces are marked with a dot in the middle.
-With n-gons that can lead in certain cases to a confusing display.
-The example shows the center dot of the U-shaped n-gon being inside of the oblong face inside the "U".
-It is not easy to identify which dot belongs to which face (the orange dot in the image is the object origin).
+The face selection dot in the X-Ray and Wireframe shading modes is simply placed in the center of the face,
+which may not be on the face's surface in the case of concave :term:`n-gons <n-gon>`. This can make it harder
+to find the dot, especially if another face sits in the cavity.

@@ -9,33 +9,28 @@ Knife Project
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Mesh --> Knife Project`
 
-Knife Project is a non-interactive tool where you can use objects to cookie-cut into
-one or more meshes rather than hand drawing the line. The outline of the selected objects
-that *are not* in Edit Mode is projected along the view axis onto the meshes that *are*
-in Edit Mode, and then cuts into the faces there. Afterwards, the resulting geometry
-inside the cut gets selected.
+Projects the outline of one or more "cookie cutter" objects onto the edited object and creates
+new edges there.
 
-.. note::
+The cutter objects must be :doc:`Curves </modeling/curves/introduction>` or :term:`non-manifold`
+meshes (e.g. flat shapes, loose edges).
 
-   The cutting objects must be curves or non-manifold meshes (e.g. flat shapes, loose edges).
-   :ref:`Select Non-Manifold <bpy.ops.mesh.select_non_manifold>`
-   will highlight the cutting edges of mesh objects.
+.. tip::
+   :ref:`Select Non-Manifold <bpy.ops.mesh.select_non_manifold>` will highlight the cutting edges
+   of mesh objects.
 
-Keep in mind that Knife Project works from the current view's perspective. For best results, make sure
-to rotate your view to exactly the position you require before using this tool. Orthographic views such
-as Right, Front, and Top are commonly used for this.
+Projection is done along the :doc:`viewing direction </editors/3dview/navigate/align>`.
 
-.. hint::
-   :doc:`3D Viewport Alignment </editors/3dview/navigate/align>` to adjust the projection axis.
+Usage
+=====
 
-To use Knife Project, select the objects to be cut, switch to *Edit Mode*,
-select the cutting objects in the Outliner (:kbd:`Ctrl-LMB`),
-and choose :menuselection:`Mesh --> Knife Project`.
+#. Select the object(s) that should receive the cut and switch to *Edit Mode*.
+#. Select the object(s) that should perform the cut by clicking them with :kbd:`Ctrl-LMB` in the
+   3D Viewport or the :doc:`Outliner </editors/outliner/introduction>`.
+#. Click :menuselection:`Mesh --> Knife Project` in the menu.
 
 If Blender switches back to *Object Mode* when selecting the cutting objects,
 make sure that :menuselection:`Edit --> Lock Object Modes` is checked in the topbar.
-Alternatively, if you have only one cutting object, you can select it in the
-viewport with :kbd:`Ctrl-LMB`.
 
 Options
 =======

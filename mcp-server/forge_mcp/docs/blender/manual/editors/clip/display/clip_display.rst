@@ -27,14 +27,14 @@ Grayscale Preview (B/W)
 
 .. _bpy.types.SpaceClipEditor.use_mute_footage:
 
-Mute (eye icon) :kbd:`M`
+:bl-icon:`hide_off` Mute Footage :kbd:`Ctrl-H`
    Hides the movie clip and displays a black image instead.
    This helps to find markers that are tracked inaccurately or not at all.
 
 .. _bpy.types.MovieClipUser.use_render_undistorted:
 
 Render Undistorted
-   Applies the :ref:`Lens settings <bpy.types.MovieTrackingCamera.lens>` to the
+   Applies the :ref:`Lens settings <motion_tracking-camera-lens>` to the
    video preview to undo lens distortion. Does not change the footage itself.
 
 .. _bpy.types.SpaceClipEditor.show_stable:

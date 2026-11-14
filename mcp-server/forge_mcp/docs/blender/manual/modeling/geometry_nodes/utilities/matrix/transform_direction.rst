@@ -1,5 +1,6 @@
 .. index:: Geometry Nodes; Transform Direction
 .. _bpy.types.FunctionNodeTransformDirection:
+.. --- copy below this line ---
 
 ************************
 Transform Direction Node
@@ -19,12 +20,6 @@ Direction
    The vector.
 Transformation
    The transformation matrix.
-
-
-Properties
-==========
-
-This node has no properties.
 
 
 Outputs

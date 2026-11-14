@@ -1,5 +1,6 @@
 .. index:: Geometry Nodes; Multiply Matrices
 .. _bpy.types.FunctionNodeMatrixMultiply:
+.. --- copy below this line ---
 
 **********************
 Multiply Matrices Node
@@ -21,12 +22,6 @@ Matrix
    The first multiplication.
 Matrix
    The second multiplication.
-
-
-Properties
-==========
-
-This node has no properties.
 
 
 Outputs

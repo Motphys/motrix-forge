@@ -36,12 +36,6 @@ Tilt
    The tilt angle for each control point.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

@@ -21,20 +21,7 @@ Inputs
 Volume
    Standard volume geometry input.
 
-Density
-   Number of points to sample per unit volume.
-
-Spacing
-   Spacing between grid points.
-
-Threshold
-   Minimum value of a volume cell to contain a grid point.
-
-
-Properties
-==========
-
-Distribution Method
+Mode
    :Random:
       Distribute points randomly inside of the volume. The local point count is implicitly
       defined as a product of the global from the *Density* input and the local voxel value.
@@ -42,6 +29,18 @@ Distribution Method
    :Grid:
       Distribute the points in a grid pattern inside of the volume. At each grid point, the voxel
       value is used to determine whether to add a point.
+
+Density :guilabel:`Random`
+   Number of points to sample per unit volume.
+
+Seed :guilabel:`Random`
+   Seed used by the random number generator to generate random points
+
+Spacing :guilabel:`Grid`
+   Spacing between grid points.
+
+Threshold :guilabel:`Grid`
+   Minimum value of a volume cell to contain a grid point.
 
 
 Outputs

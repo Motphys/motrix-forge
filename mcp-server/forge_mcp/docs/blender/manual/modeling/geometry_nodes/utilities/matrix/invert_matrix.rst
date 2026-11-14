@@ -1,5 +1,6 @@
 .. index:: Geometry Nodes; Invert Matrix
 .. _bpy.types.FunctionNodeInvertMatrix:
+.. --- copy below this line ---
 
 ******************
 Invert Matrix Node
@@ -17,12 +18,6 @@ Inputs
 
 Matrix
    The matrix to invert.
-
-
-Properties
-==========
-
-This node has no properties.
 
 
 Outputs

@@ -8,8 +8,10 @@ These nodes are used to output the composited result in some way.
 .. toctree::
    :maxdepth: 1
 
-   composite.rst
+   enable_output.rst
+   group_output.rst
    viewer.rst
+   warning.rst
 
 ----------
 

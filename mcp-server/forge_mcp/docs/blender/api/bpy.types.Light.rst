@@ -5,8 +5,14 @@ Light(ID)
 
 base classes --- :class:`bpy_struct`, :class:`ID`
 
-subclasses --- 
-:class:`AreaLight`, :class:`PointLight`, :class:`SpotLight`, :class:`SunLight`
+.. toctree::
+   :caption: Subclasses
+   :maxdepth: 1
+
+   bpy.types.AreaLight.rst
+   bpy.types.PointLight.rst
+   bpy.types.SpotLight.rst
+   bpy.types.SunLight.rst
 
 .. class:: Light(ID)
 
@@ -14,131 +20,149 @@ subclasses ---
 
    .. data:: animation_data
 
-      Animation data for this data-block
+      Animation data for this data-block (readonly)
 
-      :type: :class:`AnimData`, (readonly)
+      :type: :class:`AnimData` | None
 
    .. attribute:: color
 
-      Light color
+      Light color (array of 3 items, in [0, inf], default (1.0, 1.0, 1.0))
 
-      :type: :class:`mathutils.Color` of 3 items in [0, inf], default (1.0, 1.0, 1.0)
+      :type: :class:`mathutils.Color`
 
    .. attribute:: cutoff_distance
 
-      Distance at which the light influence will be set to 0
+      Distance at which the light influence will be set to 0 (in [0, inf], default 40.0)
 
-      :type: float in [0, inf], default 40.0
+      :type: float
 
    .. data:: cycles
 
-      Cycles light settings
+      Cycles light settings (readonly)
 
-      :type: :class:`CyclesLightSettings`, (readonly)
+      :type: :class:`CyclesLightSettings` | None
 
    .. attribute:: diffuse_factor
 
-      Diffuse reflection multiplier
+      Diffuse reflection multiplier (in [0, inf], default 1.0)
 
-      :type: float in [0, inf], default 1.0
+      :type: float
 
    .. attribute:: exposure
 
-      Scales the power of the light exponentially, multiplying the intensity by 2^exposure
+      Scales the power of the light exponentially, multiplying the intensity by 2^exposure (in [-32, 32], default 0.0)
 
-      :type: float in [-32, 32], default 0.0
+      :type: float
 
    .. data:: node_tree
 
-      Node tree for node based lights
+      Node tree for node based lights (readonly)
 
-      :type: :class:`NodeTree`, (readonly)
+      :type: :class:`NodeTree` | None
 
    .. attribute:: normalize
 
-      Normalize intensity by light area, for consistent total light output regardless of size and shape
+      Normalize intensity by light area, for consistent total light output regardless of size and shape (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: specular_factor
 
-      Specular reflection multiplier
+      Specular reflection multiplier (in [0, inf], default 1.0)
 
-      :type: float in [0, inf], default 1.0
+      :type: float
 
    .. attribute:: temperature
 
-      Light color temperature in Kelvin
+      Light color temperature in Kelvin (in [800, 20000], default 6500.0)
 
-      :type: float in [800, 20000], default 6500.0
+      :type: float
 
    .. data:: temperature_color
 
-      Color from Temperature
+      Color from Temperature (array of 3 items, in [0, inf], default (0.0, 0.0, 0.0), readonly)
 
-      :type: :class:`mathutils.Color` of 3 items in [0, inf], default (0.0, 0.0, 0.0), (readonly)
+      :type: :class:`mathutils.Color`
 
    .. attribute:: transmission_factor
 
-      Transmission light multiplier
+      Transmission light multiplier (in [0, inf], default 1.0)
 
-      :type: float in [0, inf], default 1.0
+      :type: float
 
    .. attribute:: type
 
-      Type of light
+      Type of light (default ``'POINT'``)
 
-      :type: enum in :ref:`rna_enum_light_type_items`, default ``'POINT'``
+      :type: Literal[:ref:`rna_enum_light_type_items`]
 
    .. attribute:: use_custom_distance
 
-      Use custom attenuation distance instead of global light threshold
+      Use custom attenuation distance instead of global light threshold (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_nodes
 
-      Use shader nodes to render the light
+      Use shader nodes to render the light (default False)
 
-      :type: boolean, default False
+      .. deprecated:: 5.10 removal planned in version 6.0
+
+         Unused but kept for compatibility reasons. Setting the property has no effect, and getting it always returns True.
+
+      :type: bool
 
    .. attribute:: use_shadow
 
-      :type: boolean, default True
+      (default True)
+
+      :type: bool
 
    .. attribute:: use_temperature
 
-      Use blackbody temperature to define a natural light color
+      Use blackbody temperature to define a natural light color (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: volume_factor
 
-      Volume light multiplier
+      Volume light multiplier (in [0, inf], default 1.0)
 
-      :type: float in [0, inf], default 1.0
+      :type: float
 
    .. method:: area(*, matrix_world=((0.0, 0.0, 0.0, 0.0), (0.0, 0.0, 0.0, 0.0), (0.0, 0.0, 0.0, 0.0), (0.0, 0.0, 0.0, 0.0)))
 
       Compute light area based on type and shape. The normalize option divides light intensity by this area
 
-      :arg matrix_world: Object to world space transformation matrix
-      :type matrix_world: :class:`mathutils.Matrix` of 4 * 4 items in [-inf, inf], (optional)
-      :return: area
-      :rtype: float in [-inf, inf]
+      :param matrix_world: Object to world space transformation matrix (multi-dimensional array of 4 * 4 items, in [-inf, inf], optional)
+      :type matrix_world: :class:`mathutils.Matrix` | Sequence[Sequence[float]]
+      :return: area, (in [-inf, inf])
+      :rtype: float
+
+   .. method:: inline_shader_nodes()
+
+      Get the inlined shader nodes of this light. This preprocesses the node tree
+      to remove nested groups, repeat zones and more.
+      
+      :return: The inlined shader nodes.
+      :rtype: :class:`InlineShaderNodes`
 
    .. classmethod:: bl_rna_get_subclass(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: :class:`bpy.types.Struct` | None
       :return: The RNA type or default when not found.
-      :rtype: :class:`bpy.types.Struct` subclass
+      :rtype: :class:`bpy.types.Struct`
 
 
    .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: type | None
       :return: The class or default when not found.
       :rtype: type
 
@@ -149,27 +173,28 @@ Inherited Properties
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.id_data`
-   * :class:`ID.name`
-   * :class:`ID.name_full`
-   * :class:`ID.id_type`
-   * :class:`ID.session_uid`
-   * :class:`ID.is_evaluated`
-   * :class:`ID.original`
-   * :class:`ID.users`
-   * :class:`ID.use_fake_user`
-   * :class:`ID.use_extra_user`
-   * :class:`ID.is_embedded_data`
-   * :class:`ID.is_missing`
-   * :class:`ID.is_runtime_data`
-   * :class:`ID.is_editable`
-   * :class:`ID.tag`
-   * :class:`ID.is_library_indirect`
-   * :class:`ID.library`
-   * :class:`ID.library_weak_reference`
-   * :class:`ID.asset_data`
-   * :class:`ID.override_library`
-   * :class:`ID.preview`
+   - :class:`bpy_struct.id_data`
+   - :class:`ID.name`
+   - :class:`ID.name_full`
+   - :class:`ID.id_type`
+   - :class:`ID.session_uid`
+   - :class:`ID.is_evaluated`
+   - :class:`ID.original`
+   - :class:`ID.users`
+   - :class:`ID.use_fake_user`
+   - :class:`ID.use_extra_user`
+   - :class:`ID.is_embedded_data`
+   - :class:`ID.is_linked_packed`
+   - :class:`ID.is_missing`
+   - :class:`ID.is_runtime_data`
+   - :class:`ID.is_editable`
+   - :class:`ID.tag`
+   - :class:`ID.is_library_indirect`
+   - :class:`ID.library`
+   - :class:`ID.library_weak_reference`
+   - :class:`ID.asset_data`
+   - :class:`ID.override_library`
+   - :class:`ID.preview`
 
 Inherited Functions
 -------------------
@@ -177,47 +202,49 @@ Inherited Functions
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.as_pointer`
-   * :class:`bpy_struct.driver_add`
-   * :class:`bpy_struct.driver_remove`
-   * :class:`bpy_struct.get`
-   * :class:`bpy_struct.id_properties_clear`
-   * :class:`bpy_struct.id_properties_ensure`
-   * :class:`bpy_struct.id_properties_ui`
-   * :class:`bpy_struct.is_property_hidden`
-   * :class:`bpy_struct.is_property_overridable_library`
-   * :class:`bpy_struct.is_property_readonly`
-   * :class:`bpy_struct.is_property_set`
-   * :class:`bpy_struct.items`
-   * :class:`bpy_struct.keyframe_delete`
-   * :class:`bpy_struct.keyframe_insert`
-   * :class:`bpy_struct.keys`
-   * :class:`bpy_struct.path_from_id`
-   * :class:`bpy_struct.path_resolve`
-   * :class:`bpy_struct.pop`
-   * :class:`bpy_struct.property_overridable_library_set`
-   * :class:`bpy_struct.property_unset`
-   * :class:`bpy_struct.rna_ancestors`
-   * :class:`bpy_struct.type_recast`
-   * :class:`bpy_struct.values`
-   * :class:`ID.rename`
-   * :class:`ID.evaluated_get`
-   * :class:`ID.copy`
-   * :class:`ID.asset_mark`
-   * :class:`ID.asset_clear`
-   * :class:`ID.asset_generate_preview`
-   * :class:`ID.override_create`
-   * :class:`ID.override_hierarchy_create`
-   * :class:`ID.user_clear`
-   * :class:`ID.user_remap`
-   * :class:`ID.make_local`
-   * :class:`ID.user_of_id`
-   * :class:`ID.animation_data_create`
-   * :class:`ID.animation_data_clear`
-   * :class:`ID.update_tag`
-   * :class:`ID.preview_ensure`
-   * :class:`ID.bl_rna_get_subclass`
-   * :class:`ID.bl_rna_get_subclass_py`
+   - :class:`bpy_struct.as_pointer`
+   - :class:`bpy_struct.driver_add`
+   - :class:`bpy_struct.driver_remove`
+   - :class:`bpy_struct.get`
+   - :class:`bpy_struct.id_properties_clear`
+   - :class:`bpy_struct.id_properties_ensure`
+   - :class:`bpy_struct.id_properties_ui`
+   - :class:`bpy_struct.is_property_hidden`
+   - :class:`bpy_struct.is_property_overridable_library`
+   - :class:`bpy_struct.is_property_readonly`
+   - :class:`bpy_struct.is_property_set`
+   - :class:`bpy_struct.items`
+   - :class:`bpy_struct.keyframe_delete`
+   - :class:`bpy_struct.keyframe_insert`
+   - :class:`bpy_struct.keys`
+   - :class:`bpy_struct.path_from_id`
+   - :class:`bpy_struct.path_from_module`
+   - :class:`bpy_struct.path_resolve`
+   - :class:`bpy_struct.pop`
+   - :class:`bpy_struct.property_overridable_library_set`
+   - :class:`bpy_struct.property_unset`
+   - :class:`bpy_struct.rna_ancestors`
+   - :class:`bpy_struct.type_recast`
+   - :class:`bpy_struct.values`
+   - :class:`ID.bl_system_properties_get`
+   - :class:`ID.rename`
+   - :class:`ID.evaluated_get`
+   - :class:`ID.copy`
+   - :class:`ID.asset_mark`
+   - :class:`ID.asset_clear`
+   - :class:`ID.asset_generate_preview`
+   - :class:`ID.override_create`
+   - :class:`ID.override_hierarchy_create`
+   - :class:`ID.user_clear`
+   - :class:`ID.user_remap`
+   - :class:`ID.make_local`
+   - :class:`ID.user_of_id`
+   - :class:`ID.animation_data_create`
+   - :class:`ID.animation_data_clear`
+   - :class:`ID.update_tag`
+   - :class:`ID.preview_ensure`
+   - :class:`ID.bl_rna_get_subclass`
+   - :class:`ID.bl_rna_get_subclass_py`
 
 References
 ----------
@@ -225,8 +252,8 @@ References
 .. hlist::
    :columns: 2
 
-   * :mod:`bpy.context.light`
-   * :class:`BlendData.lights`
-   * :class:`BlendDataLights.new`
-   * :class:`BlendDataLights.remove`
+   - :mod:`bpy.context.light`
+   - :class:`BlendData.lights`
+   - :class:`BlendDataLights.new`
+   - :class:`BlendDataLights.remove`
 

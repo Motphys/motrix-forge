@@ -4,95 +4,96 @@
 Interpolate Hair Curves
 ***********************
 
-Interpolates existing guide curves on a surface mesh.
-The :doc:`/modeling/geometry_nodes/hair/generation/duplicate_hair_curves` is a similar option with simpler
-behavior that may offer better performance.
+The *Interpolate Hair Curves* node generates new hair curves by interpolating existing *guide* curves
+on a surface mesh.
+It allows for efficient grooming workflows where a small number of guide curves define the overall
+shape, and the node fills in additional interpolated curves to create a dense, detailed hair system.
 
-.. note::
-
-   This node/modifier will not function without the *Surface* geometry/object and *Surface UV Map* inputs.
+For simpler duplication-based setups, the
+:doc:`Duplicate Hair Curves </modeling/geometry_nodes/hair/generation/duplicate_hair_curves>`
+node provides a lighter-weight alternative that may perform faster.
 
 .. peertube:: 4dt7vp3qmry5MPZC3usxVb
+
 
 Inputs
 ======
 
 Geometry
-   Input Geometry (only curves will be affected).
+   The input geometry containing the guide hair curves to interpolate.
 
-Surface
-   Surface geometry for generation. This input takes priority over the corresponding object input if both are
-   provided.
-
-Surface
-   Surface object for generation (Needs matching transforms).
-
-Surface UV Map
-   Surface UV map stored on the mesh used for finding curve attachment locations.
-
-Surface Rest Position
-   Set the surface mesh into its rest position before attachment.
+Resting Surface
+   When enabled, sets the surface mesh to its rest position before attaching curves.
+   This ensures consistent root positions when deformation is applied afterward.
 
    .. tip::
 
-      In a typical hair generation setup, this node or modifier will be
-      combined with the :doc:`/modeling/geometry_nodes/curve/operations/deform_curves_on_surface`.
-      If that operation comes after this one, it makes sense to turn this option on so the
-      position used is the pre-deformed position consistent with the expectations for the
-      deformation's input.
+      When combining this node with :doc:`Deform Curves on Surface
+      </modeling/geometry_nodes/curve/operations/deform_curves_on_surface>`,
+      enable *Resting Surface* if the deformation node follows this one,
+      so that pre-deformed coordinates are used for consistent interpolation.
 
 Follow Surface Normal
-   Align the interpolated curves to the surface normal.
+   When enabled, aligns the interpolated curves with the surface normal at their root attachment point.
 
 Part by Mesh Islands
-   Use mesh islands of the surface geometry for parting.
+   When enabled, treats separate mesh islands on the surface as independent regions for interpolation,
+   preventing cross-blending of guides between disconnected areas.
 
 Interpolation Guides
-   Amount of guides to be used for interpolation per curve.
+   The number of nearest guide curves used to interpolate the shape of each new curve.
+   Higher values result in smoother transitions but may slightly reduce performance.
 
 Distance to Guides
-   Distance around each guide to spawn interpolated curves.
+   The maximum distance from a guide curve within which interpolation occurs.
+   Curves outside this range will not influence the result.
 
-Poisson Disk Distribution
-   Use poisson disk distribution method to keep a minimum distance.
+
+Distribution
+------------
+
+Distribution Method
+   Determines how root points for interpolated curves are distributed across the surface.
+
+   :Random:
+      Distributes roots randomly across the surface.
+   :Poisson Disk:
+      Uses Poisson disk sampling to maintain a minimum distance between root points,
+      producing an even and natural distribution.
 
 Density
-   Surface density of generated hair curves.
+   The number of interpolated hair curves generated per unit of surface area.
+   Higher values increase the total hair density.
 
 Density Mask
-   Factor applied on the density for curve distribution.
+   A scalar factor used to locally scale the curve density across the surface.
 
 Mask Texture
-   Discard points based on an mask texture after distribution.
-   The image is sampled with the *Surface UV Map* input.
+   Uses an image texture to control which areas of the surface generate hair.
+   The image is sampled using the *Surface UV Map* input.
 
    .. tip::
 
-      The accuracy of sampling the image doesn't depend on the density of the surface mesh's vertices
-      because it is sampled after the curve root points are generated, the accuracy . However, using
-      the *Density Mask* input instead can give better performance. Using them in combination can
-      give the benefits of both methods.
+      Texture sampling occurs after root points are generated, so accuracy is not limited by mesh resolution.
+      The *Density Mask* input is typically faster; using both together can balance quality and performance.
 
 Viewport Amount
-   Factor applied on the density for the viewport.
+   A factor used to reduce curve density in the viewport for performance optimization.
+   This does not affect the final render density.
 
 Seed
-   Random seed for the operation.
-
-
-Properties
-==========
-
-This node has no properties.
+   Sets the random seed for the interpolation and distribution processes.
+   Changing this value generates a different random distribution while maintaining the same parameters.
 
 
 Outputs
 =======
 
-**Geometry**
+Geometry
+   The resulting geometry containing the interpolated hair curves.
 
 Guide Index
-   Index of the main guide curve per curve.
+   An integer attribute storing the index of the main guide curve used to generate each interpolated curve.
 
 Surface Normal
-   Normal direction of the surface mesh at the attachment point.
+   The surface normal direction at each curve's root attachment point.

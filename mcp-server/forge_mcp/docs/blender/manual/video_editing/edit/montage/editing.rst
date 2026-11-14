@@ -34,10 +34,13 @@ The drop-down arrow offers the following options:
 .. _bpy.types.SequencerToolSettings.snap_to_hold_offset:
 .. _bpy.types.SequencerToolSettings.snap_to_markers:
 .. _bpy.types.SequencerToolSettings.snap_to_retiming_keys:
+.. _bpy.types.SequencerToolSettings.snap_to_all_channels:
 
 Snap to
    Frame Range
-      Snap to preview or scene start and end frame.
+      Snaps to the start and end frames of the preview or scene range or
+      when inside a :doc:`Meta Strip </video_editing/edit/montage/meta>`
+      snaps the target to the meta strip's display range.
    Current Frame
       Snaps the transformed selection to the Playhead.
    Hold Offset
@@ -46,6 +49,9 @@ Snap to
       Snaps the transformed selection to :doc:`/animation/markers`.
    Retiming Keys
       Snaps the transformed selection to :ref:`sequencer-editing-retiming`.
+   All Channels
+      Allows snapping to any strip channel.
+      If disabled, snapping only snaps to strips currently on the same channel as transformed strips.
 
 .. _bpy.types.SequencerToolSettings.snap_ignore_muted:
 .. _bpy.types.SequencerToolSettings.snap_ignore_sound:
@@ -115,7 +121,7 @@ The frame number label over the strip displays the end frame of the strip.
 
    You can select several (handles of) strips by :kbd:`Shift-LMB` clicking: when you press :kbd:`G`,
    everything that is selected will move with your mouse -- this means that,
-   for example, you can at the same time move a strip, shorten two others, and extend a forth one.
+   for example, you can at the same time move a strip, shorten two others, and extend a fourth one.
 
 
 Move/Extend from Current Frame
@@ -176,7 +182,7 @@ Slip Keyframes
 Move the mouse left or right to shift the strip's content, then confirm the operation.
 Additional options are available during the operation:
 
-- **Confirm**: :kbd:`LMB`, :kbd:`Enter`, :kbd:`Spacebar`
+- **Confirm**: :kbd:`LMB`, :kbd:`Return`, :kbd:`Spacebar`
 - **Cancel**: :kbd:`Esc`, :kbd:`RMB`
 - **Precision Mode**: Hold :kbd:`Shift` to enable subframe slipping which slips the audio.
   The subframe amount is shown in the header as *Sound Offset*.
@@ -193,7 +199,25 @@ Snap Strips to the Current Frame
    :Menu:      :menuselection:`Strip --> Transform --> Snap Strips to the Current Frame`
    :Shortcut:  :kbd:`Shift-S`
 
-Moves the strip or control point to the current frame.
+Moves the selected strips so that they align with the current frame.
+The active strip is used as the reference, and the mouse position
+relative to the playhead determines which side of the strip snaps
+to the current frame.
+
+When invoked from the menu, click with :kbd:`LMB` on either side
+of the playhead to choose which side to snap.
+
+Frame
+   The frame to which the selected strips will be snapped.
+
+Snap Side
+   Determines which side of the strip snaps to the frame when
+   no strip handles are selected.
+
+Keep Offset
+   If enabled, all selected strips are moved together,
+   preserving their relative timing.
+   If disabled, each strip snaps individually.
 
 
 .. _bpy.ops.sequencer.offset_clear:
@@ -445,8 +469,6 @@ This will result in two strips which use the same source, fitting the original s
    adjusting the start/end frames to form two non-overlapping strips showing the same content as before.
 
 
-.. _bpy.ops.sequencer.hold_split:
-
 Hold Split
 ==========
 
@@ -469,17 +491,35 @@ number fields in the *Strip Info* panel.
 
 .. _bpy.ops.sequencer.duplicate_move:
 
-Duplicate Strips
-================
+Duplicate
+=========
 
 .. reference::
 
-   :Menu:      :menuselection:`Strip --> Duplicate Strips`
+   :Menu:      :menuselection:`Strip --> Duplicate`
    :Shortcut:  :kbd:`Shift-D`
 
 Duplicate a strip to make an unlinked copy;
 drag it to a time and channel, and drop it by :kbd:`LMB` click.
 
+For strips that reference an ID, for example scene strips, this will
+duplicate the scene and use this new scene in the duplicated strip.
+
+.. _bpy.ops.sequencer.duplicate_move_linked:
+
+Duplicate Linked
+================
+
+.. reference::
+
+   :Menu:      :menuselection:`Strip --> Duplicate Linked`
+   :Shortcut:  :kbd:`Alt-D`
+
+Duplicate a strip to make a linked copy;
+drag it to a time and channel, and drop it by :kbd:`LMB` click.
+
+For strips that reference an ID, for example scene strips, this will
+use the same scene in the duplicated strip.
 
 .. _bpy.ops.sequencer.delete:
 

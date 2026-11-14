@@ -6,7 +6,7 @@ Editing
 
 These preferences control how several tools will interact with your input.
 
-.. figure:: /images/editors_preferences_section_editing.png
+.. figure:: /images/editors_preferences_section_editing.webp
 
 
 Objects

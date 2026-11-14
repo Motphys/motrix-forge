@@ -5,31 +5,20 @@
 Introduction
 ************
 
-Constraints are a way to control an object's properties
-(e.g. its location, rotation, scale), using either plain static values
-(like the :doc:`"limit" ones </animation/constraints/transform/limit_location>`),
-or another object, called "target"
-(like e.g. the :doc:`"copy" ones </animation/constraints/transform/copy_location>`).
+Constraints are a way of automatically controlling the location, rotation,
+and scale of an :term:`object` or :term:`bone`. For example, they can
+:doc:`attach </animation/constraints/relationship/child_of>`
+a sword to a knight's hand, or make a tennis player's eyes
+:doc:`point towards </animation/constraints/tracking/damped_track>` the ball.
 
-Even though constraints are useful in static projects,
-their main usage is obviously in animation.
+.. seealso::
 
-- You can control an object's animation through the targets used by its constraints
-  (this is a form of indirect animation). Indeed,
-  these targets can then control the constraint's owner's properties, and hence,
-  animating the targets will indirectly animate the owner.
-- You can animate constraints' settings. e.g. the *Influence* or
-  when using an armature's bone as target,
-  animate where along this bone (between root and tip) lays the real target point.
+   :doc:`Bone Constraints </animation/armatures/posing/bone_constraints/introduction>`
 
-They can make the eyes of a tennis player track a tennis ball bouncing across the court,
-allow the wheels on a bus to all rotate together,
-help a dinosaur's legs bend at the knee automatically, and
-make it easy for a hand to grip the hilt of a sword and the sword to swing with the hand.
-
-Constraints, in Blender, work with :term:`Objects <Object>` and :term:`Bones <Bone>`.
-Read about using constraints in rigging
-in the :doc:`Armature chapter </animation/armatures/posing/bone_constraints/index>`.
+Each object or bone can have a *stack* of constraints that's evaluated from top to bottom.
+In addition, each constraint has an :ref:`Influence <bpy.types.constraint.influence>` factor
+for weakening it or mixing it with other constraints. What's more, this Influence can be
+keyframed, which makes it possible to turn constraints on and off over the course of an animation.
 
 .. list-table::
    :widths: 1 1 5
@@ -45,47 +34,42 @@ in the :doc:`Armature chapter </animation/armatures/posing/bone_constraints/inde
      - .. figure:: /images/animation_constraints_interface_stack_example.png
           :align: center
 
-          The Constraint Stack is evaluated from top to bottom.
-
-Constraints work in combination with each other to form a Constraint Stack.
-
+          Constraint Stack
 
 Adding & Removing Constraints
 =============================
 
-To add a constraint click on the *Add Object Constraint* menu in the Constraints tab.
-Alternatively, you can use the :ref:`bpy.ops.object.constraint_add_with_targets` operator.
+To add a constraint, click on *Add Object/Bone Constraint* in the :doc:`/editors/properties_editor`
+and choose a constraint type.
 
-To copy constraints from one object to another use :ref:`bpy.ops.object.constraints_copy`.
+To remove a constraint, click its :bl-icon:`x` button.
 
-Any single constraint can be removed by clicking on the "X" button
-in the constraint's :doc:`header </animation/constraints/interface/header>`.
-To remove all constraints from an object use :ref:`bpy.ops.object.constraints_clear`.
+To move a constraint to a different position in the stack, drag its handle :bl-icon:`grip`.
 
-.. tip::
+The :doc:`/scene_layout/object/editing/constraints` menu in the 3D Viewport offers further options
+such as copying constraints and deleting all constraints in one go.
+The :doc:`/scene_layout/object/editing/track` menu allows quickly adding a "track" (point at)
+constraint.
 
-   Tracking constraints can be added/removed using the :doc:`Track menu </scene_layout/object/editing/track>`.
+.. _constraint-visual-transform:
 
+Visual Transform
+================
 
-Tips
-====
+Constraints give their owning object or bone a new location, rotation, and/or scale which together
+are called the *visual transform*. This transform is separate from the "base" transform found
+in the *Transform* panel of the Properties Editor,
+and as its name implies, it determines where the owner *really* appears in the world.
 
-Constraints are a fantastic way to add sophistication and complexity to a rig.
+For example, even when an object's *Transform* panel still shows the original *Location* of (0, 0, 0),
+a constraint could have placed it somewhere else entirely. What's more, attempting to move or even
+animate that object won't work: its *Location* numbers will change, but visually,
+it will remain stuck in place. The only way to "free" the object is to disable or delete the constraint,
+or to set its :ref:`bpy.types.constraint.influence` to zero.
 
-But be careful not to rush in too quickly, piling up constraint upon constraint
-until you lose all sense of how they interact with each other.
+Of course, transform properties that are not constrained can still be changed as usual.
 
-Start simply. Get to know a single constraint inside and out.
-:doc:`/animation/constraints/transform/copy_location` is a good first constraint to explore it
-also has an animation example. Take the time to understand every fundamental concept behind it,
-and the other constraints will make far more sense.
+While the visual transform is not shown in the UI, it can be copied to the base transform:
 
-.. TODO Add the 4x4 transform matrix vs. the transform panel.
-
-   Also note that constraints internally work using 4×4 transformation matrices only.
-   When you use settings for specific rotation or scaling constraining,
-   this information is being derived from the matrix only,
-   not from settings in a *Bone* or *Object*. Especially for combining
-   rotations with non-uniform or negative scaling this can lead to unpredictable behavior.
-
-.. TODO Add the blue dashed line.
+- By running :ref:`Apply Visual Transform <bpy.ops.object.visual_transform_apply>`.
+- By :ref:`applying <bpy.ops.constraint.apply>` the constraint. This also deletes the constraint.

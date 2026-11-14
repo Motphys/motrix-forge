@@ -7,344 +7,450 @@ Screen Operators
 
    Handle area action zones for mouse actions/gestures
 
-   :arg modifier: Modifier, Modifier state
-   :type modifier: int in [0, 2], (optional)
+   :param modifier: Modifier, Modifier state (in [0, 2], optional)
+   :type modifier: int
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: animation_cancel(*, restore_frame=True)
 
    Cancel animation, returning to the original frame
 
-   :arg restore_frame: Restore Frame, Restore the frame when animation was initialized
-   :type restore_frame: boolean, (optional)
+   :param restore_frame: Restore Frame, Restore the frame when animation was initialized (optional)
+   :type restore_frame: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
+.. function:: animation_pause()
+
+   Pause animation, stopping at the current frame
+
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: animation_play(*, reverse=False, sync=False)
 
    Play animation
 
-   :arg reverse: Play in Reverse, Animation is played backwards
-   :type reverse: boolean, (optional)
-   :arg sync: Sync, Drop frames to maintain framerate
-   :type sync: boolean, (optional)
+   :param reverse: Play in Reverse, Animation is played backwards (optional)
+   :type reverse: bool
+   :param sync: Sync, Drop frames to maintain framerate (optional)
+   :type sync: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: animation_step()
 
    Step through animation by position
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: area_close()
 
    Close selected area
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: area_dupli()
 
    Duplicate selected area into new window
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: area_join(*, source_xy=(0, 0), target_xy=(0, 0))
 
    Join selected areas into new window
 
-   :arg source_xy: Source location
-   :type source_xy: int array of 2 items in [-inf, inf], (optional)
-   :arg target_xy: Target location
-   :type target_xy: int array of 2 items in [-inf, inf], (optional)
+   :param source_xy: Source location, (array of 2 items, in [-inf, inf], optional)
+   :type source_xy: Sequence[int]
+   :param target_xy: Target location, (array of 2 items, in [-inf, inf], optional)
+   :type target_xy: Sequence[int]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
-.. function:: area_move(*, x=0, y=0, delta=0)
+.. function:: area_move(*, x=0, y=0, delta=0, snap=False)
 
    Move selected area edges
 
-   :arg x: X
-   :type x: int in [-inf, inf], (optional)
-   :arg y: Y
-   :type y: int in [-inf, inf], (optional)
-   :arg delta: Delta
-   :type delta: int in [-inf, inf], (optional)
+   :param x: X, (in [-inf, inf], optional)
+   :type x: int
+   :param y: Y, (in [-inf, inf], optional)
+   :type y: int
+   :param delta: Delta, (in [-inf, inf], optional)
+   :type delta: int
+   :param snap: Snapping, Enable snapping (optional)
+   :type snap: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: area_options()
 
    Operations for splitting and merging
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: area_split(*, direction='HORIZONTAL', factor=0.5, cursor=(0, 0))
 
    Split selected area into new windows
 
-   :arg direction: Direction
-   :type direction: enum in [``'HORIZONTAL'``, ``'VERTICAL'``], (optional)
-   :arg factor: Factor
-   :type factor: float in [0, 1], (optional)
-   :arg cursor: Cursor
-   :type cursor: int array of 2 items in [-inf, inf], (optional)
+   :param direction: Direction, (optional)
+   :type direction: Literal['HORIZONTAL', 'VERTICAL']
+   :param factor: Factor, (in [0, 1], optional)
+   :type factor: float
+   :param cursor: Cursor, (array of 2 items, in [-inf, inf], optional)
+   :type cursor: Sequence[int]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: area_swap(*, cursor=(0, 0))
 
    Swap selected areas screen positions
 
-   :arg cursor: Cursor
-   :type cursor: int array of 2 items in [-inf, inf], (optional)
+   :param cursor: Cursor, (array of 2 items, in [-inf, inf], optional)
+   :type cursor: Sequence[int]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: back_to_previous()
 
    Revert back to the original screen layout, before fullscreen area overlay
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: delete()
 
    Delete active screen
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: drivers_editor_show()
 
    Show drivers editor in a separate window
+
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
+.. function:: edge_merge(*, cursor=(0, 0))
+
+   Merge aligned area edges
+
+   :param cursor: Cursor, (array of 2 items, in [-inf, inf], optional)
+   :type cursor: Sequence[int]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: frame_jump(*, end=False)
 
    Jump to first/last frame in frame range
 
-   :arg end: Last Frame, Jump to the last frame of the frame range
-   :type end: boolean, (optional)
+   :param end: Last Frame, Jump to the last frame of the frame range (optional)
+   :type end: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: frame_offset(*, delta=0)
 
    Move current frame forward/backward by a given number
 
-   :arg delta: Delta
-   :type delta: int in [-inf, inf], (optional)
+   :param delta: Delta, (in [-inf, inf], optional)
+   :type delta: int
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: header_toggle_menus()
 
    Expand or collapse the header pull-down menus
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: info_log_show()
 
    Show info log in a separate window
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: keyframe_jump(*, next=True)
 
    Jump to previous/next keyframe
 
-   :arg next: Next Keyframe
-   :type next: boolean, (optional)
+   :param next: Next Keyframe, (optional)
+   :type next: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: marker_jump(*, next=True)
 
    Jump to previous/next marker
 
-   :arg next: Next Marker
-   :type next: boolean, (optional)
+   :param next: Next Marker, (optional)
+   :type next: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: new()
 
    Add a new screen
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
+.. function:: quadview_size()
+
+   Resize Quad View areas
+
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: redo_last()
 
    Display parameters for last action performed
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: region_blend()
 
    Blend in and out overlapping region
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: region_context_menu()
 
    Display region context menu
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: region_flip()
 
    Toggle the region's alignment (left/right or top/bottom)
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: region_quadview()
 
    Split selected area into camera, front, right, and top views
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: region_scale()
 
    Scale selected area
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: region_toggle(*, region_type='WINDOW')
 
    Hide or unhide the region
 
-   :arg region_type: Region Type, Type of the region to toggle
-   :type region_type: enum in :ref:`rna_enum_region_type_items`, (optional)
+   :param region_type: Region Type, Type of the region to toggle (optional)
+   :type region_type: Literal[:ref:`rna_enum_region_type_items`]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: repeat_history(*, index=0)
 
    Display menu for previous actions performed
 
-   :arg index: Index
-   :type index: int in [0, inf], (optional)
+   :param index: Index, (in [0, inf], optional)
+   :type index: int
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: repeat_last()
 
    Repeat last action
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: screen_full_area(*, use_hide_panels=False)
 
    Toggle display selected area as fullscreen/maximized
 
-   :arg use_hide_panels: Hide Panels, Hide all the panels
-   :type use_hide_panels: boolean, (optional)
+   :param use_hide_panels: Hide Panels, Hide all the panels (Focus Mode) (optional)
+   :type use_hide_panels: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: screen_set(*, delta=1)
 
    Cycle through available screens
 
-   :arg delta: Delta
-   :type delta: int in [-1, 1], (optional)
+   :param delta: Delta, (in [-1, 1], optional)
+   :type delta: int
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
-.. function:: screenshot(*, filepath="", hide_props_region=True, check_existing=True, filter_blender=False, filter_backup=False, filter_image=True, filter_movie=False, filter_python=False, filter_font=False, filter_sound=False, filter_text=False, filter_archive=False, filter_btx=False, filter_collada=False, filter_alembic=False, filter_usd=False, filter_obj=False, filter_volume=False, filter_folder=True, filter_blenlib=False, filemode=9, show_multiview=False, use_multiview=False, display_type='DEFAULT', sort_method='')
+.. function:: screenshot(*, filepath="", hide_props_region=True, check_existing=True, filter_blender=False, filter_backup=False, filter_image=True, filter_movie=False, filter_python=False, filter_font=False, filter_sound=False, filter_text=False, filter_archive=False, filter_btx=False, filter_alembic=False, filter_usd=False, filter_obj=False, filter_volume=False, filter_folder=True, filter_blenlib=False, filemode=9, show_multiview=False, use_multiview=False, display_type='DEFAULT', sort_method='')
 
    Capture a picture of the whole Blender window
 
-   :arg filepath: File Path, Path to file
-   :type filepath: string, (optional, never None)
-   :arg hide_props_region: Hide Operator Properties, Collapse the region displaying the operator settings
-   :type hide_props_region: boolean, (optional)
-   :arg check_existing: Check Existing, Check and warn on overwriting existing files
-   :type check_existing: boolean, (optional)
-   :arg filter_blender: Filter .blend files
-   :type filter_blender: boolean, (optional)
-   :arg filter_backup: Filter .blend files
-   :type filter_backup: boolean, (optional)
-   :arg filter_image: Filter image files
-   :type filter_image: boolean, (optional)
-   :arg filter_movie: Filter movie files
-   :type filter_movie: boolean, (optional)
-   :arg filter_python: Filter Python files
-   :type filter_python: boolean, (optional)
-   :arg filter_font: Filter font files
-   :type filter_font: boolean, (optional)
-   :arg filter_sound: Filter sound files
-   :type filter_sound: boolean, (optional)
-   :arg filter_text: Filter text files
-   :type filter_text: boolean, (optional)
-   :arg filter_archive: Filter archive files
-   :type filter_archive: boolean, (optional)
-   :arg filter_btx: Filter btx files
-   :type filter_btx: boolean, (optional)
-   :arg filter_collada: Filter COLLADA files
-   :type filter_collada: boolean, (optional)
-   :arg filter_alembic: Filter Alembic files
-   :type filter_alembic: boolean, (optional)
-   :arg filter_usd: Filter USD files
-   :type filter_usd: boolean, (optional)
-   :arg filter_obj: Filter OBJ files
-   :type filter_obj: boolean, (optional)
-   :arg filter_volume: Filter OpenVDB volume files
-   :type filter_volume: boolean, (optional)
-   :arg filter_folder: Filter folders
-   :type filter_folder: boolean, (optional)
-   :arg filter_blenlib: Filter Blender IDs
-   :type filter_blenlib: boolean, (optional)
-   :arg filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file
-   :type filemode: int in [1, 9], (optional)
-   :arg show_multiview: Enable Multi-View
-   :type show_multiview: boolean, (optional)
-   :arg use_multiview: Use Multi-View
-   :type use_multiview: boolean, (optional)
-   :arg display_type: Display Type
+   :param filepath: File Path, Path to file (optional, never None)
+   :type filepath: str
+   :param hide_props_region: Hide Operator Properties, Collapse the region displaying the operator settings (optional)
+   :type hide_props_region: bool
+   :param check_existing: Check Existing, Check and warn on overwriting existing files (optional)
+   :type check_existing: bool
+   :param filter_blender: Filter .blend files, (optional)
+   :type filter_blender: bool
+   :param filter_backup: Filter backup .blend files, (optional)
+   :type filter_backup: bool
+   :param filter_image: Filter image files, (optional)
+   :type filter_image: bool
+   :param filter_movie: Filter movie files, (optional)
+   :type filter_movie: bool
+   :param filter_python: Filter Python files, (optional)
+   :type filter_python: bool
+   :param filter_font: Filter font files, (optional)
+   :type filter_font: bool
+   :param filter_sound: Filter sound files, (optional)
+   :type filter_sound: bool
+   :param filter_text: Filter text files, (optional)
+   :type filter_text: bool
+   :param filter_archive: Filter archive files, (optional)
+   :type filter_archive: bool
+   :param filter_btx: Filter btx files, (optional)
+   :type filter_btx: bool
+   :param filter_alembic: Filter Alembic files, (optional)
+   :type filter_alembic: bool
+   :param filter_usd: Filter USD files, (optional)
+   :type filter_usd: bool
+   :param filter_obj: Filter OBJ files, (optional)
+   :type filter_obj: bool
+   :param filter_volume: Filter OpenVDB volume files, (optional)
+   :type filter_volume: bool
+   :param filter_folder: Filter folders, (optional)
+   :type filter_folder: bool
+   :param filter_blenlib: Filter Blender IDs, (optional)
+   :type filter_blenlib: bool
+   :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file (in [1, 9], optional)
+   :type filemode: int
+   :param show_multiview: Enable Multi-View, (optional)
+   :type show_multiview: bool
+   :param use_multiview: Use Multi-View, (optional)
+   :type use_multiview: bool
+   :param display_type: Display Type, (optional)
 
-      * ``DEFAULT``
+      - ``DEFAULT``
         Default -- Automatically determine display type for files.
-      * ``LIST_VERTICAL``
+      - ``LIST_VERTICAL``
         Short List -- Display files as short list.
-      * ``LIST_HORIZONTAL``
+      - ``LIST_HORIZONTAL``
         Long List -- Display files as a detailed list.
-      * ``THUMBNAIL``
+      - ``THUMBNAIL``
         Thumbnails -- Display files as thumbnails.
-   :type display_type: enum in [``'DEFAULT'``, ``'LIST_VERTICAL'``, ``'LIST_HORIZONTAL'``, ``'THUMBNAIL'``], (optional)
-   :arg sort_method: File sorting mode
-   :type sort_method: enum in [], (optional)
+   :type display_type: Literal['DEFAULT', 'LIST_VERTICAL', 'LIST_HORIZONTAL', 'THUMBNAIL']
+   :param sort_method: File sorting mode, (optional)
+   :type sort_method: str
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
-.. function:: screenshot_area(*, filepath="", hide_props_region=True, check_existing=True, filter_blender=False, filter_backup=False, filter_image=True, filter_movie=False, filter_python=False, filter_font=False, filter_sound=False, filter_text=False, filter_archive=False, filter_btx=False, filter_collada=False, filter_alembic=False, filter_usd=False, filter_obj=False, filter_volume=False, filter_folder=True, filter_blenlib=False, filemode=9, show_multiview=False, use_multiview=False, display_type='DEFAULT', sort_method='')
+.. function:: screenshot_area(*, filepath="", hide_props_region=True, check_existing=True, filter_blender=False, filter_backup=False, filter_image=True, filter_movie=False, filter_python=False, filter_font=False, filter_sound=False, filter_text=False, filter_archive=False, filter_btx=False, filter_alembic=False, filter_usd=False, filter_obj=False, filter_volume=False, filter_folder=True, filter_blenlib=False, filemode=9, show_multiview=False, use_multiview=False, display_type='DEFAULT', sort_method='')
 
    Capture a picture of an editor
 
-   :arg filepath: File Path, Path to file
-   :type filepath: string, (optional, never None)
-   :arg hide_props_region: Hide Operator Properties, Collapse the region displaying the operator settings
-   :type hide_props_region: boolean, (optional)
-   :arg check_existing: Check Existing, Check and warn on overwriting existing files
-   :type check_existing: boolean, (optional)
-   :arg filter_blender: Filter .blend files
-   :type filter_blender: boolean, (optional)
-   :arg filter_backup: Filter .blend files
-   :type filter_backup: boolean, (optional)
-   :arg filter_image: Filter image files
-   :type filter_image: boolean, (optional)
-   :arg filter_movie: Filter movie files
-   :type filter_movie: boolean, (optional)
-   :arg filter_python: Filter Python files
-   :type filter_python: boolean, (optional)
-   :arg filter_font: Filter font files
-   :type filter_font: boolean, (optional)
-   :arg filter_sound: Filter sound files
-   :type filter_sound: boolean, (optional)
-   :arg filter_text: Filter text files
-   :type filter_text: boolean, (optional)
-   :arg filter_archive: Filter archive files
-   :type filter_archive: boolean, (optional)
-   :arg filter_btx: Filter btx files
-   :type filter_btx: boolean, (optional)
-   :arg filter_collada: Filter COLLADA files
-   :type filter_collada: boolean, (optional)
-   :arg filter_alembic: Filter Alembic files
-   :type filter_alembic: boolean, (optional)
-   :arg filter_usd: Filter USD files
-   :type filter_usd: boolean, (optional)
-   :arg filter_obj: Filter OBJ files
-   :type filter_obj: boolean, (optional)
-   :arg filter_volume: Filter OpenVDB volume files
-   :type filter_volume: boolean, (optional)
-   :arg filter_folder: Filter folders
-   :type filter_folder: boolean, (optional)
-   :arg filter_blenlib: Filter Blender IDs
-   :type filter_blenlib: boolean, (optional)
-   :arg filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file
-   :type filemode: int in [1, 9], (optional)
-   :arg show_multiview: Enable Multi-View
-   :type show_multiview: boolean, (optional)
-   :arg use_multiview: Use Multi-View
-   :type use_multiview: boolean, (optional)
-   :arg display_type: Display Type
+   :param filepath: File Path, Path to file (optional, never None)
+   :type filepath: str
+   :param hide_props_region: Hide Operator Properties, Collapse the region displaying the operator settings (optional)
+   :type hide_props_region: bool
+   :param check_existing: Check Existing, Check and warn on overwriting existing files (optional)
+   :type check_existing: bool
+   :param filter_blender: Filter .blend files, (optional)
+   :type filter_blender: bool
+   :param filter_backup: Filter backup .blend files, (optional)
+   :type filter_backup: bool
+   :param filter_image: Filter image files, (optional)
+   :type filter_image: bool
+   :param filter_movie: Filter movie files, (optional)
+   :type filter_movie: bool
+   :param filter_python: Filter Python files, (optional)
+   :type filter_python: bool
+   :param filter_font: Filter font files, (optional)
+   :type filter_font: bool
+   :param filter_sound: Filter sound files, (optional)
+   :type filter_sound: bool
+   :param filter_text: Filter text files, (optional)
+   :type filter_text: bool
+   :param filter_archive: Filter archive files, (optional)
+   :type filter_archive: bool
+   :param filter_btx: Filter btx files, (optional)
+   :type filter_btx: bool
+   :param filter_alembic: Filter Alembic files, (optional)
+   :type filter_alembic: bool
+   :param filter_usd: Filter USD files, (optional)
+   :type filter_usd: bool
+   :param filter_obj: Filter OBJ files, (optional)
+   :type filter_obj: bool
+   :param filter_volume: Filter OpenVDB volume files, (optional)
+   :type filter_volume: bool
+   :param filter_folder: Filter folders, (optional)
+   :type filter_folder: bool
+   :param filter_blenlib: Filter Blender IDs, (optional)
+   :type filter_blenlib: bool
+   :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file (in [1, 9], optional)
+   :type filemode: int
+   :param show_multiview: Enable Multi-View, (optional)
+   :type show_multiview: bool
+   :param use_multiview: Use Multi-View, (optional)
+   :type use_multiview: bool
+   :param display_type: Display Type, (optional)
 
-      * ``DEFAULT``
+      - ``DEFAULT``
         Default -- Automatically determine display type for files.
-      * ``LIST_VERTICAL``
+      - ``LIST_VERTICAL``
         Short List -- Display files as short list.
-      * ``LIST_HORIZONTAL``
+      - ``LIST_HORIZONTAL``
         Long List -- Display files as a detailed list.
-      * ``THUMBNAIL``
+      - ``THUMBNAIL``
         Thumbnails -- Display files as thumbnails.
-   :type display_type: enum in [``'DEFAULT'``, ``'LIST_VERTICAL'``, ``'LIST_HORIZONTAL'``, ``'THUMBNAIL'``], (optional)
-   :arg sort_method: File sorting mode
-   :type sort_method: enum in [], (optional)
+   :type display_type: Literal['DEFAULT', 'LIST_VERTICAL', 'LIST_HORIZONTAL', 'THUMBNAIL']
+   :param sort_method: File sorting mode, (optional)
+   :type sort_method: str
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: space_context_cycle(*, direction='NEXT')
 
    Cycle through the editor context by activating the next/previous one
 
-   :arg direction: Direction, Direction to cycle through
-   :type direction: enum in [``'PREV'``, ``'NEXT'``], (optional)
+   :param direction: Direction, Direction to cycle through (optional)
+   :type direction: Literal['PREV', 'NEXT']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: space_type_set_or_cycle(*, space_type='EMPTY')
 
    Set the space type or cycle subtype
 
-   :arg space_type: Type
-   :type space_type: enum in :ref:`rna_enum_space_type_items`, (optional)
+   :param space_type: Type, (optional)
+   :type space_type: Literal[:ref:`rna_enum_space_type_items`]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: spacedata_cleanup()
 
    Remove unused settings for invisible editors
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
+.. function:: time_jump(*, backward=False)
+
+   Jump forward/backward by a given number of frames or seconds
+
+   :param backward: Backwards, Jump backwards in time (optional)
+   :type backward: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
+
 .. function:: userpref_show(*, section='INTERFACE')
 
    Edit user preferences and system settings
 
-   :arg section: Section to activate in the Preferences
-   :type section: enum in :ref:`rna_enum_preference_section_items`, (optional)
+   :param section: Section to activate in the Preferences (optional)
+   :type section: Literal[:ref:`rna_enum_preference_section_items`]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: workspace_cycle(*, direction='NEXT')
 
    Cycle through workspaces
 
-   :arg direction: Direction, Direction to cycle through
-   :type direction: enum in [``'PREV'``, ``'NEXT'``], (optional)
+   :param direction: Direction, Direction to cycle through (optional)
+   :type direction: Literal['PREV', 'NEXT']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 

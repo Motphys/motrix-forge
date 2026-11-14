@@ -168,7 +168,7 @@ There are several ways to designate the active keying set:
 
 - Press :kbd:`Shift-K` in the 3D Viewport.
 - Select a keying set in the :ref:`Keying Set <bpy.types.KeyingSets>` panel.
-- Select a keying set in the :ref:`Keying popover <timeline-keying>` in the Timeline header,
+- Select a keying set in the :ref:`Keying popover <animation-editors-keying>` in the Timeline header,
 
 
 .. _whole-character-keying-set:
@@ -177,8 +177,7 @@ Whole Character Keying Set
 ==========================
 
 The built-in *Whole Character* Keying Set is made to keyframe all properties
-that are likely to get animated in a character rig. It was also implicitly used by
-the :ref:`Old Pose Library system <pose-library-old>`.
+that are likely to get animated in a character rig.
 
 This keying set ignores bones whose name starts with one of the following prefixes,
 as it assumes these are technical bones that are not meant to be animated directly.

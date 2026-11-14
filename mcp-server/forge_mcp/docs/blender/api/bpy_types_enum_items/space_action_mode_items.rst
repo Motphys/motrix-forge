@@ -8,4 +8,4 @@ Space Action Mode Items
    Edit all keyframes in scene.
 :TIMELINE: Timeline.
 
-   Timeline and playback controls.
+   Simple timeline view with playback controls in the header, without channel list, side-panel, or footer.

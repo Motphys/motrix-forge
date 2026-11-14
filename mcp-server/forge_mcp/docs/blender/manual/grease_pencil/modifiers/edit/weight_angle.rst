@@ -20,7 +20,7 @@ Options
 .. figure:: /images/grease-pencil_modifiers_modify_weight-angle_panel.png
    :align: center
 
-   The Vertex Weight Proximity modifier panel.
+   The Vertex Weight Angle modifier panel.
 
 Vertex Group
    The vertex group to affect.

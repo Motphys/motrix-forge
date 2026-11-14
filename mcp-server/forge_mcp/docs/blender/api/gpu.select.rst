@@ -9,7 +9,7 @@ This module provides access to selection.
 
    Set the selection ID.
 
-   :arg id: Number (32-bit uint).
-   :type select: int
+   :param id: Number (32-bit uint).
+   :type id: int
 
 

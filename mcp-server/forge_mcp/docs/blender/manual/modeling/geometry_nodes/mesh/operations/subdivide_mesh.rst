@@ -22,12 +22,6 @@ Level
    The number of subdivisions to apply to the input geometry.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

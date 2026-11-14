@@ -9,13 +9,16 @@ Interactive Mirror
 
 .. reference::
 
-   :Mode:      Object and Edit Modes
-   :Menu:      :menuselection:`Object/Mesh/Curves --> Mirror --> Interactive Mirror`
+   :Mode:      Object and Edit Modes, Video Sequencer Preview
+   :Menu:      :menuselection:`Object/Mesh/Curves/Strip --> Mirror --> Interactive Mirror`
    :Shortcut:  :kbd:`Ctrl-M`
 
 The *Mirror* operator flips the selected elements across a chosen axis.
-Mirroring is equivalent to scaling the selection by -1 along the selected axis,
+Mirroring objects, geometry, or curves is equivalent to scaling the selection by -1 along the selected axis,
 but it offers a faster and more direct workflow.
+
+When mirroring VSE strips, the selected axis' :ref:`mirror value <bpy.types.ImageStrip.use_flip>` gets changed instead
+of scaling by -1. The rotation and position are also changed to achieve the same effect as when mirroring objects.
 
 The mirror is relative to the :doc:`Transformation Orientation </editors/3dview/controls/orientation>`
 and :doc:`Pivot Point </editors/3dview/controls/pivot_point/index>`
@@ -57,8 +60,8 @@ X/Y/Z Global
 
 .. reference::
 
-   :Mode:      Object and Edit Modes
-   :Menu:      :menuselection:`Object/Mesh/Curves --> Mirror --> X/Y/Z Global`
+   :Mode:      Object and Edit Modes, Video Sequencer Preview
+   :Menu:      :menuselection:`Object/Mesh/Curves/Strip --> Mirror --> X/Y/Z Global`
 
 These operations perform a non-interactive mirror along the global X, Y, or Z axis.
 
@@ -75,8 +78,8 @@ X/Y/Z Local
 
 .. reference::
 
-   :Mode:      Object and Edit Modes
-   :Menu:      :menuselection:`Object/Mesh/Curves --> Mirror --> X/Y/Z Local`
+   :Mode:      Object and Edit Modes, Video Sequencer Preview
+   :Menu:      :menuselection:`Object/Mesh/Curves/Strip --> Mirror --> X/Y/Z Local`
 
 These operations perform a non-interactive mirror along the object's local axes.
 

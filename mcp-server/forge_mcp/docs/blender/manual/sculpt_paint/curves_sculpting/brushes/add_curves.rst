@@ -23,25 +23,25 @@ Count
    Interpolation allows to add hair which are already combed. The new curves are created
    following the previously created curves which are in the vicinity.
 
-.. _bpy.types.BrushCurvesSculptSettings.interpolate_length:
+.. _bpy.types.BrushCurvesSculptSettings.use_length_interpolate:
 
-Interpolate Length
+Interpolate -- Length
    Use the average length of the curves in close proximity.
 
-.. _bpy.types.BrushCurvesSculptSettings.interpolate_radius:
+.. _bpy.types.BrushCurvesSculptSettings.use_radius_interpolate:
 
-Interpolate Radius
+Interpolate -- Radius
    Use the average radius of the curves in close proximity.
    If there is no radius attribute, then the interpolation will skip.
 
-.. _bpy.types.BrushCurvesSculptSettings.interpolate_shape:
+.. _bpy.types.BrushCurvesSculptSettings.use_shape_interpolate:
 
-Interpolate Shape
+Interpolate -- Shape
    Use the average shape of the curves in close proximity.
 
-.. _bpy.types.BrushCurvesSculptSettings.interpolate_point_count:
+.. _bpy.types.BrushCurvesSculptSettings.use_point_count_interpolate:
 
-Interpolate Point Count
+Interpolate -- Point Count
    Use the average amount of control points of the curves in close proximity.
 
 .. _bpy.types.BrushCurvesSculptSettings.curve_length:

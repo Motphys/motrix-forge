@@ -89,18 +89,6 @@ Use Library Path
    When this option is enabled, linked versions of the object will reference the same disk cache.
    Otherwise linked versions of the object will use independent caches.
 
-Compression
-   The compression level for cache files. Some physics caches can be very large,
-   Blender can compress these caches in order to save space.
-
-   None
-      Do not compress the cache.
-   Light
-      Compression will optimize the speed of compressing/decompressing operations over file size.
-   Heavy
-      Compression will result in smaller cache files more than *Light*,
-      however, requires more CPU time to compress/decompress.
-
 Start
    Frame on which to start the simulation.
 End

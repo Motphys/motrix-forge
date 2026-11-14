@@ -7,6 +7,7 @@ Introduction
 The Dope Sheet offers a bird's-eye view of the keyframes inside the scene.
 It's inspired by classical hand-drawn animation, where animators make use of a chart
 showing exactly when each drawing, sound, and camera move will occur, and for how long.
+It is also possible to show :ref:`Playback Controls <animation-editors-footer>` to control the playhead.
 
 .. figure:: /images/editors_dope-sheet_introduction_overview.png
    :width: 620px

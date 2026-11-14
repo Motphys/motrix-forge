@@ -5,13 +5,18 @@
 Floor Constraint
 ****************
 
-The *Floor* constraint allows you to use its target position
-(and optionally rotation) to specify a plane with a "forbidden side",
-where the owner cannot go. This plane can have any orientation you like.
-In other words, it creates a floor (or a ceiling, or a wall)!
-Note that it is only capable of simulating entirely flat planes,
-even if you use the *Vertex Group* option.
-It cannot be used for uneven floors or walls.
+The *Floor* constraint sets up a flat and infinitely large floor (or wall, or ceiling)
+which the constrained object or bone cannot pass through.
+
+Like other constraints, the *Floor* constraint only looks at the
+:doc:`origin </scene_layout/object/origin>` for objects; their geometry is not taken into account.
+This means that, if a cube's origin is at its center and a *Floor* constraint is added targeting a
+floor plane, the cube will still be able to sink halfway into the plane.
+The *Offset* can be used to mitigate this.
+
+.. seealso::
+
+   :doc:`/animation/constraints/transform/limit_location`
 
 
 Options
@@ -19,39 +24,30 @@ Options
 
 .. figure:: /images/animation_constraints_relationship_floor_panel.png
 
-   Floor panel.
+   Floor constraint.
 
-Target
-   :ref:`ui-data-id` used to select the constraints target, and is not functional (red state) when it has none.
-   See :ref:`common constraint properties <rigging-constraints-interface-common-target>` for more information.
+:ref:`Target <rigging-constraints-interface-common-target>`
+   The object or bone that defines the location, and optionally the rotation, of the floor.
 
 Offset
-   Allows you to offset the "floor" plane from the target's origin,
-   by the given number of units. Use it e.g.
-   to account for the distance from a foot bone to the surface of the foot's mesh.
+   Moves the virtual floor "up" or "down" by a certain distance. This makes it possible to,
+   say, make foot bones stay a certain distance above the floor geometry to leave room for
+   the actual feet.
 
-Max/Min
-   Controls which plane will be the "floor".
-   The names of the buttons correspond, indeed, to the *normal* to this plane
-   (e.g. enabling Z means "XY plane", etc.).
-   By default, these normals are aligned with the *global* axes.
-   However, if you enable *Use Rotation* (see above), they will be aligned with the *local target's axes*.
-   As the constraint does not only define an uncrossable plane,
-   but also a side of it which is forbidden to the owner,
-   you can choose which side by enabling either the positive or negative normal axis...
-   e.g. by default Z, the owner is stuck in the positive Z coordinates.
+Min/Max
+   The axis that's perpendicular to the floor and points towards its "walkable" area.
+   Setting this to Z creates a floor; X or Y creates a wall; and -Z creates a ceiling.
+
+   By default, these axes correspond to the global axes.
 
 Use Rotation
-   Forces the constraint to take the target's rotation into account.
-   This allows you to have a "floor" plane of any orientation you like, not just the global XY, XZ and YZ ones...
+   Use the *Target*'s local axes for *Min/Max* instead of the global axes.
 
-Target/Owner
-   Standard conversion between spaces.
-   See :ref:`common constraint properties <rigging-constraints-interface-common-space>` for more information.
+:ref:`Target/Owner <rigging-constraints-interface-common-space>`
+   The spaces for evaluating and limiting the coordinates of the target and owner.
 
-Influence
-   Controls the percentage of affect the constraint has on the object.
-   See :ref:`common constraint properties <bpy.types.constraint.influence>` for more information.
+:ref:`bpy.types.constraint.influence`
+   How strongly the constraint affects the owner.
 
 
 Example

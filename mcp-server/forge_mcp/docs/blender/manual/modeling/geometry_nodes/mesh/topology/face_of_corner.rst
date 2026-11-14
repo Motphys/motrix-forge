@@ -26,12 +26,6 @@ Corner Index
       in the Face Corner domain.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

@@ -30,11 +30,9 @@ Count
 Limit Radius
    Whether to limit the maximum value of the radius in order to avoid overlapping fillets.
 
+Mode
+   How to choose number of vertices on fillet
 
-Properties
-==========
-
-Method
    :Bézier:
       Only two control points will be generated for every filleted control point. The shape generated
       by the aligned handles on the generated control points on either side of the fillet is used to

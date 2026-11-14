@@ -22,12 +22,6 @@ Face Group ID
    with the same value are in the same region.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Output
 ======
 

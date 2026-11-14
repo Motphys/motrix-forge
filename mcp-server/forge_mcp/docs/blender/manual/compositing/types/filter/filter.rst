@@ -15,15 +15,10 @@ The Filter node implements various common image enhancement filters.
 Inputs
 ======
 
-Factor
-   Controls the amount of influence the node exerts on the output image.
 Image
    Standard color input.
-
-
-Properties
-==========
-
+Factor
+   Controls the amount of influence the node exerts on the output image.
 Type
    The Soften, Laplace, Sobel, Prewitt and Kirsch all perform edge detection
    (in slightly different ways) based on vector calculus and set theory equations.
@@ -33,7 +28,7 @@ Type
    :Diamond Sharpen: Less aggressive than box sharpen, reducing sharpening artifacts.
    :Laplace: Edge highlighting filter susceptible to highlighting visual noise.
    :Sobel: Creates a negative image that highlights edges.
-   :Prewitt: Produces a similar results to Sobel.
+   :Prewitt: Produces similar results to Sobel.
    :Kirsch: Gives better blending than Sobel or Prewitt, when approaching an edge.
    :Shadow: Performs a relief, emboss effect, darkening outside edges.
 

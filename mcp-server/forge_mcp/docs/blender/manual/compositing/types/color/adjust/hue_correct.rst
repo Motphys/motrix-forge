@@ -15,10 +15,10 @@ with an input curve.
 Inputs
 ======
 
-Factor
-   Controls the amount of influence the node exerts on the output image.
 Image
    Standard color input.
+Factor
+   Controls the amount of influence the node exerts on the output image.
 
 
 Properties

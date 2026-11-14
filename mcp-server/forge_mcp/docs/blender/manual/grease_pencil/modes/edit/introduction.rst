@@ -23,7 +23,7 @@ Toolbar
 -------
 
 When you select a stroke and :kbd:`Tab` into Edit Mode,
-the :doc:`Toolbar </grease_pencil/modes/edit/tools>` changes from *Object Tools* to *Stroke editing Tools*.
+the :doc:`Toolbar </grease_pencil/modes/edit/tools/index>` changes from *Object Tools* to *Stroke editing Tools*.
 These are only some of the stroke editing tools.
 
 

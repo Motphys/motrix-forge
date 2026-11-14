@@ -9,7 +9,7 @@ The *Edge Split* modifier splits, duplicates edges within a mesh,
 breaking 'links' between faces around those split edges.
 
 The edges to split can be determined from the edge angle (i.e. angle between faces forming that edge),
-and/or edges marked as sharp.
+and/or edges marked as :ref:`Sharp <bpy.ops.mesh.mark_sharp>`.
 
 Splitting an edge affects vertex normal generation at that edge, making the edge appear sharp.
 It can also be used for manual control of the smoothing process,

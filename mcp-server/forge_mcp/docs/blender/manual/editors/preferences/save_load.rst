@@ -4,7 +4,7 @@
 Save & Load
 ***********
 
-.. figure:: /images/editors_preferences_section_save-load.png
+.. figure:: /images/editors_preferences_section_save-load.webp
 
    Preferences Save/Load section.
 
@@ -17,6 +17,35 @@ Blend Files
 Save -- Save Prompt
    Asks for confirmation before closing or opening a new blend-file
    if the current file has unsaved changes.
+
+.. _bpy.types.PreferencesFilePaths.save_modified_images:
+
+Save Modified Images
+   Controls how modified images are handled when saving the blend-file.
+
+   This affects images edited within Blender, such as painted textures,
+   generated images, Render Results, and Compositor Viewer node results
+   that have unsaved changes.
+
+   :Ask Every Time:
+      Displays a confirmation dialog when saving the blend-file, allowing
+      modified images to be saved individually.
+   :Always Save:
+      Automatically saves all modified images when saving the blend-file.
+   :Never Save:
+      Never saves modified images automatically when saving the blend-file.
+
+      Unsaved image changes remain in memory until they are manually saved or discarded.
+
+   .. warning::
+
+      Failing to manually save modified images will result in the changes being lost.
+
+      Render Result images and Compositor Viewer node results are temporary
+      and will be lost when rendering again, loading a new blend-file,
+      or closing Blender unless manually saved.
+
+      See :ref:`Saving Modified Images <files-images-saving-modified>`.
 
 .. _bpy.types.PreferencesFilePaths.save_version:
 
@@ -91,7 +120,6 @@ Text Files -- Tabs as Spaces
    instead of using characters.
 
 
-.. _bpy.ops.preferences.autoexec:
 .. _bpy.ops.preferences.autoexec_path:
 .. _bpy.types.PreferencesFilePaths.use_scripts_auto_execute:
 
@@ -137,10 +165,13 @@ Defaults -- Filter Files
 .. _bpy.types.PreferencesFilePaths.show_hidden_files_datablocks:
 
 Defaults -- Show Hidden Files/Data-Blocks
-   Unhide files and data-blocks with names that start with ``.`` in File Browsers
-   and :ref:`data IDs <ui-data-block>`.
+   Display files and data-blocks whose names start with ``.`` in File Browsers.
 
-   .. hint::
+   By default, dot-prefixed data-block names are hidden to prevent accidental use
+   of internal or helper data-blocks. See :ref:`data-system-datablock-name-hidden`
+   for more information about this naming convention.
 
-      Data-blocks with names beginning with a ``.`` can be selected by typing in a search
-      string that also starts with the ``.`` character, even if this setting is disabled.
+   .. seealso::
+
+      Hidden data-blocks can also be shown in :ref:`Data-Block Menus <ui-data-block>`
+      by enabling :ref:`bpy.types.Preferences.show_hidden_ids`.

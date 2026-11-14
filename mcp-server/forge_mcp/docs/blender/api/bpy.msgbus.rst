@@ -5,7 +5,7 @@ Message Bus (bpy.msgbus)
 
 
 The message bus system can be used to receive notifications when properties of
-Blender datablocks are changed via the data API.
+Blender data-blocks are changed via the data API.
 
 
 Limitations
@@ -35,7 +35,7 @@ Example Use
 
 Below is an example of subscription to changes in the active object's location.
 
-.. literalinclude:: ..\examples\bpy.msgbus.1.py
+.. literalinclude:: ../examples/bpy.msgbus.1.py
    :lines: 34-
 
 
@@ -43,24 +43,27 @@ Some properties are converted to Python objects when you retrieve them. This
 needs to be avoided in order to create the subscription, by using
 ``datablock.path_resolve("property_name", False)``:
 
-.. literalinclude:: ..\examples\bpy.msgbus.2.py
+.. literalinclude:: ../examples/bpy.msgbus.2.py
    :lines: 6-
 
 
 It is also possible to create subscriptions on a property of all instances of a
 certain type:
 
-.. literalinclude:: ..\examples\bpy.msgbus.3.py
+.. literalinclude:: ../examples/bpy.msgbus.3.py
    :lines: 5-
 
 .. function:: clear_by_owner(owner)
 
    Clear all subscribers using this owner.
 
+   :param owner: The owner handle passed to :func:`subscribe_rna`.
+   :type owner: Any
 
-.. function:: publish_rna(key)
 
-   :arg key: Represents the type of data being subscribed to
+.. function:: publish_rna(*, key)
+
+   :param key: Represents the type of data being subscribed to
 
       Arguments include
       - A property instance.
@@ -73,25 +76,29 @@ certain type:
    In some cases it may be useful to publish changes explicitly using more general keys.
 
 
-.. function:: subscribe_rna(key, owner, args, notify, options=set())
+.. function:: subscribe_rna(*, key, owner, args, notify, options=set())
 
    Register a message bus subscription. It will be cleared when another blend file is
    loaded, or can be cleared explicitly via :func:`bpy.msgbus.clear_by_owner`.
 
-   :arg key: Represents the type of data being subscribed to
+   :param key: Represents the type of data being subscribed to
 
       Arguments include
       - A property instance.
       - A struct type.
       - A tuple representing a (struct, property name) pair.
    :type key: :class:`bpy.types.Property` | :class:`bpy.types.Struct` | tuple[:class:`bpy.types.Struct`, str]
-   :arg owner: Handle for this subscription (compared by identity).
+   :param owner: Handle for this subscription (compared by identity).
    :type owner: Any
-   :arg options: Change the behavior of the subscriber.
+   :param args: Arguments passed to the callback.
+   :type args: tuple
+   :param notify: The callback function.
+   :type notify: Callable[..., None]
+   :param options: Change the behavior of the subscriber.
 
       - ``PERSISTENT`` when set, the subscriber will be kept when remapping ID data.
 
-   :type options: set[str]
+   :type options: set[Literal['PERSISTENT']]
 
 .. note::
 

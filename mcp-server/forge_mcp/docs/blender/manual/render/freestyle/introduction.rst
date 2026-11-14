@@ -49,7 +49,7 @@ The Big Picture
 ===============
 
 - Activate Freestyle by the :menuselection:`Properties --> Render --> Freestyle` checkbox.
-- Freestyle settings are located in the :doc:`View Layer </scene_layout/view_layers/index>` properties.
+- Freestyle settings are located in the :doc:`View Layer </render/layers/index>` properties.
 - One view layer can only have one view map. A view map holds the edge detection settings
   (Crease Angle, Culling toggle, Face Smoothness toggle, Material Boundaries toggle,
   Sphere Radius, and Kr Derivative Epsilon advanced options).

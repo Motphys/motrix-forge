@@ -18,14 +18,23 @@ Maybe
 -----
 
 Hyperlinks
-   Can be translated, but only as an addition, not as a replacement. See also `Adding Text`_.
+   May be translated, but only as an addition, not as a replacement.
+   Keep the original link text and add the translation alongside.
+   See also `Adding Text`_.
 
 Technical Terms
-   Only translate these, when the localized expression is common! See also `Technical Terms`_.
+   Translate only if the localized expression is commonly used and well understood.
+   Otherwise, keep the English term.
+   See also `Technical Terms`_.
 
-Text you are not sure you understood
-   Simply mark the text as fuzzy and/or add a comment. The next translator might understand it.
+Unclear Text
+   If you are not sure you understood the meaning, mark the text as *fuzzy* and/or add a translator comment.
+   Another translator may be able to clarify it.
 
+UI Elements
+   UI elements should use the same translation as in Blender's user interface.
+   If the UI element has not yet been translated, keep the English term
+   and add the translation in parentheses.
 
 Never
 -----
@@ -33,12 +42,6 @@ Never
 Images
    You probably will not find the original scene if it is a screenshot of a file and it is too much load on the server
    (and too much work for you).
-
-Menu and button names
-   We expect our readers to use the English UI.
-
-Text you do not understand
-   Do not translate it! It will do more harm than good!
 
 
 Technical Terms

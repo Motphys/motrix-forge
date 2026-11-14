@@ -30,12 +30,6 @@ Twist
    counterclockwise by the given angle.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

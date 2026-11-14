@@ -31,22 +31,26 @@ optionally merge it with other images, and finally, save it.
 Getting Started
 ===============
 
-Access the *Compositor* and activate nodes for compositing by clicking the *Use Nodes* checkbox in the header
-(see :doc:`/interface/controls/nodes/introduction`).
+To begin compositing, open the *Compositor* and create a new node tree
+by clicking the :ref:`New <bpy.ops.node.new_compositing_node_group>` button in the header.
+This adds a compositing node tree data block to the scene, which can then be reused
+across different scenes or linked/appended from other blend-files.
+
+.. important::
+
+   To make the render engine actually use the compositing node tree (or disable compositing),
+   the :ref:`Compositing Pipeline <bpy.types.RenderSettings.use_compositing>`
+   option must be enabled in the output's *Post Processing* properties.
+
+Once a node tree is created, you will see your first basic setup.
+From here you can add and connect many types of
+:doc:`Compositing Nodes </compositing/index>` in a node graph layout
+to build effects ranging from simple color corrections to complex composites.
 
 .. note::
 
-   After clicking *Use Nodes* the Compositor is enabled, however,
-   it can also be disabled in the :ref:`render-output-postprocess`.
-
-You now have your first node setup, from here you can add and connect many types of
-:doc:`Compositing Nodes </compositing/index>`, in a sort of map layout,
-to your heart's content (or physical memory constraints, whichever comes first).
-
-.. note::
-
-   Nodes and node concepts are explained in more detail
-   in the :doc:`Nodes </interface/controls/nodes/index>` reference.
+   General concepts and controls for working with nodes are described in
+   the :doc:`Nodes </interface/controls/nodes/index>` reference.
 
 
 Examples

@@ -213,8 +213,9 @@ Confirm :kbd:`Return`
 Quick Access Region
 -------------------
 
-The region on the left contains a few panels that let you quickly jump to certain directories with a single click.
+The region on the left contains a few panels for quickly jumping to certain directories with a single click.
 
+The *System* and *Recent* panels can be hidden using the :ref:`Save & Load <prefs-save-load>` preferences.
 
 .. _bpy.types.SpaceFileBrowser.bookmarks:
 
@@ -250,10 +251,7 @@ Recently accessed folders.
 
 .. _bpy.ops.file.reset_recent:
 
-Clicking the down arrow button to the right reveals *Clear Recent Items* to fully clear this list.
-
-You can control how many folders appear in this list with the *Recent Files* number field
-of the :ref:`Save & Load <prefs-save-load>` tab in the Preferences.
+Clicking the :bl-icon:`downarrow_hlt` button to the right reveals *Clear Recent Items* to fully clear this list.
 
 
 Operator Options Region

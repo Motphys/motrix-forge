@@ -11,7 +11,7 @@ Line Set
 
 A line set selects, among the lines (edges) detected by Freestyle,
 which ones will be rendered using its attached
-:doc:`line style </render/freestyle/view_layer/line_style/introduction>`, through various methods.
+:doc:`line style </render/freestyle/view_layer/line_style/index>`, through various methods.
 
 .. figure:: /images/render_freestyle_parameter-editor_line-set_panel.png
 
@@ -158,7 +158,10 @@ In Edit Mode you can mark "Freestyle Edges" in the same manner
 you can mark "Seams" for UV unwrapping or "Sharp" for edge split.
 These marked edges are available to render when you select *Edge Mark*.
 
-This is done as follows:
+Internally, edge marks are stored as the ``freestyle_edge``
+:doc:`attribute </modeling/geometry_nodes/attributes_reference>`.
+
+Marking edges is done as follows:
 
 #. Select the mesh object and enter *Edit Mode*.
 #. Select the edges you want to be marked.
@@ -205,7 +208,10 @@ Face Marks
 
 Face marks are useful for removing lines from certain areas of a mesh.
 
-To set a face mark:
+Internally, face marks are stored as the ``freestyle_face``
+:doc:`attribute </modeling/geometry_nodes/attributes_reference>`.
+
+Marking faces is done as follows:
 
 #. Select a mesh object and enter *Edit Mode*.
 #. Select the faces you want to be marked.

@@ -1,4 +1,3 @@
-
 ******
 Curves
 ******
@@ -14,6 +13,10 @@ Each hair system uses the material identified in the particle settings.
 .. _bpy.types.CyclesCurveRenderSettings.shape:
 
 Shape
+   Controls how curves (such as hair strands) are represented during rendering.
+   Different methods balance speed and accuracy,
+   depending on whether the curves are viewed up close or in the distance.
+
    :Rounded Ribbons:
       Render curves as flat ribbon with rounded normals, for fast rendering.
       Curves are subdivided with a fixed number of specified subdivisions.
@@ -26,6 +29,14 @@ Shape
    :3D Curves:
       Render curves as circular 3D geometry, for accurate results when viewing curves close up.
       Curves are automatically subdivided until the curve is smooth.
+
+   :Linear 3D Curves:
+      Render curves as 3D circular geometry with linear interpolation between control points.
+      This is faster than full 3D curves but less smooth, and may show visible corners at low resolutions.
+      
+      This is an optimization to take advantage of hardware accelerated curve intersection on GPUs.
+      Results will not look exactly the same on different CPU and GPU devices, so this is not
+      suitable for multi device rendering or render farms with mixed hardware.
 
 
 Viewport Display

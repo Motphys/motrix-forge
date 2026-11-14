@@ -5,6 +5,7 @@ WindowManager(ID)
 
 base classes --- :class:`bpy_struct`, :class:`ID`
 
+
 .. class:: WindowManager(ID)
 
    Window manager data-block defining open windows and other user interface data
@@ -13,125 +14,155 @@ base classes --- :class:`bpy_struct`, :class:`ID`
 
       Filter add-ons by category
 
-      :type: enum in []
+      :type: str
 
    .. attribute:: addon_search
 
-      Filter by add-on name, author & category
+      Filter by add-on name, author & category (default "", never None)
 
-      :type: string, default "", (never None)
+      :type: str
 
    .. attribute:: addon_support
 
-      Display support level
+      Display support level (default {``'COMMUNITY'``, ``'OFFICIAL'``})
 
-      * ``OFFICIAL``
+      - ``OFFICIAL``
         Official -- Officially supported.
-      * ``COMMUNITY``
+      - ``COMMUNITY``
         Community -- Maintained by community developers.
 
-      :type: enum set in {``'OFFICIAL'``, ``'COMMUNITY'``}, default {``'COMMUNITY'``, ``'OFFICIAL'``}
+      :type: set[Literal['OFFICIAL', 'COMMUNITY']]
 
    .. data:: addon_tags
 
-      :type: :class:`BlExtDummyGroup`, (readonly)
+      (default None, readonly)
+
+      :type: :class:`bpy_prop_collection`\ [:class:`BlExtDummyGroup`]
 
    .. data:: asset_path_dummy
 
-      Full path to the Blender file containing the active asset
+      Full path to the Blender file containing the active asset (default "", readonly, never None)
 
-      :type: string, default "", (readonly, never None)
+      :type: str
+
+   .. attribute:: extension_repo_filter
+
+      Filter extensions by repository
+
+      :type: str
 
    .. attribute:: extension_search
 
-      Filter by extension name, author & category
+      Filter by extension name, author & category (default "", never None)
 
-      :type: string, default "", (never None)
+      :type: str
 
    .. attribute:: extension_show_panel_available
 
-      Only show installed extensions
+      Show the available extensions panel (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: extension_show_panel_installed
 
-      Only show installed extensions
+      Show the installed extensions panel (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. data:: extension_tags
 
-      :type: :class:`BlExtDummyGroup`, (readonly)
+      (default None, readonly)
+
+      :type: :class:`bpy_prop_collection`\ [:class:`BlExtDummyGroup`]
 
    .. attribute:: extension_type
 
-      Show extensions by type
+      Show extensions by type (default ``'ADDON'``)
 
-      * ``ALL``
+      - ``ALL``
         All -- Show all extension types.
-      * ``ADDON``
+      - ``ADDON``
         Add-ons -- Only show add-ons.
-      * ``THEME``
+      - ``THEME``
         Themes -- Only show themes.
 
-      :type: enum in [``'ALL'``, ``'ADDON'``, ``'THEME'``], default ``'ADDON'``
+      :type: Literal['ALL', 'ADDON', 'THEME']
+
+   .. attribute:: extension_use_filter
+
+      Filter Extensions by Tags & Repository (default False)
+
+      :type: bool
 
    .. attribute:: extensions_blocked
 
-      Number of installed extensions which are blocked
+      Number of installed extensions which are blocked (in [-inf, inf], default 0)
 
-      :type: int in [-inf, inf], default 0
+      :type: int
 
    .. attribute:: extensions_updates
 
-      Number of extensions with available update
+      Number of extensions with available update (in [-inf, inf], default 0)
 
-      :type: int in [-inf, inf], default 0
+      :type: int
+
+   .. data:: is_event_handling_break
+
+      Remaining events in the queue are delayed until the next main loop iteration (default False, readonly)
+
+      :type: bool
 
    .. data:: is_interface_locked
 
-      If true, the interface is currently locked by a running job and data shouldn't be modified from application timers. Otherwise, the running job might conflict with the handler causing unexpected results or even crashes.
+      If true, the interface is currently locked by a running job and data should not be modified from application timers. Otherwise, the running job might conflict with the handler causing unexpected results or even crashes. (default False, readonly)
 
-      :type: boolean, default False, (readonly)
+      :type: bool
 
    .. data:: keyconfigs
 
-      Registered key configurations
+      Registered key configurations (default None, readonly)
 
-      :type: :class:`KeyConfigurations` :class:`bpy_prop_collection` of :class:`KeyConfig`, (readonly)
+      :type: :class:`KeyConfigurations`\ [:class:`KeyConfig`]
 
    .. data:: operators
 
-      Operator registry
+      Operator registry (default None, readonly)
 
-      :type: :class:`bpy_prop_collection` of :class:`Operator`, (readonly)
+      :type: :class:`bpy_prop_collection`\ [:class:`Operator`]
 
    .. attribute:: poselib_previous_action
 
-      :type: :class:`Action`
+      :type: :class:`Action` | None
 
    .. attribute:: preset_name
 
-      Name for new preset
+      Name for new preset (default "New Preset", never None)
 
-      :type: string, default "New Preset", (never None)
+      :type: str
+
+   .. data:: reports
+
+      Collection of reports (default None, readonly)
+
+      :type: :class:`bpy_prop_collection`\ [:class:`Report`]
 
    .. data:: windows
 
-      Open windows
+      Open windows (default None, readonly)
 
-      :type: :class:`bpy_prop_collection` of :class:`Window`, (readonly)
+      :type: :class:`Windows`\ [:class:`Window`]
 
    .. data:: xr_session_settings
 
-      :type: :class:`XrSessionSettings`, (readonly, never None)
+      (readonly, never None)
+
+      :type: :class:`XrSessionSettings`
 
    .. data:: xr_session_state
 
-      Runtime state information about the VR session
+      Runtime state information about the VR session (readonly)
 
-      :type: :class:`XrSessionState`, (readonly)
+      :type: :class:`XrSessionState` | None
 
    .. attribute:: clipboard
 
@@ -144,8 +175,8 @@ base classes --- :class:`bpy_struct`, :class:`ID`
 
       Opens a file selector with an operator.
 
-      :arg operator: Operator to call
-      :type operator: :class:`Operator`
+      :param operator: Operator to call
+      :type operator: :class:`Operator` | None
 
       This method is used from the operators ``invoke`` callback
       which must then return ``{'RUNNING_MODAL'}``.
@@ -196,56 +227,57 @@ base classes --- :class:`bpy_struct`, :class:`ID`
 
       Add a modal handler to the window manager, for the given modal operator (called by invoke() with self, just before returning {'RUNNING_MODAL'})
 
-      :arg operator: Operator to call
-      :type operator: :class:`Operator`
+      :param operator: Operator to call
+      :type operator: :class:`Operator` | None
       :return: Whether adding the handler was successful
-      :rtype: boolean
+      :rtype: bool
 
    .. method:: event_timer_add(time_step, *, window=None)
 
       Add a timer to the given window, to generate periodic 'TIMER' events
 
-      :arg time_step: Time Step, Interval in seconds between timer events
-      :type time_step: float in [0, inf]
-      :arg window: Window to attach the timer to, or None
-      :type window: :class:`Window`, (optional)
+      :param time_step: Time Step, Interval in seconds between timer events (in [0, inf])
+      :type time_step: float
+      :param window: Window to attach the timer to, or None (optional)
+      :type window: :class:`Window` | None
       :rtype: :class:`Timer`
 
    .. method:: event_timer_remove(timer)
 
       event_timer_remove
 
-      :type timer: :class:`Timer`, (never None)
+      :param timer: (never None)
+      :type timer: :class:`Timer` | None
 
    .. classmethod:: gizmo_group_type_ensure(identifier)
 
       Activate an existing widget group (when the persistent option isn't set)
 
-      :arg identifier: Gizmo group type name
-      :type identifier: string, (never None)
+      :param identifier: Gizmo group type name (never None)
+      :type identifier: str
 
    .. classmethod:: gizmo_group_type_unlink_delayed(identifier)
 
       Unlink a widget group (when the persistent option is set)
 
-      :arg identifier: Gizmo group type name
-      :type identifier: string, (never None)
+      :param identifier: Gizmo group type name (never None)
+      :type identifier: str
 
    .. method:: progress_begin(min, max)
 
       Start progress report
 
-      :arg min: min, any value in range [0,9999]
-      :type min: float in [-inf, inf]
-      :arg max: max, any value in range [min+1,9998]
-      :type max: float in [-inf, inf]
+      :param min: min, any value in range [0,9999] (in [-inf, inf])
+      :type min: float
+      :param max: max, any value in range [min+1,9998] (in [-inf, inf])
+      :type max: float
 
    .. method:: progress_update(value)
 
       Update the progress feedback
 
-      :arg value: value, Any value between min and max as set in progress_begin()
-      :type value: float in [-inf, inf]
+      :param value: value, Any value between min and max as set in progress_begin() (in [-inf, inf])
+      :type value: float
 
    .. method:: progress_end()
 
@@ -256,130 +288,143 @@ base classes --- :class:`bpy_struct`, :class:`ID`
 
       Operator popup invoke (show operator properties and execute it automatically on changes)
 
-      :arg operator: Operator to call
-      :type operator: :class:`Operator`
-      :arg event: Event
-      :type event: :class:`Event`
+      :param operator: Operator to call
+      :type operator: :class:`Operator` | None
+      :param event: Event
+      :type event: :class:`Event` | None
       :return: result
-      :rtype: enum set in :ref:`rna_enum_operator_return_items`
+      :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
    .. classmethod:: invoke_props_dialog(operator, *, width=300, title="", confirm_text="", cancel_default=False, text_ctxt="", translate=True)
 
       Operator dialog (non-autoexec popup) invoke (show operator properties and only execute it on click on OK button)
 
-      :arg operator: Operator to call
-      :type operator: :class:`Operator`
-      :arg width: Width of the popup
-      :type width: int in [0, inf], (optional)
-      :arg title: Title, Optional text to show as title of the popup
-      :type title: string, (optional, never None)
-      :arg confirm_text: Confirm Text, Optional text to show instead to the default "OK" confirmation button text
-      :type confirm_text: string, (optional, never None)
-      :arg cancel_default: cancel_default
-      :type cancel_default: boolean, (optional)
-      :arg text_ctxt: Override automatic translation context of the given text
-      :type text_ctxt: string, (optional)
-      :arg translate: Translate the given text, when UI translation is enabled
-      :type translate: boolean, (optional)
+      :param operator: Operator to call
+      :type operator: :class:`Operator` | None
+      :param width: Width of the popup (in [0, inf], optional)
+      :type width: int
+      :param title: Title, Optional text to show as title of the popup (optional, never None)
+      :type title: str
+      :param confirm_text: Confirm Text, Optional text to show instead to the default "OK" confirmation button text (optional, never None)
+      :type confirm_text: str
+      :param cancel_default: cancel_default, (optional)
+      :type cancel_default: bool
+      :param text_ctxt: Override automatic translation context of the given text (optional)
+      :type text_ctxt: str
+      :param translate: Translate the given text, when UI translation is enabled (optional)
+      :type translate: bool
       :return: result
-      :rtype: enum set in :ref:`rna_enum_operator_return_items`
+      :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
    .. classmethod:: invoke_search_popup(operator)
 
       Operator search popup invoke which searches values of the operator's :class:`bpy.types.Operator.bl_property` (which must be an EnumProperty), executing it on confirmation
 
-      :arg operator: Operator to call
-      :type operator: :class:`Operator`
+      :param operator: Operator to call
+      :type operator: :class:`Operator` | None
 
-   .. classmethod:: invoke_popup(operator, *, width=300)
+   .. classmethod:: invoke_popup(operator, *, width=300, auto_keymap=False)
 
       Operator popup invoke (only shows operator's properties, without executing it)
 
-      :arg operator: Operator to call
-      :type operator: :class:`Operator`
-      :arg width: Width of the popup
-      :type width: int in [0, inf], (optional)
+      :param operator: Operator to call
+      :type operator: :class:`Operator` | None
+      :param width: Width of the popup (in [0, inf], optional)
+      :type width: int
+      :param auto_keymap: Auto Keymap, Assign accelerator keys to buttons, shown as underlined characters (optional)
+      :type auto_keymap: bool
       :return: result
-      :rtype: enum set in :ref:`rna_enum_operator_return_items`
+      :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
    .. classmethod:: invoke_confirm(operator, event, *, title="", message="", confirm_text="", icon='NONE', text_ctxt="", translate=True)
 
       Operator confirmation popup (only to let user confirm the execution, no operator properties shown)
 
-      :arg operator: Operator to call
-      :type operator: :class:`Operator`
-      :arg event: Event
-      :type event: :class:`Event`
-      :arg title: Title, Optional text to show as title of the popup
-      :type title: string, (optional, never None)
-      :arg message: Message, Optional first line of content text
-      :type message: string, (optional, never None)
-      :arg confirm_text: Confirm Text, Optional text to show instead to the default "OK" confirmation button text
-      :type confirm_text: string, (optional, never None)
-      :arg icon: Icon, Optional icon displayed in the dialog
-      :type icon: enum in [``'NONE'``, ``'WARNING'``, ``'QUESTION'``, ``'ERROR'``, ``'INFO'``], (optional)
-      :arg text_ctxt: Override automatic translation context of the given text
-      :type text_ctxt: string, (optional)
-      :arg translate: Translate the given text, when UI translation is enabled
-      :type translate: boolean, (optional)
+      :param operator: Operator to call
+      :type operator: :class:`Operator` | None
+      :param event: Event
+      :type event: :class:`Event` | None
+      :param title: Title, Optional text to show as title of the popup (optional, never None)
+      :type title: str
+      :param message: Message, Optional first line of content text (optional, never None)
+      :type message: str
+      :param confirm_text: Confirm Text, Optional text to show instead to the default "OK" confirmation button text (optional, never None)
+      :type confirm_text: str
+      :param icon: Icon, Optional icon displayed in the dialog (optional)
+      :type icon: Literal['NONE', 'WARNING', 'QUESTION', 'ERROR', 'INFO']
+      :param text_ctxt: Override automatic translation context of the given text (optional)
+      :type text_ctxt: str
+      :param translate: Translate the given text, when UI translation is enabled (optional)
+      :type translate: bool
       :return: result
-      :rtype: enum set in :ref:`rna_enum_operator_return_items`
+      :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
    .. classmethod:: popmenu_begin__internal(title, *, icon='NONE')
 
       popmenu_begin__internal
 
-      :type title: string, (never None)
-      :arg icon: icon
-      :type icon: enum in :ref:`rna_enum_icon_items`, (optional)
-      :rtype: :class:`UIPopupMenu`, (never None)
+      :param title: (never None)
+      :type title: str
+      :param icon: icon, (optional)
+      :type icon: Literal[:ref:`rna_enum_icon_items`]
+      :return: (never None)
+      :rtype: :class:`UIPopupMenu`
 
    .. classmethod:: popmenu_end__internal(menu)
 
       popmenu_end__internal
 
-      :type menu: :class:`UIPopupMenu`, (never None)
+      :param menu: (never None)
+      :type menu: :class:`UIPopupMenu` | None
 
    .. classmethod:: popover_begin__internal(*, ui_units_x=0, from_active_button=False)
 
       popover_begin__internal
 
-      :arg ui_units_x: ui_units_x
-      :type ui_units_x: int in [0, inf], (optional)
-      :arg from_active_button: Use Button, Use the active button for positioning
-      :type from_active_button: boolean, (optional)
-      :rtype: :class:`UIPopover`, (never None)
+      :param ui_units_x: ui_units_x, (in [0, inf], optional)
+      :type ui_units_x: int
+      :param from_active_button: Use Button, Use the active button for positioning (optional)
+      :type from_active_button: bool
+      :return: (never None)
+      :rtype: :class:`UIPopover`
 
    .. classmethod:: popover_end__internal(menu, *, keymap=None)
 
       popover_end__internal
 
-      :type menu: :class:`UIPopover`, (never None)
-      :arg keymap: Key Map, Active key map
-      :type keymap: :class:`KeyMap`, (optional)
+      :param menu: (never None)
+      :type menu: :class:`UIPopover` | None
+      :param keymap: Key Map, Active key map (optional)
+      :type keymap: :class:`KeyMap` | None
 
    .. classmethod:: piemenu_begin__internal(title, *, icon='NONE', event=None)
 
       piemenu_begin__internal
 
-      :type title: string, (never None)
-      :arg icon: icon
-      :type icon: enum in :ref:`rna_enum_icon_items`, (optional)
-      :type event: :class:`Event`, (optional, never None)
-      :rtype: :class:`UIPieMenu`, (never None)
+      :param title: (never None)
+      :type title: str
+      :param icon: icon, (optional)
+      :type icon: Literal[:ref:`rna_enum_icon_items`]
+      :param event: (optional, never None)
+      :type event: :class:`Event` | None
+      :return: (never None)
+      :rtype: :class:`UIPieMenu`
 
    .. classmethod:: piemenu_end__internal(menu)
 
       piemenu_end__internal
 
-      :type menu: :class:`UIPieMenu`, (never None)
+      :param menu: (never None)
+      :type menu: :class:`UIPieMenu` | None
 
    .. classmethod:: operator_properties_last(operator)
 
       operator_properties_last
 
-      :type operator: string, (never None)
-      :rtype: :class:`OperatorProperties`, (never None)
+      :param operator: (never None)
+      :type operator: str
+      :return: (never None)
+      :rtype: :class:`OperatorProperties`
 
    .. method:: print_undo_steps()
 
@@ -391,32 +436,163 @@ base classes --- :class:`bpy_struct`, :class:`ID`
       Tag for refreshing the interface after scripts have been reloaded
 
 
+   .. classmethod:: asset_library_status_begin_loading(library_url, *, timeout=0.3)
+
+      Inform the asset system that the asset library at the given URL is being loaded.
+
+      :param library_url: URL, The URL identifying the asset library being loaded (never None)
+      :type library_url: str
+      :param timeout: Timeout, Maximum time in seconds after which the asset library loading will be considered cancelled, if no further status reporting is done (e.g. by repeated calls to `asset_library_status_ping_still_loading()`). (in [0, inf], optional)
+      :type timeout: float
+
+   .. classmethod:: asset_library_status_ping_still_loading(library_url)
+
+      Inform the asset system that the loading is still ongoing. Call this regularly to prevent the loading status to timeout.
+
+      :param library_url: URL, The URL identifying the asset library being loaded (never None)
+      :type library_url: str
+
+   .. classmethod:: asset_library_status_ping_metafiles_in_place(library_url)
+
+      Inform the asset system that the asset meta files (_asset-library-meta.json, asset-listing.json, blender_assets.cats.txt) are in place and ready to be loaded
+
+      :param library_url: URL, The URL identifying the asset library being loaded (never None)
+      :type library_url: str
+
+   .. classmethod:: asset_library_status_ping_loaded_new_pages(library_url)
+
+      Inform the asset system that new content
+
+      :param library_url: URL, The URL identifying the asset library being loaded (never None)
+      :type library_url: str
+
+   .. classmethod:: asset_library_status_ping_loaded_new_preview(preview_full_path)
+
+      Inform the asset system that a new preview is available and ready for display
+
+      :param preview_full_path: URL, The full path (not URL!) pointing to the the asset preview that should be available now (never None)
+      :type preview_full_path: str
+
+   .. classmethod:: asset_library_status_ping_asset_file_progress(absolute_file_url, size_written_high, size_written_low)
+
+      Inform the asset system about the current progress of an asset file.
+
+      :param absolute_file_url: URL, The absolute URL this file was downloaded from (never None)
+      :type absolute_file_url: str
+      :param size_written_high: Size Written to Disk (high bits), The high 31 bits of the number of bytes written to disk (after uncompressing the download data, if needed) (in [0, inf])
+      :type size_written_high: int
+      :param size_written_low: Size Written to Disk (low bits), The low 31 bits of the number of bytes written to disk (after uncompressing the download data, if needed) (in [0, inf])
+      :type size_written_low: int
+
+   .. classmethod:: asset_library_status_ping_asset_file_succeeded(library_url, absolute_file_url, local_file_abspath)
+
+      Inform the asset system that a single asset file download has finished successfully.
+
+      :param library_url: URL, The URL identifying the asset library being loaded (never None)
+      :type library_url: str
+      :param absolute_file_url: URL, The absolute URL this file was downloaded from (never None)
+      :type absolute_file_url: str
+      :param local_file_abspath: Local Path, The absolute path this file was downloaded to (never None)
+      :type local_file_abspath: str
+
+   .. classmethod:: asset_library_status_ping_asset_file_failed(library_url, absolute_file_url, local_file_abspath)
+
+      Inform the asset system that a single asset file download has stopped because of some failure.
+
+      :param library_url: URL, The URL identifying the asset library being loaded (never None)
+      :type library_url: str
+      :param absolute_file_url: URL, The absolute URL this file was downloaded from (never None)
+      :type absolute_file_url: str
+      :param local_file_abspath: Local Path, The absolute path this file was supposed to be downloaded to (never None)
+      :type local_file_abspath: str
+
+   .. classmethod:: asset_library_status_ping_finished_download_queue()
+
+      Inform the asset system that there are no more pending asset file downloads for any asset library.
+
+
+   .. classmethod:: asset_library_status_finished_loading(library_url)
+
+      Inform the asset system that the asset library at the given URL has successfully finished loading.
+
+      :param library_url: URL, The URL identifying the asset library being loaded (never None)
+      :type library_url: str
+
+   .. classmethod:: asset_library_status_failed_loading(library_url, *, message="")
+
+      Inform the asset system that the asset library at the given URL failed loading, and should be aborted.
+
+      :param library_url: URL, The URL identifying the asset library being loaded (never None)
+      :type library_url: str
+      :param message: Message, An error message to show to users (optional, never None)
+      :type message: str
+
+   .. classmethod:: register_node_group_operators()
+
+      Trigger manual re-registration of node group operators. Useful in background mode where this doesn't happen automatically.
+
+
    .. method:: popover(draw_func, *, ui_units_x=0, keymap=None, from_active_button=False)
 
+      Display a popover populated by *draw_func*.
+      
+      :param draw_func: Function to populate the popover layout.
+      :type draw_func: Callable[[:class:`UIPopover`, :class:`Context`], None]
+      :param ui_units_x: Width of the popover in UI units (0 for the default).
+      :type ui_units_x: int
+      :param keymap: Optional keymap to attach to the popover.
+      :type keymap: :class:`KeyMap` | None
+      :param from_active_button: Anchor the popover to the active button.
+      :type from_active_button: bool
+
    .. method:: popup_menu(draw_func, *, title='', icon='NONE')
+
+      Display a popup menu populated by *draw_func*.
+      
+      :param draw_func: Function to populate the menu layout.
+      :type draw_func: Callable[[:class:`UIPopupMenu`, :class:`Context`], None]
+      :param title: Title shown above the menu.
+      :type title: str
+      :param icon: Icon shown next to the title.
+      :type icon: str
 
 
       Popup menus can be useful for creating menus without having to register menu classes.
 
       Note that they will not block the scripts execution, so the caller can't wait for user input.
 
-      .. literalinclude:: ..\examples\bpy.types.WindowManager.popup_menu.py
+      .. literalinclude:: ../examples/bpy.types.WindowManager.popup_menu.0.py
          :lines: 7-
 
    .. method:: popup_menu_pie(event, draw_func, *, title='', icon='NONE')
 
+      Display a pie menu populated by *draw_func* at the location of *event*.
+      
+      :param event: Event used to position the pie menu.
+      :type event: :class:`Event`
+      :param draw_func: Function to populate the pie menu layout.
+      :type draw_func: Callable[[:class:`UIPieMenu`, :class:`Context`], None]
+      :param title: Title shown at the center of the pie.
+      :type title: str
+      :param icon: Icon shown next to the title.
+      :type icon: str
+
    .. classmethod:: bl_rna_get_subclass(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: :class:`bpy.types.Struct` | None
       :return: The RNA type or default when not found.
-      :rtype: :class:`bpy.types.Struct` subclass
+      :rtype: :class:`bpy.types.Struct`
 
 
    .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: type | None
       :return: The class or default when not found.
       :rtype: type
 
@@ -427,15 +603,15 @@ base classes --- :class:`bpy_struct`, :class:`ID`
       It will be called every time the cursor for the specified region in the space type will be drawn.
       Note: All arguments are positional only for now.
    
-      :arg callback:
+      :param callback:
          A function that will be called when the cursor is drawn.
          It gets the specified arguments as input with the mouse position (``tuple[int, int]``) as last argument.
       :type callback: Callable[..., Any]
-      :arg args: Arguments that will be passed to the callback.
+      :param args: Arguments that will be passed to the callback.
       :type args: tuple[Any, ...]
-      :arg space_type: The space type the callback draws in; for example ``VIEW_3D``. (:class:`bpy.types.Space.type`)
+      :param space_type: The space type the callback draws in; for example ``VIEW_3D``. (:class:`bpy.types.Space.type`)
       :type space_type: str
-      :arg region_type: The region type the callback draws in; usually ``WINDOW``. (:class:`bpy.types.Region.type`)
+      :param region_type: The region type the callback draws in; usually ``WINDOW``. (:class:`bpy.types.Region.type`)
       :type region_type: str
       :return: Handler that can be removed later on.
       :rtype: object
@@ -445,7 +621,7 @@ base classes --- :class:`bpy_struct`, :class:`ID`
    
       Remove a draw cursor handler that was added previously.
    
-      :arg handler: The draw cursor handler that should be removed.
+      :param handler: The draw cursor handler that should be removed.
       :type handler: object
 
 
@@ -455,27 +631,28 @@ Inherited Properties
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.id_data`
-   * :class:`ID.name`
-   * :class:`ID.name_full`
-   * :class:`ID.id_type`
-   * :class:`ID.session_uid`
-   * :class:`ID.is_evaluated`
-   * :class:`ID.original`
-   * :class:`ID.users`
-   * :class:`ID.use_fake_user`
-   * :class:`ID.use_extra_user`
-   * :class:`ID.is_embedded_data`
-   * :class:`ID.is_missing`
-   * :class:`ID.is_runtime_data`
-   * :class:`ID.is_editable`
-   * :class:`ID.tag`
-   * :class:`ID.is_library_indirect`
-   * :class:`ID.library`
-   * :class:`ID.library_weak_reference`
-   * :class:`ID.asset_data`
-   * :class:`ID.override_library`
-   * :class:`ID.preview`
+   - :class:`bpy_struct.id_data`
+   - :class:`ID.name`
+   - :class:`ID.name_full`
+   - :class:`ID.id_type`
+   - :class:`ID.session_uid`
+   - :class:`ID.is_evaluated`
+   - :class:`ID.original`
+   - :class:`ID.users`
+   - :class:`ID.use_fake_user`
+   - :class:`ID.use_extra_user`
+   - :class:`ID.is_embedded_data`
+   - :class:`ID.is_linked_packed`
+   - :class:`ID.is_missing`
+   - :class:`ID.is_runtime_data`
+   - :class:`ID.is_editable`
+   - :class:`ID.tag`
+   - :class:`ID.is_library_indirect`
+   - :class:`ID.library`
+   - :class:`ID.library_weak_reference`
+   - :class:`ID.asset_data`
+   - :class:`ID.override_library`
+   - :class:`ID.preview`
 
 Inherited Functions
 -------------------
@@ -483,47 +660,49 @@ Inherited Functions
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.as_pointer`
-   * :class:`bpy_struct.driver_add`
-   * :class:`bpy_struct.driver_remove`
-   * :class:`bpy_struct.get`
-   * :class:`bpy_struct.id_properties_clear`
-   * :class:`bpy_struct.id_properties_ensure`
-   * :class:`bpy_struct.id_properties_ui`
-   * :class:`bpy_struct.is_property_hidden`
-   * :class:`bpy_struct.is_property_overridable_library`
-   * :class:`bpy_struct.is_property_readonly`
-   * :class:`bpy_struct.is_property_set`
-   * :class:`bpy_struct.items`
-   * :class:`bpy_struct.keyframe_delete`
-   * :class:`bpy_struct.keyframe_insert`
-   * :class:`bpy_struct.keys`
-   * :class:`bpy_struct.path_from_id`
-   * :class:`bpy_struct.path_resolve`
-   * :class:`bpy_struct.pop`
-   * :class:`bpy_struct.property_overridable_library_set`
-   * :class:`bpy_struct.property_unset`
-   * :class:`bpy_struct.rna_ancestors`
-   * :class:`bpy_struct.type_recast`
-   * :class:`bpy_struct.values`
-   * :class:`ID.rename`
-   * :class:`ID.evaluated_get`
-   * :class:`ID.copy`
-   * :class:`ID.asset_mark`
-   * :class:`ID.asset_clear`
-   * :class:`ID.asset_generate_preview`
-   * :class:`ID.override_create`
-   * :class:`ID.override_hierarchy_create`
-   * :class:`ID.user_clear`
-   * :class:`ID.user_remap`
-   * :class:`ID.make_local`
-   * :class:`ID.user_of_id`
-   * :class:`ID.animation_data_create`
-   * :class:`ID.animation_data_clear`
-   * :class:`ID.update_tag`
-   * :class:`ID.preview_ensure`
-   * :class:`ID.bl_rna_get_subclass`
-   * :class:`ID.bl_rna_get_subclass_py`
+   - :class:`bpy_struct.as_pointer`
+   - :class:`bpy_struct.driver_add`
+   - :class:`bpy_struct.driver_remove`
+   - :class:`bpy_struct.get`
+   - :class:`bpy_struct.id_properties_clear`
+   - :class:`bpy_struct.id_properties_ensure`
+   - :class:`bpy_struct.id_properties_ui`
+   - :class:`bpy_struct.is_property_hidden`
+   - :class:`bpy_struct.is_property_overridable_library`
+   - :class:`bpy_struct.is_property_readonly`
+   - :class:`bpy_struct.is_property_set`
+   - :class:`bpy_struct.items`
+   - :class:`bpy_struct.keyframe_delete`
+   - :class:`bpy_struct.keyframe_insert`
+   - :class:`bpy_struct.keys`
+   - :class:`bpy_struct.path_from_id`
+   - :class:`bpy_struct.path_from_module`
+   - :class:`bpy_struct.path_resolve`
+   - :class:`bpy_struct.pop`
+   - :class:`bpy_struct.property_overridable_library_set`
+   - :class:`bpy_struct.property_unset`
+   - :class:`bpy_struct.rna_ancestors`
+   - :class:`bpy_struct.type_recast`
+   - :class:`bpy_struct.values`
+   - :class:`ID.bl_system_properties_get`
+   - :class:`ID.rename`
+   - :class:`ID.evaluated_get`
+   - :class:`ID.copy`
+   - :class:`ID.asset_mark`
+   - :class:`ID.asset_clear`
+   - :class:`ID.asset_generate_preview`
+   - :class:`ID.override_create`
+   - :class:`ID.override_hierarchy_create`
+   - :class:`ID.user_clear`
+   - :class:`ID.user_remap`
+   - :class:`ID.make_local`
+   - :class:`ID.user_of_id`
+   - :class:`ID.animation_data_create`
+   - :class:`ID.animation_data_clear`
+   - :class:`ID.update_tag`
+   - :class:`ID.preview_ensure`
+   - :class:`ID.bl_rna_get_subclass`
+   - :class:`ID.bl_rna_get_subclass_py`
 
 References
 ----------
@@ -531,6 +710,6 @@ References
 .. hlist::
    :columns: 2
 
-   * :class:`BlendData.window_managers`
-   * :class:`Context.window_manager`
+   - :class:`BlendData.window_managers`
+   - :class:`Context.window_manager`
 

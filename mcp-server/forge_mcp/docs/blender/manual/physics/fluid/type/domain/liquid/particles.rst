@@ -3,6 +3,13 @@
 Particles
 *********
 
+.. note::
+
+   Enabling a secondary particle type will also create a particle system for that type of particle.
+   Disabling a particle type will delete this particle system including its settings.
+   These particle systems are not part of the mesh generation.
+   They will need to have geometry assigned in order to be rendered.  
+
 .. _bpy.types.FluidDomainSettings.use_spray_particles:
 
 Spray
@@ -20,11 +27,6 @@ Foam
 Bubbles
    Create bubble particles during the secondary particle simulation. Bubble particles are those that
    move below the liquid surface.
-
-.. note::
-
-   Enabling a secondary particle type will also create a particle system for that type of particles.
-   Disabling a particle type will delete this particle system including its settings.
 
 .. _bpy.types.FluidDomainSettings.sndparticle_combined_export:
 
@@ -121,11 +123,8 @@ Bubble Drag
 .. _bpy.types.FluidDomainSettings.sndparticle_boundary:
 
 Particles in Boundary
-   Delete
-      Delete secondary particles that are inside obstacles or left the domain.
-
-   Push Out
-      Push secondary particles that left the domain back into the domain.
+   :Delete: Delete secondary particles that are inside obstacles or left the domain.
+   :Push Out: Push secondary particles that left the domain back into the domain.
 
 .. _bpy.ops.fluid.bake_particles:
 .. _bpy.ops.fluid.free_particles:

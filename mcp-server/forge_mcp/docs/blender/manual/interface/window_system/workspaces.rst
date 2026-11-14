@@ -18,22 +18,50 @@ multiple Workspaces while working on a project.
 
 
 .. _workspaces-controls:
-.. _bpy.ops.screen.workspace_cycle:
 
 Controls
 ========
 
 Tabs
-   Click on the tabs to switch between the workspaces.
-   You can also use the keyboard shortcuts :kbd:`Ctrl-PageUp` and :kbd:`Ctrl-PageDown`.
+   Click on the tabs to switch between workspaces.
    Double-click a tab to rename the workspace.
 
 .. _bpy.ops.workspace.add:
 
 :bl-icon:`add` Add Workspace
-   Click on the *Add* button to add a new workspace.
-Context menu :kbd:`RMB`
-   The context menu contains options to duplicate, delete and reorder workspaces.
+   Adds a new workspace from a predefined template (e.g. *Modeling*, *Sculpting*, *Compositing*).
+
+.. rubric:: Context Menu :kbd:`RMB`
+
+.. _bpy.ops.workspace.duplicate:
+
+Duplicate
+   Makes a copy of the selected workspace, including its screen layout and editors.
+
+.. _bpy.ops.workspace.delete:
+
+Delete
+   Deletes the selected workspace.
+   If it is the last workspace, it cannot be removed.
+
+.. _bpy.ops.workspace.reorder_to_front:
+.. _bpy.ops.workspace.reorder_to_back:
+
+Reorder to Front/Back
+   Moves the workspace tab to the first (front) or last (back) position in the tab list.
+
+.. _bpy.ops.screen.workspace_cycle:
+
+Previous Workspace :kbd:`Ctrl-PageUp`
+   Activates the workspace immediately to the left of the current one.
+
+Next Workspace :kbd:`Ctrl-PageDown`
+   Activates the workspace immediately to the right of the current one.
+
+.. _bpy.ops.workspace.delete_all_others:
+
+Delete Other Workspaces
+   Removes all workspaces except the one that was right-clicked on.
 
 
 Default Workspaces
@@ -110,6 +138,8 @@ Workspace Settings
    :Editor:    :doc:`/editors/properties_editor`
    :Panel:     :menuselection:`Tool tab --> Workspace`
 
+.. _bpy.types.WorkSpace.use_pin_scene:
+
 Pin Scene
    When enabled, the current workspace will remember the currently selected scene.
    Then, whenever you activate the workspace, it'll automatically switch back to that scene.
@@ -119,6 +149,18 @@ Pin Scene
 Mode
    Switch to this :doc:`Mode </editors/3dview/modes>` when activating the workspace.
 
+.. _bpy.types.WorkSpace.sequencer_scene:
+
+Sequencer Scene
+   The scene containing the edit that is used by the video sequence editor.
+   See :doc:`/video_editing/sequencer_scene`.
+
+.. _bpy.types.WorkSpace.use_scene_time_sync:
+
+Sync Scene Time
+   Sync the active scene and time based on the current :ref:`scene strip <bpy.types.SceneStrip>` in the video sequence
+   editor.
+   See :doc:`/video_editing/sequencer_scene`.
 
 .. _bpy.ops.wm.owner_enable:
 .. _bpy.ops.wm.owner_disable:

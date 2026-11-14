@@ -30,20 +30,7 @@ Points
 Density
    Value of voxels inside the generated fog volume.
 
-Voxel Amount
-   Specify the approximate number of voxels along the diagonal.
-
-Voxel Size
-   Specify the voxel side length.
-
-Radius
-   Specify the radius of the sphere generated at each point.
-
-
-Properties
-==========
-
-Resolution
+Resolution Mode
    How the voxel size is specified.
 
    :Amount:
@@ -51,6 +38,15 @@ Resolution
    :Size:
       Specify the voxel side length. It is recommended to be careful when tweaking this value,
       because small changes can have a large effect on the processing time.
+
+Voxel Amount :guilabel:`Amount`
+   Specify the approximate number of voxels along the diagonal.
+
+Voxel Size :guilabel:`Size`
+   Specify the voxel side length.
+
+Radius
+   Specify the radius of the sphere generated at each point.
 
 
 Outputs

@@ -5,6 +5,7 @@ SpaceView3D(Space)
 
 base classes --- :class:`bpy_struct`, :class:`Space`
 
+
 .. class:: SpaceView3D(Space)
 
    3D View space data
@@ -13,516 +14,534 @@ base classes --- :class:`bpy_struct`, :class:`Space`
 
       Active camera used in this view (when unlocked from the scene's active camera)
 
-      :type: :class:`Object`
+      :type: :class:`Object` | None
 
    .. attribute:: clip_end
 
-      3D View far clipping distance
+      3D View far clipping distance (in [1e-06, inf], default 1000.0)
 
-      :type: float in [1e-06, inf], default 1000.0
+      :type: float
 
    .. attribute:: clip_start
 
-      3D View near clipping distance (perspective view only)
+      3D View near clipping distance (perspective view only) (in [1e-06, inf], default 0.01)
 
-      :type: float in [1e-06, inf], default 0.01
+      :type: float
 
    .. data:: icon_from_show_object_viewport
 
-      :type: int in [-inf, inf], default 0, (readonly)
+      (in [-inf, inf], default 0, readonly)
+
+      :type: int
 
    .. attribute:: lens
 
-      Viewport lens angle
+      Viewport lens angle (in [1, 250], default 50.0)
 
-      :type: float in [1, 250], default 50.0
+      :type: float
 
    .. data:: local_view
 
-      Display an isolated subset of objects, apart from the scene visibility
+      Display an isolated subset of objects, apart from the scene visibility (readonly)
 
-      :type: :class:`SpaceView3D`, (readonly)
+      :type: :class:`SpaceView3D` | None
 
    .. attribute:: lock_bone
 
-      3D View center is locked to this bone's position
+      3D View center is locked to this bone's position (default "", never None)
 
-      :type: string, default "", (never None)
+      :type: str
 
    .. attribute:: lock_camera
 
-      Enable view navigation within the camera view
+      Enable view navigation within the camera view (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: lock_cursor
 
-      3D View center is locked to the cursor's position
+      3D View center is locked to the cursor's position (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: lock_object
 
       3D View center is locked to this object's position
 
-      :type: :class:`Object`
+      :type: :class:`Object` | None
 
    .. attribute:: mirror_xr_session
 
-      Synchronize the viewer perspective of virtual reality sessions with this 3D viewport
+      Synchronize the viewer perspective of virtual reality sessions with this 3D viewport (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. data:: overlay
 
-      Settings for display of overlays in the 3D viewport
+      Settings for display of overlays in the 3D viewport (readonly, never None)
 
-      :type: :class:`View3DOverlay`, (readonly, never None)
+      :type: :class:`View3DOverlay`
 
    .. data:: region_3d
 
-      3D region for this space. When the space is in quad view, the camera region
+      3D region for this space. When the space is in quad view, the camera region (readonly)
 
-      :type: :class:`RegionView3D`, (readonly)
+      :type: :class:`RegionView3D` | None
 
    .. data:: region_quadviews
 
-      3D regions (the third one defines quad view settings, the fourth one is same as 'region_3d')
+      3D regions (the third one defines quad view settings, the fourth one is same as 'region_3d') (default None, readonly)
 
-      :type: :class:`bpy_prop_collection` of :class:`RegionView3D`, (readonly)
+      :type: :class:`bpy_prop_collection`\ [:class:`RegionView3D`]
 
    .. attribute:: render_border_max_x
 
-      Maximum X value for the render region
+      Maximum X value for the render region (in [0, 1], default 0.0)
 
-      :type: float in [0, 1], default 0.0
+      :type: float
 
    .. attribute:: render_border_max_y
 
-      Maximum Y value for the render region
+      Maximum Y value for the render region (in [0, 1], default 0.0)
 
-      :type: float in [0, 1], default 0.0
+      :type: float
 
    .. attribute:: render_border_min_x
 
-      Minimum X value for the render region
+      Minimum X value for the render region (in [0, 1], default 0.0)
 
-      :type: float in [0, 1], default 0.0
+      :type: float
 
    .. attribute:: render_border_min_y
 
-      Minimum Y value for the render region
+      Minimum Y value for the render region (in [0, 1], default 0.0)
 
-      :type: float in [0, 1], default 0.0
+      :type: float
 
    .. data:: shading
 
-      Settings for shading in the 3D viewport
+      Settings for shading in the 3D viewport (readonly, never None)
 
-      :type: :class:`View3DShading`, (readonly, never None)
+      :type: :class:`View3DShading`
 
    .. attribute:: show_bundle_names
 
-      Show names for reconstructed tracks objects
+      Show names for reconstructed tracks objects (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: show_camera_path
 
-      Show reconstructed camera path
+      Show reconstructed camera path (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: show_gizmo
 
-      Show gizmos of all types
+      Show gizmos of all types (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_gizmo_camera_dof_distance
 
-      Gizmo to adjust camera focus distance (depends on limits display)
+      Gizmo to adjust camera focus distance (depends on limits display) (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: show_gizmo_camera_lens
 
-      Gizmo to adjust camera focal length or orthographic scale
+      Gizmo to adjust camera focal length or orthographic scale (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: show_gizmo_context
 
-      Context sensitive gizmos for the active item
+      Context sensitive gizmos for the active item (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_gizmo_empty_force_field
 
-      Gizmo to adjust the force field
+      Gizmo to adjust the force field (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: show_gizmo_empty_image
 
-      Gizmo to adjust image size and position
+      Gizmo to adjust image size and position (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: show_gizmo_light_look_at
 
-      Gizmo to adjust the direction of the light
+      Gizmo to adjust the direction of the light (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: show_gizmo_light_size
 
-      Gizmo to adjust spot and area size
+      Gizmo to adjust spot and area size (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: show_gizmo_modifier
 
-      Gizmos for the active modifier
+      Gizmos for the active modifier (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_gizmo_navigate
 
-      Viewport navigation gizmo
+      Viewport navigation gizmo (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_gizmo_object_rotate
 
-      Gizmo to adjust rotation
+      Gizmo to adjust rotation (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: show_gizmo_object_scale
 
-      Gizmo to adjust scale
+      Gizmo to adjust scale (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: show_gizmo_object_translate
 
-      Gizmo to adjust location
+      Gizmo to adjust location (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: show_gizmo_tool
 
-      Active tool gizmo
+      Active tool gizmo (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_select_armature
 
-      Allow selection of armatures
+      Allow selection of armatures (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_select_camera
 
-      Allow selection of cameras
+      Allow selection of cameras (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_select_curve
 
-      Allow selection of curves
+      Allow selection of curves (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_select_curves
 
-      Allow selection of hair curves
+      Allow selection of hair curves (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_select_empty
 
-      Allow selection of empties
+      Allow selection of empties (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_select_font
 
-      Allow selection of text objects
+      Allow selection of text objects (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_select_grease_pencil
 
-      Allow selection of Grease Pencil objects
+      Allow selection of Grease Pencil objects (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_select_lattice
 
-      Allow selection of lattices
+      Allow selection of lattices (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_select_light
 
-      Allow selection of lights
+      Allow selection of lights (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_select_light_probe
 
-      Allow selection of light probes
+      Allow selection of light probes (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_select_mesh
 
-      Allow selection of mesh objects
+      Allow selection of mesh objects (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_select_meta
 
-      Allow selection of metaballs
+      Allow selection of metaballs (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_select_pointcloud
 
-      Allow selection of point clouds
+      Allow selection of point clouds (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_select_speaker
 
-      Allow selection of speakers
+      Allow selection of speakers (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_select_surf
 
-      Allow selection of surfaces
+      Allow selection of surfaces (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_select_volume
 
-      Allow selection of volumes
+      Allow selection of volumes (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_viewport_armature
 
-      Show armatures
+      Show armatures (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_viewport_camera
 
-      Show cameras
+      Show cameras (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_viewport_curve
 
-      Show curves
+      Show curves (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_viewport_curves
 
-      Show hair curves
+      Show hair curves (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_viewport_empty
 
-      Show empties
+      Show empties (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_viewport_font
 
-      Show text objects
+      Show text objects (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_viewport_grease_pencil
 
-      Show Grease Pencil objects
+      Show Grease Pencil objects (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_viewport_lattice
 
-      Show lattices
+      Show lattices (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_viewport_light
 
-      Show lights
+      Show lights (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_viewport_light_probe
 
-      Show light probes
+      Show light probes (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_viewport_mesh
 
-      Show mesh objects
+      Show mesh objects (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_viewport_meta
 
-      Show metaballs
+      Show metaballs (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_viewport_pointcloud
 
-      Show point clouds
+      Show point clouds (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_viewport_speaker
 
-      Show speakers
+      Show speakers (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_viewport_surf
 
-      Show surfaces
+      Show surfaces (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_object_viewport_volume
 
-      Show volumes
+      Show volumes (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_reconstruction
 
-      Display reconstruction data from active movie clip
+      Display reconstruction data from active movie clip (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_region_asset_shelf
 
-      :type: boolean, default False
+      Display a region with assets that may currently be relevant (such as brushes in paint modes, or poses in Pose Mode) (default False)
+
+      :type: bool
 
    .. attribute:: show_region_hud
 
-      :type: boolean, default False
+      (default False)
+
+      :type: bool
 
    .. attribute:: show_region_tool_header
 
-      :type: boolean, default False
+      (default False)
+
+      :type: bool
 
    .. attribute:: show_region_toolbar
 
-      :type: boolean, default False
+      (default False)
+
+      :type: bool
 
    .. attribute:: show_region_ui
 
-      :type: boolean, default False
+      (default False)
+
+      :type: bool
 
    .. attribute:: show_stereo_3d_cameras
 
-      Show the left and right cameras
+      Show the left and right cameras (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: show_stereo_3d_convergence_plane
 
-      Show the stereo 3D convergence plane
+      Show the stereo 3D convergence plane (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: show_stereo_3d_volume
 
-      Show the stereo 3D frustum volume
+      Show the stereo 3D frustum volume (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: show_viewer
 
-      Display non-final geometry from viewer nodes
+      Display non-final geometry from viewer nodes (default True)
 
-      :type: boolean, default True
+      :type: bool
 
    .. attribute:: stereo_3d_camera
 
-      :type: enum in [``'LEFT'``, ``'RIGHT'``, ``'S3D'``], default ``'S3D'``
+      (default ``'S3D'``)
+
+      :type: Literal['LEFT', 'RIGHT', 'S3D']
 
    .. attribute:: stereo_3d_convergence_plane_alpha
 
-      Opacity (alpha) of the convergence plane
+      Opacity (alpha) of the convergence plane (in [0, 1], default 0.15)
 
-      :type: float in [0, 1], default 0.15
+      :type: float
 
    .. data:: stereo_3d_eye
 
-      Current stereo eye being displayed
+      Current stereo eye being displayed (default ``'LEFT_EYE'``, readonly)
 
-      :type: enum in [``'LEFT_EYE'``, ``'RIGHT_EYE'``], default ``'LEFT_EYE'``, (readonly)
+      :type: Literal['LEFT_EYE', 'RIGHT_EYE']
 
    .. attribute:: stereo_3d_volume_alpha
 
-      Opacity (alpha) of the cameras' frustum volume
+      Opacity (alpha) of the cameras' frustum volume (in [0, 1], default 0.05)
 
-      :type: float in [0, 1], default 0.05
+      :type: float
 
    .. attribute:: tracks_display_size
 
-      Display size of tracks from reconstructed data
+      Display size of tracks from reconstructed data (in [0, inf], default 0.2)
 
-      :type: float in [0, inf], default 0.2
+      :type: float
 
    .. attribute:: tracks_display_type
 
-      Viewport display style for tracks
+      Viewport display style for tracks (default ``'PLAIN_AXES'``)
 
-      :type: enum in [``'PLAIN_AXES'``, ``'ARROWS'``, ``'SINGLE_ARROW'``, ``'CIRCLE'``, ``'CUBE'``, ``'SPHERE'``, ``'CONE'``], default ``'PLAIN_AXES'``
+      :type: Literal['PLAIN_AXES', 'ARROWS', 'SINGLE_ARROW', 'CIRCLE', 'CUBE', 'SPHERE', 'CONE']
 
    .. attribute:: use_local_camera
 
-      Use a local camera in this view, rather than scene's active camera
+      Use a local camera in this view, rather than scene's active camera (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_local_collections
 
-      Display a different set of collections in this viewport
+      Display a different set of collections in this viewport (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_render_border
 
-      Use a region within the frame size for rendered viewport (when not viewing through the camera)
+      Use a region within the frame size for rendered viewport (when not viewing through the camera) (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. classmethod:: bl_rna_get_subclass(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: :class:`bpy.types.Struct` | None
       :return: The RNA type or default when not found.
-      :rtype: :class:`bpy.types.Struct` subclass
+      :rtype: :class:`bpy.types.Struct`
 
 
    .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: type | None
       :return: The class or default when not found.
       :rtype: type
 
@@ -533,15 +552,15 @@ base classes --- :class:`bpy_struct`, :class:`Space`
       It will be called every time the specified region in the space type will be drawn.
       Note: All arguments are positional only for now.
    
-      :arg callback:
+      :param callback:
          A function that will be called when the region is drawn.
          It gets the specified arguments as input, it's return value is ignored.
       :type callback: Callable[..., Any]
-      :arg args: Arguments that will be passed to the callback.
+      :param args: Arguments that will be passed to the callback.
       :type args: tuple[Any, ...]
-      :arg region_type: The region type the callback draws in; usually ``WINDOW``. (:class:`bpy.types.Region.type`)
+      :param region_type: The region type the callback draws in; usually ``WINDOW``. (:class:`bpy.types.Region.type`)
       :type region_type: str
-      :arg draw_type: Usually ``POST_PIXEL`` for 2D drawing and ``POST_VIEW`` for 3D drawing. In some cases ``PRE_VIEW`` can be used. ``BACKDROP`` can be used for backdrops in the node editor.
+      :param draw_type: Usually ``POST_PIXEL`` for 2D drawing and ``POST_VIEW`` for 3D drawing. In some cases ``PRE_VIEW`` can be used. ``BACKDROP`` can be used for backdrops in the node editor.
       :type draw_type: str
       :return: Handler that can be removed later on.
       :rtype: object
@@ -551,9 +570,9 @@ base classes --- :class:`bpy_struct`, :class:`Space`
    
       Remove a draw handler that was added previously.
    
-      :arg handler: The draw handler that should be removed.
+      :param handler: The draw handler that should be removed.
       :type handler: object
-      :arg region_type: Region type the callback was added to.
+      :param region_type: Region type the callback was added to.
       :type region_type: str
 
 
@@ -563,10 +582,10 @@ Inherited Properties
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.id_data`
-   * :class:`Space.type`
-   * :class:`Space.show_locked_time`
-   * :class:`Space.show_region_header`
+   - :class:`bpy_struct.id_data`
+   - :class:`Space.type`
+   - :class:`Space.show_locked_time`
+   - :class:`Space.show_region_header`
 
 Inherited Functions
 -------------------
@@ -574,33 +593,34 @@ Inherited Functions
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.as_pointer`
-   * :class:`bpy_struct.driver_add`
-   * :class:`bpy_struct.driver_remove`
-   * :class:`bpy_struct.get`
-   * :class:`bpy_struct.id_properties_clear`
-   * :class:`bpy_struct.id_properties_ensure`
-   * :class:`bpy_struct.id_properties_ui`
-   * :class:`bpy_struct.is_property_hidden`
-   * :class:`bpy_struct.is_property_overridable_library`
-   * :class:`bpy_struct.is_property_readonly`
-   * :class:`bpy_struct.is_property_set`
-   * :class:`bpy_struct.items`
-   * :class:`bpy_struct.keyframe_delete`
-   * :class:`bpy_struct.keyframe_insert`
-   * :class:`bpy_struct.keys`
-   * :class:`bpy_struct.path_from_id`
-   * :class:`bpy_struct.path_resolve`
-   * :class:`bpy_struct.pop`
-   * :class:`bpy_struct.property_overridable_library_set`
-   * :class:`bpy_struct.property_unset`
-   * :class:`bpy_struct.rna_ancestors`
-   * :class:`bpy_struct.type_recast`
-   * :class:`bpy_struct.values`
-   * :class:`Space.bl_rna_get_subclass`
-   * :class:`Space.bl_rna_get_subclass_py`
-   * :class:`Space.draw_handler_add`
-   * :class:`Space.draw_handler_remove`
+   - :class:`bpy_struct.as_pointer`
+   - :class:`bpy_struct.driver_add`
+   - :class:`bpy_struct.driver_remove`
+   - :class:`bpy_struct.get`
+   - :class:`bpy_struct.id_properties_clear`
+   - :class:`bpy_struct.id_properties_ensure`
+   - :class:`bpy_struct.id_properties_ui`
+   - :class:`bpy_struct.is_property_hidden`
+   - :class:`bpy_struct.is_property_overridable_library`
+   - :class:`bpy_struct.is_property_readonly`
+   - :class:`bpy_struct.is_property_set`
+   - :class:`bpy_struct.items`
+   - :class:`bpy_struct.keyframe_delete`
+   - :class:`bpy_struct.keyframe_insert`
+   - :class:`bpy_struct.keys`
+   - :class:`bpy_struct.path_from_id`
+   - :class:`bpy_struct.path_from_module`
+   - :class:`bpy_struct.path_resolve`
+   - :class:`bpy_struct.pop`
+   - :class:`bpy_struct.property_overridable_library_set`
+   - :class:`bpy_struct.property_unset`
+   - :class:`bpy_struct.rna_ancestors`
+   - :class:`bpy_struct.type_recast`
+   - :class:`bpy_struct.values`
+   - :class:`Space.bl_rna_get_subclass`
+   - :class:`Space.bl_rna_get_subclass_py`
+   - :class:`Space.draw_handler_add`
+   - :class:`Space.draw_handler_remove`
 
 References
 ----------
@@ -608,9 +628,9 @@ References
 .. hlist::
    :columns: 2
 
-   * :class:`Object.local_view_get`
-   * :class:`Object.local_view_set`
-   * :class:`Object.visible_get`
-   * :class:`Object.visible_in_viewport_get`
-   * :class:`SpaceView3D.local_view`
+   - :class:`Object.local_view_get`
+   - :class:`Object.local_view_set`
+   - :class:`Object.visible_get`
+   - :class:`Object.visible_in_viewport_get`
+   - :class:`SpaceView3D.local_view`
 

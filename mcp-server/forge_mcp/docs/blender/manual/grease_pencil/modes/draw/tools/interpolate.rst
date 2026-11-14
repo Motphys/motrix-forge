@@ -9,31 +9,50 @@ Interpolate
    :Mode:      Draw Mode
    :Tool:      :menuselection:`Toolbar --> Interpolate`
 
-The Interpolate tool interpolates strokes between the previous and next keyframe by adding a *single* keyframe.
-When you are on a frame between two keyframes and click and drag a new breakdown keyframe will be added.
-This way you define the final interpolation for the new stroke.
+The *Interpolate* tool creates an in-between keyframe
+by interpolating strokes between the previous and next Grease Pencil keyframes.
+When used on a frame between two keyframes, clicking and dragging will add a new *breakdown* keyframe,
+interpolating the stroke's shape based on the drag distance.
+
+This allows artists to manually control how strokes evolve between poses or drawings,
+providing fine control over the interpolation result.
+
+.. note::
+
+   When interpolating between curves of different types, a priority system determines which curve type is used.
+   The priority from highest to lowest is: *NURBS* --> *Bézier* --> *Catmull-Rom* --> *Polyline*.
 
 
 Usage
 =====
 
-Set the Playhead on the Timeline between the two keyframes you want to interpolate.
-Click and drag from left to right to set the desired interpolation percentage
-and release to confirm, a new breakdown keyframe will be added.
+#. Place the timeline playhead between two existing Grease Pencil keyframes.
+#. In the 3D Viewport, click and drag left to right to set the desired interpolation factor.
+#. Release the mouse button to confirm and create a new *breakdown keyframe*.
+
+The resulting keyframe contains strokes that are interpolated between the neighboring keyframes
+according to the chosen factor.
 
 
 Tool Settings
 =============
 
 Layer
-   Restrict the interpolation to Active or All layers.
-Only Selected :guilabel:`Edit Mode`
+   Restrict interpolation to either the *Active Layer* or *All Layers*.
+
+Only Selected (:guilabel:`Edit Mode`)
    When enabled, only selected strokes will be interpolated.
+
 Exclude Breakdowns
-   Exclude existing :ref:`Breakdowns keyframes <keyframe-type>` as interpolation extremes.
+   Exclude existing :ref:`Breakdown keyframes <keyframe-type>` from being used as interpolation extremes.
+
 Flip Mode
-   Invert strokes start and end. Automatic will try to found the right mode for every stroke.
+   Reverses the interpolation direction, swapping the start and end strokes.
+   *Automatic* mode attempts to determine the correct direction for each stroke automatically.
+
 Smooth
-   Amount of smoothing to apply to interpolated strokes for reducing jitter/noise.
+   The amount of smoothing applied to interpolated strokes to reduce jitter or visual noise.
+
 Iterations
-   Number of time to smooth newly created strokes.
+   The number of times smoothing is applied to newly created strokes.
+   Higher values result in smoother interpolation but may reduce shape fidelity.

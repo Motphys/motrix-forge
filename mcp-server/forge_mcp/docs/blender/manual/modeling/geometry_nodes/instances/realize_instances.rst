@@ -57,12 +57,6 @@ Depth
    Number of levels of nested instances to realize for each top-level instance.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

@@ -23,7 +23,6 @@ where you can select a type from a list and not much more.
    - The :doc:`/modeling/modifiers/deform/displace`.
    - Influencing size, density etc. of :doc:`particle systems </physics/particles/texture_influence>`.
    - Influencing emission locations of :ref:`fire/smoke simulations <bpy.types.FluidFlowSettings.use_texture>`.
-   - :doc:`Compositing </compositing/types/input/texture>`.
 
    In addition, the Displace modifier and fire/smoke simulations don't support
    node-based textures, instead only working with the built-in ones.
@@ -49,7 +48,7 @@ before you can add nodes.
 Header
 ======
 
-See :doc:`Nodes </interface/controls/nodes/introduction>` for the header items common to
+See :doc:`Nodes </interface/controls/nodes/index>` for the header items common to
 all node editors.
 
 Texture Type
@@ -60,5 +59,5 @@ Texture Type
       Show brush Textures in the data-block menu. Because the other two types are deprecated,
       this effectively shows all Textures.
    Line Style
-      Deprecated -- :doc:`Line Styles </render/freestyle/view_layer/line_style/introduction>`
+      Deprecated -- :doc:`Line Styles </render/freestyle/view_layer/line_style/index>`
       for the Freestyle renderer are now defined using Materials rather than Textures.

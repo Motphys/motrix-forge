@@ -26,12 +26,6 @@ Point Index
       the point domain.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

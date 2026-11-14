@@ -1,11 +1,12 @@
-AttributeGroupGreasePencil(bpy_struct)
-======================================
+AttributeGroupGreasePencil(bpy_prop_collection)
+===============================================
 
 .. currentmodule:: bpy.types
 
-base class --- :class:`bpy_struct`
+base class --- :class:`bpy_prop_collection`
 
-.. class:: AttributeGroupGreasePencil(bpy_struct)
+
+.. class:: AttributeGroupGreasePencil(bpy_prop_collection)
 
    Group of geometry attributes
 
@@ -13,24 +14,24 @@ base class --- :class:`bpy_struct`
 
       Active attribute
 
-      :type: :class:`Attribute`
+      :type: :class:`Attribute` | None
 
    .. attribute:: active_index
 
-      Active attribute index or -1 when none are active
+      Active attribute index or -1 when none are active (in [-1, inf], default 0)
 
-      :type: int in [-1, inf], default 0
+      :type: int
 
    .. method:: new(name, type, domain)
 
       Add attribute to geometry
 
-      :arg name: Name, Name of geometry attribute
-      :type name: string, (never None)
-      :arg type: Type, Attribute type
-      :type type: enum in :ref:`rna_enum_attribute_type_items`
-      :arg domain: Domain, Type of element that attribute is stored on
-      :type domain: enum in :ref:`rna_enum_attribute_domain_items`
+      :param name: Name, Name of geometry attribute (never None)
+      :type name: str
+      :param type: Type, Attribute type
+      :type type: Literal[:ref:`rna_enum_attribute_type_items`]
+      :param domain: Domain, Type of element that attribute is stored on
+      :type domain: Literal[:ref:`rna_enum_attribute_domain_items`]
       :return: New geometry attribute
       :rtype: :class:`Attribute`
 
@@ -38,30 +39,34 @@ base class --- :class:`bpy_struct`
 
       Remove attribute from geometry
 
-      :arg attribute: Geometry Attribute
-      :type attribute: :class:`Attribute`, (never None)
+      :param attribute: Geometry Attribute (never None)
+      :type attribute: :class:`Attribute` | None
 
    .. method:: domain_size(domain)
 
       Get the size of a given domain
 
-      :arg domain: Domain, Type of element that attribute is stored on
-      :type domain: enum in :ref:`rna_enum_attribute_domain_items`
-      :return: Size, Size of the domain
-      :rtype: int in [0, inf]
+      :param domain: Domain, Type of element that attribute is stored on
+      :type domain: Literal[:ref:`rna_enum_attribute_domain_items`]
+      :return: Size, Size of the domain (in [0, inf])
+      :rtype: int
 
    .. classmethod:: bl_rna_get_subclass(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: :class:`bpy.types.Struct` | None
       :return: The RNA type or default when not found.
-      :rtype: :class:`bpy.types.Struct` subclass
+      :rtype: :class:`bpy.types.Struct`
 
 
    .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: type | None
       :return: The class or default when not found.
       :rtype: type
 
@@ -72,7 +77,7 @@ Inherited Properties
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.id_data`
+   - :class:`bpy_struct.id_data`
 
 Inherited Functions
 -------------------
@@ -80,29 +85,30 @@ Inherited Functions
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.as_pointer`
-   * :class:`bpy_struct.driver_add`
-   * :class:`bpy_struct.driver_remove`
-   * :class:`bpy_struct.get`
-   * :class:`bpy_struct.id_properties_clear`
-   * :class:`bpy_struct.id_properties_ensure`
-   * :class:`bpy_struct.id_properties_ui`
-   * :class:`bpy_struct.is_property_hidden`
-   * :class:`bpy_struct.is_property_overridable_library`
-   * :class:`bpy_struct.is_property_readonly`
-   * :class:`bpy_struct.is_property_set`
-   * :class:`bpy_struct.items`
-   * :class:`bpy_struct.keyframe_delete`
-   * :class:`bpy_struct.keyframe_insert`
-   * :class:`bpy_struct.keys`
-   * :class:`bpy_struct.path_from_id`
-   * :class:`bpy_struct.path_resolve`
-   * :class:`bpy_struct.pop`
-   * :class:`bpy_struct.property_overridable_library_set`
-   * :class:`bpy_struct.property_unset`
-   * :class:`bpy_struct.rna_ancestors`
-   * :class:`bpy_struct.type_recast`
-   * :class:`bpy_struct.values`
+   - :class:`bpy_struct.as_pointer`
+   - :class:`bpy_struct.driver_add`
+   - :class:`bpy_struct.driver_remove`
+   - :class:`bpy_struct.get`
+   - :class:`bpy_struct.id_properties_clear`
+   - :class:`bpy_struct.id_properties_ensure`
+   - :class:`bpy_struct.id_properties_ui`
+   - :class:`bpy_struct.is_property_hidden`
+   - :class:`bpy_struct.is_property_overridable_library`
+   - :class:`bpy_struct.is_property_readonly`
+   - :class:`bpy_struct.is_property_set`
+   - :class:`bpy_struct.items`
+   - :class:`bpy_struct.keyframe_delete`
+   - :class:`bpy_struct.keyframe_insert`
+   - :class:`bpy_struct.keys`
+   - :class:`bpy_struct.path_from_id`
+   - :class:`bpy_struct.path_from_module`
+   - :class:`bpy_struct.path_resolve`
+   - :class:`bpy_struct.pop`
+   - :class:`bpy_struct.property_overridable_library_set`
+   - :class:`bpy_struct.property_unset`
+   - :class:`bpy_struct.rna_ancestors`
+   - :class:`bpy_struct.type_recast`
+   - :class:`bpy_struct.values`
 
 References
 ----------
@@ -110,6 +116,6 @@ References
 .. hlist::
    :columns: 2
 
-   * :class:`GreasePencilv3.attributes`
-   * :class:`GreasePencilv3.color_attributes`
+   - :class:`GreasePencil.attributes`
+   - :class:`GreasePencil.color_attributes`
 

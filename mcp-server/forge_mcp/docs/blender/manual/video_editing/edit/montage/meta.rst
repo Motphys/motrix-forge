@@ -1,46 +1,79 @@
-.. _bpy.types.MetaSequence:
+.. _bpy.types.MetaStrip:
 
 ***********
 Meta Strips
 ***********
 
-A Meta Strip is a strip which contain multiple strips treated as if it was one strip.
-It allows you to reduce the vertical space used in the Sequencer.
-You can edit it the same way as any other strips.
+A *Meta Strip* is a container strip that groups multiple strips and treats them as a single strip.
+This helps reduce visual clutter in the Sequencer and makes complex edits easier to manage.
+Once created, a Meta strip behaves like any other strip and can be moved, trimmed, muted,
+or have effects applied to it.
 
-It is organization tool. For example, if you are using a lot of strips with
-complicated arrangement, you can group them together using Meta strips.
+Meta strips are primarily an organizational tool.
+For example, if your edit uses many overlapping strips or complex layer arrangements,
+you can group related strips into a Meta strip to simplify the timeline.
 
 Make Meta Strip :kbd:`Ctrl-G`
-   To create a Meta strip, select all the strips you want to group, and :kbd:`Ctrl-G` to group them.
-   The Meta strips will span from the beginning of the first strip to the end of the last one,
-   and condenses all channels into a single strip.
+   Select all strips you want to group, then press :kbd:`Ctrl-G`.
+   The resulting Meta strip spans from the start of the earliest strip
+   to the end of the latest strip, collapsing all contained channels
+   into a single strip.
+
 UnMeta Strip :kbd:`Ctrl-Alt-G`
-   Separating (ungrouping) the Meta strip restores the strips to their relative positions and channels.
-   This can be used if you choose to delete a Meta strip and want to keep the strips inside.
+   Ungroup a Meta strip and restore the contained strips to their original
+   relative positions and channels.
+   This is useful if you want to remove the Meta strip while keeping its contents.
 
 .. figure:: /images/video-editing_sequencer_meta_example.png
    :align: center
 
    Example of Meta strips.
 
-You can edit the content inside a Meta strip by pressing :kbd:`Tab`.
-It will expand the strip to the whole view and hide any other strips.
-To exit the Meta strip press :kbd:`Tab` again.
-Meta strips can also be nested, which make editing them a little confusing.
-To exit out one level of Meta Strip make sure you do not have a Meta strips selected when you press :kbd:`Tab`.
+
+Editing Meta Strips
+===================
+
+To edit the contents of a Meta strip, select it and press :kbd:`Tab`.
+The Sequencer view switches to show only the contents of the Meta strip,
+hiding all other strips.
+
+Press :kbd:`Tab` again to exit and return to the parent timeline.
+
+Meta strips can be nested inside other Meta strips.
+When working with nested Meta strips, pressing :kbd:`Tab` exits only one level at a time.
+To exit to a higher level, ensure no Meta strip is selected before pressing :kbd:`Tab`.
+
 
 .. note::
 
-   The default blend mode for a Meta strip is Replace. There are many cases where this alters
-   the results of the animation so be sure to check the results and adjust the blend mode if necessary.
+   The default blend mode for a Meta strip is *Replace*.
+   Depending on the contents, this may change the visual result compared to
+   the original strips. If the output looks incorrect, adjust the blend mode
+   of the Meta strip as needed.
 
-One convenient use for Meta strips is when you want to apply the same effect to multiple strips.
-For example: if you have a video that was recorded in different files and want to add an effect strip.
-It is much more convenient to apply a single set of effects
-to one Meta strip than applying it to each individual strip.
+
+Use Cases
+=========
+
+A common use for Meta strips is applying the same effect to multiple strips.
+For example, if a shot is split across several video files,
+you can group them into a Meta strip and apply effect strips to the Meta strip
+instead of duplicating the effects for each individual strip.
+
+Meta strips are also useful for organizing sections of an edit,
+such as grouping an intro, montage, or lower-third graphics into a single strip.
+
 
 .. seealso::
 
-   It is also possible to do the similar task described above with
-   an :doc:`Adjustment Layer </video_editing/edit/montage/strips/adjustment>` effect strip.
+   Similar workflows can be achieved using an
+   :doc:`Adjustment Layer </video_editing/edit/montage/strips/adjustment>` effect strip,
+   which applies effects to all strips below it without grouping them.
+
+
+Properties
+==========
+
+Meta strips share the same properties as other strip types.
+Property changes act as a group master, affecting all strips contained
+within the Meta strip.

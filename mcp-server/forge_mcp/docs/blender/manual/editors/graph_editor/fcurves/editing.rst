@@ -54,9 +54,9 @@ Selection to Cursor Value
 Selection to Nearest Frame
    Round the time of each keyframe to the nearest frame.
 Selection to Nearest Second
-   Round the time of each keyframe to the nearest second. You can use
-   :menuselection:`View --> Show Seconds` to show seconds instead of frames
-   at the top of the editor.
+   Round the time of each keyframe to the nearest second.
+   You can use :ref:`Use Timecode <bpy.types.SpaceGraphEditor.show_seconds>`
+   to show seconds instead of frames at the top of the editor.
 Selection to Nearest Marker
    Set the time of each keyframe to that of the nearest :doc:`marker </animation/markers>`.
 Flatten Handles
@@ -107,14 +107,14 @@ Mirrors the selected keyframes across a reference point.
 
 By Times over Current Frame
    Mirror horizontally across the current frame.
-By Values over Cursor Value
-   Mirror vertically across the 2D Cursor's value.
-By Times over Zero Time
-   Mirror horizontally across frame 0.
-By Values over Zero Value
-   Mirror vertically across value 0.
 By Times over First Selected Marker
    Mirror horizontally across the first selected marker.
+By Times over Zero Time
+   Mirror horizontally across frame 0.
+By Values over Cursor Value
+   Mirror vertically across the 2D Cursor's value.
+By Values over Zero Value
+   Mirror vertically across value 0.
 
 
 .. _bpy.ops.graph.frame_jump:

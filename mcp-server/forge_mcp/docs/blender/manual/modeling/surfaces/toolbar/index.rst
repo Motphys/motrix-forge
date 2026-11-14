@@ -4,23 +4,12 @@
 Toolbar
 *******
 
-Surface Edit Mode tools:
+The following tools are available in Edit Mode:
 
-:ref:`Select <tool-select-tweak>`
-   Select or move.
-
-   :ref:`Select Box <tool-select-box>`
-      Select objects by dragging a box.
-
-      All objects that intersect the box will be selected.
-   :ref:`Select Circle <tool-select-circle>`
-      Select objects by dragging a circle. All objects that intersect the path of
-      the circle will be selected.
-   :ref:`Select Lasso <tool-select-lasso>`
-      Select objects by drawing a lasso.
-
+:doc:`Select </interface/selecting>`
+   Select control points.
 Cursor
-   Change the location of the 3D Cursor.
+   Change the location of the :doc:`3D Cursor </editors/3dview/3d_cursor>`.
 Move
    Translation tool.
 Rotate
@@ -28,20 +17,14 @@ Rotate
 Scale
    Scale tool.
 
-   :ref:`Scale Cage <tool-scale-cage>`
-      Change the scale of an object by controlling its cage.
+   :doc:`Scale Cage </scene_layout/object/tools/scale_cage>`
+      Editable bounding box for scaling control points.
 
 Transform
-   Tool to adjust the objects translation, rotations and scale.
-:ref:`Annotate <tool-annotate-freehand>`
-   Draw free-hand annotation.
-
-   :ref:`Annotate Line <tool-annotate-line>`
-      Draw straight line annotation.
-   :ref:`Annotate Polygon <tool-annotate-polygon>`
-      Draw a polygon annotation.
-   :ref:`Annotate Eraser <tool-annotate-eraser>`
-      Erase previous drawn annotations.
-
-:ref:`Measure <tool-measure>`
+   Combined tool for translating, rotating, and scaling.
+:doc:`Annotate </interface/annotate_tool>`
+   Draw free-hand annotations.
+:doc:`Measure </editors/3dview/toolbar/measure>`
    Measure distances in the scene.
+:doc:`Shear </modeling/meshes/editing/mesh/transform/shear>`
+   Shear control points along a certain axis.

@@ -9,55 +9,34 @@ Extrude to Cursor or Add
    :Mode:      Edit Mode
    :Shortcut:  :kbd:`Ctrl-RMB`
 
-Interactively places new vertices with :kbd:`Ctrl-RMB` at the mouse cursor position.
+Either creates a new vertex at the mouse cursor, or extrudes the selected vertices/edges
+up to the mouse cursor.
 
-The most basic element, a vertex, can be added with a :kbd:`Ctrl-RMB` click
-when no other vertices are selected.
-Because the camera space (computer screen) is two-dimensional,
-Blender cannot determine all three vertex coordinates from a single mouse click,
-so the new vertex is placed at the depth of the 3D cursor.
+If nothing is selected, pressing :kbd:`Ctrl-RMB` will create a vertex at the depth of the
+:doc:`/editors/3dview/3d_cursor`.
 
-To create interconnected vertices, you can add a vertex and continuously make subsequent :kbd:`Ctrl-RMB`
-operations with the last vertex selected.
-This will link the last selected vertex with the vertex created at the mouse position with an edge
-(see Fig. :ref:`fig-mesh-basics-add-one`),
-and will continuously create and connect new vertices if you continue repeating this operation.
-
-.. _fig-mesh-basics-add-one:
+If there are one or more selected vertices that are isolated (not connected to any edge or face),
+pressing :kbd:`Ctrl-RMB` will extrude each one into an edge. The new vertices will be placed at
+the same depth from the current viewpoint as the original ones. In addition, the original vertices
+will be deselected and the new ones will be selected, so that this operation can be repeated to
+create chains of edges.
 
 .. figure:: /images/modeling_meshes_tools_extrude-cursor_vertex.png
 
-   Adding vertices one by one.
+   Extruding vertices into edges.
 
-
-Creating Faces
-==============
+Finally, if there are two or more selected vertices that are connected by edges, pressing
+:kbd:`Ctrl-RMB` will extrude them into faces.
 
 .. figure:: /images/modeling_meshes_tools_extrude-cursor_quad.png
 
-   Quad from an Edge with source automatically rotated.
+   Extruding edges into faces.
 
-If you have two vertices selected and already connected with an edge, :kbd:`Ctrl-RMB` click
-will create a planar face, also known as a quad. Blender will follow your mouse cursor
-and will use the planar view from your viewport to create those quads.
-
-For :kbd:`Ctrl-RMB`, Blender will automatically rotate the last selected Edge (the source)
-for the subsequent operations if you have at least one face created, dividing the angles created between
-the newly created edge and the last two edges, creating a smooth angle between them. Blender will calculate
-this angle using the last positive and negative position of the last X and Y coordinates
-and the last connected unselected edge. If this angle exceeds a negative limit (following a quadrant rule)
-between the recently created edge and the last two, Blender will wrap the faces.
-But if you do not want Blender to rotate and smooth edges automatically when extruding from :kbd:`Ctrl-RMB`,
-you can also inhibit Blender from rotating sources using the shortcut :kbd:`Shift-Ctrl-RMB`.
-In this case, Blender will not rotate the source dividing the angle between those edges when creating a face.
-
-If you have three or more vertices selected, and :kbd:`Ctrl-RMB` click,
-you will also create planar faces, but along the vertices selected, following the direction of the cursor.
-This operation is similar to an extrude operation.
+The previously selected edges will be rotated to get a smoother result. If this is not desired,
+press :kbd:`Shift-Ctrl-RMB` instead.
 
 .. tip::
 
-   When adding objects with :kbd:`Ctrl-RMB`, the extrusions of the selected elements,
-   being vertices, edges and faces with the :kbd:`Ctrl-RMB`, are viewport dependent.
-   This means, once you change your viewport, for example, from top to left, bottom or right,
-   the extrusion direction will also follow your viewport and align the extrusions with your planar view.
+   When extruding, use a top or side :doc:`view </editors/3dview/navigate/viewpoint>` to
+   stay within a global plane. For example, using the top view will ensure that the new
+   vertices have the same global Z coordinate as the previous ones.

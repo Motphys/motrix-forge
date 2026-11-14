@@ -34,6 +34,12 @@ Preference Section Items
 
 ----
 
+:ASSETS: Asset Libraries.
+
+
+
+----
+
 :INPUT: Input.
 
 :NAVIGATION: Navigation.
@@ -53,6 +59,8 @@ Preference Section Items
 
 
 ----
+
+:DEVELOPER_TOOLS: Developer Tools.
 
 :EXPERIMENTAL: Experimental.
 

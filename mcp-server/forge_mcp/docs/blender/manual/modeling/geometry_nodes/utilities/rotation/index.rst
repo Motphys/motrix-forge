@@ -11,6 +11,7 @@
    axis_angle_to_rotation.rst
    euler_to_rotation.rst
    invert_rotation.rst
+   mix_rotation.rst
    rotate_rotation.rst
    rotate_vector.rst
    rotation_to_euler.rst

@@ -28,22 +28,6 @@ Selection
    Whether or not to resample each spline. True values mean spline will be resampled to a poly spline,
    false values mean the spline will be unaffected.
 
-Count
-   The number of control points on the new splines.
-
-Length
-   The approximate length between the control points of the new splines.
-
-   .. tip::
-
-      A :doc:`/modeling/geometry_nodes/curve/operations/trim_curve` can be used with
-      a multiple of the input length to make the distance between each sampled point exact,
-      even when the length of the spline changes.
-
-
-Properties
-==========
-
 Mode
    How to specify the amount of samples.
 
@@ -55,6 +39,18 @@ Mode
    :Evaluated:
       Evaluate the spline's points based on the resolution attribute for NURBS and Bézier splines.
       Changes nothing for poly splines.
+
+Count :guilabel:`Count`
+   The number of control points on the new splines.
+
+Length :guilabel:`Length`
+   The approximate length between the control points of the new splines.
+
+   .. tip::
+
+      A :doc:`/modeling/geometry_nodes/curve/operations/trim_curve` can be used with
+      a multiple of the input length to make the distance between each sampled point exact,
+      even when the length of the spline changes.
 
 
 Outputs

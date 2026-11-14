@@ -10,7 +10,7 @@ Set Grease Pencil Depth Node
    :alt: Set Grease Pencil Depth Node.
 
 The *Set Grease Pencil Depth* node sets the Grease Pencil
-:ref:`depth order <bpy.types.GreasePencilv3.stroke_depth_order>` to use.
+:ref:`depth order <bpy.types.GreasePencil.stroke_depth_order>` to use.
 
 
 Inputs

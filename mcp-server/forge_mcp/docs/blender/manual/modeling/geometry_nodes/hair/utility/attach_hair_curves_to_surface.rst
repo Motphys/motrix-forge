@@ -4,11 +4,21 @@
 Attach Hair Curves to Surface
 *****************************
 
-Attaches hair curves to a surface mesh.
+.. figure:: /images/node-types_GeometryNodeAttachHairCurvesToSurface.webp
+   :align: right
+   :alt: Attach Hair Curves to Surface node.
+
+The *Attach Hair Curves to Surface* node binds hair curves to a surface mesh,
+establishing their attachment positions and optionally aligning them to the
+surface orientation.
+This node is a fundamental part of hair generation and grooming workflows,
+ensuring that curves remain anchored correctly to the underlying surface,
+even after deformation or topology changes.
 
 .. note::
 
-   This node/modifier will not function without the *Surface* geometry/object and *Surface UV Map* inputs.
+   This node or modifier requires valid *Surface* geometry or object inputs,
+   as well as a *Surface UV Map*, to function properly.
 
 .. peertube:: keeNa3Rpe7grQvX5d35w8H
 
@@ -17,54 +27,66 @@ Inputs
 ======
 
 Geometry
-   Input Geometry (only curves will be affected).
+   The input geometry containing the hair curves to be attached to the surface.
 
-Surface
-   Surface Geometry to attach hair curves to. This input takes priority over the corresponding object input, if used.
+Surface Source
+   Defines how the surface geometry is provided for attachment.
 
-Surface
-   Surface Object to attach to (needs to have matching transforms).
+   :Attached: Use the attached surface of the incoming hair geometry.
+   :Object:
+      Use an object reference as the target surface.
+   :Input:
+      Use a geometry input directly connected to the surface mesh.
+
+Surface Geometry / Surface Object
+   The surface object or geometry used as the attachment target.
+   Its transforms must match the modifier object for proper alignment.
 
 Surface UV Map
-   Surface UV map stored on the mesh used for finding curve attachment locations.
+   The UV map used to determine the attachment points on the surface mesh.
+   These coordinates are stored per curve to maintain attachment consistency.
 
-Surface Rest Position
-   Set the surface mesh into its rest position before attachment.
+Resting Surface
+   When enabled, sets the surface mesh into its rest position before attachment.
+   This ensures consistency when later deforming curves along the same surface.
 
    .. tip::
 
-      In a typical hair generation setup, this node or modifier will be
-      combined with the :doc:`/modeling/geometry_nodes/curve/operations/deform_curves_on_surface`.
-      If that operation comes after this one, it makes sense to turn this option on so the
-      position used is the pre-deformed position consistent with the expectations for the
-      deformation's input.
+      When using this node with :doc:`Deform Curves on Surface
+      </modeling/geometry_nodes/curve/operations/deform_curves_on_surface>`,
+      enable *Surface Rest Position* if that operation comes after this one,
+      so the attachment coordinates are recorded in the pre-deformed state.
 
-Sample Attachment UV
-   Sample the surface UV map at the attachment point.
+Use Existing Attachment
+   Samples the *Surface UV Map* at the attachment point and stores the UV coordinates
+   for each curve.
+   This allows later nodes to access or reuse the attachment data.
+
 
 Snap to Surface
-   Snap the root of each curve to the closest surface point.
+---------------
 
-Align to Surface Normal
-   Align the curve to the surface normal (need guide as reference).
+Projects the root of each curve onto the closest point of the surface mesh,
+ensuring that all roots lie directly on the surface.
 
 Blend along Curve
-   Blend deformation along each curve from the root.
+   Blends the deformation or alignment effect gradually along each curve,
+   from root to tip, instead of applying it uniformly.
 
-
-Properties
-==========
-
-This node has no properties.
+Align to Surface Normal
+   Rotates each curve so that its root direction aligns with the surface normal.
+   This typically requires guide data or consistent curve orientation to produce
+   stable results.
 
 
 Outputs
 =======
 
-**Geometry**
+Geometry
+   The resulting geometry with updated curve attachments.
 
 Surface UV Coordinate
-   Surface UV coordinate at the attachment point.
+   The UV coordinate on the surface mesh corresponding to each curve's attachment point.
 
 Surface Normal
-   Surface normal at the attachment point.
+   The normal vector of the surface mesh evaluated at each curve's attachment point.

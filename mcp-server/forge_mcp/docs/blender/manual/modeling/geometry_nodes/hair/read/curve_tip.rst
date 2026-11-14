@@ -4,7 +4,9 @@
 Curve Tip
 *********
 
-Reads information about each curve's tip point.
+The *Curve Tip* node outputs information about the tip (end) point of each curve.
+It is commonly used in hair grooming, deformation, and simulation setups to control
+operations at the ends of curves, such as shaping, alignment, or applying tip-based effects.
 
 .. peertube:: pcyUMH2SZ2DtwuDVF1bQio
 
@@ -15,23 +17,22 @@ Inputs
 This node has no inputs.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 
 Tip Selection
-   Boolean selection of curve tip points.
+   A boolean selection that is true only for the tip points of curves.
+   This can be used to isolate operations that affect only the curve ends.
 
 Tip Position
-   Position of the tip point of a Curve.
+   The position of each curve's tip point in 3D space.
+   Useful for determining the end location of curves, placing instances, or measuring curve length.
 
 Tip Direction
-   Direction of the tip segment of a Curve.
+   A normalized vector representing the direction of the final segment of each curve,
+   pointing toward the tip.
+   This can be used for orienting instances or controlling effects based on curve direction.
 
 Tip Index
-   Index of the tip point of a Curve.
+   The index of the tip point for each curve.
+   This corresponds to the last point in the curve's point list.

@@ -9,22 +9,22 @@ Solidify Faces
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Face --> Solidify Faces`
 
-This takes a selection of faces and solidifies them by extruding them
-uniformly to give volume to a :term:`Non-manifold` surface.
-This is also available as a :doc:`Modifier </modeling/modifiers/generate/solidify>`.
-After using the tool, you can set the offset distance in the :ref:`bpy.ops.screen.redo_last` panel.
+Extrudes the selected faces, turning them from an infinitely thin surface into
+a :term:`manifold` mesh with volume.
+
+The thickness can be changed in the :ref:`bpy.ops.screen.redo_last` panel:
 
 Thickness
    Amount to offset the newly created surface.
-   Positive values offset the surface inward relative to the normals direction.
-   Negative values offset outward.
+   Positive values move inward relative to the face normals.
+   Negative values move outward.
 
 .. list-table::
 
    * - .. figure:: /images/modeling_meshes_editing_face_solidify-faces_before.png
           :width: 200px
 
-          Mesh before solidify operation.
+          Mesh before solidifying.
 
      - .. figure:: /images/modeling_meshes_editing_face_solidify-faces_after.png
           :width: 200px
@@ -35,3 +35,8 @@ Thickness
           :width: 200px
 
           Solidify with a negative thickness.
+
+.. seealso::
+
+   The :doc:`/modeling/modifiers/generate/solidify` does this non-destructively
+   and has many more options.

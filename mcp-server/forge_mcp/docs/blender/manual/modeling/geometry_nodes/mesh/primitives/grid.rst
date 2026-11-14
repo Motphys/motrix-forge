@@ -30,12 +30,6 @@ Vertices Y
    If this is smaller than two, no mesh is generated.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

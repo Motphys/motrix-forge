@@ -10,70 +10,75 @@ Select Similar
    :Menu:      :menuselection:`Select --> Similar`
    :Shortcut:  :kbd:`Shift-G`
 
-Select geometry that has similar certain properties to the ones selected,
-based on a threshold that can be set in tool properties after activating the tool.
-Tool options change depending on the selection mode:
+Selects all mesh elements that are similar in a certain way to one that's already selected.
+The list of comparable properties depends on the current selection mode:
 
 Vertex Selection Mode:
    Normal
-      Selects all vertices that have normals pointing in similar directions to those currently selected.
+      Compare the direction of the normal vector.
    Amount of Adjacent Faces
-      Selects all vertices that have the same number of faces connected to them.
+      Compare the number of neighboring faces.
    Vertex Groups
-      Selects all vertices in the same :doc:`vertex group </modeling/meshes/properties/vertex_groups/index>`.
+      Check whether the vertex is a member of any of the same
+      :doc:`vertex groups </modeling/meshes/properties/vertex_groups/introduction>`.
+      The weight values are ignored.
    Amount of Connecting Edges
-      Selects all vertices that have the same number of edges connected to them.
+      Compare the number of neighboring edges.
+   Vertex Crease
+      Compare the :ref:`Crease <modeling-vertex-crease-subdivision>` value.
 
 Edge Selection Mode:
    Length
-      Selects all edges that have a similar length as those already selected.
+      Compare the edge length.
    Direction
-      Selects all edges that have a similar direction (angle) as those already selected.
+      Compare the direction vector of the edge.
    Amount of Faces Around an Edge
-      Selects all edges that belong to the same number of faces.
+      Compare the number of neighboring faces.
    Face Angles
-      Selects all edges that are between two faces forming a similar angle, as with those already selected.
+      Compare the angle between the two neighboring faces.
    Crease
-      Selects all edges that have a similar :ref:`Crease <modeling-edges-crease-subdivision>`
-      value as those already selected.
+      Compare the :ref:`Crease <modeling-edges-crease-subdivision>` value.
    Bevel
-      Selects all edges that have the same *Bevel Weight* as those already selected.
+      Compare the :ref:`Bevel Weight <modeling-edges-bevel-weight>`.
    Seam
-      Selects all edges that have the same *Seam* state as those already selected.
-      *Seam* is a mark used in :ref:`UV texturing <editors-uv-index>`.
+      Compare the :doc:`UV Seam </modeling/meshes/uv/unwrapping/seams>` mark.
    Sharpness
-      Selects all edges that have the same *Sharp* state as those already selected.
-      *Sharp* is a mark used by the :doc:`Edge Split Modifier </modeling/modifiers/generate/edge_split>`.
+      Compare the :ref:`Sharp <bpy.ops.mesh.mark_sharp>` mark.
+   Freestyle Edge Marks
+      Compare the :ref:`Freestyle <freestyle-edge-marks>` mark.
 
 Face Selection Mode:
    Material
-      Selects all faces that use the same material as those already selected.
+      Compare the face material.
    Area
-      Selects all faces that have a similar area as those already selected.
+      Compare the area.
    Polygon Sides
-      Selects all faces that have the same number of edges.
+      Compare the number of edges.
    Perimeter
-      Selects all faces that have a similar perimeter (added values of its edge lengths).
+      Compare the sum of the edge lengths.
    Normal
-      Selects all faces that have a similar normal as those selected.
-      This is a way to select faces that have the same orientation (angle).
-   Co-planar
-      Selects all faces that are (nearly) in the same plane as those selected.
+      Compare the direction of the normal vector.
+   Coplanar
+      Similar to *Normal*, but only grows the existing selection at its borders instead of
+      adding faces from anywhere on the mesh. This is essentially the same as
+      :ref:`Select Linked Flat Faces <bpy.ops.mesh.faces_select_linked_flat>`.
    Flat/Smooth
-      Selects all faces with similar :doc:`face shading </modeling/meshes/editing/face/shading>`.
+      Compare the face :doc:`shading mode </modeling/meshes/editing/face/shading>`.
    Freestyle Face Marks
-      Selects all faces with similar :ref:`Freestyle Face Marks <bpy.ops.mesh.mark_freestyle_face>`.
+      Compare the :ref:`Freestyle <freestyle-face-marks>` mark.
+
+After selecting a property from the menu, further options are available in the
+:ref:`bpy.ops.screen.redo_last` panel:
 
 Compare
-   For quantitative properties, this property selects the type of comparison to between the two numerical values.
+   How to compare numerical properties:
 
-   :Equal: Select items with the same value as the active item's chosen property.
-   :Greater: Select items with a larger value as the active item's chosen property.
-   :Less: Select items with a smaller value as the active item's chosen property.
+   :Equal: Select items with the same value.
+   :Greater: Select items with a larger or equal value.
+   :Less: Select items with a smaller or equal value.
 
 Threshold
-   For quantitative properties, this property controls how
-   close the property's values have to be in the comparison.
+   Tolerance for numerical properties that *almost* match the searched value.
 
 
 .. _bpy.ops.mesh.select_similar_region:
@@ -86,4 +91,16 @@ Face Regions
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Select --> Similar --> Face Regions`
 
-Select matching features on a mesh that has multiple similar areas based on the topology.
+For each region of connected faces in the selection, finds and selects other regions that have
+the same topology.
+
+.. list-table::
+   :widths: 1 1
+
+   * - .. figure:: /images/modeling_meshes_selecting_similar_face-regions_before.png
+
+          Initial selection.
+
+     - .. figure:: /images/modeling_meshes_selecting_similar_face-regions_after.png
+
+          After running Select Similar Face Regions.

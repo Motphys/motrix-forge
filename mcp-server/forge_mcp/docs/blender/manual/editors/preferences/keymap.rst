@@ -6,13 +6,14 @@ Keymap
 
 On this screen, you can configure keyboard and mouse shortcuts.
 
-.. figure:: /images/editors_preferences_section_keymap.png
+.. figure:: /images/editors_preferences_section_keymap.webp
 
    Blender Preferences Keymap section.
 
 .. seealso::
 
-   :doc:`/interface/keymap/introduction`
+   :doc:`/interface/keymap/index`
+
 
 Presets
 =======
@@ -84,10 +85,35 @@ These preferences only apply to the *Blender* keymap.
 Select with Mouse Button
    Controls which mouse button is used to select items.
 
+   While left-click select is the default as it is consistent with most other software,
+   right-click select has workflow advantages in certain scenarios.
+
    :Left:
       :kbd:`LMB` selects items while :kbd:`RMB` opens the context menu.
+
+      Pros:
+         - Familiar behavior for users coming from other applications.
+         - Context menu access matches common industry standards.
+         - Easier transition from other 3D and design software.
+
+      Cons:
+         - Selection and transformation both use the primary mouse button,
+           which can increase accidental movement when clicking near gizmos.
+         - The 3D Cursor requires a modifier (e.g., :kbd:`Shift-RMB`) to place.
+
    :Right:
       :kbd:`RMB` selects items while :kbd:`LMB` places the :doc:`/editors/3dview/3d_cursor`.
+
+      Pros:
+         - Separates selection from transformation actions,
+           reducing accidental edits during modeling.
+         - Quick and direct 3D Cursor placement with :kbd:`LMB`.
+         - Historically optimized for precision modeling workflows.
+
+      Cons:
+         - Less familiar to new users.
+         - Context menu requires an alternate shortcut,
+           depending on configuration.
 
 .. _keymap-blender_default-spacebar_action:
 
@@ -95,7 +121,7 @@ Spacebar Action
    Controls the action of :kbd:`Spacebar`.
 
    :Play:
-      Starts/stops playing through the :doc:`Timeline </editors/timeline>`.
+      Starts/stops :doc:`animation playback </animation/index>`.
       This option is good for animation or video editing work.
    :Tools:
       Opens the Toolbar underneath the cursor to quickly change the active tool.
@@ -156,9 +182,6 @@ Select All Toggles
 Region Toggle Pie
    :kbd:`N` opens a :ref:`pie menu <bpy.types.UIPieMenu>` to toggle :doc:`/interface/window_system/regions`
    rather than always toggling the Sidebar region.
-
-   This option is only available if the :ref:`Developer Extras <bpy.types.PreferencesView.show_developer_ui>`
-   are enabled.
 
 
 3D Viewport

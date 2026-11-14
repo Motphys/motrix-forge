@@ -8,8 +8,11 @@ Texture Coordinate Node
    :align: right
    :alt: Texture Coordinate Node.
 
-The *Texture Coordinate* node is commonly used for the coordinates of textures,
-typically used as inputs for the *Vector* input for texture nodes.
+The *Texture Coordinate* node outputs various coordinate systems
+that can be used for procedural textures, image textures, and other vector-based texture inputs.
+
+It is most commonly connected to the *Vector* input of texture nodes,
+allowing textures to be placed or manipulated in different coordinate spaces.
 
 
 Inputs
@@ -58,13 +61,13 @@ Normal
    The Normal output can be used on Point and Spot lights. The coordinates will take
    the rotation of the light into account.
 UV
-   UV texture coordinates from the active render UV map.
+   UV texture coordinates from the :ref:`Active Render <bpy.types.MeshUVLoopLayer.active_render>` UV map.
    See :ref:`UV Mapping <editors-uv-index>` for more information.
 
    .. note::
 
-      In order to select UV map other than the active map you must use
-      the :doc:`UV Map node </render/shader_nodes/input/uv_map>`.
+      To use a UV map other than the active one, use the
+      :doc:`UV Map node </render/shader_nodes/input/uv_map>`.
 Object
    Uses an object as a source for coordinates. Often used with an empty,
    this is an easy way to place a small image at a given point on the object.

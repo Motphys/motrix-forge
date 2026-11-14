@@ -26,7 +26,7 @@ Tool Context
 ============
 
 Because tool node groups have different settings than modifier node groups, you need to change
-the :ref:`bpy.types.SpaceNodeEditor.geometry_nodes_type` in the Geometry Node Editor's header
+the :ref:`bpy.types.SpaceNodeEditor.node_tree_sub_type` in the Geometry Node Editor's header
 to *Tool* in order to edit them.
 
 When this type is selected, the :ref:`data-block menu <ui-data-block>` in the editor's

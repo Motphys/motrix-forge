@@ -1,5 +1,4 @@
 .. _bpy.types.TransformOrientation:
-.. _bpy.types.SpaceView3D.transform_orientation:
 .. todo/Review: {{review|Need to change and explain the behavior of the transform orientation.
    It is toggled between the chosen orientation and
    the global orientation when transformations are made by shortcuts}}.
@@ -92,6 +91,7 @@ Examples
 --------
 
 .. list-table:: Cube with the rotation gizmo active in multiple transform orientations.
+   :widths: 1 1 1
 
    * - .. figure:: /images/editors_3dview_controls_orientation_manipulator-global-1.png
 
@@ -176,7 +176,7 @@ Use After Creation
    The new orientation stays selected.
 Overwrite Previous
    If the new orientation is given an existing name, a suffix will be added
-   to it's name to avoid overwriting the existing orientation,
+   to its name to avoid overwriting the existing orientation,
    unless *Overwrite Previous* is checked, in which case it will be overwritten.
 
 

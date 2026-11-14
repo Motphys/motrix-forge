@@ -43,7 +43,7 @@ Common Options
 
 Mix
    The modifier output can be mixed with the base property using the usual methods
-   (see for example the :doc:`Mix compositing node </compositing/types/color/mix/mix_color>`).
+   (see for example the :doc:`Mix compositing node </compositing/types/color/mix_color>`).
 Influence
    How much the result of this modifier affects the current property.
 

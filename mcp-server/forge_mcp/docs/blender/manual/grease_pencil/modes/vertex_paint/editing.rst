@@ -80,3 +80,31 @@ Brightness/Contrast
    :Menu:      :menuselection:`Paint --> Brightness/Contrast`
 
 Adjust the color's brightness/contrast.
+
+
+Sample Color
+============
+
+.. reference::
+
+   :Mode:      Vertex Paint Mode
+   :Menu:      :menuselection:`Paint --> Sample Color`
+   :Shortcut:  :kbd:`Shift-X`
+
+   .. :Shortcut:  :kbd:`Shift-X`, :kbd:`Shift-Ctrl-X`
+
+Samples a color from the viewport and assigns it to the active
+:doc:`Paint </sculpt_paint/sculpting/brushes/paint>` brush.
+
+When invoking the operator from a menu (instead of using a shortcut),
+you can click and drag across multiple colors to sample their average.
+
+This allows quickly matching the brush color to existing painted details
+directly on the model.
+
+- Press :kbd:`Shift-X` to sample a color at the mouse cursor position.
+
+.. - Press :kbd:`Shift-Ctrl-X` to sample the **merged viewport color**,
+..   including lighting, shading, and all visible layers.
+
+The sampled color becomes the primary color of the active Paint brush.

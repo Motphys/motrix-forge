@@ -21,7 +21,7 @@ that aren't suitable for chroma keying.
 .. tip::
 
    When compositing footage of something that emits light and has a dark background,
-   like fire, a :doc:`Mix Node </compositing/types/color/mix/mix_color>` using a *Screen* or
+   like fire, a :doc:`Mix Node </compositing/types/color/mix_color>` using a *Screen* or
    *Add* operator will produce better results.
 
 
@@ -41,12 +41,6 @@ Maximum
 
    Brightness levels between the minimum and maximum form a gradient of transparency
    between foreground and background objects.
-
-
-Properties
-==========
-
-This node has no properties.
 
 
 Outputs

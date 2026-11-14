@@ -11,7 +11,7 @@ Transform
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Curves --> Transform`
 
-A curves objects can be edited by transforming the locations of control points.
+A curves object can be edited by transforming the locations of control points.
 
 Move, Rotate, Scale
    Like other elements in Blender, control points can be moved, rotated, or scaled as described in
@@ -121,7 +121,7 @@ From there, you assign a new value to a selected attribute across all selected p
 This operator is useful for uniformly setting attribute values.
 
 
-.. _bpy.ops.curves.spline_type_set:
+.. _bpy.ops.curves.curve_type_set:
 
 Set Curve Type
 ==============

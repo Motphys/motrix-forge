@@ -5,271 +5,302 @@ SpaceImageEditor(Space)
 
 base classes --- :class:`bpy_struct`, :class:`Space`
 
+
 .. class:: SpaceImageEditor(Space)
 
    Image and UV editor space data
 
+   .. attribute:: annotation
+
+      Annotation data for this space
+
+      :type: :class:`Annotation` | None
+
    .. attribute:: blend_factor
 
-      Overlay blending factor of rasterized mask
+      Overlay blending factor of rasterized mask (in [0, 1], default 0.7)
 
-      :type: float in [0, 1], default 0.0
+      :type: float
 
    .. attribute:: cursor_location
 
-      2D cursor location for this view
+      2D cursor location for this view (array of 2 items, in [-inf, inf], default (0.0, 0.0))
 
-      :type: :class:`mathutils.Vector` of 2 items in [-inf, inf], default (0.0, 0.0)
+      :type: :class:`mathutils.Vector`
 
    .. attribute:: display_channels
 
-      Channels of the image to display
+      Channels of the image to display (default ``'COLOR'``)
 
-      * ``COLOR_ALPHA``
+      - ``COLOR_ALPHA``
         Color & Alpha -- Display image with RGB colors and alpha transparency.
-      * ``COLOR``
+      - ``COLOR``
         Color -- Display image with RGB colors.
-      * ``ALPHA``
+      - ``ALPHA``
         Alpha -- Display alpha transparency channel.
-      * ``Z_BUFFER``
+      - ``Z_BUFFER``
         Z-Buffer -- Display Z-buffer associated with image (mapped from camera clip start to end).
-      * ``RED``
+      - ``RED``
         Red.
-      * ``GREEN``
+      - ``GREEN``
         Green.
-      * ``BLUE``
+      - ``BLUE``
         Blue.
 
-      :type: enum in [``'COLOR_ALPHA'``, ``'COLOR'``, ``'ALPHA'``, ``'Z_BUFFER'``, ``'RED'``, ``'GREEN'``, ``'BLUE'``], default ``'COLOR'``
-
-   .. attribute:: grease_pencil
-
-      Grease Pencil data for this space
-
-      :type: :class:`GreasePencil`
+      :type: Literal['COLOR_ALPHA', 'COLOR', 'ALPHA', 'Z_BUFFER', 'RED', 'GREEN', 'BLUE']
 
    .. attribute:: image
 
       Image displayed and edited in this space
 
-      :type: :class:`Image`
+      :type: :class:`Image` | None
 
    .. data:: image_user
 
-      Parameters defining which layer, pass and frame of the image is displayed
+      Parameters defining which layer, pass and frame of the image is displayed (readonly, never None)
 
-      :type: :class:`ImageUser`, (readonly, never None)
+      :type: :class:`ImageUser`
 
    .. attribute:: mask
 
       Mask displayed and edited in this space
 
-      :type: :class:`Mask`
+      :type: :class:`Mask` | None
 
    .. attribute:: mask_display_type
 
-      Display type for mask splines
+      Display type for mask splines (default ``'OUTLINE'``)
 
-      * ``OUTLINE``
+      - ``OUTLINE``
         Outline -- Display white edges with black outline.
-      * ``DASH``
+      - ``DASH``
         Dash -- Display dashed black-white edges.
-      * ``BLACK``
+      - ``BLACK``
         Black -- Display black edges.
-      * ``WHITE``
+      - ``WHITE``
         White -- Display white edges.
 
-      :type: enum in [``'OUTLINE'``, ``'DASH'``, ``'BLACK'``, ``'WHITE'``], default ``'OUTLINE'``
+      :type: Literal['OUTLINE', 'DASH', 'BLACK', 'WHITE']
 
    .. attribute:: mask_overlay_mode
 
-      Overlay mode of rasterized mask
+      Overlay mode of rasterized mask (default ``'ALPHACHANNEL'``)
 
-      * ``ALPHACHANNEL``
+      - ``ALPHACHANNEL``
         Alpha Channel -- Show alpha channel of the mask.
-      * ``COMBINED``
+      - ``COMBINED``
         Combined -- Combine space background image with the mask.
 
-      :type: enum in [``'ALPHACHANNEL'``, ``'COMBINED'``], default ``'ALPHACHANNEL'``
+      :type: Literal['ALPHACHANNEL', 'COMBINED']
 
    .. attribute:: mode
 
-      Editing context being displayed
+      Editing context being displayed (default ``'VIEW'``)
 
-      :type: enum in :ref:`rna_enum_space_image_mode_all_items`, default ``'VIEW'``
+      :type: Literal[:ref:`rna_enum_space_image_mode_all_items`]
 
    .. data:: overlay
 
-      Settings for display of overlays in the UV/Image editor
+      Settings for display of overlays in the UV/Image editor (readonly, never None)
 
-      :type: :class:`SpaceImageOverlay`, (readonly, never None)
+      :type: :class:`SpaceImageOverlay`
 
    .. attribute:: pivot_point
 
-      Rotation/Scaling Pivot
+      Rotation/Scaling Pivot (default ``'BOUNDING_BOX_CENTER'``)
 
-      * ``BOUNDING_BOX_CENTER``
+      - ``BOUNDING_BOX_CENTER``
         Bounding Box Center -- Pivot around bounding box center of selected object(s).
-      * ``CURSOR``
+      - ``CURSOR``
         3D Cursor -- Pivot around the 3D cursor.
-      * ``INDIVIDUAL_ORIGINS``
+      - ``INDIVIDUAL_ORIGINS``
         Individual Origins -- Pivot around each object's own origin.
-      * ``MEDIAN_POINT``
+      - ``MEDIAN_POINT``
         Median Point -- Pivot around the median point of selected objects.
-      * ``ACTIVE_ELEMENT``
+      - ``ACTIVE_ELEMENT``
         Active Element -- Pivot around active object.
 
-      :type: enum in [``'BOUNDING_BOX_CENTER'``, ``'CURSOR'``, ``'INDIVIDUAL_ORIGINS'``, ``'MEDIAN_POINT'``, ``'ACTIVE_ELEMENT'``], default ``'BOUNDING_BOX_CENTER'``
+      :type: Literal['BOUNDING_BOX_CENTER', 'CURSOR', 'INDIVIDUAL_ORIGINS', 'MEDIAN_POINT', 'ACTIVE_ELEMENT']
 
    .. data:: sample_histogram
 
-      Sampled colors along line
+      Sampled colors along line (readonly)
 
-      :type: :class:`Histogram`, (readonly)
+      :type: :class:`Histogram` | None
 
    .. data:: scopes
 
-      Scopes to visualize image statistics
+      Scopes to visualize image statistics (readonly)
 
-      :type: :class:`Scopes`, (readonly)
+      :type: :class:`Scopes` | None
 
    .. attribute:: show_annotation
 
-      Show annotations for this view
+      Show annotations for this view (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: show_gizmo
 
-      Show gizmos of all types
+      Show gizmos of all types (default True)
 
-      :type: boolean, default False
+      :type: bool
+
+   .. attribute:: show_gizmo_active_node
+
+      Context sensitive gizmo for the active node (default True)
+
+      :type: bool
 
    .. attribute:: show_gizmo_navigate
 
-      Viewport navigation gizmo
+      Viewport navigation gizmo (default True)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: show_mask_overlay
 
-      :type: boolean, default False
+      (default False)
+
+      :type: bool
 
    .. attribute:: show_mask_spline
 
-      :type: boolean, default False
+      (default True)
+
+      :type: bool
 
    .. data:: show_maskedit
 
-      Show Mask editing related properties
+      Show Mask editing related properties (default False, readonly)
 
-      :type: boolean, default False, (readonly)
+      :type: bool
 
    .. data:: show_paint
 
-      Show paint related properties
+      Show paint related properties (default False, readonly)
 
-      :type: boolean, default False, (readonly)
+      :type: bool
 
    .. attribute:: show_region_asset_shelf
 
-      :type: boolean, default False
+      Display a region with assets that may currently be relevant (such as brushes in paint modes, or poses in Pose Mode) (default False)
+
+      :type: bool
 
    .. attribute:: show_region_hud
 
-      :type: boolean, default False
+      (default False)
+
+      :type: bool
 
    .. attribute:: show_region_tool_header
 
-      :type: boolean, default False
+      (default False)
+
+      :type: bool
 
    .. attribute:: show_region_toolbar
 
-      :type: boolean, default False
+      (default False)
+
+      :type: bool
 
    .. attribute:: show_region_ui
 
-      :type: boolean, default False
+      (default False)
+
+      :type: bool
 
    .. data:: show_render
 
-      Show render related properties
+      Show render related properties (default False, readonly)
 
-      :type: boolean, default False, (readonly)
+      :type: bool
 
    .. attribute:: show_repeat
 
-      Display the image repeated outside of the main view
+      Display the image repeated outside of the main view (default False)
 
-      :type: boolean, default False
+      :type: bool
+
+   .. attribute:: show_sequencer_scene
+
+      Display the render result for the sequencer scene instead of the active scene (default False)
+
+      :type: bool
 
    .. attribute:: show_stereo_3d
 
-      Display the image in Stereo 3D
+      Display the image in Stereo 3D (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. data:: show_uvedit
 
-      Show UV editing related properties
+      Show UV editing related properties (default False, readonly)
 
-      :type: boolean, default False, (readonly)
+      :type: bool
 
    .. attribute:: ui_mode
 
-      Editing context being displayed
+      Editing context being displayed (default ``'VIEW'``)
 
-      * ``VIEW``
-        View -- View the image.
-      * ``PAINT``
-        Paint -- 2D image painting mode.
-      * ``MASK``
-        Mask -- Mask editing.
+      - ``VIEW``
+        View -- Inspect images or render results.
+      - ``PAINT``
+        Paint -- Paint images in 2D.
+      - ``MASK``
+        Mask -- View and edit masks.
 
-      :type: enum in [``'VIEW'``, ``'PAINT'``, ``'MASK'``], default ``'VIEW'``
+      :type: Literal['VIEW', 'PAINT', 'MASK']
 
    .. attribute:: use_image_pin
 
-      Display current image regardless of object selection
+      Display current image regardless of object selection (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_realtime_update
 
-      Update other affected window spaces automatically to reflect changes during interactive operations such as transform
+      Update other affected window spaces automatically to reflect changes during interactive operations such as transform (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. data:: uv_editor
 
-      UV editor settings
+      UV editor settings (readonly, never None)
 
-      :type: :class:`SpaceUVEditor`, (readonly, never None)
+      :type: :class:`SpaceUVEditor`
 
    .. data:: zoom
 
-      Zoom factor
+      Zoom factor (array of 2 items, in [-inf, inf], default (0.0, 0.0), readonly)
 
-      :type: float array of 2 items in [-inf, inf], default (0.0, 0.0), (readonly)
+      :type: :class:`bpy_prop_array`\ [float]
 
    .. attribute:: zoom_percentage
 
-      Zoom percentage
+      Zoom percentage (in [0.4, 80000], default 100.0)
 
-      :type: float in [0.4, 80000], default 100.0
+      :type: float
 
    .. classmethod:: bl_rna_get_subclass(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: :class:`bpy.types.Struct` | None
       :return: The RNA type or default when not found.
-      :rtype: :class:`bpy.types.Struct` subclass
+      :rtype: :class:`bpy.types.Struct`
 
 
    .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: type | None
       :return: The class or default when not found.
       :rtype: type
 
@@ -280,15 +311,15 @@ base classes --- :class:`bpy_struct`, :class:`Space`
       It will be called every time the specified region in the space type will be drawn.
       Note: All arguments are positional only for now.
    
-      :arg callback:
+      :param callback:
          A function that will be called when the region is drawn.
          It gets the specified arguments as input, it's return value is ignored.
       :type callback: Callable[..., Any]
-      :arg args: Arguments that will be passed to the callback.
+      :param args: Arguments that will be passed to the callback.
       :type args: tuple[Any, ...]
-      :arg region_type: The region type the callback draws in; usually ``WINDOW``. (:class:`bpy.types.Region.type`)
+      :param region_type: The region type the callback draws in; usually ``WINDOW``. (:class:`bpy.types.Region.type`)
       :type region_type: str
-      :arg draw_type: Usually ``POST_PIXEL`` for 2D drawing and ``POST_VIEW`` for 3D drawing. In some cases ``PRE_VIEW`` can be used. ``BACKDROP`` can be used for backdrops in the node editor.
+      :param draw_type: Usually ``POST_PIXEL`` for 2D drawing and ``POST_VIEW`` for 3D drawing. In some cases ``PRE_VIEW`` can be used. ``BACKDROP`` can be used for backdrops in the node editor.
       :type draw_type: str
       :return: Handler that can be removed later on.
       :rtype: object
@@ -298,9 +329,9 @@ base classes --- :class:`bpy_struct`, :class:`Space`
    
       Remove a draw handler that was added previously.
    
-      :arg handler: The draw handler that should be removed.
+      :param handler: The draw handler that should be removed.
       :type handler: object
-      :arg region_type: Region type the callback was added to.
+      :param region_type: Region type the callback was added to.
       :type region_type: str
 
 
@@ -310,10 +341,10 @@ Inherited Properties
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.id_data`
-   * :class:`Space.type`
-   * :class:`Space.show_locked_time`
-   * :class:`Space.show_region_header`
+   - :class:`bpy_struct.id_data`
+   - :class:`Space.type`
+   - :class:`Space.show_locked_time`
+   - :class:`Space.show_region_header`
 
 Inherited Functions
 -------------------
@@ -321,31 +352,32 @@ Inherited Functions
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.as_pointer`
-   * :class:`bpy_struct.driver_add`
-   * :class:`bpy_struct.driver_remove`
-   * :class:`bpy_struct.get`
-   * :class:`bpy_struct.id_properties_clear`
-   * :class:`bpy_struct.id_properties_ensure`
-   * :class:`bpy_struct.id_properties_ui`
-   * :class:`bpy_struct.is_property_hidden`
-   * :class:`bpy_struct.is_property_overridable_library`
-   * :class:`bpy_struct.is_property_readonly`
-   * :class:`bpy_struct.is_property_set`
-   * :class:`bpy_struct.items`
-   * :class:`bpy_struct.keyframe_delete`
-   * :class:`bpy_struct.keyframe_insert`
-   * :class:`bpy_struct.keys`
-   * :class:`bpy_struct.path_from_id`
-   * :class:`bpy_struct.path_resolve`
-   * :class:`bpy_struct.pop`
-   * :class:`bpy_struct.property_overridable_library_set`
-   * :class:`bpy_struct.property_unset`
-   * :class:`bpy_struct.rna_ancestors`
-   * :class:`bpy_struct.type_recast`
-   * :class:`bpy_struct.values`
-   * :class:`Space.bl_rna_get_subclass`
-   * :class:`Space.bl_rna_get_subclass_py`
-   * :class:`Space.draw_handler_add`
-   * :class:`Space.draw_handler_remove`
+   - :class:`bpy_struct.as_pointer`
+   - :class:`bpy_struct.driver_add`
+   - :class:`bpy_struct.driver_remove`
+   - :class:`bpy_struct.get`
+   - :class:`bpy_struct.id_properties_clear`
+   - :class:`bpy_struct.id_properties_ensure`
+   - :class:`bpy_struct.id_properties_ui`
+   - :class:`bpy_struct.is_property_hidden`
+   - :class:`bpy_struct.is_property_overridable_library`
+   - :class:`bpy_struct.is_property_readonly`
+   - :class:`bpy_struct.is_property_set`
+   - :class:`bpy_struct.items`
+   - :class:`bpy_struct.keyframe_delete`
+   - :class:`bpy_struct.keyframe_insert`
+   - :class:`bpy_struct.keys`
+   - :class:`bpy_struct.path_from_id`
+   - :class:`bpy_struct.path_from_module`
+   - :class:`bpy_struct.path_resolve`
+   - :class:`bpy_struct.pop`
+   - :class:`bpy_struct.property_overridable_library_set`
+   - :class:`bpy_struct.property_unset`
+   - :class:`bpy_struct.rna_ancestors`
+   - :class:`bpy_struct.type_recast`
+   - :class:`bpy_struct.values`
+   - :class:`Space.bl_rna_get_subclass`
+   - :class:`Space.bl_rna_get_subclass_py`
+   - :class:`Space.draw_handler_add`
+   - :class:`Space.draw_handler_remove`
 

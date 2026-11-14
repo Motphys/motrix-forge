@@ -13,6 +13,17 @@ The *Merge by Distance* node merges selected mesh vertices or point cloud points
 merging surrounding geometry where necessary. This operation is similar to the :ref:`bpy.ops.mesh.remove_doubles`
 operator or the :doc:`/modeling/modifiers/generate/weld`.
 
+.. tip::
+
+   For more control over which elements are merged, the
+   :doc:`Cluster by Distance </modeling/geometry_nodes/utilities/field/cluster_by_distance>`,
+   :doc:`Cluster by Connected </modeling/geometry_nodes/mesh/read/cluster_by_connected>`,
+   and :doc:`Merge Points </modeling/geometry_nodes/geometry/operations/merge_points>`
+   nodes can be combined to build custom merge workflows.
+
+   This makes it possible to merge elements based on arbitrary selections,
+   groups, or connectivity without relying solely on distance-based merging.
+
 
 Inputs
 ======
@@ -31,18 +42,14 @@ Selection
       since searching for nearby points is a relatively expensive operation that gets even
       more expensive when more points are involved.
 
-Distance
-    The distance to use for searching for nearby points.
-
-
-Properties
-==========
-
 Mode
    Method for choosing which vertices are merged.
 
    :All: Merge includes all geometry including loose parts.
    :Connected: Merge only includes attached geometry i.e. the modifier will not merge loose parts together.
+
+Distance
+    The distance to use for searching for nearby points.
 
 
 Output

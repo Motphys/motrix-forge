@@ -33,12 +33,6 @@ Sort Index
    the total number of control points, it will wrap around to the beginning.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

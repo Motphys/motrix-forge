@@ -14,7 +14,7 @@ Unlike defocus an in-focus region is defined in the Compositor.
 There is also more flexibility in the type of blur applied through
 the :doc:`Bokeh Image </compositing/types/input/bokeh_image>` node.
 
-Several performance optimizations are also available such calculation area restriction and masking.
+Several performance optimizations are also available such as calculation area restriction and masking.
 
 
 Inputs
@@ -25,7 +25,7 @@ Image
 Bokeh
    This is an input for the :doc:`Bokeh Image </compositing/types/input/bokeh_image>` node.
 Size
-   Size controls the amount of blur.
+   The amount of blur, measured in pixels.
    Size can either be a single value across the entire image or a variable value controlled by an input image.
 Bounding Box
    This can be used with a :doc:`Box Mask </compositing/types/mask/box_mask>`
@@ -33,12 +33,6 @@ Bounding Box
    input node to restrict the area of the image the blur is applied to. This could be helpful, for example,
    when developing a node system by allowing only a small area of the image to be filtered
    thus saving composite time each time adjustments are made.
-
-
-Properties
-==========
-
-This node has no properties.
 
 
 Outputs
@@ -57,10 +51,10 @@ An :doc:`ID masked </compositing/types/mask/id_mask>`
 alpha image can be used so that a background is blurred while foreground objects remain in focus.
 To prevent strange edges the :doc:`Dilate Node </compositing/types/filter/dilate_erode>` should be used.
 
-The Z pass can be visualized using a :doc:`Map Range </compositing/types/utilities/map_range>` node
+The Z pass can be visualized using a :doc:`Map Range </compositing/types/utilities/math/map_range>` node
 and a :doc:`Color Ramp </compositing/types/color/color_ramp>` node
 as described in :doc:`Render Layers </compositing/types/input/scene/render_layers>`.
-A *multiply* :doc:`Math </compositing/types/utilities/math>` node can be used following the color ramp
+A *multiply* :doc:`Math </compositing/types/utilities/math/math>` node can be used following the color ramp
 so that a blur value greater than one is used for objects outside the focal range.
 
 .. figure:: /images/compositing_types_filter_bokeh-blur_example-1.png

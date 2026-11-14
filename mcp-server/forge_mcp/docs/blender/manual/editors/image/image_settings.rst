@@ -130,8 +130,9 @@ Use Multi-View
 .. _bpy.types.ColorManagedInputColorspaceSettings.name:
 
 Color Space
-   The :term:`Color Space` the image file was saved in. This is used for converting
-   the image to linear color (which is the color space Blender works with).
+   Specifies the :term:`Color Space` that the image file was saved in.
+   This information is used to correctly convert the image to Blender's
+   internal linear color space, which is used for all color computations and rendering.
 
    Textures and final renders are often stored in sRGB,
    while OpenEXR images are stored in a linear color space.
@@ -165,7 +166,7 @@ Alpha
 
 .. _bpy.types.Image.use_half_precision:
 
-Half Float Precision
+Half Float Precision :guilabel:`Workbench` :guilabel:`EEVEE`
    Load the image with a :term:`bit depth` of only 16 bits per channel instead of 32, which saves memory.
 
 .. _bpy.types.Image.use_view_as_render:

@@ -21,12 +21,6 @@ Value
    Standard value input.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

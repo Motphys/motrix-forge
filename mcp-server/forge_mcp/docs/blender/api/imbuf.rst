@@ -14,13 +14,23 @@ It provides access to image buffers outside of Blender's
 
    imbuf.types.rst
 
+.. function:: file_type_from_buffer(buffer)
+
+   Detect the image file type from a buffer.
+
+   :param buffer: A buffer containing image data.
+   :type buffer: collections.abc.Buffer
+   :return: The detected file type, or None if unrecognized.
+   :rtype: :class:`ImBufFileType` or None
+
+
 .. function:: load(filepath)
 
    Load an image from a file.
 
-   :arg filepath: the filepath of the image.
+   :param filepath: The filepath of the image.
    :type filepath: str | bytes
-   :return: the newly loaded image.
+   :return: The newly loaded image.
    :rtype: :class:`ImBuf`
 
 
@@ -28,29 +38,43 @@ It provides access to image buffers outside of Blender's
 
    Load an image from a buffer.
 
-   :arg buffer: A buffer containing the image data.
+   :param buffer: A buffer containing the image data.
    :type buffer: collections.abc.Buffer
-   :return: the newly loaded image.
+   :return: The newly loaded image.
    :rtype: :class:`ImBuf`
 
 
-.. function:: new(size)
+.. function:: new(size, *, planes=32, buffer_type='BYTE')
 
-   Load a new image.
+   Create a new image.
 
-   :arg size: The size of the image in pixels.
+   :param size: The size of the image in pixels.
    :type size: tuple[int, int]
-   :return: the newly loaded image.
+   :param planes: Number of bits per pixel.
+   :type planes: Literal[8, 16, 24, 32]
+   :param buffer_type: The buffer type.
+   :type buffer_type: Literal['BYTE', 'FLOAT']
+   :return: The newly created image.
    :rtype: :class:`ImBuf`
 
 
-.. function:: write(image, filepath=image.filepath)
+.. function:: write(image, *, filepath=None)
 
    Write an image.
 
-   :arg image: the image to write.
+   :param image: The image to write.
    :type image: :class:`ImBuf`
-   :arg filepath: Optional filepath of the image (fallback to the images file path).
+   :param filepath: Optional filepath of the image (fallback to the image's file path).
    :type filepath: str | bytes | None
+
+
+.. function:: write_to_buffer(image, file)
+
+   Write an image to a file-like object.
+
+   :param image: The image to write.
+   :type image: :class:`ImBuf`
+   :param file: A writable file-like object (e.g. :class:`io.BytesIO`).
+   :type file: :class:`BinaryIO`
 
 

@@ -19,11 +19,9 @@ This force field is really special if you assign it to particles.
 Options
 =======
 
-.. todo:: Update image
+.. figure:: /images/physics_forces_force-fields_types_harmonic_panel.png
 
-   .. figure:: /images/physics_forces_force-fields_types_harmonic_panel.png
-
-      UI for a Harmonic force field.
+   UI for a Harmonic force field.
 
 Rest Length
    Controls the rest length of the harmonic force.

@@ -31,7 +31,7 @@ Reaching high vertex counts should still be achievable with this technique, depe
 .. tip::
 
    If in doubt, you can fill all holes in edit mode or by using the
-   :ref:`Mask Slice and Fill Holes <bpy.ops.mesh.paint_mask_slice>`
+   :ref:`Mask Slice and Fill Holes <bpy.ops.sculpt.paint_mask_slice>`
    operation to fill all holes in the mesh. If nothing is masked, it only fills any holes.
 
    ..

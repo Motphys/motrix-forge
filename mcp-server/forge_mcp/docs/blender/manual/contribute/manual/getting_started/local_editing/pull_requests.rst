@@ -6,7 +6,7 @@ Pull Requests
 
 This page describes the tools used for code contribution and review.
 
-Reviews are a key measure to assure changes are of a good quality. They help preventing bugs, design consistencies, or
+Reviews are a key measure to assure changes are of a good quality. They help preventing bugs, design inconsistencies, or
 potential maintenance problems. And having your work reviewed also generally keeps you on your toes.
 
 .. note::
@@ -31,7 +31,7 @@ Fork
 #. Now you will have to add your personal fork as a remote in your local git repository.
    Click *SSH* to see the correct URL, and then add it like this::
 
-      git remote add me git@projects.blender.org:<USERNAME>/blender-manual.git
+      git remote add me git@git.blender.org:<USERNAME>/blender-manual.git
 
 .. note::
 
@@ -70,7 +70,7 @@ Guidelines for Reviewers
   author specifically asks for it.
 - Writers are expected to reply to pull requests in 3 working days.
 - Add relevant modules/projects to the labels.
-- Encourage new writes to do review, it's a good way to learn and important to grow the project.
+- Encourage new writers to do review, it's a good way to learn and important to grow the project.
 
 
 Tips

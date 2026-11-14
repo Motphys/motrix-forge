@@ -48,13 +48,23 @@ Strength
 
 The following settings are only available in Edit Mode:
 
+.. _bpy.ops.object.hook_reset:
+
 Reset
    Recalculate and clear the offset transform of the hook.
+
+.. _bpy.ops.object.hook_recenter:
+
 Recenter
    Set the hook center to the 3D cursor position.
 
+.. _bpy.ops.object.hook_select:
+
 Select
    Select the vertices affected by this hook.
+
+.. _bpy.ops.object.hook_assign:
+
 Assign
    Assigns selected vertices to this hook.
 

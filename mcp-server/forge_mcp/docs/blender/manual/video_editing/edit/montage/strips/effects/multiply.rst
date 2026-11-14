@@ -1,4 +1,4 @@
-.. _bpy.types.MultiplySequence:
+.. _bpy.types.MultiplyStrip:
 
 **************
 Multiply Strip

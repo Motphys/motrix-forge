@@ -13,7 +13,6 @@ The currently available languages can be checked on the
 or in the `underlying git repository <https://projects.blender.org/blender/blender-manual-translations>`__.
 
 
-===================
 Simple Contribution
 ===================
 
@@ -27,7 +26,6 @@ Weblate also provides tools such as the
 `glossary <https://translate.blender.org/projects/blender-manual/glossary/>`__ to improve translation consistency.
 
 
-===================
 Advanced Operations
 ===================
 
@@ -46,14 +44,14 @@ the platform.
 
 
 Installing
-==========
+----------
 
 Before proceeding with translation tasks, ensure the manual builds correctly by following the
 :ref:`Getting Started <about-getting-started>` section.
 
 
 Language Files
---------------
+^^^^^^^^^^^^^^
 
 Run the following command from the manual's root directory::
 
@@ -81,14 +79,14 @@ Alternatively, download the PO files directly from Weblate by navigating to the 
 
 
 PO-File Editor
---------------
+^^^^^^^^^^^^^^
 
 To edit the PO files, install a PO-file editor to modify the translation files. `Poedit <https://poedit.net/>`__ is
 recommended, but other editors are also suitable.
 
 
 Building with Translations
-==========================
+--------------------------
 
 To build the manual with translations applied run the following commands in a terminal:
 
@@ -103,7 +101,7 @@ To build the manual with translations applied run the following commands in a te
 
 
 Editing Translation Files
-=========================
+-------------------------
 
 The PO files in the ``LC_MESSAGES`` folder include:
 
@@ -126,12 +124,12 @@ The PO files in the ``LC_MESSAGES`` folder include:
 
 
 Maintenance
-===========
+-----------
 
 .. _translations-fuzzy-strings:
 
 Keeping Track of Fuzzy Strings
-------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 When the manual is updated, outdated translations are marked as fuzzy. To track these run::
 
@@ -147,7 +145,7 @@ This lists files with fuzzy or empty strings. For more options, see::
 
 
 Updating PO Files
------------------
+^^^^^^^^^^^^^^^^^
 
 Administrators regularly update PO files to match the latest English manual (typically weekly). The last update can be
 checked on the

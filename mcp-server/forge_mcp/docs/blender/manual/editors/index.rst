@@ -23,7 +23,8 @@ See :doc:`User Interface </interface/index>` for documentation on the general in
    The Editor Type selector.
 
 
-.. rubric:: General
+General
+=======
 
 .. toctree::
    :maxdepth: 1
@@ -39,7 +40,8 @@ See :doc:`User Interface </interface/index>` for documentation on the general in
    clip/index.rst
 
 
-.. rubric:: Animation
+Animation
+=========
 
 .. toctree::
    :maxdepth: 1
@@ -51,7 +53,8 @@ See :doc:`User Interface </interface/index>` for documentation on the general in
    nla/index.rst
 
 
-.. rubric:: Scripting
+Scripting
+=========
 
 .. toctree::
    :maxdepth: 1
@@ -61,7 +64,8 @@ See :doc:`User Interface </interface/index>` for documentation on the general in
    info_editor.rst
 
 
-.. rubric:: Data
+Data
+====
 
 .. toctree::
    :maxdepth: 1

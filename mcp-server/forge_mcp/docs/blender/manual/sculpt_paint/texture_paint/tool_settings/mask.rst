@@ -27,7 +27,7 @@ UV Layer
 Display Color
    Mask color in the viewport. See :ref:`ui-color-picker`.
 
-   Invert Stencil (black/white icon)
+   :bl-icon:`image_alpha` Invert
       Inverts the mask.
 
 

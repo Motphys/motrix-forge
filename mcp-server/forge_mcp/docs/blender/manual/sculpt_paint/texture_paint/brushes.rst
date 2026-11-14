@@ -13,8 +13,8 @@ Available brush types are listed here, together with brushes from the
 
 
 Draw
-   Brushes: Paint Hard, Paint Soft, Paint Hard Pressure, Paint Soft Pressure, Erase Hard, Erase Soft, Erase Hard
-   Pressure
+   Brushes: Paint Hard, Paint Soft, Paint Hard Pressure, Paint Soft Pressure,
+   Erase Hard, Erase Soft, Erase Hard Pressure, Erase Pixel Art, Paint Pixel Art.
 
    The normal brush, draws a swath of color.
 
@@ -111,3 +111,20 @@ Mask
 
       A simpler alternative is to use the face selection mask.
       See :ref:`Face Selection Masking <bpy.types.Mesh.use_paint_mask>` for details.
+
+
+Brush Assets
+============
+
+Pixel Art Brushes
+-----------------
+
+Paint Pixel Art
+   Brush Type: Draw
+
+   Paint specific pixels (Only supported in the Image Editor).
+
+Erase Pixel Art
+   Brush Type: Draw
+
+   Erase pixels in the alpha channel of the texture (Only supported in the Image Editor).

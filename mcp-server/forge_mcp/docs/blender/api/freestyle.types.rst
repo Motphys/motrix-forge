@@ -91,7 +91,7 @@ Class hierarchy:
 - :class:`MediumType`
 - :class:`Nature`
 
-.. class:: freestyle.types.AdjacencyIterator
+.. class:: AdjacencyIterator
 
    Class hierarchy: :class:`Iterator` > :class:`AdjacencyIterator`
    
@@ -100,21 +100,25 @@ Class hierarchy:
    decrement() methods of a :class:`ChainingIterator` and passed to the
    traverse() method of the ChainingIterator.
    
-   .. method:: __init__()
-               __init__(brother)
-               __init__(vertex, restrict_to_selection=True, restrict_to_unvisited=True)
+   .. method:: __init__(*args, **kwargs)
+   
+      Accepted call signatures:
+   
+      - ``__init__()``
+      - ``__init__(brother)``
+      - ``__init__(vertex, restrict_to_selection=True, restrict_to_unvisited=True)``
    
       Builds an :class:`AdjacencyIterator` using the default constructor,
       copy constructor or the overloaded constructor.
    
-      :arg brother: An AdjacencyIterator object.
+      :param brother: An AdjacencyIterator object.
       :type brother: :class:`AdjacencyIterator`
-      :arg vertex: The vertex which is the next crossing.
+      :param vertex: The vertex which is the next crossing.
       :type vertex: :class:`ViewVertex`
-      :arg restrict_to_selection: Indicates whether to force the chaining
+      :param restrict_to_selection: Indicates whether to force the chaining
          to stay within the set of selected ViewEdges or not.
       :type restrict_to_selection: bool
-      :arg restrict_to_unvisited: Indicates whether a ViewEdge that has
+      :param restrict_to_unvisited: Indicates whether a ViewEdge that has
          already been chained must be ignored ot not.
       :type restrict_to_unvisited: bool
 
@@ -133,9 +137,19 @@ Class hierarchy:
       :type: :class:`ViewEdge`
 
 
+   .. details:: Special Methods
+
+      .. method:: __iter__()
+
+         :rtype: :class:`AdjacencyIterator`
+
+      .. method:: __next__()
+
+         :rtype: Any
 
 
-.. class:: freestyle.types.BBox
+
+.. class:: BBox
 
    Class for representing a bounding box.
    
@@ -143,9 +157,15 @@ Class hierarchy:
    
       Default constructor.
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.BinaryPredicate0D
+
+.. class:: BinaryPredicate0D
 
    Base class for binary predicates working on :class:`Interface0D`
    objects. A BinaryPredicate0D is typically an ordering relation
@@ -162,9 +182,9 @@ Class hierarchy:
       Must be overload by inherited classes. It evaluates a relation
       between two Interface0D objects.
    
-      :arg inter1: The first Interface0D object.
+      :param inter1: The first Interface0D object.
       :type inter1: :class:`Interface0D`
-      :arg inter2: The second Interface0D object.
+      :param inter2: The second Interface0D object.
       :type inter2: :class:`Interface0D`
       :return: True or false.
       :rtype: bool
@@ -176,9 +196,15 @@ Class hierarchy:
       :type: str
 
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.BinaryPredicate1D
+
+.. class:: BinaryPredicate1D
 
    Base class for binary predicates working on :class:`Interface1D`
    objects. A BinaryPredicate1D is typically an ordering relation
@@ -195,9 +221,9 @@ Class hierarchy:
       Must be overload by inherited classes. It evaluates a relation
       between two Interface1D objects.
    
-      :arg inter1: The first Interface1D object.
+      :param inter1: The first Interface1D object.
       :type inter1: :class:`Interface1D`
-      :arg inter2: The second Interface1D object.
+      :param inter2: The second Interface1D object.
       :type inter2: :class:`Interface1D`
       :return: True or false.
       :rtype: bool
@@ -209,9 +235,15 @@ Class hierarchy:
       :type: str
 
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.Chain
+
+.. class:: Chain
 
    Class hierarchy: :class:`Interface1D` > :class:`Curve` > :class:`Chain`
    
@@ -219,26 +251,29 @@ Class hierarchy:
    Chain is the last step before the :class:`Stroke` and is used in the
    Splitting and Creation processes.
    
-   .. method:: __init__()
-               __init__(brother)
-               __init__(id)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__()``
+      - ``__init__(brother)``
+      - ``__init__(id)``
    
       Builds a :class:`Chain` using the default constructor,
       copy constructor or from an :class:`Id`.
    
-      :arg brother: A Chain object.
+      :param brother: A Chain object.
       :type brother: :class:`Chain`
-      :arg id: An Id object.
+      :param id: An Id object.
       :type id: :class:`Id`
 
    .. method:: push_viewedge_back(viewedge, orientation)
    
       Adds a ViewEdge at the end of the Chain.
    
-      :arg viewedge: The ViewEdge that must be added.
+      :param viewedge: The ViewEdge that must be added.
       :type viewedge: :class:`ViewEdge`
-      :arg orientation: The orientation with which the ViewEdge must be
-         processed.
+      :param orientation: The orientation with which the ViewEdge must be processed.
       :type orientation: bool
 
 
@@ -246,16 +281,16 @@ Class hierarchy:
    
       Adds a ViewEdge at the beginning of the Chain.
    
-      :arg viewedge: The ViewEdge that must be added.
+      :param viewedge: The ViewEdge that must be added.
       :type viewedge: :class:`ViewEdge`
-      :arg orientation: The orientation with which the ViewEdge must be
+      :param orientation: The orientation with which the ViewEdge must be
          processed.
       :type orientation: bool
 
 
 
 
-.. class:: freestyle.types.ChainingIterator
+.. class:: ChainingIterator
 
    Class hierarchy: :class:`Iterator` > :class:`ViewEdgeIterator` > :class:`ChainingIterator`
    
@@ -268,24 +303,28 @@ Class hierarchy:
    they will be included in the adjacency iterator (i.e, the adjacent
    iterator will only stop on "valid" edges).
    
-   .. method:: __init__(restrict_to_selection=True, restrict_to_unvisited=True,                     begin=None, orientation=True)
-               __init__(brother)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__(restrict_to_selection=True, restrict_to_unvisited=True, begin=None, orientation=True)``
+      - ``__init__(brother)``
    
       Builds a Chaining Iterator from the first ViewEdge used for
       iteration and its orientation or by using the copy constructor.
    
-      :arg restrict_to_selection: Indicates whether to force the chaining
+      :param restrict_to_selection: Indicates whether to force the chaining
          to stay within the set of selected ViewEdges or not.
       :type restrict_to_selection: bool
-      :arg restrict_to_unvisited: Indicates whether a ViewEdge that has
+      :param restrict_to_unvisited: Indicates whether a ViewEdge that has
          already been chained must be ignored ot not.
       :type restrict_to_unvisited: bool
-      :arg begin: The ViewEdge from which to start the chain.
+      :param begin: The ViewEdge from which to start the chain.
       :type begin: :class:`ViewEdge` | None
-      :arg orientation: The direction to follow to explore the graph. If
+      :param orientation: The direction to follow to explore the graph. If
          true, the direction indicated by the first ViewEdge is used.
       :type orientation: bool
-      :arg brother: 
+      :param brother: 
       :type brother: ChainingIterator
 
    .. method:: init()
@@ -301,7 +340,7 @@ Class hierarchy:
       the one that will be followed next. Returns the next ViewEdge to
       follow or None when the end of the chain is reached.
    
-      :arg it: The iterator over the ViewEdges adjacent to the end vertex
+      :param it: The iterator over the ViewEdges adjacent to the end vertex
          of the current ViewEdge. The adjacency iterator reflects the
          restriction rules by only iterating over the valid ViewEdges.
       :type it: :class:`AdjacencyIterator`
@@ -332,7 +371,7 @@ Class hierarchy:
 
 
 
-.. class:: freestyle.types.Curve
+.. class:: Curve
 
    Class hierarchy: :class:`Interface1D` > :class:`Curve`
    
@@ -340,23 +379,27 @@ Class hierarchy:
    type of the initial curve vertices. A :class:`Chain` is a
    specialization of a Curve.
    
-   .. method:: __init__()
-               __init__(brother)
-               __init__(id)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__()``
+      - ``__init__(brother)``
+      - ``__init__(id)``
    
       Builds a :class:`FrsCurve` using a default constructor,
       copy constructor or from an :class:`Id`.
    
-      :arg brother: A Curve object.
+      :param brother: A Curve object.
       :type brother: :class:`Curve`
-      :arg id: An Id object.
+      :param id: An Id object.
       :type id: :class:`Id`
 
    .. method:: push_vertex_back(vertex)
    
       Adds a single vertex at the end of the Curve.
    
-      :arg vertex: A vertex object.
+      :param vertex: A vertex object.
       :type vertex: :class:`SVertex` | :class:`CurvePoint`
 
 
@@ -364,7 +407,7 @@ Class hierarchy:
    
       Adds a single vertex at the front of the Curve.
    
-      :arg vertex: A vertex object.
+      :param vertex: A vertex object.
       :type vertex: :class:`SVertex` | :class:`CurvePoint`
 
 
@@ -384,7 +427,7 @@ Class hierarchy:
 
 
 
-.. class:: freestyle.types.CurvePoint
+.. class:: CurvePoint
 
    Class hierarchy: :class:`Interface0D` > :class:`CurvePoint`
    
@@ -397,27 +440,31 @@ Class hierarchy:
    as virtual points while querying 0D information along a curve at a
    given resolution.
    
-   .. method:: __init__()
-               __init__(brother)
-               __init__(first_vertex, second_vertex, t2d)
-               __init__(first_point, second_point, t2d)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__()``
+      - ``__init__(brother)``
+      - ``__init__(first_vertex, second_vertex, t2d)``
+      - ``__init__(first_point, second_point, t2d)``
    
       Builds a CurvePoint using the default constructor, copy constructor,
       or one of the overloaded constructors. The over loaded constructors
       can either take two :class:`SVertex` or two :class:`CurvePoint`
       objects and an interpolation parameter
    
-      :arg brother: A CurvePoint object.
+      :param brother: A CurvePoint object.
       :type brother: :class:`CurvePoint`
-      :arg first_vertex: The first SVertex.
+      :param first_vertex: The first SVertex.
       :type first_vertex: :class:`SVertex`
-      :arg second_vertex: The second SVertex.
+      :param second_vertex: The second SVertex.
       :type second_vertex: :class:`SVertex`
-      :arg first_point: The first CurvePoint.
+      :param first_point: The first CurvePoint.
       :type first_point: :class:`CurvePoint`
-      :arg second_point: The second CurvePoint.
+      :param second_point: The second CurvePoint.
       :type second_point: :class:`CurvePoint`
-      :arg t2d: A 2D interpolation parameter used to linearly interpolate
+      :param t2d: A 2D interpolation parameter used to linearly interpolate
                 first_vertex and second_vertex or first_point and second_point.
       :type t2d: float
 
@@ -452,7 +499,7 @@ Class hierarchy:
 
 
 
-.. class:: freestyle.types.CurvePointIterator
+.. class:: CurvePointIterator
 
    Class hierarchy: :class:`Iterator` > :class:`CurvePointIterator`
    
@@ -460,16 +507,20 @@ Class hierarchy:
    outside initial vertices. A CurvePoint is instantiated and returned
    through the .object attribute.
    
-   .. method:: __init__()
-               __init__(brother)
-               __init__(step=0.0)
+   .. method:: __init__(*args, **kwargs)
+   
+      Accepted call signatures:
+   
+      - ``__init__()``
+      - ``__init__(brother)``
+      - ``__init__(step=0.0)``
    
       Builds a CurvePointIterator object using either the default constructor,
       copy constructor, or the overloaded constructor.
    
-      :arg brother: A CurvePointIterator object.
+      :param brother: A CurvePointIterator object.
       :type brother: :class:`CurvePointIterator`
-      :arg step: A resampling resolution with which the curve is resampled.
+      :param step: A resampling resolution with which the curve is resampled.
          If zero, no resampling is done (i.e., the iterator iterates over
          initial vertices).
       :type step: float
@@ -497,7 +548,7 @@ Class hierarchy:
 
 
 
-.. class:: freestyle.types.FEdge
+.. class:: FEdge
 
    Class hierarchy: :class:`Interface1D` > :class:`FEdge`
    
@@ -511,17 +562,21 @@ Class hierarchy:
    into a smooth and a sharp version since their properties slightly vary
    from one to the other.
    
-   .. method:: FEdge()
-               FEdge(brother)
+   .. method:: FEdge(*args)
+   
+      Accepted call signatures:
+   
+      - ``FEdge()``
+      - ``FEdge(brother)``
    
       Builds an :class:`FEdge` using the default constructor,
       copy constructor, or between two :class:`SVertex` objects.
    
-      :arg brother: An FEdge object.
+      :param brother: An FEdge object.
       :type brother: :class:`FEdge`
-      :arg first_vertex: The first SVertex.
+      :param first_vertex: The first SVertex.
       :type first_vertex: :class:`SVertex`
-      :arg second_vertex: The second SVertex.
+      :param second_vertex: The second SVertex.
       :type second_vertex: :class:`SVertex`
 
    .. attribute:: first_svertex
@@ -582,9 +637,21 @@ Class hierarchy:
       :type: :class:`ViewEdge`
 
 
+   .. details:: Special Methods
+
+      .. method:: __getitem__(key)
+
+         :param key: Index or key.
+         :type key: int
+         :rtype: float
+
+      .. method:: __len__()
+
+         :rtype: int
 
 
-.. class:: freestyle.types.FEdgeSharp
+
+.. class:: FEdgeSharp
 
    Class hierarchy: :class:`Interface1D` > :class:`FEdge` > :class:`FEdgeSharp`
    
@@ -595,18 +662,22 @@ Class hierarchy:
    border edge, then it doesn't have any face on its right, and thus Face
    a is None.
    
-   .. method:: __init__()
-               __init__(brother)
-               __init__(first_vertex, second_vertex)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__()``
+      - ``__init__(brother)``
+      - ``__init__(first_vertex, second_vertex)``
    
       Builds an :class:`FEdgeSharp` using the default constructor,
       copy constructor, or between two :class:`SVertex` objects.
    
-      :arg brother: An FEdgeSharp object.
+      :param brother: An FEdgeSharp object.
       :type brother: :class:`FEdgeSharp`
-      :arg first_vertex: The first SVertex object.
+      :param first_vertex: The first SVertex object.
       :type first_vertex: :class:`SVertex`
-      :arg second_vertex: The second SVertex object.
+      :param second_vertex: The second SVertex object.
       :type second_vertex: :class:`SVertex`
 
    .. attribute:: face_mark_left
@@ -673,7 +744,7 @@ Class hierarchy:
 
 
 
-.. class:: freestyle.types.FEdgeSmooth
+.. class:: FEdgeSmooth
 
    Class hierarchy: :class:`Interface1D` > :class:`FEdge` > :class:`FEdgeSmooth`
    
@@ -681,18 +752,22 @@ Class hierarchy:
    a face of the input mesh. It can be a silhouette, a ridge or valley,
    a suggestive contour.
    
-   .. method:: __init__()
-               __init__(brother)
-               __init__(first_vertex, second_vertex)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__()``
+      - ``__init__(brother)``
+      - ``__init__(first_vertex, second_vertex)``
    
       Builds an :class:`FEdgeSmooth` using the default constructor,
       copy constructor, or between two :class:`SVertex`.
    
-      :arg brother: An FEdgeSmooth object.
+      :param brother: An FEdgeSmooth object.
       :type brother: :class:`FEdgeSmooth`
-      :arg first_vertex: The first SVertex object.
+      :param first_vertex: The first SVertex object.
       :type first_vertex: :class:`SVertex`
-      :arg second_vertex: The second SVertex object.
+      :param second_vertex: The second SVertex object.
       :type second_vertex: :class:`SVertex`
 
    .. attribute:: face_mark
@@ -725,19 +800,24 @@ Class hierarchy:
 
 
 
-.. class:: freestyle.types.Id
+.. class:: Id
 
    Class for representing an object Id.
    
-   .. method:: __init__(brother)
-               __init__(first=0, second=0)
+   .. method:: __init__(*args, **kwargs)
+   
+      Accepted call signatures:
+   
+      - ``__init__(brother)``
+      - ``__init__(first=0, second=0)``
    
       Build the Id from two numbers or another :class:`Id` using the copy constructor.
    
-      :arg brother: An Id object.
-      :type brother: :class:`Id`   :arg first: The first number.
+      :param brother: An Id object.
+      :type brother: :class:`Id`
+      :param first: The first number.
       :type first: int
-      :arg second: The second number.
+      :param second: The second number.
       :type second: int
 
    .. attribute:: first
@@ -754,30 +834,86 @@ Class hierarchy:
       :type: int
 
 
+   .. details:: Special Methods
+
+      .. method:: __eq__(other)
+
+         :param other: The other operand.
+         :type other: object
+         :rtype: bool
+
+      .. method:: __ge__(other)
+
+         :param other: The other operand.
+         :type other: Self
+         :rtype: bool
+
+      .. method:: __gt__(other)
+
+         :param other: The other operand.
+         :type other: Self
+         :rtype: bool
+
+      .. method:: __le__(other)
+
+         :param other: The other operand.
+         :type other: Self
+         :rtype: bool
+
+      .. method:: __lt__(other)
+
+         :param other: The other operand.
+         :type other: Self
+         :rtype: bool
+
+      .. method:: __ne__(other)
+
+         :param other: The other operand.
+         :type other: object
+         :rtype: bool
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.IntegrationType
+
+.. class:: IntegrationType
 
    Class hierarchy: int > :class:`IntegrationType`
    
    Different integration methods that can be invoked to integrate into a
    single value the set of values obtained from each 0D element of an 1D
-   element:
+   element.
    
-   * IntegrationType.MEAN: The value computed for the 1D element is the
-     mean of the values obtained for the 0D elements.
-   * IntegrationType.MIN: The value computed for the 1D element is the
-     minimum of the values obtained for the 0D elements.
-   * IntegrationType.MAX: The value computed for the 1D element is the
-     maximum of the values obtained for the 0D elements.
-   * IntegrationType.FIRST: The value computed for the 1D element is the
-     first of the values obtained for the 0D elements.
-   * IntegrationType.LAST: The value computed for the 1D element is the
-     last of the values obtained for the 0D elements.
+   .. attribute:: MEAN
+   
+      The value computed for the 1D element is the mean of the values
+      obtained for the 0D elements.
+   
+   .. attribute:: MIN
+   
+      The value computed for the 1D element is the minimum of the values
+      obtained for the 0D elements.
+   
+   .. attribute:: MAX
+   
+      The value computed for the 1D element is the maximum of the values
+      obtained for the 0D elements.
+   
+   .. attribute:: FIRST
+   
+      The value computed for the 1D element is the first of the values
+      obtained for the 0D elements.
+   
+   .. attribute:: LAST
+   
+      The value computed for the 1D element is the last of the values
+      obtained for the 0D elements.
 
 
 
-.. class:: freestyle.types.Interface0D
+.. class:: Interface0D
 
    Base class for any 0D element.
    
@@ -790,7 +926,7 @@ Class hierarchy:
       Returns the FEdge that lies between this 0D element and the 0D
       element given as the argument.
    
-      :arg inter: A 0D element.
+      :param inter: A 0D element.
       :type inter: :class:`Interface0D`
       :return: The FEdge lying between the two 0D elements.
       :rtype: :class:`FEdge`
@@ -852,26 +988,35 @@ Class hierarchy:
       :type: float
 
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.Interface0DIterator
+
+.. class:: Interface0DIterator
 
    Class hierarchy: :class:`Iterator` > :class:`Interface0DIterator`
    
    Class defining an iterator over Interface0D elements. An instance of
    this iterator is always obtained from a 1D element.
    
-   .. method:: __init__(brother)
-               __init__(it)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__(brother)``
+      - ``__init__(it)``
    
       Construct a nested Interface0DIterator using either the copy constructor
-      or the constructor that takes an he argument of a Function0D.
+      or the constructor that takes an argument of a Function0D.
    
-      :arg brother: An Interface0DIterator object.
+      :param brother: An Interface0DIterator object.
       :type brother: :class:`Interface0DIterator`
-      :arg it: An iterator object to be nested.
-      :type it: :class:`SVertexIterator`, :class:`CurvePointIterator`, or
-         :class:`StrokeVertexIterator`
+      :param it: An iterator object to be nested.
+      :type it: :class:`SVertexIterator` | :class:`CurvePointIterator` | :class:`StrokeVertexIterator`
 
    .. attribute:: at_last
 
@@ -883,12 +1028,13 @@ Class hierarchy:
 
    .. attribute:: object
 
-      The 0D object currently pointed to by this iterator. Note that the object
-      may be an instance of an Interface0D subclass. For example if the iterator
-      has been created from the `vertices_begin()` method of the :class:`Stroke`
-      class, the .object property refers to a :class:`StrokeVertex` object.
+      The 0D object currently pointed to by this iterator. The object may be an
+      instance of :class:`Interface0D` or one of its subclasses. For example if
+      the iterator has been created from the `vertices_begin()` method of the
+      :class:`Stroke` class, the .object property refers to a :class:`StrokeVertex`
+      object.
       
-      :type: :class:`Interface0D` or one of its subclasses.
+      :type: :class:`Interface0D`
 
 
    .. attribute:: t
@@ -905,9 +1051,19 @@ Class hierarchy:
       :type: float
 
 
+   .. details:: Special Methods
+
+      .. method:: __iter__()
+
+         :rtype: :class:`Interface0DIterator`
+
+      .. method:: __next__()
+
+         :rtype: Any
 
 
-.. class:: freestyle.types.Interface1D
+
+.. class:: Interface1D
 
    Base class for any 1D element.
    
@@ -922,7 +1078,7 @@ Class hierarchy:
       iterate over points of the 1D element at a any given sampling.
       Indeed, for each iteration, a virtual point is created.
    
-      :arg t: A sampling with which we want to iterate over points of
+      :param t: A sampling with which we want to iterate over points of
          this 1D element.
       :type t: float
       :return: An Interface0DIterator pointing to the first point.
@@ -936,7 +1092,7 @@ Class hierarchy:
       iterate over points of the 1D element at a given sampling. Indeed,
       for each iteration, a virtual point is created.
    
-      :arg t: A sampling with which we want to iterate over points of
+      :param t: A sampling with which we want to iterate over points of
          this 1D element.
       :type t: float
       :return: An Interface0DIterator pointing after the last point.
@@ -996,9 +1152,15 @@ Class hierarchy:
       :type: int
 
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.Iterator
+
+.. class:: Iterator
 
    Base class to define iterators.
    
@@ -1037,34 +1199,44 @@ Class hierarchy:
       :type: str
 
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.Material
+
+.. class:: Material
 
    Class defining a material.
    
-   .. method:: __init__()
-               __init__(brother)
-               __init__(line, diffuse, ambient, specular, emission, shininess, priority)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__()``
+      - ``__init__(brother)``
+      - ``__init__(line, diffuse, ambient, specular, emission, shininess, priority)``
    
       Creates a :class:`FrsMaterial` using either default constructor,
       copy constructor, or an overloaded constructor
    
-      :arg brother: A Material object to be used as a copy constructor.
+      :param brother: A Material object to be used as a copy constructor.
       :type brother: :class:`Material`
-      :arg line: The line color.
+      :param line: The line color.
       :type line: :class:`mathutils.Vector` | tuple[float, float, float, float] | list[float]
-      :arg diffuse: The diffuse color.
+      :param diffuse: The diffuse color.
       :type diffuse: 
-      :arg ambient: The ambient color.
+      :param ambient: The ambient color.
       :type ambient: :class:`mathutils.Vector` | tuple[float, float, float, float] | list[float]
-      :arg specular: The specular color.
+      :param specular: The specular color.
       :type specular: :class:`mathutils.Vector` | tuple[float, float, float, float] | list[float]
-      :arg emission: The emissive color.
+      :param emission: The emissive color.
       :type emission: :class:`mathutils.Vector` | tuple[float, float, float, float] | list[float]
-      :arg shininess: The shininess coefficient.
+      :param shininess: The shininess coefficient.
       :type shininess: float
-      :arg priority: The line color priority.
+      :param priority: The line color priority.
       :type priority: int
 
    .. attribute:: ambient
@@ -1116,9 +1288,55 @@ Class hierarchy:
       :type: :class:`mathutils.Vector`
 
 
+   .. details:: Special Methods
+
+      .. method:: __eq__(other)
+
+         :param other: The other operand.
+         :type other: object
+         :rtype: bool
+
+      .. method:: __ge__(other)
+
+         :param other: The other operand.
+         :type other: Self
+         :rtype: bool
+
+      .. method:: __gt__(other)
+
+         :param other: The other operand.
+         :type other: Self
+         :rtype: bool
+
+      .. method:: __hash__()
+
+         :rtype: int
+
+      .. method:: __le__(other)
+
+         :param other: The other operand.
+         :type other: Self
+         :rtype: bool
+
+      .. method:: __lt__(other)
+
+         :param other: The other operand.
+         :type other: Self
+         :rtype: bool
+
+      .. method:: __ne__(other)
+
+         :param other: The other operand.
+         :type other: object
+         :rtype: bool
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.MediumType
+
+.. class:: MediumType
 
    Class hierarchy: int > :class:`MediumType`
    
@@ -1131,7 +1349,7 @@ Class hierarchy:
 
 
 
-.. class:: freestyle.types.Nature
+.. class:: Nature
 
    Class hierarchy: int > :class:`Nature`
    
@@ -1139,29 +1357,71 @@ Class hierarchy:
    
    Vertex natures:
    
-   * Nature.POINT: True for any 0D element.
-   * Nature.S_VERTEX: True for SVertex.
-   * Nature.VIEW_VERTEX: True for ViewVertex.
-   * Nature.NON_T_VERTEX: True for NonTVertex.
-   * Nature.T_VERTEX: True for TVertex.
-   * Nature.CUSP: True for CUSP.
+   .. attribute:: POINT
+   
+      True for any 0D element.
+   
+   .. attribute:: S_VERTEX
+   
+      True for SVertex.
+   
+   .. attribute:: VIEW_VERTEX
+   
+      True for ViewVertex.
+   
+   .. attribute:: NON_T_VERTEX
+   
+      True for NonTVertex.
+   
+   .. attribute:: T_VERTEX
+   
+      True for TVertex.
+   
+   .. attribute:: CUSP
+   
+      True for CUSP.
    
    Edge natures:
    
-   * Nature.NO_FEATURE: True for non feature edges (always false for 1D
-     elements of the ViewMap).
-   * Nature.SILHOUETTE: True for silhouettes.
-   * Nature.BORDER: True for borders.
-   * Nature.CREASE: True for creases.
-   * Nature.RIDGE: True for ridges.
-   * Nature.VALLEY: True for valleys.
-   * Nature.SUGGESTIVE_CONTOUR: True for suggestive contours.
-   * Nature.MATERIAL_BOUNDARY: True for edges at material boundaries.
-   * Nature.EDGE_MARK: True for edges having user-defined edge marks.
+   .. attribute:: NO_FEATURE
+   
+      True for non feature edges (always false for 1D elements of the ViewMap).
+   
+   .. attribute:: SILHOUETTE
+   
+      True for silhouettes.
+   
+   .. attribute:: BORDER
+   
+      True for borders.
+   
+   .. attribute:: CREASE
+   
+      True for creases.
+   
+   .. attribute:: RIDGE
+   
+      True for ridges.
+   
+   .. attribute:: VALLEY
+   
+      True for valleys.
+   
+   .. attribute:: SUGGESTIVE_CONTOUR
+   
+      True for suggestive contours.
+   
+   .. attribute:: MATERIAL_BOUNDARY
+   
+      True for edges at material boundaries.
+   
+   .. attribute:: EDGE_MARK
+   
+      True for edges having user-defined edge marks.
 
 
 
-.. class:: freestyle.types.Noise
+.. class:: Noise
 
    Class to provide Perlin noise functionalities.
    
@@ -1171,7 +1431,7 @@ Class hierarchy:
       as a seed for random number generation if it is equal to or greater than zero;
       otherwise, time is used as a seed.
    
-      :arg seed: Seed for random number generation.
+      :param seed: Seed for random number generation.
       :type seed: int
 
    Undocumented, consider `contributing <https://developer.blender.org/>`__.
@@ -1181,7 +1441,7 @@ Class hierarchy:
    
       Returns a smooth noise value for a 1D element.
    
-      :arg v: One-dimensional sample point.
+      :param v: One-dimensional sample point.
       :type v: float
       :return: A smooth noise value.
       :rtype: float
@@ -1191,7 +1451,7 @@ Class hierarchy:
    
       Returns a smooth noise value for a 2D element.
    
-      :arg v: Two-dimensional sample point.
+      :param v: Two-dimensional sample point.
       :type v: :class:`mathutils.Vector` | tuple[float, float] | list[float]
       :return: A smooth noise value.
       :rtype: float
@@ -1201,7 +1461,7 @@ Class hierarchy:
    
       Returns a smooth noise value for a 3D element.
    
-      :arg v: Three-dimensional sample point.
+      :param v: Three-dimensional sample point.
       :type v: :class:`mathutils.Vector` | tuple[float, float, float] | list[float]
       :return: A smooth noise value.
       :rtype: float
@@ -1211,13 +1471,13 @@ Class hierarchy:
    
       Returns a noise value for a 1D element.
    
-      :arg v: One-dimensional sample point.
+      :param v: One-dimensional sample point.
       :type v: float
-      :arg freq: Noise frequency.
+      :param freq: Noise frequency.
       :type freq: float
-      :arg amp: Amplitude.
+      :param amp: Amplitude.
       :type amp: float
-      :arg oct: Number of octaves.
+      :param oct: Number of octaves.
       :type oct: int
       :return: A noise value.
       :rtype: float
@@ -1227,13 +1487,13 @@ Class hierarchy:
    
       Returns a noise value for a 2D element.
    
-      :arg v: Two-dimensional sample point.
+      :param v: Two-dimensional sample point.
       :type v: :class:`mathutils.Vector` | tuple[float, float] | list[float]
-      :arg freq: Noise frequency.
+      :param freq: Noise frequency.
       :type freq: float
-      :arg amp: Amplitude.
+      :param amp: Amplitude.
       :type amp: float
-      :arg oct: Number of octaves.
+      :param oct: Number of octaves.
       :type oct: int
       :return: A noise value.
       :rtype: float
@@ -1243,13 +1503,13 @@ Class hierarchy:
    
       Returns a noise value for a 3D element.
    
-      :arg v: Three-dimensional sample point.
+      :param v: Three-dimensional sample point.
       :type v: :class:`mathutils.Vector` | tuple[float, float, float] | list[float]
-      :arg freq: Noise frequency.
+      :param freq: Noise frequency.
       :type freq: float
-      :arg amp: Amplitude.
+      :param amp: Amplitude.
       :type amp: float
-      :arg oct: Number of octaves.
+      :param oct: Number of octaves.
       :type oct: int
       :return: A noise value.
       :rtype: float
@@ -1258,21 +1518,31 @@ Class hierarchy:
    Undocumented, consider `contributing <https://developer.blender.org/>`__.
 
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.NonTVertex
+
+.. class:: NonTVertex
 
    Class hierarchy: :class:`Interface0D` > :class:`ViewVertex` > :class:`NonTVertex`
    
    View vertex for corners, cusps, etc. associated to a single SVertex.
    Can be associated to 2 or more view edges.
    
-   .. method:: __init__()
-               __init__(svertex)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__()``
+      - ``__init__(svertex)``
    
       Builds a :class:`NonTVertex` using the default constructor or a :class:`SVertex`.
    
-      :arg svertex: An SVertex object.
+      :param svertex: An SVertex object.
       :type svertex: :class:`SVertex`
 
    .. attribute:: svertex
@@ -1284,15 +1554,19 @@ Class hierarchy:
 
 
 
-.. class:: freestyle.types.Operators
+.. class:: Operators
 
    Class defining the operators used in a style module. There are five
    types of operators: Selection, chaining, splitting, sorting and
    creation. All these operators are user controlled through functors,
    predicates and shaders that are taken as arguments.
 
-   .. staticmethod:: bidirectional_chain(it, pred)
-                     bidirectional_chain(it)
+   .. staticmethod:: bidirectional_chain(*args)
+   
+      Accepted call signatures:
+   
+      - ``bidirectional_chain(it, pred)``
+      - ``bidirectional_chain(it)``
    
       Builds a set of chains from the current set of ViewEdges. Each
       ViewEdge of the current list potentially starts a new chain. The
@@ -1306,16 +1580,20 @@ Class hierarchy:
       chaining time stamp is incremented. This allows you to keep track of
       the number of chains to which a ViewEdge belongs to.
    
-      :arg it: The ChainingIterator on the ViewEdges of the ViewMap. It
+      :param it: The ChainingIterator on the ViewEdges of the ViewMap. It
          contains the chaining rule.
       :type it: :class:`ChainingIterator`
-      :arg pred: The predicate on the ViewEdge that expresses the stopping condition.
+      :param pred: The predicate on the ViewEdge that expresses the stopping condition.
          This parameter is optional, you make not want to pass a stopping criterion
          when the stopping criterion is already contained in the iterator definition.
       :type pred: :class:`UnaryPredicate1D`
 
-   .. staticmethod:: chain(it, pred, modifier)
-                     chain(it, pred)
+   .. staticmethod:: chain(*args)
+   
+      Accepted call signatures:
+   
+      - ``chain(it, pred, modifier)``
+      - ``chain(it, pred)``
    
       Builds a set of chains from the current set of ViewEdges. Each
       ViewEdge of the current list starts a new chain. The chaining
@@ -1323,13 +1601,13 @@ Class hierarchy:
       user specified iterator. This operator only iterates using the
       increment operator and is therefore unidirectional.
    
-      :arg it: The iterator on the ViewEdges of the ViewMap. It contains
+      :param it: The iterator on the ViewEdges of the ViewMap. It contains
          the chaining rule.
       :type it: :class:`ViewEdgeIterator`
-      :arg pred: The predicate on the ViewEdge that expresses the
+      :param pred: The predicate on the ViewEdge that expresses the
          stopping condition.
       :type pred: :class:`UnaryPredicate1D`
-      :arg modifier: A function that takes a ViewEdge as argument and
+      :param modifier: A function that takes a ViewEdge as argument and
          that is used to modify the processed ViewEdge state (the
          timestamp incrementation is a typical illustration of such a modifier).
          If this argument is not given, the time stamp is automatically managed.
@@ -1340,17 +1618,17 @@ Class hierarchy:
       Creates and shades the strokes from the current set of chains. A
       predicate can be specified to make a selection pass on the chains.
    
-      :arg pred: The predicate that a chain must verify in order to be
+      :param pred: The predicate that a chain must verify in order to be
          transform as a stroke.
       :type pred: :class:`UnaryPredicate1D`
-      :arg shaders: The list of shaders used to shade the strokes.
+      :param shaders: The list of shaders used to shade the strokes.
       :type shaders: list[:class:`StrokeShader`]
 
    .. staticmethod:: get_chain_from_index(i)
    
       Returns the Chain at the index in the current set of Chains.
    
-      :arg i: index (0 <= i < Operators.get_chains_size()).
+      :param i: index (0 <= i < Operators.get_chains_size()).
       :type i: int
       :return: The Chain object.
       :rtype: :class:`Chain`
@@ -1366,7 +1644,7 @@ Class hierarchy:
    
       Returns the Stroke at the index in the current set of Strokes.
    
-      :arg i: index (0 <= i < Operators.get_strokes_size()).
+      :param i: index (0 <= i < Operators.get_strokes_size()).
       :type i: int
       :return: The Stroke object.
       :rtype: :class:`Stroke`
@@ -1389,13 +1667,17 @@ Class hierarchy:
    
       Returns the ViewEdge at the index in the current set of ViewEdges.
    
-      :arg i: index (0 <= i < Operators.get_view_edges_size()).
+      :param i: index (0 <= i < Operators.get_view_edges_size()).
       :type i: int
       :return: The ViewEdge object.
       :rtype: :class:`ViewEdge`
 
-   .. staticmethod:: recursive_split(func, pred_1d, sampling=0.0)
-                     recursive_split(func, pred_0d, pred_1d, sampling=0.0)
+   .. staticmethod:: recursive_split(*args, **kwargs)
+   
+      Accepted call signatures:
+   
+      - ``recursive_split(func, pred_1d, sampling=0.0)``
+      - ``recursive_split(func, pred_0d, pred_1d, sampling=0.0)``
    
       Splits the current set of chains in a recursive way. We process the
       points of each chain (with a specified sampling) to find the point
@@ -1408,21 +1690,21 @@ Class hierarchy:
       that can potentially be split. A point that doesn't verify the 0D
       predicate won't be candidate in realizing the min.
    
-      :arg func: The Unary Function evaluated at each point of the chain.
+      :param func: The Unary Function evaluated at each point of the chain.
         The splitting point is the point minimizing this function.
       :type func: :class:`UnaryFunction0DDouble`
-      :arg pred_0d: The Unary Predicate 0D used to select the candidate
+      :param pred_0d: The Unary Predicate 0D used to select the candidate
          points where the split can occur. For example, it is very likely
          that would rather have your chain splitting around its middle
          point than around one of its extremities. A 0D predicate working
          on the curvilinear abscissa allows to add this kind of constraints.
       :type pred_0d: :class:`UnaryPredicate0D`
-      :arg pred_1d: The Unary Predicate expressing the recursivity stopping
+      :param pred_1d: The Unary Predicate expressing the recursivity stopping
          condition. This predicate is evaluated for each curve before it
          actually gets split. If pred_1d(chain) is true, the curve won't be
          split anymore.
       :type pred_1d: :class:`UnaryPredicate1D`
-      :arg sampling: The resolution used to sample the chain for the
+      :param sampling: The resolution used to sample the chain for the
          predicates evaluation. (The chain is not actually resampled; a
          virtual point only progresses along the curve using this
          resolution.)
@@ -1433,7 +1715,7 @@ Class hierarchy:
       Resets the line stylization process to the initial state. The results of
       stroke creation are accumulated if **delete_strokes** is set to False.
    
-      :arg delete_strokes: Delete the strokes that are currently stored.
+      :param delete_strokes: Delete the strokes that are currently stored.
       :type delete_strokes: bool
 
    .. staticmethod:: select(pred)
@@ -1441,11 +1723,15 @@ Class hierarchy:
       Selects the ViewEdges of the ViewMap verifying a specified
       condition.
    
-      :arg pred: The predicate expressing this condition.
+      :param pred: The predicate expressing this condition.
       :type pred: :class:`UnaryPredicate1D`
 
-   .. staticmethod:: sequential_split(starting_pred, stopping_pred, sampling=0.0)
-                     sequential_split(pred, sampling=0.0)
+   .. staticmethod:: sequential_split(*args, **kwargs)
+   
+      Accepted call signatures:
+   
+      - ``sequential_split(starting_pred, stopping_pred, sampling=0.0)``
+      - ``sequential_split(pred, sampling=0.0)``
    
       Splits each chain of the current set of chains in a sequential way.
       The points of each chain are processed (with a specified sampling)
@@ -1458,17 +1744,17 @@ Class hierarchy:
          By specifying a starting and stopping predicate allows
          the chains to overlap rather than chains partitioning.
    
-      :arg starting_pred: The predicate on a point that expresses the
+      :param starting_pred: The predicate on a point that expresses the
          starting condition. Each time this condition is verified, a new chain begins
       :type starting_pred: :class:`UnaryPredicate0D`
-      :arg stopping_pred: The predicate on a point that expresses the
+      :param stopping_pred: The predicate on a point that expresses the
          stopping condition. The chain ends as soon as this predicate is verified.
       :type stopping_pred: :class:`UnaryPredicate0D`
-      :arg pred: The predicate on a point that expresses the splitting condition.
+      :param pred: The predicate on a point that expresses the splitting condition.
          Each time the condition is verified, the chain is split into two chains.
          The resulting set of chains is a partition of the initial chain
       :type pred: :class:`UnaryPredicate0D`
-      :arg sampling: The resolution used to sample the chain for the
+      :param sampling: The resolution used to sample the chain for the
          predicates evaluation. (The chain is not actually resampled;
          a virtual point only progresses along the curve using this
          resolution.)
@@ -1479,29 +1765,33 @@ Class hierarchy:
       Sorts the current set of chains (or viewedges) according to the
       comparison predicate given as argument.
    
-      :arg pred: The binary predicate used for the comparison.
+      :param pred: The binary predicate used for the comparison.
       :type pred: :class:`BinaryPredicate1D`
 
 
 
-.. class:: freestyle.types.SShape
+.. class:: SShape
 
    Class to define a feature shape. It is the gathering of feature
    elements from an identified input shape.
    
-   .. method:: __init__()
-               __init__(brother)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__()``
+      - ``__init__(brother)``
    
       Creates a :class:`SShape` class using either a default constructor or copy constructor.
    
-      :arg brother: An SShape object.
+      :param brother: An SShape object.
       :type brother: :class:`SShape`
 
    .. method:: add_edge(edge)
    
       Adds an FEdge to the list of FEdges.
    
-      :arg edge: An FEdge object.
+      :param edge: An FEdge object.
       :type edge: :class:`FEdge`
 
 
@@ -1510,7 +1800,7 @@ Class hierarchy:
       Adds an SVertex to the list of SVertex of this Shape. The SShape
       attribute of the SVertex is also set to this SShape.
    
-      :arg vertex: An SVertex object.
+      :param vertex: An SVertex object.
       :type vertex: :class:`SVertex`
 
 
@@ -1530,7 +1820,7 @@ Class hierarchy:
 
       The list of edges constituting this SShape.
       
-      :type: List of :class:`FEdge`
+      :type: list[:class:`FEdge`]
 
 
    .. attribute:: id
@@ -1551,36 +1841,46 @@ Class hierarchy:
 
       The list of vertices constituting this SShape.
       
-      :type: List of :class:`SVertex`
+      :type: list[:class:`SVertex`]
+
+
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
 
-
-.. class:: freestyle.types.SVertex
+.. class:: SVertex
 
    Class hierarchy: :class:`Interface0D` > :class:`SVertex`
    
    Class to define a vertex of the embedding.
    
-   .. method:: __init__()
-               __init__(brother)
-               __init__(point_3d, id)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__()``
+      - ``__init__(brother)``
+      - ``__init__(point_3d, id)``
    
       Builds a :class:`SVertex` using the default constructor,
       copy constructor or the overloaded constructor which builds   a :class:`SVertex` from 3D coordinates and an Id.
    
-      :arg brother: A SVertex object.
+      :param brother: A SVertex object.
       :type brother: :class:`SVertex`
-      :arg point_3d: A three-dimensional vector.
+      :param point_3d: A three-dimensional vector.
       :type point_3d: :class:`mathutils.Vector`
-      :arg id: An Id object.
+      :param id: An Id object.
       :type id: :class:`Id`
 
    .. method:: add_fedge(fedge)
    
       Add an FEdge to the list of edges emanating from this SVertex.
    
-      :arg fedge: An FEdge.
+      :param fedge: An FEdge.
       :type fedge: :class:`FEdge`
 
 
@@ -1589,7 +1889,7 @@ Class hierarchy:
       Adds a normal to the SVertex's set of normals. If the same normal
       is already in the set, nothing changes.
    
-      :arg normal: A three-dimensional vector.
+      :param normal: A three-dimensional vector.
       :type normal: :class:`mathutils.Vector` | tuple[float, float, float] | list[float]
 
 
@@ -1621,7 +1921,7 @@ Class hierarchy:
       has exactly one normal. In a smooth surface, an SVertex can have any
       number of normals.
       
-      :type: list of :class:`mathutils.Vector`
+      :type: list[:class:`mathutils.Vector`]
 
 
    .. attribute:: normals_size
@@ -1655,7 +1955,7 @@ Class hierarchy:
 
 
 
-.. class:: freestyle.types.SVertexIterator
+.. class:: SVertexIterator
 
    Class hierarchy: :class:`Iterator` > :class:`SVertexIterator`
    
@@ -1663,23 +1963,28 @@ Class hierarchy:
    :class:`ViewEdge`. An instance of an SVertexIterator can be obtained
    from a ViewEdge by calling verticesBegin() or verticesEnd().
    
-   .. method:: __init__()
-               __init__(brother)
-               __init__(vertex, begin, previous_edge, next_edge, t)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__()``
+      - ``__init__(brother)``
+      - ``__init__(vertex, begin, previous_edge, next_edge, t)``
+   
       Build an SVertexIterator using either the default constructor, copy constructor,
       or the overloaded constructor that starts iteration from an SVertex object vertex.
    
-      :arg brother: An SVertexIterator object.
+      :param brother: An SVertexIterator object.
       :type brother: :class:`SVertexIterator`
-      :arg vertex: The SVertex from which the iterator starts iteration.
+      :param vertex: The SVertex from which the iterator starts iteration.
       :type vertex: :class:`SVertex`
-      :arg begin: The first SVertex of a ViewEdge.
+      :param begin: The first SVertex of a ViewEdge.
       :type begin: :class:`SVertex`
-      :arg previous_edge: The previous FEdge coming to vertex.
+      :param previous_edge: The previous FEdge coming to vertex.
       :type previous_edge: :class:`FEdge`
-      :arg next_edge: The next FEdge going out from vertex.
+      :param next_edge: The next FEdge going out from vertex.
       :type next_edge: :class:`FEdge`
-      :arg t: The curvilinear abscissa at vertex.
+      :param t: The curvilinear abscissa at vertex.
       :type t: float
 
    .. attribute:: object
@@ -1705,7 +2010,7 @@ Class hierarchy:
 
 
 
-.. class:: freestyle.types.Stroke
+.. class:: Stroke
 
    Class hierarchy: :class:`Interface1D` > :class:`Stroke`
    
@@ -1714,8 +2019,12 @@ Class hierarchy:
    defines the stroke's backbone geometry. Each of these stroke vertices
    defines the stroke's shape and appearance at this vertex position.
    
-   .. method:: Stroke()
-               Stroke(brother)
+   .. method:: Stroke(*args)
+   
+      Accepted call signatures:
+   
+      - ``Stroke()``
+      - ``Stroke(brother)``
    
       Creates a :class:`Stroke` using the default constructor or copy constructor
 
@@ -1726,7 +2035,7 @@ Class hierarchy:
       vertices, the actual sampling value is returned. (To remove Vertices,
       use the RemoveVertex() method of this class.)
    
-      :arg n: The number of stroke vertices we eventually want
+      :param n: The number of stroke vertices we eventually want
          in our Stroke.
       :type n: int
       :return: The sampling that must be used in the Resample(float)
@@ -1740,9 +2049,9 @@ Class hierarchy:
       point specified by next. The length and curvilinear abscissa are
       updated consequently.
    
-      :arg vertex: The StrokeVertex to insert in the Stroke.
+      :param vertex: The StrokeVertex to insert in the Stroke.
       :type vertex: :class:`StrokeVertex`
-      :arg next: A StrokeVertexIterator pointing to the StrokeVertex
+      :param next: A StrokeVertexIterator pointing to the StrokeVertex
          before which vertex must be inserted.
       :type next: :class:`StrokeVertexIterator`
 
@@ -1757,22 +2066,26 @@ Class hierarchy:
       Removes the StrokeVertex given as argument from the Stroke. The length
       and curvilinear abscissa are updated consequently.
    
-      :arg vertex: the StrokeVertex to remove from the Stroke.
+      :param vertex: the StrokeVertex to remove from the Stroke.
       :type vertex: :class:`StrokeVertex`
 
 
-   .. method:: resample(n)
-               resample(sampling)
+   .. method:: resample(*args)
+   
+      Accepted call signatures:
+   
+      - ``resample(n)``
+      - ``resample(sampling)``
    
       Resamples the stroke so using one of two methods with the goal
       of creating a stroke with fewer points and the same shape.
    
-      :arg n: Resamples the stroke so that it eventually has N points. That means
+      :param n: Resamples the stroke so that it eventually has N points. That means
          it is going to add N-vertices_size, where vertices_size is the
          number of points we already have. If vertices_size >= N, no
          resampling is done.
       :type n: int
-      :arg sampling: Resamples the stroke with a given sampling value. If the
+      :param sampling: Resamples the stroke with a given sampling value. If the
          sampling is smaller than the actual sampling value, no resampling is done.
       :type sampling: float
 
@@ -1783,7 +2096,7 @@ Class hierarchy:
       the Stroke. One can specify a sampling value to re-sample the Stroke
       on the fly if needed.
    
-      :arg t: The resampling value with which we want our Stroke to be
+      :param t: The resampling value with which we want our Stroke to be
          resampled. If 0 is specified, no resampling is done.
       :type t: float
       :return: A StrokeVertexIterator pointing on the first StrokeVertex.
@@ -1847,49 +2160,69 @@ Class hierarchy:
       :type: bool
 
 
+   .. details:: Special Methods
+
+      .. method:: __getitem__(key)
+
+         :param key: Index or key.
+         :type key: int
+         :rtype: float
+
+      .. method:: __iter__()
+
+         :rtype: :class:`Stroke`
+
+      .. method:: __len__()
+
+         :rtype: int
 
 
-.. class:: freestyle.types.StrokeAttribute
+
+.. class:: StrokeAttribute
 
    Class to define a set of attributes associated with a :class:`StrokeVertex`.
    The attribute set stores the color, alpha and thickness values for a Stroke
    Vertex.
    
-   .. method:: __init__()
-               __init__(brother)
-               __init__(red, green, blue, alpha, thickness_right, thickness_left)
-               __init__(attribute1, attribute2, t)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__()``
+      - ``__init__(brother)``
+      - ``__init__(red, green, blue, alpha, thickness_right, thickness_left)``
+      - ``__init__(attribute1, attribute2, t)``
    
       Creates a :class:`StrokeAttribute` object using either a default constructor,
       copy constructor, overloaded constructor, or and interpolation constructor
       to interpolate between two :class:`StrokeAttribute` objects.
    
-      :arg brother: A StrokeAttribute object to be used as a copy constructor.
+      :param brother: A StrokeAttribute object to be used as a copy constructor.
       :type brother: :class:`StrokeAttribute`
-      :arg red: Red component of a stroke color.
+      :param red: Red component of a stroke color.
       :type red: float
-      :arg green: Green component of a stroke color.
+      :param green: Green component of a stroke color.
       :type green: float
-      :arg blue: Blue component of a stroke color.
+      :param blue: Blue component of a stroke color.
       :type blue: float
-      :arg alpha: Alpha component of a stroke color.
+      :param alpha: Alpha component of a stroke color.
       :type alpha: float
-      :arg thickness_right: Stroke thickness on the right.
+      :param thickness_right: Stroke thickness on the right.
       :type thickness_right: float
-      :arg thickness_left: Stroke thickness on the left.
+      :param thickness_left: Stroke thickness on the left.
       :type thickness_left: float
-      :arg attribute1: The first StrokeAttribute object.
+      :param attribute1: The first StrokeAttribute object.
       :type attribute1: :class:`StrokeAttribute`
-      :arg attribute2: The second StrokeAttribute object.
+      :param attribute2: The second StrokeAttribute object.
       :type attribute2: :class:`StrokeAttribute`
-      :arg t: The interpolation parameter (0 <= t <= 1).
+      :param t: The interpolation parameter (0 <= t <= 1).
       :type t: float
 
    .. method:: get_attribute_real(name)
    
       Returns an attribute of float type.
    
-      :arg name: The name of the attribute.
+      :param name: The name of the attribute.
       :type name: str
       :return: The attribute value.
       :rtype: float
@@ -1899,7 +2232,7 @@ Class hierarchy:
    
       Returns an attribute of two-dimensional vector type.
    
-      :arg name: The name of the attribute.
+      :param name: The name of the attribute.
       :type name: str
       :return: The attribute value.
       :rtype: :class:`mathutils.Vector`
@@ -1909,7 +2242,7 @@ Class hierarchy:
    
       Returns an attribute of three-dimensional vector type.
    
-      :arg name: The name of the attribute.
+      :param name: The name of the attribute.
       :type name: str
       :return: The attribute value.
       :rtype: :class:`mathutils.Vector`
@@ -1919,7 +2252,7 @@ Class hierarchy:
    
       Checks whether the attribute name of float type is available.
    
-      :arg name: The name of the attribute.
+      :param name: The name of the attribute.
       :type name: str
       :return: True if the attribute is available.
       :rtype: bool
@@ -1930,7 +2263,7 @@ Class hierarchy:
       Checks whether the attribute name of two-dimensional vector type
       is available.
    
-      :arg name: The name of the attribute.
+      :param name: The name of the attribute.
       :type name: str
       :return: True if the attribute is available.
       :rtype: bool
@@ -1941,7 +2274,7 @@ Class hierarchy:
       Checks whether the attribute name of three-dimensional vector
       type is available.
    
-      :arg name: The name of the attribute.
+      :param name: The name of the attribute.
       :type name: str
       :return: True if the attribute is available.
       :rtype: bool
@@ -1953,9 +2286,9 @@ Class hierarchy:
       attribute of the given name, it is added. Otherwise, the new value
       replaces the old one.
    
-      :arg name: The name of the attribute.
+      :param name: The name of the attribute.
       :type name: str
-      :arg value: The attribute value.
+      :param value: The attribute value.
       :type value: float
 
 
@@ -1965,9 +2298,9 @@ Class hierarchy:
       there is no attribute of the given name, it is added. Otherwise,
       the new value replaces the old one.
    
-      :arg name: The name of the attribute.
+      :param name: The name of the attribute.
       :type name: str
-      :arg value: The attribute value.
+      :param value: The attribute value.
       :type value: :class:`mathutils.Vector` | tuple[float, float, float] | list[float]
 
 
@@ -1977,9 +2310,9 @@ Class hierarchy:
       If there is no attribute of the given name, it is added.
       Otherwise, the new value replaces the old one.
    
-      :arg name: The name of the attribute.
+      :param name: The name of the attribute.
       :type name: str
-      :arg value: The attribute value as a 3D vector.
+      :param value: The attribute value as a 3D vector.
       :type value: :class:`mathutils.Vector` | tuple[float, float, float] | list[float]
 
 
@@ -2013,9 +2346,15 @@ Class hierarchy:
       :type: bool
 
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.StrokeShader
+
+.. class:: StrokeShader
 
    Base class for stroke shaders. Any stroke shader must inherit from
    this class and overload the shade() method. A StrokeShader is
@@ -2039,7 +2378,7 @@ Class hierarchy:
    
       The shading method. Must be overloaded by inherited classes.
    
-      :arg stroke: A Stroke object.
+      :param stroke: A Stroke object.
       :type stroke: :class:`Stroke`
 
 
@@ -2050,40 +2389,50 @@ Class hierarchy:
       :type: str
 
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.StrokeVertex
+
+.. class:: StrokeVertex
 
    Class hierarchy: :class:`Interface0D` > :class:`CurvePoint` > :class:`StrokeVertex`
    
    Class to define a stroke vertex.
    
-   .. method:: __init__()
-               __init__(brother)
-               __init__(first_vertex, second_vertex, t3d)
-               __init__(point)
-               __init__(svertex)
-               __init__(svertex, attribute)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__()``
+      - ``__init__(brother)``
+      - ``__init__(first_vertex, second_vertex, t3d)``
+      - ``__init__(point)``
+      - ``__init__(svertex)``
+      - ``__init__(svertex, attribute)``
    
       Builds a :class:`StrokeVertex` using the default constructor,
       copy constructor, from 2 :class:`StrokeVertex` and an interpolation parameter,
       from a CurvePoint, from a SVertex, or a :class:`SVertex`   and a :class:`StrokeAttribute` object.
    
-      :arg brother: A StrokeVertex object.
+      :param brother: A StrokeVertex object.
       :type brother: :class:`StrokeVertex`
-      :arg first_vertex: The first StrokeVertex.
+      :param first_vertex: The first StrokeVertex.
       :type first_vertex: :class:`StrokeVertex`
-      :arg second_vertex: The second StrokeVertex.
+      :param second_vertex: The second StrokeVertex.
       :type second_vertex: :class:`StrokeVertex`
-      :arg t3d: An interpolation parameter.
+      :param t3d: An interpolation parameter.
       :type t3d: float
-      :arg point: A CurvePoint object.
+      :param point: A CurvePoint object.
       :type point: :class:`CurvePoint`
-      :arg svertex: An SVertex object.
+      :param svertex: An SVertex object.
       :type svertex: :class:`SVertex`
-      :arg svertex: An SVertex object.
+      :param svertex: An SVertex object.
       :type svertex: :class:`SVertex`
-      :arg attribute: A StrokeAttribute object.
+      :param attribute: A StrokeAttribute object.
       :type attribute: :class:`StrokeAttribute`
 
    .. attribute:: attribute
@@ -2124,7 +2473,7 @@ Class hierarchy:
 
 
 
-.. class:: freestyle.types.StrokeVertexIterator
+.. class:: StrokeVertexIterator
 
    Class hierarchy: :class:`Iterator` > :class:`StrokeVertexIterator`
    
@@ -2140,13 +2489,17 @@ Class hierarchy:
    a StrokeVertexIterator can be converted to an Interface0DIterator by
    by calling Interface0DIterator(it).
    
-   .. method:: __init__()
-               __init__(brother)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__()``
+      - ``__init__(brother)``
    
       Creates a :class:`StrokeVertexIterator` using either the
       default constructor or the copy constructor.
    
-      :arg brother: A StrokeVertexIterator object.
+      :param brother: A StrokeVertexIterator object.
       :type brother: :class:`StrokeVertexIterator`
 
    .. method:: decremented()
@@ -2203,9 +2556,19 @@ Class hierarchy:
       :type: float
 
 
+   .. details:: Special Methods
+
+      .. method:: __iter__()
+
+         :rtype: :class:`StrokeVertexIterator`
+
+      .. method:: __next__()
+
+         :rtype: Any
 
 
-.. class:: freestyle.types.TVertex
+
+.. class:: TVertex
 
    Class hierarchy: :class:`Interface0D` > :class:`ViewVertex` > :class:`TVertex`
    
@@ -2225,7 +2588,7 @@ Class hierarchy:
       ViewEdge is frontEdgeA, frontEdgeB is returned. If the ViewEdge is
       frontEdgeB, frontEdgeA is returned. Same for back edges.
    
-      :arg viewedge: A ViewEdge object.
+      :param viewedge: A ViewEdge object.
       :type viewedge: :class:`ViewEdge`
       :return: The mate edge of the given ViewEdge.
       :rtype: :class:`ViewEdge`
@@ -2235,7 +2598,7 @@ Class hierarchy:
    
       Returns the SVertex (among the 2) belonging to the given FEdge.
    
-      :arg fedge: An FEdge object.
+      :param fedge: An FEdge object.
       :type fedge: :class:`FEdge`
       :return: The SVertex belonging to the given FEdge.
       :rtype: :class:`SVertex`
@@ -2264,7 +2627,7 @@ Class hierarchy:
 
 
 
-.. class:: freestyle.types.UnaryFunction0D
+.. class:: UnaryFunction0D
 
    Base class for Unary Functions (functors) working on
    :class:`Interface0DIterator`. A unary function will be used by
@@ -2292,9 +2655,15 @@ Class hierarchy:
       :type: str
 
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.UnaryFunction0DDouble
+
+.. class:: UnaryFunction0DDouble
 
    Class hierarchy: :class:`UnaryFunction0D` > :class:`UnaryFunction0DDouble`
    
@@ -2305,9 +2674,15 @@ Class hierarchy:
    
       Default constructor.
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.UnaryFunction0DEdgeNature
+
+.. class:: UnaryFunction0DEdgeNature
 
    Class hierarchy: :class:`UnaryFunction0D` > :class:`UnaryFunction0DEdgeNature`
    
@@ -2318,9 +2693,15 @@ Class hierarchy:
    
       Default constructor.
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.UnaryFunction0DFloat
+
+.. class:: UnaryFunction0DFloat
 
    Class hierarchy: :class:`UnaryFunction0D` > :class:`UnaryFunction0DFloat`
    
@@ -2331,9 +2712,15 @@ Class hierarchy:
    
       Default constructor.
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.UnaryFunction0DId
+
+.. class:: UnaryFunction0DId
 
    Class hierarchy: :class:`UnaryFunction0D` > :class:`UnaryFunction0DId`
    
@@ -2344,9 +2731,15 @@ Class hierarchy:
    
       Default constructor.
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.UnaryFunction0DMaterial
+
+.. class:: UnaryFunction0DMaterial
 
    Class hierarchy: :class:`UnaryFunction0D` > :class:`UnaryFunction0DMaterial`
    
@@ -2357,9 +2750,15 @@ Class hierarchy:
    
       Default constructor.
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.UnaryFunction0DUnsigned
+
+.. class:: UnaryFunction0DUnsigned
 
    Class hierarchy: :class:`UnaryFunction0D` > :class:`UnaryFunction0DUnsigned`
    
@@ -2370,9 +2769,15 @@ Class hierarchy:
    
       Default constructor.
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.UnaryFunction0DVec2f
+
+.. class:: UnaryFunction0DVec2f
 
    Class hierarchy: :class:`UnaryFunction0D` > :class:`UnaryFunction0DVec2f`
    
@@ -2383,9 +2788,15 @@ Class hierarchy:
    
       Default constructor.
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.UnaryFunction0DVec3f
+
+.. class:: UnaryFunction0DVec3f
 
    Class hierarchy: :class:`UnaryFunction0D` > :class:`UnaryFunction0DVec3f`
    
@@ -2396,9 +2807,15 @@ Class hierarchy:
    
       Default constructor.
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.UnaryFunction0DVectorViewShape
+
+.. class:: UnaryFunction0DVectorViewShape
 
    Class hierarchy: :class:`UnaryFunction0D` > :class:`UnaryFunction0DVectorViewShape`
    
@@ -2410,9 +2827,15 @@ Class hierarchy:
    
       Default constructor.
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.UnaryFunction0DViewShape
+
+.. class:: UnaryFunction0DViewShape
 
    Class hierarchy: :class:`UnaryFunction0D` > :class:`UnaryFunction0DViewShape`
    
@@ -2423,9 +2846,15 @@ Class hierarchy:
    
       Default constructor.
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.UnaryFunction1D
+
+.. class:: UnaryFunction1D
 
    Base class for Unary Functions (functors) working on
    :class:`Interface1D`. A unary function will be used by invoking
@@ -2451,22 +2880,32 @@ Class hierarchy:
       :type: str
 
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.UnaryFunction1DDouble
+
+.. class:: UnaryFunction1DDouble
 
    Class hierarchy: :class:`UnaryFunction1D` > :class:`UnaryFunction1DDouble`
    
    Base class for unary functions (functors) that work on
    :class:`Interface1D` and return a float value.
    
-   .. method:: __init__()
-               __init__(integration_type)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__()``
+      - ``__init__(integration_type)``
    
       Builds a unary 1D function using the default constructor
       or the integration method given as an argument.
    
-      :arg integration_type: An integration method.
+      :param integration_type: An integration method.
       :type integration_type: :class:`IntegrationType`
 
    .. attribute:: integration_type
@@ -2476,22 +2915,32 @@ Class hierarchy:
       :type: :class:`IntegrationType`
 
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.UnaryFunction1DEdgeNature
+
+.. class:: UnaryFunction1DEdgeNature
 
    Class hierarchy: :class:`UnaryFunction1D` > :class:`UnaryFunction1DEdgeNature`
    
    Base class for unary functions (functors) that work on
    :class:`Interface1D` and return a :class:`Nature` object.
    
-   .. method:: __init__()
-               __init__(integration_type)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__()``
+      - ``__init__(integration_type)``
    
       Builds a unary 1D function using the default constructor
       or the integration method given as an argument.
    
-      :arg integration_type: An integration method.
+      :param integration_type: An integration method.
       :type integration_type: :class:`IntegrationType`
 
    .. attribute:: integration_type
@@ -2501,22 +2950,32 @@ Class hierarchy:
       :type: :class:`IntegrationType`
 
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.UnaryFunction1DFloat
+
+.. class:: UnaryFunction1DFloat
 
    Class hierarchy: :class:`UnaryFunction1D` > :class:`UnaryFunction1DFloat`
    
    Base class for unary functions (functors) that work on
    :class:`Interface1D` and return a float value.
    
-   .. method:: __init__()
-               __init__(integration_type)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__()``
+      - ``__init__(integration_type)``
    
       Builds a unary 1D function using the default constructor
       or the integration method given as an argument.
    
-      :arg integration_type: An integration method.
+      :param integration_type: An integration method.
       :type integration_type: :class:`IntegrationType`
 
    .. attribute:: integration_type
@@ -2526,22 +2985,32 @@ Class hierarchy:
       :type: :class:`IntegrationType`
 
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.UnaryFunction1DUnsigned
+
+.. class:: UnaryFunction1DUnsigned
 
    Class hierarchy: :class:`UnaryFunction1D` > :class:`UnaryFunction1DUnsigned`
    
    Base class for unary functions (functors) that work on
    :class:`Interface1D` and return an int value.
    
-   .. method:: __init__()
-               __init__(integration_type)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__()``
+      - ``__init__(integration_type)``
    
       Builds a unary 1D function using the default constructor
       or the integration method given as an argument.
    
-      :arg integration_type: An integration method.
+      :param integration_type: An integration method.
       :type integration_type: :class:`IntegrationType`
 
    .. attribute:: integration_type
@@ -2551,22 +3020,32 @@ Class hierarchy:
       :type: :class:`IntegrationType`
 
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.UnaryFunction1DVec2f
+
+.. class:: UnaryFunction1DVec2f
 
    Class hierarchy: :class:`UnaryFunction1D` > :class:`UnaryFunction1DVec2f`
    
    Base class for unary functions (functors) that work on
    :class:`Interface1D` and return a 2D vector.
    
-   .. method:: __init__()
-               __init__(integration_type)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__()``
+      - ``__init__(integration_type)``
    
       Builds a unary 1D function using the default constructor
       or the integration method given as an argument.
    
-      :arg integration_type: An integration method.
+      :param integration_type: An integration method.
       :type integration_type: :class:`IntegrationType`
 
    .. attribute:: integration_type
@@ -2576,22 +3055,32 @@ Class hierarchy:
       :type: :class:`IntegrationType`
 
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.UnaryFunction1DVec3f
+
+.. class:: UnaryFunction1DVec3f
 
    Class hierarchy: :class:`UnaryFunction1D` > :class:`UnaryFunction1DVec3f`
    
    Base class for unary functions (functors) that work on
    :class:`Interface1D` and return a 3D vector.
    
-   .. method:: __init__()
-               __init__(integration_type)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__()``
+      - ``__init__(integration_type)``
    
       Builds a unary 1D function using the default constructor
       or the integration method given as an argument.
    
-      :arg integration_type: An integration method.
+      :param integration_type: An integration method.
       :type integration_type: :class:`IntegrationType`
 
    .. attribute:: integration_type
@@ -2601,9 +3090,15 @@ Class hierarchy:
       :type: :class:`IntegrationType`
 
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.UnaryFunction1DVectorViewShape
+
+.. class:: UnaryFunction1DVectorViewShape
 
    Class hierarchy: :class:`UnaryFunction1D` > :class:`UnaryFunction1DVectorViewShape`
    
@@ -2611,13 +3106,17 @@ Class hierarchy:
    :class:`Interface1D` and return a list of :class:`ViewShape`
    objects.
    
-   .. method:: __init__()
-               __init__(integration_type)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__()``
+      - ``__init__(integration_type)``
    
       Builds a unary 1D function using the default constructor
       or the integration method given as an argument.
    
-      :arg integration_type: An integration method.
+      :param integration_type: An integration method.
       :type integration_type: :class:`IntegrationType`
 
    .. attribute:: integration_type
@@ -2627,22 +3126,32 @@ Class hierarchy:
       :type: :class:`IntegrationType`
 
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.UnaryFunction1DVoid
+
+.. class:: UnaryFunction1DVoid
 
    Class hierarchy: :class:`UnaryFunction1D` > :class:`UnaryFunction1DVoid`
    
    Base class for unary functions (functors) working on
    :class:`Interface1D`.
    
-   .. method:: __init__()
-                __init__(integration_type)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__()``
+      - ``__init__(integration_type)``
    
       Builds a unary 1D function using either a default constructor
       or the integration method given as an argument.
    
-      :arg integration_type: An integration method.
+      :param integration_type: An integration method.
       :type integration_type: :class:`IntegrationType`
 
    .. attribute:: integration_type
@@ -2652,9 +3161,15 @@ Class hierarchy:
       :type: :class:`IntegrationType`
 
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.UnaryPredicate0D
+
+.. class:: UnaryPredicate0D
 
    Base class for unary predicates that work on
    :class:`Interface0DIterator`. A UnaryPredicate0D is a functor that
@@ -2671,7 +3186,7 @@ Class hierarchy:
    
       Must be overload by inherited classes.
    
-      :arg it: The Interface0DIterator pointing onto the Interface0D at
+      :param it: The Interface0DIterator pointing onto the Interface0D at
          which we wish to evaluate the predicate.
       :type it: :class:`Interface0DIterator`
       :return: True if the condition is satisfied, false otherwise.
@@ -2684,9 +3199,15 @@ Class hierarchy:
       :type: str
 
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.UnaryPredicate1D
+
+.. class:: UnaryPredicate1D
 
    Base class for unary predicates that work on :class:`Interface1D`. A
    UnaryPredicate1D is a functor that evaluates a condition on a
@@ -2703,7 +3224,7 @@ Class hierarchy:
    
       Must be overload by inherited classes.
    
-      :arg inter: The Interface1D on which we wish to evaluate the predicate.
+      :param inter: The Interface1D on which we wish to evaluate the predicate.
       :type inter: :class:`Interface1D`
       :return: True if the condition is satisfied, false otherwise.
       :rtype: bool
@@ -2715,9 +3236,15 @@ Class hierarchy:
       :type: str
 
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.ViewEdge
+
+.. class:: ViewEdge
 
    Class hierarchy: :class:`Interface1D` > :class:`ViewEdge`
    
@@ -2725,12 +3252,16 @@ Class hierarchy:
    it connects two :class:`ViewVertex` objects. It is made by connecting
    a set of FEdges.
    
-   .. method:: __init__()
-               __init__(brother)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__()``
+      - ``__init__(brother)``
    
       Builds a :class:`ViewEdge` using the default constructor or the copy constructor.
    
-      :arg brother: A ViewEdge object.
+      :param brother: A ViewEdge object.
       :type brother: :class:`ViewEdge`
 
    .. method:: update_fedges()
@@ -2818,7 +3349,7 @@ Class hierarchy:
 
 
 
-.. class:: freestyle.types.ViewEdgeIterator
+.. class:: ViewEdgeIterator
 
    Class hierarchy: :class:`Iterator` > :class:`ViewEdgeIterator`
    
@@ -2827,20 +3358,24 @@ Class hierarchy:
    take the decision of "where" (on which ViewEdge) to go when pointing
    on a given ViewEdge.
    
-   .. method:: __init__(begin=None, orientation=True)
-               __init__(brother)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__(begin=None, orientation=True)``
+      - ``__init__(brother)``
    
       Builds a ViewEdgeIterator from a starting ViewEdge and its
       orientation or the copy constructor.
    
-      :arg begin: The ViewEdge from where to start the iteration.
+      :param begin: The ViewEdge from where to start the iteration.
       :type begin: :class:`ViewEdge` | None
-      :arg orientation: If true, we'll look for the next ViewEdge among
+      :param orientation: If true, we'll look for the next ViewEdge among
          the ViewEdges that surround the ending ViewVertex of begin. If
          false, we'll search over the ViewEdges surrounding the ending
          ViewVertex of begin.
       :type orientation: bool
-      :arg brother: A ViewEdgeIterator object.
+      :param brother: A ViewEdgeIterator object.
       :type brother: :class:`ViewEdgeIterator`
 
    .. method:: change_orientation()
@@ -2882,7 +3417,7 @@ Class hierarchy:
 
 
 
-.. class:: freestyle.types.ViewMap
+.. class:: ViewMap
 
    Class defining the ViewMap.
    
@@ -2894,9 +3429,9 @@ Class hierarchy:
    
       Gets the FEdge nearest to the 2D point specified as arguments.
    
-      :arg x: X coordinate of a 2D point.
+      :param x: X coordinate of a 2D point.
       :type x: float
-      :arg y: Y coordinate of a 2D point.
+      :param y: Y coordinate of a 2D point.
       :type y: float
       :return: The FEdge nearest to the specified 2D point.
       :rtype: :class:`FEdge`
@@ -2906,9 +3441,9 @@ Class hierarchy:
    
       Gets the ViewEdge nearest to the 2D point specified as arguments.
    
-      :arg x: X coordinate of a 2D point.
+      :param x: X coordinate of a 2D point.
       :type x: float
-      :arg y: Y coordinate of a 2D point.
+      :param y: Y coordinate of a 2D point.
       :type y: float
       :return: The ViewEdge nearest to the specified 2D point.
       :rtype: :class:`ViewEdge`
@@ -2921,30 +3456,40 @@ Class hierarchy:
       :type: :class:`BBox`
 
 
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
-.. class:: freestyle.types.ViewShape
+
+.. class:: ViewShape
 
    Class gathering the elements of the ViewMap (i.e., :class:`ViewVertex`
    and :class:`ViewEdge`) that are issued from the same input shape.
    
-   .. method:: __init__()
-               __init__(brother)
-               __init__(sshape)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__()``
+      - ``__init__(brother)``
+      - ``__init__(sshape)``
    
       Builds a :class:`ViewShape` using the default constructor,
       copy constructor, or from a :class:`SShape`.
    
-      :arg brother: A ViewShape object.
+      :param brother: A ViewShape object.
       :type brother: :class:`ViewShape`
-      :arg sshape: An SShape object.
+      :param sshape: An SShape object.
       :type sshape: :class:`SShape`
 
    .. method:: add_edge(edge)
    
       Adds a ViewEdge to the list of ViewEdge objects.
    
-      :arg edge: A ViewEdge object.
+      :param edge: A ViewEdge object.
       :type edge: :class:`ViewEdge`
 
 
@@ -2952,7 +3497,7 @@ Class hierarchy:
    
       Adds a ViewVertex to the list of the ViewVertex objects.
    
-      :arg vertex: A ViewVertex object.
+      :param vertex: A ViewVertex object.
       :type vertex: :class:`ViewVertex`
 
 
@@ -2960,7 +3505,7 @@ Class hierarchy:
 
       The list of ViewEdge objects contained in this ViewShape.
       
-      :type: List of :class:`ViewEdge`
+      :type: list[:class:`ViewEdge`]
 
 
    .. attribute:: id
@@ -2972,9 +3517,10 @@ Class hierarchy:
 
    .. attribute:: library_path
 
-      The library path of the ViewShape.
+      The library path of the ViewShape, or None if the ViewShape is not part of
+      a library.
       
-      :type: str, or None if the ViewShape is not part of a library
+      :type: str | None
 
 
    .. attribute:: name
@@ -2995,12 +3541,18 @@ Class hierarchy:
 
       The list of ViewVertex objects contained in this ViewShape.
       
-      :type: List of :class:`ViewVertex`
+      :type: list[:class:`ViewVertex`]
+
+
+   .. details:: Special Methods
+
+      .. method:: __repr__()
+
+         :rtype: str
 
 
 
-
-.. class:: freestyle.types.ViewVertex
+.. class:: ViewVertex
 
    Class hierarchy: :class:`Interface0D` > :class:`ViewVertex`
    
@@ -3040,7 +3592,7 @@ Class hierarchy:
       Returns an orientedViewEdgeIterator pointing to the ViewEdge given
       as argument.
    
-      :arg edge: A ViewEdge object.
+      :param edge: A ViewEdge object.
       :type edge: :class:`ViewEdge`
       :return: An orientedViewEdgeIterator pointing to the given ViewEdge.
       :rtype: :class:`orientedViewEdgeIterator`
@@ -3055,7 +3607,7 @@ Class hierarchy:
 
 
 
-.. class:: freestyle.types.orientedViewEdgeIterator
+.. class:: orientedViewEdgeIterator
 
    Class hierarchy: :class:`Iterator` > :class:`orientedViewEdgeIterator`
    
@@ -3064,13 +3616,17 @@ Class hierarchy:
    plane). An instance of an orientedViewEdgeIterator can only be
    obtained from a ViewVertex by calling edges_begin() or edges_end().
    
-   .. method:: __init__()
-               __init__(iBrother)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__()``
+      - ``__init__(iBrother)``
    
       Creates an :class:`orientedViewEdgeIterator` using either the
       default constructor or the copy constructor.
    
-      :arg iBrother: An orientedViewEdgeIterator object.
+      :param iBrother: An orientedViewEdgeIterator object.
       :type iBrother: :class:`orientedViewEdgeIterator`
 
    .. attribute:: object
@@ -3079,8 +3635,18 @@ Class hierarchy:
       value) currently pointed to by this iterator. If the boolean value is true,
       the ViewEdge is incoming.
       
-      :type: (:class:`ViewEdge`, bool)
+      :type: tuple[:class:`ViewEdge`, bool]
 
+
+   .. details:: Special Methods
+
+      .. method:: __iter__()
+
+         :rtype: :class:`orientedViewEdgeIterator`
+
+      .. method:: __next__()
+
+         :rtype: Any
 
 
 

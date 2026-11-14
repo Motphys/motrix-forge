@@ -19,11 +19,13 @@ How to publish to the `Blender Extensions Platform <https://extensions.blender.o
 The extension will be held for `review <https://extensions.blender.org/approval-queue/>`__,
 and published once the moderation team approves it.
 
+
 Extension files
 ===============
 
 An extension is shared as a ``.zip`` archive containing a manifest file and other files.
 The expected files depend on the extension type.
+
 
 Add-on extension
 ----------------
@@ -37,6 +39,7 @@ while more complex add-ons have a few different .py files or wheels together.
    ├─ __init__.py
    ├─ blender_manifest.toml
    └─ (...)
+
 
 Theme extension
 ---------------
@@ -81,7 +84,7 @@ This example is a good starting point to the ``blender_manifest.toml`` that shou
    # website = "https://extensions.blender.org/add-ons/my-example-package/"
 
    # # Optional: tag list defined by Blender and server, see:
-   # # https://docs.blender.org/manual/en/dev/advanced/extensions/tags.html
+   # # https://docs.blender.org/manual/en/latest/advanced/extensions/tags.html
    # tags = ["Animation", "Sequencer"]
 
    blender_version_min = "4.2.0"
@@ -90,7 +93,7 @@ This example is a good starting point to the ``blender_manifest.toml`` that shou
    # blender_version_max = "5.1.0"
 
    # License conforming to https://spdx.org/licenses/ (use "SPDX: prefix)
-   # https://docs.blender.org/manual/en/dev/advanced/extensions/licenses.html
+   # https://docs.blender.org/manual/en/latest/advanced/extensions/licenses.html
    license = [
      "SPDX:GPL-3.0-or-later",
    ]
@@ -105,7 +108,7 @@ This example is a good starting point to the ``blender_manifest.toml`` that shou
    # # Other supported platforms: "windows-arm64", "macos-x64"
 
    # # Optional: bundle 3rd party Python modules.
-   # # https://docs.blender.org/manual/en/dev/advanced/extensions/python_wheels.html
+   # # https://docs.blender.org/manual/en/latest/advanced/extensions/python_wheels.html
    # wheels = [
    #   "./wheels/hexdump-3.3-py3-none-any.whl",
    #   "./wheels/jsmin-3.0.1-py3-none-any.whl",
@@ -119,7 +122,7 @@ This example is a good starting point to the ``blender_manifest.toml`` that shou
    # # * microphone (to capture audio)
    # #
    # # If using network, remember to also check `bpy.app.online_access`
-   # # https://docs.blender.org/manual/en/dev/advanced/extensions/addons.html#internet-access
+   # # https://docs.blender.org/manual/en/latest/advanced/extensions/addons.html#internet-access
    # #
    # # For each permission it is important to also specify the reason why it is required.
    # # Keep this a single short sentence without a period (.) at the end.
@@ -131,7 +134,7 @@ This example is a good starting point to the ``blender_manifest.toml`` that shou
    # clipboard = "Copy and paste bone transforms"
 
    # # Optional: advanced build settings.
-   # # https://docs.blender.org/manual/en/dev/advanced/extensions/command_line_arguments.html#command-line-args-extension-build
+   # # https://docs.blender.org/manual/en/latest/advanced/command_line/extension_arguments.html#command-line-args-extension-build
    # [build]
    # # These are the default build excluded patterns.
    # # You only need to edit them if you want different options.
@@ -142,7 +145,6 @@ This example is a good starting point to the ``blender_manifest.toml`` that shou
    # ]
 
 Required values:
-
    :blender_version_min: Minimum supported Blender version - use at least ``4.2.0``.
    :id: Unique identifier for the extension.
    :license: List of :ref:`licenses <extensions-licenses>`,
@@ -155,7 +157,6 @@ Required values:
    :version: Version of the extension - must follow `semantic versioning <https://semver.org/>`__.
 
 Optional values:
-
    :blender_version_max: Blender version that the extension does not support, earlier versions are supported.
    :website: Website for the extension.
    :copyright: Some licenses require a copyright, copyrights must be "Year Name" or "Year-Year Name".
@@ -172,7 +173,6 @@ Optional values:
       punctuation).
 
 Optional values for "build":
-
    These values are only used by the :ref:`build <command-line-args-extension-build>` sub-command.
 
    :paths:
@@ -192,7 +192,7 @@ Optional values for "build":
       [build]
       paths_exclude_pattern = [
         "__pycache__/",
-        ".*",
+        ".git",
         "*.zip",
       ]
 
@@ -209,10 +209,14 @@ Reserved:
 
    If you don't want to set one of the optional values just exclude it from the manifest altogether.
 
+
 Command-line
 ============
 
 Extensions can be built, validated & installed via command-line.
+
+Build
+-----
 
 To build the package defined in the current directory use the following commands:
 
@@ -222,7 +226,8 @@ To build the package defined in the current directory use the following commands
 
 See :ref:`build <command-line-args-extension-build>` docs.
 
----
+Validate
+--------
 
 To validate the manifest without building the package:
 
@@ -241,6 +246,11 @@ See :ref:`validate <command-line-args-extension-validate>` docs.
 .. seealso::
 
    :ref:`command_line-args-extensions`.
+
+Publish
+-------
+
+To automate the publishing of updates on the Extension Platform check the `CI/CD documentation <https://developer.blender.org/docs/features/extensions/ci_cd/>`__.
 
 
 Third party extension sites

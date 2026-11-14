@@ -12,6 +12,15 @@ using *Duplicate Asset*, see :ref:`Asset Operators <brush-management-utility-ope
 while Blender remains open does not discard the settings.
 
 
+Unified Settings
+================
+
+Some settings (e.g. size, strength, color), indicated with :bl-icon:`brushes_all`,
+allow for using a per-mode setting instead of the individual brush setting.
+These settings are shared across all brushes of a given mode (e.g. Sculpt Mode)
+but do not overwrite the individual brush value.
+
+
 .. _sculpt-tool-settings-brush-settings-general:
 
 General
@@ -19,28 +28,38 @@ General
 
 .. _bpy.types.Brush.size:
 
-Radius
+Size
    This option controls the size of the brush, measured in pixels.
    :kbd:`F` allows you to change the brush size interactively by
    dragging the mouse from left to right and then :kbd:`LMB` to accept.
    Meanwhile the texture of the brush will be visible inside the circle.
    You can also enter the size numerically with the number keys.
 
-   The size can be decreased/increased using :kbd:`[` and :kbd:`]` respectfully.
+   The size can be decreased/increased using :kbd:`[` and :kbd:`]` respectively.
 
    :bl-icon:`stylus_pressure` (Size Pressure)
-      Adjusts the radius based on the stylus pressure when using a :ref:`Graphics Tablet <hardware-tablet>`.
-   :bl-icon:`brushes_all` (Use Unified Radius)
-      Use the same brush *Radius* across all brushes.
+      Adjusts the size based on the stylus pressure when using a :ref:`Graphics Tablet <hardware-tablet>`.
+   :bl-icon:`brushes_all` (Use Unified Size)
+      Use the same brush *Size* across all brushes.
+   :bl-icon:`rightarrow` / :bl-icon:`downarrow_hlt` (Expand/Collapse)
+      Show or hide the customizable pressure curve.
 
-Radius Unit :guilabel:`Sculpt Mode`
-   Controls how the brush *Radius* is measured.
+      Custom Curve
+         By default this is a straight line with positive slope such that
+         increased pressure results in a larger brush size.
+
+         For the curve controls see: :ref:`Curve widget <ui-curve-widget>`.
+
+.. _bpy.types.Brush.use_locked_size:
+
+Size Unit :guilabel:`Sculpt Mode`
+   Controls how the brush *Size* is measured.
 
    :View:
-      The *Radius* is measured based on how the cursor appears on the monitor i.e. "screen space".
+      The *Size* is measured based on how the cursor appears on the monitor i.e. "screen space".
    :Scene:
-      The *Radius* is measured based on real world units.
-      This means that the brush radius stays consistent, independently from zooming in and out in the viewport.
+      The *Size* is measured based on real world units.
+      This means that the brush size stays consistent, independently from zooming in and out in the viewport.
       The unit type and scaling can be configured in the :ref:`Scene Units <bpy.types.UnitSettings>`.
 
 .. _bpy.types.Brush.strength:
@@ -62,6 +81,16 @@ Strength
       Adjusts the strength based on the stylus pressure when using a :ref:`Graphics Tablet <hardware-tablet>`.
    :bl-icon:`brushes_all` (Use Unified Strength)
       Use the same brush *Strength* across all brushes.
+   :bl-icon:`rightarrow` / :bl-icon:`downarrow_hlt` (Expand/Collapse)
+      Show or hide the customizable pressure curve.
+
+      Custom Curve
+         By default this is a straight line with positive slope such that
+         increased pressure results in a stronger brush deformation.
+
+         For the curve controls see: :ref:`Curve widget <ui-curve-widget>`.
+
+.. _bpy.types.Brush.blend:
 
 Blend
    Set the way the color or value is applied over the targeted Color Attribute, Vertex Group or Image Texture.
@@ -197,12 +226,6 @@ Brush Type
    - :doc:`Weight Paint </sculpt_paint/weight_paint/brushes>`
    - :doc:`Texture Paint </sculpt_paint/texture_paint/brushes>`
 
-Accumulate
-   Causes stroke dabs to accumulate on top of each other.
-
-Front Faces Only
-   When enabled, the brush only affects vertices that are facing the viewer.
-
 Affect Alpha :guilabel:`2D Painting Only`
    When this is disabled, it prevents changes to the alpha channel while painting (Only in 3D Viewport).
 
@@ -210,22 +233,11 @@ Anti-Aliasing :guilabel:`2D Painting Only`
    Toggles :term:`Anti-Aliasing` around the brush,
    this is useful if you are working with pixel art or low resolution textures.
 
-.. _bpy.types.Brush.use_automasking_topology:
-.. _bpy.types.Brush.use_automasking_boundary_face_sets:
-.. _bpy.types.Brush.use_automasking_boundary_edges:
-.. _bpy.types.Brush.use_automasking_cavity:
-.. _bpy.types.Brush.use_automasking_cavity_inverted:
-.. _bpy.types.Brush.use_automasking_view_normal:
-.. _bpy.types.Brush.use_automasking_start_normal:
-.. _bpy.types.Brush.automasking:
+Accumulate
+   Causes stroke dabs to accumulate on top of each other.
 
-Auto-Masking :guilabel:`Sculpt Mode`
-   The auto-masking toggles in the brush settings are the same as the sculpt mode auto-masking settings.
-   The difference is that these toggles can be customized per brush to create specific brush behaviors.
-
-.. seealso::
-
-   For more information on the Auto-Masking toggles, see :doc:`Auto-Masking </sculpt_paint/sculpting/controls>`.
+Front Faces Only
+   When enabled, the brush only affects vertices that are facing the viewer.
 
 .. _bpy.types.Brush.sculpt_plane:
 
@@ -242,15 +254,38 @@ Sculpt Plane :guilabel:`Sculpt Mode`
       The movement takes place in the positive direction of one of the global axes.
 
 .. _bpy.types.Brush.use_original_normal:
+
+Original -- Normal :guilabel:`Sculpt Mode`
+   When locked it keeps using the normal of the surface where stroke was initiated,
+   instead of the surface normal currently under the cursor.
+
 .. _bpy.types.Brush.use_original_plane:
 
-Original :guilabel:`Sculpt Mode`
-   Normal
-      When locked it keeps using the normal of the surface where stroke was initiated,
-      instead of the surface normal currently under the cursor.
-   Plane
-      When locked keep using the plane origin of surface where stroke was initiated,
-      instead of the surface plane currently under the cursor.
+Original -- Plane :guilabel:`Sculpt Mode`
+   When locked keep using the plane origin of surface where stroke was initiated,
+   instead of the surface plane currently under the cursor.
+
+
+.. _bpy.types.Brush.use_automasking_topology:
+.. _bpy.types.Brush.use_automasking_boundary_face_sets:
+.. _bpy.types.Brush.use_automasking_boundary_edges:
+.. _bpy.types.Brush.use_automasking_cavity:
+.. _bpy.types.Brush.use_automasking_cavity_inverted:
+.. _bpy.types.Brush.use_automasking_view_normal:
+.. _bpy.types.Brush.use_automasking_start_normal:
+.. _bpy.types.Brush.automasking:
+
+Auto-Masking
+------------
+
+:guilabel:`Sculpt Mode`
+
+The auto-masking toggles in the brush settings are the same as the sculpt mode auto-masking settings.
+The difference is that these toggles can be customized per brush to create specific brush behaviors.
+
+.. seealso::
+
+   For more information on the Auto-Masking toggles, see :doc:`Auto-Masking </sculpt_paint/sculpting/controls>`.
 
 
 Color Picker
@@ -272,11 +307,15 @@ By default, painting uses the primary color. The secondary color can be used tem
 painting. The two colors can also be swapped at any time using
 :ref:`Swap Colors <bpy.ops.paint.brush_colors_flip>`.
 
+.. _bpy.ops.paint.sample_color:
+
 .. tip::
 
-   - Press :kbd:`Shift-X` to sample a color from the image and set it as the primary brush color.
-   - In **Texture Paint**, :kbd:`Shift-Ctrl-X` samples the **merged viewport color**, while :kbd:`Shift-X`
-     samples only the currently active texture.
+   - Press :kbd:`Shift-X` to sample a color at the mouse cursor position.
+   - Press :kbd:`Shift-Ctrl-X` to sample the **merged viewport color**,
+     including lighting, shading, and all visible layers.
+
+   The sampled color becomes the primary color of the active Paint brush.
 
 .. _bpy.ops.paint.brush_colors_flip:
 
@@ -365,13 +404,13 @@ This is useful when working with several colors at once.
 Palette
    A :ref:`ui-data-block` to select a palette.
 
-:bl-icon:`add` (New Pallet Color)
+:bl-icon:`add` (New Palette Color)
    Adds the current brush's primary *Color* to the palette.
 
-:bl-icon:`remove` (Delete Pallet Color)
+:bl-icon:`remove` (Delete Palette Color)
    Removes the currently selected color from the palette.
 
-:bl-icon:`tria_up`/:bl-icon:`tria_down` (Move Pallet Color)
+:bl-icon:`tria_up`/:bl-icon:`tria_down` (Move Palette Color)
    Moves the selected color up/down one position.
 
 :bl-icon:`sortsize` (Sort By)

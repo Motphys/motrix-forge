@@ -14,6 +14,10 @@ The Movie Clip Editor is used for :doc:`tracking and masking </movie_clip/index>
 Header
 ======
 
+.. figure:: /images/movie-clip_masking_introduction_header.png
+
+   The Movie Clip Editor header in Mask mode.
+
 Mode
 ----
 
@@ -46,12 +50,17 @@ Sidebar :kbd:`N`
 
 ----------
 
-Frame Selected :kbd:`NumpadPeriod`
-   Zooms and pans the view to focus on the selected items.
+Show Metadata
+   Displays metadata encoded in the video, if available.
+
+----------
+
 Frame All :kbd:`Home`
    Zooms and pans the view so that the whole video is visible.
+Frame Selected :kbd:`NumpadPeriod`
+   Zooms and pans the view to focus on the selected items.
 Center View to Cursor :guilabel:`Mask Mode`
-   Pans the view so that the :ref:`2D Cursor <bpy.types.SpaceClipEditor.cursor>` is in the center.
+   Pans the view so that the :ref:`2D Cursor <editors-clip-2d_cursor>` is in the center.
 Zoom
    Menu with convenient zoom levels and operations.
    The zoom levels are calculated based on the images resolution compared to the screen resolution.
@@ -68,11 +77,6 @@ Zoom
       Zooms the view in or out.
    Zoom to Fit :kbd:`F`
       Like *Frame All*, but uses as much space in the editor as possible.
-
-----------
-
-Show Metadata
-   Displays metadata encoded in the video, if available.
 
 ----------
 
@@ -106,15 +110,19 @@ of 3D information from the tracked points in the 2D video.
 Add Menu
 --------
 
+Use to add primitive mask shapes.
+
 Circle
    Adds a circle-shaped mask.
 Square
    Adds a square-shaped mask.
 
+
 Mask Menu
 ---------
 
-Menu for :doc:`editing masks </movie_clip/masking/editing>`.
+Menu for operators used to :doc:`Edit </movie_clip/masking/editing>` masks.
+
 
 Other
 -----
@@ -131,7 +139,7 @@ Proportional Editing :guilabel:`Mask Mode`
    See :doc:`/editors/3dview/controls/proportional_editing`.
 
 Mask :guilabel:`Mask Mode`
-   A data-block menu for creating and selecting masks.
+   A :ref:`data-block menu <ui-data-block>` for creating and selecting masks.
 
 Mask Display :guilabel:`Mask Mode`
    See :doc:`/editors/clip/display/mask_display`.

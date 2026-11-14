@@ -1,133 +1,105 @@
 .. _bpy.ops.scene.view_layer:
 .. _bpy.types.ViewLayer:
-.. _render-layers:
 
 ************
 Introduction
 ************
 
-Renders can be separated into layers, to composite them back together afterwards.
+View Layers allow you to separate a render into multiple layers, which can then be composited together.
+This is useful for rendering scene elements independently—such as characters, lighting variations, or background
+elements—without duplicating the entire scene or re-rendering everything after each change.
 
-Some example usages are applying compositing effects to characters separately,
-blurring the background and foreground layers separately for depth of field,
-or rendering different lighting variations of the same scene.
+For example, you can:
 
-Using View Layers can also save you from having to re-render your entire image after each change,
-allowing you to instead re-render only the layer(s) that you have altered.
+- Apply different compositing effects to foreground and background elements.
+- Render characters separately from the environment for post-processing.
+- Generate multiple lighting passes without modifying the original scene setup.
+
+View Layers also improve performance and flexibility during iteration by letting you re-render only the layers
+that have changed.
+
+.. figure:: /images/scene-layout_view-layers_introduction_collections.png
+
+   View Layers and collections.
+
+Each View Layer references a combination of :doc:`Collections </scene_layout/collections/introduction>`,
+which define the visibility, selectability, and contribution of scene objects in the final render.
+Multiple View Layers can use the same or different collections, allowing for tailored layer setups.
 
 
-View Layers
-===========
+Selecting View Layers
+=====================
+
+At the top of the *View Layer Properties* tab is a list of all View Layers in the active scene.
 
 .. figure:: /images/render_layers_introduction_list.png
 
-   View Layers.
-
-In the top of the screen there is a list of all the View Layers in the active scene.
+   View Layers list.
 
 .. _bpy.types.ViewLayer.name:
 
 Name
-   The name of the active view layer, click to edit the name.
+   The name of the active View Layer. Click to edit.
 
 .. _bpy.ops.scene.view_layer_add:
 
 Add View Layer
-   Will add a new view layer to the active scene.
+   Adds a new View Layer to the scene.
 
-   New
-      Adds a new view layer.
-   Copy Settings
-      Adds a new view layer with all the settings of current view layer.
-   Blank
-      Adds a new view layer with all collections disabled.
+   - **New**: Adds an empty View Layer.
+   - **Copy Settings**: Duplicates the current View Layer, including collection visibility and overrides.
+   - **Blank**: Adds a new View Layer with all collections disabled.
 
 .. _bpy.ops.scene.view_layer_remove:
 
 Remove View Layer
-   Will remove the selected view layer from the active scene.
+   Deletes the selected View Layer from the scene.
 
    .. note::
 
-      A scene must have at least one view layer.
+      Each scene must contain at least one View Layer.
 
 
 Usage
 =====
 
-Each :doc:`Scene </scene_layout/scene/introduction>` has an associated set of
+Visibility Management
+---------------------
+
+Each :doc:`Scene </scene_layout/scene/introduction>` consists of one or more
 :doc:`Collections </scene_layout/collections/collections>`.
-The visibility settings of each collection can be changed per View Layer to separate the
-rendering of different objects and lights into layers.
+Collections can be enabled or disabled per View Layer, allowing you to control what appears in each layer's render.
+
+This makes it easy to separate lighting, characters, props, or effects into their own passes.
+
+Collection visibility for each View Layer can be adjusted in the :ref:`Outliner
+<editors-outliner-editing-collections>` or :ref:`Collection View Layer Properties <bpy.types.LayerCollection>`.
+
+.. figure:: /images/scene-layout_view-layers_introduction_outliner.png
+
+   View Layer collections in the Outliner.
+
+From the Outliner, you can:
+
+- Enable or disable collections per View Layer.
+- Set holdout and indirect-only options (Cycles only).
+- Manage what objects contribute to the render or compositing.
 
 
-Collections
-===========
+Rendering & Compositing
+-----------------------
 
-Per collection you can adjust the way how the render engine needs to render the objects inside.
-Based on the render engine different options can be set.
+When a scene is rendered, each View Layer is available in the
+:doc:`Compositor </compositing/introduction>` using they :doc:`/compositing/types/input/scene/render_layers`.
+This allows you to process each layer independently, combining or adjusting them to create the final output.
 
-.. figure:: /images/render_layers_introduction_viewlayer-collection.png
+Each View Layer can output multiple :doc:`Render Passes </render/layers/passes>` including:
 
-   Collection/View layer settings.
+- Combined (final image)
+- Diffuse, Glossy, Transmission components
+- Shadow, Mist, Ambient Occlusion
+- Cryptomatte and Object/Material/ID Masks
+- Data passes like Normal, UV, and Depth
 
-Disable from View Layer
-   Remove this collection from the active view layer. Objects that are only in
-   this collection will not be rendered for the active view layer.
-   This is useful to sometimes leave out some object influence for a particular view layer.
-
-Enable in View Layer
-   Add this collection to the active view layer. Objects inside the collection
-   will be rendered with the active view layer.
-
-.. _bpy.ops.outliner.collection_holdout_set:
-
-Set Holdout
-   Objects inside this collection will generate a holdout/mask in the active view layer.
-
-.. _bpy.ops.outliner.collection_holdout_clear:
-
-Clear Holdout
-   Clear the Set Holdout flag.
-
-.. _bpy.ops.outliner.collection_indirect_only_set:
-
-Set Indirect Only :guilabel:`Cycles Only`
-   Objects inside this collection will only contribute to the final image
-   indirectly through shadows and reflections.
-
-.. _bpy.ops.outliner.collection_indirect_only_clear:
-
-Clear Indirect Only :guilabel:`Cycles Only`
-   Clear the *Indirect Only* flag. Objects inside this collection will contribute normally to the final image.
-
-
-Cycles
-======
-
-.. reference::
-
-   :Panel:     :menuselection:`View Layers --> Layer`
-
-This section covers only the Render Layer settings appropriate for the Cycles renderer.
-For the engine-independent settings, see :ref:`this section <render-layers>`.
-
-
-Override
---------
-
-.. _bpy.types.ViewLayer.material_override:
-
-Material Override
-   Overrides all materials in the render layer.
-
-.. _bpy.types.ViewLayer.world_override:
-
-World Override
-   Overrides world background in the render layer.
-
-.. _bpy.types.ViewLayer.samples:
-
-Samples
-   View layer samples to override the scene samples.
-   Controlled by the :ref:`layer samples <bpy.types.CyclesRenderSettings.use_layer_samples>` in the Sampling panel.
+These passes make it possible to perform detailed color grading,
+masking, relighting, and other post-processing operations in a non-destructive workflow.

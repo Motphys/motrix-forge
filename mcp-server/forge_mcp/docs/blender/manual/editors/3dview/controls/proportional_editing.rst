@@ -61,6 +61,7 @@ While editing, you can change the curve profile by either clicking the *Falloff*
 or pressing :kbd:`Shift-O` to get a pie menu.
 
 .. list-table::
+   :widths: 1 1 1
 
    * - .. figure:: /images/editors_3dview_controls_proportional-editing_falloff-constant.png
 

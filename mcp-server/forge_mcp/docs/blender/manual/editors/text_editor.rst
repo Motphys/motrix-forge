@@ -8,7 +8,7 @@
 Text Editor
 ***********
 
-This editor can be used to write Python scripts, Open Shading Language scripts,
+This editor can be used to write Python scripts, scripting based shaders such as OSL and GLSL,
 or just plain text notes. To open it, you can switch to the *Scripting*
 :doc:`workspace </interface/window_system/workspaces>` or press
 :kbd:`Shift-F11` to replace the current editor.

@@ -5,55 +5,53 @@
 Copy Rotation Constraint
 ************************
 
-The *Copy Rotation* constraint forces its owner to match the rotation of its target.
-
+The *Copy Rotation* constraint forces an object or bone to match the rotation of a target.
+As a side effect, it also removes shearing.
 
 Options
 =======
 
 .. figure:: /images/animation_constraints_transform_copy-rotation_panel.png
 
-   Copy Rotation panel.
+   Copy Rotation constraint.
 
-Target
-   :ref:`ui-data-id` used to select the constraints target, and is not functional (red state) when it has none.
-   See :ref:`common constraint properties <rigging-constraints-interface-common-target>` for more information.
+:ref:`Target <rigging-constraints-interface-common-target>`
+   The object or bone whose rotation to copy.
 
 Order
-   Allows specifying which :term:`Euler` order to use during the copy operation.
+   The :term:`Euler` order to use during the copy operation.
    Defaults to the order of the owner.
 
 Axis
-   These buttons control which axes are constrained.
+   The axes for which to copy rotation angles.
 
 Invert
-   Invert their respective corresponding axis coordinates.
+   The axes for which invert the sign (so an angle of 10° becomes -10° and vice versa).
 
 Mix
-   Specifies how the new rotation is combined with the existing rotation.
+   Specifies how the target's current rotation (from all its constraints)
+   is combined with the owner's original rotation (from its preceding constraints).
 
-   Replace
-      The new axis values replace existing values.
-   Add
-      The new axis values are added to the existing values.
-   Before Original
-      The new rotation is added before the existing rotation, as if it was applied to
-      a parent of the constraint owner.
-   After Original
-      The new rotation is added after the existing rotation, as if it was applied to
-      a child of the constraint owner.
-   Offset (Legacy)
+   :Replace:
+      The target's angles replace the owner's.
+   :Add:
+      The target angles are added to the owner's.
+   :Before Original:
+      The target's rotation is applied before the owner's. The result is the same as
+      the owner's rotation if it were a child of the target and there was no constraint.
+   :After Original:
+      The target's rotation is applied after the owner's. The result is the same as
+      the target's rotation if it were a child of the owner and there was no constraint.
+   :Offset (Legacy):
       This replicates the behavior of the original Offset checkbox. It was intended
-      to be similar to the *Before Original* behavior, but does not work correctly
-      with multiple axis rotations, and is thus deprecated.
+      to be similar to *Before Original*, but does not work correctly with multiple axes
+      and is thus deprecated.
 
-Target/Owner
-   Standard conversion between spaces.
-   See :ref:`common constraint properties <rigging-constraints-interface-common-space>` for more information.
+:ref:`Target/Owner <rigging-constraints-interface-common-space>`
+   The spaces for retrieving the angles from the target and for applying them to the owner.
 
-Influence
-   Controls the percentage of affect the constraint has on the object.
-   See :ref:`common constraint properties <bpy.types.constraint.influence>` for more information.
+:ref:`bpy.types.constraint.influence`
+   How strongly the constraint affects the owner.
 
 
 Example

@@ -57,7 +57,7 @@ Fill Connected Meshes
 
 Fill Face Sets
    Hold :kbd:`Ctrl` to snap to face sets under your cursor and fill them.
-   Any face set that was already covered in the expansion will be filled as well.
+   Any face set that was already fully covered in the expansion will be filled as well.
 
 Automatically Set Transform Pivot
    While using any Transform tool, the pivot point

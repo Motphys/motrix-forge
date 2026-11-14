@@ -133,7 +133,7 @@ Variable Type
       Fallback
          If enabled, allows specifying a fallback value to use as the variable value if the RNA Path cannot
          be resolved, instead of causing a driver evaluation failure. For more info see
-         :ref:`Context Property <bpy.types.DriverVariable.type.CONTEXT_PROP>` below.
+         :ref:`Context Property <bpy.types.DriverVariable.type>` below.
 
       .. tip::
 
@@ -188,8 +188,6 @@ Variable Type
 
       Space
          World Space, Transform Space, Local Space.
-
-   .. _bpy.types.DriverVariable.type.CONTEXT_PROP:
 
    Context Property
       .. figure:: /images/animation_drivers_drivers-panel_context-property.png
@@ -309,7 +307,7 @@ Expression
 
 Use Self
    If this option is enabled, the variable ``self`` can be used for drivers to reference their own data.
-   Useful for objects and bones to avoid having creating a *Driver Variable* pointing to itself.
+   Useful for objects and bones to avoid having to create a *Driver Variable* pointing to itself.
 
    Example: ``self.location.x`` applied to the Y rotation property of the same object
    will make the object tumble when moving.
@@ -356,5 +354,5 @@ expression in select few is OK.
 
    - :ref:`Extending Blender with Python <scripting-index>`.
 
-   - `Python <https://www.python.org>`__ and its `documentation <https://docs.python.org/>`__.
+   - `Python <https://www.python.org>`__ and its `documentation <https://docs.python.org/3/>`__.
    - `functions.wolfram.com <https://functions.wolfram.com/>`__.

@@ -24,11 +24,9 @@ Inputs
 Geometry
    Standard geometry input.
 
-
-Properties
-==========
-
-This node has no properties.
+Use Radius
+   For curves, point clouds, and Grease Pencil objects,
+   include the ``radius`` attribute when calculating the bounds.
 
 
 Outputs

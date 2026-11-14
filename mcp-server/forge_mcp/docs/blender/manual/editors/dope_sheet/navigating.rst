@@ -10,6 +10,7 @@ As with most editors, you can:
 
 You can also use the scrollbars for this.
 
+
 .. _dope-sheet-view-menu:
 
 View Menu
@@ -22,6 +23,8 @@ Adjust Last Operation
    completed operation. See :ref:`bpy.ops.screen.redo_last`.
 Channels
    Shows or hides the Channels region (the list of animated property names on the left).
+Playback Controls
+   Show or hide the :ref:`Playback Controls <animation-editors-footer>`.
 
 ----------
 
@@ -91,7 +94,7 @@ Show Markers
    Shows the marker region (provided any markers have been defined).
    When disabled, the :ref:`Marker menu <dopesheet-marker-menu>` is also hidden and marker operators are
    not available in this editor.
-Show Seconds :kbd:`Ctrl-T`
+Use Timecode :kbd:`Ctrl-T`
    Shows timing in seconds instead of frames.
 Sync Visible Range
    Synchronizes the horizontal panning and scale of the editor
@@ -106,7 +109,7 @@ Set Preview Range :kbd:`P`
    having to manually rewind each time.
 
    You can change the start or end frame using the corresponding button in the
-   Timeline editor's :ref:`Playback <timeline-playback>` popover.
+   Timeline editor's :ref:`Playback <animation-editors-playback>` popover.
    Alternatively, you can simply run *Set Preview Range* again.
 Clear Preview Range :kbd:`Alt-P`
    Clears the preview range.
@@ -117,6 +120,20 @@ Set Preview Range to Selected :kbd:`Ctrl-Alt-P`
 
 Toggle Graph Editor :kbd:`Ctrl-Tab`
    Changes the area's editor to the :doc:`/editors/graph_editor/index`.
+
+----------
+
+.. _bpy.types.SpaceDopeSheetEditor.show_cache:
+
+Cache
+   Which simulation caches to show on the timeline.
+
+   Baked simulations will be shown as fully opaque, cached simulations will be slightly transparent,
+   and invalid caches will be slightly transparent with dark diagonal stripes.
+
+   .. figure:: /images/editors_timeline_cache.png
+
+      Timeline Cache.
 
 ----------
 
@@ -172,10 +189,20 @@ Sort Data-Blocks
    you can turn it off.
 
 
-Playhead
-========
+Playback Controls
+=================
 
-Options for playhead snapping which helps you position the playhead precisely when scrubbing
-by snapping it to specific elements like frames, markers, or keyframes.
+The Playback Controls region contains controls and options
+related to playback, keying, auto keyframing, and transport.
 
-See :ref:`Playhead Snapping <playhead-snapping>` for more information.
+These settings allow you to:
+
+- Control how animations are previewed and synchronized with audio.
+- Insert and manage keyframes through keying sets and auto keying.
+- Navigate the timeline using playback and transport controls.
+- Adjust frame ranges and preview specific segments of the animation.
+
+.. seealso::
+
+   For a detailed description of all properties and controls commonly found in the footer,
+   see the :ref:`Playback Controls <animation-editors-footer>` documentation.

@@ -44,6 +44,9 @@ Steps
 
       When using multiple time steps, the render sample count is rounded up to the next multiple
       of steps to ensure even distribution of samples across steps.
+      This can lower the quality of :ref:`jitter camera depth of field <bpy.types.SceneEEVEE.use_bokeh_jittered>`.
+      Increasing the number of :ref:`viewport or render samples <bpy.types.SceneEEVEE.taa_samples>` will get the
+      quality back.
 
    EEVEE splits the render into multiple time steps and accumulates the result
    which is known as Accumulation Motion Blur.

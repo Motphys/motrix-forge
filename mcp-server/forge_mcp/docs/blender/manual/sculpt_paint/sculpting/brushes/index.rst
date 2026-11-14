@@ -1,41 +1,23 @@
+##################
+  Sculpt Brushes
+##################
 
-###########
-  Brushes
-###########
+Sculpt Mode provides a wide range of brush types for shaping, refining,
+and detailing mesh surfaces.
+Each brush is designed for a specific sculpting task, such as adding volume,
+smoothing surfaces, sharpening edges, or applying textures.
 
-Brushes for *Sculpt Mode* bundled in the *Essentials* library.
+Blender includes a default brush asset for every brush type,
+along with several preconfigured variants for common workflows.
+These built-in assets provide practical starting points and demonstrate
+typical settings for different sculpting techniques.
+
+Brushes can be customized extensively, including strength, falloff,
+texture influence, and stroke behavior.
+Custom brushes can also be saved as assets for reuse across projects.
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
-   brushes.rst
-   draw.rst
-   draw_sharp.rst
-   clay.rst
-   clay_strips.rst
-   clay_thumb.rst
-   layer.rst
-   inflate.rst
-   blob.rst
-   crease.rst
-   smooth.rst
-   plane.rst
-   multiplane_scrape.rst
-   pinch.rst
-   grab.rst
-   elastic_deform.rst
-   snake_hook.rst
-   thumb.rst
-   pose.rst
-   nudge.rst
-   rotate.rst
-   slide_relax.rst
-   boundary.rst
-   cloth.rst
-   simplify.rst
-   mask.rst
-   draw_facesets.rst
-   multires_displacement_eraser.rst
-   multires_displacement_smear.rst
-   paint.rst
-   smear.rst
+   Brush Types <brush_types.rst>
+   Brush Assets <brushes.rst>

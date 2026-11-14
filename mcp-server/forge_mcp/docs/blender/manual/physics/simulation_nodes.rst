@@ -4,7 +4,7 @@ Simulation Nodes
 ****************
 
 Through the use of :doc:`Simulation Zones </modeling/geometry_nodes/simulation/simulation_zone>`,
-:doc:`/modeling/geometry_nodes/index` can be used to create custom physic simulations through nodes.
+:doc:`/modeling/geometry_nodes/index` can be used to create custom physics simulations through nodes.
 Simulation zones allow the result of one frame to influence the next one.
 That way even a set of simple rules can lead to complex results, with the passing of time.
 The most common type of them is physics simulation, with specific solvers for physical phenomena.
@@ -18,7 +18,7 @@ Baking
 ======
 
 The simulation is automatically cached during playback.
-The valid cache can be seen as a strong yellow line in the timeline editor.
+The valid cache can be seen as a strong purple line in the timeline editor.
 This allows for animators to quickly inspect all the previous frames of a simulation.
 
 .. figure:: /images/modeling_geometry-nodes_simulation_baking_timeline.png
@@ -50,7 +50,7 @@ Bake
    In order to bake the simulation, the blend-file must be saved to your computer.
    The location the file is saved determines where the baked data is also saved.
    The directory the baked data is saved to can be changed per modifier in the
-   :ref:`Internal Dependencies <bpy.types.NodesModifier.simulation_bake_directory>`.
+   :ref:`Internal Dependencies <bpy.types.NodesModifier.bake_directory>`.
 
    .. _bpy.ops.object.simulation_nodes_cache_delete:
 

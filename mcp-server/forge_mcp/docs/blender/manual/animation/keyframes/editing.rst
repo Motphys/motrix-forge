@@ -10,13 +10,13 @@ Insert Keyframe
 
 .. reference::
 
-   :Mode:      Object Mode
-   :Menu:      :menuselection:`Object --> Animation --> Insert Keyframe`
+   :Mode:      Object Mode, Pose Mode, Video Sequencer Preview
+   :Menu:      :menuselection:`Object/Pose/Strip --> Animation --> Insert Keyframe`
    :Shortcut:  :kbd:`I`
 
 There are several methods of adding new keys. Namely:
 
-- In the 3D Viewport, pressing :kbd:`I` will key properties based on the
+- In the 3D Viewport and Video Sequencer Preview, pressing :kbd:`I` will key properties based on the
   :ref:`Default Key Channels <bpy.types.PreferencesEdit.key_insert_channels>` User Preferences.
 - When a :doc:`Keying Set </animation/keyframes/keying_sets>` is active,
   it is used instead of reading the User Preferences.
@@ -46,8 +46,8 @@ Insert Keyframe with Keying Set
 
 .. reference::
 
-   :Mode:      Object Mode
-   :Menu:      :menuselection:`Object --> Animation --> Insert Keyframe with Keying Set`
+   :Mode:      Object Mode, Pose Mode, Video Sequencer Preview
+   :Menu:      :menuselection:`Object/Pose/Strip --> Animation --> Insert Keyframe with Keying Set`
    :Shortcut:  :kbd:`K`
 
 Insert Keyframes for specified :doc:`Keying Set </animation/keyframes/keying_sets>`,
@@ -61,13 +61,14 @@ Delete Keyframes
 
 .. reference::
 
-   :Mode:      Object Mode
-   :Menu:      :menuselection:`Object --> Animation --> Delete Keyframes...`
+   :Mode:      Object Mode, Pose Mode, Video Sequencer Preview
+   :Menu:      :menuselection:`Object/Pose/Strip --> Animation --> Delete Keyframes...`
    :Shortcut:  :kbd:`Alt-I`
 
 There are several methods of removing keyframes:
 
-- In the 3D Viewport press :kbd:`Alt-I` to remove keys from selected objects on the current frame.
+- In the 3D Viewport or Video Sequencer Preview press :kbd:`Alt-I` to remove keys from selected objects, bones or
+  strips on the current frame.
 - When the mouse is over a value, press :kbd:`Alt-I`.
 - :kbd:`RMB` a value and choose *Delete Keyframe* from the menu.
 
@@ -79,11 +80,11 @@ Clear Keyframes
 
 .. reference::
 
-   :Mode:      Object Mode
-   :Menu:      :menuselection:`Object --> Animation --> Clear Keyframes...`
+   :Mode:      Object Mode, Pose Mode, Video Sequencer Preview
+   :Menu:      :menuselection:`Object/Pose/Strip --> Animation --> Clear Keyframes...`
    :Shortcut:  :kbd:`Shift-Alt-I`
 
-Removes all keyframes from the selected object.
+Removes all keyframes from the selected object, bone or strip.
 
 
 Editing Keyframes
@@ -111,9 +112,7 @@ This example shows you how to animate a cube's location, rotation, and scale.
 
 To test the animation, press :kbd:`Spacebar` to play.
 
-.. todo:: Update image
+.. figure:: /images/animation_keyframes_editing_keyframe-animation-examples.png
+   :width: 600px
 
-   .. figure:: /images/animation_keyframes_editing_keyframe-animation-examples.png
-      :width: 600px
-
-      The animation on frames 1, 50 and 100.
+   The animation on frames 1, 50 and 100.

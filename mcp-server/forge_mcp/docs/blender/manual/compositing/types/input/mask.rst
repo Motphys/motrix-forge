@@ -18,6 +18,16 @@ Inputs
 
 Feather
    Use or ignore feather points defined for splines see :ref:`Mask Feathers <mask-feather>` for more details.
+Size Source
+   Where to get the mask size from for aspect/size information.
+
+   :Scene Size:
+      Will give an image the size of the render resolution for the scene,
+      scaling along when rendering with different resolutions.
+   :Fixed:
+      Gives a fixed size in pixels.
+   :Fixed/Scene:
+      Gives a size in pixels that still scales along when changing the render resolution percentage in the scene.
 
 
 Motion Blur
@@ -37,16 +47,6 @@ Properties
 
 Masks
    The selectable mask data-block. If the label is left blank, the mask name will be set.
-Size Source
-   Where to get the mask size from for aspect/size information.
-
-   :Scene Size:
-      Will give an image the size of the render resolution for the scene,
-      scaling along when rendering with different resolutions.
-   :Fixed:
-      Gives a fixed size in pixels.
-   :Fixed/Scene:
-      Gives a size in pixels that still scales along when changing the render resolution percentage in the scene.
 
 
 Outputs

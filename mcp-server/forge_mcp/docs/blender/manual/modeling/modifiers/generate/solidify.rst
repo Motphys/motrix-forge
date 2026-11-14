@@ -22,7 +22,7 @@ Options
           The Solidify modifier in complex mode.
 
 Mode
-   Simple
+   :Simple:
       This is the default solidify algorithm, which simply extrudes the geometry.
       This algorithm does not work on geometry where edges have more than two adjacent faces.
 
@@ -32,7 +32,7 @@ Mode
          will not be able to solidify the boundary between those. This happens if the normals
          are not recalculated or for example on one-sided surfaces like a Möbius strip.
 
-   Complex
+   :Complex:
       This is a solidify algorithm which can handle every geometric situation
       to guarantee a manifold output geometry. This algorithm is able to
       solidify shapes like Möbius strips, Klein bottles, architectural wall layouts
@@ -53,13 +53,13 @@ Thickness Mode :guilabel:`Complex Mode`
 
       Different thickness options on a non-manifold mesh.
 
-   Fixed
+   :Fixed:
       This is similar to *Simple Mode* without *Even Thickness*.
       The new vertices are always in a fixed distance to the old ones.
-   Even
+   :Even:
       This is similar to *Simple Mode* with *Even Thickness* and *High Quality Normals*.
       It adjusts for sharp corners, but may not always work when more than three faces come together.
-   Constraints
+   :Constraints:
       This is a more advanced model to try to always get the optimal thickness everywhere.
       For up to three faces it is always guaranteed to find an optimal solution.
 
@@ -70,12 +70,9 @@ Boundary :guilabel:`Complex Mode`
 
       Different boundary options with a matCap.
 
-   None
-      No boundary fix is applied. Results are stable.
-   Round
-      Adjusts the boundary for an opening to face inwards (like a hole in an egg).
-   Flat
-      Adjusts the boundary of a planar opening to be a flat (like a cut sphere).
+   :None: No boundary fix is applied. Results are stable.
+   :Round: Adjusts the boundary for an opening to face inwards (like a hole in an egg).
+   :Flat: Adjusts the boundary of a planar opening to be a flat (like a cut sphere).
 
 Thickness
    The depth to be solidified.
@@ -100,19 +97,12 @@ Even Thickness :guilabel:`Simple Mode`
 Merge Threshold :guilabel:`Complex Mode`
    Distance within which degenerated geometry is merged.
 
-Rim
-   Fill
-      Fills the gap between the inner and outer edges.
-   Only Rim
-      In *Simple Mode*: Will not extrude surfaces parallel to the original one,
-      but instead will only add the perpendicular rim.
+Rim -- Fill
+   Creates edge loops and faces between the inner and outer surfaces on face edges (slow, disable when not needed).
 
-      In *Complex Mode*: Will only leave the generated perpendicular rim.
-
-   .. note::
-
-      *Fill* and *Only Rim* only make a difference on :term:`Non-manifold` objects,
-      since the rims are generated from the borders of the original geometry.
+Only Rim
+   - *Simple Mode*: Only leaves the extruded surface and the generated perpendicular rim.
+   - *Complex Mode*: Only leaves the generated perpendicular rim.
 
 Vertex Group
    The weights of the selected vertex group are multiplied onto the *Thickness*,
@@ -122,21 +112,21 @@ Vertex Group
    Invert
       Reverses the vertex group weights, so that the used weight is one minus the actual weight.
 
-   Factor
-      How much the vertex weights are taken into account.
+Factor
+   How much the vertex weights are taken into account.
 
-      - On 0.0 , vertices with zero weight will have no thickness at all.
-      - On 0.5 , vertices with zero weight will be half as thick as those with full weight.
-      - On 1.0 , the weights are ignored and the *Thickness* value is used for every vertex.
+   - On 0.0 , vertices with zero weight will have no thickness at all.
+   - On 0.5 , vertices with zero weight will be half as thick as those with full weight.
+   - On 1.0 , the weights are ignored and the *Thickness* value is used for every vertex.
 
-   Flat Faces :guilabel:`Complex Mode`
-      Use the minimal vertex weight assigned to the vertices of a face to make sure that
-      new faces stay parallel to their original ones. This is slow, so disable it when it is not needed.
+Flat Faces :guilabel:`Complex Mode`
+   Use the minimal vertex weight assigned to the vertices of a face to make sure that
+   new faces stay parallel to their original ones. This is slow, so disable it when it is not needed.
 
-   .. note::
+.. note::
 
-      If the final thickness of a vertex is zero, it will still be solidified.
-      Therefore creating duplicate geometry, which sometimes needs extra care.
+   If the final thickness of a vertex is zero, it will still be solidified.
+   Therefore creating duplicate geometry, which sometimes needs extra care.
 
 
 Normals
@@ -196,8 +186,8 @@ Clamp
 
       Clamp Offset.
 
-   Angle Clamp
-      If enabled clamping will also consider angles in the geometry, not only lengths.
+Angle Clamp
+   If enabled clamping will also consider angles in the geometry, not only lengths.
 
 
 Output Vertex Groups
@@ -206,7 +196,7 @@ Output Vertex Groups
 Shell
    Vertex group that the generated shell geometry will be weighted to.
    This allows you to use other modifiers to only affect the shell geometry
-   by using a that modifier's vertex group influence control.
+   by using that modifier's vertex group influence control.
 
 Rim
    Same as *Shell Vertex Group*, but for the generated rim geometry.

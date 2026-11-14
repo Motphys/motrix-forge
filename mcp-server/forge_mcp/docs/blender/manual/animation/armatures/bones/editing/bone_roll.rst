@@ -30,9 +30,11 @@ Axis Orientation
    Global (X, Y, Z, -X, -Y, -Z) Axis
       Align the roll of the selected bones such that their Z axis points towards the chosen global axis.
    Active Bone
-      Align the roll of the selected bones such that their Z axis points where the active bone's Z axis is currently pointing.
+      Align the roll of the selected bones such that their Z axis points where the active bone's Z axis is currently
+      pointing.
    View Axis
-      Align the roll of the selected bones such that their Z axis points at the viewport's forward/backward axis, basically the user's eyes.
+      Align the roll of the selected bones such that their Z axis points at the viewport's forward/backward axis,
+      basically the user's eyes.
    Cursor
       Align the roll of the selected bones such that their Z axis points at the 3D cursor.
 Flip Axis

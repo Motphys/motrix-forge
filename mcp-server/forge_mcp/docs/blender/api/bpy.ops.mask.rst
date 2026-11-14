@@ -7,301 +7,390 @@ Mask Operators
 
    Add vertex to feather
 
-   :arg location: Location, Location of vertex in normalized space
-   :type location: :class:`mathutils.Vector` of 2 items in [-inf, inf], (optional)
+   :param location: Location, Location of vertex in normalized space (array of 2 items, in [-inf, inf], optional)
+   :type location: :class:`mathutils.Vector` | Sequence[float]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
-.. function:: add_feather_vertex_slide(*, MASK_OT_add_feather_vertex=None, MASK_OT_slide_point=None)
+.. function:: add_feather_vertex_slide(*, MASK_OT_add_feather_vertex={}, MASK_OT_slide_point={})
 
    Add new vertex to feather and slide it
 
-   :arg MASK_OT_add_feather_vertex: Add Feather Vertex, Add vertex to feather
-   :type MASK_OT_add_feather_vertex: :class:`MASK_OT_add_feather_vertex`, (optional)
-   :arg MASK_OT_slide_point: Slide Point, Slide control points
-   :type MASK_OT_slide_point: :class:`MASK_OT_slide_point`, (optional)
+   :param MASK_OT_add_feather_vertex: Add Feather Vertex, Add vertex to feather (optional, :func:`bpy.ops.mask.add_feather_vertex` keyword arguments)
+   :type MASK_OT_add_feather_vertex: dict[str, Any]
+   :param MASK_OT_slide_point: Slide Point, Slide control points (optional, :func:`bpy.ops.mask.slide_point` keyword arguments)
+   :type MASK_OT_slide_point: dict[str, Any]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: add_vertex(*, location=(0.0, 0.0))
 
    Add vertex to active spline
 
-   :arg location: Location, Location of vertex in normalized space
-   :type location: :class:`mathutils.Vector` of 2 items in [-inf, inf], (optional)
+   :param location: Location, Location of vertex in normalized space (array of 2 items, in [-inf, inf], optional)
+   :type location: :class:`mathutils.Vector` | Sequence[float]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
-.. function:: add_vertex_slide(*, MASK_OT_add_vertex=None, MASK_OT_slide_point=None)
+.. function:: add_vertex_slide(*, MASK_OT_add_vertex={}, MASK_OT_slide_point={})
 
    Add new vertex and slide it
 
-   :arg MASK_OT_add_vertex: Add Vertex, Add vertex to active spline
-   :type MASK_OT_add_vertex: :class:`MASK_OT_add_vertex`, (optional)
-   :arg MASK_OT_slide_point: Slide Point, Slide control points
-   :type MASK_OT_slide_point: :class:`MASK_OT_slide_point`, (optional)
+   :param MASK_OT_add_vertex: Add Vertex, Add vertex to active spline (optional, :func:`bpy.ops.mask.add_vertex` keyword arguments)
+   :type MASK_OT_add_vertex: dict[str, Any]
+   :param MASK_OT_slide_point: Slide Point, Slide control points (optional, :func:`bpy.ops.mask.slide_point` keyword arguments)
+   :type MASK_OT_slide_point: dict[str, Any]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: copy_splines()
 
    Copy the selected splines to the internal clipboard
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: cyclic_toggle()
 
    Toggle cyclic for selected splines
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: delete(*, confirm=True)
 
    Delete selected control points or splines
 
-   :arg confirm: Confirm, Prompt for confirmation
-   :type confirm: boolean, (optional)
+   :param confirm: Confirm, Prompt for confirmation (optional)
+   :type confirm: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: duplicate()
 
    Duplicate selected control points and segments between them
 
-.. function:: duplicate_move(*, MASK_OT_duplicate=None, TRANSFORM_OT_translate=None)
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
+.. function:: duplicate_move(*, MASK_OT_duplicate={}, TRANSFORM_OT_translate={})
 
    Duplicate mask and move
 
-   :arg MASK_OT_duplicate: Duplicate Mask, Duplicate selected control points and segments between them
-   :type MASK_OT_duplicate: :class:`MASK_OT_duplicate`, (optional)
-   :arg TRANSFORM_OT_translate: Move, Move selected items
-   :type TRANSFORM_OT_translate: :class:`TRANSFORM_OT_translate`, (optional)
+   :param MASK_OT_duplicate: Duplicate Mask, Duplicate selected control points and segments between them (optional, :func:`bpy.ops.mask.duplicate` keyword arguments)
+   :type MASK_OT_duplicate: dict[str, Any]
+   :param TRANSFORM_OT_translate: Move, Move selected items (optional, :func:`bpy.ops.transform.translate` keyword arguments)
+   :type TRANSFORM_OT_translate: dict[str, Any]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: feather_weight_clear()
 
    Reset the feather weight to zero
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: handle_type_set(*, type='AUTO')
 
    Set type of handles for selected control points
 
-   :arg type: Type, Spline type
-   :type type: enum in [``'AUTO'``, ``'VECTOR'``, ``'ALIGNED'``, ``'ALIGNED_DOUBLESIDE'``, ``'FREE'``], (optional)
+   :param type: Type, Spline type (optional)
+   :type type: Literal['AUTO', 'VECTOR', 'ALIGNED', 'ALIGNED_DOUBLESIDE', 'FREE']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: hide_view_clear(*, select=True)
 
    Reveal temporarily hidden mask layers
 
-   :arg select: Select
-   :type select: boolean, (optional)
+   :param select: Select, (optional)
+   :type select: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: hide_view_set(*, unselected=False)
 
    Temporarily hide mask layers
 
-   :arg unselected: Unselected, Hide unselected rather than selected layers
-   :type unselected: boolean, (optional)
+   :param unselected: Unselected, Hide unselected rather than selected layers (optional)
+   :type unselected: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: layer_move(*, direction='UP')
 
    Move the active layer up/down in the list
 
-   :arg direction: Direction, Direction to move the active layer
-   :type direction: enum in [``'UP'``, ``'DOWN'``], (optional)
+   :param direction: Direction, Direction to move the active layer (optional)
+   :type direction: Literal['UP', 'DOWN']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: layer_new(*, name="")
 
    Add new mask layer for masking
 
-   :arg name: Name, Name of new mask layer
-   :type name: string, (optional, never None)
+   :param name: Name, Name of new mask layer (optional, never None)
+   :type name: str
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: layer_remove()
 
    Remove mask layer
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
+.. function:: move_to_layer(*, target_layer_name="", add_new_layer=False)
+
+   Move the active spline to layer
+
+   :param target_layer_name: Name, Target Mask Layer (optional, never None)
+   :type target_layer_name: str
+   :param add_new_layer: New Layer, Move selection to a new layer (optional)
+   :type add_new_layer: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
+
 .. function:: new(*, name="")
 
    Create new mask
 
-   :arg name: Name, Name of new mask
-   :type name: string, (optional, never None)
+   :param name: Name, Name of new mask (optional, never None)
+   :type name: str
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: normals_make_consistent()
 
    Recalculate the direction of selected handles
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: parent_clear()
 
    Clear the mask's parenting
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: parent_set()
 
    Set the mask's parenting
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: paste_splines()
 
    Paste splines from the internal clipboard
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: primitive_circle_add(*, size=100.0, location=(0.0, 0.0))
 
    Add new circle-shaped spline
 
-   :arg size: Size, Size of new circle
-   :type size: float in [-inf, inf], (optional)
-   :arg location: Location, Location of new circle
-   :type location: :class:`mathutils.Vector` of 2 items in [-inf, inf], (optional)
+   :param size: Size, Size of new primitive (in [-inf, inf], optional)
+   :type size: float
+   :param location: Location, Location of new primitive (array of 2 items, in [-inf, inf], optional)
+   :type location: :class:`mathutils.Vector` | Sequence[float]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: primitive_square_add(*, size=100.0, location=(0.0, 0.0))
 
    Add new square-shaped spline
 
-   :arg size: Size, Size of new circle
-   :type size: float in [-inf, inf], (optional)
-   :arg location: Location, Location of new circle
-   :type location: :class:`mathutils.Vector` of 2 items in [-inf, inf], (optional)
+   :param size: Size, Size of new primitive (in [-inf, inf], optional)
+   :type size: float
+   :param location: Location, Location of new primitive (array of 2 items, in [-inf, inf], optional)
+   :type location: :class:`mathutils.Vector` | Sequence[float]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: select(*, extend=False, deselect=False, toggle=False, deselect_all=False, select_passthrough=False, location=(0.0, 0.0))
 
    Select spline points
 
-   :arg extend: Extend, Extend selection instead of deselecting everything first
-   :type extend: boolean, (optional)
-   :arg deselect: Deselect, Remove from selection
-   :type deselect: boolean, (optional)
-   :arg toggle: Toggle Selection, Toggle the selection
-   :type toggle: boolean, (optional)
-   :arg deselect_all: Deselect On Nothing, Deselect all when nothing under the cursor
-   :type deselect_all: boolean, (optional)
-   :arg select_passthrough: Only Select Unselected, Ignore the select action when the element is already selected
-   :type select_passthrough: boolean, (optional)
-   :arg location: Location, Location of vertex in normalized space
-   :type location: :class:`mathutils.Vector` of 2 items in [-inf, inf], (optional)
+   :param extend: Extend, Extend selection instead of deselecting everything first (optional)
+   :type extend: bool
+   :param deselect: Deselect, Remove from selection (optional)
+   :type deselect: bool
+   :param toggle: Toggle Selection, Toggle the selection (optional)
+   :type toggle: bool
+   :param deselect_all: Deselect On Nothing, Deselect all when nothing under the cursor (optional)
+   :type deselect_all: bool
+   :param select_passthrough: Only Select Unselected, Ignore the select action when the element is already selected (optional)
+   :type select_passthrough: bool
+   :param location: Location, Location of vertex in normalized space (array of 2 items, in [-inf, inf], optional)
+   :type location: :class:`mathutils.Vector` | Sequence[float]
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: select_all(*, action='TOGGLE')
 
    Change selection of all curve points
 
-   :arg action: Action, Selection action to execute
+   :param action: Action, Selection action to execute (optional)
 
-      * ``TOGGLE``
+      - ``TOGGLE``
         Toggle -- Toggle selection for all elements.
-      * ``SELECT``
+      - ``SELECT``
         Select -- Select all elements.
-      * ``DESELECT``
+      - ``DESELECT``
         Deselect -- Deselect all elements.
-      * ``INVERT``
+      - ``INVERT``
         Invert -- Invert selection of all elements.
-   :type action: enum in [``'TOGGLE'``, ``'SELECT'``, ``'DESELECT'``, ``'INVERT'``], (optional)
+   :type action: Literal['TOGGLE', 'SELECT', 'DESELECT', 'INVERT']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: select_box(*, xmin=0, xmax=0, ymin=0, ymax=0, wait_for_input=True, mode='SET')
 
    Select curve points using box selection
 
-   :arg xmin: X Min
-   :type xmin: int in [-inf, inf], (optional)
-   :arg xmax: X Max
-   :type xmax: int in [-inf, inf], (optional)
-   :arg ymin: Y Min
-   :type ymin: int in [-inf, inf], (optional)
-   :arg ymax: Y Max
-   :type ymax: int in [-inf, inf], (optional)
-   :arg wait_for_input: Wait for Input
-   :type wait_for_input: boolean, (optional)
-   :arg mode: Mode
+   :param xmin: X Min, (in [-inf, inf], optional)
+   :type xmin: int
+   :param xmax: X Max, (in [-inf, inf], optional)
+   :type xmax: int
+   :param ymin: Y Min, (in [-inf, inf], optional)
+   :type ymin: int
+   :param ymax: Y Max, (in [-inf, inf], optional)
+   :type ymax: int
+   :param wait_for_input: Wait for Input, (optional)
+   :type wait_for_input: bool
+   :param mode: Mode, (optional)
 
-      * ``SET``
+      - ``SET``
         Set -- Set a new selection.
-      * ``ADD``
+      - ``ADD``
         Extend -- Extend existing selection.
-      * ``SUB``
+      - ``SUB``
         Subtract -- Subtract existing selection.
-   :type mode: enum in [``'SET'``, ``'ADD'``, ``'SUB'``], (optional)
+   :type mode: Literal['SET', 'ADD', 'SUB']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: select_circle(*, x=0, y=0, radius=25, wait_for_input=True, mode='SET')
 
    Select curve points using circle selection
 
-   :arg x: X
-   :type x: int in [-inf, inf], (optional)
-   :arg y: Y
-   :type y: int in [-inf, inf], (optional)
-   :arg radius: Radius
-   :type radius: int in [1, inf], (optional)
-   :arg wait_for_input: Wait for Input
-   :type wait_for_input: boolean, (optional)
-   :arg mode: Mode
+   :param x: X, (in [-inf, inf], optional)
+   :type x: int
+   :param y: Y, (in [-inf, inf], optional)
+   :type y: int
+   :param radius: Radius, (in [1, inf], optional)
+   :type radius: int
+   :param wait_for_input: Wait for Input, (optional)
+   :type wait_for_input: bool
+   :param mode: Mode, (optional)
 
-      * ``SET``
+      - ``SET``
         Set -- Set a new selection.
-      * ``ADD``
+      - ``ADD``
         Extend -- Extend existing selection.
-      * ``SUB``
+      - ``SUB``
         Subtract -- Subtract existing selection.
-   :type mode: enum in [``'SET'``, ``'ADD'``, ``'SUB'``], (optional)
+   :type mode: Literal['SET', 'ADD', 'SUB']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: select_lasso(*, path=None, use_smooth_stroke=False, smooth_stroke_factor=0.75, smooth_stroke_radius=35, mode='SET')
 
    Select curve points using lasso selection
 
-   :arg path: Path
-   :type path: :class:`bpy_prop_collection` of :class:`OperatorMousePath`, (optional)
-   :arg use_smooth_stroke: Stabilize Stroke, Selection lags behind mouse and follows a smoother path
-   :type use_smooth_stroke: boolean, (optional)
-   :arg smooth_stroke_factor: Smooth Stroke Factor, Higher values gives a smoother stroke
-   :type smooth_stroke_factor: float in [0.5, 0.99], (optional)
-   :arg smooth_stroke_radius: Smooth Stroke Radius, Minimum distance from last point before selection continues
-   :type smooth_stroke_radius: int in [10, 200], (optional)
-   :arg mode: Mode
+   :param path: Path, (optional)
+   :type path: :class:`bpy_prop_collection`\ [:class:`OperatorMousePath`] | None
+   :param use_smooth_stroke: Stabilize Stroke, Selection lags behind mouse and follows a smoother path (optional)
+   :type use_smooth_stroke: bool
+   :param smooth_stroke_factor: Smooth Stroke Factor, Higher values give a smoother stroke (in [0.5, 0.99], optional)
+   :type smooth_stroke_factor: float
+   :param smooth_stroke_radius: Smooth Stroke Radius, Minimum distance from last point before selection continues (in [10, 200], optional)
+   :type smooth_stroke_radius: int
+   :param mode: Mode, (optional)
 
-      * ``SET``
+      - ``SET``
         Set -- Set a new selection.
-      * ``ADD``
+      - ``ADD``
         Extend -- Extend existing selection.
-      * ``SUB``
+      - ``SUB``
         Subtract -- Subtract existing selection.
-   :type mode: enum in [``'SET'``, ``'ADD'``, ``'SUB'``], (optional)
+   :type mode: Literal['SET', 'ADD', 'SUB']
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: select_less()
 
    Deselect spline points at the boundary of each selection region
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: select_linked()
 
    Select all curve points linked to already selected ones
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: select_linked_pick(*, deselect=False)
 
    (De)select all points linked to the curve under the mouse cursor
 
-   :arg deselect: Deselect
-   :type deselect: boolean, (optional)
+   :param deselect: Deselect, (optional)
+   :type deselect: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: select_more()
 
    Select more spline points connected to initial selection
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: shape_key_clear()
 
    Remove mask shape keyframe for active mask layer at the current frame
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: shape_key_feather_reset()
 
    Reset feather weights on all selected points animation values
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: shape_key_insert()
 
    Insert mask shape keyframe for active mask layer at the current frame
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: shape_key_rekey(*, location=True, feather=True)
 
    Recalculate animation data on selected points for frames selected in the dopesheet
 
-   :arg location: Location
-   :type location: boolean, (optional)
-   :arg feather: Feather
-   :type feather: boolean, (optional)
+   :param location: Location, (optional)
+   :type location: bool
+   :param feather: Feather, (optional)
+   :type feather: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: slide_point(*, slide_feather=False, is_new_point=False)
 
    Slide control points
 
-   :arg slide_feather: Slide Feather, First try to slide feather instead of vertex
-   :type slide_feather: boolean, (optional)
-   :arg is_new_point: Slide New Point, Newly created vertex is being slid
-   :type is_new_point: boolean, (optional)
+   :param slide_feather: Slide Feather, First try to slide feather instead of vertex (optional)
+   :type slide_feather: bool
+   :param is_new_point: Slide New Point, Newly created vertex is being slid (optional)
+   :type is_new_point: bool
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 
 .. function:: slide_spline_curvature()
 
    Slide a point on the spline to define its curvature
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]
 .. function:: switch_direction()
 
    Switch direction of selected splines
 
+   :return: Result of the operator call.
+   :rtype: set[Literal[:ref:`rna_enum_operator_return_items`]]

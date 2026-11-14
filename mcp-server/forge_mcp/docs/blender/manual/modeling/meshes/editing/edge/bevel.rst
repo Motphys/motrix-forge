@@ -1,259 +1,242 @@
 .. _bpy.ops.mesh.bevel:
 .. _tool-mesh-bevel:
+.. This page is copied into /modeling/meshes/editing/vertex/bevel_vertices.rst and should
+.. describe both modes of the Bevel tool (not just "Edges" but also "Vertices").
+.. --- copy below this line ---
 
-***********
-Bevel Edges
-***********
+*****
+Bevel
+*****
 
 .. reference::
 
    :Mode:      Edit Mode
-   :Menu:      :menuselection:`Edge --> Bevel Edges`
-   :Shortcut:  :kbd:`Ctrl-B` (Bevel Edges)
-   :Menu:      :menuselection:`Vertex --> Bevel Vertices`
-   :Shortcut:  :kbd:`Shift-Ctrl-B` (Bevel Vertices)
+   :Menu:      :menuselection:`Vertex --> Bevel Vertices`, :menuselection:`Edge --> Bevel Edges`
+   :Shortcut:  :kbd:`Shift-Ctrl-B` (Bevel Vertices), :kbd:`Ctrl-B` (Bevel Edges)
 
-The *Bevel* tool allows you to create chamfered or rounded corners on geometry.
-A bevel is an effect that smooths out edges and corners.
+The *Bevel* tool smooths out corners and edges. This helps make objects look more realistic --
+after all, nothing in real life is infinitely sharp.
 
-Real world edges are very seldom exactly sharp.
-Not even a knife blade edge can be considered perfectly sharp.
-Most edges are intentionally beveled for mechanical and practical reasons.
+.. figure:: /images/modeling_meshes_editing_edge_bevel_cubes.png
 
-Bevels are also useful for giving realism to non-organic models. In the real world,
-the blunt edges on objects catch the light and change the shading around the edges.
-This gives a solid, realistic look,
-as opposed to unbeveled objects which can look too perfect.
+   Cubes without and with bevel.
 
-.. figure:: /images/modeling_meshes_editing_edge_bevel_cubes.jpg
+.. seealso::
 
-   Cubes with and without bevel.
+   The :doc:`/modeling/modifiers/generate/bevel` does this non-destructively.
 
 
 Usage
 =====
 
-The *Bevel Edges* tool works only on selected edges with exactly two adjacent faces.
-It will recognize any edges included in a vertex or face selection as well,
-and perform the bevel the same as if those edges were explicitly selected.
-In "vertex only" mode, the *Bevel Vertices* tool works on selected vertices instead of edges,
-and there is no requirement about having any adjacent faces.
-The *Bevel* tool smooths the edges and/or "corners" (vertices)
-by replacing them with faces making smooth profiles with a specified number of *segments*
-(see the options below for details about the bevel algorithm).
-
-Use :kbd:`Ctrl-B` or a method listed above to run the tool.
-Move the mouse to interactively or type a number to specify the bevel offset,
-and scroll the :kbd:`Wheel` to increase or decrease the number of segments (see below).
+Select one or more vertices, edges, or faces, then press either :kbd:`Ctrl-B` to smooth both edges and
+corners or :kbd:`Shift-Ctrl-B` to smooth only corners. Move the mouse to increase the bevel radius
+and roll the :kbd:`Wheel` to set the density of the new geometry.
+Finally, press :kbd:`LMB`/:kbd:`Return` to confirm or :kbd:`RMB`/:kbd:`Esc` to cancel.
 
 .. list-table::
+   :widths: 1 1 1
 
    * - .. figure:: /images/modeling_meshes_editing_edge_bevel_example-1.png
-          :width: 320px
 
-          Selected edge before beveling.
+          Before beveling.
 
      - .. figure:: /images/modeling_meshes_editing_edge_bevel_example-2.png
-          :width: 320px
 
-          Result of bevel (one segment).
+          Increased bevel width.
 
      - .. figure:: /images/modeling_meshes_editing_edge_bevel_example-3.png
-          :width: 320px
 
-          Result of bevel (vertex only).
-
-.. note::
-
-   Normal (edge) beveling only works on edges that have exactly two faces
-   attached to them. Vertex beveling has no such restriction.
+          Increased bevel segments.
 
 
 Options
 =======
 
+While the tool is active, the current settings are shown at the top of the 3D Viewport. Use the keyboard shortcuts
+(also shown in the :doc:`status bar </interface/window_system/status_bar>`) to select a setting, then move the
+mouse or type a number to change it. When moving the mouse, hold :kbd:`Shift` to change the value more slowly
+for better precision, or :kbd:`Ctrl` to snap to coarse increments.
+
+After confirming with :kbd:`LMB`, the settings can still be changed in the :ref:`bpy.ops.screen.redo_last` panel.
+
 Affect :kbd:`V`
    Vertices
-      Only the areas near vertices are beveled, the edges remain unchanged.
+      Bevel the selected vertices, leaving the edges unchanged.
    Edges
-      Bevel the edges, creating intersections at vertices.
+      Bevel the selected edges, as well as the vertices where three or more edges meet.
 
 Width Type :kbd:`M`
-   Selects how the *Width* value controls the size of the bevel. According to the selection, the width is:
+   The meaning of the *Width* setting. In the examples below, the *Width* is set to 50% for the
+   "Percent" *Width Type* and to 1.0 for the other types.
 
-   :Offset:
-      The distance from the new edge to the original.
-   :Width:
-      The distance between the two new edges formed by the bevel
-      (or the edges on either side of the bevel if there is more than one segment).
-   :Percent:
-      The percentage of the length of adjacent edges that the new edges slide.
-   :Absolute:
-      The exact distance along edges adjacent to the beveled edge. A difference from **Offset** is visible
-      when the unbeveled edges attached to beveled edges meet at an angle besides a right angle.
+   .. list-table::
+      :widths: 1 1 1
 
-   For vertex-only bevels, the Offset and Depth types measure from the original vertex.
-   The Width type is measured from a new vertex to the center of the new face (as half the *Width*).
+      * - .. figure:: /images/modeling_meshes_editing_edge_bevel_width-type-original.png
+
+             Before beveling
+
+        - .. figure:: /images/modeling_meshes_editing_edge_bevel_width-type-offset.png
+
+             Offset
+
+        - .. figure:: /images/modeling_meshes_editing_edge_bevel_width-type-width.png
+
+             Width
+
+      * - .. figure:: /images/modeling_meshes_editing_edge_bevel_width-type-depth.png
+
+             Depth
+
+        - .. figure:: /images/modeling_meshes_editing_edge_bevel_width-type-percent.png
+
+             Percent
+
+        - .. figure:: /images/modeling_meshes_editing_edge_bevel_width-type-absolute.png
+
+             Absolute
 
 Width :kbd:`A`
-   You can change the bevel width by moving the mouse towards and away from the object,
-   a bit like with transform tools.
-   The exact meaning of the value depends on the *Width Type* option (see above).
-   As usual, the scaling can be controlled to a finer degree by holding :kbd:`Shift` to scale in 0.001 steps.
-   :kbd:`LMB` finalizes the operation, :kbd:`RMB` or :kbd:`Esc` aborts the action.
+   The size/radius of the bevel. The precise meaning depends on the *Width Type*.
 
    .. note::
 
       When multiple edges are beveled at the same time,
       it is sometimes impossible to make the width match the above definition on all edges simultaneously.
       Bevel tries to compromise in such cases.
-      Sometimes turning off Loop Slide (see below) can make it easier for Bevel to make the widths as specified.
+      Sometimes turning off *Loop Slide* (see below) can make it easier for Bevel to make the widths as specified.
 
 Segments :kbd:`S`
-   The number of segments in the bevel can be defined by
-   scrolling the mouse :kbd:`Wheel` to increase or decrease this value.
-   The greater the number of segments, the smoother the bevel.
-   Or press :kbd:`S` to change the number with mouse movements, as well as numeric input.
+   The density of the new geometry. Higher values will give a smoother result.
 
-   Alternatively, you can manually enter a segment number value while using the tool,
-   or in the Mesh Tool options panel after using the tool.
+   While the tool is active, this setting can be changed with :kbd:`Wheel` even if it is not selected.
 
-   .. figure:: /images/modeling_meshes_editing_edge_bevel_example-4.png
-      :width: 320px
+Profile Shape :kbd:`P`
+   A number between 0 and 1 that controls the shape of the profile (side view of each beveled edge).
 
-      Bevel with four segments.
+   .. figure:: /images/modeling_meshes_editing_edge_bevel_profile-shape.png
 
-Shape :kbd:`P`
-   This is a number between 0 and 1 that controls the shape of the profile (side view of a beveled edge).
-   The default value, 0.5, gives a circular arc (if the faces meet at right angles).
-   Values less than that give a flatter profile, with 0.25 being exactly flat,
-   and values less than that giving a concave bevel. Values more than 0.5 give a more convex profile.
-   Similarly as *Segments* it can be set with mouse movements and numeric input after toggling :kbd:`P`.
+   If *Miter Outer* or *Miter Inner* is set to *Arc*, this also controls the shape of the miters.
 
 Material Index
-   The *Material* number specifies which material is assigned to the new faces created by the *Bevel* tool.
-   With the default, -1, the material is inherited from the closest existing face ("closest" can be a bit ambiguous).
-   Otherwise, the number is the slot index of the material to use for all newly created faces.
+   The 0-based index of the :ref:`material slot <bpy.types.MaterialSlot>` to assign to the newly created faces.
+   If set to -1, the new faces inherit the materials of their neighbors.
 
 Harden Normals :kbd:`H`
-   When enabled, the per-vertex face normals of the bevel faces are adjusted to
-   match the surrounding faces, and the normals of the surrounding faces are not affected.
-   This will keep the surrounding faces flat (if they were before),
-   with the bevel faces shading smoothly into them. For this effect to work,
-   a mesh must have a :ref:`custom split normals <modeling_meshes_normals_custom>` attribute.
-   As a convenience, a ``custom_normal`` attribute will be created if one does not already exist.
+   When enabled, assigns :ref:`custom split normals <modeling_meshes_normals_custom>` to the newly created
+   faces to make them appear :ref:`smoothly shaded <bpy.ops.object.shade_smooth>` without affecting the
+   rest of the mesh.
 
 Clamp Overlap :kbd:`C`
-   Limits the width of each beveled edge so that edges cannot cause
-   overlapping intersections with other geometry.
+   Prevents beveled edges from overshooting past the end of their neighboring faces.
 
 Loop Slide
-   If there are unbeveled edges along with beveled edges into a vertex,
-   the bevel tries to slide along those edges when possible.
-   Turning the option off can lead to more even bevel widths.
+   Whether the new inner edges should be perpendicular to the beveled edge or match the direction
+   of the existing inner edges.
+
+   .. list-table::
+      :widths: 1 1 1
+
+      * - .. figure:: /images/modeling_meshes_editing_edge_bevel_loop-slide-before.png
+
+             Before beveling.
+
+        - .. figure:: /images/modeling_meshes_editing_edge_bevel_loop-slide-off.png
+
+             Loop Slide off.
+
+        - .. figure:: /images/modeling_meshes_editing_edge_bevel_loop-slide-on.png
+
+             Loop Slide on.
 
 Mark
    Seams :kbd:`U`
-      If a seam edge crosses a non-seam one and you bevel all of them,
-      this option will maintain the expected propagation of seams.
+      When beveling three or more edges that share a vertex, and two of those edges
+      are marked as :doc:`UV Seams </modeling/meshes/uv/unwrapping/seams>`,
+      the new edges between them will also be marked as Seams.
    Sharp :kbd:`K`
-      Similar to Mark Seams, but for sharp edges.
-
-Miter Outer :kbd:`O`
-   A *miter* is formed when two beveled edges meet at an angle.
-   On the side where the angle is greater than 180 degrees, if any, it is called an *outer miter*.
-   This option specifies the pattern that Blender uses at an outer miter.
-
-   :Sharp:
-      Edges meet at a sharp point, with no extra vertices introduced on the edges.
-   :Patch:
-      Edges meet at a sharp point but in addition, two extra vertices are introduced near the point
-      so that the edges and faces at the vertex may be less pinched together than
-      what occurs in the *Sharp* case.
-   :Arc:
-      Two vertices are introduced near the intersection, and a curved arc joins them together.
-      The *Spread* slider controls how far the new vertices are from the intersection.
-      The *Profile* curve widget controls the shape of the arc.
-
-   The current choices are shown in this diagram, where the outer miter is along the horizontal surface.
+      Same as *Mark Seams*, but for :ref:`Sharp <bpy.ops.mesh.mark_sharp>` edges.
 
    .. list-table::
+      :widths: 1 1 1
+
+      * - .. figure:: /images/modeling_meshes_editing_edge_bevel_mark-seams-before.png
+
+             Before beveling.
+
+        - .. figure:: /images/modeling_meshes_editing_edge_bevel_mark-seams-off.png
+
+             Mark Seams off.
+
+        - .. figure:: /images/modeling_meshes_editing_edge_bevel_mark-seams-on.png
+
+             Mark Seams on.
+
+Miter Outer :kbd:`O`
+   When beveling three or more edges connected to the same vertex, and two of those edges
+   form a corner of more than 180° on the side where there are faces, the *Outer Miter*
+   determines if any extra geometry is created in that corner to avoid pinching.
+
+   .. list-table::
+      :widths: 1 1 1
 
       * - .. figure:: /images/modeling_meshes_editing_edge_bevel_miter-2.png
-             :width: 320px
 
-             Sharp outer miter.
+             Sharp outer miter (no extra geometry).
 
         - .. figure:: /images/modeling_meshes_editing_edge_bevel_miter-3.png
-             :width: 320px
 
              Patch outer miter.
 
         - .. figure:: /images/modeling_meshes_editing_edge_bevel_miter-4.png
-             :width: 320px
 
              Arc outer miter.
 
-Inner :kbd:`I`
-   An *Inner Miter* is formed when the angle between two beveled edges is less than 180 degrees.
-   This option specifies the pattern Blender uses at an inner miter.
-   The options are the same as for Outer Miter, except that *Patch* makes no sense and is therefore omitted.
-   Inner miters are shown in the following diagram, where two inner miters are on the vertical surfaces.
+(Miter) Inner :kbd:`I`
+   When beveling two or more edges connected to the same vertex, and there are edges that form a
+   corner of less than 180° on the side where there are faces, the *Inner Miter* determines if
+   any extra geometry is created in those corners.
 
    .. list-table::
+      :widths: 1 1
 
       * - .. figure:: /images/modeling_meshes_editing_edge_bevel_miter-5.png
-             :width: 200px
 
-             Sharp inner miter.
+             Sharp inner miter (no extra geometry).
 
         - .. figure:: /images/modeling_meshes_editing_edge_bevel_miter-6.png
-             :width: 200px
 
              Arc inner miter.
 
 Spread
-   The value used to spread extra vertices apart for *Outer* and *Inner Miters*.
-   This option is available when Miter Inner is set to Arc.
+   The size of the *Inner Miter* when set to *Arc*. This also affects the *Outer Miter*.
 
 Intersection Type :kbd:`N`
-   When more than two beveled edges meet at a vertex, a mesh is created as
-   a way to complete the intersection between the generated geometry.
-   This option controls the method used to create that mesh.
+   The type of geometry to generate at points where three or more beveled edges meet.
 
    :Grid Fill:
-      The default method for building intersections, useful when a smooth continuation of
-      the bevel profile is desired. Without *Custom Profile* enabled, the curve of the profile
-      continues through the intersection, but with a custom profile it just creates a smooth grid within
-      the intersection's boundary.
+      Fill the space between the edges with geometry that smoothly connects them.
    :Cutoff:
-      Creates a cutoff face at the end of each beveled edge coming into the vertex. This is most
-      useful for custom profiles when the new intersection is too complex for a smooth grid fill.
+      Cap off each edge with a flat face.
 
-      With a three way intersection, when the inner corners of the cutoff profiles faces meet at
-      the same location, no center face is created.
-
-      The direction of the cutoff faces depends on the original vertex's normal.
-
-   .. list-table:: Intersection method options.
+   .. list-table::
+      :widths: 1 1 1
 
       * - .. figure:: /images/modeling_meshes_editing_edge_bevel_vmesh-1.png
-             :width: 200px
 
-             Grid fill intersection method.
+             Grid fill.
 
         - .. figure:: /images/modeling_meshes_editing_edge_bevel_vmesh-2.png
-             :width: 200px
 
-             Three way cutoff intersection where the inner vertices are merged.
+             Cutoff.
 
         - .. figure:: /images/modeling_meshes_editing_edge_bevel_vmesh-3.png
-             :width: 200px
 
-             Cutoff intersection method with a center face.
+             Cutoff with a center face.
 
 Face Strength
-   Set *Face Strength* on the faces involved in the bevel, according to the specified mode.
+   Whether to apply a *Face Strength* to the faces involved in the bevel.
    This can be used in conjunction with
    a :doc:`Weight Normals Modifier </modeling/modifiers/normals/weighted_normal>`
    (with the *Face Influence* option checked).
@@ -271,63 +254,34 @@ Face Strength
       also set all the rest of the faces of the model to have strength *Strong*.
 
 Profile Type :kbd:`Z`
-   :Superellipse:
-      Creates a bevel with a uniform concave or convex curve.
+   Determines the flow of the edges that are generated along each beveled edge.
 
-   :Custom:
+   Superellipse
+      Use an auto-generated profile based on the *Profile Shape* setting.
+
+   Custom
       .. figure:: /images/modeling_modifiers_generate_bevel_profile-widget.png
          :align: right
          :width: 300px
 
          The custom profile widget.
 
-      This :ref:`ui-curve-widget` allows the creation of a user-defined profile with more complexity than
-      with the single profile parameter. The modal tool allows toggling the custom profile,
-      but the shape of the profile is only editable in the options panel after the operation is confirmed.
-
-      The profile starts at the bottom right of the widget and ends at the top left, as if it
-      were between two edges intersecting at a right angle. Control points are created in the widget and
-      then the path is sampled with the number of segments from the Bevel modifier.
-
-      .. note::
-
-         The *Profile* curve widget stays active when miters are enabled
-         because it still controls the shape of the miter profiles.
+      Use a custom profile as defined in the :ref:`ui-curve-widget` in the Adjust Last Operation
+      panel. The curve is a side view of a bevel between two faces that meet at a right angle;
+      the darkened area represents the inside of the mesh.
 
       Presets
          The *Support Loops* and *Steps* presets are built dynamically depending on
-         the number of segments in the bevel. If the number of segments is changed,
+         the number of bevel *Segments*. If the number of segments is changed,
          the preset will have to be re-applied.
 
-      Sampling
-         Samples will first be added to each control point, then if there are enough samples,
-         they will be divided evenly between the edges. The *Sample Straight Edges* option toggles whether
-         the samples are added to edges with sharp control points on either side. If there aren't enough samples
-         to give each edge the same number of samples, they will just be added to the most curved edges.
-         So it is recommended to use at least as many segments as there are control points.
+      Sample Straight Edges
+         Whether to sample the profile in the middle of perfectly straight curve segments
+         (lines between two control points with the *Vector* :ref:`handle type <ui-curve-widget-handle-type>`).
+         This is disabled by default, as it's normally enough to sample the profile at the control
+         points themselves.
 
-
-Examples
-========
-
-.. list-table::
-
-   * - .. figure:: /images/modeling_meshes_editing_edge_bevel_example-5.png
-          :width: 320px
-
-          Result of beveling multiple edges.
-
-     - .. figure:: /images/modeling_meshes_editing_edge_bevel_example-6.png
-          :width: 320px
-
-          Another example of beveling multiple edges.
-
-     - .. figure:: /images/modeling_meshes_editing_edge_bevel_example-7.png
-          :width: 320px
-
-          An example using Profile=0.150.
-
-.. seealso::
-
-   The :doc:`Bevel Modifier </modeling/modifiers/generate/bevel>`
-   is a non-destructive alternative to the Bevel tool.
+      Sample Even Lengths
+         By default, each profile segment (piece between two control points) receives the
+         same number of sample points. By enabling this option, the sample points are instead
+         distributed evenly along the whole length of the profile.

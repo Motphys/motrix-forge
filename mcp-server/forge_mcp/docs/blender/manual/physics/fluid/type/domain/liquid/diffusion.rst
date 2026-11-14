@@ -22,80 +22,81 @@ oil, honey, or any other liquid. A couple presets exist to change the diffusion
 for different substances are predefined and can be changed in the preset menu.
 Fluid Diffusion settings can be enabled/disabled in the panel header.
 
-Viscosity
-   The viscosity refers to the "thickness" of the fluid and actually the force needed to
-   move an object of a certain surface area through it at a certain speed.
+.. rubric:: Viscosity
 
-   For manual entry, please note that real-world viscosity
-   (the so-called dynamic viscosity) is normally measured in Pascal-seconds (|Pa.s|),
-   or in Poise units (P, equal to 0.1 |Pa.s|), and commonly centiPoise units (cP, equal to 0.001 |Pa.s|).
+The viscosity refers to the "thickness" of the fluid and actually the force needed to
+move an object of a certain surface area through it at a certain speed.
 
-   Blender, on the other hand, uses the kinematic viscosity which is the dynamic viscosity divided by
-   the density, :math:`\frac{Pa\cdot s}{kg/m^{3}}`, which is |m2.s-1|. So for example, the viscosity
-   of water at room temperature is 1.002 cP, or 0.001002 |Pa.s|; the density of water is about
-   1000 |kg.m-3|, which gives a kinematic viscosity of 0.000001002 |m2.s-1| --  so the entry would be
-   1.002 times 10 to the minus six (1.002×10\ :sup:`-6` in scientific notation).
+For manual entry, please note that real-world viscosity
+(the so-called dynamic viscosity) is normally measured in Pascal-seconds (|Pa.s|),
+or in Poise units (P, equal to 0.1 |Pa.s|), and commonly centiPoise units (cP, equal to 0.001 |Pa.s|).
 
-   The table below gives some examples of fluids together with their dynamic and kinematic viscosities.
+Blender, on the other hand, uses the kinematic viscosity which is the dynamic viscosity divided by
+the density, :math:`\frac{Pa\cdot s}{kg/m^{3}}`, which is |m2.s-1|. So for example, the viscosity
+of water at room temperature is 1.002 cP, or 0.001002 |Pa.s|; the density of water is about
+1000 |kg.m-3|, which gives a kinematic viscosity of 0.000001002 |m2.s-1| --  so the entry would be
+1.002 times 10 to the minus six (1.002×10\ :sup:`-6` in scientific notation).
 
-   .. list-table:: Blender viscosity unit conversion.
-      :header-rows: 1
+The table below gives some examples of fluids together with their dynamic and kinematic viscosities.
 
-      * - Fluid
-        - Dynamic viscosity (in cP)
-        - Kinematic viscosity (Blender, in |m2.s-1|)
-      * - Water (20 °C)
-        - 1.002×10\ :sup:`0` (1.002)
-        - 1.002×10\ :sup:`-6` (0.000001002)
-      * - Oil SAE 50
-        - 5.0×10\ :sup:`2` (500)
-        - 5.0×10\ :sup:`-5` (0.00005)
-      * - Honey (20 °C)
-        - 1.0×10\ :sup:`4` (10,000)
-        - 2.0×10\ :sup:`-3` (0.002)
-      * - Chocolate Syrup
-        - 3.0×10\ :sup:`4` (30,000)
-        - 3.0×10\ :sup:`-3` (0.003)
-      * - Ketchup
-        - 1.0×10\ :sup:`5` (100,000)
-        - 1.0×10\ :sup:`-1` (0.1)
-      * - Melting Glass
-        - 1.0×10\ :sup:`15`
-        - 1.0×10\ :sup:`0` (1.0)
+.. list-table:: Blender viscosity unit conversion.
+   :header-rows: 1
 
-   .. tip::
+   * - Fluid
+     - Dynamic viscosity (in cP)
+     - Kinematic viscosity (Blender, in |m2.s-1|)
+   * - Water (20 °C)
+     - 1.002×10\ :sup:`0` (1.002)
+     - 1.002×10\ :sup:`-6` (0.000001002)
+   * - Oil SAE 50
+     - 5.0×10\ :sup:`2` (500)
+     - 5.0×10\ :sup:`-5` (0.00005)
+   * - Honey (20 °C)
+     - 1.0×10\ :sup:`4` (10,000)
+     - 2.0×10\ :sup:`-3` (0.002)
+   * - Chocolate Syrup
+     - 3.0×10\ :sup:`4` (30,000)
+     - 3.0×10\ :sup:`-3` (0.003)
+   * - Ketchup
+     - 1.0×10\ :sup:`5` (100,000)
+     - 1.0×10\ :sup:`-1` (0.1)
+   * - Melting Glass
+     - 1.0×10\ :sup:`15`
+     - 1.0×10\ :sup:`0` (1.0)
 
-      You can find the kinematic viscosity of more materials in the proper units by
-      asking Wolfram Alpha, e.g. `"kinematic viscosity of alcohol in m^2/s"
-      <https://www.wolframalpha.com/input?i=kinematic+viscosity+of+alcohol+in+m%5E2%2Fs>`__.
+.. tip::
 
-   To simplify the input of these numbers, the viscosity is changed by entering values
-   in scientific notation by entering a base value and the exponent of that number.
+   You can find the kinematic viscosity of more materials in the proper units by
+   asking Wolfram Alpha, e.g. `"kinematic viscosity of alcohol in m^2/s"
+   <https://www.wolframalpha.com/input?i=kinematic+viscosity+of+alcohol+in+m%5E2%2Fs>`__.
 
-   .. _bpy.types.FluidDomainSettings.viscosity_base:
+To simplify the input of these numbers, the viscosity is changed by entering values
+in scientific notation by entering a base value and the exponent of that number.
 
-   Base
-      The base of the viscosity value (e.g. 1.002 in the case of water (20 °C)).
+.. _bpy.types.FluidDomainSettings.viscosity_base:
 
-   .. _bpy.types.FluidDomainSettings.viscosity_exponent:
+Base
+   The base of the viscosity value (e.g. 1.002 in the case of water (20 °C)).
 
-   Exponent
-      The exponent of the viscosity value that will be multiplied by 10\ :sup:`-1`
-      (e.g. 6 in the case of water (20 °C)).
+.. _bpy.types.FluidDomainSettings.viscosity_exponent:
 
-   .. note:: Viscosity Varies
+Exponent
+   The exponent of the viscosity value that will be multiplied by 10\ :sup:`-1`
+   (e.g. 6 in the case of water (20 °C)).
 
-      The default values in Blender are considered typical for those types of fluids and "look right" when animated.
-      However, actual viscosity of some fluids,
-      especially sugar-laden fluids like chocolate syrup and honey, depend highly on temperature and concentration.
-      Oil viscosity varies by :abbr:`SAE (Society of Automobile Engineers)` rating.
-      Glass at room temperature is basically a solid, but glass at 1500 °C flows (nearly) like water.
+.. note:: Viscosity Varies
 
-   .. warning::
+   The default values in Blender are considered typical for those types of fluids and "look right" when animated.
+   However, actual viscosity of some fluids,
+   especially sugar-laden fluids like chocolate syrup and honey, depend highly on temperature and concentration.
+   Oil viscosity varies by :abbr:`SAE (Society of Automobile Engineers)` rating.
+   Glass at room temperature is basically a solid, but glass at 1500 °C flows (nearly) like water.
 
-      The simulator is not suitable for non-fluids, such as materials that do not "flow".
-      Simply setting the viscosity to very large values will not result in rigid body behavior,
-      but might cause instabilities.
+.. warning::
+
+   The simulator is not suitable for non-fluids, such as materials that do not "flow".
+   Simply setting the viscosity to very large values will not result in rigid body behavior,
+   but might cause instabilities.
 
 .. _bpy.types.FluidDomainSettings.surface_tension:
 
@@ -112,15 +113,15 @@ The high viscosity liquid solver can be used to simulate fluids with increased v
 replicating the behavior of substances like honey or molasses.
 This specialized solver enhances the accuracy of slow-moving and thick liquid simulations.
 
+.. tip::
+
+   A *Strength* value of 0 will still apply some viscosity.
+   Uncheck the *High Viscosity Solver* to disable the high viscosity liquid solver simulation step completely.
+
 .. _bpy.types.FluidDomainSettings.viscosity_value:
 
 Strength
    The viscosity of the liquid. Higher values result in more viscous fluids.
-
-   .. note::
-
-      A strength value of 0 will still apply some viscosity.
-      Uncheck the *High Viscosity Solver* to disable the high viscosity liquid solver simulation step completely.
 
    .. list-table:: Rotating liquid inflow with varying viscosities.
 

@@ -13,13 +13,11 @@ Thickness
 Interpolation
    Interpolation method to use for the visualization of the fluid grid.
 
-   Linear
+   :Linear:
       Linear interpolation between voxels. Gives good smoothness and speed.
-
-   Cubic
+   :Cubic:
       Cubic interpolation between voxels. Gives smoothed high quality interpolation, but is slower.
-
-   Closest
+   :Closest:
       No interpolation between voxels. Gives raw voxels.
 
 .. _bpy.types.FluidDomainSettings.slice_per_voxel:
@@ -38,11 +36,8 @@ Renders only a single 2D section of the domain object.
 .. _bpy.types.FluidDomainSettings.slice_axis:
 
 Axis
-   Auto
-      Adjust slice direction according to the view direction.
-
-   X/Y/Z
-      Slice along the X/Y/Z axis.
+   :Auto: Adjust slice direction according to the view direction.
+   :X/Y/Z: Slice along the X/Y/Z axis.
 
 .. _bpy.types.FluidDomainSettings.slice_depth:
 
@@ -97,21 +92,17 @@ Visualization options for the vector fields.
 .. _bpy.types.FluidDomainSettings.vector_display_type:
 
 Display As
-   Streamlines
-      Choose to display the vectors as "Streamlines".
-
-   Needle
-      Choose to display the vectors as "Needles".
-
-   MAC Grid
+   :Streamlines: Choose to display the vectors as "Streamlines".
+   :Needle: Choose to display the vectors as "Needles".
+   :MAC Grid:
       Choose to display the vector field as "Marker-And-Cell Grid".
 
-      .. _bpy.types.FluidDomainSettings.vector_show_mac_x:
-      .. _bpy.types.FluidDomainSettings.vector_show_mac_y:
-      .. _bpy.types.FluidDomainSettings.vector_show_mac_z:
+.. _bpy.types.FluidDomainSettings.vector_show_mac_x:
+.. _bpy.types.FluidDomainSettings.vector_show_mac_y:
+.. _bpy.types.FluidDomainSettings.vector_show_mac_z:
 
-      X/Y/Z
-         Show an individual X/Y/Z component of the MAC grid.
+ Mac Grid X, Y, Z :guilabel:`Mac Grid`
+   Show an individual X/Y/Z component of the MAC grid.
 
 .. _bpy.types.FluidDomainSettings.vector_scale_with_magnitude:
 
@@ -137,10 +128,9 @@ Advanced coloring options for gridlines.
 .. _bpy.types.FluidDomainSettings.gridlines_color_field:
 
 Color Gridlines
-   Flags
-      Color gridlines with flags.
-
-   Highlight Range :guilabel:`Grid Display Only`
+   :Flags: Color gridlines with flags.
+   :Highlight Range:
+      :guilabel:`Grid Display Only`
       Highlight the cells with values of the displayed grid within the range.
       Values between the *Lower Bound* and *Upper Bound* (inclusive) are considered to be within the range.
 

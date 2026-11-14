@@ -22,7 +22,7 @@ Sample
 
    - X and Y coordinates of the mouse cursor.
    - Color in RGBA.
-   - Color in RGB after :doc:`/render/color_management`.
+   - Color in RGB after :doc:`/render/color_management/index`.
    - Color in HSV.
    - Luminance.
 
@@ -77,6 +77,13 @@ Image Pin
    the selected object. (This switching only happens if the 3D Viewport is
    in :doc:`Texture Paint </sculpt_paint/texture_paint/introduction>` mode).
 
+.. _bpy.types.SpaceImageEditor.show_sequencer_scene:
+
+Show Sequencer Scene
+   This toggle is only visible on the Render Result if a :doc:`Sequencer Scene </video_editing/sequencer_scene>`
+   exists, and it differs from the active scene in the window. After rendering, its state is chosen automatically from
+   the render type.
+
 Slot
    The render slot to view (and render to). You can create new renders without
    losing previous ones by selecting an empty slot before rendering. Afterwards,
@@ -103,6 +110,15 @@ Viewport Gizmos
    Navigate
       Enable/disable the gizmos used to pan or zoom the 2D viewport.
       See :ref:`Navigation Gizmos <editors-image-navigate-gizmos>` for more information.
+
+.. _bpy.types.SpaceImageEditor.show_gizmo_active_node:
+
+Active Node
+   Display interactive gizmos for the active compositing node, allowing
+   supported node properties to be adjusted directly in the Image Editor.
+
+   Available only for the built-in *Viewer Node* image. See
+   :ref:`Node Gizmos <compositor-node-gizmos>` for more information.
 
 .. _bpy.types.SpaceImageEditor.display_channels:
 

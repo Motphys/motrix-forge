@@ -1,5 +1,6 @@
 .. index:: Geometry Nodes; Slice String
 .. _bpy.types.FunctionNodeSliceString:
+.. --- copy below this line ---
 
 *****************
 Slice String Node
@@ -24,12 +25,6 @@ Position
 
 Length
    Integer value used to determine how many characters are extracted from the input string.
-
-
-Properties
-==========
-
-This node has no properties.
 
 
 Outputs

@@ -7,58 +7,41 @@ Surface Primitives
 .. reference::
 
    :Mode:      Object Mode and Edit Mode
-   :Menu:      :menuselection:`Add --> Curve`
+   :Menu:      :menuselection:`Add --> Surface`
    :Shortcut:  :kbd:`Shift-A`
 
 .. seealso::
 
-   When adding curves there are some common options like other :ref:`Objects <object-common-options>`.
+   After adding a primitive, you can change :ref:`options <object-common-options>`
+   such as its radius.
 
-In Object/Edit Mode, the *Add Surface* menu, provides six different surface primitives:
+The *Add Surface* menu offers the following primitives:
 
 .. list-table::
 
-   * - .. figure:: /images/modeling_surfaces_primitives_surface.png
-
-          NURBS surface primitives.
-
-     - .. figure:: /images/modeling_surfaces_primitives_curve.png
+   * - .. figure:: /images/modeling_surfaces_primitives_curve.png
 
           NURBS curve primitives.
 
+     - .. figure:: /images/modeling_surfaces_primitives_surface.png
+
+          NURBS surface primitives.
+
 
 NURBS Curve
-===========
-
-Adds a generic curve of four control points forming an arc.
-
+   Adds a simple curve of four control points forming an arc.
 
 NURBS Circle
-============
-
-Adds an a closed loop of control point forming a circle.
-Note, a circle :term:`NURBS` surface is never filled, unlike its "real" curve counterpart...
-
+   Adds a closed loop of control points forming a circle.
 
 NURBS Surface
-=============
-
-Adds a generic surface patch consisting of a 4×4 grid plane with the center grid slightly raised.
-
+   Adds a simple surface patch consisting of a 4×4 grid with the center points slightly raised.
 
 NURBS Cylinder
-==============
-
-Adds an open end cylinder, consisting of an extruded *NURBS Circle*.
-
+   Adds an open cylinder, consisting of an extruded *NURBS Circle*.
 
 NURBS Sphere
-============
-
-Adds a generic sphere constructed by revolving a grid of control points about an axis.
-
+   Adds a generic sphere constructed from control points arranged in a cube.
 
 NURBS Torus
-===========
-
-Adds a doughnut-shaped primitive created by rotating a circle around an axis.
+   Adds a doughnut-shaped primitive created by rotating a circle around an axis.

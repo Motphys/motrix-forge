@@ -34,8 +34,10 @@ which are geared towards particular tasks (modeling, animating and so on).
 
 .. tip::
 
-   The size of the border around areas can be adjusted in the
-   user preferences with :ref:`Border Width <bpy.types.PreferencesView.border_width>`.
+   - The size of the border around areas can be adjusted in the
+     user preferences with :ref:`Border Width <bpy.types.PreferencesView.border_width>`.
+   - Handles can be enabled to always remain visible, which can help with area management on touch-enabled
+     devices. See :ref:`bpy.types.PreferencesView.show_area_handle`.
 
 
 .. _bpy.ops.screen.area_move:
@@ -48,10 +50,12 @@ Resizing
    :width: 250px
    :figwidth: 250px
 
-You can resize areas by dragging their borders with :kbd:`LMB`.
-Move your mouse cursor over the border between two areas,
-so that the cursor changes to a double-headed arrow, and then click and drag.
-Hold :kbd:`Ctrl` to snap the size of areas to convenient sizes.
+Areas can be resized by dragging their borders with :kbd:`LMB`.
+Move the cursor over the border between two areas so that the cursor changes to
+a double-headed arrow, then click and drag.
+
+- Hold :kbd:`Ctrl` to snap the size of areas to convenient sizes.
+- Hold :kbd:`Shift` to move nearby aligned borders together while resizing.
 
 
 Docking
@@ -62,7 +66,7 @@ the size and location of areas along with splitting an area into new areas.
 
 To start the interactive process, placing the mouse cursor
 in an area corner will change the cursor to a cross (+).
-Once the cursor is a cross, press and hold :kbd:`LMB` to preform any of the following actions:
+Once the cursor is a cross, press and hold :kbd:`LMB` to perform any of the following actions:
 
 If you press :kbd:`Esc` or :kbd:`RMB` before releasing the mouse, the operation will be canceled.
 
@@ -83,6 +87,7 @@ Dragging from an area corner into the space of a second area will *join* two are
 The areas that will be joined will be displayed brighter.
 
 
+
 .. _bpy.ops.screen.area_split:
 
 Splitting
@@ -99,7 +104,7 @@ to split the area horizontally drag up/down.
 
 You can split and join areas at once by dragging a split operation into a separate area.
 
-Dragging an area into the middle of an second area will replace the second area with the first area.
+Dragging an area into the middle of a second area will replace the second area with the first area.
 
 
 .. _bpy.ops.screen.area_options:
@@ -129,48 +134,77 @@ and releasing the mouse there. The two areas do not need to be side-by-side,
 though they must be inside the same window.
 
 
-.. _bpy.ops.screen.area_dupli:
-
-Duplicate Area into new Window
-==============================
-
-.. reference::
-
-   :Menu:      :menuselection:`View --> Area --> Duplicate Area into new Window`
-
-A new floating window containing an area can be created from
-:menuselection:`View --> Area --> Duplicate Area into new Window`. (Not available in some editors.)
-
-The new window is a fully functional window, which is part of the same instance of Blender.
-This can be useful, e.g. if you have multiple monitors.
-
-You can also create a new window from an existing area by pressing :kbd:`Shift-LMB`
-on an area corner, then dragging outward slightly.
-
-
 .. _bpy.ops.screen.screen_full_area:
 
-Toggle Maximize Area
-====================
+Maximize Area
+=============
 
 .. reference::
 
    :Menu:      :menuselection:`View --> Area --> Toggle Maximize Area`
    :Shortcut:  :kbd:`Ctrl-Spacebar`
 
-Expands the Area so it fills the whole window (while keeping the Topbar and Status Bar visible).
-To return to normal size, use the keyboard shortcut again or click the *Back to Previous* button in the Topbar.
+Expands the editor area so it fills the whole window, keeping only the editor's menu bar and status bar visible.
+This is useful for focusing on a single editor (e.g. 3D Viewport, Shader Editor) without changing your workspace
+layout.
+
+Unlike :ref:`Focus Mode <focus-mode>`, the editor's menu bar and
+status bar remain visible.
+
+To return to normal size, use the shortcut again or click the *Back to Previous* button in the Topbar.
 
 
-Toggle Fullscreen Area
-======================
+.. _bpy.ops.screen.back_to_previous:
+
+Restore Area
+============
 
 .. reference::
 
-   :Menu:      :menuselection:`View --> Area --> Toggle Fullscreen Area`
+   :Menu:      :menuselection:`View --> Area --> Restore Area`
+   :Shortcut:  :kbd:`Ctrl-Spacebar`
+
+Returns the maximized area back to its original size and restores the previous screen layout.
+
+
+.. _focus-mode:
+
+Focus Mode
+==========
+
+.. reference::
+
+   :Menu:      :menuselection:`View --> Area --> Focus Mode`
    :Shortcut:  :kbd:`Ctrl-Alt-Spacebar`
 
-Expands the Area so it fills the whole window, hiding the Topbar, Status Bar, and even the
-secondary :doc:`regions </interface/window_system/regions>` (toolbars etc.) of the Area's own editor.
-To return to normal size, use the keyboard shortcut again or click the icon in the Area's top right corner
-(only becomes visible when hovering).
+Expands the editor area so it fills the entire window, hiding:
+
+- The Topbar
+- The Status Bar
+- Secondary :doc:`regions </interface/window_system/regions>` (such as toolbars, sidebars, headers, etc.) of the
+  editor itself.
+
+This mode gives the maximum possible screen space for the active editor.
+
+To return to normal size, use the shortcut again or click the :bl-icon:`fullscreen_exit`
+icon in the top-right corner of the editor (visible only when hovering over the area).
+
+
+.. _bpy.ops.screen.area_dupli:
+
+Duplicate Area into New Window
+==============================
+
+.. reference::
+
+   :Menu:      :menuselection:`View --> Area --> Duplicate Area into New Window`
+
+Creates a new floating window containing a duplicate of the current editor area.
+The new window is fully functional and part of the same Blender instance.
+
+This is especially useful when working with multiple monitors.
+
+.. tip::
+
+   You can also create a new window by holding :kbd:`Shift-LMB` on an area corner
+   and dragging outward slightly.

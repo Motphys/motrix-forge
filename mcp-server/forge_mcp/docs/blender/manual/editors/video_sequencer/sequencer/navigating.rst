@@ -30,6 +30,8 @@ Adjust Last Operation
    completed operation. See :ref:`bpy.ops.screen.redo_last`.
 Channels
    Show or hide the :ref:`bpy.types.SequenceTimelineChannel`.
+Playback Controls
+   Show or hide the :ref:`Playback Controls <animation-editors-footer>`.
 
 ----------
 
@@ -64,7 +66,7 @@ Limit View to Contents
 Show Markers
    Shows the marker region. When disabled, the *Marker* menu is also hidden
    and marker operators are not available in this editor.
-Show Seconds :kbd:`Ctrl-T`
+Use Timecode :kbd:`Ctrl-T`
    Shows seconds instead of frames on the time axis.
 Sync Visible Range
    Synchronizes the horizontal panning and scale of the editor
@@ -78,16 +80,14 @@ Navigation
       Start or stop animation playback. This will start playback in all editors.
    Go to Current Frame :kbd:`Numpad0`
       Scrolls the timeline so the current frame is in the center.
-   Jump to Previous Strip :kbd:`PageDown`
+   Jump to Previous Strip :kbd:`PageUp`
       Moves the playhead to the nearest strip border (start or end) that's before the current frame.
-   Jump to Next Strip :kbd:`PageUp`
+   Jump to Next Strip :kbd:`PageDown`
       Moves the playhead to the nearest strip border (start or end) that's after the current frame.
-   Jump to Previous Strip (Center) :kbd:`Alt-PageDown`
+   Jump to Previous Strip (Center) :kbd:`Alt-PageUp`
       Moves the playhead to the nearest strip center that's before the current frame.
-   Jump to Next Strip (Center) :kbd:`Alt-PageUp`
+   Jump to Next Strip (Center) :kbd:`Alt-PageDown`
       Moves the playhead to the nearest strip center that's after the current frame.
-
-.. _bpy.ops.sequencer.previewrange_set:
 
 Range
    Set Preview Range :kbd:`P`
@@ -96,6 +96,9 @@ Range
       As long as this range is active, playback will be limited to it, letting you repeatedly view a
       segment of the video without having to manually rewind each time. It also limits the range
       that gets rendered by *Sequence Render Animation* (see below).
+
+   .. _bpy.ops.sequencer.set_range_to_strips:
+
    Set Preview Range to Strips
       Apply a preview range that encompasses the selected strips.
    Clear Preview Range :kbd:`Alt-P`
@@ -157,13 +160,35 @@ within an animation. Like with most animation editors, markers are shown at the 
 See :ref:`Editing Markers <animation-markers-editing>` for details.
 
 
-Playhead
---------
+Sequencer Scene
+---------------
 
-Options for playhead snapping which helps you position the playhead precisely when scrubbing
-by snapping it to specific elements like frames, markers, or keyframes.
+A :ref:`data-block menu <ui-data-block>` to select a scene.
+The :doc:`Sequencer Scene </video_editing/sequencer_scene>`
+is the scene that the edit shown in the Sequencer is contained in.
 
-See :ref:`Playhead Snapping <playhead-snapping>` for more information.
+
+Playback Controls
+=================
+
+The Playback Controls region contains controls and options
+related to playback, keying, auto keyframing, and transport.
+
+These settings allow you to:
+
+- Control how animations are previewed and synchronized with audio.
+- Insert and manage keyframes through keying sets and auto keying.
+- Navigate the timeline using playback and transport controls.
+- Adjust frame ranges and preview specific segments of the animation.
+
+Sync Scene Time
+   Set the active scene and time based on the current scene strip.
+   See the :ref:`workspace settings <bpy.types.WorkSpace.use_scene_time_sync>`.
+
+.. seealso::
+
+   For a detailed description of all properties and controls commonly found in the footer,
+   see the :ref:`Playback Controls <animation-editors-footer>` documentation.
 
 
 Main View

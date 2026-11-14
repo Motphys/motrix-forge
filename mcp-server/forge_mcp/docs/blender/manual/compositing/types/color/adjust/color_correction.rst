@@ -34,9 +34,8 @@ Gamma
    Exponential gamma correction, affecting the midtones of the image. (Works like Power in the Color Balance node.)
 Gain
    Multiplier, stronger influence on the highlights. (Works like Slope in the Color Balance node.)
-Lift
+Offset
    This value (can be negative) will be added (+), linear lightens or darkens the image.
-   (Works like *Offset* in the Color Balance node.)
 
 
 Highlights / Midtones / Shadows
@@ -61,12 +60,6 @@ Channels
 
 Red, Green, Blue
    Specifies which RGB channels will be affected by the correction.
-
-
-Properties
-==========
-
-This node has no properties.
 
 
 Outputs

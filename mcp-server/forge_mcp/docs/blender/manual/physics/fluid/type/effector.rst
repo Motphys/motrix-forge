@@ -28,10 +28,9 @@ Settings
 .. _bpy.types.FluidEffectorSettings.effector_type:
 
 Effector Type
-   Collision
+   :Collision:
       Objects of this type will collide with fluid.
-
-   Guide
+   :Guide:
       The velocity of objects of this type will be used when baking the guiding.
       So fluid guiding objects should move and have some velocity.
 
@@ -47,23 +46,20 @@ Effector Type
          The mode describes how guiding velocities should be written into the global guiding velocity
          field of the domain.
 
-         Maximize
+         :Maximize:
             The guiding object will compare the existing velocity in the global velocity field with
             its own velocity. If its absolute value is greater than the absolute value in the velocity
             field the guiding velocity will be kept.
-
-         Minimize
+         :Minimize:
             A guiding object will compare the existing velocity in the global velocity field with its
             own velocity. If its absolute value is smaller than the absolute value in the velocity
             field the guiding velocity will be kept.
-
-         Override
+         :Override:
             The most intuitive option. A guiding object will always
             write its own current velocity into the global guiding velocity field.
             Values in the velocity field from a previous frame or guiding object
             will be overridden.
-
-         Averaged
+         :Averaged:
             A guiding object will write the average of its own current velocity and the existing
             guiding velocity at that cell into the global guiding velocity field.
 

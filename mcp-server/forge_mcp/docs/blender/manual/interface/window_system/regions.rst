@@ -71,7 +71,7 @@ Flip to Bottom/Top
 Vertical/Horizontal Split
    Shows an indicator line that lets you select the area and position where to split.
    :kbd:`Tab` switches between vertical/horizontal.
-Maximize/Full Screen Area
+Maximize Area / Focus Mode
    See :ref:`bpy.ops.screen.screen_full_area`.
 Duplicate Area into New Window
    See :ref:`bpy.ops.screen.area_dupli`.
@@ -115,11 +115,28 @@ with settings of objects within the editor and the editor itself.
 :kbd:`N` toggles the visibility of the Sidebar.
 
 
+.. _ui-region-footer:
+
 Footer
 ======
 
 Some editors show a bar (on top/bottom of the editor area)
 that displays information about for example the active tool or operator.
+
+In animation editors, the footer contains controls and options related to playback, keying, auto keyframing, and
+transport.
+
+These settings allow you to:
+
+- Control how animations are previewed and synchronized with audio.
+- Insert and manage keyframes through keying sets and auto keying.
+- Navigate the timeline using playback and transport controls.
+- Adjust frame ranges and preview specific segments of the animation.
+
+.. seealso::
+
+   For a detailed description of all properties and controls commonly found in the footer,
+   see the :ref:`Playback Controls <animation-editors-footer>` documentation.
 
 
 Arranging

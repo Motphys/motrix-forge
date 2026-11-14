@@ -53,7 +53,7 @@ the material's animation in the same action by having a different slot for each.
 In this example there is one slot for an object and one slot for a material, but
 you can have as many slots as you like for as many objects, materials, lights,
 etc. as you like. If you're baking down a simulation of 100 bouncing balls, you
-could store that animation in single action with 100 slots.
+could store that animation in a single action with 100 slots.
 
 .. figure:: /images/animation_actions_slots_diagram_many_objects.svg
 
@@ -133,7 +133,7 @@ actions contain. Each F-Curve contains keyframes that define how a property
    F-Curves for three different properties.
 
 Blender's animation editors (such as the dopesheet, graph editor, etc.) have a
-**channel list** on their left side that display animated properties. For
+**channel list** on their left side that displays animated properties. For
 actions, these channels correspond to the F-Curves that animate those
 properties.
 
@@ -231,6 +231,24 @@ remain empty, in which case you can manually select an existing slot, create a
 new one, or just start keying and let Blender automatically create a new slot
 for you. If Blender assigns a slot you didn't want, you can select another slot
 manually or simply clear the slot selection.
+
+
+Switching the Action on Multiple Data-Blocks
+--------------------------------------------
+
+When working with an action that animates multiple data-blocks, you may need
+to swap out that action to a different one. And do that on all those data-blocks
+simultaneously, so that animation that belongs together, is swapped together.
+For this there are two options.
+
+Replace Action
+   Looks at the action of the active object and swaps it on any object
+   that is directly animated by it. This excludes usage in NLA strips 
+   and action constraints. It can be found in the :ref:`Action Editor <bpy.ops.anim.replace_action>`.
+
+Remap Users
+   Right click the action in the outliner and choose :ref:`Remap Users <bpy.ops.outliner.id_operation>`. 
+   This will replace the usage on *all* users, including NLA strips and action constraints. Use with caution.
 
 
 NLA

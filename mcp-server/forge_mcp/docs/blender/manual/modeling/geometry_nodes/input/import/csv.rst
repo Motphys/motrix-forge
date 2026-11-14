@@ -10,9 +10,11 @@ Import CSV Node
    :alt: Import CSV node.
 
 The *Import CSV* node reads data from a CSV (Comma-Separated Values) file and generates a point cloud.
-Each row in the file becomes a point, with numeric columns imported as attributes.
+The first row (header) must contain unique names for each column. After the first line each row in the
+file becomes a point, with numeric columns imported as attributes.
 
-Attribute names are taken from the header row (if present), and types are inferred from the first value in each column:
+Attribute names are taken from the header row, and types are inferred from the first value in each
+column:
 
 - Integer values create integer attributes.
 - Float values create float attributes.
@@ -38,12 +40,6 @@ Delimiter
    .. tip::
 
       Tab characters can be inserted using the :doc:`/modeling/geometry_nodes/utilities/text/special_characters`.
-
-
-Properties
-==========
-
-This node has no properties.
 
 
 Outputs

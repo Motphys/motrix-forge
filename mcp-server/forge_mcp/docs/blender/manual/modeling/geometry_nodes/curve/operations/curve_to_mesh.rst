@@ -6,7 +6,7 @@ Curve to Mesh Node
 ******************
 
 .. figure:: /images/node-types_GeometryNodeCurveToMesh.webp
-   :align: center
+   :align: right
    :alt: The Curve to Mesh node.
 
 The Curve to Mesh node converts all splines of a curve to a mesh.
@@ -41,12 +41,6 @@ Fill Caps
    If the profile spline is cyclic, fill the ends of the generated mesh with n-gons.
    The resulting mesh is :term:`Manifold`, the two new faces for each spline are
    simply connected to existing edges.
-
-
-Properties
-==========
-
-This node has no properties.
 
 
 Outputs

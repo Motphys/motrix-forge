@@ -22,17 +22,10 @@ Options
 
 .. figure:: /images/animation_constraints_transform_transformation_panel.png
 
-   Transformation panel.
+   Transformation constraint.
 
-Target
-   The reference object to read a transformation property from. If you don't select one, the constraint's
-   icon will turn red and it will have no effect.
-
-   See :ref:`common constraint properties <rigging-constraints-interface-common-target>` for more information.
-
-Bone
-   If *Target* is an :doc:`Armature </animation/armatures/introduction>`, you can optionally choose a
-   bone here to use the transformation of that bone instead of the armature object as a whole.
+:ref:`Target <rigging-constraints-interface-common-target>`
+   The object or bone to retrieve the transformation from.
 
 Extrapolate
    By default, the input and output values are clamped to the *Min/Max* values.
@@ -53,19 +46,16 @@ Extrapolate
 
              Extrapolate enabled: the output values can extend beyond the limits.
 
-Target/Owner
-   Standard conversion between spaces.
-   See :ref:`common constraint properties <rigging-constraints-interface-common-space>` for more information.
+:ref:`Target/Owner <rigging-constraints-interface-common-space>`
+   The spaces for retrieving the transformation from the target and for applying it to the owner.
 
-Influence
-   Controls the percentage of effect the constraint has on the object.
-   See :ref:`common constraint properties <bpy.types.constraint.influence>` for more information.
-
+:ref:`bpy.types.constraint.influence`
+   How strongly the constraint affects the owner.
 
 Map From
 --------
 
-The transformation to read from the *Target* (or *Bone*).
+The transformation to read from the *Target*.
 
 Location, Rotation, Scale
    The type of transformation to read.

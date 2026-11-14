@@ -25,12 +25,6 @@ Start, Middle, End
    the middle point and the two end points.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

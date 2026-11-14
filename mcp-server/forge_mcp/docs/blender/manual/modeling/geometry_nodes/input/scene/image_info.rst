@@ -25,12 +25,6 @@ Frame
    Frame index for frame-specific outputs.
 
 
-Properties
-==========
-
-This node has no properties.
-
-
 Outputs
 =======
 

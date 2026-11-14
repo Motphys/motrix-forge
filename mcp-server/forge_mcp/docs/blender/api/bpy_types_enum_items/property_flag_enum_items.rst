@@ -3,6 +3,9 @@
 Property Flag Enum Items
 ########################
 
+:READ_ONLY: Read Only.
+
+   When set, the property cannot be edited.
 :HIDDEN: Hidden.
 
    For operators: hide from places in the user interface where Blender would add the property automatically, like Adjust Last Operation. Also this property is not written to presets..

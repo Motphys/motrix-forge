@@ -8,9 +8,9 @@ can use Blender's *Auto Save* feature to reduce the chance of losing files when 
 
 There are three options to help prevent accidental data loss:
 
- - *Save Prompt* prompts you to save unsaved changes on exit
- - *Save Versions* saves additional copies of your blend file with a number appended to the extension
- - *Auto Save* saves your file automatically every few minutes (by default, every 2 minutes)
+- *Save Prompt* prompts you to save unsaved changes on exit
+- *Save Versions* saves additional copies of your blend file with a number appended to the extension
+- *Auto Save* saves your file automatically every few minutes (by default, every 2 minutes)
 
 .. note::
 

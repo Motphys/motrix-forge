@@ -5,71 +5,76 @@ LimitDistanceConstraint(Constraint)
 
 base classes --- :class:`bpy_struct`, :class:`Constraint`
 
+
 .. class:: LimitDistanceConstraint(Constraint)
 
    Limit the distance from target object
 
    .. attribute:: distance
 
-      Radius of limiting sphere
+      Radius of limiting sphere (in [-inf, inf], default 0.0)
 
-      :type: float in [-inf, inf], default 0.0
+      :type: float
 
    .. attribute:: head_tail
 
-      Target along length of bone: Head is 0, Tail is 1
+      Target along length of bone: Head is 0, Tail is 1 (in [0, 1], default 0.0)
 
-      :type: float in [0, 1], default 0.0
+      :type: float
 
    .. attribute:: limit_mode
 
-      Distances in relation to sphere of influence to allow
+      Distances in relation to sphere of influence to allow (default ``'LIMITDIST_INSIDE'``)
 
-      * ``LIMITDIST_INSIDE``
+      - ``LIMITDIST_INSIDE``
         Inside -- The object is constrained inside a virtual sphere around the target object, with a radius defined by the limit distance.
-      * ``LIMITDIST_OUTSIDE``
+      - ``LIMITDIST_OUTSIDE``
         Outside -- The object is constrained outside a virtual sphere around the target object, with a radius defined by the limit distance.
-      * ``LIMITDIST_ONSURFACE``
+      - ``LIMITDIST_ONSURFACE``
         On Surface -- The object is constrained on the surface of a virtual sphere around the target object, with a radius defined by the limit distance.
 
-      :type: enum in [``'LIMITDIST_INSIDE'``, ``'LIMITDIST_OUTSIDE'``, ``'LIMITDIST_ONSURFACE'``], default ``'LIMITDIST_INSIDE'``
+      :type: Literal['LIMITDIST_INSIDE', 'LIMITDIST_OUTSIDE', 'LIMITDIST_ONSURFACE']
 
    .. attribute:: subtarget
 
-      Armature bone, mesh or lattice vertex group, ...
+      Armature bone, mesh or lattice vertex group, ... (default "", never None)
 
-      :type: string, default "", (never None)
+      :type: str
 
    .. attribute:: target
 
       Target object
 
-      :type: :class:`Object`
+      :type: :class:`Object` | None
 
    .. attribute:: use_bbone_shape
 
-      Follow shape of B-Bone segments when calculating Head/Tail position
+      Follow shape of B-Bone segments when calculating Head/Tail position (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. attribute:: use_transform_limit
 
-      Transforms are affected by this constraint as well
+      Transforms are affected by this constraint as well (default False)
 
-      :type: boolean, default False
+      :type: bool
 
    .. classmethod:: bl_rna_get_subclass(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: :class:`bpy.types.Struct` | None
       :return: The RNA type or default when not found.
-      :rtype: :class:`bpy.types.Struct` subclass
+      :rtype: :class:`bpy.types.Struct`
 
 
    .. classmethod:: bl_rna_get_subclass_py(id, default=None, /)
    
-      :arg id: The RNA type identifier.
+      :param id: The RNA type identifier.
       :type id: str
+      :param default: The value to return when not found.
+      :type default: type | None
       :return: The class or default when not found.
       :rtype: type
 
@@ -80,22 +85,22 @@ Inherited Properties
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.id_data`
-   * :class:`Constraint.name`
-   * :class:`Constraint.type`
-   * :class:`Constraint.is_override_data`
-   * :class:`Constraint.owner_space`
-   * :class:`Constraint.target_space`
-   * :class:`Constraint.space_object`
-   * :class:`Constraint.space_subtarget`
-   * :class:`Constraint.mute`
-   * :class:`Constraint.enabled`
-   * :class:`Constraint.show_expanded`
-   * :class:`Constraint.is_valid`
-   * :class:`Constraint.active`
-   * :class:`Constraint.influence`
-   * :class:`Constraint.error_location`
-   * :class:`Constraint.error_rotation`
+   - :class:`bpy_struct.id_data`
+   - :class:`Constraint.name`
+   - :class:`Constraint.type`
+   - :class:`Constraint.is_override_data`
+   - :class:`Constraint.owner_space`
+   - :class:`Constraint.target_space`
+   - :class:`Constraint.space_object`
+   - :class:`Constraint.space_subtarget`
+   - :class:`Constraint.mute`
+   - :class:`Constraint.enabled`
+   - :class:`Constraint.show_expanded`
+   - :class:`Constraint.is_valid`
+   - :class:`Constraint.active`
+   - :class:`Constraint.influence`
+   - :class:`Constraint.error_location`
+   - :class:`Constraint.error_rotation`
 
 Inherited Functions
 -------------------
@@ -103,29 +108,30 @@ Inherited Functions
 .. hlist::
    :columns: 2
 
-   * :class:`bpy_struct.as_pointer`
-   * :class:`bpy_struct.driver_add`
-   * :class:`bpy_struct.driver_remove`
-   * :class:`bpy_struct.get`
-   * :class:`bpy_struct.id_properties_clear`
-   * :class:`bpy_struct.id_properties_ensure`
-   * :class:`bpy_struct.id_properties_ui`
-   * :class:`bpy_struct.is_property_hidden`
-   * :class:`bpy_struct.is_property_overridable_library`
-   * :class:`bpy_struct.is_property_readonly`
-   * :class:`bpy_struct.is_property_set`
-   * :class:`bpy_struct.items`
-   * :class:`bpy_struct.keyframe_delete`
-   * :class:`bpy_struct.keyframe_insert`
-   * :class:`bpy_struct.keys`
-   * :class:`bpy_struct.path_from_id`
-   * :class:`bpy_struct.path_resolve`
-   * :class:`bpy_struct.pop`
-   * :class:`bpy_struct.property_overridable_library_set`
-   * :class:`bpy_struct.property_unset`
-   * :class:`bpy_struct.rna_ancestors`
-   * :class:`bpy_struct.type_recast`
-   * :class:`bpy_struct.values`
-   * :class:`Constraint.bl_rna_get_subclass`
-   * :class:`Constraint.bl_rna_get_subclass_py`
+   - :class:`bpy_struct.as_pointer`
+   - :class:`bpy_struct.driver_add`
+   - :class:`bpy_struct.driver_remove`
+   - :class:`bpy_struct.get`
+   - :class:`bpy_struct.id_properties_clear`
+   - :class:`bpy_struct.id_properties_ensure`
+   - :class:`bpy_struct.id_properties_ui`
+   - :class:`bpy_struct.is_property_hidden`
+   - :class:`bpy_struct.is_property_overridable_library`
+   - :class:`bpy_struct.is_property_readonly`
+   - :class:`bpy_struct.is_property_set`
+   - :class:`bpy_struct.items`
+   - :class:`bpy_struct.keyframe_delete`
+   - :class:`bpy_struct.keyframe_insert`
+   - :class:`bpy_struct.keys`
+   - :class:`bpy_struct.path_from_id`
+   - :class:`bpy_struct.path_from_module`
+   - :class:`bpy_struct.path_resolve`
+   - :class:`bpy_struct.pop`
+   - :class:`bpy_struct.property_overridable_library_set`
+   - :class:`bpy_struct.property_unset`
+   - :class:`bpy_struct.rna_ancestors`
+   - :class:`bpy_struct.type_recast`
+   - :class:`bpy_struct.values`
+   - :class:`Constraint.bl_rna_get_subclass`
+   - :class:`Constraint.bl_rna_get_subclass_py`
 

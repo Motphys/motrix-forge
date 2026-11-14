@@ -51,12 +51,11 @@ Velocity Source
    Guiding velocities can either come from objects that move inside the domain or from other fluid
    domains.
 
-   Effector
+   :Effector:
       All effector objects inside the domain will be considered for the global guiding velocity grid.
       Once effector objects have been baked it is not possible to change the fluid domain resolution
       anymore.
-
-   Domain
+   :Domain:
       When using another fluid domain as the guiding velocity source this domain may have a different
       resolution and may also be of a different type (e.g. the guiding domain is of type *Gas*
       while the actual domain with the guiding effect in it is of type *Liquid*).

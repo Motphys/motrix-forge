@@ -18,6 +18,7 @@
    baking.rst
    tools.rst
    gizmos.rst
+   Performance <performance.rst>
 
 
 Node Types
@@ -27,7 +28,6 @@ Node Types
    :maxdepth: 3
    :titlesonly:
 
-   attribute/index.rst
    input/index.rst
    output/index.rst
 
@@ -37,6 +37,7 @@ Node Types
    :maxdepth: 3
    :titlesonly:
 
+   attribute/index.rst
    geometry/index.rst
 
 -----
@@ -58,7 +59,7 @@ Node Types
    :maxdepth: 3
    :titlesonly:
 
-   simulation/simulation_zone.rst
+   simulation/index.rst
 
 -----
 
@@ -66,7 +67,7 @@ Node Types
    :maxdepth: 3
    :titlesonly:
 
-   material/index.rst
+   color/index.rst
    texture/index.rst
    utilities/index.rst
 
@@ -84,6 +85,7 @@ Node Types
    :maxdepth: 3
    :titlesonly:
 
+   generate/index.rst
    hair/index.rst
    normals/index.rst
 
@@ -92,3 +94,6 @@ Node Types
 
    :doc:`Asset Catalogs </files/asset_libraries/catalogs>`
    that contain geometry node groups will also appear in the add menu.
+
+   Catalogs and assets inserted into a top-level "Geometry Nodes" catalog will
+   show up in the add menu directly, without a *Geometry Nodes* submenu.

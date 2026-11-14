@@ -4,7 +4,13 @@
 Braid Hair Curves
 *****************
 
-Deforms existing hair curves into braids using guide curves.
+The *Braid Hair Curves* node deforms existing hair curves into braided strands by
+grouping nearby curves around guide curves. The deformation creates a multi-strand
+braid pattern, with options for radius, twist frequency, strand thickness, and an
+optional flare or tied ending.
+
+This node is designed for grooming workflows where a few curves act as braid guides,
+and surrounding curves are wrapped around them to form a structured braid.
 
 .. peertube:: wqJoqfqsWvT6msnD75RV2Q
 
@@ -12,93 +18,125 @@ Deforms existing hair curves into braids using guide curves.
 Inputs
 ======
 
-**Geometry**
-
-Guide Index
-   Guide index map which describes which curve to use as the center of each braid group.
-   If this input is provided, it takes priority over an existing map in the ``guide_curve_index``
-   attribute, and the *Guide Distance* and *Guide Mask* attribute will be unused.
-
-Guide Distance
-   Minimum distance between two guides for new guide map.
-
-Guide Mask
-   Mask for which curves are eligible to be selected as guides.
-
-Existing Guide Map
-   Use the existing guide map attribute if available. If this is false, and the *Guide Index*
-   input isn't provided, the *Guide Distance* and *Guide Mask* input will be used to generate
-   a new :doc:`guide map </modeling/geometry_nodes/hair/guides/create_guide_index_map>` for this node.
-   Creating the guide map in a separate node or modifier gives more complete control over its creation.
+Geometry
+   The input geometry containing the hair curves to deform into braids.
 
 Factor
-   Factor by which to blend the overall effect.
+   Controls how strongly the braiding effect is applied.
+   A value of 0.0 leaves the hair unchanged, while 1.0 applies the full braid deformation.
 
 Subdivision
-   Subdivision level applied before deformation.
+   The number of subdivisions applied to curves before deformation.
+   Higher values allow smoother braids at the cost of performance.
 
 Braid Start
-   Percentage along each curve to blend deformation from the root.
+   Controls where along each curve the braid effect begins, measured from the root.
+   Lower values start the braid closer to the root, higher values leave more unbraided length.
 
 Radius
-   Overall radius of the braids.
+   The overall radius of the braid.
+   Larger values create a thicker braid by moving the strands farther from the braid center.
 
 Shape
-   Shape of the braid radius along each curve.
-
-Factor Min
-   Factor of the minimum radius of the braids.
-
-Factor Max
-   Factor of the maximum radius of the braids.
+   Adjusts the radius profile along each curve.
+   This can be used to taper or vary the braid width from root to tip.
 
 Frequency
-   Frequency factor of the braids.
-   This input can vary for different points of the same curve.
+   Controls how quickly the curves twist around the center of the braid.
+   Higher values create tighter, more frequent wrapping.
+   This input can vary per point along a curve, allowing twists to tighten or loosen along the length.
+
+
+Shape Parameters
+----------------
+
+Factor Min
+   Minimum radius factor for the braid cross-section.
+   This determines how close strands can get to the braid center.
+
+Factor Max
+   Maximum radius factor for the braid cross-section.
+   This determines how far strands can move outward from the center.
 
 Thickness
-   Thickness of each strand of hair.
+   The thickness of each strand of hair within the braid.
 
 Thickness Shape
-   Shape adjustment of the strand thickness for the braids.
+   Adjusts how strand thickness changes along the length of the braid.
 
 Shape Asymmetry
-   Asymmetry of the shape adjustment of the strand thickness.
+   Introduces asymmetry in the strand shaping.
+   This breaks perfect radial uniformity, helping the braid feel more organic.
 
 Flare Length
-   Length of the flare at the end of the braid.
+   The length of the flare at the end of the braid, where the strands loosen or fan out.
 
 Flare Opening
-   Opening radius of the flare at the tip of the braid.
+   The radius of that flare at the tip of the braid.
+   Higher values create a wider, more open flare.
+
 
 Hair Tie
-   Geometry used for the hair tie instance (priority).
+--------
+
+Hair Tie Input Type
+   Defines how the hair tie object (e.g. a band or wrap) is provided for instancing.
+
+   :Object:
+      Use an object reference for the hair tie instance.
+   :Geometry:
+      Use a geometry input directly.
 
 Hair Tie
-   Object used for the hair tie instance.
+   The object or geometry used as the hair tie to cap or bind the end of the braid.
 
-Hair Tie Scale
-   Scale of the hair tie instance.
+Scale
+   The scale of the hair tie instance.
 
 
-Properties
-==========
+Guide Map
+---------
 
-This node has no properties.
+Guide Index
+   A map that specifies which curve should act as the central "guide" for each braid group.
+   If provided, this overrides any existing ``guide_curve_index`` attribute,
+   and the *Guide Distance* and *Guide Mask* inputs are ignored.
+
+Guide Distance
+   The minimum spacing between selected guides when automatically generating a guide map.
+   Larger values result in fewer guides, forming larger braid groups.
+
+Guide Mask
+   A mask that determines which curves are allowed to be considered as guides.
+
+Existing Guide Map
+   When enabled, use an existing guide map attribute (for example,
+   ``guide_curve_index``) if it is already present.
+   If this is disabled and *Guide Index* is not provided, a new
+   :doc:`guide map </modeling/geometry_nodes/hair/guides/create_guide_index_map>`
+   is generated using *Guide Distance* and *Guide Mask*.
+   Creating the guide map ahead of time, in a separate node or modifier,
+   gives more precise control over which curves act as braid guides.
 
 
 Outputs
 =======
 
-**Geometry**
-
-Guide Index
-   Guide index map that was used for the operation.
-   If a new guide map is created by this node, it will be stored for
-   this output.
+Geometry
+   The resulting geometry with braided deformation applied.
 
 Flare Parameter
-   Parameter from 0 to 1 along the flare.
+   A value from 0 to 1 indicating the position along the braid flare region.
+   This can be used for shading or for adding effects (such as tying, binding, or loosening
+   near the braid tip).
 
 Strand Index
-   Index of the group of hair in the braid that each hair curve belongs to.
+   An index identifying which strand of the braid each curve belongs to within its braid group.
+
+
+Guide Map
+---------
+
+Guide Index
+   The guide index map actually used to generate the braid.
+   If a new guide map was created by this node, it is provided here for reuse downstream.

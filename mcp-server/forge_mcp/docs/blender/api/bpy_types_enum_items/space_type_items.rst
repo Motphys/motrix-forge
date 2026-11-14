@@ -20,7 +20,7 @@ Space Type Items
    Editor for node-based shading and compositing tools.
 :SEQUENCE_EDITOR: Video Sequencer.
 
-   Video editing tools.
+   Non-linear editor for arranging and mixing scenes, video, audio, and effects.
 :CLIP_EDITOR: Movie Clip Editor.
 
    Motion tracking tools.

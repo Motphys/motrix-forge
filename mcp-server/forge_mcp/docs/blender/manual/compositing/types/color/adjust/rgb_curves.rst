@@ -4,7 +4,7 @@
 .. Editor's Note: This page gets copied into:
 .. - :doc:`</render/shader_nodes/color/rgb_curves>`
 .. - :doc:`</editors/texture_node/types/color/rgb_curves>`
-.. - :doc:`</modeling/geometry_nodes/utilities/color/rgb_curves>`
+.. - :doc:`</modeling/geometry_nodes/color/rgb_curves>`
 
 .. --- copy below this line ---
 
@@ -22,10 +22,10 @@ The *RGB Curves Node* performs level adjustments on each color channel.
 Inputs
 ======
 
-Factor
-   Controls the amount of influence the node exerts on the image.
 Image/Color
    Standard color input.
+Factor
+   Controls the amount of influence the node exerts on the image.
 Black Level :guilabel:`Compositor Only`
    Defines the input color that should be mapped to black.
 White Level :guilabel:`Compositor Only`
@@ -90,7 +90,7 @@ Color Correction using Curves
 In this example, the image has too much red in it,
 so we run it through an *RGB Curves* node and reduce the Red channel.
 
-The documentation for the :doc:`/compositing/types/color/mix/mix_color` has an additional
+The documentation for the :doc:`/compositing/types/color/mix_color` has an additional
 example about fixing overexposure.
 
 

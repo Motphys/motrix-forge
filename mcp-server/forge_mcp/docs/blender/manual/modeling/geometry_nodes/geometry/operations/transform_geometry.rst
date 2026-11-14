@@ -25,6 +25,12 @@ Inputs
 Geometry
    Standard geometry input.
 
+Mode
+   How the transformation is specified.
+
+   :Components: Provide separate inputs for location, rotation and scale.
+   :Matrix: Use a transformation matrix.
+
 Translation
    Translation of the entire geometry in the local space of the modified object.
 
@@ -36,16 +42,6 @@ Scale
 
 Transform
    A :term:`Transformation Matrix`, available when using *Matrix* mode.
-
-
-Properties
-==========
-
-Mode
-   How the transformation is specified.
-
-   :Components: Provide separate inputs for location, rotation and scale.
-   :Matrix: Use a transformation matrix.
 
 
 Output

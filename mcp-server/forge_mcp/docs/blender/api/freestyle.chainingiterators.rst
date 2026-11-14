@@ -8,7 +8,7 @@ operation to construct long strokes by concatenating feature edges
 according to selected chaining rules.  The module is also intended to
 be a collection of examples for defining chaining iterators in Python.
 
-.. class:: freestyle.chainingiterators.ChainPredicateIterator
+.. class:: ChainPredicateIterator
 
    Class hierarchy: :class:`freestyle.types.Iterator` >
    :class:`freestyle.types.ViewEdgeIterator` >
@@ -25,36 +25,40 @@ be a collection of examples for defining chaining iterators in Python.
    predicate is kept as the next one. If none of the potential next
    ViewEdge respects these two predicates, None is returned.
    
-   .. method:: __init__(upred, bpred, restrict_to_selection=True,                      restrict_to_unvisited=True, begin=None,                      orientation=True)
-               __init__(brother)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__(upred, bpred, restrict_to_selection=True, restrict_to_unvisited=True, begin=None, orientation=True)``
+      - ``__init__(brother)``
    
       Builds a ChainPredicateIterator from a unary predicate, a binary
       predicate, a starting ViewEdge and its orientation or using the copy constructor.
    
-      :arg upred: The unary predicate that the next ViewEdge must satisfy.
+      :param upred: The unary predicate that the next ViewEdge must satisfy.
       :type upred: :class:`freestyle.types.UnaryPredicate1D`
-      :arg bpred: The binary predicate that the next ViewEdge must
+      :param bpred: The binary predicate that the next ViewEdge must
          satisfy together with the actual pointed ViewEdge.
       :type bpred: :class:`freestyle.types.BinaryPredicate1D`
-      :arg restrict_to_selection: Indicates whether to force the chaining
+      :param restrict_to_selection: Indicates whether to force the chaining
          to stay within the set of selected ViewEdges or not.
       :type restrict_to_selection: bool
-      :arg restrict_to_unvisited: Indicates whether a ViewEdge that has
+      :param restrict_to_unvisited: Indicates whether a ViewEdge that has
          already been chained must be ignored ot not.
       :type restrict_to_unvisited: bool
-      :arg begin: The ViewEdge from where to start the iteration.
+      :param begin: The ViewEdge from where to start the iteration.
       :type begin: :class:`freestyle.types.ViewEdge` | None
-      :arg orientation: If true, we'll look for the next ViewEdge among
+      :param orientation: If true, we'll look for the next ViewEdge among
          the ViewEdges that surround the ending ViewVertex of begin. If
          false, we'll search over the ViewEdges surrounding the ending
          ViewVertex of begin.
       :type orientation: bool
-      :arg brother: A ChainPredicateIterator object.
+      :param brother: A ChainPredicateIterator object.
       :type brother: :class:`ChainPredicateIterator`
 
 
 
-.. class:: freestyle.chainingiterators.ChainSilhouetteIterator
+.. class:: ChainSilhouetteIterator
 
    Class hierarchy: :class:`freestyle.types.Iterator` >
    :class:`freestyle.types.ViewEdgeIterator` >
@@ -68,28 +72,32 @@ be a collection of examples for defining chaining iterators in Python.
    ViewEdge that are both Silhouette and Crease, there will be a
    precedence of the silhouette over the crease criterion.
    
-   .. method:: __init__(restrict_to_selection=True, begin=None, orientation=True)
-               __init__(brother)
+   .. method:: __init__(*args)
+   
+      Accepted call signatures:
+   
+      - ``__init__(restrict_to_selection=True, begin=None, orientation=True)``
+      - ``__init__(brother)``
    
       Builds a ChainSilhouetteIterator from the first ViewEdge used for
       iteration and its orientation or the copy constructor.
    
-      :arg restrict_to_selection: Indicates whether to force the chaining
+      :param restrict_to_selection: Indicates whether to force the chaining
          to stay within the set of selected ViewEdges or not.
       :type restrict_to_selection: bool
-      :arg begin: The ViewEdge from where to start the iteration.
+      :param begin: The ViewEdge from where to start the iteration.
       :type begin: :class:`freestyle.types.ViewEdge` | None
-      :arg orientation: If true, we'll look for the next ViewEdge among
+      :param orientation: If true, we'll look for the next ViewEdge among
          the ViewEdges that surround the ending ViewVertex of begin. If
          false, we'll search over the ViewEdges surrounding the ending
          ViewVertex of begin.
       :type orientation: bool
-      :arg brother: A ChainSilhouetteIterator object.
+      :param brother: A ChainSilhouetteIterator object.
       :type brother: :class:`ChainSilhouetteIterator`
 
 
 
-.. class:: freestyle.chainingiterators.pyChainSilhouetteIterator
+.. class:: pyChainSilhouetteIterator
 
    Natural chaining iterator that follows the edges of the same nature
    following the topology of objects, with decreasing priority for
@@ -100,54 +108,83 @@ be a collection of examples for defining chaining iterators in Python.
 
    .. method:: traverse(iter)
 
+      Returns the next ViewEdge to chain.
+      
+      :param iter: An adjacency iterator over the candidate ViewEdges.
+      :type iter: :class:`AdjacencyIterator`
+      :return: The next ViewEdge, or None to stop chaining.
+      :rtype: :class:`ViewEdge` | None
 
 
-.. class:: freestyle.chainingiterators.pyChainSilhouetteGenericIterator
+
+.. class:: pyChainSilhouetteGenericIterator
 
    Natural chaining iterator that follows the edges of the same nature
    following the topology of objects, with decreasing priority for
    silhouettes, then borders, then suggestive contours, then all other
    edge types.
    
-   .. method:: __init__(self, stayInSelection=True, stayInUnvisited=True)
+   .. method:: __init__(stayInSelection=True, stayInUnvisited=True)
    
       Builds a pyChainSilhouetteGenericIterator object.
    
-      :arg stayInSelection: True if it is allowed to go out of the selection
+      :param stayInSelection: True if it is allowed to go out of the selection
       :type stayInSelection: bool
-      :arg stayInUnvisited: May the same ViewEdge be chained twice
+      :param stayInUnvisited: May the same ViewEdge be chained twice
       :type stayInUnvisited: bool
 
    .. method:: init()
 
    .. method:: traverse(iter)
 
+      Returns the next ViewEdge to chain.
+      
+      :param iter: An adjacency iterator over the candidate ViewEdges.
+      :type iter: :class:`AdjacencyIterator`
+      :return: The next ViewEdge, or None to stop chaining.
+      :rtype: :class:`ViewEdge` | None
 
 
-.. class:: freestyle.chainingiterators.pyExternalContourChainingIterator
+
+.. class:: pyExternalContourChainingIterator
 
    Chains by external contour
 
    .. method:: checkViewEdge(ve, orientation)
 
+      Tests whether a ViewEdge belongs to the external contour.
+      
+      :param ve: The ViewEdge to test.
+      :type ve: :class:`ViewEdge`
+      :param orientation: Iteration orientation.
+      :type orientation: bool
+      :rtype: bool
+
    .. method:: init()
 
    .. method:: traverse(iter)
 
+      Returns the next ViewEdge to chain.
+      
+      :param iter: An adjacency iterator over the candidate ViewEdges.
+      :type iter: :class:`AdjacencyIterator`
+      :return: The next ViewEdge, or None to stop chaining.
+      :rtype: :class:`ViewEdge` | None
 
 
-.. class:: freestyle.chainingiterators.pySketchyChainSilhouetteIterator
+
+.. class:: pySketchyChainSilhouetteIterator
 
    Natural chaining iterator with a sketchy multiple touch.  It chains the
    same ViewEdge multiple times to achieve a sketchy effect.
    
-   .. method:: __init__(self, nRounds=3,stayInSelection=True)
+   .. method:: __init__(nRounds=3,stayInSelection=True)
    
       Builds a pySketchyChainSilhouetteIterator object.
    
-      :arg nRounds: Number of times every Viewedge is chained.
+      :param nRounds: Number of times every Viewedge is chained.
       :type nRounds: int
-      :arg stayInSelection: if False, edges outside of the selection can be chained.
+      :param stayInSelection: if False, edges outside of the selection can be chained.
       :type stayInSelection: bool
 
    .. method:: init()
@@ -156,12 +193,23 @@ be a collection of examples for defining chaining iterators in Python.
 
       Creates the sketchy effect by causing the chain to run from
       the start again. (loop over itself again)
+      
+      :param ve: The candidate ViewEdge, or None to fall back to the current edge.
+      :type ve: :class:`ViewEdge` | None
+      :rtype: :class:`ViewEdge` | None
 
    .. method:: traverse(iter)
 
+      Returns the next ViewEdge to chain.
+      
+      :param iter: An adjacency iterator over the candidate ViewEdges.
+      :type iter: :class:`AdjacencyIterator`
+      :return: The next ViewEdge, or None to stop chaining.
+      :rtype: :class:`ViewEdge` | None
 
 
-.. class:: freestyle.chainingiterators.pySketchyChainingIterator
+
+.. class:: pySketchyChainingIterator
 
    Chaining iterator designed for sketchy style. It chains the same
    ViewEdge several times in order to produce multiple strokes per
@@ -171,17 +219,24 @@ be a collection of examples for defining chaining iterators in Python.
 
    .. method:: traverse(iter)
 
+      Returns the next ViewEdge to chain.
+      
+      :param iter: An adjacency iterator over the candidate ViewEdges.
+      :type iter: :class:`AdjacencyIterator`
+      :return: The next ViewEdge, or None to stop chaining.
+      :rtype: :class:`ViewEdge` | None
 
 
-.. class:: freestyle.chainingiterators.pyFillOcclusionsRelativeChainingIterator
+
+.. class:: pyFillOcclusionsRelativeChainingIterator
 
    Chaining iterator that fills small occlusions
    
-   .. method:: __init__(self, percent)
+   .. method:: __init__(percent)
    
       Builds a pyFillOcclusionsRelativeChainingIterator object.
    
-      :arg percent: The maximal length of the occluded part, expressed
+      :param percent: The maximal length of the occluded part, expressed
           in a percentage of the total chain length.
       :type percent: float
 
@@ -189,84 +244,119 @@ be a collection of examples for defining chaining iterators in Python.
 
    .. method:: traverse(iter)
 
+      Returns the next ViewEdge to chain.
+      
+      :param iter: An adjacency iterator over the candidate ViewEdges.
+      :type iter: :class:`AdjacencyIterator`
+      :return: The next ViewEdge, or None to stop chaining.
+      :rtype: :class:`ViewEdge` | None
 
 
-.. class:: freestyle.chainingiterators.pyFillOcclusionsAbsoluteChainingIterator
+
+.. class:: pyFillOcclusionsAbsoluteChainingIterator
 
    Chaining iterator that fills small occlusions
    
-   .. method:: __init__(self, length)
+   .. method:: __init__(length)
    
       Builds a pyFillOcclusionsAbsoluteChainingIterator object.
    
-      :arg length: The maximum length of the occluded part in pixels.
+      :param length: The maximum length of the occluded part in pixels.
       :type length: int
 
    .. method:: init()
 
    .. method:: traverse(iter)
 
+      Returns the next ViewEdge to chain.
+      
+      :param iter: An adjacency iterator over the candidate ViewEdges.
+      :type iter: :class:`AdjacencyIterator`
+      :return: The next ViewEdge, or None to stop chaining.
+      :rtype: :class:`ViewEdge` | None
 
 
-.. class:: freestyle.chainingiterators.pyFillOcclusionsAbsoluteAndRelativeChainingIterator
+
+.. class:: pyFillOcclusionsAbsoluteAndRelativeChainingIterator
 
    Chaining iterator that fills small occlusions regardless of the
    selection.
    
-   .. method:: __init__(self, percent, l)
+   .. method:: __init__(percent, l)
    
       Builds a pyFillOcclusionsAbsoluteAndRelativeChainingIterator object.
    
-      :arg percent: The maximal length of the occluded part as a
+      :param percent: The maximal length of the occluded part as a
           percentage of the total chain length.
       :type percent: float
-      :arg l: Absolute length.
+      :param l: Absolute length.
       :type l: float
 
    .. method:: init()
 
    .. method:: traverse(iter)
 
+      Returns the next ViewEdge to chain.
+      
+      :param iter: An adjacency iterator over the candidate ViewEdges.
+      :type iter: :class:`AdjacencyIterator`
+      :return: The next ViewEdge, or None to stop chaining.
+      :rtype: :class:`ViewEdge` | None
 
 
-.. class:: freestyle.chainingiterators.pyFillQi0AbsoluteAndRelativeChainingIterator
+
+.. class:: pyFillQi0AbsoluteAndRelativeChainingIterator
 
    Chaining iterator that fills small occlusions regardless of the
    selection.
    
-   .. method:: __init__(self, percent, l)
+   .. method:: __init__(percent, l)
    
       Builds a pyFillQi0AbsoluteAndRelativeChainingIterator object.
    
-      :arg percent: The maximal length of the occluded part as a
+      :param percent: The maximal length of the occluded part as a
           percentage of the total chain length.
       :type percent: float
-      :arg l: Absolute length.
+      :param l: Absolute length.
       :type l: float
 
    .. method:: init()
 
    .. method:: traverse(iter)
 
+      Returns the next ViewEdge to chain.
+      
+      :param iter: An adjacency iterator over the candidate ViewEdges.
+      :type iter: :class:`AdjacencyIterator`
+      :return: The next ViewEdge, or None to stop chaining.
+      :rtype: :class:`ViewEdge` | None
 
 
-.. class:: freestyle.chainingiterators.pyNoIdChainSilhouetteIterator
+
+.. class:: pyNoIdChainSilhouetteIterator
 
    Natural chaining iterator that follows the edges of the same nature
    following the topology of objects, with decreasing priority for
    silhouettes, then borders, then suggestive contours, then all other edge
    types.  It won't chain the same ViewEdge twice.
    
-   .. method:: __init__(self, stayInSelection=True)
+   .. method:: __init__(stayInSelection=True)
    
       Builds a pyNoIdChainSilhouetteIterator object.
    
-      :arg stayInSelection: True if it is allowed to go out of the selection
+      :param stayInSelection: True if it is allowed to go out of the selection
       :type stayInSelection: bool
 
    .. method:: init()
 
    .. method:: traverse(iter)
+
+      Returns the next ViewEdge to chain.
+      
+      :param iter: An adjacency iterator over the candidate ViewEdges.
+      :type iter: :class:`AdjacencyIterator`
+      :return: The next ViewEdge, or None to stop chaining.
+      :rtype: :class:`ViewEdge` | None
 
 
 

@@ -1,5 +1,6 @@
 .. index:: Geometry Nodes; Transpose Matrix
 .. _bpy.types.FunctionNodeTransposeMatrix:
+.. --- copy below this line ---
 
 *********************
 Transpose Matrix Node
@@ -21,12 +22,6 @@ Inputs
 
 Matrix
    The matrix to be transposed.
-
-
-Properties
-==========
-
-This node has no properties.
 
 
 Outputs
