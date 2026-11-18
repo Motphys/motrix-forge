@@ -3,7 +3,7 @@ schema_version = "1.0.0"
 # Example of manifest file for a Blender extension
 # Change the values according to your extension
 id = "Forge"
-version = "0.1.0"
+version = "0.1.1"
 name = "Forge"
 tagline = "Create and edit articulated physics worlds from MJCF or USD"
 maintainer = "Juno.Han"

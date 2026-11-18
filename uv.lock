@@ -314,7 +314,7 @@ wheels = [
 
 [[package]]
 name = "forge-mcp"
-version = "0.1.0"
+version = "0.1.1"
 source = { editable = "mcp-server" }
 dependencies = [
     { name = "mcp" },
@@ -594,7 +594,7 @@ wheels = [
 
 [[package]]
 name = "motrix-forge"
-version = "0.1.0"
+version = "0.1.1"
 source = { virtual = "." }
 dependencies = [
     { name = "bpy" },
