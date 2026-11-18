@@ -4,7 +4,7 @@
 
 **Make articulated multibody configuration easier.**
 
-[![Download 0.1.0](https://img.shields.io/badge/Download-0.1.0-2ea44f?style=for-the-badge)](https://github.com/Motphys/motrix-forge/releases)
+[![Download 0.1.1](https://img.shields.io/badge/Download-0.1.1-2ea44f?style=for-the-badge)](https://github.com/Motphys/motrix-forge/releases)
 [![Blender 4.5 LTS](https://img.shields.io/badge/Blender-4.5-F5792A?style=for-the-badge&logo=blender&logoColor=white)](https://www.blender.org/releases/4-5/)
 [![Blender 5.2 LTS](https://img.shields.io/badge/Blender-5.2-F5792A?style=for-the-badge&logo=blender&logoColor=white)](https://www.blender.org/releases/5-2/)
 [![GitHub License](https://img.shields.io/github/license/motphys/motrix-forge?style=for-the-badge)](https://github.com/Motphys/motrix-forge/blob/main/LICENSE)
