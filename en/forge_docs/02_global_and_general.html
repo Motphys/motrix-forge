@@ -248,7 +248,10 @@
 <p>Dialog:</p>
 <div align="center"><img src="../../assets/images/manual/02-general-define.png" alt="Define model dialog"></div>
 
-<p>This operator is available only for objects whose <code>Forge_Model_Type == UNDEFINED</code>. The available Forge types depend on the Blender object type:</p>
+<p>The selection must be nonempty and either entirely <code>UNDEFINED</code>, or entirely drawn from <code>VISUAL</code>, <code>COLLIDER</code>, <code>LIGHT</code>, and <code>CAMERA</code> (these four types may be mixed). Mixing <code>UNDEFINED</code> with defined objects, or selecting other Forge types such as <code>LINK</code>, disables the operator.</p>
+<p>Choose <code>UNDEFINED</code> to reset Forge properties, root/instance markers, display settings and transform locks to defaults. Visual and Collider objects bake their evaluated modifiers into an independent mesh, then clear the modifier stack; primitive shape types (<code>BOX</code>, <code>SPHERE</code>, <code>CAPSULE</code>, <code>CYLINDER</code>) show an <strong>Attention</strong> panel in the dialog and issue a warning when executed. Collider shapes bake a solid surface. The new mesh uses the lowercase object name; Blender may add a suffix if that mesh name is already taken. Reset objects are detached from their parent while preserving their world transform. Object names and collection membership are preserved. <code>UNDEFINED</code> objects are skipped during export asset gathering and MJCF element writing. Eligible defined objects only offer <code>UNDEFINED</code>. Untyped selections only offer the supported definition targets in the table below, without <code>UNDEFINED</code>. If an untyped selection has no common supported Blender object type, there is no available target and the dialog is cancelled with a warning.</p>
+<p><strong>Direct conversion between different Forge types is not supported.</strong> For example, to convert a Collider to a Visual, use <strong>Define model</strong> to reset it to <code>UNDEFINED</code>, then run <strong>Define model</strong> again and choose <code>VISUAL</code>. The reset bakes and clears parenting as described above; restore the parent after redefining the type if needed.</p>
+<p><strong>To define <code>UNDEFINED</code> objects, every selected object must have the same Blender object type, and that type must be <code>EMPTY</code>, <code>MESH</code>, <code>LIGHT</code>, or <code>CAMERA</code>.</strong> For example, multiple Mesh objects can be defined as Visual or Collider together; a mixed selection of Mesh and Empty objects cannot be defined. Select and define different Blender types separately. The available Forge types are listed below:</p>
 <table>
 <thead>
 <tr>
@@ -282,7 +285,7 @@
 </table>
 <p>Procedure:</p>
 <ol>
-<li>Select Blender objects of the same type that have not been defined.</li>
+<li>Select undefined Blender objects of the same type to define them, or select objects whose Forge types are drawn from Visual, Collider, Light and Camera to reset them.</li>
 <li>Click <strong>Define model</strong>.</li>
 <li>Choose a Model Type and confirm.</li>
 </ol>
