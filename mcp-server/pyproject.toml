@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "forge-mcp"
-version = "0.1.0"
+version = "0.1.1"
 license = "GPL-3.0-or-later"
 license-files = ["LICENSE"]
 description = "Client-side MCP server exposing Forge (Blender MJCF addon) tools to AI agents"
