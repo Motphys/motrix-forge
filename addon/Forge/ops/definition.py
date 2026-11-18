@@ -26,6 +26,7 @@ Registered via ``operator.classes``.
 
 from __future__ import annotations
 
+import bpy
 from bpy.props import BoolProperty, EnumProperty
 from bpy.types import Context, Operator
 
@@ -33,6 +34,7 @@ from ..core import constants as cons
 from ..core import function as funcs
 from ..core import selection as sel
 from ..core.props import ActuatorItem, JointItem
+from ..core.utils import set_collider_to_mesh
 from .base_operator import BaseDefineOperator
 
 # ═══════════════════════════════════════════════════════════════════════
@@ -49,6 +51,9 @@ class Forge_OT_Type_Define(Operator):
 
     def model_enum_items(self, context: Context):
         """Dynamically generate enum items for model type selection based on selected object type."""
+        undefined = cons.Model_Types[:1]
+        if not sel.check_selected_model_types(context, [cons.ModelTypes.UNDEFINED]):
+            return undefined
         if sel.check_selected_object_types(context, [cons.ObjectTypes.EMPTY]):
             return cons.Model_Types[1:2]
         elif sel.check_selected_object_types(context, [cons.ObjectTypes.MESH]):
@@ -58,7 +63,7 @@ class Forge_OT_Type_Define(Operator):
         elif sel.check_selected_object_types(context, [cons.ObjectTypes.CAMERA]):
             return cons.Model_Types[15:16]
         else:
-            return (("NONE", "None", ""),)
+            return ()
 
     Model_Type: EnumProperty(
         items=model_enum_items,
@@ -69,6 +74,9 @@ class Forge_OT_Type_Define(Operator):
     def execute(self, context: Context):
         """Execute the operator, defining the model type for selected objects."""
         model_type = self.Model_Type
+        if not model_type:
+            self.report({"WARNING"}, "No model type available for the selected objects")
+            return {"CANCELLED"}
 
         unsupported = []
         if model_type == cons.ModelTypes.LIGHT:
@@ -79,11 +87,53 @@ class Forge_OT_Type_Define(Operator):
             self.report({"WARNING"}, f"Unsupported objects: {', '.join(obj.name for obj in unsupported)}")
             return {"CANCELLED"}
 
-        if model_type == cons.ModelTypes.UNDEFINED:
-            self.report({"WARNING"}, "Setting type 'Undefined' for selected objects.")
-
         for obj in context.selected_objects:
             match model_type:
+                case cons.ModelTypes.UNDEFINED:
+                    if obj.Forge_Model_Type in {cons.ModelTypes.VISUAL, cons.ModelTypes.COLLIDER}:
+                        if obj.Forge_Geometry.type not in cons.MeshGeometryTypes:
+                            self.report(
+                                {"WARNING"},
+                                f"{obj.name}: resetting a geom shape to UNDEFINED and "
+                                "bakes its into an independent mesh",
+                            )
+                        # Collider nodes normally output a wire display. Bake
+                        # their solid surface before removing Forge properties.
+                        set_collider_to_mesh(obj, True)
+                        try:
+                            depsgraph = context.evaluated_depsgraph_get()
+                            mesh = bpy.data.meshes.new_from_object(
+                                obj.evaluated_get(depsgraph), preserve_all_data_layers=True, depsgraph=depsgraph
+                            )
+                        finally:
+                            set_collider_to_mesh(obj, False)
+                        obj.data = mesh
+                        obj.modifiers.clear()
+                        obj.data.name = obj.name.lower()
+                    # Unset whole groups, including nested collection properties,
+                    # so subsequent definitions start from RNA defaults.
+                    for prop in obj.bl_rna.properties:
+                        if prop.identifier.startswith("Forge_"):
+                            obj.property_unset(prop.identifier)
+                    for key in ("Root Link", "INSTANCE_LINK", "INSTANCE_IDNAME"):
+                        if key in obj:
+                            del obj[key]
+                    for name in (
+                        "display_type",
+                        "show_in_front",
+                        "lock_location",
+                        "lock_rotation",
+                        "lock_rotation_w",
+                        "lock_rotations_4d",
+                        "lock_scale",
+                    ):
+                        prop = obj.bl_rna.properties[name]
+                        setattr(obj, name, prop.default_array[:] if getattr(prop, "is_array", False) else prop.default)
+                    if obj.parent:
+                        mat = obj.matrix_world.copy()
+                        obj.parent = None
+                        obj.matrix_world = mat
+
                 case cons.ModelTypes.VISUAL:
                     obj.Forge_Geometry.type = cons.GeometryTypes.MESH
                     obj.Forge_Geometry.group = 2
@@ -104,6 +154,7 @@ class Forge_OT_Type_Define(Operator):
                 case cons.ModelTypes.LINK:
                     obj.Forge_Model_Type = model_type
                     obj.show_in_front = True
+                    obj["_forge_gizmo_base_size"] = 1.0
                     funcs.update_model_collection(context, obj)
                     funcs.update_unique_name(obj, "LNK_")
 
@@ -129,12 +180,38 @@ class Forge_OT_Type_Define(Operator):
     @classmethod
     def poll(cls, context: Context):
         """Check whether the operator can run based on selected model types."""
-        return sel.check_selected_model_types(context, [cons.ModelTypes.UNDEFINED])
+        if sel.check_selected_model_types(context, [cons.ModelTypes.UNDEFINED]):
+            return True
+        if sel.check_selected_model_types(
+            context, [cons.ModelTypes.VISUAL, cons.ModelTypes.COLLIDER, cons.ModelTypes.LIGHT, cons.ModelTypes.CAMERA]
+        ):
+            return True
+        return False
 
     def invoke(self, context: Context, event):
         """Invoke the operator, setting up initial UI state with model type dialog."""
-        self.Model_Type = self.model_enum_items(context)[0][0]
+        items = self.model_enum_items(context)
+        if not items:
+            self.report({"WARNING"}, "No model type available for the selected objects")
+            return {"CANCELLED"}
+        self.Model_Type = items[0][0]
         return context.window_manager.invoke_props_dialog(self)
+
+    def draw(self, context: Context):
+        self.layout.prop(self, "Model_Type")
+        if self.Model_Type == cons.ModelTypes.UNDEFINED and any(
+            obj.Forge_Model_Type in {cons.ModelTypes.VISUAL, cons.ModelTypes.COLLIDER}
+            and obj.Forge_Geometry.type not in cons.MeshGeometryTypes
+            for obj in context.selected_objects
+        ):
+            header, body = self.layout.panel("Attention_Info")
+            header.alert = True
+            header.label(text="Attention", icon="WARNING_LARGE")
+            if body:
+                body.alert = True
+                col = body.column(align=True)
+                col.label(text="Geom shape will be baked into an independent mesh,")
+                col.label(text="and clear link with parent.")
 
 
 # ═══════════════════════════════════════════════════════════════════════
