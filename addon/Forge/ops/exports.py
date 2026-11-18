@@ -920,6 +920,8 @@ def write_multibody_children(
     children = [child for child in parent_obj.children]
     children = sorted(children, key=lambda obj: funcs.order_map.get(obj.Forge_Model_Type, len(funcs.custom_order)))
     for obj in children:
+        if obj.Forge_Model_Type == cons.ModelTypes.UNDEFINED:
+            continue
         if obj.Forge_Model_Type == cons.ModelTypes.LINK and (obj.name in template_names or obj.get("INSTANCE_LINK")):
             continue
         match obj.Forge_Model_Type:
@@ -1128,6 +1130,8 @@ def set_world(
             continue
         coll = bpy.data.collections[coll_tag]
         for obj in coll.objects:
+            if obj.Forge_Model_Type == cons.ModelTypes.UNDEFINED:
+                continue
             if (
                 obj.Forge_Model_Type
                 in [

@@ -47,6 +47,40 @@ def require_shapes_asset():
 
 
 class TestExportMjcf:
+    @pytest.mark.parametrize("model_type", ["VISUAL", "COLLIDER", "LIGHT", "CAMERA"])
+    @pytest.mark.parametrize("parented", [False, True])
+    def test_export_skips_reset_objects(self, registered_ops, tmp_path, model_type, parented):
+        world = bpy.data.collections.new(cons.CollectionNames.WORLD)
+        bpy.context.scene.collection.children.link(world)
+        link = bpy.data.objects.new("export_link", None)
+        world.objects.link(link)
+        link.Forge_Model_Type = cons.ModelTypes.LINK
+
+        if model_type == "LIGHT":
+            bpy.ops.object.light_add(type="POINT")
+        elif model_type == "CAMERA":
+            bpy.ops.object.camera_add()
+        else:
+            bpy.ops.mesh.primitive_cube_add()
+        obj = bpy.context.active_object
+        if parented:
+            obj.parent = link
+        bpy.ops.forge.define_model_type(Model_Type=model_type)
+        name = obj.name
+        collections = tuple(obj.users_collection)
+        bpy.ops.forge.define_model_type(Model_Type="UNDEFINED")
+        assert tuple(obj.users_collection) == collections
+
+        messages, root = run_export(bpy.context, str(tmp_path / "reset.xml"))
+
+        assert root.find("worldbody/body[@name='export_link']") is not None, messages
+        assert not root.findall(f".//*[@name='{name}']")
+        assert not root.findall("asset/mesh")
+        assert not root.findall("asset/material")
+        assert not root.findall(".//geom")
+        assert not root.findall(".//light")
+        assert not root.findall(".//camera")
+
     @pytest.mark.parametrize(
         ("rgba", "expected"),
         [

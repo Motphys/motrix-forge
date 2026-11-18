@@ -2423,6 +2423,8 @@ def find_valide_objects(
     if obj.Forge_Model_Type == cons.ModelTypes.LINK and instance_links and obj.name in instance_links:
         return
     for child in obj.children:
+        if child.Forge_Model_Type == cons.ModelTypes.UNDEFINED:
+            continue
         if child.Forge_Model_Type in [
             cons.ModelTypes.LINK,
             cons.ModelTypes.FRAME,
@@ -2931,6 +2933,8 @@ def parse_geometry(
 
     objects: list[Object] = []
     for obj in root_objects:
+        if obj.Forge_Model_Type == cons.ModelTypes.UNDEFINED:
+            continue
         if obj.Forge_Model_Type in [
             cons.ModelTypes.VISUAL,
             cons.ModelTypes.COLLIDER,

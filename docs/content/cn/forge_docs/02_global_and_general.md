@@ -197,7 +197,15 @@ Global 分组用于编辑 Scene 级设置。两个按钮都要求当前没有选
   <img src="../../assets/images/manual/02-general-define.png" alt="General 分组">
 </div>
 
-只对 `Forge_Model_Type == UNDEFINED` 的对象可用。可选 Forge 类型取决于 Blender 对象类型：
+选择不能为空，且必须全部为 `UNDEFINED`，或全部属于 `VISUAL`、`COLLIDER`、`LIGHT`、`CAMERA`（这四种类型可混选）。`UNDEFINED` 与已定义类型混选，或选中 `LINK` 等其他 Forge 类型时，操作不可用。
+
+设为 `UNDEFINED` 会将 Forge 属性、根节点/实例标记、显示设置和变换锁定恢复默认值。Visual 和 Collider 会应用修改器求值结果，生成独立 Mesh 并清空修改器；基本 Shape 类型（`BOX`、`SPHERE`、`CAPSULE`、`CYLINDER`）会在弹窗中显示 **Attention** 提示，并在执行时发出警示，Collider 会烘焙为实体表面。新 Mesh 使用对象名的小写形式命名，重名时 Blender 可能追加后缀。重置会解除对象的父级，同时保留世界变换、对象名称及集合归属。导出时，资源收集和 MJCF 元素写入均跳过 `UNDEFINED` 对象。符合条件的已定义对象只提供 `UNDEFINED` 选项。
+
+**不支持直接在不同 Forge 类型之间转换。** 例如，Collider 转为 Visual 时，需要先通过 **Define model** 将 Collider 设为 `UNDEFINED`，再执行一次 **Define model**，选择 `VISUAL`。第一步会按上述规则烘焙并解除父级；重新定义类型后，如需父子关系，请重新设置。
+
+**定义 `UNDEFINED` 对象时，所选对象必须全部为相同的 Blender 对象类型，且该类型必须是 `EMPTY`、`MESH`、`LIGHT` 或 `CAMERA`。** 例如，可以同时选择多个 Mesh 定义为 Visual 或 Collider；混选 Mesh 和 Empty 则无法定义 Forge 类型。不同 Blender 类型应分别选择、分别定义。
+
+未定义对象仅提供下表中的定义目标选项。混选不同 Blender 类型或选择不受支持的类型时，没有可用目标，点击后会提示并取消操作：
 
 | Blender 对象类型 | 可定义的 Forge 类型   | 额外行为                                                                          |
 | ------------ | --------------- | ----------------------------------------------------------------------------- |
@@ -208,7 +216,7 @@ Global 分组用于编辑 Scene 级设置。两个按钮都要求当前没有选
 
 操作步骤：
 
-1. 选择尚未定义的同类 Blender 对象。
+1. 选择尚未定义的同类 Blender 对象以定义类型，或选择类型属于 Visual、Collider、Light、Camera 的对象以重置为 `UNDEFINED`。
 2. 点击 **Define model**。
 3. 选择 Model Type 并确认。
 

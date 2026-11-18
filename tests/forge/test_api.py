@@ -32,7 +32,7 @@ from Forge.core.geometry_handler import SHAPE_ASSET_IDS, GeometryHandler, add_sh
 from Forge.ops.exports import add_compiler, add_visual, prettify
 from Forge.ops.imports import get_data_object, parse_inherit_attrs, set_coll_tag
 
-from .mjcf_helpers import headless_shape_modifiers
+from .mjcf_helpers import attach_shape_modifier, headless_shape_modifiers
 
 # ═══════════════════════════════════════════════════════════════════
 #  1. Core data model
@@ -383,6 +383,219 @@ class TestSelection:
 
 class TestOperators:
     """Call addon operators and verify scene state changes."""
+
+    @pytest.mark.parametrize(
+        ("object_type", "expected"),
+        [
+            ("EMPTY", ["LINK"]),
+            ("MESH", ["VISUAL", "COLLIDER"]),
+            ("LIGHT", ["LIGHT"]),
+            ("CAMERA", ["CAMERA"]),
+            ("CURVE", []),
+        ],
+    )
+    def test_undefined_model_type_options(self, registered_ops, object_type, expected):
+        from Forge.ops.definition import Forge_OT_Type_Define
+
+        data = {
+            "EMPTY": lambda: None,
+            "MESH": lambda: bpy.data.meshes.new("Mesh"),
+            "LIGHT": lambda: bpy.data.lights.new("Light", "POINT"),
+            "CAMERA": lambda: bpy.data.cameras.new("Camera"),
+            "CURVE": lambda: bpy.data.curves.new("Curve", "CURVE"),
+        }[object_type]()
+        obj = bpy.data.objects.new("Untyped", data)
+        bpy.context.collection.objects.link(obj)
+        obj.select_set(True)
+        items = Forge_OT_Type_Define.model_enum_items(None, bpy.context)
+        assert [item[0] for item in items] == expected
+
+    @pytest.mark.parametrize("model_type", ["VISUAL", "COLLIDER", "LIGHT", "CAMERA"])
+    def test_defined_model_type_only_offers_reset(self, registered_ops, model_type):
+        from Forge.ops.definition import Forge_OT_Type_Define
+
+        bpy.ops.mesh.primitive_cube_add()
+        bpy.context.active_object.Forge_Model_Type = model_type
+        items = Forge_OT_Type_Define.model_enum_items(None, bpy.context)
+        assert [item[0] for item in items] == ["UNDEFINED"]
+
+    @pytest.mark.parametrize(("source", "target"), [("COLLIDER", "VISUAL"), ("VISUAL", "COLLIDER")])
+    @pytest.mark.parametrize("shape", ["MESH", "BOX"])
+    def test_model_type_conversion_requires_reset(self, registered_ops, source, target, shape):
+        bpy.ops.object.empty_add()
+        parent = bpy.context.active_object
+        parent.location = (3, -2, 5)
+        parent.rotation_euler = (0.2, 0.4, -0.6)
+        parent.scale = (2, 2, 2)
+        parent.Forge_Model_Type = "LINK"
+        bpy.ops.mesh.primitive_cube_add()
+        obj = bpy.context.active_object
+        obj.parent = parent
+        obj.location = (1, 2, 3)
+        obj.rotation_euler = (0.3, -0.2, 0.1)
+        obj.Forge_Model_Type = source
+        obj.Forge_Geometry.type = shape
+        if shape == "BOX":
+            modifiers = cons.GeometryShapeModifiers if source == "VISUAL" else cons.ColliderShapeModifiers
+            attach_shape_modifier(obj, modifiers[shape])
+        bpy.context.view_layer.update()
+        world = obj.matrix_world.copy()
+        old_mesh = obj.data
+
+        with pytest.raises(TypeError):
+            bpy.ops.forge.define_model_type(Model_Type=target)
+        assert obj.Forge_Model_Type == source
+        assert obj.parent == parent
+
+        assert bpy.ops.forge.define_model_type(Model_Type="UNDEFINED") == {"FINISHED"}
+        bpy.context.view_layer.update()
+        assert obj.parent is None
+        for actual, expected in zip(obj.matrix_world, world, strict=True):
+            assert tuple(actual) == pytest.approx(tuple(expected), abs=1e-5)
+        assert obj.data != old_mesh
+        assert obj.data.name == obj.name.lower()
+        assert obj.data.polygons
+        assert not obj.modifiers
+
+        assert bpy.ops.forge.define_model_type(Model_Type=target) == {"FINISHED"}
+        assert obj.Forge_Model_Type == target
+        assert obj.Forge_Geometry.type == "MESH"
+        assert obj.Forge_Geometry.group == (2 if target == "VISUAL" else 3)
+        assert obj.Forge_Geometry.contype == (0 if target == "VISUAL" else 1)
+        assert obj.Forge_Geometry.conaffinity == (0 if target == "VISUAL" else 1)
+
+    def test_untyped_mixed_blender_types_cannot_be_defined(self, registered_ops):
+        bpy.ops.object.empty_add()
+        empty = bpy.context.active_object
+        bpy.ops.mesh.primitive_cube_add()
+        mesh = bpy.context.active_object
+        empty.select_set(True)
+        assert bpy.ops.forge.define_model_type("INVOKE_DEFAULT") == {"CANCELLED"}
+        with pytest.raises(TypeError):
+            bpy.ops.forge.define_model_type(Model_Type="VISUAL")
+        assert empty.Forge_Model_Type == mesh.Forge_Model_Type == "UNDEFINED"
+
+    def test_define_multiple_untyped_meshes(self, registered_ops):
+        bpy.ops.mesh.primitive_cube_add()
+        first = bpy.context.active_object
+        bpy.ops.mesh.primitive_cube_add()
+        second = bpy.context.active_object
+        first.select_set(True)
+        assert bpy.ops.forge.define_model_type(Model_Type="VISUAL") == {"FINISHED"}
+        assert first.Forge_Model_Type == second.Forge_Model_Type == "VISUAL"
+        assert first.Forge_Geometry.contype == second.Forge_Geometry.contype == 0
+
+    def test_reset_mesh_collider_bakes_convex_surface(self, registered_ops):
+        bpy.ops.mesh.primitive_cube_add()
+        source = bpy.context.active_object
+        source.Forge_Model_Type = "VISUAL"
+        source.Forge_Geometry.type = "BOX"
+        collider = bpy.data.objects.new("Convex", bpy.data.meshes.new("Empty base"))
+        bpy.context.collection.objects.link(collider)
+        collider.Forge_Model_Type = "COLLIDER"
+        collider.Forge_Geometry.type = "MESH"
+        attach_shape_modifier(collider, cons.ColliderShapeModifiers["MESH"])
+        funcs.set_collider_size_by_ref(collider, cons.GeometryTypes.MESH, source)
+        source.select_set(False)
+        collider.select_set(True)
+        bpy.context.view_layer.objects.active = collider
+
+        assert bpy.ops.forge.define_model_type(Model_Type="UNDEFINED") == {"FINISHED"}
+
+        assert collider.Forge_Model_Type == "UNDEFINED"
+        assert collider.data.polygons
+        assert not collider.modifiers
+        assert source.Forge_Model_Type == "VISUAL"
+        assert len(source.data.vertices) == 8
+
+    @pytest.mark.parametrize(("first", "second"), [("UNDEFINED", "VISUAL"), ("LINK", "COLLIDER")])
+    def test_model_type_poll_rejects_ineligible_selections(self, registered_ops, first, second):
+        bpy.ops.mesh.primitive_cube_add()
+        obj = bpy.context.active_object
+        obj.Forge_Model_Type = first
+        bpy.ops.mesh.primitive_cube_add()
+        bpy.context.active_object.Forge_Model_Type = second
+        obj.select_set(True)
+        assert not bpy.ops.forge.define_model_type.poll()
+
+    def test_define_model_type_undefined(self, registered_ops):
+        bpy.ops.mesh.primitive_cube_add()
+        obj = bpy.context.active_object
+        bpy.ops.forge.define_model_type(Model_Type="COLLIDER")
+        obj.Forge_Geometry.friction = (0.8, 0.2, 0.1)
+        obj.lock_scale = (True, True, True)
+        obj.show_in_front = True
+        name = obj.name
+        collections = tuple(obj.users_collection)
+        obj.modifiers.new("User modifier", "BEVEL")
+        material = bpy.data.materials.new("Reset material")
+        obj.data.materials.append(material)
+        override = bpy.data.materials.new("Object override")
+        obj.material_slots[0].link = "OBJECT"
+        obj.material_slots[0].material = override
+        source_mesh = obj.data
+        shared = bpy.data.objects.new("Shared mesh", source_mesh)
+        obj["custom"] = "keep"
+
+        assert bpy.ops.forge.define_model_type(Model_Type="UNDEFINED") == {"FINISHED"}
+        assert obj.Forge_Model_Type == "UNDEFINED"
+        defaults = bpy.data.objects.new("Defaults", None)
+        assert obj.Forge_Geometry.group == defaults.Forge_Geometry.group
+        assert tuple(obj.Forge_Geometry.friction) == tuple(defaults.Forge_Geometry.friction)
+        assert obj.display_type == defaults.display_type
+        assert tuple(obj.lock_scale) == (False, False, False)
+        assert obj.show_in_front is False
+        assert obj.name == name
+        assert tuple(obj.users_collection) == collections
+        assert not obj.modifiers
+        assert obj.data != source_mesh
+        assert shared.data == source_mesh
+        assert len(obj.data.vertices) > len(source_mesh.vertices)
+        assert obj.material_slots[0].material == override
+        assert source_mesh.materials[0] == material
+        assert obj["custom"] == "keep"
+
+        bpy.ops.forge.define_model_type(Model_Type="VISUAL")
+        assert obj.Forge_Model_Type == "VISUAL"
+
+    def test_define_model_type_undefined_mixed_selection(self, registered_ops):
+        bpy.ops.object.light_add(type="POINT")
+        link = bpy.context.active_object
+        link.Forge_Model_Type = "LIGHT"
+        link["Root Link"] = True
+        link["INSTANCE_LINK"] = True
+        link.Forge_Link.mass = 7
+        bpy.ops.mesh.primitive_cube_add()
+        mesh = bpy.context.active_object
+        mesh.Forge_Model_Type = "COLLIDER"
+        link.select_set(True)
+
+        assert bpy.ops.forge.define_model_type(Model_Type="UNDEFINED") == {"FINISHED"}
+        assert link.Forge_Model_Type == mesh.Forge_Model_Type == "UNDEFINED"
+        assert "Root Link" not in link
+        assert "INSTANCE_LINK" not in link
+        assert not link.is_property_set("Forge_Link")
+
+    @pytest.mark.parametrize("model_type", ["VISUAL", "COLLIDER"])
+    @pytest.mark.parametrize("shape", ["BOX", "SPHERE", "CAPSULE", "CYLINDER"])
+    def test_reset_shape_bakes_solid_mesh(self, registered_ops, model_type, shape, capfd):
+        obj = bpy.data.objects.new("Shape", bpy.data.meshes.new("Shape base"))
+        bpy.context.collection.objects.link(obj)
+        obj.select_set(True)
+        bpy.context.view_layer.objects.active = obj
+        obj.Forge_Model_Type = model_type
+        obj.Forge_Geometry.type = shape
+        modifiers = cons.GeometryShapeModifiers if model_type == "VISUAL" else cons.ColliderShapeModifiers
+        attach_shape_modifier(obj, modifiers[shape])
+        original_mesh = obj.data
+
+        assert bpy.ops.forge.define_model_type(Model_Type="UNDEFINED") == {"FINISHED"}
+
+        assert "independent mesh" in capfd.readouterr().out
+        assert obj.Forge_Model_Type == "UNDEFINED"
+        assert obj.data != original_mesh
+        assert obj.data.polygons
+        assert not obj.modifiers
 
     def test_define_model_type_link(self, registered_ops):
         """forge.define_model_type assigns LINK to an EMPTY object."""
