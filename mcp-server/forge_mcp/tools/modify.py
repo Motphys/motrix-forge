@@ -37,7 +37,7 @@ from ._hints import WRITE
 
 # ── Enums ─────────────────────────────────────────────────────────────
 
-ModelType = Literal["LINK", "VISUAL", "COLLIDER", "LIGHT", "CAMERA"]
+ModelType = Literal["UNDEFINED", "LINK", "VISUAL", "COLLIDER", "LIGHT", "CAMERA"]
 GeometryType = Literal["BOX", "CAPSULE", "CYLINDER", "SPHERE", "MESH", "SDF"]
 ColliderType = GeometryType
 SiteType = Literal["BOX", "CAPSULE", "CYLINDER", "SPHERE"]
@@ -50,8 +50,23 @@ ActuatorType = Literal["GENERAL", "MOTOR", "POSITION", "VELOCITY", "ADHESION"]
 
 @mcp.tool(annotations=WRITE, name="forge_define_model_type")
 def define_model_type(model_type: ModelType, select: list[str] | None = None) -> dict:
-    """Set the model type of selected `UNDEFINED` object(s).
+    """Define selected untyped objects, or reset selected Forge objects to `UNDEFINED`.
 
+    - Direct conversion between Forge model types is unsupported. For COLLIDER -> VISUAL, call with UNDEFINED
+      first, then VISUAL. Resetting bakes modifiers and clears parenting; restore the parent afterward if needed.
+    - Requires a nonempty selection: either all UNDEFINED, or all drawn from VISUAL / COLLIDER / LIGHT / CAMERA
+      (these four may be mixed). Mixing UNDEFINED with defined objects, or selecting other Forge types such as
+      LINK, is unsupported. Eligible defined selections only offer UNDEFINED.
+      Untyped selections only offer the supported definition targets below, without UNDEFINED.
+      Defining UNDEFINED objects requires every selected object to have the SAME supported Blender object type:
+      EMPTY, MESH, LIGHT, or CAMERA. Mixed Blender types (e.g. MESH + EMPTY) must be selected and defined separately.
+      If there is no common supported Blender object type, no target is available and the dialog is cancelled.
+    - UNDEFINED: reset Forge properties, instance/root markers, display settings and transform locks to defaults.
+      VISUAL / COLLIDER: bake evaluated modifiers into an independent mesh and clear the modifier stack.
+      Primitive shape types (BOX / SPHERE / CAPSULE / CYLINDER) show an Attention panel and issue a warning;
+      colliders bake a solid surface. New meshes use the lowercase object name (Blender may add a uniqueness suffix).
+      Reset objects are detached from their parent while preserving world transforms, object names and collections.
+      UNDEFINED objects are skipped during export asset gathering and MJCF element writing.
     - Available `model_type` decided by the selected Blender object type: EMPTY -> LINK; MESH -> VISUAL or COLLIDER;
       LIGHT -> LIGHT; CAMERA -> CAMERA.
     - VISUAL: set geometry type MESH, group 2, contype / conaffinity 0, rename with prefix `GEO_`.
